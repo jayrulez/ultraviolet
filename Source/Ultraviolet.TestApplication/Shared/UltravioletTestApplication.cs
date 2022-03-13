@@ -168,7 +168,8 @@ namespace Ultraviolet.TestApplication
         }
 
         /// <inheritdoc/>
-        public Bitmap Render(Action<UltravioletContext> renderer)
+        //public Bitmap Render(Action<UltravioletContext> renderer)
+        public SixLabors.ImageSharp.Image<SixLabors.ImageSharp.PixelFormats.Rgba32> Render(Action<UltravioletContext> renderer)
         {
             if (headless)
                 throw new InvalidOperationException("Cannot render a headless window.");
@@ -468,7 +469,7 @@ namespace Ultraviolet.TestApplication
         /// </summary>
         /// <param name="rt">The render target to convert.</param>
         /// <returns>The converted bitmap image.</returns>
-        private Bitmap ConvertRenderTargetToBitmap(RenderTarget2D rt)
+        private SixLabors.ImageSharp.Image<SixLabors.ImageSharp.PixelFormats.Rgba32> ConvertRenderTargetToBitmap(RenderTarget2D rt)
         {
             // HACK: Our buffer has been rounded up to the nearest
             // power of two, so at this point we clip it back down
@@ -481,7 +482,7 @@ namespace Ultraviolet.TestApplication
             var data = new Color[rt.Width * rt.Height];
             rt.GetData(data);
 
-            var bmp = new Bitmap(windowWidth, windowHeight);
+            var bmp = new SixLabors.ImageSharp.Image<SixLabors.ImageSharp.PixelFormats.Rgba32>(windowWidth, windowHeight);
             var pixel = 0;
             for (int y = 0; y < rt.Height; y++)
             {
@@ -490,10 +491,10 @@ namespace Ultraviolet.TestApplication
                     if (x < windowWidth && y < windowHeight)
                     {
                         var rawColor = data[pixel];
-                        
-                        bmp.SetPixel(x, y, 
-                            System.Drawing.Color.FromArgb(255, 
-                            System.Drawing.Color.FromArgb((Int32)rawColor.ToArgb())));
+
+                        var dstPixel = new SixLabors.ImageSharp.PixelFormats.Rgba32(rawColor.R, rawColor.G, rawColor.B, 255);
+
+                        bmp[x, y] = dstPixel;
                     }
                     pixel++;
                 }
@@ -501,6 +502,45 @@ namespace Ultraviolet.TestApplication
 
             return bmp;
         }
+
+        ///// <summary>
+        ///// Converts the specified render target to a bitmap image.
+        ///// </summary>
+        ///// <param name="rt">The render target to convert.</param>
+        ///// <returns>The converted bitmap image.</returns>
+        //private Bitmap ConvertRenderTargetToBitmap(RenderTarget2D rt)
+        //{
+        //    // HACK: Our buffer has been rounded up to the nearest
+        //    // power of two, so at this point we clip it back down
+        //    // to the size of the window.
+
+        //    var window = Ultraviolet.GetPlatform().Windows.GetPrimary();
+        //    var windowWidth = window.DrawableSize.Width;
+        //    var windowHeight = window.DrawableSize.Height;
+
+        //    var data = new Color[rt.Width * rt.Height];
+        //    rt.GetData(data);
+
+        //    var bmp = new Bitmap(windowWidth, windowHeight);
+        //    var pixel = 0;
+        //    for (int y = 0; y < rt.Height; y++)
+        //    {
+        //        for (int x = 0; x < rt.Width; x++)
+        //        {
+        //            if (x < windowWidth && y < windowHeight)
+        //            {
+        //                var rawColor = data[pixel];
+
+        //                bmp.SetPixel(x, y, 
+        //                    System.Drawing.Color.FromArgb(255, 
+        //                    System.Drawing.Color.FromArgb((Int32)rawColor.ToArgb())));
+        //            }
+        //            pixel++;
+        //        }
+        //    }
+
+        //    return bmp;
+        //}
 
         // State values.
         private readonly Boolean headless;
@@ -512,7 +552,8 @@ namespace Ultraviolet.TestApplication
         private Action<ContentManager> loader;
         private Action<UltravioletContext> renderer;
         private Action disposer;
-        private Bitmap bmp;
+        //private Bitmap bmp;
+        private SixLabors.ImageSharp.Image<SixLabors.ImageSharp.PixelFormats.Rgba32> bmp;
         private Int32 updateCount;
         private Int32 renderCount;
         private Int32 frameCount;

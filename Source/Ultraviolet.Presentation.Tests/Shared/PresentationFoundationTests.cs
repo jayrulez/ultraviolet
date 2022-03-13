@@ -398,7 +398,8 @@ namespace Ultraviolet.Presentation.Tests
         /// <summary>
         /// Runs a standard test by spinning up an Ultraviolet application and displaying the specified UPF screen.
         /// </summary>
-        private Bitmap RunPresentationTestFor<T>(Func<ContentManager, T> ctor) where T : UIScreen
+        //private Bitmap RunPresentationTestFor<T>(Func<ContentManager, T> ctor) where T : UIScreen
+        private SixLabors.ImageSharp.Image<SixLabors.ImageSharp.PixelFormats.Rgba32> RunPresentationTestFor<T>(Func<ContentManager, T> ctor) where T : UIScreen
         {
             return GivenAPresentationFoundationTestFor<T>(ctor)
                 .Render(uv =>

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Buffers;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.InteropServices;
 using Ultraviolet.Core;
 using Ultraviolet.Graphics;
 
@@ -24,24 +26,54 @@ namespace Ultraviolet.Shims.NETCore3.Graphics
             var data = new Byte[stream.Length];
             stream.Read(data, 0, data.Length);
 
-            using (var mstream = new MemoryStream(data))
-            {
-                this.bmp = new Bitmap(mstream);
-                this.bmpData = bmp.LockBits(new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+            SixLabors.ImageSharp.Configuration customConfig = SixLabors.ImageSharp.Configuration.Default.Clone();
+            customConfig.PreferContiguousImageBuffers = true;
+            using (var mstream = new MemoryStream(data)) {
+                this.bmp = SixLabors.ImageSharp.Image.Load(customConfig, mstream).CloneAs<SixLabors.ImageSharp.PixelFormats.Rgba32> ();
+                if (!this.bmp.DangerousTryGetSinglePixelMemory(out imageMemory))
+                {
+                    throw new Exception(
+                        "This can only happen with multi-GB images or when PreferContiguousImageBuffers is not set to true.");
+                }
+
+                this.imageMemoryHandle = imageMemory.Pin();
             }
+
+            //using (var mstream = new MemoryStream(data))
+            //{
+            //    this.bmp = new Bitmap(mstream);
+            //    this.bmpData = bmp.LockBits(new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+            //}
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NETCore3SurfaceSource"/> class.
         /// </summary>
         /// <param name="bmp">The bitmap from which to read surface data.</param>
-        public NETCore3SurfaceSource(Bitmap bmp)
+        public NETCore3SurfaceSource(SixLabors.ImageSharp.Image<SixLabors.ImageSharp.PixelFormats.Rgba32> bmp)
         {
             Contract.Require(bmp, nameof(bmp));
 
             this.bmp = bmp;
-            this.bmpData = bmp.LockBits(new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+            if (!this.bmp.DangerousTryGetSinglePixelMemory(out imageMemory))
+            {
+                throw new Exception("This can only happen with multi-GB images or when PreferContiguousImageBuffers is not set to true.");
+            }
+
+            this.imageMemoryHandle = imageMemory.Pin();
         }
+
+        ///// <summary>
+        ///// Initializes a new instance of the <see cref="NETCore3SurfaceSource"/> class.
+        ///// </summary>
+        ///// <param name="bmp">The bitmap from which to read surface data.</param>
+        //public NETCore3SurfaceSource(Bitmap bmp)
+        //{
+        //    Contract.Require(bmp, nameof(bmp));
+
+        //    this.bmp = bmp;
+        //    this.bmpData = bmp.LockBits(new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+        //}
 
         /// <inheritdoc/>
         public override void Dispose()
@@ -57,23 +89,27 @@ namespace Ultraviolet.Shims.NETCore3.Graphics
             {
                 Contract.EnsureNotDisposed(this, disposed);
 
-                unsafe
-                {
-                    var pixel = ((byte*)bmpData.Scan0) + (bmpData.Stride * y) + (x * sizeof(UInt32));
-                    var b = *pixel++;
-                    var g = *pixel++;
-                    var r = *pixel++;
-                    var a = *pixel++;
-                    return new Color(r, g, b, a);
-                }
+                var pixel = this.bmp[x, y];
+                return new Color(pixel.R, pixel.G, pixel.B, pixel.A);
+                //unsafe
+                //{
+                //    var pixel = ((byte*)bmpData.Scan0) + (bmpData.Stride * y) + (x * sizeof(UInt32));
+                //    var b = *pixel++;
+                //    var g = *pixel++;
+                //    var r = *pixel++;
+                //    var a = *pixel++;
+                //    return new Color(r, g, b, a);
+                //}
             }
         }
 
         /// <inheritdoc/>
-        public override IntPtr Data => bmpData.Scan0;
+        //public override IntPtr Data => bmpData.Scan0;
+        public unsafe override IntPtr Data => (IntPtr)imageMemoryHandle.Pointer;
 
         /// <inheritdoc/>
-        public override Int32 Stride => bmpData.Stride;
+        //public override Int32 Stride => bmpData.Stride;
+        public override Int32 Stride => bmp.Width * 4;
 
         /// <inheritdoc/>
         public override Int32 Width => bmp.Width;
@@ -82,7 +118,7 @@ namespace Ultraviolet.Shims.NETCore3.Graphics
         public override Int32 Height => bmp.Height;
 
         /// <inheritdoc/>
-        public override SurfaceSourceDataFormat DataFormat => SurfaceSourceDataFormat.BGRA;
+        public override SurfaceSourceDataFormat DataFormat => SurfaceSourceDataFormat.RGBA;
 
         /// <summary>
         /// Releases resources associated with the object.
@@ -95,7 +131,8 @@ namespace Ultraviolet.Shims.NETCore3.Graphics
 
             if (disposing)
             {
-                bmp.UnlockBits(bmpData);
+                //bmp.UnlockBits(bmpData);
+                imageMemoryHandle.Dispose();
                 bmp.Dispose();
             }
 
@@ -103,8 +140,11 @@ namespace Ultraviolet.Shims.NETCore3.Graphics
         }
 
         // State values.
-        private readonly Bitmap bmp;
-        private readonly BitmapData bmpData;
+        //private readonly Bitmap bmp;
+        //private readonly BitmapData bmpData;
+        private readonly SixLabors.ImageSharp.Image<SixLabors.ImageSharp.PixelFormats.Rgba32> bmp;
+        private readonly MemoryHandle imageMemoryHandle;
+        private readonly Memory<SixLabors.ImageSharp.PixelFormats.Rgba32> imageMemory;
         private Boolean disposed;
     }
 }
