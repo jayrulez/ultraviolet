@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <Authors>StbImageSharpTeam</Authors>
+        <Product>StbImageSharp</Product>
+        <PackageId>StbImageSharp</PackageId>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Description>C# port of the stb_image.h</Description>
+        <PackageLicenseUrl>Public Domain</PackageLicenseUrl>
+        <PackageProjectUrl>https://github.com/StbSharp/StbImageSharp</PackageProjectUrl>
+        <Version>2.27.12</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <SignAssembly>True</SignAssembly>
+        <AssemblyOriginatorKeyFile>F:\CSharpDev\ultraviolet\Source\Ultraviolet.snk</AssemblyOriginatorKeyFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+</Project>
