@@ -920,16 +920,33 @@ namespace Ultraviolet
 
                 if (Runtime == UltravioletRuntime.CoreCLR)
                 {
-                    switch (RuntimeVersion?.Major ?? 0)
+                    switch (Platform)
                     {
-                        case 0:
-                        case 1:
-                        case 2:
-                        case 4:
-                            throw new NotSupportedException();
+                        case UltravioletPlatform.Android:
+                            shim = Assembly.Load("Ultraviolet.Shims.Android.dll");
+                            break;
+
+                        case UltravioletPlatform.iOS:
+                            shim = Assembly.Load("Ultraviolet.Shims.iOS.dll");
+                            break;
 
                         default:
-                            shim = Assembly.Load("Ultraviolet.Shims.NETCore3, PublicKey=" + publicKeyString);
+                            {
+                                switch (RuntimeVersion?.Major ?? 0)
+                                {
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                    case 3:
+                                    case 4:
+                                    case 5:
+                                        throw new NotSupportedException();
+
+                                    default:
+                                        shim = Assembly.Load("Ultraviolet.Shims.NETCore3, PublicKey=" + publicKeyString);
+                                        break;
+                                }
+                            }
                             break;
                     }
                 }

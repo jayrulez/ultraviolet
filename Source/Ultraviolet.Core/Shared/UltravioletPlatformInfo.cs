@@ -74,8 +74,7 @@ namespace Ultraviolet.Core
         /// </summary>
         private static Version DetectCurrentRuntimeVersion()
         {
-            return (Environment.Version.Major == 4) ?
-                new Version(2, 0, 0) : Environment.Version;
+            return Environment.Version;
         }
 
         /// <summary>
