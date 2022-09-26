@@ -29,7 +29,8 @@
     <DefineConstants>TRACE;NETSTANDARD;RELEASE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+    <PackageReference Include="StbImageSharp" Version="2.27.12" />
+	  <!--<PackageReference Include="System.Drawing.Common" Version="5.0.2" />-->
   </ItemGroup>
 
   <ItemGroup>

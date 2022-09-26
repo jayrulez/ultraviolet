@@ -1,9 +1,161 @@
 ﻿using System;
+using System.Buffers;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using Ultraviolet.Core;
 using Ultraviolet.Graphics;
+
+/// <summary>
+/// A 3 component pixel.
+/// </summary>
+public struct Pixel3
+{
+    /// <summary>
+    /// First component.
+    /// </summary>
+    public byte R;
+
+    /// <summary>
+    /// Second component.
+    /// </summary>
+    public byte G;
+
+    /// <summary>
+    /// Third component.
+    /// </summary>
+    public byte B;
+}
+/// <summary>
+/// A 4 component pixel.
+/// </summary>
+public struct Pixel4
+{
+    /// <summary>
+    /// First component.
+    /// </summary>
+    public byte R;
+
+    /// <summary>
+    /// Second component.
+    /// </summary>
+    public byte G;
+
+    /// <summary>
+    /// Third component.
+    /// </summary>
+    public byte B;
+
+    /// <summary>
+    /// Fourth component.
+    /// </summary>
+    public byte A;
+}
+
+/// <summary>
+/// Extensions for STB_Image.
+/// </summary>
+public static partial class StbExtensions
+{
+    /// <summary>
+    /// Get a pixel at the specified coordinates.
+    /// </summary>
+#pragma warning disable CS3001 // Argument type is not CLS-compliant
+    public static void GetPixel(this StbImageSharp.ImageResult image, int x, int y, out Pixel3 pixel)
+#pragma warning restore CS3001 // Argument type is not CLS-compliant
+    {
+        int bpp = 3;
+
+        int pixelOffset = (x + image.Width * y) * bpp;
+
+        pixel = new Pixel3();
+        pixel.R = image.Data[pixelOffset + 0];
+        pixel.G = image.Data[pixelOffset + 1];
+        pixel.B = image.Data[pixelOffset + 2];
+    }
+
+    /// <summary>
+    /// Get a pixel at the specified coordinates.
+    /// </summary>
+#pragma warning disable CS3001 // Argument type is not CLS-compliant
+    public static void GetPixel(this StbImageSharp.ImageResult image, int x, int y, out Pixel4 pixel)
+#pragma warning restore CS3001 // Argument type is not CLS-compliant
+    {
+        int bpp = 4;
+
+        int pixelOffset = (y * image.Width + x) * bpp;
+
+        pixel = new Pixel4();
+        pixel.R = image.Data[pixelOffset + 0];
+        pixel.G = image.Data[pixelOffset + 1];
+        pixel.B = image.Data[pixelOffset + 2];
+        pixel.A = image.Data[pixelOffset + 3];
+    }
+
+    /// <summary>
+    /// Set a pixel at the specified coordinates.
+    /// </summary>
+#pragma warning disable CS3001 // Argument type is not CLS-compliant
+    public static void SetPixel(this StbImageSharp.ImageResult image, int x, int y, byte r, byte g, byte b, byte a)
+#pragma warning restore CS3001 // Argument type is not CLS-compliant
+    {
+        int bpp = 4;
+
+        int pixelOffset = (x + image.Width * y) * bpp;
+
+        if (image.Comp != StbImageSharp.ColorComponents.RedGreenBlueAlpha)
+        {
+            throw new Exception("Image comp is not expected.");
+        }
+
+        image.Data[pixelOffset + 0] = r;
+        image.Data[pixelOffset + 1] = g;
+        image.Data[pixelOffset + 2] = b;
+        image.Data[pixelOffset + 3] = a;
+    }
+
+    /// <summary>
+    /// Set a pixel at the specified coordinates.
+    /// </summary>
+#pragma warning disable CS3001 // Argument type is not CLS-compliant
+    public static void SetPixel(this StbImageSharp.ImageResult image, int x, int y, byte r, byte g, byte b)
+#pragma warning restore CS3001 // Argument type is not CLS-compliant
+    {
+        int bpp = 3;
+
+        int pixelOffset = (x + image.Width * y) * bpp;
+
+        if (image.Comp != StbImageSharp.ColorComponents.RedGreenBlue)
+        {
+            throw new Exception("Image comp is not expected.");
+        }
+
+        image.Data[pixelOffset + 0] = r;
+        image.Data[pixelOffset + 1] = g;
+        image.Data[pixelOffset + 2] = b;
+    }
+    /// <summary>
+    /// Gets the image stride.
+    /// </summary>
+#pragma warning disable CS3001 // Argument type is not CLS-compliant
+    public static int GetStride(this StbImageSharp.ImageResult image)
+#pragma warning restore CS3001 // Argument type is not CLS-compliant
+    {
+        switch (image.Comp)
+        {
+            case StbImageSharp.ColorComponents.Grey:
+                return 1 * image.Width;
+            case StbImageSharp.ColorComponents.GreyAlpha:
+                return 2 * image.Width;
+            case StbImageSharp.ColorComponents.RedGreenBlue:
+                return 3 * image.Width;
+            case StbImageSharp.ColorComponents.RedGreenBlueAlpha:
+                return 4 * image.Width;
+        }
+
+        return 0;
+    }
+}
 
 namespace Ultraviolet.Shims.NETCore3.Graphics
 {
@@ -26,21 +178,24 @@ namespace Ultraviolet.Shims.NETCore3.Graphics
 
             using (var mstream = new MemoryStream(data))
             {
-                this.bmp = new Bitmap(mstream);
-                this.bmpData = bmp.LockBits(new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+                this.image = StbImageSharp.ImageResult.FromStream(mstream, StbImageSharp.ColorComponents.RedGreenBlueAlpha);
+                imageMemory = new Memory<byte>(this.image.Data);
+
+                this.imageMemoryHandle = imageMemory.Pin();
             }
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NETCore3SurfaceSource"/> class.
         /// </summary>
-        /// <param name="bmp">The bitmap from which to read surface data.</param>
-        public NETCore3SurfaceSource(Bitmap bmp)
+        /// <param name="image">The bitmap from which to read surface data.</param>
+        public NETCore3SurfaceSource(StbImageSharp.ImageResult image)
         {
-            Contract.Require(bmp, nameof(bmp));
+            Contract.Require(image, nameof(image));
 
-            this.bmp = bmp;
-            this.bmpData = bmp.LockBits(new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+            imageMemory = new Memory<byte>(this.image.Data);
+
+            this.imageMemoryHandle = imageMemory.Pin();
         }
 
         /// <inheritdoc/>
@@ -57,32 +212,25 @@ namespace Ultraviolet.Shims.NETCore3.Graphics
             {
                 Contract.EnsureNotDisposed(this, disposed);
 
-                unsafe
-                {
-                    var pixel = ((byte*)bmpData.Scan0) + (bmpData.Stride * y) + (x * sizeof(UInt32));
-                    var b = *pixel++;
-                    var g = *pixel++;
-                    var r = *pixel++;
-                    var a = *pixel++;
-                    return new Color(r, g, b, a);
-                }
+                this.image.GetPixel(x, y, out Pixel4 pixel);
+                return new Color(pixel.R, pixel.G, pixel.B, pixel.A);
             }
         }
 
         /// <inheritdoc/>
-        public override IntPtr Data => bmpData.Scan0;
+        public unsafe override IntPtr Data => (IntPtr)imageMemoryHandle.Pointer;
 
         /// <inheritdoc/>
-        public override Int32 Stride => bmpData.Stride;
+        public override Int32 Stride => image.GetStride();
 
         /// <inheritdoc/>
-        public override Int32 Width => bmp.Width;
+        public override Int32 Width => image.Width;
 
         /// <inheritdoc/>
-        public override Int32 Height => bmp.Height;
+        public override Int32 Height => image.Height;
 
         /// <inheritdoc/>
-        public override SurfaceSourceDataFormat DataFormat => SurfaceSourceDataFormat.BGRA;
+        public override SurfaceSourceDataFormat DataFormat => SurfaceSourceDataFormat.RGBA;
 
         /// <summary>
         /// Releases resources associated with the object.
@@ -95,16 +243,16 @@ namespace Ultraviolet.Shims.NETCore3.Graphics
 
             if (disposing)
             {
-                bmp.UnlockBits(bmpData);
-                bmp.Dispose();
+                imageMemoryHandle.Dispose();
             }
 
             disposed = true;
         }
 
         // State values.
-        private readonly Bitmap bmp;
-        private readonly BitmapData bmpData;
+        private readonly StbImageSharp.ImageResult image;
+        private readonly MemoryHandle imageMemoryHandle;
+        private readonly Memory<byte> imageMemory;
         private Boolean disposed;
     }
 }
