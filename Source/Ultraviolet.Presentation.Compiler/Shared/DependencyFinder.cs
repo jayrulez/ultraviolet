@@ -96,6 +96,12 @@ namespace Ultraviolet.Presentation.Compiler
         /// <returns>The path to the NuGet cache directory, or <see langword="null"/> if it doesn't exist.</returns>
         public static String GetNuGetCacheDirectory()
         {
+            var nugetPackagesDir = Environment.GetEnvironmentVariable("NUGET_PACKAGES");
+            if (Directory.Exists(nugetPackagesDir))
+            {
+                return nugetPackagesDir;
+            }
+
             var home = UltravioletPlatformInfo.CurrentPlatform == UltravioletPlatform.Windows ?
                 Environment.GetEnvironmentVariable("USERPROFILE") :
                 Environment.GetEnvironmentVariable("HOME");
@@ -113,41 +119,7 @@ namespace Ultraviolet.Presentation.Compiler
         {
             additionalPaths.Clear();
 
-            // If the compiler is running under a runtime earlier than Core 3.0, we need to build as .NET Standard 2.0.
-            // Otherwise, build as .NET Standard 2.1.
-            if (UltravioletPlatformInfo.CurrentRuntime == UltravioletRuntime.CoreCLR &&
-                UltravioletPlatformInfo.CurrentRuntimeVersion.Major == 2)
-            {
-                return GetNetStandardLibraryDirFromNuGetCache_Standard20(additionalPaths);
-            }
-            else
-            {
-                return GetNetStandardLibraryDirFromNuGetCache_Standard21(additionalPaths);
-            }
-        }
-
-        /// <summary>
-        /// Gets the path to the .NET Standard 2.0 assemblies.
-        /// </summary>
-        private static String GetNetStandardLibraryDirFromNuGetCache_Standard20(IList<String> additionalPaths)
-        {
-            var cache = GetNuGetCacheDirectory();
-            if (cache == null)
-                return null;
-
-            var dir = new DirectoryInfo(Path.Combine(cache, "netstandard.library"));
-            if (dir.Exists)
-            {
-                var best = dir.EnumerateDirectories().Select(x => new { Directory = x, Target = new DirectoryInfo(Path.Combine(x.FullName, "build", "netstandard2.0", "ref")), Version = TryParseVersion(x.Name) })
-                    .Where(x => x.Version != null && x.Version >= new Version(2, 0, 1) && x.Target.Exists)
-                    .OrderByDescending(x => x.Version)
-                    .FirstOrDefault();
-                if (best != null)
-                {
-                    return best.Target.FullName;
-                }
-            }
-            return null;
+            return GetNetStandardLibraryDirFromNuGetCache_Standard21(additionalPaths);
         }
 
         /// <summary>
@@ -162,7 +134,7 @@ namespace Ultraviolet.Presentation.Compiler
             var dir = new DirectoryInfo(Path.Combine(cache, "netstandard.library.ref"));
             if (dir.Exists)
             {
-                var best = dir.EnumerateDirectories().Select(x => new { Directory = x, Target = new DirectoryInfo(Path.Combine(x.FullName, "build", "netstandard2.1", "ref")), Version = TryParseVersion(x.Name) })
+                var best = dir.EnumerateDirectories().Select(x => new { Directory = x, Target = new DirectoryInfo(Path.Combine(x.FullName, "ref", "netstandard2.1")), Version = TryParseVersion(x.Name) })
                     .Where(x => x.Version != null && x.Version >= new Version(2, 1, 0) && x.Target.Exists)
                     .OrderByDescending(x => x.Version)
                     .FirstOrDefault();

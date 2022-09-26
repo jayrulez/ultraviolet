@@ -37,7 +37,7 @@ namespace Ultraviolet.Shims.NETCore3
                     break;
             }
 
-            var softwareKeyboardService = new NETCore2SoftwareKeyboardService();
+            var softwareKeyboardService = new NETCore3SoftwareKeyboardService();
             factory.SetFactoryMethod<SoftwareKeyboardServiceFactory>(() => softwareKeyboardService);
         }
     }
