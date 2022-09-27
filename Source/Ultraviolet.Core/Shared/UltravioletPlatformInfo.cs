@@ -82,11 +82,12 @@ namespace Ultraviolet.Core
         /// </summary>
         private static UltravioletRuntime DetectCurrentRuntime()
         {
+            if (Type.GetType("Mono.Runtime") != null)
+                return UltravioletRuntime.Mono;
+
             if (String.Equals("System.Private.CoreLib", typeof(Object).Assembly.GetName().Name, StringComparison.Ordinal))
                 return UltravioletRuntime.CoreCLR;
 
-            if (Type.GetType("Mono.Runtime") != null)
-                return UltravioletRuntime.Mono;
 
             return UltravioletRuntime.CLR;
         }

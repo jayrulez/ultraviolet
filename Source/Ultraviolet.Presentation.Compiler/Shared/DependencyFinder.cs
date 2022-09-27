@@ -155,77 +155,7 @@ namespace Ultraviolet.Presentation.Compiler
         {
             additionalPaths.Clear();
 
-            // If the compiler is running under a runtime earlier than Core 3.0, we need to build as .NET Standard 2.0.
-            // Otherwise, build as .NET Standard 2.1.
-            if (UltravioletPlatformInfo.CurrentRuntime == UltravioletRuntime.CoreCLR &&
-                UltravioletPlatformInfo.CurrentRuntimeVersion.Major == 2)
-            {
-                return GetNetStandardLibraryDirFromFallback_Standard20(additionalPaths);
-            }
-            else
-            {
-                return GetNetStandardLibraryDirFromFallback_Standard21(additionalPaths);
-            }
-        }
-
-        /// <summary>
-        /// Gets the path to the .NET Standard 2.0 reference assemblies.
-        /// </summary>
-        private static String GetNetStandardLibraryDirFromFallback_Standard20(IList<String> additionalPaths)
-        {
-            // On Windows, check for an installation of .NET Framework 4.7.1, which includes support
-            // for the entirety of .NET Standard 2.0 as part of the base installation.
-            if (UltravioletPlatformInfo.CurrentPlatform == UltravioletPlatform.Windows)
-            {
-                var netFrameworkDir = new DirectoryInfo(Path.Combine(Environment.GetEnvironmentVariable("PROGRAMFILES(X86)"), "Reference Assemblies", "Microsoft", "Framework", ".NETFramework"));
-                if (netFrameworkDir.Exists)
-                {
-                    var netFrameworkBest = netFrameworkDir.EnumerateDirectories().Select(x => new { Directory = x, Target = new DirectoryInfo(Path.Combine(x.FullName, "Facades")), Version = TryParseVersion(x.Name.Substring(1)) })
-                        .Where(x => x.Version == new Version(4, 7, 1) && x.Target.Exists)
-                        .OrderByDescending(x => x.Version).FirstOrDefault();
-                    if (netFrameworkBest != null)
-                    {
-                        additionalPaths.Add(Path.Combine(netFrameworkBest.Directory.FullName, "mscorlib.dll"));
-                        return netFrameworkBest.Target.FullName;
-                    }
-                }
-            }
-
-            // If the .NET Core SDK is installed, we can try the NuGetFallbackFolder, which is in a 
-            // couple of different places depending on the current platform...
-            var nuGetFallbackFolderDir = default(DirectoryInfo);
-            switch (UltravioletPlatformInfo.CurrentPlatform)
-            {
-                case UltravioletPlatform.Windows:
-                    {
-                        nuGetFallbackFolderDir = new DirectoryInfo(Path.Combine(Environment.GetEnvironmentVariable("PROGRAMFILES"), "dotnet", "sdk", "NuGetFallbackFolder", "microsoft.netcore.app"));
-                    }
-                    break;
-
-                case UltravioletPlatform.Linux:
-                case UltravioletPlatform.macOS:
-                    {
-                        nuGetFallbackFolderDir = new DirectoryInfo(Path.Combine("usr", "local", "share", "dotnet", "sdk", "NuGetFallbackFolder", "microsoft.netcore.app"));
-                        if (nuGetFallbackFolderDir.Exists)
-                            break;
-
-                        nuGetFallbackFolderDir = new DirectoryInfo(Path.Combine("usr", "share", "dotnet", "sdk", "NuGetFallbackFolder", "microsoft.netcore.app"));
-                    }
-                    break;
-            }
-
-            if (nuGetFallbackFolderDir.Exists)
-            {
-                var nuGetFallbackBest = nuGetFallbackFolderDir.EnumerateDirectories().Select(x => new { Directory = x, Target = new DirectoryInfo(Path.Combine(x.FullName, "ref", "netcoreapp2.0")), Version = TryParseVersion(x.Name) })
-                    .Where(x => x.Version != null && x.Version == new Version(2, 0, 1) && x.Target.Exists)
-                    .OrderByDescending(x => x.Version).FirstOrDefault();
-                if (nuGetFallbackBest != null)
-                {
-                    return nuGetFallbackBest.Target.FullName;
-                }
-            }
-
-            return null;
+            return GetNetStandardLibraryDirFromFallback_Standard21(additionalPaths);
         }
 
         /// <summary>
