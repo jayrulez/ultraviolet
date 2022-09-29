@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ultraviolet.Tooling\NETStandard21\Ultraviolet.Tooling.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet.Tooling\Ultraviolet.Tooling.csproj" />
     <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
   </ItemGroup>
 
