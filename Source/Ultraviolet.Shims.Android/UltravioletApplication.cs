@@ -59,6 +59,7 @@ namespace Ultraviolet
 
             this.DeveloperName = developerName;
             this.ApplicationName = applicationName;
+            this.CompatibilityShim = new AndroidUltravioletPlatformCompatibilityShim();
         }
 
         /// <summary>
@@ -160,6 +161,9 @@ namespace Ultraviolet
 
         /// <inheritdoc/>
         public String ApplicationName { get; }
+
+        /// <inheritdoc/>
+        public IUltravioletPlatformCompatibilityShim CompatibilityShim { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the application's primary window is synchronized

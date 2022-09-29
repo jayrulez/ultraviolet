@@ -73,5 +73,10 @@ namespace Ultraviolet
             get;
             set;
         }
+
+        /// <summary>
+        /// Gets the platform compatibility shim
+        /// </summary>
+        IUltravioletPlatformCompatibilityShim CompatibilityShim { get; }
     }
 }

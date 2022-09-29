@@ -6,6 +6,7 @@ using Ultraviolet.Content;
 using Ultraviolet.Core;
 using Ultraviolet.Core.Messages;
 using Ultraviolet.Platform;
+using Ultraviolet.Shims.NETCore3;
 
 namespace Ultraviolet
 {
@@ -42,6 +43,7 @@ namespace Ultraviolet
 
             this.DeveloperName = developerName;
             this.ApplicationName = applicationName;
+            this.CompatibilityShim = new NETCore3UltravioletPlatformCompatibilityShim();
 
             InitializeApplication();
         }
@@ -131,6 +133,9 @@ namespace Ultraviolet
 
         /// <inheritdoc/>
         public String ApplicationName { get; }
+
+        /// <inheritdoc/>
+        public IUltravioletPlatformCompatibilityShim CompatibilityShim { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the application's primary window is synchronized

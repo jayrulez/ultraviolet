@@ -39,6 +39,7 @@
 
   <ItemGroup>
     <Compile Include="..\Version.cs" Link="Properties\Version.cs" />
+    <Compile Include="IUltravioletPlatformCompatibilityShim.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
   </ItemGroup>
 

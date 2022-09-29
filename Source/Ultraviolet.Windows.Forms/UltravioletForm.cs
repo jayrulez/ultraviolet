@@ -68,6 +68,9 @@ namespace Ultraviolet.Windows.Forms
         /// <inheritdoc/>
         public String ApplicationName { get; set; }
 
+        /// <inheritdoc/>
+        public IUltravioletPlatformCompatibilityShim CompatibilityShim { get; }
+
         /// <summary>
         /// Gets or sets a value indicating whether the application's primary window is synchronized
         /// to the vertical retrace when rendering (i.e., whether vsync is enabled).

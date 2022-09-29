@@ -911,71 +911,17 @@ namespace Ultraviolet
         /// </summary>
         private void InitializeFactoryMethodsInCompatibilityShim()
         {
-            var publicKeyString = String.Join(String.Empty,
-                typeof(UltravioletContext).Assembly.GetName().GetPublicKey().Select(x => x.ToString("x2")));
-
-            try
+            if(host.CompatibilityShim == null)
             {
-                var shim = default(Assembly);
-
-                if (Runtime == UltravioletRuntime.CoreCLR)
-                {
-                    switch (Platform)
-                    {
-                        case UltravioletPlatform.Android:
-                            shim = Assembly.Load("Ultraviolet.Shims.Android.dll");
-                            break;
-
-                        case UltravioletPlatform.iOS:
-                            shim = Assembly.Load("Ultraviolet.Shims.iOS.dll");
-                            break;
-
-                        default:
-                            {
-                                switch (RuntimeVersion?.Major ?? 0)
-                                {
-                                    case 0:
-                                    case 1:
-                                    case 2:
-                                    case 3:
-                                    case 4:
-                                    case 5:
-                                        throw new NotSupportedException();
-
-                                    default:
-                                        shim = Assembly.Load("Ultraviolet.Shims.NETCore3, PublicKey=" + publicKeyString);
-                                        break;
-                                }
-                            }
-                            break;
-                    }
-                }
-                else
-                {
-                    switch (Platform)
-                    {
-                        case UltravioletPlatform.Android:
-                            shim = Assembly.Load("Ultraviolet.Shims.Android.dll");
-                            break;
-
-                        case UltravioletPlatform.iOS:
-                            shim = Assembly.Load("Ultraviolet.Shims.iOS.dll");
-                            break;
-
-                        default:
-                            throw new NotSupportedException();
-                    }
-                }
-
-                if (shim != null)
-                    InitializeFactoryMethodsInAssembly(shim);
-
-                platformCompatibilityShimAssembly = shim;
+                throw new InvalidCompatibilityShimException(UltravioletStrings.MissingCompatibilityShim.Format($"{Platform}"));
             }
-            catch (FileNotFoundException e)
-            {
-                throw new InvalidCompatibilityShimException(UltravioletStrings.MissingCompatibilityShim.Format(e.FileName));
-            }
+
+            var shim = host.CompatibilityShim.Assembly;
+
+            if (shim != null)
+                InitializeFactoryMethodsInAssembly(shim);
+
+            platformCompatibilityShimAssembly = shim;
         }
         
         /// <summary>
