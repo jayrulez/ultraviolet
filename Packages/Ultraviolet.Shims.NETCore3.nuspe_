@@ -18,16 +18,15 @@ Quick start guides for development using the Ultraviolet Framework are available
 Additional licensing information is available at https://www.ultraviolet.tl/licenses</description>
     <tags>ultraviolet gamedev</tags>	
   <dependencies>
-    <group targetFramework="netcoreapp3.1">
+    <group targetFramework="net6.0">
       <dependency id="Ultraviolet.Core" version="UV_VERSION" />
       <dependency id="Ultraviolet" version="UV_VERSION" />
-      <dependency id="System.Drawing.Common" version="5.0.2" />
     </group>
   </dependencies>
   </metadata>
   <files>
     <file src="..\Images\desktop_uv128.png" target="images\icon.png"/>
-    <file src="..\Binaries\NETCore3\Release\Ultraviolet.Shims.NETCore3.dll" target="lib\netcoreapp3.1\"/>
-    <file src="..\Binaries\NETCore3\Release\Ultraviolet.Shims.NETCore3.pdb" target="lib\netcoreapp3.1\"/>
+    <file src="..\Binaries\NETCore3\Release\Ultraviolet.Shims.NETCore3.dll" target="lib\net6.0\"/>
+    <file src="..\Binaries\NETCore3\Release\Ultraviolet.Shims.NETCore3.pdb" target="lib\net6.0\"/>
   </files>  
 </package>
