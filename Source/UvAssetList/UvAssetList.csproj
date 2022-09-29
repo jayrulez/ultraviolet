@@ -9,8 +9,9 @@
     <PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	<EnableDefaultCompileItems>False</EnableDefaultCompileItems>
   </PropertyGroup>
 
-  <Import Project="..\Shared\UvAssetList.projitems" Label="Shared" />
+  <Import Project="UvAssetList.projitems" Label="Shared" />
 
 </Project>
