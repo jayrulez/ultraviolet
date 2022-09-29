@@ -50,7 +50,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet\Ultraviolet.csproj" />
   </ItemGroup>
 
   <Import Project="Ultraviolet.Windows.Forms.projitems" Label="Shared" />

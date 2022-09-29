@@ -53,7 +53,7 @@
     <ProjectReference Include="..\StbImageSharp\StbImageSharp.csproj" />
     <ProjectReference Include="..\StbImageWriteSharp\StbImageWriteSharp.csproj" />
     <ProjectReference Include="..\Ultraviolet.Core\Ultraviolet.Core.csproj" />
-    <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet\Ultraviolet.csproj" />
   </ItemGroup>
 
 </Project>

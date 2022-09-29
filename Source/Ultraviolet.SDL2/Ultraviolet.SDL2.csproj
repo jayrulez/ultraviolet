@@ -47,7 +47,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Ultraviolet.Core\Ultraviolet.Core.csproj" />
     <ProjectReference Include="..\Ultraviolet.OpenGL.Environment\Ultraviolet.OpenGL.Environment.csproj" />
-    <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet\Ultraviolet.csproj" />
   </ItemGroup>
 
   <Import Project="Ultraviolet.SDL2.projitems" Label="Shared" />

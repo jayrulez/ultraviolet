@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ultraviolet.FMOD\Ultraviolet.FMOD.csproj" />
-    <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet\Ultraviolet.csproj" />
   </ItemGroup>
   <Target Name="BeforeBuild">
     <Message Text="$(FMODJarPath)" Importance="high" />

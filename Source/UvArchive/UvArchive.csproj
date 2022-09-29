@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ultraviolet.Tooling\Ultraviolet.Tooling.csproj" />
-    <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet\Ultraviolet.csproj" />
   </ItemGroup>
 
   <Import Project="UvArchive.projitems" Label="Shared" />

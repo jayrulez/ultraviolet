@@ -164,7 +164,7 @@
 		<ProjectReference Include="..\..\Ultraviolet.Presentation\Ultraviolet.Presentation.csproj" />
 		<ProjectReference Include="..\..\Ultraviolet.SDL2\Ultraviolet.SDL2.csproj" />
 		<ProjectReference Include="..\..\Ultraviolet.Shims.Android\Ultraviolet.Shims.Android.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
+		<ProjectReference Include="..\..\Ultraviolet\Ultraviolet.csproj" />
 	</ItemGroup>
 	<Target Name="BeforeBuild">
 		<Exec Command="dotnet run -compile:content -compile:expressions" WorkingDirectory="$(SolutionDir)UvDebug\NETCore3" />

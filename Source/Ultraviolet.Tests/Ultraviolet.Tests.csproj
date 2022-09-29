@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -82,7 +82,7 @@
     <ProjectReference Include="..\Ultraviolet.Shims.NETCore3\Ultraviolet.Shims.NETCore3.csproj" />
     <ProjectReference Include="..\Ultraviolet.TestApplication\Ultraviolet.TestApplication.csproj" />
     <ProjectReference Include="..\Ultraviolet.TestFramework\Ultraviolet.TestFramework.csproj" />
-    <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet\Ultraviolet.csproj" />
   </ItemGroup>
 
   <ItemGroup>
