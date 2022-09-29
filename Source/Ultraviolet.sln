@@ -71,8 +71,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UvDebug.NETCore3", "UvDebug
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ultraviolet.Presentation.Tests", "Ultraviolet.Presentation.Tests\Shared\Ultraviolet.Presentation.Tests.shproj", "{DCCF640B-A4D2-4CBD-8B28-BC6A7EB42E71}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ultraviolet.TestApplication", "Ultraviolet.TestApplication\Shared\Ultraviolet.TestApplication.shproj", "{AF8BB24E-1EF6-4585-9E6B-78EFF64AB44F}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ultraviolet.Tests.Content", "Ultraviolet.Tests.Content\Ultraviolet.Tests.Content.shproj", "{0E2B1BC3-D1C3-4626-8AA3-37BF3039E43F}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ultraviolet.Presentation.Tests.ViewModels", "Ultraviolet.Presentation.Tests.ViewModels\Shared\Ultraviolet.Presentation.Tests.ViewModels.shproj", "{EFBD7CDD-29C3-4C2D-9BFA-7BF43E27A2CB}"
@@ -82,8 +80,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.Core.TestFramework.NETCore3", "Ultraviolet.Core.TestFramework\NETCore3\Ultraviolet.Core.TestFramework.NETCore3.csproj", "{23021A75-F17B-401F-9465-87B45796BAAB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.Core.Tests.NETCore3", "Ultraviolet.Core.Tests\NETCore3\Ultraviolet.Core.Tests.NETCore3.csproj", "{9DABD102-2757-46A8-957F-27EFEF0A67FF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.TestApplication.NETCore3", "Ultraviolet.TestApplication\NETCore3\Ultraviolet.TestApplication.NETCore3.csproj", "{4857566A-51FC-434C-8989-F0E285637785}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.Presentation.Uvss.TestFramework.NETCore3", "Ultraviolet.Presentation.Uvss.TestFramework\NETCore3\Ultraviolet.Presentation.Uvss.TestFramework.NETCore3.csproj", "{8E81F120-78EA-4DAF-8393-161391036B2D}"
 EndProject
@@ -114,6 +110,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.Tests", "Ultraviolet.Tests\Ultraviolet.Tests.csproj", "{20815AAC-D576-42C7-A9A3-9C8D6548690D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.TestFramework", "Ultraviolet.TestFramework\Ultraviolet.TestFramework.csproj", "{619C6476-BBA7-4817-839B-18092490429E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.TestApplication", "Ultraviolet.TestApplication\Ultraviolet.TestApplication.csproj", "{6306767C-23C4-49B4-87BF-D31F917CB358}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -193,10 +191,6 @@ Global
 		{9DABD102-2757-46A8-957F-27EFEF0A67FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DABD102-2757-46A8-957F-27EFEF0A67FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DABD102-2757-46A8-957F-27EFEF0A67FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4857566A-51FC-434C-8989-F0E285637785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4857566A-51FC-434C-8989-F0E285637785}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4857566A-51FC-434C-8989-F0E285637785}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4857566A-51FC-434C-8989-F0E285637785}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8E81F120-78EA-4DAF-8393-161391036B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E81F120-78EA-4DAF-8393-161391036B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E81F120-78EA-4DAF-8393-161391036B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -253,6 +247,10 @@ Global
 		{619C6476-BBA7-4817-839B-18092490429E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{619C6476-BBA7-4817-839B-18092490429E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{619C6476-BBA7-4817-839B-18092490429E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6306767C-23C4-49B4-87BF-D31F917CB358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6306767C-23C4-49B4-87BF-D31F917CB358}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6306767C-23C4-49B4-87BF-D31F917CB358}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6306767C-23C4-49B4-87BF-D31F917CB358}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -280,13 +278,13 @@ Global
 		Ultraviolet.FMOD\Shared\Ultraviolet.FMOD.projitems*{2d9f99fd-93ee-4d9e-8ec9-718e6c67595e}*SharedItemsImports = 5
 		Ultraviolet.Presentation.Uvss\Shared\Ultraviolet.Presentation.Uvss.projitems*{2def7217-0b35-423c-9085-ec46260682c7}*SharedItemsImports = 13
 		UvDebug\Shared\UvDebug.projitems*{41b16059-bfe0-4704-8eee-44339b3834c5}*SharedItemsImports = 13
-		Ultraviolet.TestApplication\Shared\Ultraviolet.TestApplication.projitems*{4857566a-51fc-434c-8989-f0e285637785}*SharedItemsImports = 5
 		Ultraviolet.Presentation\Shared\Ultraviolet.Presentation.projitems*{4e921721-be4a-4f69-bee4-61e8a18e0774}*SharedItemsImports = 13
 		Ultraviolet.SDL2\Shared\Ultraviolet.SDL2.projitems*{4eff1892-2cdf-45a4-8bb0-61cec0875963}*SharedItemsImports = 5
 		Ultraviolet.Core\Shared\Ultraviolet.Core.projitems*{5084f479-1233-477c-87d8-9df47055dd80}*SharedItemsImports = 5
 		Ultraviolet\Shared\Ultraviolet.projitems*{60ecc362-96e4-4a54-b280-23cb5cdb6903}*SharedItemsImports = 5
 		Ultraviolet.TestFramework\Ultraviolet.TestFramework.projitems*{619c6476-bba7-4817-839b-18092490429e}*SharedItemsImports = 5
 		Ultraviolet.BASS\Shared\Ultraviolet.BASS.projitems*{62e8c883-b858-4fcc-82ec-c313fefbad34}*SharedItemsImports = 13
+		Ultraviolet.TestApplication\Ultraviolet.TestApplication.projitems*{6306767c-23c4-49b4-87bf-d31f917cb358}*SharedItemsImports = 5
 		Ultraviolet.BASS\Shared\Ultraviolet.BASS.projitems*{69adb61d-c5b5-4e5e-82d6-8afd9216d28e}*SharedItemsImports = 5
 		Ultraviolet.Presentation.Compiler\Shared\Ultraviolet.Presentation.Compiler.projitems*{6d4eb5c2-1427-4bbd-8679-f1d01f3675f9}*SharedItemsImports = 5
 		Ultraviolet.OpenGL.Environment\Shared\Ultraviolet.OpenGL.Environment.projitems*{6dfb7c59-8abc-44e6-b2c2-2fc6ad5021e4}*SharedItemsImports = 5
@@ -303,7 +301,6 @@ Global
 		Ultraviolet.FreeType2\Shared\Ultraviolet.FreeType2.projitems*{9c6d1468-b7a7-4fb9-b7ef-088803a62b89}*SharedItemsImports = 13
 		Ultraviolet.Core.Tests\Shared\Ultraviolet.Core.Tests.projitems*{9dabd102-2757-46a8-957f-27efef0a67ff}*SharedItemsImports = 5
 		Ultraviolet.FreeType2\Shared\Ultraviolet.FreeType2.projitems*{9e47b77d-b108-4954-b441-2569fa888041}*SharedItemsImports = 5
-		Ultraviolet.TestApplication\Shared\Ultraviolet.TestApplication.projitems*{af8bb24e-1ef6-4585-9e6b-78eff64ab44f}*SharedItemsImports = 13
 		Ultraviolet.Core.TestFramework\Shared\Ultraviolet.Core.TestFramework.projitems*{c0ef7ba7-4f67-4063-84f7-8c04e4fcc632}*SharedItemsImports = 13
 		Ultraviolet.Presentation.Uvss\Shared\Ultraviolet.Presentation.Uvss.projitems*{c51252da-60c9-4b3b-a08e-c94f9d1a9f35}*SharedItemsImports = 5
 		Ultraviolet.Presentation.Compiler\Shared\Ultraviolet.Presentation.Compiler.projitems*{d27ab499-f06f-47ea-8645-285cf2315ec2}*SharedItemsImports = 13
