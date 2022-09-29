@@ -14,7 +14,7 @@ namespace UvNativeCodeGen
         {
             var files = new[]
             {
-                Path.Combine("..", "..", "..", "..", "Ultraviolet.SDL2", "Shared", "Native", "_Definitions.xml"),
+                Path.Combine("..", "..", "..", "..", "Ultraviolet.SDL2", "Native", "_Definitions.xml"),
                 Path.Combine("..", "..", "..", "..", "Ultraviolet.BASS", "Shared", "Native", "_Definitions.BASS.xml"),
                 Path.Combine("..", "..", "..", "..", "Ultraviolet.FMOD", "Shared", "Native", "_Definitions.xml"),
                 Path.Combine("..", "..", "..", "..", "Ultraviolet.FreeType2", "Shared", "Native", "_SharedLibraries.xml"),
