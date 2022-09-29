@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StbImageSharp\StbImageSharp.csproj" />
-    <ProjectReference Include="..\Ultraviolet.BASS\NETStandard21\Ultraviolet.BASS.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet.BASS\Ultraviolet.BASS.csproj" />
     <ProjectReference Include="..\Ultraviolet.Core.TestFramework\NETCore3\Ultraviolet.Core.TestFramework.NETCore3.csproj" />
     <ProjectReference Include="..\Ultraviolet.FMOD\Ultraviolet.FMOD.csproj" />
     <ProjectReference Include="..\Ultraviolet.OpenGL\Ultraviolet.OpenGL.csproj" />

@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ultraviolet.BASS\NETStandard21\Ultraviolet.BASS.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet.BASS\Ultraviolet.BASS.csproj" />
     <ProjectReference Include="..\Ultraviolet.Core\NETStandard21\Ultraviolet.Core.NETStandard21.csproj" />
     <ProjectReference Include="..\Ultraviolet.FreeType2\Ultraviolet.FreeType2.csproj" />
     <ProjectReference Include="..\Ultraviolet.Presentation.Compiler\Ultraviolet.Presentation.Compiler.csproj" />
