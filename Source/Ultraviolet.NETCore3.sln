@@ -7,10 +7,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ultraviolet.Core", "Ultravi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.Core.NETStandard21", "Ultraviolet.Core\NETStandard21\Ultraviolet.Core.NETStandard21.csproj", "{5084F479-1233-477C-87D8-9DF47055DD80}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ultraviolet.Core.TestFramework", "Ultraviolet.Core.TestFramework\Shared\Ultraviolet.Core.TestFramework.shproj", "{C0EF7BA7-4F67-4063-84F7-8C04E4FCC632}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ultraviolet.Core.Tests", "Ultraviolet.Core.Tests\Shared\Ultraviolet.Core.Tests.shproj", "{073BB428-13A0-4812-BAAD-A18E7326CC52}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ultraviolet", "Ultraviolet\Shared\Ultraviolet.shproj", "{979EFFAE-5CDF-4CA8-90D0-E3DBF091DE0A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.NETStandard21", "Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj", "{60ECC362-96E4-4A54-B280-23CB5CDB6903}"
@@ -22,10 +18,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UvDebug.NETCore3", "UvDebug\NETCore3\UvDebug.NETCore3.csproj", "{0A52123E-EFA1-4A86-8223-FB7B807C162A}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ultraviolet.Tests.Content", "Ultraviolet.Tests.Content\Ultraviolet.Tests.Content.shproj", "{0E2B1BC3-D1C3-4626-8AA3-37BF3039E43F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.Core.TestFramework.NETCore3", "Ultraviolet.Core.TestFramework\NETCore3\Ultraviolet.Core.TestFramework.NETCore3.csproj", "{0C80B5C4-C509-4A14-93A0-6C2835F55B17}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.Core.Tests.NETCore3", "Ultraviolet.Core.Tests\NETCore3\Ultraviolet.Core.Tests.NETCore3.csproj", "{AAD0995C-4ADD-47C7-97EC-F60C47327C87}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UvNativeCodeGen", "UvNativeCodeGen\UvNativeCodeGen.csproj", "{88E9A1B4-A4DA-4988-B3FD-E49A1360ABF6}"
 EndProject
@@ -81,6 +73,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.FMOD", "Ultravi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.BASS", "Ultraviolet.BASS\Ultraviolet.BASS.csproj", "{5EEA30EB-AF3A-4CB3-8EDD-5E35A81C9167}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.Core.TestFramework", "Ultraviolet.Core.TestFramework\Ultraviolet.Core.TestFramework.csproj", "{FAA133DB-7D55-42D2-A002-6B5DC5632DA8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.Core.Tests", "Ultraviolet.Core.Tests\Ultraviolet.Core.Tests.csproj", "{45E9A696-82E6-4C8A-8223-21B0746331A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,14 +99,6 @@ Global
 		{0A52123E-EFA1-4A86-8223-FB7B807C162A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A52123E-EFA1-4A86-8223-FB7B807C162A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A52123E-EFA1-4A86-8223-FB7B807C162A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0C80B5C4-C509-4A14-93A0-6C2835F55B17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C80B5C4-C509-4A14-93A0-6C2835F55B17}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C80B5C4-C509-4A14-93A0-6C2835F55B17}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C80B5C4-C509-4A14-93A0-6C2835F55B17}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AAD0995C-4ADD-47C7-97EC-F60C47327C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AAD0995C-4ADD-47C7-97EC-F60C47327C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AAD0995C-4ADD-47C7-97EC-F60C47327C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AAD0995C-4ADD-47C7-97EC-F60C47327C87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88E9A1B4-A4DA-4988-B3FD-E49A1360ABF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88E9A1B4-A4DA-4988-B3FD-E49A1360ABF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88E9A1B4-A4DA-4988-B3FD-E49A1360ABF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -219,6 +207,14 @@ Global
 		{5EEA30EB-AF3A-4CB3-8EDD-5E35A81C9167}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EEA30EB-AF3A-4CB3-8EDD-5E35A81C9167}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EEA30EB-AF3A-4CB3-8EDD-5E35A81C9167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAA133DB-7D55-42D2-A002-6B5DC5632DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAA133DB-7D55-42D2-A002-6B5DC5632DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAA133DB-7D55-42D2-A002-6B5DC5632DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAA133DB-7D55-42D2-A002-6B5DC5632DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45E9A696-82E6-4C8A-8223-21B0746331A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45E9A696-82E6-4C8A-8223-21B0746331A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45E9A696-82E6-4C8A-8223-21B0746331A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45E9A696-82E6-4C8A-8223-21B0746331A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -227,9 +223,7 @@ Global
 		SolutionGuid = {5692BF08-52C2-4A45-9DA9-F6B390321257}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Ultraviolet.Core.Tests\Shared\Ultraviolet.Core.Tests.projitems*{073bb428-13a0-4812-baad-a18e7326cc52}*SharedItemsImports = 13
 		UvDebug\Shared\UvDebug.projitems*{0a52123e-efa1-4a86-8223-fb7b807c162a}*SharedItemsImports = 5
-		Ultraviolet.Core.TestFramework\Shared\Ultraviolet.Core.TestFramework.projitems*{0c80b5c4-c509-4a14-93a0-6c2835f55b17}*SharedItemsImports = 5
 		Ultraviolet.Tests.Content\Ultraviolet.Tests.Content.projitems*{0e2b1bc3-d1c3-4626-8aa3-37bf3039e43f}*SharedItemsImports = 13
 		Ultraviolet.Presentation.Uvss.Tests\Ultraviolet.Presentation.Uvss.Tests.projitems*{142cad9e-d98f-4e57-9ca8-c0b829a62b7b}*SharedItemsImports = 5
 		Ultraviolet.Presentation.Compiler\Ultraviolet.Presentation.Compiler.projitems*{159b9e40-0a65-48ac-96a2-33b6e6492fff}*SharedItemsImports = 5
@@ -243,6 +237,7 @@ Global
 		Ultraviolet.TestFramework\Ultraviolet.TestFramework.projitems*{3cce9841-0a62-4265-a5ff-dbd13990d695}*SharedItemsImports = 5
 		UvAssetList\UvAssetList.projitems*{40561b18-2d11-49af-ad0b-11c1173f294b}*SharedItemsImports = 5
 		UvDebug\Shared\UvDebug.projitems*{41b16059-bfe0-4704-8eee-44339b3834c5}*SharedItemsImports = 13
+		Ultraviolet.Core.Tests\Ultraviolet.Core.Tests.projitems*{45e9a696-82e6-4c8a-8223-21b0746331a2}*SharedItemsImports = 5
 		Ultraviolet.ImGuiViewProvider\Ultraviolet.ImGuiViewProvider.projitems*{4c80d243-dedb-44a6-8d06-c46cd1118b65}*SharedItemsImports = 5
 		Ultraviolet.Core\Shared\Ultraviolet.Core.projitems*{5084f479-1233-477c-87d8-9df47055dd80}*SharedItemsImports = 5
 		Ultraviolet.BASS\Ultraviolet.BASS.projitems*{5eea30eb-af3a-4cb3-8edd-5e35a81c9167}*SharedItemsImports = 5
@@ -258,12 +253,11 @@ Global
 		Ultraviolet.OpenGL.Bindings\Ultraviolet.OpenGL.Bindings.projitems*{a5f5878d-193b-4951-aa5e-8d78b38319f1}*SharedItemsImports = 5
 		Ultraviolet.OpenGL\Ultraviolet.OpenGL.projitems*{a8378aee-e9aa-452a-9bda-1d64c340ece1}*SharedItemsImports = 5
 		UvFont\UvFont.projitems*{aaa9876d-b616-442c-b0d9-ae3786359680}*SharedItemsImports = 5
-		Ultraviolet.Core.Tests\Shared\Ultraviolet.Core.Tests.projitems*{aad0995c-4add-47c7-97ec-f60c47327c87}*SharedItemsImports = 5
-		Ultraviolet.Core.TestFramework\Shared\Ultraviolet.Core.TestFramework.projitems*{c0ef7ba7-4f67-4063-84f7-8c04e4fcc632}*SharedItemsImports = 13
 		Ultraviolet.Tests.Content\Ultraviolet.Tests.Content.projitems*{c435fd6f-7b55-476d-af9f-41b820a5cdcb}*SharedItemsImports = 5
 		Ultraviolet.Tests\Ultraviolet.Tests.projitems*{c435fd6f-7b55-476d-af9f-41b820a5cdcb}*SharedItemsImports = 5
 		UvArchive\UvArchive.projitems*{e6ff38ee-127b-4474-83b5-bd90932fb4ab}*SharedItemsImports = 5
 		Ultraviolet.Presentation\Ultraviolet.Presentation.projitems*{edc801d0-8f84-424d-ac60-17d16d92aa96}*SharedItemsImports = 5
+		Ultraviolet.Core.TestFramework\Ultraviolet.Core.TestFramework.projitems*{faa133db-7d55-42d2-a002-6b5dc5632da8}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

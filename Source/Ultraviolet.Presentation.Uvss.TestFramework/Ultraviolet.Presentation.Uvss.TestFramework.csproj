@@ -44,7 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ultraviolet.Core.TestFramework\NETCore3\Ultraviolet.Core.TestFramework.NETCore3.csproj" />
+    <ProjectReference Include="..\Ultraviolet.Core.TestFramework\Ultraviolet.Core.TestFramework.csproj" />
     <ProjectReference Include="..\Ultraviolet.Presentation.Uvss\Ultraviolet.Presentation.Uvss.csproj" />
   </ItemGroup>
 

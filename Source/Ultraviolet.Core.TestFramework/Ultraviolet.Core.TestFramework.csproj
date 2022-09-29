@@ -3,8 +3,8 @@
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	<TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>Ultraviolet.TestFramework</AssemblyName>
-    <RootNamespace>Ultraviolet.TestFramework</RootNamespace>
+    <AssemblyName>Ultraviolet.Core.TestFramework</AssemblyName>
+    <RootNamespace>Ultraviolet.Core.TestFramework</RootNamespace>
     <PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -16,6 +16,13 @@
     <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
     <AssemblyOriginatorKeyFile>..\Ultraviolet.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -31,18 +38,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!--<PackageReference Include="StbImageSharp" Version="2.27.12" />-->
-	<!--<PackageReference Include="System.Drawing.Common" Version="5.0.2" />-->
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
   </ItemGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\StbImageSharp\StbImageSharp.csproj" />
-    <ProjectReference Include="..\Ultraviolet.Core.TestFramework\Ultraviolet.Core.TestFramework.csproj" />
     <ProjectReference Include="..\Ultraviolet.Core\NETStandard21\Ultraviolet.Core.NETStandard21.csproj" />
-    <ProjectReference Include="..\Ultraviolet.SDL2\Ultraviolet.SDL2.csproj" />
-    <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
   </ItemGroup>
-  
-  <Import Project="Ultraviolet.TestFramework.projitems" Label="Shared" />
+
+  <Import Project="Ultraviolet.Core.TestFramework.projitems" Label="Shared" />
 
 </Project>
