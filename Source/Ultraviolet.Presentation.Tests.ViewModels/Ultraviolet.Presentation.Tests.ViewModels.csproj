@@ -31,7 +31,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Ultraviolet.Core\NETStandard21\Ultraviolet.Core.NETStandard21.csproj" />
     <ProjectReference Include="..\Ultraviolet.Presentation.Uvss\Ultraviolet.Presentation.Uvss.csproj" />
-    <ProjectReference Include="..\Ultraviolet.Presentation\NETStandard21\Ultraviolet.Presentation.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet.Presentation\Ultraviolet.Presentation.csproj" />
     <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
   </ItemGroup>
 

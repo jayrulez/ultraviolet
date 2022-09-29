@@ -161,7 +161,7 @@
 		<ProjectReference Include="..\..\Ultraviolet.OpenGL.Environment\NETStandard21\Ultraviolet.OpenGL.Environment.NETStandard21.csproj" />
 		<ProjectReference Include="..\..\Ultraviolet.OpenGL\NETStandard21\Ultraviolet.OpenGL.NETStandard21.csproj" />
 		<ProjectReference Include="..\..\Ultraviolet.Presentation.Uvss\Ultraviolet.Presentation.Uvss.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.Presentation\NETStandard21\Ultraviolet.Presentation.NETStandard21.csproj" />
+		<ProjectReference Include="..\..\Ultraviolet.Presentation\Ultraviolet.Presentation.csproj" />
 		<ProjectReference Include="..\..\Ultraviolet.SDL2\Ultraviolet.SDL2.csproj" />
 		<ProjectReference Include="..\..\Ultraviolet.Shims.Android\Ultraviolet.Shims.Android.csproj" />
 		<ProjectReference Include="..\..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
