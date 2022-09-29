@@ -17,10 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.NETStandard21",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.Shims.NETCore3", "Ultraviolet.Shims.NETCore3\Ultraviolet.Shims.NETCore3.csproj", "{6DE9B8AD-3CBD-499B-9A17-5DB198B7E6B1}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ultraviolet.FreeType2", "Ultraviolet.FreeType2\Shared\Ultraviolet.FreeType2.shproj", "{9C6D1468-B7A7-4FB9-B7EF-088803A62B89}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.FreeType2.NETStandard21", "Ultraviolet.FreeType2\NETStandard21\Ultraviolet.FreeType2.NETStandard21.csproj", "{9E47B77D-B108-4954-B441-2569FA888041}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ultraviolet.BASS", "Ultraviolet.BASS\Shared\Ultraviolet.BASS.shproj", "{62E8C883-B858-4FCC-82EC-C313FEFBAD34}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.BASS.NETStandard21", "Ultraviolet.BASS\NETStandard21\Ultraviolet.BASS.NETStandard21.csproj", "{69ADB61D-C5B5-4E5E-82D6-8AFD9216D28E}"
@@ -92,6 +88,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.ImGuiViewProvid
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.ImGuiViewProvider.Bindings", "Ultraviolet.ImGuiViewProvider.Bindings\Ultraviolet.ImGuiViewProvider.Bindings.csproj", "{E05B16C6-798D-4130-B583-A1C3EA0EFA86}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultraviolet.FreeType2", "Ultraviolet.FreeType2\Ultraviolet.FreeType2.csproj", "{D320D75E-E960-4D9E-9F92-DD2A9F2312A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,10 +108,6 @@ Global
 		{6DE9B8AD-3CBD-499B-9A17-5DB198B7E6B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DE9B8AD-3CBD-499B-9A17-5DB198B7E6B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DE9B8AD-3CBD-499B-9A17-5DB198B7E6B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E47B77D-B108-4954-B441-2569FA888041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E47B77D-B108-4954-B441-2569FA888041}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E47B77D-B108-4954-B441-2569FA888041}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E47B77D-B108-4954-B441-2569FA888041}.Release|Any CPU.Build.0 = Release|Any CPU
 		{69ADB61D-C5B5-4E5E-82D6-8AFD9216D28E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{69ADB61D-C5B5-4E5E-82D6-8AFD9216D28E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69ADB61D-C5B5-4E5E-82D6-8AFD9216D28E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -236,6 +230,10 @@ Global
 		{E05B16C6-798D-4130-B583-A1C3EA0EFA86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E05B16C6-798D-4130-B583-A1C3EA0EFA86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E05B16C6-798D-4130-B583-A1C3EA0EFA86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D320D75E-E960-4D9E-9F92-DD2A9F2312A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D320D75E-E960-4D9E-9F92-DD2A9F2312A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D320D75E-E960-4D9E-9F92-DD2A9F2312A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D320D75E-E960-4D9E-9F92-DD2A9F2312A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -270,8 +268,6 @@ Global
 		Ultraviolet.Presentation.Tests.ViewModels\Ultraviolet.Presentation.Tests.ViewModels.projitems*{962879da-c982-4e50-9dcc-ffc203923c3d}*SharedItemsImports = 5
 		Ultraviolet\Shared\Ultraviolet.projitems*{979effae-5cdf-4ca8-90d0-e3dbf091de0a}*SharedItemsImports = 13
 		Ultraviolet.TestFramework\Ultraviolet.TestFramework.projitems*{9a77e967-64b2-453c-8440-d32f25166e4e}*SharedItemsImports = 5
-		Ultraviolet.FreeType2\Shared\Ultraviolet.FreeType2.projitems*{9c6d1468-b7a7-4fb9-b7ef-088803a62b89}*SharedItemsImports = 13
-		Ultraviolet.FreeType2\Shared\Ultraviolet.FreeType2.projitems*{9e47b77d-b108-4954-b441-2569fa888041}*SharedItemsImports = 5
 		Ultraviolet.Presentation\Ultraviolet.Presentation.projitems*{9fe0b796-8dba-4dcc-92cf-204e8924c2fc}*SharedItemsImports = 5
 		Ultraviolet.OpenGL.Environment\Ultraviolet.OpenGL.Environment.projitems*{a252c6f7-792c-4de6-9ae4-1a3e75d54f4b}*SharedItemsImports = 5
 		Ultraviolet.Core.Tests\Shared\Ultraviolet.Core.Tests.projitems*{aad0995c-4add-47c7-97ec-f60c47327c87}*SharedItemsImports = 5
@@ -279,6 +275,7 @@ Global
 		UvAssetList\UvAssetList.projitems*{bc0199de-8ea1-4ac4-bc6f-c34acc966524}*SharedItemsImports = 5
 		UvDebug\Shared\UvDebug.projitems*{bfebd22b-7789-43a8-a1ea-550c316c29fd}*SharedItemsImports = 5
 		Ultraviolet.Core.TestFramework\Shared\Ultraviolet.Core.TestFramework.projitems*{c0ef7ba7-4f67-4063-84f7-8c04e4fcc632}*SharedItemsImports = 13
+		Ultraviolet.FreeType2\Ultraviolet.FreeType2.projitems*{d320d75e-e960-4d9e-9f92-dd2a9f2312a2}*SharedItemsImports = 5
 		UvArchive\UvArchive.projitems*{d3ea9c93-6432-4359-a19e-3fcafd90ff84}*SharedItemsImports = 5
 		Ultraviolet.ImGuiViewProvider.Bindings\Ultraviolet.ImGuiViewProvider.Bindings.projitems*{e05b16c6-798d-4130-b583-a1c3ea0efa86}*SharedItemsImports = 5
 		Ultraviolet.OpenGL\Ultraviolet.OpenGL.projitems*{e6a57cb3-ee1e-42b8-8815-3b25c8c4bdad}*SharedItemsImports = 5

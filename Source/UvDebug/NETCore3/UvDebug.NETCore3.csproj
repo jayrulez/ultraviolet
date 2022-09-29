@@ -11,7 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Ultraviolet.BASS\NETStandard21\Ultraviolet.BASS.NETStandard21.csproj" />
     <ProjectReference Include="..\..\Ultraviolet.Core\NETStandard21\Ultraviolet.Core.NETStandard21.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.FreeType2\NETStandard21\Ultraviolet.FreeType2.NETStandard21.csproj" />
+    <ProjectReference Include="..\..\Ultraviolet.FreeType2\Ultraviolet.FreeType2.csproj" />
     <ProjectReference Include="..\..\Ultraviolet.ImGuiViewProvider.Bindings\Ultraviolet.ImGuiViewProvider.Bindings.csproj" />
     <ProjectReference Include="..\..\Ultraviolet.ImGuiViewProvider\Ultraviolet.ImGuiViewProvider.csproj" />
     <ProjectReference Include="..\..\Ultraviolet.OpenGL.Bindings\Ultraviolet.OpenGL.Bindings.csproj" />
