@@ -46,7 +46,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ultraviolet.Core\NETStandard21\Ultraviolet.Core.NETStandard21.csproj" />
-    <ProjectReference Include="..\Ultraviolet.OpenGL.Environment\NETStandard21\Ultraviolet.OpenGL.Environment.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet.OpenGL.Environment\Ultraviolet.OpenGL.Environment.csproj" />
     <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
   </ItemGroup>
 
