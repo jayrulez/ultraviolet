@@ -40,7 +40,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Ultraviolet.Core\NETStandard21\Ultraviolet.Core.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet.Core\Ultraviolet.Core.csproj" />
     <ProjectReference Include="..\Ultraviolet.Presentation.Uvss.TestFramework\Ultraviolet.Presentation.Uvss.TestFramework.csproj" />
     <ProjectReference Include="..\Ultraviolet.Presentation.Uvss\Ultraviolet.Presentation.Uvss.csproj" />
     <ProjectReference Include="..\Ultraviolet.TestFramework\Ultraviolet.TestFramework.csproj" />

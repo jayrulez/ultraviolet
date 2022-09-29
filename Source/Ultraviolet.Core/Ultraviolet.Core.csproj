@@ -9,12 +9,13 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+	<EnableDefaultCompileItems>False</EnableDefaultCompileItems>
   </PropertyGroup>
 
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>..\..\Ultraviolet.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\Ultraviolet.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -32,8 +33,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\Version.cs" Link="Properties\Version.cs" />
-    <Compile Include="..\Shared\Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\Version.cs" Link="Properties\Version.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +47,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
-  <Import Project="..\Shared\Ultraviolet.Core.projitems" Label="Shared" />
+  <Import Project="Ultraviolet.Core.projitems" Label="Shared" />
 
 </Project>

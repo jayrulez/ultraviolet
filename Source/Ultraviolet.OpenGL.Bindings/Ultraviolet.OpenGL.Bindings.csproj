@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ultraviolet.Core\NETStandard21\Ultraviolet.Core.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet.Core\Ultraviolet.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

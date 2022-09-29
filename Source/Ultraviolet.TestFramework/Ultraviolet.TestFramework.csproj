@@ -38,7 +38,7 @@
   <ItemGroup>
 	<ProjectReference Include="..\StbImageSharp\StbImageSharp.csproj" />
     <ProjectReference Include="..\Ultraviolet.Core.TestFramework\Ultraviolet.Core.TestFramework.csproj" />
-    <ProjectReference Include="..\Ultraviolet.Core\NETStandard21\Ultraviolet.Core.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet.Core\Ultraviolet.Core.csproj" />
     <ProjectReference Include="..\Ultraviolet.SDL2\Ultraviolet.SDL2.csproj" />
     <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
   </ItemGroup>

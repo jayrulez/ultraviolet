@@ -52,7 +52,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ultraviolet.Core.TestFramework\Ultraviolet.Core.TestFramework.csproj" />
-    <ProjectReference Include="..\Ultraviolet.Core\NETStandard21\Ultraviolet.Core.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet.Core\Ultraviolet.Core.csproj" />
   </ItemGroup>
 
   <Import Project="Ultraviolet.Core.Tests.projitems" Label="Shared" />
