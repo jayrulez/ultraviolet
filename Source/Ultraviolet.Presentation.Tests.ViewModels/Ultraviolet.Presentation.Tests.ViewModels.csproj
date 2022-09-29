@@ -8,12 +8,13 @@
     <PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	<EnableDefaultCompileItems>False</EnableDefaultCompileItems>
   </PropertyGroup>
 
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>..\..\Ultraviolet.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\Ultraviolet.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -24,16 +25,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\Version.cs" Link="Properties\Version.cs" />
+    <Compile Include="..\Version.cs" Link="Properties\Version.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Ultraviolet.Core\NETStandard21\Ultraviolet.Core.NETStandard21.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.Presentation.Uvss\Ultraviolet.Presentation.Uvss.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.Presentation\NETStandard21\Ultraviolet.Presentation.NETStandard21.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet.Core\NETStandard21\Ultraviolet.Core.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet.Presentation.Uvss\Ultraviolet.Presentation.Uvss.csproj" />
+    <ProjectReference Include="..\Ultraviolet.Presentation\NETStandard21\Ultraviolet.Presentation.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
   </ItemGroup>
 
-  <Import Project="..\Shared\Ultraviolet.Presentation.Tests.ViewModels.projitems" Label="Shared" />
+  <Import Project="Ultraviolet.Presentation.Tests.ViewModels.projitems" Label="Shared" />
 
 </Project>
