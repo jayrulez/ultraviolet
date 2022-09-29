@@ -50,7 +50,7 @@
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ultraviolet.FMOD\NETStandard21\Ultraviolet.FMOD.NETStandard21.csproj" />
+    <ProjectReference Include="..\Ultraviolet.FMOD\Ultraviolet.FMOD.csproj" />
     <ProjectReference Include="..\Ultraviolet\NETStandard21\Ultraviolet.NETStandard21.csproj" />
   </ItemGroup>
   <Target Name="BeforeBuild">
