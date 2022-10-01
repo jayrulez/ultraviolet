@@ -184,3 +184,4 @@ gen/
 /Samples/Version.cs
 **/packages/
 /Binaries
+launchSettings.json
