@@ -180,6 +180,7 @@ gen/
 !/Samples/Dependencies/Android/armeabi
 !/Samples/Dependencies/Android/armeabi-v7a
 !/Samples/Dependencies/Android/x86
+!/Samples/Dependencies/Android/x86_64
 !/Samples/Dependencies/iOS/*.a
 /Samples/Version.cs
 **/packages/
