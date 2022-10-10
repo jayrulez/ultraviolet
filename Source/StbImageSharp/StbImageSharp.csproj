@@ -10,7 +10,7 @@
         <Version>2.27.12</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <SignAssembly>True</SignAssembly>
-        <AssemblyOriginatorKeyFile>F:\CSharpDev\ultraviolet\Source\Ultraviolet.snk</AssemblyOriginatorKeyFile>
+        <AssemblyOriginatorKeyFile>..\Ultraviolet.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)'=='Release'">
