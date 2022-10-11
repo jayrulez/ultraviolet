@@ -36,7 +36,7 @@ namespace Ultraviolet.Core
         /// <returns><see langword="true"/> if the specified platform supports runtime code generation; otherwise, <see langword="false"/>.</returns>
         public static Boolean IsRuntimeCodeGenerationSupported(UltravioletPlatform platform)
         {
-            if (platform == UltravioletPlatform.iOS)
+            if (platform == UltravioletPlatform.iOS || platform == UltravioletPlatform.Android)
                 return false;
 
             return true;
