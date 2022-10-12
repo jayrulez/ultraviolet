@@ -15,14 +15,12 @@ precision mediump int;
 
 #ifdef GLES2
 
-#ifdef STAGE_VERTEX_SHADER
-#define in attribute
-#define out varying
-#endif
-
-#ifdef STAGE_FRAGMENT_SHADER
-#define in varying
-#define out varying
+#if defined(STAGE_FRAGMENT_SHADER)
+	#define in varying
+	#define out varying
+#else
+	#define in attribute
+	#define out varying
 #endif
 
 #define DECLARE_OUTPUT_COLOR
