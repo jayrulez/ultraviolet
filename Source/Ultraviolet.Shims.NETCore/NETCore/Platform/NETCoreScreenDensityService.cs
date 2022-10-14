@@ -2,19 +2,19 @@
 using Ultraviolet.Core;
 using Ultraviolet.Platform;
 
-namespace Ultraviolet.Shims.NETCore3.Platform
+namespace Ultraviolet.Shims.NETCore.Platform
 {
     /// <summary>
     /// Represents an implementation of the <see cref="ScreenDensityService"/> class for the .NET Core 3.0 platform.
     /// </summary>
-    public sealed partial class NETCore3ScreenDensityService : ScreenDensityService
+    public sealed partial class NETCoreScreenDensityService : ScreenDensityService
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NETCore3ScreenDensityService"/> class.
+        /// Initializes a new instance of the <see cref="NETCoreScreenDensityService"/> class.
         /// </summary>
         /// <param name="uv">The Ultraviolet context.</param>
         /// <param name="display">The <see cref="IUltravioletDisplay"/> for which to retrieve density information.</param>
-        public NETCore3ScreenDensityService(UltravioletContext uv, IUltravioletDisplay display)
+        public NETCoreScreenDensityService(UltravioletContext uv, IUltravioletDisplay display)
             : base(display)
         {
             Contract.Require(uv, nameof(uv));

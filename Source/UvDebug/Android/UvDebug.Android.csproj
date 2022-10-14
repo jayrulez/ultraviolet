@@ -180,11 +180,11 @@
 		<ProjectReference Include="..\..\Ultraviolet\Ultraviolet.csproj" />
 	</ItemGroup>
 	<Target Name="BeforeBuild">
-		<Exec Command="dotnet run -compile:content -compile:expressions" WorkingDirectory="$(SolutionDir)UvDebug\NETCore3" />
+		<Exec Command="dotnet run -compile:content -compile:expressions" WorkingDirectory="$(SolutionDir)UvDebug\NETCore" />
 	</Target>
 	<Target Name="BeforeBuildCopyResults" AfterTargets="BeforeBuild">
-		<Copy SourceFiles="$(SolutionDir)UvDebug\NETCore3\bin\Debug\net6.0\Content.uvarc" DestinationFolder="$(SolutionDir)UvDebug\Android" />
-		<Copy SourceFiles="$(SolutionDir)UvDebug\NETCore3\bin\Debug\net6.0\Ultraviolet.Presentation.CompiledExpressions.dll" DestinationFolder="$(SolutionDir)UvDebug\Android" />
+		<Copy SourceFiles="$(SolutionDir)UvDebug\NETCore\bin\Debug\net6.0\Content.uvarc" DestinationFolder="$(SolutionDir)UvDebug\Android" />
+		<Copy SourceFiles="$(SolutionDir)UvDebug\NETCore\bin\Debug\net6.0\Ultraviolet.Presentation.CompiledExpressions.dll" DestinationFolder="$(SolutionDir)UvDebug\Android" />
 	</Target>
 	<Target Name="BeforeBuildValidation" AfterTargets="BeforeBuildCopyResults">
 		<Error Condition="!Exists('Content.uvarc')" Text="Failed to generate content archive for UvDebug.Android." />

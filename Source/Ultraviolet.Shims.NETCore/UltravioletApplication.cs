@@ -6,7 +6,7 @@ using Ultraviolet.Content;
 using Ultraviolet.Core;
 using Ultraviolet.Core.Messages;
 using Ultraviolet.Platform;
-using Ultraviolet.Shims.NETCore3;
+using Ultraviolet.Shims.NETCore;
 
 namespace Ultraviolet
 {
@@ -43,7 +43,7 @@ namespace Ultraviolet
 
             this.DeveloperName = developerName;
             this.ApplicationName = applicationName;
-            this.CompatibilityShim = new NETCore3UltravioletPlatformCompatibilityShim();
+            this.CompatibilityShim = new NETCoreUltravioletPlatformCompatibilityShim();
 
             InitializeApplication();
         }

@@ -157,19 +157,19 @@ public static partial class StbExtensions
     }
 }
 
-namespace Ultraviolet.Shims.NETCore3.Graphics
+namespace Ultraviolet.Shims.NETCore.Graphics
 {
     /// <summary>
     /// Represents an implementation of the <see cref="SurfaceSource"/> class for the .NET Core 3.0 platform.
     /// </summary>
     [CLSCompliant(false)]
-    public sealed class NETCore3SurfaceSource : SurfaceSource
+    public sealed class NETCoreSurfaceSource : SurfaceSource
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NETCore3SurfaceSource"/> class.
+        /// Initializes a new instance of the <see cref="NETCoreSurfaceSource"/> class.
         /// </summary>
         /// <param name="stream">The <see cref="Stream"/> that contains the surface data.</param>
-        public NETCore3SurfaceSource(Stream stream)
+        public NETCoreSurfaceSource(Stream stream)
         {
             Contract.Require(stream, nameof(stream));
 
@@ -186,10 +186,10 @@ namespace Ultraviolet.Shims.NETCore3.Graphics
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NETCore3SurfaceSource"/> class.
+        /// Initializes a new instance of the <see cref="NETCoreSurfaceSource"/> class.
         /// </summary>
         /// <param name="image">The bitmap from which to read surface data.</param>
-        public NETCore3SurfaceSource(StbImageSharp.ImageResult image)
+        public NETCoreSurfaceSource(StbImageSharp.ImageResult image)
         {
             Contract.Require(image, nameof(image));
 

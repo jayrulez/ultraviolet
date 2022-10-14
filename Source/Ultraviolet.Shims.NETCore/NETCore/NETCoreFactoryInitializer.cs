@@ -2,16 +2,16 @@
 using Ultraviolet.Graphics;
 using Ultraviolet.Input;
 using Ultraviolet.Platform;
-using Ultraviolet.Shims.NETCore3.Graphics;
-using Ultraviolet.Shims.NETCore3.Input;
-using Ultraviolet.Shims.NETCore3.Platform;
+using Ultraviolet.Shims.NETCore.Graphics;
+using Ultraviolet.Shims.NETCore.Input;
+using Ultraviolet.Shims.NETCore.Platform;
 
-namespace Ultraviolet.Shims.NETCore3
+namespace Ultraviolet.Shims.NETCore
 {
     /// <summary>
     /// Initializes factory methods for the .NET Core 3.0 platform compatibility shim.
     /// </summary>
-    internal sealed class NETCore3FactoryInitializer : IUltravioletFactoryInitializer
+    internal sealed class NETCoreFactoryInitializer : IUltravioletFactoryInitializer
     {
         /// <summary>
         /// Initializes the specified factory.
@@ -20,24 +20,24 @@ namespace Ultraviolet.Shims.NETCore3
         /// <param name="factory">The <see cref="UltravioletFactory"/> to initialize.</param>
         public void Initialize(UltravioletContext owner, UltravioletFactory factory)
         {
-            factory.SetFactoryMethod<SurfaceSourceFactory>((stream) => new NETCore3SurfaceSource(stream));
-            factory.SetFactoryMethod<SurfaceSaverFactory>(() => new NETCore3SurfaceSaver());
-            factory.SetFactoryMethod<IconLoaderFactory>(() => new NETCore3IconLoader());
+            factory.SetFactoryMethod<SurfaceSourceFactory>((stream) => new NETCoreSurfaceSource(stream));
+            factory.SetFactoryMethod<SurfaceSaverFactory>(() => new NETCoreSurfaceSaver());
+            factory.SetFactoryMethod<IconLoaderFactory>(() => new NETCoreIconLoader());
             factory.SetFactoryMethod<FileSystemServiceFactory>(() => new FileSystemService());
-            factory.SetFactoryMethod<ScreenRotationServiceFactory>((display) => new NETCore3ScreenOrientationService(display));
+            factory.SetFactoryMethod<ScreenRotationServiceFactory>((display) => new NETCoreScreenOrientationService(display));
 
             switch (UltravioletPlatformInfo.CurrentPlatform)
             {
                 case UltravioletPlatform.Windows:
-                    factory.SetFactoryMethod<ScreenDensityServiceFactory>((display) => new NETCore3ScreenDensityService_Windows(owner, display));
+                    factory.SetFactoryMethod<ScreenDensityServiceFactory>((display) => new NETCoreScreenDensityService_Windows(owner, display));
                     break;
 
                 default:
-                    factory.SetFactoryMethod<ScreenDensityServiceFactory>((display) => new NETCore3ScreenDensityService(owner, display));
+                    factory.SetFactoryMethod<ScreenDensityServiceFactory>((display) => new NETCoreScreenDensityService(owner, display));
                     break;
             }
 
-            var softwareKeyboardService = new NETCore3SoftwareKeyboardService();
+            var softwareKeyboardService = new NETCoreSoftwareKeyboardService();
             factory.SetFactoryMethod<SoftwareKeyboardServiceFactory>(() => softwareKeyboardService);
         }
     }

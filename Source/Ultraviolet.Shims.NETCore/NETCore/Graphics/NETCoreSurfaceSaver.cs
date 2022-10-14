@@ -3,7 +3,7 @@ using System.IO;
 using Ultraviolet.Core;
 using Ultraviolet.Graphics;
 
-namespace Ultraviolet.Shims.NETCore3.Graphics
+namespace Ultraviolet.Shims.NETCore.Graphics
 {
     /// <summary>
     /// Surface image format
@@ -24,7 +24,7 @@ namespace Ultraviolet.Shims.NETCore3.Graphics
     /// <summary>
     /// Represents an implementation of the <see cref="SurfaceSaver"/> class for the .NET Core 3.0 platform.
     /// </summary>
-    public sealed class NETCore3SurfaceSaver : SurfaceSaver
+    public sealed class NETCoreSurfaceSaver : SurfaceSaver
     {
         /// <inheritdoc/>
         public override void SaveAsPng(Surface2D surface, Stream stream)

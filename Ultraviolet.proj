@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Ultraviolet_NETCore3_Solution Include="Source/Ultraviolet.NETCore3.sln">
+    <Ultraviolet_NETCore_Solution Include="Source/Ultraviolet.NETCore.sln">
       <Properties>Configuration=$(Configuration);Platform=$(Platform)</Properties>
-    </Ultraviolet_NETCore3_Solution>
+    </Ultraviolet_NETCore_Solution>
     <Ultraviolet_Android_Solution Include="Source/Ultraviolet.Android.sln">
       <Properties>Configuration=$(Configuration);Platform=$(Platform)</Properties>
     </Ultraviolet_Android_Solution>
@@ -97,37 +97,37 @@
   </Target>
 
   <!-- NETCORE 3 -->
-  <Target Name="SetNETCore3BuildParameters">
+  <Target Name="SetNETCoreBuildParameters">
     <PropertyGroup>
-        <BinaryDir>NETCore3</BinaryDir>
+        <BinaryDir>NETCore</BinaryDir>
         <UvLibPlatform>NETStandard21</UvLibPlatform>
-        <UvAppPlatform>NETCore3</UvAppPlatform>
+        <UvAppPlatform>NETCore</UvAppPlatform>
         <NETStandardSuffix>/netstandard2.1</NETStandardSuffix>
         <NETCoreSuffix>/net6.0</NETCoreSuffix>
         <NETCoreSuffixWindows>/net6.0-windows</NETCoreSuffixWindows>
         <NETCoreSuffixAndroid>/net6.0-android</NETCoreSuffixAndroid>
     </PropertyGroup>
   </Target>
-  <Target Name="CleanNETCore3">
-    <Exec Command="dotnet clean &quot;@(Ultraviolet_NETCore3_Solution)&quot;"/>
+  <Target Name="CleanNETCore">
+    <Exec Command="dotnet clean &quot;@(Ultraviolet_NETCore_Solution)&quot;"/>
   </Target>
-  <Target Name="BuildNETCore3" DependsOnTargets="SetNETCore3BuildParameters">
-    <Exec Command="dotnet build &quot;@(Ultraviolet_NETCore3_Solution)&quot; -c $(Configuration)"/>
+  <Target Name="BuildNETCore" DependsOnTargets="SetNETCoreBuildParameters">
+    <Exec Command="dotnet build &quot;@(Ultraviolet_NETCore_Solution)&quot; -c $(Configuration)"/>
   </Target>
-  <Target Name="BuildNETCore3Tools" AfterTargets="BuildNETCore3" Condition="'$(BuildTools)' == 'true'">
+  <Target Name="BuildNETCoreTools" AfterTargets="BuildNETCore" Condition="'$(BuildTools)' == 'true'">
     <Exec Command="dotnet publish &quot;Source/UvFont/UvFont.csproj&quot; -c $(Configuration)" />
     <Exec Command="dotnet publish &quot;Source/UvArchive/UvArchive.csproj&quot; -c $(Configuration)" />
     <Exec Command="dotnet publish &quot;Source/UvAssetList/UvAssetList.csproj&quot; -c $(Configuration)" />
   </Target>
-  <Target Name="CopyNETCore3Binaries" AfterTargets="BuildNETCore3">
-    <CreateItem Include="Source/Ultraviolet.Shims.NETCore3/bin/$(Configuration)$(NETCoreSuffix)/Ultraviolet.Shims.NETCore3.*">
-      <Output TaskParameter="Include" ItemName="Ultraviolet_Shims_NETCore3"/>
+  <Target Name="CopyNETCoreBinaries" AfterTargets="BuildNETCore">
+    <CreateItem Include="Source/Ultraviolet.Shims.NETCore/bin/$(Configuration)$(NETCoreSuffix)/Ultraviolet.Shims.NETCore.*">
+      <Output TaskParameter="Include" ItemName="Ultraviolet_Shims_NETCore"/>
     </CreateItem>
     <CallTarget Targets="CopyStandardBinaries"/>
     <CallTarget Targets="CopyToolsBinaries" Condition=" '$(BuildTools)' == 'true' "/>
-    <Copy SourceFiles="@(Ultraviolet_Shims_NETCore3)" DestinationFiles="@(Ultraviolet_Shims_NETCore3->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Ultraviolet_Shims_NETCore)" DestinationFiles="@(Ultraviolet_Shims_NETCore->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
   </Target>
-  <Target Name="CopyWindowsFormsBinaries" AfterTargets="BuildNETCore3" Condition="'$(BuildWindowsForms)' == 'true'">
+  <Target Name="CopyWindowsFormsBinaries" AfterTargets="BuildNETCore" Condition="'$(BuildWindowsForms)' == 'true'">
     <CreateItem Include="Source/Ultraviolet.Windows.Forms/bin/$(Configuration)$(NETCoreSuffixWindows)/Ultraviolet.Windows.Forms.*">
       <Output TaskParameter="Include" ItemName="Ultraviolet_Windows_Forms"/>
     </CreateItem>
@@ -139,7 +139,7 @@
     <PropertyGroup>
         <BinaryDir>Android</BinaryDir>
         <UvLibPlatform>NETStandard21</UvLibPlatform>
-        <UvAppPlatform>NETCore3</UvAppPlatform>
+        <UvAppPlatform>NETCore</UvAppPlatform>
         <NETStandardSuffix>/netstandard2.1</NETStandardSuffix>
         <NETCoreSuffix>/net6.0</NETCoreSuffix>
         <NETCoreSuffixWindows>/net6.0-windows</NETCoreSuffixWindows>

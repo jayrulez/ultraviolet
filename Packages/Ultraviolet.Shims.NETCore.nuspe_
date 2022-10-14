@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Ultraviolet.Shims.NETCore3</id>
+    <id>Ultraviolet.Shims.NETCore</id>
     <version>UV_VERSION</version>
     <authors>Cole Campbell</authors>
     <owners>Cole Campbell</owners>
@@ -26,7 +26,7 @@ Additional licensing information is available at https://www.ultraviolet.tl/lice
   </metadata>
   <files>
     <file src="..\Images\desktop_uv128.png" target="images\icon.png"/>
-    <file src="..\Binaries\NETCore3\Release\Ultraviolet.Shims.NETCore3.dll" target="lib\net6.0\"/>
-    <file src="..\Binaries\NETCore3\Release\Ultraviolet.Shims.NETCore3.pdb" target="lib\net6.0\"/>
+    <file src="..\Binaries\NETCore\Release\Ultraviolet.Shims.NETCore.dll" target="lib\net6.0\"/>
+    <file src="..\Binaries\NETCore\Release\Ultraviolet.Shims.NETCore.pdb" target="lib\net6.0\"/>
   </files>  
 </package>

@@ -1,12 +1,12 @@
 ﻿using System;
 using Ultraviolet.Input;
 
-namespace Ultraviolet.Shims.NETCore3.Input
+namespace Ultraviolet.Shims.NETCore.Input
 {
     /// <summary>
     /// Represents an implementation of the <see cref="SoftwareKeyboardService"/> class for the .NET Core 3.0 platform.
     /// </summary>
-    public sealed class NETCore3SoftwareKeyboardService : SoftwareKeyboardService
+    public sealed class NETCoreSoftwareKeyboardService : SoftwareKeyboardService
     {
         /// <inheritdoc/>
         public override Boolean ShowSoftwareKeyboard(KeyboardMode mode)

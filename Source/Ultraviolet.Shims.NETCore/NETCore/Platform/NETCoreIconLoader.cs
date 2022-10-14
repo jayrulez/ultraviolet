@@ -4,18 +4,18 @@ using System.Reflection;
 using Ultraviolet.Graphics;
 using Ultraviolet.Platform;
 
-namespace Ultraviolet.Shims.NETCore3.Platform
+namespace Ultraviolet.Shims.NETCore.Platform
 {
     /// <summary>
     /// Represents an implementation of the <see cref="IconLoader"/> class for the .NET Core 3.0 platform.
     /// </summary>
-    public sealed class NETCore3IconLoader : IconLoader
+    public sealed class NETCoreIconLoader : IconLoader
     {
         /// <inheritdoc/>
         public override Surface2D LoadIcon()
         {
             var asmEntry = Assembly.GetEntryAssembly();
-            var asmLoader = typeof(NETCore3IconLoader).Assembly;
+            var asmLoader = typeof(NETCoreIconLoader).Assembly;
 
             var asmResourceNames = asmEntry.GetManifestResourceNames();
             var asmResourcePrefix = GetLongestCommonResourcePrefix(asmResourceNames);
@@ -24,7 +24,7 @@ namespace Ultraviolet.Shims.NETCore3.Platform
 
             var iconStream = 
                 asmEntry.GetManifestResourceStream(asmResourceIcon) ??
-                asmLoader.GetManifestResourceStream($"Ultraviolet.Shims.NETCore3.icon.ico");
+                asmLoader.GetManifestResourceStream($"Ultraviolet.Shims.NETCore.icon.ico");
 
             // todo sed: load image from ico and pass image data to SurfaceSource.Create
             //if (iconStream != null)

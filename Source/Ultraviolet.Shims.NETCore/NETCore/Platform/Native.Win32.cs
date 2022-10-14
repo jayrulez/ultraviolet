@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Ultraviolet.Shims.NETCore3.Platform
+namespace Ultraviolet.Shims.NETCore.Platform
 {
     static partial class Native
     {
