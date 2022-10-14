@@ -69,7 +69,7 @@ namespace Ultraviolet.Windows.Forms
         public String ApplicationName { get; set; }
 
         /// <inheritdoc/>
-        public IUltravioletPlatformCompatibilityShim CompatibilityShim { get; }
+        public IUltravioletPlatformCompatibilityShim CompatibilityShim { get; } = new WindowsFormUltravioletPlatformCompatibilityShim();
 
         /// <summary>
         /// Gets or sets a value indicating whether the application's primary window is synchronized
