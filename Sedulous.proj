@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="BuildNETCore3">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="BuildNETCore">
   <PropertyGroup Condition="'$(Configuration)' == ''">
     <Configuration>Debug</Configuration>
   </PropertyGroup>
@@ -18,6 +18,12 @@
 
   <!-- STANDARD BINARIES -->
   <Target Name="CopyStandardBinaries">
+    <CreateItem Include="Source/StbImageSharp/bin/$(Configuration)$(NETStandardSuffix)/StbImageSharp.*">
+      <Output TaskParameter="Include" ItemName="StbImageSharp"/>
+    </CreateItem>
+    <CreateItem Include="Source/StbImageWriteSharp/bin/$(Configuration)$(NETStandardSuffix)/StbImageWriteSharp.*">
+      <Output TaskParameter="Include" ItemName="StbImageWriteSharp"/>
+    </CreateItem>
     <CreateItem Include="Source/Sedulous.Core/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.Core.*">
       <Output TaskParameter="Include" ItemName="Sedulous_Core"/>
     </CreateItem>
@@ -63,6 +69,8 @@
     <CreateItem Include="Source/Sedulous.Tooling/bin/$(Configuration)$(NETStandardSuffix)/publish/Sedulous.Tooling.*">
       <Output TaskParameter="Include" ItemName="Sedulous_Tooling"/>
     </CreateItem>
+    <Copy SourceFiles="@(StbImageSharp)" DestinationFiles="@(StbImageSharp->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(StbImageWriteSharp)" DestinationFiles="@(StbImageWriteSharp->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
     <Copy SourceFiles="@(Sedulous_Core)" DestinationFiles="@(Sedulous_Core->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
     <Copy SourceFiles="@(Sedulous)" DestinationFiles="@(Sedulous->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
     <Copy SourceFiles="@(Sedulous_BASS)" DestinationFiles="@(Sedulous_BASS->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
