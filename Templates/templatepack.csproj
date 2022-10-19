@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.2</PackageVersion>
     <PackageId>Sedulous.Templates</PackageId>
     <Title>Sedulous Framework Templates</Title>
     <Authors>Cole Campbell</Authors>

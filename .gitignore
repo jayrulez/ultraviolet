@@ -183,6 +183,6 @@ gen/
 !/Samples/Dependencies/Android/x86_64
 !/Samples/Dependencies/iOS/*.a
 /Samples/Version.cs
-**/packages/
+#**/packages/
 /Binaries
 launchSettings.json

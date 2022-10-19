@@ -45,6 +45,14 @@ powershell -Command "(gc Sedulous.Shims.NETCore.nuspe_) -replace 'UV_VERSION', '
 nuget pack Sedulous.Shims.NETCore.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
+powershell -Command "(gc Sedulous.StbImageSharp.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.StbImageSharp.nuspec"
+nuget pack Sedulous.StbImageSharp.nuspec -Symbols -SymbolPackageFormat snupkg
+@if %errorlevel% neq 0 @exit /b %errorlevel%
+
+powershell -Command "(gc Sedulous.StbImageWriteSharp.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.StbImageWriteSharp.nuspec"
+nuget pack Sedulous.StbImageWriteSharp.nuspec -Symbols -SymbolPackageFormat snupkg
+@if %errorlevel% neq 0 @exit /b %errorlevel%
+
 powershell -Command "(gc Sedulous.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.nuspec"
 nuget pack Sedulous.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%

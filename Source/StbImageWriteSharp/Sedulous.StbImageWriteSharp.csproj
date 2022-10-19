@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Authors>StbImageWriteSharpTeam</Authors>
+		<Product>StbImageWriteSharp</Product>
+		<PackageId>Sedulous.StbImageWriteSharp</PackageId>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<Description>C# port of the stb_image_write.h</Description>
+		<PackageLicenseUrl>Public Domain</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/StbSharp/StbImageWriteSharp</PackageProjectUrl>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\Sedulous.snk</AssemblyOriginatorKeyFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+</Project>

@@ -18,11 +18,11 @@
 
   <!-- STANDARD BINARIES -->
   <Target Name="CopyStandardBinaries">
-    <CreateItem Include="Source/StbImageSharp/bin/$(Configuration)$(NETStandardSuffix)/StbImageSharp.*">
-      <Output TaskParameter="Include" ItemName="StbImageSharp"/>
+    <CreateItem Include="Source/StbImageSharp/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.StbImageSharp.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_StbImageSharp"/>
     </CreateItem>
-    <CreateItem Include="Source/StbImageWriteSharp/bin/$(Configuration)$(NETStandardSuffix)/StbImageWriteSharp.*">
-      <Output TaskParameter="Include" ItemName="StbImageWriteSharp"/>
+    <CreateItem Include="Source/StbImageWriteSharp/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.StbImageWriteSharp.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_StbImageWriteSharp"/>
     </CreateItem>
     <CreateItem Include="Source/Sedulous.Core/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.Core.*">
       <Output TaskParameter="Include" ItemName="Sedulous_Core"/>
@@ -69,8 +69,8 @@
     <CreateItem Include="Source/Sedulous.Tooling/bin/$(Configuration)$(NETStandardSuffix)/publish/Sedulous.Tooling.*">
       <Output TaskParameter="Include" ItemName="Sedulous_Tooling"/>
     </CreateItem>
-    <Copy SourceFiles="@(StbImageSharp)" DestinationFiles="@(StbImageSharp->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
-    <Copy SourceFiles="@(StbImageWriteSharp)" DestinationFiles="@(StbImageWriteSharp->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_StbImageSharp)" DestinationFiles="@(Sedulous_StbImageSharp->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_StbImageWriteSharp)" DestinationFiles="@(Sedulous_StbImageWriteSharp->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
     <Copy SourceFiles="@(Sedulous_Core)" DestinationFiles="@(Sedulous_Core->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
     <Copy SourceFiles="@(Sedulous)" DestinationFiles="@(Sedulous->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
     <Copy SourceFiles="@(Sedulous_BASS)" DestinationFiles="@(Sedulous_BASS->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>

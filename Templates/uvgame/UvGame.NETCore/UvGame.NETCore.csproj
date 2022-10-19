@@ -16,12 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Sedulous" Version="2022.10.0" />
-    <PackageReference Include="Sedulous.BASS" Version="2022.10.0" />
-    <PackageReference Include="Sedulous.FreeType2" Version="2022.10.0" />
-    <PackageReference Include="Sedulous.OpenGL" Version="2022.10.0" />
-    <PackageReference Include="Sedulous.SDL2" Version="2022.10.0" />
-    <PackageReference Include="Sedulous.Shims.NETCore" Version="2022.10.0" />
+    <PackageReference Include="Sedulous" Version="2022.10.191338" />
+    <PackageReference Include="Sedulous.BASS" Version="2022.10.191338" />
+    <PackageReference Include="Sedulous.FreeType2" Version="2022.10.191338" />
+    <PackageReference Include="Sedulous.OpenGL" Version="2022.10.191338" />
+    <PackageReference Include="Sedulous.SDL2" Version="2022.10.191338" />
+    <PackageReference Include="Sedulous.Shims.NETCore" Version="2022.10.191338" />
   </ItemGroup>
 
   <Import Project="..\UvGame.Shared\UvGame.Shared.projitems" Label="Shared" />

@@ -50,8 +50,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StbImageSharp\StbImageSharp.csproj" />
-    <ProjectReference Include="..\StbImageWriteSharp\StbImageWriteSharp.csproj" />
+    <ProjectReference Include="..\StbImageSharp\Sedulous.StbImageSharp.csproj" />
+    <ProjectReference Include="..\StbImageWriteSharp\Sedulous.StbImageWriteSharp.csproj" />
     <ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
     <ProjectReference Include="..\Sedulous\Sedulous.csproj" />
   </ItemGroup>

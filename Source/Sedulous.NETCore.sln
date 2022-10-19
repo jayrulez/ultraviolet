@@ -13,10 +13,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Sedulous.Tests.Content", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UvNativeCodeGen", "UvNativeCodeGen\UvNativeCodeGen.csproj", "{88E9A1B4-A4DA-4988-B3FD-E49A1360ABF6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StbImageSharp", "StbImageSharp\StbImageSharp.csproj", "{F4F0CD0A-FAC3-4B78-A666-0063FEE4CDF8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StbImageWriteSharp", "StbImageWriteSharp\StbImageWriteSharp.csproj", "{46E23B86-4A81-46B1-B273-C92A3C12D9DF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UvFont", "UvFont\UvFont.csproj", "{AAA9876D-B616-442C-B0D9-AE3786359680}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UvAssetList", "UvAssetList\UvAssetList.csproj", "{40561B18-2D11-49AF-AD0B-11C1173F294B}"
@@ -73,6 +69,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.Core", "Sedulous.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous", "Sedulous\Sedulous.csproj", "{AD13E812-1F4E-4772-81B7-4839375C9569}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.StbImageSharp", "StbImageSharp\Sedulous.StbImageSharp.csproj", "{C4C44055-F77D-4AD5-BD31-4DB72342715E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.StbImageWriteSharp", "StbImageWriteSharp\Sedulous.StbImageWriteSharp.csproj", "{6BC1D74C-B598-4A1D-BA0C-1F9886F5F025}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,14 +91,6 @@ Global
 		{88E9A1B4-A4DA-4988-B3FD-E49A1360ABF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88E9A1B4-A4DA-4988-B3FD-E49A1360ABF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88E9A1B4-A4DA-4988-B3FD-E49A1360ABF6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F4F0CD0A-FAC3-4B78-A666-0063FEE4CDF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4F0CD0A-FAC3-4B78-A666-0063FEE4CDF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4F0CD0A-FAC3-4B78-A666-0063FEE4CDF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4F0CD0A-FAC3-4B78-A666-0063FEE4CDF8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46E23B86-4A81-46B1-B273-C92A3C12D9DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46E23B86-4A81-46B1-B273-C92A3C12D9DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46E23B86-4A81-46B1-B273-C92A3C12D9DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46E23B86-4A81-46B1-B273-C92A3C12D9DF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AAA9876D-B616-442C-B0D9-AE3786359680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AAA9876D-B616-442C-B0D9-AE3786359680}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAA9876D-B616-442C-B0D9-AE3786359680}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -211,6 +203,14 @@ Global
 		{AD13E812-1F4E-4772-81B7-4839375C9569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD13E812-1F4E-4772-81B7-4839375C9569}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD13E812-1F4E-4772-81B7-4839375C9569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4C44055-F77D-4AD5-BD31-4DB72342715E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4C44055-F77D-4AD5-BD31-4DB72342715E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4C44055-F77D-4AD5-BD31-4DB72342715E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4C44055-F77D-4AD5-BD31-4DB72342715E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BC1D74C-B598-4A1D-BA0C-1F9886F5F025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BC1D74C-B598-4A1D-BA0C-1F9886F5F025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BC1D74C-B598-4A1D-BA0C-1F9886F5F025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BC1D74C-B598-4A1D-BA0C-1F9886F5F025}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,10 +13,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Sedulous.Tests.Content", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UvNativeCodeGen", "UvNativeCodeGen\UvNativeCodeGen.csproj", "{9478C868-C8DC-4693-8B87-E222DE17CEEE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StbImageSharp", "StbImageSharp\StbImageSharp.csproj", "{BC955159-83D2-484D-946A-71B5867FA833}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StbImageWriteSharp", "StbImageWriteSharp\StbImageWriteSharp.csproj", "{E7BD2871-98F2-46F7-BD99-1A60A81F7B7D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UvFont", "UvFont\UvFont.csproj", "{E6F0C39B-3120-4FB4-BCE8-C373236F339E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UvAssetList", "UvAssetList\UvAssetList.csproj", "{11CDF456-A734-4DF6-9C01-953DF2765DA0}"
@@ -73,6 +69,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.Core", "Sedulous.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous", "Sedulous\Sedulous.csproj", "{A41B1363-A06A-4E00-9306-BE3D1B0D4069}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.StbImageSharp", "StbImageSharp\Sedulous.StbImageSharp.csproj", "{C4CABF60-468D-4EBD-AA05-203B0337E151}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.StbImageWriteSharp", "StbImageWriteSharp\Sedulous.StbImageWriteSharp.csproj", "{00D18EC4-D689-4378-AC6F-340F596533D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,14 +91,6 @@ Global
 		{9478C868-C8DC-4693-8B87-E222DE17CEEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9478C868-C8DC-4693-8B87-E222DE17CEEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9478C868-C8DC-4693-8B87-E222DE17CEEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC955159-83D2-484D-946A-71B5867FA833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC955159-83D2-484D-946A-71B5867FA833}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC955159-83D2-484D-946A-71B5867FA833}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC955159-83D2-484D-946A-71B5867FA833}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E7BD2871-98F2-46F7-BD99-1A60A81F7B7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7BD2871-98F2-46F7-BD99-1A60A81F7B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7BD2871-98F2-46F7-BD99-1A60A81F7B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7BD2871-98F2-46F7-BD99-1A60A81F7B7D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E6F0C39B-3120-4FB4-BCE8-C373236F339E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E6F0C39B-3120-4FB4-BCE8-C373236F339E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6F0C39B-3120-4FB4-BCE8-C373236F339E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -211,6 +203,14 @@ Global
 		{A41B1363-A06A-4E00-9306-BE3D1B0D4069}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A41B1363-A06A-4E00-9306-BE3D1B0D4069}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A41B1363-A06A-4E00-9306-BE3D1B0D4069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4CABF60-468D-4EBD-AA05-203B0337E151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4CABF60-468D-4EBD-AA05-203B0337E151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4CABF60-468D-4EBD-AA05-203B0337E151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4CABF60-468D-4EBD-AA05-203B0337E151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00D18EC4-D689-4378-AC6F-340F596533D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00D18EC4-D689-4378-AC6F-340F596533D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00D18EC4-D689-4378-AC6F-340F596533D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00D18EC4-D689-4378-AC6F-340F596533D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

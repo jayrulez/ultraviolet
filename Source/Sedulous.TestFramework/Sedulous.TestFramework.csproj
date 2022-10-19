@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\StbImageSharp\StbImageSharp.csproj" />
+	<ProjectReference Include="..\StbImageSharp\Sedulous.StbImageSharp.csproj" />
     <ProjectReference Include="..\Sedulous.Core.TestFramework\Sedulous.Core.TestFramework.csproj" />
     <ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
     <ProjectReference Include="..\Sedulous.SDL2\Sedulous.SDL2.csproj" />
