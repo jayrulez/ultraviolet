@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Sedulous.Windows.Forms</id>
+    <version>UV_VERSION</version>
+    <authors>Cole Campbell</authors>
+    <owners>Cole Campbell</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/jayrulez/sedulous</projectUrl>
+    <repository type="git" url="https://github.com/jayrulez/sedulous" />
+    <icon>images\icon.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <title>Sedulous.Windows.Forms</title>
+    <summary>The Sedulous Framework is a .NET game development framework written in C#. This package contains an Sedulous host implementation which is embeddable within a Windows Forms application.</summary>
+    <description>The Sedulous Framework is a .NET game development framework written in C#. This package contains an Sedulous host implementation which is embeddable within a Windows Forms application.
+
+Quick start guides for development using the Sedulous Framework are available on the project's wiki at https://github.com/jayrulez/sedulous/wiki
+
+Additional licensing information is available at https://github.com/jayrulez/sedulous/wiki/licenses</description>
+    <tags>sedulous gamedev</tags>	
+  <dependencies>
+    <group targetFramework="net6.0-windows">
+      <dependency id="Sedulous.Core" version="UV_VERSION" />
+      <dependency id="Sedulous" version="UV_VERSION" />
+    </group>
+  </dependencies>
+  </metadata>
+  <files>
+    <file src="..\Images\desktop_uv128.png" target="images\icon.png"/>
+    <file src="..\Binaries\NETCore\Release\Sedulous.Windows.Forms.dll" target="lib\net6.0\"/>
+    <file src="..\Binaries\NETCore\Release\Sedulous.Windows.Forms.pdb" target="lib\net6.0\"/>
+  </files>  
+</package>

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ultraviolet;
-using Ultraviolet.Content;
-using Ultraviolet.Core;
-using Ultraviolet.UI;
+using Sedulous;
+using Sedulous.Content;
+using Sedulous.Core;
+using Sedulous.UI;
 using UvDebug.UI.Screens;
 
 namespace UvDebug.UI
@@ -11,13 +11,13 @@ namespace UvDebug.UI
     /// <summary>
     /// Represents a service which provides instances of UI screen types upon request.
     /// </summary>
-    public sealed class UIScreenService : UltravioletResource
+    public sealed class UIScreenService : SedulousResource
     {
         /// <summary>
         /// Initializes a new instance of the UIScreenService type.
         /// </summary>
         public UIScreenService(ContentManager globalContent)
-            : base(globalContent?.Ultraviolet)
+            : base(globalContent?.Sedulous)
         {
             Contract.Require(globalContent, nameof(globalContent));
 

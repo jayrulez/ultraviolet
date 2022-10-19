@@ -1,6 +1,6 @@
 ﻿using System;
-using Ultraviolet.Core;
-using Ultraviolet.Presentation;
+using Sedulous.Core;
+using Sedulous.Presentation;
 
 namespace UvDebug.UI.Dialogs
 {
@@ -43,7 +43,7 @@ namespace UvDebug.UI.Dialogs
             /// </summary>
             public void HandleClickExitToDesktop(DependencyObject dobj, RoutedEventData data)
             {
-                screen.Dialog.Screen.Ultraviolet.Host.Exit();
+                screen.Dialog.Screen.Sedulous.Host.Exit();
             }
 
             // State values.

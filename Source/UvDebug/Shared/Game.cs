@@ -2,19 +2,19 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Ultraviolet;
-using Ultraviolet.BASS;
-using Ultraviolet.Content;
-using Ultraviolet.Core;
-using Ultraviolet.Core.Text;
-using Ultraviolet.FreeType2;
-using Ultraviolet.Graphics;
-using Ultraviolet.OpenGL;
-using Ultraviolet.OpenGL.Bindings;
-using Ultraviolet.Platform;
-using Ultraviolet.Presentation;
-using Ultraviolet.Presentation.Styles;
-using Ultraviolet.SDL2;
+using Sedulous;
+using Sedulous.BASS;
+using Sedulous.Content;
+using Sedulous.Core;
+using Sedulous.Core.Text;
+using Sedulous.FreeType2;
+using Sedulous.Graphics;
+using Sedulous.OpenGL;
+using Sedulous.OpenGL.Bindings;
+using Sedulous.Platform;
+using Sedulous.Presentation;
+using Sedulous.Presentation.Styles;
+using Sedulous.SDL2;
 using UvDebug.Input;
 using UvDebug.UI;
 
@@ -23,12 +23,12 @@ namespace UvDebug
     /// <summary>
     /// Represents the main application object.
     /// </summary>
-    public partial class Game : UltravioletApplication
+    public partial class Game : SedulousApplication
     {
         /// <summary>
         /// Initializes a new instance of the Game 
         /// </summary>
-        public Game() : base("Ultraviolet", "UvDebug")
+        public Game() : base("Sedulous", "UvDebug")
         {
             Diagnostics.DrawDiagnosticsVisuals = true;
             PlatformSpecificInitialization();
@@ -51,10 +51,10 @@ namespace UvDebug
         }
 
         /// <summary>
-        /// Called when the application is creating its Ultraviolet context.
+        /// Called when the application is creating its Sedulous context.
         /// </summary>
-        /// <returns>The Ultraviolet context.</returns>
-        protected override UltravioletContext OnCreatingUltravioletContext()
+        /// <returns>The Sedulous context.</returns>
+        protected override SedulousContext OnCreatingSedulousContext()
         {
             var graphicsConfig = OpenGLGraphicsConfiguration.Default;
             graphicsConfig.MultiSampleBuffers = 1;
@@ -62,7 +62,7 @@ namespace UvDebug
             graphicsConfig.SrgbBuffersEnabled = false;
             graphicsConfig.SrgbDefaultForTexture2D = false;
 
-            var contextConfig = new SDL2UltravioletConfiguration();
+            var contextConfig = new SDL2SedulousConfiguration();
             contextConfig.SupportsHighDensityDisplayModes = true;
             contextConfig.EnableServiceMode = ShouldRunInServiceMode();
             contextConfig.WatchViewFilesForChanges = ShouldDynamicallyReloadContent();
@@ -81,7 +81,7 @@ namespace UvDebug
             };
 #endif
 
-            return new SDL2UltravioletContext(this, contextConfig);
+            return new SDL2SedulousContext(this, contextConfig);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace UvDebug
             ContentManager.GloballySuppressDependencyTracking = !ShouldDynamicallyReloadContent();
             this.content = ContentManager.Create("Content");
 
-            if (Ultraviolet.IsRunningInServiceMode)
+            if (Sedulous.IsRunningInServiceMode)
             {
                 LoadPresentation();
                 CompileContent();
@@ -167,7 +167,7 @@ namespace UvDebug
         protected void LoadInputBindings()
         {
             var inputBindingsPath = Path.Combine(GetRoamingApplicationSettingsDirectory(), "InputBindings.xml");
-            Ultraviolet.GetInput().GetActions().Load(inputBindingsPath, throwIfNotFound: false);
+            Sedulous.GetInput().GetActions().Load(inputBindingsPath, throwIfNotFound: false);
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace UvDebug
         protected void SaveInputBindings()
         {
             var inputBindingsPath = Path.Combine(GetRoamingApplicationSettingsDirectory(), "InputBindings.xml");
-            Ultraviolet.GetInput().GetActions().Save(inputBindingsPath);
+            Sedulous.GetInput().GetActions().Save(inputBindingsPath);
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace UvDebug
         /// </summary>
         protected void LoadContentManifests()
         {
-            var uvContent = Ultraviolet.GetContent();
+            var uvContent = Sedulous.GetContent();
 
             var contentManifestFiles = this.content.GetAssetFilePathsInDirectory("Manifests");
             uvContent.Manifests.Load(contentManifestFiles);
@@ -196,7 +196,7 @@ namespace UvDebug
         protected void LoadPresentation()
         {
 #if !IMGUI
-            var upf = Ultraviolet.GetUI().GetPresentationFoundation();
+            var upf = Sedulous.GetUI().GetPresentationFoundation();
             upf.RegisterKnownTypes(GetType().Assembly);
 
             if (!ShouldRunInServiceMode())
@@ -306,9 +306,9 @@ namespace UvDebug
         /// Called when the application state is being updated.
         /// </summary>
         /// <param name="time">Time elapsed since the last call to Update.</param>
-        protected override void OnUpdating(UltravioletTime time)
+        protected override void OnUpdating(SedulousTime time)
         {
-            if (Ultraviolet.GetInput().GetActions().ExitApplication.IsPressed())
+            if (Sedulous.GetInput().GetActions().ExitApplication.IsPressed())
             {
                 Exit();
             }
@@ -319,10 +319,10 @@ namespace UvDebug
         /// Called when the application's scene is being drawn.
         /// </summary>
         /// <param name="time">Time elapsed since the last call to Draw.</param>
-        protected override void OnDrawing(UltravioletTime time)
+        protected override void OnDrawing(SedulousTime time)
         {
-            var gfx = Ultraviolet.GetGraphics();
-            var window = Ultraviolet.GetPlatform().Windows.GetCurrent();
+            var gfx = Sedulous.GetGraphics();
+            var window = Sedulous.GetPlatform().Windows.GetCurrent();
             var aspectRatio = window.DrawableSize.Width / (Single)window.DrawableSize.Height;
 
             effect.World = Matrix.CreateRotationY((float)(2.0 * Math.PI * (time.TotalTime.TotalSeconds / 10.0)));
@@ -447,7 +447,7 @@ namespace UvDebug
         {
             if (ShouldCompileContent())
             {
-                if (Ultraviolet.Platform == UltravioletPlatform.Android || Ultraviolet.Platform == UltravioletPlatform.iOS)
+                if (Sedulous.Platform == SedulousPlatform.Android || Sedulous.Platform == SedulousPlatform.iOS)
                     throw new NotSupportedException();
 
                 var archive = ContentArchive.FromFileSystem(new[] { "Content" });
@@ -469,7 +469,7 @@ namespace UvDebug
 #if !IMGUI
             if (ShouldCompileBindingExpressions())
             {
-                var upf = Ultraviolet.GetUI().GetPresentationFoundation();
+                var upf = Sedulous.GetUI().GetPresentationFoundation();
 
                 var flags = CompileExpressionsFlags.None;
 

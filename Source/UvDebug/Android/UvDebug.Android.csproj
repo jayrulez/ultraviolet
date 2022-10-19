@@ -15,7 +15,7 @@
 		<AndroidManifest>AndroidManifest.xml</AndroidManifest>
 		<AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
 		<AndroidUseAapt2>true</AndroidUseAapt2>
-		<IncludeUltravioletContentFiles>false</IncludeUltravioletContentFiles>
+		<IncludeSedulousContentFiles>false</IncludeSedulousContentFiles>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 	</PropertyGroup>
@@ -160,24 +160,24 @@
 		</AndroidNativeLibrary>
 	</ItemGroup>
 	<ItemGroup>
-		<AndroidAsset Include="Ultraviolet.Presentation.CompiledExpressions.dll" />
+		<AndroidAsset Include="Sedulous.Presentation.CompiledExpressions.dll" />
 		<EmbeddedResource Include="Content.uvarc" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\Ultraviolet.BASS\Ultraviolet.BASS.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.FMOD\Ultraviolet.FMOD.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.Core\Ultraviolet.Core.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.FreeType2\Ultraviolet.FreeType2.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.ImGuiViewProvider.Bindings\Ultraviolet.ImGuiViewProvider.Bindings.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.ImGuiViewProvider\Ultraviolet.ImGuiViewProvider.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.OpenGL.Bindings\Ultraviolet.OpenGL.Bindings.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.OpenGL.Environment\Ultraviolet.OpenGL.Environment.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.OpenGL\Ultraviolet.OpenGL.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.Presentation.Uvss\Ultraviolet.Presentation.Uvss.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.Presentation\Ultraviolet.Presentation.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.SDL2\Ultraviolet.SDL2.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet.Shims.Android\Ultraviolet.Shims.Android.csproj" />
-		<ProjectReference Include="..\..\Ultraviolet\Ultraviolet.csproj" />
+		<ProjectReference Include="..\..\Sedulous.BASS\Sedulous.BASS.csproj" />
+		<ProjectReference Include="..\..\Sedulous.FMOD\Sedulous.FMOD.csproj" />
+		<ProjectReference Include="..\..\Sedulous.Core\Sedulous.Core.csproj" />
+		<ProjectReference Include="..\..\Sedulous.FreeType2\Sedulous.FreeType2.csproj" />
+		<ProjectReference Include="..\..\Sedulous.ImGuiViewProvider.Bindings\Sedulous.ImGuiViewProvider.Bindings.csproj" />
+		<ProjectReference Include="..\..\Sedulous.ImGuiViewProvider\Sedulous.ImGuiViewProvider.csproj" />
+		<ProjectReference Include="..\..\Sedulous.OpenGL.Bindings\Sedulous.OpenGL.Bindings.csproj" />
+		<ProjectReference Include="..\..\Sedulous.OpenGL.Environment\Sedulous.OpenGL.Environment.csproj" />
+		<ProjectReference Include="..\..\Sedulous.OpenGL\Sedulous.OpenGL.csproj" />
+		<ProjectReference Include="..\..\Sedulous.Presentation.Uvss\Sedulous.Presentation.Uvss.csproj" />
+		<ProjectReference Include="..\..\Sedulous.Presentation\Sedulous.Presentation.csproj" />
+		<ProjectReference Include="..\..\Sedulous.SDL2\Sedulous.SDL2.csproj" />
+		<ProjectReference Include="..\..\Sedulous.Shims.Android\Sedulous.Shims.Android.csproj" />
+		<ProjectReference Include="..\..\Sedulous\Sedulous.csproj" />
 	</ItemGroup>
 	<Target Name="CustomBeforeBuild" BeforeTargets="BeforeBuild">
 		<Message Text="Precompiling content." />
@@ -185,11 +185,11 @@
 	</Target>
 	<Target Name="BeforeBuildCopyResults" AfterTargets="CustomBeforeBuild">
 		<Copy SourceFiles="$(SolutionDir)UvDebug\NETCore\bin\Debug\net6.0\Content.uvarc" DestinationFolder="$(SolutionDir)UvDebug\Android" />
-		<Copy SourceFiles="$(SolutionDir)UvDebug\NETCore\bin\Debug\net6.0\Ultraviolet.Presentation.CompiledExpressions.dll" DestinationFolder="$(SolutionDir)UvDebug\Android" />
+		<Copy SourceFiles="$(SolutionDir)UvDebug\NETCore\bin\Debug\net6.0\Sedulous.Presentation.CompiledExpressions.dll" DestinationFolder="$(SolutionDir)UvDebug\Android" />
 	</Target>
 	<Target Name="BeforeBuildValidation" AfterTargets="BeforeBuildCopyResults">
 		<Error Condition="!Exists('Content.uvarc')" Text="Failed to generate content archive for UvDebug.Android." />
-		<Error Condition="!Exists('Ultraviolet.Presentation.CompiledExpressions.dll')" Text="Failed to generate compiled expressions assembly for UvDebug.Android." />
+		<Error Condition="!Exists('Sedulous.Presentation.CompiledExpressions.dll')" Text="Failed to generate compiled expressions assembly for UvDebug.Android." />
 	</Target>
 	<Import Project="..\Shared\UvDebug.projitems" Label="Shared" />
 </Project>

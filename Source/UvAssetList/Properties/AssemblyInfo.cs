@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle(@"Ultraviolet Android Asset List Generation Utilty")]
+[assembly: AssemblyTitle(@"Sedulous Android Asset List Generation Utilty")]
 [assembly: AssemblyDescription(
     @"A command line tool which generates precompiled lists of Android assets to improve loading speeds on mobile devices.")]
 

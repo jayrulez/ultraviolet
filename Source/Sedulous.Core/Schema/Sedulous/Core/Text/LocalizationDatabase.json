@@ -1,0 +1,10 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Sedulous.Core.Text.LocalizationDatabase Schema",
+  "properties": {
+    "strings": {
+      "type": "array",
+      "items": { "$ref": "http://schema.sedulous.io/2.0/Sedulous/Core/Text/LocalizedString.json" }
+    }
+  }
+}

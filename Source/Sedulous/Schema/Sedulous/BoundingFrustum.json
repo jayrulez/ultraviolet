@@ -1,0 +1,9 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Sedulous.BoundingFrustum Schema",
+  "type": "object",
+  "properties": {
+    "matrix": { "$ref": "http://schema.sedulous.io/2.0/Sedulous/Matrix.json" }
+  },
+  "required": [ "matrix" ]
+}

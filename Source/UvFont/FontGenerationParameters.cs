@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Ultraviolet.Tooling;
+using Sedulous.Tooling;
 
 namespace UvFont
 {

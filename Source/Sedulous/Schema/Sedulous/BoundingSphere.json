@@ -1,0 +1,12 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Sedulous.BoundingSphere Schema",
+  "type": "object",
+  "properties": {
+    "center": { "$ref": "http://schema.sedulous.io/2.0/Sedulous/Vector3.json" },
+    "radius": {
+      "type": "number"
+    }
+  },
+  "required": [ "center", "radius" ]
+}

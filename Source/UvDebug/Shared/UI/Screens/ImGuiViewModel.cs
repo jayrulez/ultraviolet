@@ -1,5 +1,5 @@
 ﻿#if IMGUI
-using Ultraviolet.Core;
+using Sedulous.Core;
 
 namespace UvDebug.UI.Screens
 {

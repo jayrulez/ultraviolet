@@ -1,6 +1,6 @@
 ﻿using System;
-using Ultraviolet.Content;
-using Ultraviolet.UI;
+using Sedulous.Content;
+using Sedulous.UI;
 
 namespace UvDebug.UI.Screens
 {

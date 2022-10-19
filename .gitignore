@@ -166,7 +166,7 @@ gen/
 *.userprefs
 
 # =========================
-# Ultraviolet stuff
+# Sedulous stuff
 # =========================
 !/Packages/*.nuspe_
 !/Packages/_._

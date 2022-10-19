@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Ultraviolet;
-using Ultraviolet.Core;
-using Ultraviolet.Input;
-using Ultraviolet.Presentation;
-using Ultraviolet.Presentation.Controls;
-using Ultraviolet.Presentation.Input;
+using Sedulous;
+using Sedulous.Core;
+using Sedulous.Input;
+using Sedulous.Presentation;
+using Sedulous.Presentation.Controls;
+using Sedulous.Presentation.Input;
 using UvDebug.UI.Dialogs;
 
 namespace UvDebug.UI.Screens
@@ -140,12 +140,12 @@ namespace UvDebug.UI.Screens
         {
             get
             {
-                switch (owner.Ultraviolet.Platform)
+                switch (owner.Sedulous.Platform)
                 {
-                    case UltravioletPlatform.Android:
+                    case SedulousPlatform.Android:
                         return "Press |c:ffffff00|BACK|c| to exit.";
 
-                    case UltravioletPlatform.iOS:
+                    case SedulousPlatform.iOS:
                         return "Press |c:ffffff00|HOME|c| to exit.";
 
                     default:
@@ -172,7 +172,7 @@ namespace UvDebug.UI.Screens
         {
             var screenClosing = owner;
             var screenOpening = owner.UIScreenService.Get<GameMenuScreen>();
-            owner.Ultraviolet.GetUI().GetScreens().CloseThenOpen(screenClosing, screenOpening);
+            owner.Sedulous.GetUI().GetScreens().CloseThenOpen(screenClosing, screenOpening);
         }
         
         // Property values.

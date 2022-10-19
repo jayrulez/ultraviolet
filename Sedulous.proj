@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="BuildNETCore3">
+  <PropertyGroup Condition="'$(Configuration)' == ''">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)' == ''">
+    <Platform>Any CPU</Platform>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Sedulous_NETCore_Solution Include="Source/Sedulous.NETCore.sln">
+      <Properties>Configuration=$(Configuration);Platform=$(Platform)</Properties>
+    </Sedulous_NETCore_Solution>
+    <Sedulous_Android_Solution Include="Source/Sedulous.Android.sln">
+      <Properties>Configuration=$(Configuration);Platform=$(Platform)</Properties>
+    </Sedulous_Android_Solution>
+  </ItemGroup>
+
+  <!-- STANDARD BINARIES -->
+  <Target Name="CopyStandardBinaries">
+    <CreateItem Include="Source/Sedulous.Core/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.Core.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_Core"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.OpenGL.Bindings/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.OpenGL.Bindings.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_OpenGL_Bindings"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.*">
+      <Output TaskParameter="Include" ItemName="Sedulous"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.BASS/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.BASS.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_BASS"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.FMOD/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.FMOD.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_FMOD"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.OpenGL/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.OpenGL.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_OpenGL"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.OpenGL.Environment/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.OpenGL.Environment.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_OpenGL_Environment"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.SDL2/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.SDL2.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_SDL2"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.ImGuiViewProvider/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.ImGuiViewProvider.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_ImGuiViewProvider"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.ImGuiViewProvider.Bindings/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.ImGuiViewProvider.Bindings.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_ImGuiViewProvider_Bindings"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.Presentation/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.Presentation.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_Presentation"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.Presentation.Uvss/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.Presentation.Uvss.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_Presentation_Uvss"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.Presentation.Compiler/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.Presentation.Compiler.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_Presentation_Compiler"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.FreeType2/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.FreeType2.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_FreeType2"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.Tooling/bin/$(Configuration)$(NETStandardSuffix)/publish/Sedulous.Tooling.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_Tooling"/>
+    </CreateItem>
+    <Copy SourceFiles="@(Sedulous_Core)" DestinationFiles="@(Sedulous_Core->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous)" DestinationFiles="@(Sedulous->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_BASS)" DestinationFiles="@(Sedulous_BASS->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_FMOD)" DestinationFiles="@(Sedulous_FMOD->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_OpenGL)" DestinationFiles="@(Sedulous_OpenGL->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_OpenGL_Environment)" DestinationFiles="@(Sedulous_OpenGL_Environment->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_OpenGL_Bindings)" DestinationFiles="@(Sedulous_OpenGL_Bindings->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_SDL2)" DestinationFiles="@(Sedulous_SDL2->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_ImGuiViewProvider)" DestinationFiles="@(Sedulous_ImGuiViewProvider->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_ImGuiViewProver_Bindings)" DestinationFiles="@(Sedulous_ImGuiViewProvider_Bindings->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_Presentation)" DestinationFiles="@(Sedulous_Presentation->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_Presentation_Uvss)" DestinationFiles="@(Sedulous_Presentation_Uvss->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_Presentation_Compiler)" DestinationFiles="@(Sedulous_Presentation_Compiler->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_FreeType2)" DestinationFiles="@(Sedulous_FreeType2->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_Tooling)" DestinationFiles="@(Sedulous_Tooling->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+  </Target>  
+
+  <!-- TOOLS BINARIES -->
+  <Target Name="CopyToolsBinaries">
+    <CreateItem Include="Source/UvFont/bin/$(Configuration)$(NETCoreSuffixWindows)/publish/**/*">
+        <Output TaskParameter="Include" ItemName="uvfont"/>
+    </CreateItem>
+    <CreateItem Include="Source/UvArchive/bin/$(Configuration)$(NETCoreSuffix)/publish/**/*">
+        <Output TaskParameter="Include" ItemName="uvarchive"/>
+    </CreateItem>
+    <CreateItem Include="Source/UvAssetList/bin/$(Configuration)$(NETCoreSuffix)/publish/**/*">
+        <Output TaskParameter="Include" ItemName="uvassetlist"/>
+    </CreateItem>
+    <Copy SourceFiles="@(uvfont)" DestinationFiles="@(uvfont->'Binaries/$(BinaryDir)/$(Configuration)/Tools/uvfont/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(uvarchive)" DestinationFiles="@(uvarchive->'Binaries/$(BinaryDir)/$(Configuration)/Tools/uvarchive/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(uvassetlist)" DestinationFiles="@(uvassetlist->'Binaries/$(BinaryDir)/$(Configuration)/Tools/uvassetlist/%(RecursiveDir)%(Filename)%(Extension)')"/>
+  </Target>
+
+  <!-- NETCORE 3 -->
+  <Target Name="SetNETCoreBuildParameters">
+    <PropertyGroup>
+        <BinaryDir>NETCore</BinaryDir>
+        <UvLibPlatform>NETStandard21</UvLibPlatform>
+        <UvAppPlatform>NETCore</UvAppPlatform>
+        <NETStandardSuffix>/netstandard2.1</NETStandardSuffix>
+        <NETCoreSuffix>/net6.0</NETCoreSuffix>
+        <NETCoreSuffixWindows>/net6.0-windows</NETCoreSuffixWindows>
+        <NETCoreSuffixAndroid>/net6.0-android</NETCoreSuffixAndroid>
+    </PropertyGroup>
+  </Target>
+  <Target Name="CleanNETCore">
+    <Exec Command="dotnet clean &quot;@(Sedulous_NETCore_Solution)&quot;"/>
+  </Target>
+  <Target Name="BuildNETCore" DependsOnTargets="SetNETCoreBuildParameters">
+    <Exec Command="dotnet build &quot;@(Sedulous_NETCore_Solution)&quot; -c $(Configuration)"/>
+  </Target>
+  <Target Name="BuildNETCoreTools" AfterTargets="BuildNETCore" Condition="'$(BuildTools)' == 'true'">
+    <Exec Command="dotnet publish &quot;Source/UvFont/UvFont.csproj&quot; -c $(Configuration)" />
+    <Exec Command="dotnet publish &quot;Source/UvArchive/UvArchive.csproj&quot; -c $(Configuration)" />
+    <Exec Command="dotnet publish &quot;Source/UvAssetList/UvAssetList.csproj&quot; -c $(Configuration)" />
+  </Target>
+  <Target Name="CopyNETCoreBinaries" AfterTargets="BuildNETCore">
+    <CreateItem Include="Source/Sedulous.Shims.NETCore/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.Shims.NETCore.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_Shims_NETCore"/>
+    </CreateItem>
+    <CallTarget Targets="CopyStandardBinaries"/>
+    <CallTarget Targets="CopyToolsBinaries" Condition=" '$(BuildTools)' == 'true' "/>
+    <Copy SourceFiles="@(Sedulous_Shims_NETCore)" DestinationFiles="@(Sedulous_Shims_NETCore->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+  </Target>
+  <Target Name="CopyWindowsFormsBinaries" AfterTargets="BuildNETCore" Condition="'$(BuildWindowsForms)' == 'true'">
+    <CreateItem Include="Source/Sedulous.Windows.Forms/bin/$(Configuration)$(NETCoreSuffixWindows)/Sedulous.Windows.Forms.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_Windows_Forms"/>
+    </CreateItem>
+    <Copy SourceFiles="@(Sedulous_Windows_Forms)" DestinationFiles="@(Sedulous_Windows_Forms->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+  </Target>
+
+  <!-- ANDROID -->
+  <Target Name="SetAndroidBuildParameters">
+    <PropertyGroup>
+        <BinaryDir>Android</BinaryDir>
+        <UvLibPlatform>NETStandard21</UvLibPlatform>
+        <UvAppPlatform>NETCore</UvAppPlatform>
+        <NETStandardSuffix>/netstandard2.1</NETStandardSuffix>
+        <NETCoreSuffix>/net6.0</NETCoreSuffix>
+        <NETCoreSuffixWindows>/net6.0-windows</NETCoreSuffixWindows>
+        <NETCoreSuffixAndroid>/net6.0-android</NETCoreSuffixAndroid>
+    </PropertyGroup>
+  </Target>
+  <Target Name="CleanAndroid">
+    <MSBuild Projects="@(Sedulous_Android_Solution)" Targets="Clean"/>
+  </Target>
+  <Target Name="BuildAndroid" DependsOnTargets="SetAndroidBuildParameters">
+    <MSBuild Projects="@(Sedulous_Android_Solution)" Properties="Configuration=$(Configuration)" Targets="Restore;Build"/>
+  </Target>
+  <Target Name="CopyAndroidBinaries" AfterTargets="BuildAndroid">
+    <CreateItem Include="Source/Sedulous.Shims.Android/bin/$(Configuration)$(NETCoreSuffixAndroid)/Sedulous.Shims.Android.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_Shims_Android"/>
+    </CreateItem>
+    <CreateItem Include="Source/Sedulous.Shims.Android.FMOD/bin/$(Configuration)$(NETCoreSuffixAndroid)/Sedulous.Shims.Android.FMOD.*">
+      <Output TaskParameter="Include" ItemName="Sedulous_Shims_Android_FMOD"/>
+    </CreateItem>
+    <CallTarget Targets="CopyStandardBinaries"/>
+    <Copy SourceFiles="@(Sedulous_Shims_Android)" DestinationFiles="@(Sedulous_Shims_Android->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <Copy SourceFiles="@(Sedulous_Shims_Android_FMOD)" DestinationFiles="@(Sedulous_Shims_Android_FMOD->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>
+  </Target>
+</Project>

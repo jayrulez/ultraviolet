@@ -1,8 +1,8 @@
 ﻿using System;
-using Ultraviolet;
-using Ultraviolet.Content;
-using Ultraviolet.Core;
-using Ultraviolet.UI;
+using Sedulous;
+using Sedulous.Content;
+using Sedulous.Core;
+using Sedulous.UI;
 using UvDebug.UI.Dialogs;
 
 namespace UvDebug.UI.Screens
@@ -24,7 +24,7 @@ namespace UvDebug.UI.Screens
         }
 
         /// <inheritdoc/>
-        public override void Update(UltravioletTime time)
+        public override void Update(SedulousTime time)
         {
             var vm = View.GetViewModel<GamePlayViewModel>();
             if (vm != null && vm.IsTriangleSpinning)

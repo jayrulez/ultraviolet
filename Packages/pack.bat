@@ -7,92 +7,92 @@
 @for /f %%x in ('powershell -Command "[string]::Format([System.IO.File]::ReadAllText(\"../Source/VersionString.txt\"), [System.DateTime]::Now)"') do @(set UV_VERSION_MAJOR_MINOR=%%x)
 @set UV_VERSION=%UV_VERSION_MAJOR_MINOR%.%UV_BUILD%
 
-@echo Creating NuGet packages for Ultraviolet Framework %UV_VERSION%...
+@echo Creating NuGet packages for Sedulous Framework %UV_VERSION%...
 
-powershell -Command "(gc Ultraviolet.OpenGL.Environment.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.OpenGL.Environment.nuspec"
-nuget pack Ultraviolet.OpenGL.Environment.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.OpenGL.Environment.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.OpenGL.Environment.nuspec"
+nuget pack Sedulous.OpenGL.Environment.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.OpenGL.Bindings.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.OpenGL.Bindings.nuspec"
-nuget pack Ultraviolet.OpenGL.Bindings.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.OpenGL.Bindings.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.OpenGL.Bindings.nuspec"
+nuget pack Sedulous.OpenGL.Bindings.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.Core.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.Core.nuspec"
-nuget pack Ultraviolet.Core.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.Core.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.Core.nuspec"
+nuget pack Sedulous.Core.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.Shims.Android.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.Shims.Android.nuspec"
-nuget pack Ultraviolet.Shims.Android.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.Shims.Android.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.Shims.Android.nuspec"
+nuget pack Sedulous.Shims.Android.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.BASS.Native.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.BASS.Native.nuspec"
-nuget pack Ultraviolet.BASS.Native.nuspec
+powershell -Command "(gc Sedulous.BASS.Native.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.BASS.Native.nuspec"
+nuget pack Sedulous.BASS.Native.nuspec
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.BASS.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.BASS.nuspec"
-nuget pack Ultraviolet.BASS.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.BASS.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.BASS.nuspec"
+nuget pack Sedulous.BASS.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.FMOD.Native.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.FMOD.Native.nuspec"
-nuget pack Ultraviolet.FMOD.Native.nuspec
+powershell -Command "(gc Sedulous.FMOD.Native.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.FMOD.Native.nuspec"
+nuget pack Sedulous.FMOD.Native.nuspec
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.FMOD.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.FMOD.nuspec"
-nuget pack Ultraviolet.FMOD.nuspec
+powershell -Command "(gc Sedulous.FMOD.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.FMOD.nuspec"
+nuget pack Sedulous.FMOD.nuspec
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.Shims.NETCore.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.Shims.NETCore.nuspec"
-nuget pack Ultraviolet.Shims.NETCore.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.Shims.NETCore.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.Shims.NETCore.nuspec"
+nuget pack Sedulous.Shims.NETCore.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.nuspec"
-nuget pack Ultraviolet.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.nuspec"
+nuget pack Sedulous.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.OpenGL.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.OpenGL.nuspec"
-nuget pack Ultraviolet.OpenGL.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.OpenGL.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.OpenGL.nuspec"
+nuget pack Sedulous.OpenGL.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.SDL2.Native.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.SDL2.Native.nuspec"
-nuget pack Ultraviolet.SDL2.Native.nuspec
+powershell -Command "(gc Sedulous.SDL2.Native.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.SDL2.Native.nuspec"
+nuget pack Sedulous.SDL2.Native.nuspec
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.SDL2.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.SDL2.nuspec"
-nuget pack Ultraviolet.SDL2.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.SDL2.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.SDL2.nuspec"
+nuget pack Sedulous.SDL2.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.Presentation.Compiler.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.Presentation.Compiler.nuspec"
-nuget pack Ultraviolet.Presentation.Compiler.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.Presentation.Compiler.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.Presentation.Compiler.nuspec"
+nuget pack Sedulous.Presentation.Compiler.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.Presentation.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.Presentation.nuspec"
-nuget pack Ultraviolet.Presentation.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.Presentation.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.Presentation.nuspec"
+nuget pack Sedulous.Presentation.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.FreeType2.Native.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.FreeType2.Native.nuspec"
-nuget pack Ultraviolet.FreeType2.Native.nuspec
+powershell -Command "(gc Sedulous.FreeType2.Native.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.FreeType2.Native.nuspec"
+nuget pack Sedulous.FreeType2.Native.nuspec
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.FreeType2.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.FreeType2.nuspec"
-nuget pack Ultraviolet.FreeType2.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.FreeType2.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.FreeType2.nuspec"
+nuget pack Sedulous.FreeType2.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.ImGuiViewProvider.Native.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.ImGuiViewProvider.Native.nuspec"
-nuget pack Ultraviolet.ImGuiViewProvider.Native.nuspec
+powershell -Command "(gc Sedulous.ImGuiViewProvider.Native.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.ImGuiViewProvider.Native.nuspec"
+nuget pack Sedulous.ImGuiViewProvider.Native.nuspec
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.ImGuiViewProvider.Bindings.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.ImGuiViewProvider.Bindings.nuspec"
-nuget pack Ultraviolet.ImGuiViewProvider.Bindings.nuspec
+powershell -Command "(gc Sedulous.ImGuiViewProvider.Bindings.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.ImGuiViewProvider.Bindings.nuspec"
+nuget pack Sedulous.ImGuiViewProvider.Bindings.nuspec
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.ImGuiViewProvider.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.ImGuiViewProvider.nuspec"
-nuget pack Ultraviolet.ImGuiViewProvider.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.ImGuiViewProvider.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.ImGuiViewProvider.nuspec"
+nuget pack Sedulous.ImGuiViewProvider.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.Tools.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.Tools.nuspec"
-nuget pack Ultraviolet.Tools.nuspec
+powershell -Command "(gc Sedulous.Tools.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.Tools.nuspec"
+nuget pack Sedulous.Tools.nuspec
 @if %errorlevel% neq 0 @exit /b %errorlevel%
 
-powershell -Command "(gc Ultraviolet.Windows.Forms.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Ultraviolet.Windows.Forms.nuspec"
-nuget pack Ultraviolet.Windows.Forms.nuspec -Symbols -SymbolPackageFormat snupkg
+powershell -Command "(gc Sedulous.Windows.Forms.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.Windows.Forms.nuspec"
+nuget pack Sedulous.Windows.Forms.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%

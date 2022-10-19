@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Ultraviolet;
-using Ultraviolet.Presentation;
-using Ultraviolet.Presentation.Controls;
+using Sedulous;
+using Sedulous.Presentation;
+using Sedulous.Presentation.Controls;
 
 namespace UvDebug.UI.Controls
 {
@@ -23,9 +23,9 @@ namespace UvDebug.UI.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="TriangleColorSelector"/> class.
         /// </summary>
-        /// <param name="uv">The Ultraviolet context.</param>
+        /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public TriangleColorSelector(UltravioletContext uv, String name)
+        public TriangleColorSelector(SedulousContext uv, String name)
             : base(uv, name)
         {
 

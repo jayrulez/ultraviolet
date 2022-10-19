@@ -1,0 +1,5 @@
+﻿{
+  "testshader": {
+    "$type": "Sedulous.Presentation.Tests.ViewModels.RainbowGlyphShader, Sedulous.Presentation.Tests.ViewModels"
+  }
+}

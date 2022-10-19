@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Sedulous.Presentation</id>
+    <version>UV_VERSION</version>
+    <authors>Cole Campbell</authors>
+    <owners>Cole Campbell</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/jayrulez/sedulous</projectUrl>
+    <repository type="git" url="https://github.com/jayrulez/sedulous" />
+    <icon>images\icon.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>The Sedulous Framework is a .NET game development framework written in C#. This package contains the Sedulous Presentation Foundation, a WPF-like framework for building user interfaces in the Sedulous Framework.</summary>
+    <description>The Sedulous Framework is a .NET game development framework written in C#. This package contains the Sedulous Presentation Foundation, a WPF-like framework for building user interfaces in the Sedulous Framework.
+
+Quick start guides for development using the Sedulous Framework are available on the project's wiki at https://github.com/jayrulez/sedulous/wiki
+
+Additional licensing information is available at https://github.com/jayrulez/sedulous/wiki/licenses</description>
+    <tags>sedulous gamedev</tags>	
+  <dependencies>
+    <group targetFramework="netstandard2.1">
+      <dependency id="Sedulous.Core" version="UV_VERSION" />
+      <dependency id="Sedulous" version="UV_VERSION" />
+    </group>    
+  </dependencies>
+  </metadata>
+  <files>
+    <file src="..\Images\desktop_uv128.png" target="images\icon.png"/>
+
+    <!-- .NET Standard 2.1 -->
+    <file src="..\Binaries\NETCore\Release\Sedulous.Presentation.dll" target="lib\netstandard2.1\"/>
+    <file src="..\Binaries\NETCore\Release\Sedulous.Presentation.XML" target="lib\netstandard2.1\"/>
+    <file src="..\Binaries\NETCore\Release\Sedulous.Presentation.pdb" target="lib\netstandard2.1\"/>
+    <file src="..\Binaries\NETCore\Release\Sedulous.Presentation.Uvss.dll" target="lib\netstandard2.1\"/>
+    <file src="..\Binaries\NETCore\Release\Sedulous.Presentation.Uvss.XML" target="lib\netstandard2.1\"/>
+    <file src="..\Binaries\NETCore\Release\Sedulous.Presentation.Uvss.pdb" target="lib\netstandard2.1\"/>
+  </files>  
+</package>

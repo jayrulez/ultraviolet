@@ -1,0 +1,17 @@
+﻿{
+  "$schema": "http://schema.sedulous.io/2.0/Sedulous/Content/ContentManifest.json",
+  "name": "Test",
+  "groups": [
+    {
+      "name": "Textures",
+      "type": "Sedulous.Graphics.Texture2D",
+      "directory": "Textures",
+      "assets": [
+        {
+          "name": "Triangle",
+          "path": "Triangle"
+        }
+      ]
+    }
+  ]
+}

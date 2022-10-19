@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ultraviolet.Tooling\Ultraviolet.Tooling.csproj" />
-    <ProjectReference Include="..\Ultraviolet\Ultraviolet.csproj" />
+    <ProjectReference Include="..\Sedulous.Tooling\Sedulous.Tooling.csproj" />
+    <ProjectReference Include="..\Sedulous\Sedulous.csproj" />
   </ItemGroup>
 
   <ItemGroup>

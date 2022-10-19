@@ -1,5 +1,5 @@
-﻿using Ultraviolet;
-using Ultraviolet.Input;
+﻿using Sedulous;
+using Sedulous.Input;
 
 namespace UvDebug.Input
 {
@@ -11,8 +11,8 @@ namespace UvDebug.Input
         /// <summary>
         /// Initializes a new instance of the GameInputActions class.
         /// </summary>
-        /// <param name="uv">The Ultraviolet context.</param>
-        public GameInputActions(UltravioletContext uv)
+        /// <param name="uv">The Sedulous context.</param>
+        public GameInputActions(SedulousContext uv)
             : base(uv)
         {
 

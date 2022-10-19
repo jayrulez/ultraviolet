@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Sedulous.BASS.Native</id>
+    <version>UV_VERSION</version>
+    <authors>Cole Campbell</authors>
+    <owners>Cole Campbell</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/jayrulez/sedulous</projectUrl>
+    <repository type="git" url="https://github.com/jayrulez/sedulous" />
+    <icon>images\icon.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <title>Sedulous.BASS Native Dependencies</title>
+    <summary>The Sedulous Framework is a .NET game development framework written in C#. This package contains the native dependencies required by the BASS implementation of the Framework's audio subsystem.</summary>
+    <description>The Sedulous Framework is a .NET game development framework written in C#. This package contains the native dependencies required by the BASS implementation of the Framework's audio subsystem.
+   
+Quick start guides for development using the Sedulous Framework are available on the project's wiki at https://github.com/jayrulez/sedulous/wiki
+
+Additional licensing information is available at https://github.com/jayrulez/sedulous/wiki/licenses</description>
+    <tags>sedulous gamedev</tags>	
+    <dependencies>
+      <group targetFramework="net6.0"/>
+      <group targetFramework="net6.0-android"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\Images\desktop_uv128.png" target="images\icon.png"/>
+
+    <!-- .NET Core 3.1 -->
+    <file src="Sedulous.BASS.Native\build\net6.0\Sedulous.BASS.Native.targets" target="build\net6.0\Sedulous.BASS.Native.targets"/>
+    <file src="_._" target="lib\net6.0\_._"/>
+    <!-- x86 -->
+    <file src="..\Dependencies\BASS\x86\win32nt\bass.dll" target="build\net6.0\x86\win32nt\bass.dll"/>
+    <file src="..\Dependencies\BASS\x86\unix\libbass.so" target="build\net6.0\x86\unix\libbass.so"/>
+    <!-- x64 -->
+    <file src="..\Dependencies\BASS\x64\win32nt\bass.dll" target="build\net6.0\x64\win32nt\bass.dll"/>
+    <file src="..\Dependencies\BASS\x64\unix\libbass.so" target="build\net6.0\x64\unix\libbass.so"/>
+    <file src="..\Dependencies\BASS\x64\osx\libbass.dylib" target="build\net6.0\x64\osx\libbass.dylib"/>
+    
+    <!-- Android -->
+    <file src="Sedulous.BASS.Native\build\net6.0-android\Sedulous.BASS.Native.targets" target="build\net6.0-android\Sedulous.BASS.Native.targets"/>
+    <file src="_._" target="lib\net6.0-android\_._"/>
+    <file src="..\Dependencies\BASS\Android\armeabi-v7a\libbass.so" target="build\net6.0-android\lib\armeabi-v7a\libbass.so"/>
+    <file src="..\Dependencies\BASS\Android\arm64-v8a\libbass.so" target="build\net6.0-android\lib\arm64-v8a\libbass.so"/>
+    <file src="..\Dependencies\BASS\Android\x86\libbass.so" target="build\net6.0-android\lib\x86\libbass.so"/>
+    <file src="..\Dependencies\BASS\Android\x86_64\libbass.so" target="build\net6.0-android\lib\x86_64\libbass.so"/>
+  </files>  
+</package>

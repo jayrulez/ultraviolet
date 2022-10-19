@@ -1,0 +1,103 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>Sedulous.Tests</AssemblyName>
+    <RootNamespace>Sedulous.Tests</RootNamespace>
+    <PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>..\Sedulous.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Include="..\Version.cs" Link="Properties\Version.cs" />
+  </ItemGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;NETSTANDARD;DEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DefineConstants>TRACE;NETSTANDARD;RELEASE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Dependencies\BASS\x64\win32nt\bass.dll" Link="x64\win32nt\bass.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Dependencies\BASS\x86\win32nt\bass.dll" Link="x86\win32nt\bass.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+	<None Include="..\..\Dependencies\FMOD\x64\win32nt\fmod.dll" Link="x64\win32nt\fmod.dll">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
+	<None Include="..\..\Dependencies\FMOD\x86\win32nt\fmod.dll" Link="x86\win32nt\fmod.dll">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
+    <None Include="..\..\Dependencies\FreeType2\x64\win32nt\freetype.dll" Link="x64\win32nt\freetype.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Dependencies\FreeType2\x64\win32nt\harfbuzz.dll" Link="x64\win32nt\harfbuzz.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Dependencies\FreeType2\x64\win32nt\libpng16.dll" Link="x64\win32nt\libpng16.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Dependencies\FreeType2\x86\win32nt\freetype.dll" Link="x86\win32nt\freetype.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Dependencies\FreeType2\x86\win32nt\harfbuzz.dll" Link="x86\win32nt\harfbuzz.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Dependencies\FreeType2\x86\win32nt\libpng16.dll" Link="x86\win32nt\libpng16.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Dependencies\SDL2\x64\win32nt\SDL2.dll" Link="x64\win32nt\SDL2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Dependencies\SDL2\x86\win32nt\SDL2.dll" Link="x86\win32nt\SDL2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="28.0.1" />
+    <PackageReference Include="nunit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+    <PackageReference Include="NunitXml.TestLogger" Version="3.0.127" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sedulous.BASS\Sedulous.BASS.csproj" />
+    <ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
+    <ProjectReference Include="..\Sedulous.FMOD\Sedulous.FMOD.csproj" />
+    <ProjectReference Include="..\Sedulous.FreeType2\Sedulous.FreeType2.csproj" />
+    <ProjectReference Include="..\Sedulous.OpenGL\Sedulous.OpenGL.csproj" />
+    <ProjectReference Include="..\Sedulous.Presentation.Compiler\Sedulous.Presentation.Compiler.csproj" />
+    <ProjectReference Include="..\Sedulous.Presentation\Sedulous.Presentation.csproj" />
+    <ProjectReference Include="..\Sedulous.Shims.NETCore\Sedulous.Shims.NETCore.csproj" />
+    <ProjectReference Include="..\Sedulous.TestApplication\Sedulous.TestApplication.csproj" />
+    <ProjectReference Include="..\Sedulous.TestFramework\Sedulous.TestFramework.csproj" />
+    <ProjectReference Include="..\Sedulous\Sedulous.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="x64\win32nt\" />
+    <Folder Include="x86\win32nt\" />
+  </ItemGroup>
+
+  <Import Project="Sedulous.Tests.projitems" Label="Shared" />
+  <Import Project="..\Sedulous.Tests.Content\Sedulous.Tests.Content.projitems" Label="Shared" />
+
+</Project>

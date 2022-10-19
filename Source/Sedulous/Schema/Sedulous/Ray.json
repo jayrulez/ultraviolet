@@ -1,0 +1,10 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Sedulous.Ray Schema",
+  "type": "object",
+  "properties": {
+    "position": { "$ref": "http://schema.sedulous.io/2.0/Sedulous/Vector3.json" },
+    "direction": { "$ref": "http://schema.sedulous.io/2.0/Sedulous/Vector3.json" }
+  },
+  "required": [ "position", "direction" ]
+}

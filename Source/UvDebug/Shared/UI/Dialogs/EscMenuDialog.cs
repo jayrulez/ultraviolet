@@ -1,7 +1,7 @@
 ﻿using System;
-using Ultraviolet.Core;
-using Ultraviolet.Presentation;
-using Ultraviolet.UI;
+using Sedulous.Core;
+using Sedulous.Presentation;
+using Sedulous.UI;
 using UvDebug.UI.Screens;
 
 namespace UvDebug.UI.Dialogs

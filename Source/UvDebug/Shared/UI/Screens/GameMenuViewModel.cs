@@ -1,8 +1,8 @@
-﻿using Ultraviolet.Core;
-using Ultraviolet.Input;
-using Ultraviolet.Presentation;
-using Ultraviolet.Presentation.Controls;
-using Ultraviolet.Presentation.Input;
+﻿using Sedulous.Core;
+using Sedulous.Input;
+using Sedulous.Presentation;
+using Sedulous.Presentation.Controls;
+using Sedulous.Presentation.Input;
 
 namespace UvDebug.UI.Screens
 {
@@ -47,7 +47,7 @@ namespace UvDebug.UI.Screens
             {
                 case Key.AppControlBack:
                     {
-                        owner.Ultraviolet.Host.Exit();
+                        owner.Sedulous.Host.Exit();
                         data.Handled = true;
                     }
                     break;
@@ -60,7 +60,7 @@ namespace UvDebug.UI.Screens
         public void Click_Start(DependencyObject element, RoutedEventData data)
         {
             var playScreen = owner.UIScreenService.Get<GamePlayScreen>();
-            owner.Ultraviolet.GetUI().GetScreens().CloseThenOpen(owner, playScreen);
+            owner.Sedulous.GetUI().GetScreens().CloseThenOpen(owner, playScreen);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace UvDebug.UI.Screens
         /// </summary>
         public void Click_Exit(DependencyObject element, RoutedEventData data)
         {
-            owner.Ultraviolet.Host.Exit();
+            owner.Sedulous.Host.Exit();
         }
         
         /// <summary>

@@ -1,0 +1,34 @@
+<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)\Binaries\AnyCPU\$(ConfigurationName)\Sedulous.Core.dll" #>
+<#@ assembly name="$(SolutionDir)\Binaries\AnyCPU\$(ConfigurationName)\Sedulous.dll" #>
+<#@ assembly name="$(SolutionDir)\Binaries\AnyCPU\$(ConfigurationName)\Sedulous.Desktop.dll" #>
+<#@ assembly name="$(SolutionDir)\Binaries\AnyCPU\$(ConfigurationName)\Sedulous.Presentation.dll" #>
+<#@ assembly name="$(SolutionDir)\Binaries\AnyCPU\$(ConfigurationName)\Sedulous.Presentation.Compiler.dll" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.CodeDom.Compiler" #>
+<#@ import namespace="Sedulous.Presentation" #>
+<#@ import namespace="Sedulous.Presentation.Compiler" #>
+<#@ output extension=".cs" #>
+<#+ private string GenerateSourceCodeForViewModel(String @namespace, String name, String path)
+{
+	var compiler = new Sedulous.Presentation.Compiler.ExpressionCompiler();
+
+	var options = new BindingExpressionCompilerOptions();
+	options.WorkInTemporaryDirectory = true;
+	options.Input = File.ReadAllText(Host.ResolvePath(path));
+	options.RequestedViewModelNamespace = @namespace;
+	options.RequestedViewModelName = name;
+
+	var result = compiler.CompileSingleView(null, options);
+	if (result.Failed)
+	{
+		Host.LogErrors(new CompilerErrorCollection(
+			result.Errors.Select(x => new CompilerError(x.Filename, x.Line, x.Column, x.ErrorNumber, x.ErrorText)).ToArray()));
+
+		return "// An error occurred while compiling the view model.";
+	}
+
+	return options.Output;
+}#>

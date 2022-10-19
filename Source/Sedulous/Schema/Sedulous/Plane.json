@@ -1,0 +1,12 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Sedulous.Plane Schema",
+  "type": "object",
+  "properties": {
+    "normal": { "$ref": "http://schema.sedulous.io/2.0/Sedulous/Vector3.json" },
+    "d": {
+      "type": "number"
+    }
+  },
+  "required": [ "normal", "d" ]
+}

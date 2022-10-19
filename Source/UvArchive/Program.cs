@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Ultraviolet.Content;
-using Ultraviolet.Tooling;
+using Sedulous.Content;
+using Sedulous.Tooling;
 
 namespace UvArchive
 {
@@ -16,7 +16,7 @@ namespace UvArchive
             {
                 if (String.IsNullOrEmpty(e.Error))
                 {
-                    Console.WriteLine("Generates Ultraviolet-compatible content archive files.");
+                    Console.WriteLine("Generates Sedulous-compatible content archive files.");
                     Console.WriteLine();
                     Console.WriteLine("UVARCHIVE -pack output dir1 [[dir2] [dir3]...]\n" +
                               "  Packs the specified list of directories into an archive file.\n" +

@@ -9,20 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Ultraviolet.BASS\Ultraviolet.BASS.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.Core\Ultraviolet.Core.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.FMOD\Ultraviolet.FMOD.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.FreeType2\Ultraviolet.FreeType2.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.ImGuiViewProvider.Bindings\Ultraviolet.ImGuiViewProvider.Bindings.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.ImGuiViewProvider\Ultraviolet.ImGuiViewProvider.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.OpenGL.Bindings\Ultraviolet.OpenGL.Bindings.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.OpenGL\Ultraviolet.OpenGL.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.Presentation.Compiler\Ultraviolet.Presentation.Compiler.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.Presentation.Uvss\Ultraviolet.Presentation.Uvss.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.Presentation\Ultraviolet.Presentation.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.SDL2\Ultraviolet.SDL2.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet.Shims.NETCore\Ultraviolet.Shims.NETCore.csproj" />
-    <ProjectReference Include="..\..\Ultraviolet\Ultraviolet.csproj" />
+    <ProjectReference Include="..\..\Sedulous.BASS\Sedulous.BASS.csproj" />
+    <ProjectReference Include="..\..\Sedulous.Core\Sedulous.Core.csproj" />
+    <ProjectReference Include="..\..\Sedulous.FMOD\Sedulous.FMOD.csproj" />
+    <ProjectReference Include="..\..\Sedulous.FreeType2\Sedulous.FreeType2.csproj" />
+    <ProjectReference Include="..\..\Sedulous.ImGuiViewProvider.Bindings\Sedulous.ImGuiViewProvider.Bindings.csproj" />
+    <ProjectReference Include="..\..\Sedulous.ImGuiViewProvider\Sedulous.ImGuiViewProvider.csproj" />
+    <ProjectReference Include="..\..\Sedulous.OpenGL.Bindings\Sedulous.OpenGL.Bindings.csproj" />
+    <ProjectReference Include="..\..\Sedulous.OpenGL\Sedulous.OpenGL.csproj" />
+    <ProjectReference Include="..\..\Sedulous.Presentation.Compiler\Sedulous.Presentation.Compiler.csproj" />
+    <ProjectReference Include="..\..\Sedulous.Presentation.Uvss\Sedulous.Presentation.Uvss.csproj" />
+    <ProjectReference Include="..\..\Sedulous.Presentation\Sedulous.Presentation.csproj" />
+    <ProjectReference Include="..\..\Sedulous.SDL2\Sedulous.SDL2.csproj" />
+    <ProjectReference Include="..\..\Sedulous.Shims.NETCore\Sedulous.Shims.NETCore.csproj" />
+    <ProjectReference Include="..\..\Sedulous\Sedulous.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

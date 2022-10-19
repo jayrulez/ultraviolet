@@ -13,10 +13,10 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
-using Ultraviolet.Core;
-using Ultraviolet.Core.Text;
-using Ultraviolet.Graphics.Graphics2D;
-using Ultraviolet.Tooling;
+using Sedulous.Core;
+using Sedulous.Core.Text;
+using Sedulous.Graphics.Graphics2D;
+using Sedulous.Tooling;
 
 namespace UvFont
 {
@@ -33,7 +33,7 @@ namespace UvFont
                 {
                     if (String.IsNullOrEmpty(e.Error))
                     {
-                        Console.WriteLine("Generates Ultraviolet-compatible SpriteFont definition files.");
+                        Console.WriteLine("Generates Sedulous-compatible SpriteFont definition files.");
                         Console.WriteLine();
                         Console.WriteLine("UVFONT fontname [-nobold] [-noitalic] [-fontsize:emsize] [-sub:char]\n" +
                                           "                [-supersample:value]\n" +
@@ -65,11 +65,11 @@ namespace UvFont
                                           "  -sourcetext  Specifies the source text.  The source text is used to determine\n" +
                                           "               which glyphs must be included in the font.\n" +
                                           "  -sourcefile: A comma-delimited list of files from which to generate the\n" +
-                                          "               source text.  If the files are Ultraviolet localization databases,\n" +
+                                          "               source text.  If the files are Sedulous localization databases,\n" +
                                           "               only the string variants matching the culture specified by\n" +
                                           "               the -sourceculture option will be read.\n" +
                                           "  -sourceculture\n" +
-                                          "               When reading Ultraviolet localization databases for source text,\n" +
+                                          "               When reading Sedulous localization databases for source text,\n" +
                                           "               this option specifies which culture should be read.  If not\n" +
                                           "               specified, UvFont will read the en-US culture.\n" +
                                           "  -json\n" +

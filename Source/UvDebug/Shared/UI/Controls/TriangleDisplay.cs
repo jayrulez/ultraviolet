@@ -1,10 +1,10 @@
 ﻿using System;
-using Ultraviolet;
-using Ultraviolet.Core;
-using Ultraviolet.Graphics;
-using Ultraviolet.Input;
-using Ultraviolet.Presentation;
-using Ultraviolet.Presentation.Input;
+using Sedulous;
+using Sedulous.Core;
+using Sedulous.Graphics;
+using Sedulous.Input;
+using Sedulous.Presentation;
+using Sedulous.Presentation.Input;
 
 namespace UvDebug.Content.UI.Controls
 {
@@ -17,9 +17,9 @@ namespace UvDebug.Content.UI.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="TriangleDisplay"/> class.
         /// </summary>
-        /// <param name="uv">The Ultraviolet context.</param>
+        /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The identifying name of this element within its layout.</param>
-        public TriangleDisplay(UltravioletContext uv, String name)
+        public TriangleDisplay(SedulousContext uv, String name)
             : base(uv, name)
         {
 
@@ -141,7 +141,7 @@ namespace UvDebug.Content.UI.Controls
         }
 
         /// <inheritdoc/>
-        protected override void DrawOverride(UltravioletTime time, DrawingContext dc)
+        protected override void DrawOverride(SedulousTime time, DrawingContext dc)
         {
             DrawBlank(dc, Color.Black * 0.5f);
 
@@ -151,7 +151,7 @@ namespace UvDebug.Content.UI.Controls
             var triangleDistance = 5f - (TriangleZoom * 2.5f);
             var triangleAspectRatio = (Single)(ActualWidth / ActualHeight);
 
-            var gfx = Ultraviolet.GetGraphics();
+            var gfx = Sedulous.GetGraphics();
             var effect = EnsureEffect();
             effect.World = Matrix.CreateRotationY(TriangleRotation);
             effect.View = Matrix.CreateLookAt(new Vector3(0, 0, triangleDistance), Vector3.Zero, Vector3.Up);
@@ -274,11 +274,11 @@ namespace UvDebug.Content.UI.Controls
             var transform = dc.GlobalTransform;
             Vector2.Transform(ref posPixs, ref transform, out posPixs);
             
-            var oldViewport = Ultraviolet.GetGraphics().GetViewport();
+            var oldViewport = Sedulous.GetGraphics().GetViewport();
             var newViewport = new Viewport((Int32)posPixs.X, (Int32)posPixs.Y, 
                 (Int32)Display.DipsToPixels(ActualWidth), (Int32)Display.DipsToPixels(ActualHeight));
 
-            Ultraviolet.GetGraphics().SetViewport(newViewport);
+            Sedulous.GetGraphics().SetViewport(newViewport);
 
             return oldViewport;
         }

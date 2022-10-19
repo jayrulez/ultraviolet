@@ -3,7 +3,7 @@ $Date = [System.DateTime]::Now
 $BuildBranch = $Env:BAMBOO_planRepository_branchName
 if ([System.String]::IsNullOrWhiteSpace($BuildBranch)) { $BuildBranch = "" } else { $BuildBranch = " ($BuildBranch)" }
 
-$BuildNumber = $Env:BAMBOO_ultraviolet_buildNumber
+$BuildNumber = $Env:BAMBOO_sedulous_buildNumber
 if ([System.String]::IsNullOrWhiteSpace($BuildNumber)) { $BuildNumber = "0" }
 
 $BuildConfig = $Env:BAMBOO_buildType
@@ -28,7 +28,7 @@ else {
 Out-File -FilePath "Version.cs" -InputObject @(
     "using System.Reflection;"
     ""
-    "[assembly: AssemblyProduct(`"Ultraviolet Framework`")]"
+    "[assembly: AssemblyProduct(`"Sedulous Framework`")]"
     "[assembly: AssemblyCopyright(`"Copyright (c) Cole Campbell 2014-$($Date.Year)`")]"
     ""
     "[assembly: AssemblyVersion(`"$AsmVersion`")]"

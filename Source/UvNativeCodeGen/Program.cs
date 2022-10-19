@@ -14,13 +14,13 @@ namespace UvNativeCodeGen
         {
             var files = new[]
             {
-                Path.Combine("..", "..", "..", "..", "Ultraviolet.SDL2", "Native", "_Definitions.xml"),
-                Path.Combine("..", "..", "..", "..", "Ultraviolet.BASS", "Native", "_Definitions.BASS.xml"),
-                Path.Combine("..", "..", "..", "..", "Ultraviolet.FMOD", "Native", "_Definitions.xml"),
-                Path.Combine("..", "..", "..", "..", "Ultraviolet.FreeType2", "Native", "_SharedLibraries.xml"),
-                Path.Combine("..", "..", "..", "..", "Ultraviolet.FreeType2", "Native", "_Definitions.HarfBuzz.xml"),
-                Path.Combine("..", "..", "..", "..", "Ultraviolet.FreeType2", "Native", "_Definitions.FreeType2.xml"),
-                Path.Combine("..", "..", "..", "..", "Ultraviolet.ImGuiViewProvider.Bindings", "Generated", "_Definitions.xml"),
+                Path.Combine("..", "..", "..", "..", "Sedulous.SDL2", "Native", "_Definitions.xml"),
+                Path.Combine("..", "..", "..", "..", "Sedulous.BASS", "Native", "_Definitions.BASS.xml"),
+                Path.Combine("..", "..", "..", "..", "Sedulous.FMOD", "Native", "_Definitions.xml"),
+                Path.Combine("..", "..", "..", "..", "Sedulous.FreeType2", "Native", "_SharedLibraries.xml"),
+                Path.Combine("..", "..", "..", "..", "Sedulous.FreeType2", "Native", "_Definitions.HarfBuzz.xml"),
+                Path.Combine("..", "..", "..", "..", "Sedulous.FreeType2", "Native", "_Definitions.FreeType2.xml"),
+                Path.Combine("..", "..", "..", "..", "Sedulous.ImGuiViewProvider.Bindings", "Generated", "_Definitions.xml"),
             };
 
             foreach (var file in files)
@@ -64,7 +64,7 @@ namespace UvNativeCodeGen
                 Path.Combine(directory, $"{nativeClassName}Impl.cs"));
 
             // FooNativeImpl_Platform - the implementation of FooImpl for each platform.
-            WriteImplClass_UltravioletLoader(definition, namesElement, nativeNamespace, nativeClassName, "Default",
+            WriteImplClass_SedulousLoader(definition, namesElement, nativeNamespace, nativeClassName, "Default",
                 Path.Combine(directory, $"{nativeClassName}Impl_Default.cs"));
             WriteImplClass_PInvoke(definition, nativeNamespace, nativeClassName, "Android", nameAndroid,
                 Path.Combine(directory, $"{nativeClassName}Impl_Android.cs"));
@@ -82,8 +82,8 @@ namespace UvNativeCodeGen
             using (var swriter = new StreamWriter(stream))
             using (var twriter = new IndentedTextWriter(swriter))
             {
-                twriter.WriteLine("using Ultraviolet.Core;");
-                twriter.WriteLine("using Ultraviolet.Core.Native;");
+                twriter.WriteLine("using Sedulous.Core;");
+                twriter.WriteLine("using Sedulous.Core.Native;");
                 twriter.WriteLine();
 
                 var @namespace = GetAttributeString(definition.Root, "Namespace");
@@ -263,7 +263,7 @@ namespace UvNativeCodeGen
             if (String.IsNullOrEmpty(names))
                 return;
 
-            twriter.WriteLine(platform == null ? "default:" : $"case UltravioletPlatform.{platform}:");
+            twriter.WriteLine(platform == null ? "default:" : $"case SedulousPlatform.{platform}:");
             twriter.Indent++;
 
             var namesArray = names.Split(',').Select(x => $"\"{x.Trim()}\"").ToArray();
@@ -282,7 +282,7 @@ namespace UvNativeCodeGen
 
         private static void WritePlatformSpecificLibInit(IndentedTextWriter twriter, XElement namesElement, String fieldname)
         {
-            twriter.WriteLine($"switch (UltravioletPlatformInfo.CurrentPlatform)");
+            twriter.WriteLine($"switch (SedulousPlatformInfo.CurrentPlatform)");
             twriter.WriteLine($"{{");
             twriter.Indent++;
 
@@ -439,7 +439,7 @@ namespace UvNativeCodeGen
             }
         }
 
-        private static void WriteImplClass_UltravioletLoader(XDocument definition, XElement namesElement, String nativeNamespace, String nativeClassName, String suffix, String path)
+        private static void WriteImplClass_SedulousLoader(XDocument definition, XElement namesElement, String nativeNamespace, String nativeClassName, String suffix, String path)
         {
             var sharedLibraryName = GetOptionalAttributeString(definition.Root, "SharedLibrary");
 
@@ -451,8 +451,8 @@ namespace UvNativeCodeGen
                 twriter.WriteLine("using System.Security;");
                 twriter.WriteLine("using System.Runtime.CompilerServices;");
                 twriter.WriteLine("using System.Runtime.InteropServices;");
-                twriter.WriteLine("using Ultraviolet.Core;");
-                twriter.WriteLine("using Ultraviolet.Core.Native;");
+                twriter.WriteLine("using Sedulous.Core;");
+                twriter.WriteLine("using Sedulous.Core.Native;");
                 WriteImports(twriter, definition);
 
                 twriter.WriteLine($"namespace {nativeNamespace}");
@@ -543,7 +543,7 @@ namespace UvNativeCodeGen
             {
                 twriter.WriteLine("using System;");
                 twriter.WriteLine("using System.Runtime.CompilerServices;");
-                twriter.WriteLine("using Ultraviolet.Core;");
+                twriter.WriteLine("using Sedulous.Core;");
                 WriteImports(twriter, definition);
 
                 twriter.WriteLine($"namespace {nativeNamespace}");
@@ -562,11 +562,11 @@ namespace UvNativeCodeGen
                 twriter.WriteLine($"{{");
                 twriter.Indent++;
 
-                twriter.WriteLine($"switch (UltravioletPlatformInfo.CurrentPlatform)");
+                twriter.WriteLine($"switch (SedulousPlatformInfo.CurrentPlatform)");
                 twriter.WriteLine($"{{");
                 twriter.Indent++;
 
-                twriter.WriteLine($"case UltravioletPlatform.Android:");
+                twriter.WriteLine($"case SedulousPlatform.Android:");
                 twriter.Indent++;
                 twriter.WriteLine($"impl = new {nativeClassName}Impl_Android();");
                 twriter.WriteLine($"break;");

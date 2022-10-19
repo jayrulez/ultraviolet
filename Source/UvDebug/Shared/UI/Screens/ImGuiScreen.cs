@@ -1,10 +1,10 @@
 ﻿#if IMGUI
 using System;
-using Ultraviolet;
-using Ultraviolet.Content;
-using Ultraviolet.ImGuiViewProvider;
-using Ultraviolet.ImGuiViewProvider.Bindings;
-using Ultraviolet.UI;
+using Sedulous;
+using Sedulous.Content;
+using Sedulous.ImGuiViewProvider;
+using Sedulous.ImGuiViewProvider.Bindings;
+using Sedulous.UI;
 
 namespace UvDebug.UI.Screens
 {
@@ -36,7 +36,7 @@ namespace UvDebug.UI.Screens
         private Int32 testTextureID;
 
         /// <inheritdoc/>
-        void IImGuiPanel.ImGuiUpdate(UltravioletTime time)
+        void IImGuiPanel.ImGuiUpdate(SedulousTime time)
         {
             ImGui.PushFont(myFont);
 
@@ -66,7 +66,7 @@ namespace UvDebug.UI.Screens
         private Boolean checkbox;
 
         /// <inheritdoc/>
-        void IImGuiPanel.ImGuiDraw(UltravioletTime time)
+        void IImGuiPanel.ImGuiDraw(SedulousTime time)
         {
 
         }

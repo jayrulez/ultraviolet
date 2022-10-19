@@ -1,6 +1,6 @@
 ﻿using System;
-using Ultraviolet;
-using Ultraviolet.Core;
+using Sedulous;
+using Sedulous.Core;
 
 namespace UvDebug.UI.Controls
 {

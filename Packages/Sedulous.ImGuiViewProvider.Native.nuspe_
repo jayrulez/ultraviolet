@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Sedulous.ImGuiViewProvider.Native</id>
+    <version>UV_VERSION</version>
+    <authors>Cole Campbell</authors>
+    <owners>Cole Campbell</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/jayrulez/sedulous</projectUrl>
+    <repository type="git" url="https://github.com/jayrulez/sedulous" />
+    <icon>images\icon.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <title>Sedulous.ImGuiViewProvider Native Dependencies</title>
+    <summary>The Sedulous Framework is a .NET game development framework written in C#. This package contains the native dependencies required by the Dear ImGui Plugin for Sedulous.</summary>
+    <description>The Sedulous Framework is a .NET game development framework written in C#. This package contains the native dependencies required by the Dear ImGui Plugin for Sedulous.
+
+Quick start guides for development using the Sedulous Framework are available on the project's wiki at https://github.com/jayrulez/sedulous/wiki
+
+Additional licensing information is available at https://github.com/jayrulez/sedulous/wiki/licenses</description>
+    <tags>sedulous gamedev</tags>	
+    <dependencies>
+      <group targetFramework="net6.0"/>
+      <group targetFramework="net6.0-android"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\Images\desktop_uv128.png" target="images\icon.png"/>
+
+    <!-- .NET Core 3.1  -->  
+    <file src="Sedulous.ImGuiViewProvider.Native\build\net6.0\Sedulous.ImGuiViewProvider.Native.targets" target="build\net6.0\Sedulous.ImGuiViewProvider.Native.targets"/>
+    <file src="_._" target="lib\net6.0\_._"/>
+    <!-- x86 -->
+    <file src="..\Dependencies\ImGui\x86\unix\libcimgui.so" target="build\net6.0\x86\unix\libcimgui.so"/>
+    <file src="..\Dependencies\ImGui\x86\win32nt\cimgui.dll" target="build\net6.0\x86\win32nt\cimgui.dll"/>
+    <!-- x64 -->
+    <file src="..\Dependencies\ImGui\x64\win32nt\cimgui.dll" target="build\net6.0\x64\win32nt\cimgui.dll"/>
+    <file src="..\Dependencies\ImGui\x64\unix\libcimgui.so" target="build\net6.0\x64\unix\libcimgui.so"/>
+    <file src="..\Dependencies\ImGui\x64\osx\libcimgui.dylib" target="build\net6.0\x64\osx\libcimgui.dylib"/>
+
+    <!-- Android -->  
+    <file src="Sedulous.ImGuiViewProvider.Native\build\net6.0-android\Sedulous.ImGuiViewProvider.Native.targets" target="build\net6.0-android\Sedulous.ImGuiViewProvider.Native.targets"/>
+    <file src="_._" target="lib\net6.0-android\_._"/>
+    <file src="..\Dependencies\ImGui\Android\armeabi-v7a\libcimgui.so" target="build\net6.0-android\lib\armeabi-v7a\libcimgui.so"/>
+    <file src="..\Dependencies\ImGui\Android\arm64-v8a\libcimgui.so" target="build\net6.0-android\lib\arm64-v8a\libcimgui.so"/>
+    <file src="..\Dependencies\ImGui\Android\x86\libcimgui.so" target="build\net6.0-android\lib\x86\libcimgui.so"/>
+    <file src="..\Dependencies\ImGui\Android\x86_64\libcimgui.so" target="build\net6.0-android\lib\x86_64\libcimgui.so"/>
+  </files>  
+</package>
