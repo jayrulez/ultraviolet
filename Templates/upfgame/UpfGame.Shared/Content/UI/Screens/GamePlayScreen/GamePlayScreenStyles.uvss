@@ -1,0 +1,15 @@
+﻿#container-background
+{
+	source-image: #Global:Textures:DefaultUIBackground 0 0 1161 685;
+}
+
+#btn-panel Button
+{
+	width: 200;
+	height: 64;
+}
+
+#txt-panel TextBlock
+{
+	margin: 2 8 2 0;
+}

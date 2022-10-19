@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UIPanelDefinition>
+  <StyleSheet>GamePlayScreenStyles</StyleSheet>
+  <View ViewModelType="UpfGame.UI.Screens.GamePlayViewModel, UpfGame">
+    <Grid Name="container">
+      <Image Name="container-background"/>
+
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+          <StackPanel Name="btn-panel">
+            <Button Click="HandleButtonClicked">Click me!</Button>
+            <StackPanel Name="txt-panel" HorizontalAlignment="Center" Orientation="Horizontal">
+              <TextBlock>Total clicks:</TextBlock>
+              <TextBlock>{{Counter}}</TextBlock>
+            </StackPanel>
+          </StackPanel>
+        </Grid>
+
+      </Grid>
+ 
+    </Grid>        
+  </View>
+</UIPanelDefinition>

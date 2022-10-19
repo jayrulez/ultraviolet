@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json.schemastore.org/dotnetcli.host",
+    "symbolInfo": {
+      "Developer": {
+        "longName": "developer",
+        "shortName": "dev",
+      },
+      "Application": {
+        "longName": "application",
+        "shortName": "app"
+      },
+      "IncludeAndroid": {
+        "longName": "include-android",
+        "shortName": ""
+      }
+    }
+  }

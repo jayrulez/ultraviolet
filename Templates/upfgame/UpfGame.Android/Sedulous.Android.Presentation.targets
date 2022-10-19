@@ -1,0 +1,18 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="UvFindNetCoreGameProject">
+    <PropertyGroup>
+      <SedulousNetCoreProjectPath>$([System.IO.Path]::GetFullPath($([System.IO.Path]::Combine('..', 'UpfGame.NETCore'))))</SedulousNetCoreProjectPath>
+      <SedulousBindingExpressionsPath>$([System.IO.Path]::GetFullPath($([System.IO.Path]::Combine('..', 'UpfGame.NETCore', 'bin', 'Debug', 'net6.0', 'Sedulous.Presentation.CompiledExpressions.dll'))))</SedulousBindingExpressionsPath>
+      <SedulousBindingExpressionDestinationPath>$([System.IO.Path]::GetFullPath($([System.IO.Path]::Combine('..', 'UpfGame.Android'))))</SedulousBindingExpressionDestinationPath>
+    </PropertyGroup>
+    <Error Text="Could not locate the .NET Core project directory." Condition="!Exists('$(SedulousNetCoreProjectPath)')"/>
+  </Target>
+  <Target Name="UvCompileBindingExpressions" DependsOnTargets="UvFindNetCoreGameProject">
+    <Message Text="Invoking the .NET Core executable to compile binding expressions."/>
+    <Exec Command="dotnet run -- -compile:expressions" WorkingDirectory="$(SedulousNetCoreProjectPath)"/>
+  </Target>
+  <Target Name="UvCompileBindingExpressionsCopyResults" BeforeTargets="BeforeBuild" DependsOnTargets="UvCompileBindingExpressions">
+    <Error Text="Could not locate the UPF binding expressions library." Condition="!Exists('$(SedulousBindingExpressionsPath)')"/>
+    <Copy SourceFiles="$(SedulousBindingExpressionsPath)" DestinationFolder="$(SedulousBindingExpressionDestinationPath)"/>
+  </Target>
+</Project>

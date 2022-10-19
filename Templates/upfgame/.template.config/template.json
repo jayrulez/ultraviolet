@@ -1,0 +1,61 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Cole Campbell",
+  "classifications": [ "sedulous", "game" ],
+  "name": "Sedulous Presentation Foundation Game",
+  "identity": "Sedulous.Templates.UpfGame.CSharp",
+  "groupIdentity": "Sedulous.Templates.UpfGame",
+  "shortName": "UpfGame",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "UpfGame",
+  "preferNameDirectory": true,
+  "symbols": {
+    "Developer": {
+      "type": "parameter",
+      "description": "The name of the developer or organization which is building the application.",
+      "replaces": "DEVELOPER_PLACEHOLDER",
+      "isRequired": true
+    },
+    "Application": {
+      "type": "parameter",
+      "description": "The full name of the application.",
+      "replaces": "APPLICATION_PLACEHOLDER",
+      "isRequired": true
+    },
+    "IncludeAndroid": {
+      "type": "parameter",
+      "description": "A value indicating whether to include support for Android.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    }
+  },
+  "sources": [
+    {
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        ".template.config/**/*",
+        "**/*.filelist",
+        "**/*.user",
+        "**/*.lock.json",
+        ".vs/"
+      ],
+      "modifiers": [
+        {
+          "condition": "(!IncludeAndroid)",
+          "exclude": [ "UpfGame.Android/**", "UpfGame-WithAndroid.sln" ]
+        },
+        {
+          "condition": "(IncludeAndroid)",
+          "exclude": [ "UpfGame.sln" ],
+          "rename": {
+            "UpfGame-WithAndroid.sln": "UpfGame.sln"
+          }
+        }
+      ]
+    }
+  ]
+}
