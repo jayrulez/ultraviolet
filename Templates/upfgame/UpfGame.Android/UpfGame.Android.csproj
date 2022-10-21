@@ -57,13 +57,13 @@
     <AndroidAsset Include="Sedulous.Presentation.CompiledExpressions.dll" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Sedulous" Version="2022.10.191338" />
-    <PackageReference Include="Sedulous.BASS" Version="2022.10.191338" />
-    <PackageReference Include="Sedulous.FreeType2" Version="2022.10.191338" />
-    <PackageReference Include="Sedulous.OpenGL" Version="2022.10.191338" />
-    <PackageReference Include="Sedulous.Presentation" Version="2022.10.191338" />
-    <PackageReference Include="Sedulous.SDL2" Version="2022.10.191338" />
-    <PackageReference Include="Sedulous.Shims.Android" Version="2022.10.191338" />
+    <PackageReference Include="Sedulous" Version="2022.10.192005" />
+    <PackageReference Include="Sedulous.BASS" Version="2022.10.192005" />
+    <PackageReference Include="Sedulous.FreeType2" Version="2022.10.192005" />
+    <PackageReference Include="Sedulous.OpenGL" Version="2022.10.192005" />
+    <PackageReference Include="Sedulous.Presentation" Version="2022.10.192005" />
+    <PackageReference Include="Sedulous.SDL2" Version="2022.10.192005" />
+    <PackageReference Include="Sedulous.Shims.Android" Version="2022.10.192005" />
   </ItemGroup>
   <Import Project="..\UpfGame.Shared\UpfGame.Shared.projitems" Label="Shared" />
   <Import Project="Sedulous.Android.targets" />

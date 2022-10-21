@@ -193,6 +193,8 @@ namespace Sedulous.Shims.NETCore.Graphics
         {
             Contract.Require(image, nameof(image));
 
+            this.image = StbImageSharp.ImageResult.FromMemory(image.Data, StbImageSharp.ColorComponents.RedGreenBlueAlpha);
+
             imageMemory = new Memory<byte>(this.image.Data);
 
             this.imageMemoryHandle = imageMemory.Pin();
