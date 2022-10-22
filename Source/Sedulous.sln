@@ -73,6 +73,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.StbImageSharp", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.StbImageWriteSharp", "StbImageWriteSharp\Sedulous.StbImageWriteSharp.csproj", "{00D18EC4-D689-4378-AC6F-340F596533D1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UvDebug.Android", "UvDebug\Android\UvDebug.Android.csproj", "{44CF8AC0-4F5A-47CC-8F87-60FDDF4BC0EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.Shims.Android", "Sedulous.Shims.Android\Sedulous.Shims.Android.csproj", "{8182BE80-9E21-468B-828E-AFF48E52D323}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.Shims.Android.FMOD", "Sedulous.Shims.Android.FMOD\Sedulous.Shims.Android.FMOD.csproj", "{BD3AE378-9B9F-4875-9A83-DC126C446AF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -211,6 +217,20 @@ Global
 		{00D18EC4-D689-4378-AC6F-340F596533D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00D18EC4-D689-4378-AC6F-340F596533D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00D18EC4-D689-4378-AC6F-340F596533D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44CF8AC0-4F5A-47CC-8F87-60FDDF4BC0EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44CF8AC0-4F5A-47CC-8F87-60FDDF4BC0EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44CF8AC0-4F5A-47CC-8F87-60FDDF4BC0EE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{44CF8AC0-4F5A-47CC-8F87-60FDDF4BC0EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44CF8AC0-4F5A-47CC-8F87-60FDDF4BC0EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44CF8AC0-4F5A-47CC-8F87-60FDDF4BC0EE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8182BE80-9E21-468B-828E-AFF48E52D323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8182BE80-9E21-468B-828E-AFF48E52D323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8182BE80-9E21-468B-828E-AFF48E52D323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8182BE80-9E21-468B-828E-AFF48E52D323}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD3AE378-9B9F-4875-9A83-DC126C446AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD3AE378-9B9F-4875-9A83-DC126C446AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD3AE378-9B9F-4875-9A83-DC126C446AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD3AE378-9B9F-4875-9A83-DC126C446AF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -221,37 +241,10 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		UvDebug\Shared\UvDebug.projitems*{0a52123e-efa1-4a86-8223-fb7b807c162a}*SharedItemsImports = 5
 		Sedulous.Tests.Content\Sedulous.Tests.Content.projitems*{0e2b1bc3-d1c3-4626-8aa3-37bf3039e43f}*SharedItemsImports = 13
-		Sedulous.Core\Sedulous.Core.projitems*{11c6d60c-0046-4bea-b653-775c276d7afb}*SharedItemsImports = 5
-		UvAssetList\UvAssetList.projitems*{11cdf456-a734-4df6-9c01-953df2765da0}*SharedItemsImports = 5
 		Sedulous.Tests.Content\Sedulous.Tests.Content.projitems*{20815aac-d576-42c7-a9a3-9c8d6548690d}*SharedItemsImports = 5
-		Sedulous.Tests\Sedulous.Tests.projitems*{20815aac-d576-42c7-a9a3-9c8d6548690d}*SharedItemsImports = 5
-		Sedulous.Presentation\Sedulous.Presentation.projitems*{21e8873c-0b98-47da-9079-bf004b914897}*SharedItemsImports = 5
-		Sedulous.Windows.Forms\Sedulous.Windows.Forms.projitems*{2334a133-a37c-448a-912d-3dc38cb1bf91}*SharedItemsImports = 5
-		Sedulous.SDL2\Sedulous.SDL2.projitems*{38681af5-9dd4-4a9a-aa74-42a5797f8fa7}*SharedItemsImports = 5
 		UvDebug\Shared\UvDebug.projitems*{41b16059-bfe0-4704-8eee-44339b3834c5}*SharedItemsImports = 13
-		Sedulous.OpenGL.Bindings\Sedulous.OpenGL.Bindings.projitems*{49666b6a-5a62-4f16-8b2d-e3b3fcbe20ff}*SharedItemsImports = 5
-		Sedulous.Core.TestFramework\Sedulous.Core.TestFramework.projitems*{501f65dd-8546-4d7b-91fe-0ff28e990f1b}*SharedItemsImports = 5
-		Sedulous.Presentation.Uvss\Sedulous.Presentation.Uvss.projitems*{5327fa1b-0fd6-4415-a9af-c5f52a51bd07}*SharedItemsImports = 5
-		Sedulous.Presentation.Tests\Sedulous.Presentation.Tests.projitems*{55fab4aa-5d3d-44df-b9f9-773102ab74f6}*SharedItemsImports = 5
+		UvDebug\Shared\UvDebug.projitems*{44cf8ac0-4f5a-47cc-8f87-60fddf4bc0ee}*SharedItemsImports = 5
 		Sedulous.Tests.Content\Sedulous.Tests.Content.projitems*{55fab4aa-5d3d-44df-b9f9-773102ab74f6}*SharedItemsImports = 5
-		Sedulous.FreeType2\Sedulous.FreeType2.projitems*{59e353ff-5c72-4de1-a8af-0d4f9c5e16ac}*SharedItemsImports = 5
-		Sedulous.Presentation.Tests.ViewModels\Sedulous.Presentation.Tests.ViewModels.projitems*{5f6d4696-aac8-47cc-8b92-fc8417a2b35c}*SharedItemsImports = 5
-		Sedulous.TestFramework\Sedulous.TestFramework.projitems*{619c6476-bba7-4817-839b-18092490429e}*SharedItemsImports = 5
-		Sedulous.TestApplication\Sedulous.TestApplication.projitems*{6306767c-23c4-49b4-87bf-d31f917cb358}*SharedItemsImports = 5
-		Sedulous.FMOD\Sedulous.FMOD.projitems*{63f9f38a-a9e4-43fe-a690-20d5790faee4}*SharedItemsImports = 5
-		UvArchive\UvArchive.projitems*{7339c3a3-c1f4-434e-9f2b-d7477706d397}*SharedItemsImports = 5
-		Sedulous.OpenGL\Sedulous.OpenGL.projitems*{8741baae-d281-4aca-9c8c-5198ffa0fbe1}*SharedItemsImports = 5
-		Sedulous.ImGuiViewProvider\Sedulous.ImGuiViewProvider.projitems*{95a02bbe-01a1-4148-be7a-84bb087fc068}*SharedItemsImports = 5
-		Sedulous.Core.Tests\Sedulous.Core.Tests.projitems*{9af57246-1326-4afa-ad1d-6e48db12f627}*SharedItemsImports = 5
-		Sedulous.Presentation.Compiler\Sedulous.Presentation.Compiler.projitems*{a012bff4-c3b3-4e13-b3f0-9367baf1f9d0}*SharedItemsImports = 5
-		Sedulous.OpenGL.Environment\Sedulous.OpenGL.Environment.projitems*{a1d2e51a-bdf8-4aeb-9e4f-708d47fdd5f0}*SharedItemsImports = 5
-		Sedulous\Sedulous.projitems*{a41b1363-a06a-4e00-9306-be3d1b0d4069}*SharedItemsImports = 5
-		Sedulous.ImGuiViewProvider.Bindings\Sedulous.ImGuiViewProvider.Bindings.projitems*{e0de5173-4548-425a-8e3a-a07e7ba2cf03}*SharedItemsImports = 5
-		Sedulous.Tooling\Sedulous.Tooling.projitems*{e4e1c0a0-fb91-4bbe-b35c-21d13411a866}*SharedItemsImports = 5
-		Sedulous.Presentation.Uvss.Tests\Sedulous.Presentation.Uvss.Tests.projitems*{e5c4b5a3-be45-49c3-968c-c37fbab5530e}*SharedItemsImports = 5
-		UvFont\UvFont.projitems*{e6f0c39b-3120-4fb4-bce8-c373236f339e}*SharedItemsImports = 5
-		Sedulous.Presentation.Uvss.TestFramework\Sedulous.Presentation.Uvss.TestFramework.projitems*{f4151d58-18d3-4ecf-9abe-53a1222d20d9}*SharedItemsImports = 5
-		Sedulous.BASS\Sedulous.BASS.projitems*{f46f1d61-7871-4345-8101-8c43c937ff1e}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true
