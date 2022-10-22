@@ -8,7 +8,7 @@
     <PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-	<EnableDefaultCompileItems>False</EnableDefaultCompileItems>
+	<!--<EnableDefaultCompileItems>False</EnableDefaultCompileItems>-->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -33,7 +33,20 @@
 
   <ItemGroup>
     <Compile Include="..\Version.cs" Link="Properties\Version.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+    <!--<Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />-->
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Resources\DataObjectRegistryData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Resources\DataObjectRegistryData.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\LocalizedStrings.json">
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\LocalizedStrings.xml">
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -55,6 +68,6 @@
     <ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
   </ItemGroup>
 
-  <Import Project="Sedulous.Core.Tests.projitems" Label="Shared" />
+  <!--<Import Project="Sedulous.Core.Tests.projitems" Label="Shared" />-->
 
 </Project>

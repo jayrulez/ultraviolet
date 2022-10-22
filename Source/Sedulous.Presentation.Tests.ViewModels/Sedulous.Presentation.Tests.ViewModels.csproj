@@ -8,7 +8,7 @@
     <PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-	<EnableDefaultCompileItems>False</EnableDefaultCompileItems>
+	<!--<EnableDefaultCompileItems>False</EnableDefaultCompileItems>-->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -35,6 +35,6 @@
     <ProjectReference Include="..\Sedulous\Sedulous.csproj" />
   </ItemGroup>
 
-  <Import Project="Sedulous.Presentation.Tests.ViewModels.projitems" Label="Shared" />
+  <!--<Import Project="Sedulous.Presentation.Tests.ViewModels.projitems" Label="Shared" />-->
 
 </Project>

@@ -9,7 +9,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-	<EnableDefaultCompileItems>False</EnableDefaultCompileItems>
+	<!--<EnableDefaultCompileItems>False</EnableDefaultCompileItems>-->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -39,13 +39,53 @@
 
   <ItemGroup>
     <Compile Include="..\Version.cs" Link="Properties\Version.cs" />
-    <Compile Include="ISedulousPlatformCompatibilityShim.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+    <!--<Compile Include="ISedulousPlatformCompatibilityShim.cs" />-->
+    <!--<Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />-->
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Bindings.xml" Link="Resources\Bindings.xml" />
     <EmbeddedResource Include="Resources\Strings.xml" Link="Resources\Strings.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)uv.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\BoundingFrustum.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\BoundingBox.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Content\ContentManifest.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Content\ContentMetadata.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\CursorCollection.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Graphics\Graphics2D\SpriteFont.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Graphics\Graphics2D\Sprite.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Graphics\Graphics2D\Text\TextTableLayout.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Graphics\TextureAtlas.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\BoundingSphere.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Ray.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Plane.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Quaternion.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Vector4.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Vector3.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Vector2.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Size3D.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Size3F.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Size3.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Size2D.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Size2F.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Size2.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\RectangleD.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\RectangleF.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Rectangle.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Radians.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\CircleD.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Point2F.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Point2D.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Point2.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\CircleF.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Circle.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Matrix.json" />
+    <None Include="$(MSBuildThisFileDirectory)Schema\Sedulous\Color.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,7 +97,5 @@
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
     <ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
   </ItemGroup>
-
-  <Import Project="Sedulous.projitems" Label="Shared" />
 
 </Project>

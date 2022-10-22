@@ -9,7 +9,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-	<EnableDefaultCompileItems>False</EnableDefaultCompileItems>
+	<!--<EnableDefaultCompileItems>False</EnableDefaultCompileItems>-->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -42,10 +42,19 @@
     <ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
     <ProjectReference Include="..\Sedulous\Sedulous.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Native\_SharedLibraries.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Native\_Definitions.FreeType2.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Native\_Definitions.HarfBuzz.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="..\Version.cs" Link="Properties\Version.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+    <!--<Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />-->
   </ItemGroup>
 
   <ItemGroup>
@@ -56,6 +65,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
-  <Import Project="Sedulous.FreeType2.projitems" Label="Shared" />
+  <!--<Import Project="Sedulous.FreeType2.projitems" Label="Shared" />-->
 
 </Project>

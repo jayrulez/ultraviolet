@@ -9,7 +9,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-	<EnableDefaultCompileItems>False</EnableDefaultCompileItems>
+	<!--<EnableDefaultCompileItems>False</EnableDefaultCompileItems>-->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -34,11 +34,18 @@
 
   <ItemGroup>
     <Compile Include="..\Version.cs" Link="Properties\Version.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+    <!--<Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />-->
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Native\_Definitions.BASS.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +60,6 @@
     <ProjectReference Include="..\Sedulous\Sedulous.csproj" />
   </ItemGroup>
 
-  <Import Project="Sedulous.BASS.projitems" Label="Shared" />
+  <!--<Import Project="Sedulous.BASS.projitems" Label="Shared" />-->
 
   </Project>

@@ -9,7 +9,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-	<EnableDefaultCompileItems>False</EnableDefaultCompileItems>
+	<!--<EnableDefaultCompileItems>False</EnableDefaultCompileItems>-->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -35,10 +35,50 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Strings_Commands.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Content\Fonts\SegoeUITexture.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Content\UI\Screens\MessageBoxScreen\MessageBoxScreen.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)BindingExpressionCompilerTemplate.t4" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\HScrollBar.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\ScrollBar.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\Thumb.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\ToggleButton.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\VScrollBar.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\Button.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\CheckBox.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ComboBox.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ComboBoxItem.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\HSlider.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ListBox.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ListBoxItem.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\NumericUpDown.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\PasswordBox.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ProgressBar.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\RadioButton.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\RepeatButton.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ScrollViewer.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\Slider.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\TabControl.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\TabItem.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\TextBox.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ToolTip.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\VSlider.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="..\Version.cs" Link="Properties\Version.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+    <!--<Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />-->
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +94,6 @@
     <ProjectReference Include="..\Sedulous\Sedulous.csproj" />
   </ItemGroup>
   
-  <Import Project="Sedulous.Presentation.projitems" Label="Shared" />
+  <!--<Import Project="Sedulous.Presentation.projitems" Label="Shared" />-->
   
 </Project>

@@ -9,7 +9,7 @@
     <PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-	<EnableDefaultCompileItems>False</EnableDefaultCompileItems>
+	<!--<EnableDefaultCompileItems>False</EnableDefaultCompileItems>-->
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <Compile Include="..\Version.cs" Link="Properties\Version.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+    <!--<Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />-->
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +30,6 @@
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
-  <Import Project="UvFont.projitems" Label="Shared" />
+  <!--<Import Project="UvFont.projitems" Label="Shared" />-->
 
 </Project>
