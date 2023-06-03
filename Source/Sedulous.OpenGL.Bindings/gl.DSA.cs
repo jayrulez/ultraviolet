@@ -2,7 +2,7 @@
 
 namespace Sedulous.OpenGL.Bindings
 {
-    public static unsafe partial class gl
+    public static unsafe partial class GL
     {
         private static void InitializeDSA()
         {

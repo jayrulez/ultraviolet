@@ -4,7 +4,7 @@ using Sedulous.Core;
 
 namespace Sedulous.OpenGL.Bindings
 {
-    public static unsafe partial class gl
+    public static unsafe partial class GL
     {
         [MonoNativeFunctionWrapper]
         private delegate void glTexImage2DMultisampleDelegate(uint target, int samples, uint internalformat, int width, int height, [MarshalAs(UnmanagedType.I1)] bool fixedsamplelocations);

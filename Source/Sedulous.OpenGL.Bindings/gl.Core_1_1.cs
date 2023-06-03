@@ -4,7 +4,7 @@ using Sedulous.Core;
 
 namespace Sedulous.OpenGL.Bindings
 {
-    public static unsafe partial class gl
+    public static unsafe partial class GL
     {
         [MonoNativeFunctionWrapper]
         private delegate void glAccumDelegate(uint op, float value);

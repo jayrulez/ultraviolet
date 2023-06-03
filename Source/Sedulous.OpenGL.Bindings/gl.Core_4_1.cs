@@ -3,7 +3,7 @@ using Sedulous.Core;
 
 namespace Sedulous.OpenGL.Bindings
 {
-    public static unsafe partial class gl
+    public static unsafe partial class GL
     {
         [MonoNativeFunctionWrapper]
         private delegate void glVertexAttribLPointerDelegate(uint index, int size, uint type, int stride, IntPtr pointer);

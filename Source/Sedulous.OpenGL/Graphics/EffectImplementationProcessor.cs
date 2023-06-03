@@ -28,7 +28,7 @@ namespace Sedulous.OpenGL.Graphics
             glShader = String.IsNullOrEmpty(glShader) ? null : glShader;
             esShader = String.IsNullOrEmpty(esShader) ? null : esShader;
 
-            return (gl.IsGLES ? esShader : null) ?? glShader;
+            return (GL.IsGLES ? esShader : null) ?? glShader;
         }
     }
 }

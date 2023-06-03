@@ -2,7 +2,7 @@
 
 namespace Sedulous.OpenGL.Bindings
 {
-    partial class gl
+    partial class GL
     {
         /// <summary>
         /// Implements DSA functions for OpenGL contexts with version 4.5 or greater.

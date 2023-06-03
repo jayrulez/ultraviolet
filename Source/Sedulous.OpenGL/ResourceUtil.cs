@@ -57,7 +57,7 @@ namespace Sedulous.OpenGL
                 stage = ShaderStage.Vertex;
             }
 
-            if (gl.IsGLES)
+            if (GL.IsGLES)
             {
                 var glesName = Path.ChangeExtension(Path.GetFileNameWithoutExtension(name) + "ES", Path.GetExtension(name));
                 if (manifestResourceNames.Contains("Sedulous.OpenGL.Resources." + glesName))

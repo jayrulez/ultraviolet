@@ -3,7 +3,7 @@ using Sedulous.Core;
 
 namespace Sedulous.OpenGL.Bindings
 {
-    public static unsafe partial class gl
+    public static unsafe partial class GL
     {
         [MonoNativeFunctionWrapper]
         private delegate void glTexStorage1DDelegate(uint target, int levels, uint internalformat, int width);

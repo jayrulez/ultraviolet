@@ -3,7 +3,7 @@ using Sedulous.Core;
 
 namespace Sedulous.OpenGL.Bindings
 {
-    public static unsafe partial class gl
+    public static unsafe partial class GL
     {
         public const UInt32 GL_SAMPLER_BINDING = 0x8919;
 

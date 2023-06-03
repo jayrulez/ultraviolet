@@ -3,7 +3,7 @@ using Sedulous.Core;
 
 namespace Sedulous.OpenGL.Bindings
 {
-    public static unsafe partial class gl
+    public static unsafe partial class GL
     {
         [MonoNativeFunctionWrapper]
         private delegate void glDrawElementsInstancedBaseInstanceDelegate(uint mode, int count, uint type, IntPtr indices, int primcount, uint baseinstance);

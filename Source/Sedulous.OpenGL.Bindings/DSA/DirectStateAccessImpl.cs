@@ -2,7 +2,7 @@
 
 namespace Sedulous.OpenGL.Bindings
 {
-    partial class gl
+    partial class GL
     {
         /// <summary>
         /// Represents a class which exposes functions that are compatible with DSA (direct state access).
