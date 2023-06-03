@@ -16,7 +16,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The effect pass' name.</param>
         /// <param name="programs">The effect pass' collection of shader programs.</param>
-        public OpenGLEffectPass(SedulousContext uv, String name, ICollection<OpenGLShaderProgram> programs)
+        public OpenGLEffectPass(FrameworkContext uv, String name, ICollection<OpenGLShaderProgram> programs)
             : base(uv)
         {
             Contract.RequireNotEmpty(programs, nameof(programs));

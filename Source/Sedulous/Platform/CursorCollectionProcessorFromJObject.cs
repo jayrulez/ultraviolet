@@ -13,7 +13,7 @@ namespace Sedulous
         /// <inheritdoc/>
         public override CursorCollection Process(ContentManager manager, IContentProcessorMetadata metadata, JObject input)
         {
-            var serializer = JsonSerializer.CreateDefault(SedulousJsonSerializerSettings.Instance);
+            var serializer = JsonSerializer.CreateDefault(FrameworkJsonSerializerSettings.Instance);
             var desc = input.ToObject<CursorCollectionDescription>(serializer);
             return innerProcessor.Process(manager, metadata, desc);
         }

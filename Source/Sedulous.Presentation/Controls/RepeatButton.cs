@@ -21,7 +21,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public RepeatButton(SedulousContext uv, String name)
+        public RepeatButton(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
@@ -79,7 +79,7 @@ namespace Sedulous.Presentation.Controls
             new PropertyMetadata<Double>(SystemParameters.KeyboardSpeed));
 
         /// <inheritdoc/>
-        protected override void OnUpdating(SedulousTime time)
+        protected override void OnUpdating(FrameworkTime time)
         {
             if (IsPressed && AreAnyCursorsOver)
             {

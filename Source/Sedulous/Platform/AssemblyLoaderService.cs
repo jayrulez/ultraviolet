@@ -23,10 +23,10 @@ namespace Sedulous.Platform
             /// <inheritdoc/>
             public override Assembly Load(String name)
             {
-                switch (SedulousPlatformInfo.CurrentPlatform)
+                switch (FrameworkPlatformInfo.CurrentPlatform)
                 {
-                    case SedulousPlatform.Android:
-                    case SedulousPlatform.iOS:
+                    case FrameworkPlatform.Android:
+                    case FrameworkPlatform.iOS:
                         return Assembly.Load(name);
 
                     default:
@@ -41,7 +41,7 @@ namespace Sedulous.Platform
         /// <returns>The instance of <see cref="FileSystemService"/> that was created.</returns>
         public static AssemblyLoaderService Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             var factory = uv.TryGetFactoryMethod<AssemblyLoaderServiceFactory>();
             if (factory != null)
                 return factory();

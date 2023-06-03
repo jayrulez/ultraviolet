@@ -58,7 +58,7 @@ namespace Sedulous.Input
         /// Initializes a new instance of the <see cref="GamePadDevice"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public GamePadDevice(SedulousContext uv)
+        public GamePadDevice(FrameworkContext uv)
             : base(uv)
         {
             AxisDownThreshold = 0.9f;

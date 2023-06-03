@@ -79,7 +79,7 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(s, nameof(s));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return TryParseInternal(uv.GetContent().Manifests, s, out v);
         }
         

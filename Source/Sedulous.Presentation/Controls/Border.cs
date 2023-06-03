@@ -13,7 +13,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public Border(SedulousContext uv, String name)
+        public Border(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
@@ -67,7 +67,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <value>The identifier for the <see cref="BorderColor"/> dependency property.</value>
         public static readonly DependencyProperty BorderColorProperty = DependencyProperty.Register("BorderColor", typeof(Color), typeof(Border),
-            new PropertyMetadata<Color>(SedulousBoxedValues.Color.Black));
+            new PropertyMetadata<Color>(FrameworkBoxedValues.Color.Black));
 
         /// <inheritdoc/>
         protected override Size2D MeasureOverride(Size2D availableSize)
@@ -113,7 +113,7 @@ namespace Sedulous.Presentation.Controls
         }
 
         /// <inheritdoc/>
-        protected override void DrawOverride(SedulousTime time, DrawingContext dc)
+        protected override void DrawOverride(FrameworkTime time, DrawingContext dc)
         {
             var borderColor = BorderColor;
             var borderThickness = BorderThickness;

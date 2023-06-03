@@ -12,7 +12,7 @@ namespace Sedulous.OpenGL.Graphics
         /// Initializes a new instance of the <see cref="OpenGLGraphicsCapabilities"/> class.
         /// </summary>
         /// <param name="configuration">The configuration settings for the Sedulous context.</param>
-        internal unsafe OpenGLGraphicsCapabilities(SedulousConfiguration configuration)
+        internal unsafe OpenGLGraphicsCapabilities(FrameworkConfiguration configuration)
         {
             var glGraphicsConfiguration = configuration.GraphicsConfiguration as OpenGLGraphicsConfiguration;
             if (glGraphicsConfiguration == null)

@@ -7,13 +7,13 @@ namespace Sedulous.Presentation.Input
         /// <summary>
         /// Represents the mouse state of the current Sedulous context.
         /// </summary>
-        private class MouseState : SedulousResource
+        private class MouseState : FrameworkResource
         {
             /// <summary>
             /// Initializes a new instance of the <see cref="MouseState"/> class.
             /// </summary>
             /// <param name="uv">The Sedulous context.</param>
-            public MouseState(SedulousContext uv)
+            public MouseState(FrameworkContext uv)
                 : base(uv)
             {
 

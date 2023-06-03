@@ -51,7 +51,7 @@ namespace Sedulous.Graphics.Graphics3D
         /// Updates the model instance's state.
         /// </summary>
         /// <param name="time">Time elapsed since the last update.</param>
-        public void Update(SedulousTime time)
+        public void Update(FrameworkTime time)
         {
             Contract.Require(time, nameof(time));
 

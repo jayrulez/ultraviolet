@@ -15,7 +15,7 @@ public sealed class SetUpFixture
 
         try
         {
-            var imageDir = Path.Combine(Environment.CurrentDirectory, SedulousTestFramework.GetSanitizedMachineName());
+            var imageDir = Path.Combine(Environment.CurrentDirectory, FrameworkTestFramework.GetSanitizedMachineName());
             foreach (var image in Directory.GetFiles(imageDir, "*.png"))
                 File.Delete(image);
         }

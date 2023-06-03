@@ -10,8 +10,8 @@ namespace Sedulous.Shims.NETCore.Platform
         /// <summary>
         /// Initializes a new instance of the <see cref="NETCoreScreenOrientationService"/> class.
         /// </summary>
-        /// <param name="display">The <see cref="ISedulousDisplay"/> for which to retrieve rotation information.</param>
-        public NETCoreScreenOrientationService(ISedulousDisplay display)
+        /// <param name="display">The <see cref="IFrameworkDisplay"/> for which to retrieve rotation information.</param>
+        public NETCoreScreenOrientationService(IFrameworkDisplay display)
             : base(display)
         {
 

@@ -241,7 +241,7 @@ namespace Sedulous.Graphics.Graphics2D
 
                                 var atlas = manager.Load<TextureAtlas>(frameDesc.Atlas, metadata.AssetDensity, true, metadata.IsLoadedFromSolution);
                                 if (!atlas.ContainsCell(frameDesc.AtlasCell))
-                                    throw new InvalidDataException(SedulousStrings.SpriteContainsInvalidAtlasCell.Format(frameDesc.AtlasCell));
+                                    throw new InvalidDataException(FrameworkStrings.SpriteContainsInvalidAtlasCell.Format(frameDesc.AtlasCell));
 
                                 var cell = atlas[frameDesc.AtlasCell];
 

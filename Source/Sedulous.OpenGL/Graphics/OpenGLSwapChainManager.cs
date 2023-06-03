@@ -13,16 +13,16 @@ namespace Sedulous.OpenGL.Graphics
         /// Initializes a new instance of the <see cref="OpenGLSwapChainManager"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public OpenGLSwapChainManager(SedulousContext uv)
+        public OpenGLSwapChainManager(FrameworkContext uv)
             : base(uv)
         { }
 
         /// <inheritdoc/>
-        public override void DrawAndSwap(SedulousTime time, 
-            Action<SedulousContext, SedulousTime, ISedulousWindow> onWindowDrawing, 
-            Action<SedulousContext, SedulousTime, ISedulousWindow> onWindowDrawn)
+        public override void DrawAndSwap(FrameworkTime time, 
+            Action<FrameworkContext, FrameworkTime, IFrameworkWindow> onWindowDrawing, 
+            Action<FrameworkContext, FrameworkTime, IFrameworkWindow> onWindowDrawn)
         {
-            var graphics = (OpenGLSedulousGraphics)Sedulous.GetGraphics();
+            var graphics = (OpenGLGraphicsSubsystem)Sedulous.GetGraphics();
             var platform = Sedulous.GetPlatform();
 
             var glenv = graphics.OpenGLEnvironment;

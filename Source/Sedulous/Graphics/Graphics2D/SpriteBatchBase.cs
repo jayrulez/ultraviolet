@@ -12,7 +12,7 @@ namespace Sedulous.Graphics.Graphics2D
     /// </summary>
     /// <typeparam name="VertexType">The type of vertex used to render the batch's sprites.</typeparam>
     /// <typeparam name="SpriteData">The type of data object associated with each of the batch's sprite instances.</typeparam>
-    public abstract unsafe partial class SpriteBatchBase<VertexType, SpriteData> : SedulousResource
+    public abstract unsafe partial class SpriteBatchBase<VertexType, SpriteData> : FrameworkResource
         where VertexType : struct, IVertexType
         where SpriteData : struct
     {
@@ -21,7 +21,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="batchSize">The maximum number of sprites that can be drawn in a single batch.</param>
-        protected SpriteBatchBase(SedulousContext uv, Int32 batchSize = 2048)
+        protected SpriteBatchBase(FrameworkContext uv, Int32 batchSize = 2048)
             : base(uv)
         {
             Contract.EnsureRange(batchSize > 0, nameof(batchSize));
@@ -43,7 +43,7 @@ namespace Sedulous.Graphics.Graphics2D
         public void Flush()
         {
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeEnd);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeEnd);
 
             var sortMode = this.sortMode;
             var blendState = this.blendState;
@@ -64,7 +64,7 @@ namespace Sedulous.Graphics.Graphics2D
         public void Begin()
         {
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.EnsureNot(begun, SedulousStrings.BeginCannotBeCalledAgain);
+            Contract.EnsureNot(begun, FrameworkStrings.BeginCannotBeCalledAgain);
 
             BeginInternal(SpriteSortMode.Deferred, null, null, null, null, null, Matrix.Identity);
         }
@@ -78,7 +78,7 @@ namespace Sedulous.Graphics.Graphics2D
         public void Begin(SpriteSortMode sortMode, BlendState blendState)
         {
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.EnsureNot(begun, SedulousStrings.BeginCannotBeCalledAgain);
+            Contract.EnsureNot(begun, FrameworkStrings.BeginCannotBeCalledAgain);
 
             BeginInternal(sortMode, blendState, null, null, null, null, Matrix.Identity);
         }
@@ -95,7 +95,7 @@ namespace Sedulous.Graphics.Graphics2D
         public void Begin(SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, RasterizerState rasterizerState)
         {
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.EnsureNot(begun, SedulousStrings.BeginCannotBeCalledAgain);
+            Contract.EnsureNot(begun, FrameworkStrings.BeginCannotBeCalledAgain);
 
             BeginInternal(sortMode, blendState, samplerState, depthStencilState, rasterizerState, null, Matrix.Identity);
         }
@@ -113,7 +113,7 @@ namespace Sedulous.Graphics.Graphics2D
         public void Begin(SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, RasterizerState rasterizerState, Effect effect)
         {
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.EnsureNot(begun, SedulousStrings.BeginCannotBeCalledAgain);
+            Contract.EnsureNot(begun, FrameworkStrings.BeginCannotBeCalledAgain);
 
             BeginInternal(sortMode, blendState, samplerState, depthStencilState, rasterizerState, effect, Matrix.Identity);
         }
@@ -132,7 +132,7 @@ namespace Sedulous.Graphics.Graphics2D
         public void Begin(SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, RasterizerState rasterizerState, Effect effect, Matrix transformMatrix)
         {
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.EnsureNot(begun, SedulousStrings.BeginCannotBeCalledAgain);
+            Contract.EnsureNot(begun, FrameworkStrings.BeginCannotBeCalledAgain);
 
             BeginInternal(sortMode, blendState, samplerState, depthStencilState, rasterizerState, effect, transformMatrix);
         }
@@ -154,7 +154,7 @@ namespace Sedulous.Graphics.Graphics2D
         public void End()
         {
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeEnd);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeEnd);
 
             EndInternal();
         }
@@ -274,7 +274,7 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(texture, nameof(texture));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawInternal(texture, destinationRectangle, null, color, 0f, Vector2.Zero, SpriteEffects.None, 0f, data);
         }
@@ -292,7 +292,7 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(texture, nameof(texture));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawInternal(texture, destinationRectangle, sourceRectangle, color, 0f, Vector2.Zero, SpriteEffects.None, 0f, data);
         }
@@ -314,7 +314,7 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(texture, nameof(texture));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawInternal(texture, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, data);
         }
@@ -331,7 +331,7 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(texture, nameof(texture));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawInternal(texture, position, null, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
         }
@@ -349,7 +349,7 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(texture, nameof(texture));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawInternal(texture, position, sourceRectangle, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
         }
@@ -372,7 +372,7 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(texture, nameof(texture));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawInternal(texture, position, sourceRectangle, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
         }
@@ -395,7 +395,7 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(texture, nameof(texture));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawInternal(texture, position, sourceRectangle, color, rotation, origin, scale, effects, layerDepth, data);
         }
@@ -539,7 +539,7 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(animation, nameof(animation));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             // Retrieve the current frame.
             var frame = animation.GetFrame();
@@ -674,7 +674,7 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(animation, nameof(animation));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             var frame = animation.GetFrame();
             if (frame == null || frame.TextureResource == null)
@@ -745,16 +745,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, String text, Vector2 position, Color color)
+        public void DrawString(FrameworkFontFace fontFace, String text, Vector2 position, Color color)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringSource(text),
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, default(SpriteData));
@@ -763,16 +763,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedString text, Vector2 position, Color color)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedString text, Vector2 position, Color color)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, default(SpriteData));
@@ -782,16 +782,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, String text, Vector2 position, Color color)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, String text, Vector2 position, Color color)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringSource(text), 
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, default(SpriteData));
@@ -801,16 +801,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedString text, Vector2 position, Color color)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedString text, Vector2 position, Color color)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, default(SpriteData));
@@ -819,7 +819,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -829,11 +829,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(FrameworkFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringSource(text), 
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, default(SpriteData));
@@ -842,7 +842,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -852,11 +852,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The shaped text's rendering effects.</param>
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, default(SpriteData));
@@ -866,7 +866,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -876,11 +876,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringSource(text), 
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, default(SpriteData));
@@ -890,7 +890,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -900,11 +900,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The shaped text's rendering effects.</param>
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, default(SpriteData));
@@ -913,7 +913,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -923,11 +923,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(FrameworkFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringSource(text), 
                 position, color, rotation, origin, scale, effects, layerDepth, default(SpriteData));
@@ -936,7 +936,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -946,11 +946,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The shaped text's rendering effects.</param>
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, rotation, origin, scale, effects, layerDepth, default(SpriteData));
@@ -960,7 +960,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -970,11 +970,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringSource(text), 
                 position, color, rotation, origin, scale, effects, layerDepth, default(SpriteData));
@@ -984,7 +984,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -994,11 +994,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The shaped text's rendering effects.</param>
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, rotation, origin, scale, effects, layerDepth, default(SpriteData));
@@ -1007,17 +1007,17 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, String text, Vector2 position, Color color, SpriteData data)
+        public void DrawString(FrameworkFontFace fontFace, String text, Vector2 position, Color color, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringSource(text), 
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
@@ -1026,17 +1026,17 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
         /// <param name="data">The shaped text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedString text, Vector2 position, Color color, SpriteData data)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedString text, Vector2 position, Color color, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
@@ -1046,17 +1046,17 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, String text, Vector2 position, Color color, SpriteData data)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, String text, Vector2 position, Color color, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringSource(text), 
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
@@ -1066,17 +1066,17 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
         /// <param name="data">The shaped text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedString text, Vector2 position, Color color, SpriteData data)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedString text, Vector2 position, Color color, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
@@ -1085,7 +1085,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1096,11 +1096,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawString(FrameworkFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringSource(text),
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
@@ -1109,7 +1109,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -1120,11 +1120,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         /// <param name="data">The shaped text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
@@ -1134,7 +1134,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1145,11 +1145,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringSource(text), 
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
@@ -1159,7 +1159,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -1170,11 +1170,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         /// <param name="data">The shaped text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
@@ -1183,7 +1183,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1194,11 +1194,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawString(FrameworkFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringSource(text), 
                 position, color, rotation, origin, scale, effects, layerDepth, data);
@@ -1207,7 +1207,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -1218,11 +1218,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         /// <param name="data">The shaped text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, rotation, origin, scale, effects, layerDepth, data);
@@ -1232,7 +1232,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1243,11 +1243,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringSource(text), 
                 position, color, rotation, origin, scale, effects, layerDepth, data);
@@ -1257,7 +1257,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1268,11 +1268,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedString text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, rotation, origin, scale, effects, layerDepth, data);
@@ -1281,16 +1281,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color)
+        public void DrawString(FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringBuilderSource(text), 
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, default(SpriteData));
@@ -1299,16 +1299,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, default(SpriteData));
@@ -1318,16 +1318,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringBuilderSource(text), 
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, default(SpriteData));
@@ -1337,16 +1337,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, default(SpriteData));
@@ -1355,7 +1355,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1365,11 +1365,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringBuilderSource(text), 
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, default(SpriteData));
@@ -1378,7 +1378,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -1388,11 +1388,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The shaped text's rendering effects.</param>
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, default(SpriteData));
@@ -1402,7 +1402,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1412,11 +1412,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringBuilderSource(text), 
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, default(SpriteData));
@@ -1426,7 +1426,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -1436,11 +1436,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The shaped text's rendering effects.</param>
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, default(SpriteData));
@@ -1449,7 +1449,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1459,11 +1459,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringBuilderSource(text), 
                 position, color, rotation, origin, scale, effects, layerDepth, default(SpriteData));
@@ -1472,7 +1472,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -1482,11 +1482,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The shaped text's rendering effects.</param>
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, rotation, origin, scale, effects, layerDepth, default(SpriteData));
@@ -1496,7 +1496,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1506,11 +1506,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringBuilderSource(text), 
                 position, color, rotation, origin, scale, effects, layerDepth, default(SpriteData));
@@ -1520,7 +1520,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -1530,11 +1530,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The shaped text's rendering effects.</param>
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, rotation, origin, scale, effects, layerDepth, default(SpriteData));
@@ -1543,17 +1543,17 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color, SpriteData data)
+        public void DrawString(FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringBuilderSource(text), 
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
@@ -1562,17 +1562,17 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
         /// <param name="data">The shaped text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, SpriteData data)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
@@ -1582,17 +1582,17 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color, SpriteData data)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringBuilderSource(text), 
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
@@ -1602,17 +1602,17 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
         /// <param name="data">The shaped text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, SpriteData data)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
@@ -1621,7 +1621,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1632,11 +1632,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawString(FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringBuilderSource(text), 
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
@@ -1645,57 +1645,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
-        /// <param name="text">The shaped text to draw.</param>
-        /// <param name="position">The shaped text's position.</param>
-        /// <param name="color">The shaped text's color.</param>
-        /// <param name="rotation">The shaped text's rotation in radians.</param>
-        /// <param name="origin">The shaped text's point of origin relative to its top-left corner.</param>
-        /// <param name="scale">The shaped text's scale factor.</param>
-        /// <param name="effects">The shaped text's rendering effects.</param>
-        /// <param name="layerDepth">The shaped text's layer depth.</param>
-        /// <param name="data">The shaped text's custom data.</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
-        {
-            Contract.Require(fontFace, nameof(fontFace));
-            Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
-
-            DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
-                position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
-        }
-
-        /// <summary>
-        /// Draws a string of text.
-        /// </summary>
-        /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
-        /// <param name="text">The text to draw.</param>
-        /// <param name="position">The text's position.</param>
-        /// <param name="color">The text's color.</param>
-        /// <param name="rotation">The text's rotation in radians.</param>
-        /// <param name="origin">The text's point of origin relative to its top-left corner.</param>
-        /// <param name="scale">The text's scale factor.</param>
-        /// <param name="effects">The text's rendering effects.</param>
-        /// <param name="layerDepth">The text's layer depth.</param>
-        /// <param name="data">The text's custom data.</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
-        {
-            Contract.Require(fontFace, nameof(fontFace));
-            Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
-
-            DrawStringInternal(glyphShader, fontFace, new StringBuilderSource(text), 
-                position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
-        }
-
-        /// <summary>
-        /// Draws a string of shaped text.
-        /// </summary>
-        /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -1706,20 +1656,21 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         /// <param name="data">The shaped text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
-            DrawShapedStringInternal(glyphShader, fontFace, text,
+            DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
         }
 
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1730,20 +1681,21 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
-            DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringBuilderSource(text), 
-                position, color, rotation, origin, scale, effects, layerDepth, data);
+            DrawStringInternal(glyphShader, fontFace, new StringBuilderSource(text), 
+                position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
         }
 
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -1754,21 +1706,20 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         /// <param name="data">The shaped text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
-            DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
-                position, color, rotation, origin, scale, effects, layerDepth, data);
+            DrawShapedStringInternal(glyphShader, fontFace, text,
+                position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
         }
 
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1779,11 +1730,60 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawString(FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
+
+            DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringBuilderSource(text), 
+                position, color, rotation, origin, scale, effects, layerDepth, data);
+        }
+
+        /// <summary>
+        /// Draws a string of shaped text.
+        /// </summary>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="text">The shaped text to draw.</param>
+        /// <param name="position">The shaped text's position.</param>
+        /// <param name="color">The shaped text's color.</param>
+        /// <param name="rotation">The shaped text's rotation in radians.</param>
+        /// <param name="origin">The shaped text's point of origin relative to its top-left corner.</param>
+        /// <param name="scale">The shaped text's scale factor.</param>
+        /// <param name="effects">The shaped text's rendering effects.</param>
+        /// <param name="layerDepth">The shaped text's layer depth.</param>
+        /// <param name="data">The shaped text's custom data.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        {
+            Contract.Require(fontFace, nameof(fontFace));
+            Contract.EnsureNotDisposed(this, Disposed);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
+
+            DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
+                position, color, rotation, origin, scale, effects, layerDepth, data);
+        }
+
+        /// <summary>
+        /// Draws a string of text.
+        /// </summary>
+        /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
+        /// <param name="text">The text to draw.</param>
+        /// <param name="position">The text's position.</param>
+        /// <param name="color">The text's color.</param>
+        /// <param name="rotation">The text's rotation in radians.</param>
+        /// <param name="origin">The text's point of origin relative to its top-left corner.</param>
+        /// <param name="scale">The text's scale factor.</param>
+        /// <param name="effects">The text's rendering effects.</param>
+        /// <param name="layerDepth">The text's layer depth.</param>
+        /// <param name="data">The text's custom data.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        {
+            Contract.Require(fontFace, nameof(fontFace));
+            Contract.EnsureNotDisposed(this, Disposed);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringBuilderSource(text), 
                 position, color, rotation, origin, scale, effects, layerDepth, data);
@@ -1793,7 +1793,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The shaped text to draw.</param>
         /// <param name="position">The shaped text's position.</param>
         /// <param name="color">The shaped text's color.</param>
@@ -1804,11 +1804,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The shaped text's layer depth.</param>
         /// <param name="data">The shaped text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedStringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, rotation, origin, scale, effects, layerDepth, data);
@@ -1817,16 +1817,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color)
+        public void DrawString(FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringSegmentSource(text), 
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, default(SpriteData));
@@ -1835,16 +1835,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, default(SpriteData));
@@ -1854,16 +1854,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringSegmentSource(text), 
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, default(SpriteData));
@@ -1873,16 +1873,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, default(SpriteData));
@@ -1891,7 +1891,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1901,11 +1901,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringSegmentSource(text), 
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, default(SpriteData));
@@ -1914,7 +1914,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1924,11 +1924,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, default(SpriteData));
@@ -1938,7 +1938,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1948,11 +1948,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringSegmentSource(text), 
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, default(SpriteData));
@@ -1962,7 +1962,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1972,11 +1972,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, default(SpriteData));
@@ -1985,7 +1985,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -1995,11 +1995,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringSegmentSource(text), 
                 position, color, rotation, origin, scale, effects, layerDepth, default(SpriteData));
@@ -2008,7 +2008,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -2018,11 +2018,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, rotation, origin, scale, effects, layerDepth, default(SpriteData));
@@ -2032,7 +2032,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -2042,11 +2042,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringSegmentSource(text), 
                 position, color, rotation, origin, scale, effects, layerDepth, default(SpriteData));
@@ -2056,7 +2056,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -2066,11 +2066,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, rotation, origin, scale, effects, layerDepth, default(SpriteData));
@@ -2079,17 +2079,17 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color, SpriteData data)
+        public void DrawString(FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringSegmentSource(text), 
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
@@ -2098,17 +2098,17 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, SpriteData data)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
@@ -2118,17 +2118,17 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color, SpriteData data)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringSegmentSource(text), 
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
@@ -2138,17 +2138,17 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, SpriteData data)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f, data);
@@ -2157,7 +2157,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -2168,11 +2168,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawString(FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringSegmentSource(text), 
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
@@ -2181,7 +2181,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -2192,11 +2192,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
@@ -2206,7 +2206,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -2217,11 +2217,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringSegmentSource(text), 
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
@@ -2231,7 +2231,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -2242,11 +2242,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, rotation, origin, new Vector2(scale, scale), effects, layerDepth, data);
@@ -2255,7 +2255,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -2266,11 +2266,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawString(FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(GlyphShaderContext.Invalid, fontFace, new StringSegmentSource(text), 
                 position, color, rotation, origin, scale, effects, layerDepth, data);
@@ -2279,7 +2279,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -2290,11 +2290,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(SedulousFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawShapedString(FrameworkFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(GlyphShaderContext.Invalid, fontFace, text,
                 position, color, rotation, origin, scale, effects, layerDepth, data);
@@ -2304,7 +2304,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -2315,11 +2315,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawStringInternal(glyphShader, fontFace, new StringSegmentSource(text), 
                 position, color, rotation, origin, scale, effects, layerDepth, data);
@@ -2329,7 +2329,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// Draws a string of shaped text.
         /// </summary>
         /// <param name="glyphShader">The glyph shader to apply to the rendered string.</param>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the shaped text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the shaped text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position.</param>
         /// <param name="color">The text's color.</param>
@@ -2340,11 +2340,11 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="layerDepth">The text's layer depth.</param>
         /// <param name="data">The text's custom data.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DrawShapedString(GlyphShaderContext glyphShader, SedulousFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
+        public void DrawShapedString(GlyphShaderContext glyphShader, FrameworkFontFace fontFace, ShapedStringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             DrawShapedStringInternal(glyphShader, fontFace, text,
                 position, color, rotation, origin, scale, effects, layerDepth, data);
@@ -2414,10 +2414,10 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(image, nameof(image));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             if (!image.IsLoaded)
-                throw new ArgumentException(SedulousStrings.StretchableImageNotLoaded.Format("image"));
+                throw new ArgumentException(FrameworkStrings.StretchableImageNotLoaded.Format("image"));
 
             image.Draw(this, position, width, height, color, rotation, origin, effects, layerDepth, data);
         }
@@ -2429,7 +2429,7 @@ namespace Sedulous.Graphics.Graphics2D
         public SpriteBatchState GetCurrentState()
         {
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeStateQuery);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeStateQuery);
 
             return new SpriteBatchState(sortMode, blendState, samplerState, rasterizerState, depthStencilState, customEffect, transformMatrix);
         }
@@ -2443,43 +2443,43 @@ namespace Sedulous.Graphics.Graphics2D
         /// Gets the <see cref="SpriteSortMode"/> which is in effect for the current batch.
         /// </summary>
         public SpriteSortMode CurrentSortMode =>
-            begun ? sortMode : throw new InvalidOperationException(SedulousStrings.BeginMustBeCalledBeforeStateQuery);
+            begun ? sortMode : throw new InvalidOperationException(FrameworkStrings.BeginMustBeCalledBeforeStateQuery);
 
         /// <summary>
         /// Gets the <see cref="BlendState"/> which is in effect for the current batch.
         /// </summary>
         public BlendState CurrentBlendState =>
-            begun ? blendState : throw new InvalidOperationException(SedulousStrings.BeginMustBeCalledBeforeStateQuery);
+            begun ? blendState : throw new InvalidOperationException(FrameworkStrings.BeginMustBeCalledBeforeStateQuery);
 
         /// <summary>
         /// Gets the <see cref="SamplerState"/> which is in effect for the current batch.
         /// </summary>
         public SamplerState CurrentSamplerState
-            => begun ? samplerState : throw new InvalidOperationException(SedulousStrings.BeginMustBeCalledBeforeStateQuery);
+            => begun ? samplerState : throw new InvalidOperationException(FrameworkStrings.BeginMustBeCalledBeforeStateQuery);
 
         /// <summary>
         /// Gets the <see cref="RasterizerState"/> which is in effect for the current batch.
         /// </summary>
         public RasterizerState CurrentRasterizerState
-            => begun ? rasterizerState : throw new InvalidOperationException(SedulousStrings.BeginMustBeCalledBeforeStateQuery);
+            => begun ? rasterizerState : throw new InvalidOperationException(FrameworkStrings.BeginMustBeCalledBeforeStateQuery);
 
         /// <summary>
         /// Gets the <see cref="DepthStencilState"/> which is in effect for the current batch.
         /// </summary>
         public DepthStencilState CurrentDepthStencilState
-            => begun ? depthStencilState : throw new InvalidOperationException(SedulousStrings.BeginMustBeCalledBeforeStateQuery);
+            => begun ? depthStencilState : throw new InvalidOperationException(FrameworkStrings.BeginMustBeCalledBeforeStateQuery);
 
         /// <summary>
         /// Gets the <see cref="Effect"/> which is in effect for the current batch.
         /// </summary>
         public Effect CurrentEffect
-            => begun ? customEffect : throw new InvalidOperationException(SedulousStrings.BeginMustBeCalledBeforeStateQuery);
+            => begun ? customEffect : throw new InvalidOperationException(FrameworkStrings.BeginMustBeCalledBeforeStateQuery);
 
         /// <summary>
         /// Gets the transformation matrix which is in effect for the current batch.
         /// </summary>
         public Matrix CurrentTransformMatrix
-            => begun ? transformMatrix : throw new InvalidOperationException(SedulousStrings.BeginMustBeCalledBeforeStateQuery);
+            => begun ? transformMatrix : throw new InvalidOperationException(FrameworkStrings.BeginMustBeCalledBeforeStateQuery);
 
         /// <summary>
         /// Releases resources associated with the object.
@@ -3244,13 +3244,13 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        private void DrawStringInternal<TSource>(GlyphShaderContext glyphShaderContext, SedulousFontFace fontFace, TSource text, Vector2 position,
+        private void DrawStringInternal<TSource>(GlyphShaderContext glyphShaderContext, FrameworkFontFace fontFace, TSource text, Vector2 position,
             Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
             where TSource : IStringSource<Char>
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             // Initialize the render state for this string.
             var measure = fontFace.MeasureString(ref text, 0, text.Length);
@@ -3313,13 +3313,13 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Draws a string of shaped text.
         /// </summary>
-        private void DrawShapedStringInternal<TSource>(GlyphShaderContext glyphShaderContext, SedulousFontFace fontFace, TSource text, Vector2 position,
+        private void DrawShapedStringInternal<TSource>(GlyphShaderContext glyphShaderContext, FrameworkFontFace fontFace, TSource text, Vector2 position,
             Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
             where TSource : IStringSource<ShapedChar>
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(begun, SedulousStrings.BeginMustBeCalledBeforeDraw);
+            Contract.Ensure(begun, FrameworkStrings.BeginMustBeCalledBeforeDraw);
 
             // Initialize the render state for this string.
             var measure = fontFace.MeasureShapedString(ref text, 0, text.Length);

@@ -22,7 +22,7 @@ namespace Sedulous.Graphics
         /// <returns>The instance of <see cref="SurfaceSource"/> that was created.</returns>
         public static SurfaceSource Create(Stream stream)
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<SurfaceSourceFactory>()(stream);
         }
 

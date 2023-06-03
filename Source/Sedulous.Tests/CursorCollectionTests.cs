@@ -5,7 +5,7 @@ namespace Sedulous.Tests
 {
     [TestFixture]
     [Category("Content")]
-    public class CursorCollectionTests : SedulousApplicationTestFramework
+    public class CursorCollectionTests : FrameworkApplicationTestFramework
     {
         [Test]
         [Category("Content")]

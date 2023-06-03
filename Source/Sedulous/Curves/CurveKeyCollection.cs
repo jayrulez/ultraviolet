@@ -30,7 +30,7 @@ namespace Sedulous
                 {
                     this.ElementCount = (this.storage[0].Key.Value as Array)?.Length ?? 0;
                     if (this.storage.Any(x => ((x.Key.Value as Array)?.Length ?? 0) != this.ElementCount))
-                        throw new ArgumentException(SedulousStrings.CurveKeyArrayLengthMismatch);
+                        throw new ArgumentException(FrameworkStrings.CurveKeyArrayLengthMismatch);
                 }
                 else
                 {

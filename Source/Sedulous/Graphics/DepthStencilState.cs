@@ -8,26 +8,26 @@ namespace Sedulous.Graphics
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="DepthStencilState"/> that was created.</returns>
-    public delegate DepthStencilState DepthStencilStateFactory(SedulousContext uv);
+    public delegate DepthStencilState DepthStencilStateFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents a graphics device's depth/stencil state.
     /// </summary>
-    public abstract class DepthStencilState : SedulousResource
+    public abstract class DepthStencilState : FrameworkResource
     {
         /// <summary>
         /// Initializes the <see cref="DepthStencilState"/> type.
         /// </summary>
         static DepthStencilState()
         {
-            SedulousContext.ContextInvalidated += (sender, e) => { InvalidateCache(); };
+            FrameworkContext.ContextInvalidated += (sender, e) => { InvalidateCache(); };
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DepthStencilState"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        protected DepthStencilState(SedulousContext uv)
+        protected DepthStencilState(FrameworkContext uv)
             : base(uv)
         {
 
@@ -39,7 +39,7 @@ namespace Sedulous.Graphics
         /// <returns>The instance of <see cref="DepthStencilState"/> that was created.</returns>
         public static DepthStencilState Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<DepthStencilStateFactory>()(uv);
         }
 
@@ -54,7 +54,7 @@ namespace Sedulous.Graphics
                 if (cachedDefault != null)
                     return cachedDefault;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedDefault = uv.GetFactoryMethod<DepthStencilStateFactory>("Default")(uv));
             }
         }
@@ -70,7 +70,7 @@ namespace Sedulous.Graphics
                 if (cachedDepthRead != null)
                     return cachedDepthRead;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedDepthRead = uv.GetFactoryMethod<DepthStencilStateFactory>("DepthRead")(uv));
             }
         }
@@ -86,7 +86,7 @@ namespace Sedulous.Graphics
                 if (cachedNone != null)
                     return cachedNone;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedNone = uv.GetFactoryMethod<DepthStencilStateFactory>("None")(uv));
             }
         }
@@ -99,7 +99,7 @@ namespace Sedulous.Graphics
             get => depthBufferEnable;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 depthBufferEnable = value;
             }
@@ -113,7 +113,7 @@ namespace Sedulous.Graphics
             get => depthBufferWriteEnable;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 depthBufferWriteEnable = value;
             }
@@ -127,7 +127,7 @@ namespace Sedulous.Graphics
             get => depthBufferFunction;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 depthBufferFunction = value;
             }
@@ -141,7 +141,7 @@ namespace Sedulous.Graphics
             get => stencilEnable;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 stencilEnable = value;
             }
@@ -155,7 +155,7 @@ namespace Sedulous.Graphics
             get => stencilFunction;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 stencilFunction = value;
             }
@@ -169,7 +169,7 @@ namespace Sedulous.Graphics
             get => stencilPass;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 stencilPass = value;
             }
@@ -183,7 +183,7 @@ namespace Sedulous.Graphics
             get => stencilFail;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 stencilFail = value;
             }
@@ -197,7 +197,7 @@ namespace Sedulous.Graphics
             get => stencilDepthBufferFail;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 stencilDepthBufferFail = value;
             }
@@ -212,7 +212,7 @@ namespace Sedulous.Graphics
             get => counterClockwiseStencilFunction;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 counterClockwiseStencilFunction = value;
             }
@@ -227,7 +227,7 @@ namespace Sedulous.Graphics
             get => counterClockwiseStencilPass;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 counterClockwiseStencilPass = value;
             }
@@ -242,7 +242,7 @@ namespace Sedulous.Graphics
             get => counterClockwiseStencilFail;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 counterClockwiseStencilFail = value;
             }
@@ -257,7 +257,7 @@ namespace Sedulous.Graphics
             get => counterClockwiseStencilDepthBufferFail;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 counterClockwiseStencilDepthBufferFail = value;
             }
@@ -271,7 +271,7 @@ namespace Sedulous.Graphics
             get => stencilMask;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 stencilMask = value;
             }
@@ -285,7 +285,7 @@ namespace Sedulous.Graphics
             get => stencilWriteMask;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 stencilWriteMask = value;
             }
@@ -299,7 +299,7 @@ namespace Sedulous.Graphics
             get => referenceStencil;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 referenceStencil = value;
             }
@@ -313,7 +313,7 @@ namespace Sedulous.Graphics
             get => twoSidedStencilMode;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 twoSidedStencilMode = value;
             }

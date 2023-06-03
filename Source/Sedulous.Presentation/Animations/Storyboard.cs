@@ -13,7 +13,7 @@ namespace Sedulous.Presentation.Animations
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="loopBehavior">The storyboard's loop behavior.</param>
-        public Storyboard(SedulousContext uv, LoopBehavior loopBehavior = LoopBehavior.None)
+        public Storyboard(FrameworkContext uv, LoopBehavior loopBehavior = LoopBehavior.None)
         {
             this.targets = new StoryboardTargetCollection(this);
             this.loopBehavior = loopBehavior;

@@ -3,7 +3,7 @@
 namespace Sedulous.Graphics
 {
     /// <summary>
-    /// Represents the set of buffers which will be cleared by the <see cref="ISedulousGraphics.Clear(ClearOptions, Color, double, int)"/> method.
+    /// Represents the set of buffers which will be cleared by the <see cref="IGraphicsSubsystem.Clear(ClearOptions, Color, double, int)"/> method.
     /// </summary>
     [Flags]
     public enum ClearOptions

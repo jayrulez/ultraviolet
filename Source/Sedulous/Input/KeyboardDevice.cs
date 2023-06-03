@@ -10,7 +10,7 @@ namespace Sedulous.Input
     /// <param name="window">The window in which the input event took place.</param>
     /// <param name="device">The <see cref="KeyboardDevice"/> that raised the event.</param>
     /// <param name="scancode">The <see cref="Scancode"/> value that represents the key that was pressed.</param>
-    public delegate void KeyboardButtonEventHandler(ISedulousWindow window, KeyboardDevice device, Scancode scancode);
+    public delegate void KeyboardButtonEventHandler(IFrameworkWindow window, KeyboardDevice device, Scancode scancode);
 
     /// <summary>
     /// Represents the method that is called when a keyboard key is pressed.
@@ -22,7 +22,7 @@ namespace Sedulous.Input
     /// <param name="alt">A value indicating whether the Alt modifier is active.</param>
     /// <param name="shift">A value indicating whether the Shift modifier is active.</param>
     /// <param name="repeat">A value indicating whether this is a repeated key press.</param>
-    public delegate void KeyPressedEventHandler(ISedulousWindow window, KeyboardDevice device, Key key, Boolean ctrl, Boolean alt, Boolean shift, Boolean repeat);
+    public delegate void KeyPressedEventHandler(IFrameworkWindow window, KeyboardDevice device, Key key, Boolean ctrl, Boolean alt, Boolean shift, Boolean repeat);
 
     /// <summary>
     /// Represents the method that is called when a keyboard key is released.
@@ -30,14 +30,14 @@ namespace Sedulous.Input
     /// <param name="window">The window in which the input event took place.</param>
     /// <param name="device">The <see cref="KeyboardDevice"/> that raised the event.</param>
     /// <param name="key">The <see cref="Key"/> value that represents the key that was released.</param>
-    public delegate void KeyReleasedEventHandler(ISedulousWindow window, KeyboardDevice device, Key key);
+    public delegate void KeyReleasedEventHandler(IFrameworkWindow window, KeyboardDevice device, Key key);
 
     /// <summary>
     /// Represents the method that is called when text input is available.
     /// </summary>
     /// <param name="window">The window in which the input event took place.</param>
     /// <param name="device">The <see cref="KeyboardDevice"/> that raised the event.</param>
-    public delegate void TextInputEventHandler(ISedulousWindow window, KeyboardDevice device);
+    public delegate void TextInputEventHandler(IFrameworkWindow window, KeyboardDevice device);
 
     /// <summary>
     /// Represents a keyboard device.
@@ -48,7 +48,7 @@ namespace Sedulous.Input
         /// Initializes a new instance of the <see cref="KeyboardDevice"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public KeyboardDevice(SedulousContext uv)
+        public KeyboardDevice(FrameworkContext uv)
             : base(uv)
         {
 
@@ -167,7 +167,7 @@ namespace Sedulous.Input
         /// </summary>
         /// <param name="window">The window that raised the event.</param>
         /// <param name="scancode">The <see cref="Scancode"/> that represents the button that was pressed.</param>
-        protected virtual void OnButtonPressed(ISedulousWindow window, Scancode scancode) =>
+        protected virtual void OnButtonPressed(IFrameworkWindow window, Scancode scancode) =>
             ButtonPressed?.Invoke(window, this, scancode);
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace Sedulous.Input
         /// </summary>
         /// <param name="window">The window that raised the event.</param>
         /// <param name="scancode">The <see cref="Scancode"/> that represents the button that was released.</param>
-        protected virtual void OnButtonReleased(ISedulousWindow window, Scancode scancode) =>
+        protected virtual void OnButtonReleased(IFrameworkWindow window, Scancode scancode) =>
             ButtonReleased?.Invoke(window, this, scancode);
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace Sedulous.Input
         /// <param name="alt">A value indicating whether the Alt modifier is active.</param>
         /// <param name="shift">A value indicating whether the Shift modifier is active.</param>
         /// <param name="repeat">A value indicating whether this is a repeated key press.</param>
-        protected virtual void OnKeyPressed(ISedulousWindow window, Key key, Boolean ctrl, Boolean alt, Boolean shift, Boolean repeat)
+        protected virtual void OnKeyPressed(IFrameworkWindow window, Key key, Boolean ctrl, Boolean alt, Boolean shift, Boolean repeat)
         {
             KeyPressed?.Invoke(window, this, key, ctrl, alt, shift, repeat);
         }
@@ -199,7 +199,7 @@ namespace Sedulous.Input
         /// </summary>
         /// <param name="window">The window that raised the event.</param>
         /// <param name="key">The <see cref="Key"/> that was released.</param>
-        protected virtual void OnKeyReleased(ISedulousWindow window, Key key)
+        protected virtual void OnKeyReleased(IFrameworkWindow window, Key key)
         {
             KeyReleased?.Invoke(window, this, key);
         }
@@ -208,7 +208,7 @@ namespace Sedulous.Input
         /// Raises the <see cref="TextInput"/> event.
         /// </summary>
         /// <param name="window">The window that raised the event.</param>
-        protected virtual void OnTextInput(ISedulousWindow window)
+        protected virtual void OnTextInput(IFrameworkWindow window)
         {
             TextInput?.Invoke(window, this);
         }
@@ -217,7 +217,7 @@ namespace Sedulous.Input
         /// Raises the <see cref="TextEditing"/> event.
         /// </summary>
         /// <param name="window">The window that raised the event.</param>
-        protected virtual void OnTextEditing(ISedulousWindow window)
+        protected virtual void OnTextEditing(IFrameworkWindow window)
         {
             TextEditing?.Invoke(window, this);
         }

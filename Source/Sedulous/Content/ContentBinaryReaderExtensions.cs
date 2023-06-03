@@ -19,7 +19,7 @@ namespace Sedulous.Content
         {
             Contract.Require(reader, nameof(reader));
 
-            return ReadAssetID(reader, SedulousContext.DemandCurrent().GetContent().Manifests);
+            return ReadAssetID(reader, FrameworkContext.DemandCurrent().GetContent().Manifests);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Sedulous.Content
         {
             Contract.Require(reader, nameof(reader));
 
-            return ReadNullableAssetID(reader, SedulousContext.DemandCurrent().GetContent().Manifests);
+            return ReadNullableAssetID(reader, FrameworkContext.DemandCurrent().GetContent().Manifests);
         }
 
         /// <summary>

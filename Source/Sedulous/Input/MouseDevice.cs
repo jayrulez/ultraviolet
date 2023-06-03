@@ -9,7 +9,7 @@ namespace Sedulous.Input
     /// <param name="window">The window in which the input event took place.</param>
     /// <param name="device">The <see cref="MouseDevice"/> that raised the event.</param>
     /// <param name="button">The <see cref="MouseButton"/> value that represents the button that was pressed or released.</param>
-    public delegate void MouseButtonEventHandler(ISedulousWindow window, MouseDevice device, MouseButton button);
+    public delegate void MouseButtonEventHandler(IFrameworkWindow window, MouseDevice device, MouseButton button);
 
     /// <summary>
     /// Represents the method that is called when the mouse is moved.
@@ -22,7 +22,7 @@ namespace Sedulous.Input
     /// current position and the x-coordinate of the mouse's previous position.</param>
     /// <param name="dy">The difference between the y-coordinate of the mouse's 
     /// current position and the y-coordinate of the mouse's previous position.</param>
-    public delegate void MouseMoveEventHandler(ISedulousWindow window, MouseDevice device, Int32 x, Int32 y, Int32 dx, Int32 dy);
+    public delegate void MouseMoveEventHandler(IFrameworkWindow window, MouseDevice device, Int32 x, Int32 y, Int32 dx, Int32 dy);
 
     /// <summary>
     /// Represents the method that is called when the mouse's wheel is scrolled.
@@ -31,7 +31,7 @@ namespace Sedulous.Input
     /// <param name="device">The <see cref="MouseDevice"/> that raised the event.</param>
     /// <param name="x">The amount that the wheel was scrolled along the horizontal axis.</param>
     /// <param name="y">The amount that the wheel was scrolled along the vertical axis.</param>
-    public delegate void MouseWheelEventHandler(ISedulousWindow window, MouseDevice device, Int32 x, Int32 y);
+    public delegate void MouseWheelEventHandler(IFrameworkWindow window, MouseDevice device, Int32 x, Int32 y);
 
     /// <summary>
     /// Represents a mouse device.
@@ -42,7 +42,7 @@ namespace Sedulous.Input
         /// Initializes a new instance of the <see cref="MouseDevice"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public MouseDevice(SedulousContext uv)
+        public MouseDevice(FrameworkContext uv)
             : base(uv)
         {
 
@@ -54,13 +54,13 @@ namespace Sedulous.Input
         /// <param name="window">The window within which to place the mouse cursor.</param>
         /// <param name="x">The x-coordinate within <paramref name="window"/> at which to position the cursor.</param>
         /// <param name="y">The y-coordinate within <paramref name="window"/> at which to position the cursor.</param>
-        public abstract void WarpToWindow(ISedulousWindow window, Int32 x, Int32 y);
+        public abstract void WarpToWindow(IFrameworkWindow window, Int32 x, Int32 y);
 
         /// <summary>
         /// Sets the mouse cursor's position to the center of the specified window.
         /// </summary>
         /// <param name="window">The window within which to place the mouse cursor.</param>
-        public abstract void WarpToWindowCenter(ISedulousWindow window);
+        public abstract void WarpToWindowCenter(IFrameworkWindow window);
 
         /// <summary>
         /// Sets the mouse cursor's position to the specified point within the application's primary window.
@@ -80,7 +80,7 @@ namespace Sedulous.Input
         /// <param name="window">The window to evaluate.</param>
         /// <returns>The cursor's compositor-space position within the specified 
         /// window, or <see langword="null"/> if the cursor is outside of the window.</returns>
-        public abstract Point2? GetPositionInWindow(ISedulousWindow window);
+        public abstract Point2? GetPositionInWindow(IFrameworkWindow window);
 
         /// <summary>
         /// Gets a value indicating whether the specified button was clicked this frame.
@@ -114,7 +114,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Gets the window that currently contains the mouse cursor.
         /// </summary>
-        public abstract ISedulousWindow Window
+        public abstract IFrameworkWindow Window
         {
             get;
         }
@@ -242,7 +242,7 @@ namespace Sedulous.Input
         /// </summary>
         /// <param name="window">The window in which the input event took place.</param>
         /// <param name="button">The mouse button that was pressed.</param>
-        protected virtual void OnButtonPressed(ISedulousWindow window, MouseButton button) =>
+        protected virtual void OnButtonPressed(IFrameworkWindow window, MouseButton button) =>
             ButtonPressed?.Invoke(window, this, button);
 
         /// <summary>
@@ -250,7 +250,7 @@ namespace Sedulous.Input
         /// </summary>
         /// <param name="window">The window in which the input event took place.</param>
         /// <param name="button">The mouse button that was released.</param>
-        protected virtual void OnButtonReleased(ISedulousWindow window, MouseButton button) =>
+        protected virtual void OnButtonReleased(IFrameworkWindow window, MouseButton button) =>
             ButtonReleased?.Invoke(window, this, button);
 
         /// <summary>
@@ -258,7 +258,7 @@ namespace Sedulous.Input
         /// </summary>
         /// <param name="window">The window in which the input event took place.</param>
         /// <param name="button">The mouse button that was clicked.</param>
-        protected virtual void OnClick(ISedulousWindow window, MouseButton button) =>
+        protected virtual void OnClick(IFrameworkWindow window, MouseButton button) =>
             Click?.Invoke(window, this, button);
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace Sedulous.Input
         /// </summary>
         /// <param name="window">The window in which the input event took place.</param>
         /// <param name="button">The mouse button that was clicked.</param>
-        protected virtual void OnDoubleClick(ISedulousWindow window, MouseButton button) =>
+        protected virtual void OnDoubleClick(IFrameworkWindow window, MouseButton button) =>
             DoubleClick?.Invoke(window, this, button);
 
         /// <summary>
@@ -279,7 +279,7 @@ namespace Sedulous.Input
         /// current position and the x-coordinate of the mouse's previous position.</param>
         /// <param name="dy">The difference between the y-coordinate of the mouse's 
         /// current position and the y-coordinate of the mouse's previous position.</param>
-        protected virtual void OnMoved(ISedulousWindow window, Int32 x, Int32 y, Int32 dx, Int32 dy) =>
+        protected virtual void OnMoved(IFrameworkWindow window, Int32 x, Int32 y, Int32 dx, Int32 dy) =>
             Moved?.Invoke(window, this, x, y, dx, dy);
 
         /// <summary>
@@ -288,7 +288,7 @@ namespace Sedulous.Input
         /// <param name="window">The window in which the input event took place.</param>
         /// <param name="x">The amount that the wheel was scrolled along the horizontal axis.</param>
         /// <param name="y">The amount that the wheel was scrolled along the vertical axis.</param>
-        protected virtual void OnWheelScrolled(ISedulousWindow window, Int32 x, Int32 y) =>
+        protected virtual void OnWheelScrolled(IFrameworkWindow window, Int32 x, Int32 y) =>
             WheelScrolled?.Invoke(window, this, x, y);
     }
 }

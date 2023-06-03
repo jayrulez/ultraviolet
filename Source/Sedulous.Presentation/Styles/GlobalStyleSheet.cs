@@ -11,7 +11,7 @@ namespace Sedulous.Presentation.Styles
         /// Initializes a new instance of the <see cref="GlobalStyleSheet"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        private GlobalStyleSheet(SedulousContext uv)
+        private GlobalStyleSheet(FrameworkContext uv)
             : base(uv)
         {
 
@@ -23,7 +23,7 @@ namespace Sedulous.Presentation.Styles
         /// <returns>The <see cref="GlobalStyleSheet"/> which was created.</returns>
         public static GlobalStyleSheet Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return new GlobalStyleSheet(uv);
         }
 

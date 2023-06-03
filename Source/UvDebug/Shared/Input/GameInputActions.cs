@@ -12,7 +12,7 @@ namespace UvDebug.Input
         /// Initializes a new instance of the GameInputActions class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public GameInputActions(SedulousContext uv)
+        public GameInputActions(FrameworkContext uv)
             : base(uv)
         {
 

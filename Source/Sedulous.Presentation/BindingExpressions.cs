@@ -58,7 +58,7 @@ namespace Sedulous.Presentation
             Object.ReferenceEquals(null, null);
             miObjectEquals = typeof(Object).GetMethod("Equals", BindingFlags.Public | BindingFlags.Static, null, new[] { typeof(Object), typeof(Object) }, null);
 
-            if (SedulousPlatformInfo.IsRuntimeCodeGenerationSupported())
+            if (FrameworkPlatformInfo.IsRuntimeCodeGenerationSupported())
             {
                 Nullable.Equals<Int32>(null, null);
                 miNullableEquals = typeof(Nullable).GetMethods().Where(x => x.Name == "Equals" && x.IsGenericMethod).Single();
@@ -529,10 +529,10 @@ namespace Sedulous.Presentation
             comparerRegistry[typeof(CurveContinuity?)] = new DataBindingComparer<CurveContinuity?>((v1, v2) => v1 == v2);
             comparerRegistry[typeof(CurveLoopType)] = new DataBindingComparer<CurveLoopType>((v1, v2) => v1 == v2);
             comparerRegistry[typeof(CurveLoopType?)] = new DataBindingComparer<CurveLoopType?>((v1, v2) => v1 == v2);
-            comparerRegistry[typeof(SedulousPlatform)] = new DataBindingComparer<SedulousPlatform>((v1, v2) => v1 == v2);
-            comparerRegistry[typeof(SedulousPlatform?)] = new DataBindingComparer<SedulousPlatform?>((v1, v2) => v1 == v2);
-            comparerRegistry[typeof(SedulousSingletonFlags)] = new DataBindingComparer<SedulousSingletonFlags>((v1, v2) => v1 == v2);
-            comparerRegistry[typeof(SedulousSingletonFlags?)] = new DataBindingComparer<SedulousSingletonFlags?>((v1, v2) => v1 == v2);
+            comparerRegistry[typeof(FrameworkPlatform)] = new DataBindingComparer<FrameworkPlatform>((v1, v2) => v1 == v2);
+            comparerRegistry[typeof(FrameworkPlatform?)] = new DataBindingComparer<FrameworkPlatform?>((v1, v2) => v1 == v2);
+            comparerRegistry[typeof(FrameworkSingletonFlags)] = new DataBindingComparer<FrameworkSingletonFlags>((v1, v2) => v1 == v2);
+            comparerRegistry[typeof(FrameworkSingletonFlags?)] = new DataBindingComparer<FrameworkSingletonFlags?>((v1, v2) => v1 == v2);
 
             // Sedulous.Audio
             comparerRegistry[typeof(PlaybackState)] = new DataBindingComparer<PlaybackState>((v1, v2) => v1 == v2);
@@ -607,8 +607,8 @@ namespace Sedulous.Presentation
             comparerRegistry[typeof(Viewport?)] = new DataBindingComparer<Viewport?>((v1, v2) => v1 == v2);
 
             // Sedulous.Graphics.Graphics2D
-            comparerRegistry[typeof(SedulousFontStyle)] = new DataBindingComparer<SedulousFontStyle>((v1, v2) => v1 == v2);
-            comparerRegistry[typeof(SedulousFontStyle?)] = new DataBindingComparer<SedulousFontStyle?>((v1, v2) => v1 == v2);
+            comparerRegistry[typeof(FrameworkFontStyle)] = new DataBindingComparer<FrameworkFontStyle>((v1, v2) => v1 == v2);
+            comparerRegistry[typeof(FrameworkFontStyle?)] = new DataBindingComparer<FrameworkFontStyle?>((v1, v2) => v1 == v2);
             comparerRegistry[typeof(SpriteAnimationID)] = new DataBindingComparer<SpriteAnimationID>((v1, v2) => v1 == v2);
             comparerRegistry[typeof(SpriteAnimationID?)] = new DataBindingComparer<SpriteAnimationID?>((v1, v2) => v1 == v2);
             comparerRegistry[typeof(SpriteAnimationName)] = new DataBindingComparer<SpriteAnimationName>((v1, v2) => v1 == v2);
@@ -649,8 +649,8 @@ namespace Sedulous.Presentation
             comparerRegistry[typeof(SourcedImage?)] = new DataBindingComparer<SourcedImage?>((v1, v2) => v1 == v2);
             comparerRegistry[typeof(SourcedResource<Graphics.Graphics2D.Sprite>)] = new DataBindingComparer<SourcedResource<Graphics.Graphics2D.Sprite>>((v1, v2) => v1 == v2);
             comparerRegistry[typeof(SourcedResource<Graphics.Graphics2D.Sprite>?)] = new DataBindingComparer<SourcedResource<Graphics.Graphics2D.Sprite>?>((v1, v2) => v1 == v2);
-            comparerRegistry[typeof(SourcedResource<SedulousFont>)] = new DataBindingComparer<SourcedResource<SedulousFont>>((v1, v2) => v1 == v2);
-            comparerRegistry[typeof(SourcedResource<SedulousFont>?)] = new DataBindingComparer<SourcedResource<SedulousFont>?>((v1, v2) => v1 == v2);
+            comparerRegistry[typeof(SourcedResource<FrameworkFont>)] = new DataBindingComparer<SourcedResource<FrameworkFont>>((v1, v2) => v1 == v2);
+            comparerRegistry[typeof(SourcedResource<FrameworkFont>?)] = new DataBindingComparer<SourcedResource<FrameworkFont>?>((v1, v2) => v1 == v2);
             comparerRegistry[typeof(SourcedSpriteAnimationID)] = new DataBindingComparer<SourcedSpriteAnimationID>((v1, v2) => v1 == v2);
             comparerRegistry[typeof(SourcedSpriteAnimationID?)] = new DataBindingComparer<SourcedSpriteAnimationID?>((v1, v2) => v1 == v2);
             comparerRegistry[typeof(Thickness)] = new DataBindingComparer<Thickness>((v1, v2) => v1 == v2);
@@ -731,7 +731,7 @@ namespace Sedulous.Presentation
             if (type.IsClass)
                 return GetReferenceComparisonFunction(type);
 
-            if (SedulousPlatformInfo.IsRuntimeCodeGenerationSupported())
+            if (FrameworkPlatformInfo.IsRuntimeCodeGenerationSupported())
             {
                 if (type.GetInterfaces().Where(x => x == typeof(IEquatable<>).MakeGenericType(type)).Any())
                     return GetIEquatableComparisonFunction(type);

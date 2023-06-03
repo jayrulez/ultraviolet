@@ -77,7 +77,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ScrollBar(SedulousContext uv, String name)
+        public ScrollBar(FrameworkContext uv, String name)
             : base(uv, name)
         {
 

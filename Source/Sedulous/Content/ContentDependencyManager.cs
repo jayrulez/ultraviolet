@@ -10,14 +10,14 @@ namespace Sedulous.Content
     /// <summary>
     /// Manages asset dependency relationships for an instance of the <see cref="ContentManager"/> class.
     /// </summary>
-    public class ContentDependencyManager : SedulousResource
+    public class ContentDependencyManager : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentDependencyManager"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="contentManager">The content manager that owns this dependency manager.</param>
-        internal ContentDependencyManager(SedulousContext uv, ContentManager contentManager)
+        internal ContentDependencyManager(FrameworkContext uv, ContentManager contentManager)
             : base(uv)
         {
             Contract.Require(contentManager, nameof(contentManager));
@@ -422,7 +422,7 @@ namespace Sedulous.Content
         {
             get
             {
-                return (Sedulous.Platform == SedulousPlatform.Android || Sedulous.Platform == SedulousPlatform.iOS) ||
+                return (Sedulous.Platform == FrameworkPlatform.Android || Sedulous.Platform == FrameworkPlatform.iOS) ||
                     ContentManager.GloballySuppressDependencyTracking || ContentManager.SuppressDependencyTracking;
             }
         }

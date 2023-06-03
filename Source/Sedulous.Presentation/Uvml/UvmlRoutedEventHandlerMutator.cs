@@ -23,20 +23,20 @@ namespace Sedulous.Presentation.Uvml
         }
 
         /// <inheritdoc/>
-        public override Object InstantiateValue(SedulousContext uv, Object instance, UvmlInstantiationContext context)
+        public override Object InstantiateValue(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
         {
             return revtHandler.Instantiate(uv, context);
         }
 
         /// <inheritdoc/>
-        public override void Mutate(SedulousContext uv, Object instance, UvmlInstantiationContext context)
+        public override void Mutate(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
         {
             var value = InstantiateValue(uv, instance, context);
             Mutate(uv, instance, value, context);
         }
 
         /// <inheritdoc/>
-        public override void Mutate(SedulousContext uv, Object instance, Object value, UvmlInstantiationContext context)
+        public override void Mutate(FrameworkContext uv, Object instance, Object value, UvmlInstantiationContext context)
         {
             var uiElement = instance as UIElement;
             if (uiElement == null)

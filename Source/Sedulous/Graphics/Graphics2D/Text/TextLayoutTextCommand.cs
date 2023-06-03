@@ -46,7 +46,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="lineHeight">The height of the line of text that is being rendered.</param>
         /// <param name="direction">The direction in which the text is oriented.</param>
         /// <returns>A <see cref="Point2"/> that describes the absolute position of the text.</returns>
-        public Point2 GetAbsolutePosition(SedulousFontFace font, Int32 x, Int32 y, Int32 lineWidth, Int32 lineHeight, TextDirection direction)
+        public Point2 GetAbsolutePosition(FrameworkFontFace font, Int32 x, Int32 y, Int32 lineWidth, Int32 lineHeight, TextDirection direction)
         {
             var lineHeightSansDescender = lineHeight + font.Descender;
             var textHeightSansDescender = TextHeight + font.Descender;
@@ -65,7 +65,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="lineHeight">The height of the line of text that is being rendered.</param>
         /// <param name="direction">The direction in which the text is oriented.</param>
         /// <returns>A <see cref="Vector2"/> that describes the absolute position of the text.</returns>
-        public Vector2 GetAbsolutePositionVector(SedulousFontFace font, Single x, Single y, Int32 lineWidth, Int32 lineHeight, TextDirection direction)
+        public Vector2 GetAbsolutePositionVector(FrameworkFontFace font, Single x, Single y, Int32 lineWidth, Int32 lineHeight, TextDirection direction)
         {
             var lineHeightSansDescender = lineHeight + font.Descender;
             var textHeightSansDescender = TextHeight + font.Descender;
@@ -84,7 +84,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="lineHeight">The height of the line of text that is being rendered.</param>
         /// <param name="direction">The direction in which the text is oriented.</param>
         /// <returns>A <see cref="Rectangle"/> that describes the absolute bounds of the text.</returns>
-        public Rectangle GetAbsoluteBounds(SedulousFontFace font, Int32 x, Int32 y, Int32 lineWidth, Int32 lineHeight, TextDirection direction)
+        public Rectangle GetAbsoluteBounds(FrameworkFontFace font, Int32 x, Int32 y, Int32 lineWidth, Int32 lineHeight, TextDirection direction)
         {
             var lineHeightSansDescender = lineHeight + font.Descender;
             var textHeightSansDescender = TextHeight + font.Descender;

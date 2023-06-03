@@ -91,7 +91,7 @@ namespace Sedulous.Presentation
                 {
                     if (boundingBoxImageTexture == null)
                     {
-                        boundingBoxImageTexture = new SedulousSingleton<Texture2D>(SedulousSingletonFlags.DisabledInServiceMode, uv =>
+                        boundingBoxImageTexture = new FrameworkSingleton<Texture2D>(FrameworkSingletonFlags.DisabledInServiceMode, uv =>
                         {
                             var texture = Texture2D.CreateTexture(3, 3);
                             texture.SetData(new[] { Color.White, Color.White, Color.White, Color.White, Color.Transparent, Color.White, Color.White, Color.White, Color.White });
@@ -105,7 +105,7 @@ namespace Sedulous.Presentation
         }
 
         // Diagnostics resources.
-        private static SedulousSingleton<Texture2D> boundingBoxImageTexture;
+        private static FrameworkSingleton<Texture2D> boundingBoxImageTexture;
         private static TextureImage boundingBoxImage;
     }
 }

@@ -19,7 +19,7 @@ namespace Sedulous.Platform
         /// <returns>The instance of <see cref="MessageBoxService"/> that was created.</returns>
         public static MessageBoxService Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<MessageBoxServiceFactory>()();
         }
 

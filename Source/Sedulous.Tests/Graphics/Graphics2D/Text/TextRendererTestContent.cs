@@ -39,8 +39,8 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             Contract.Require(content, nameof(content));
 
             this.SpriteBatch = SpriteBatch.Create();
-            this.Font = content.Load<SedulousFont>(FontPath ?? "Fonts/Garamond");
-            this.FontAlternate = content.Load<SedulousFont>(FontPath ?? "Fonts/SegoeUI");
+            this.Font = content.Load<FrameworkFont>(FontPath ?? "Fonts/Garamond");
+            this.FontAlternate = content.Load<FrameworkFont>(FontPath ?? "Fonts/SegoeUI");
 
             this.TextIcons = content.Load<Sprite>(IconPath ?? "Sprites/InterfaceIcons");
 
@@ -65,8 +65,8 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             Contract.Require(content, nameof(content));
 
             this.SpriteBatch = SpriteBatch.Create();
-            this.Font = content.Load<SedulousFont>(FontPath ?? "Fonts/FiraSans");
-            this.FontAlternate = content.Load<SedulousFont>(FontPath ?? "Fonts/SegoeUI");
+            this.Font = content.Load<FrameworkFont>(FontPath ?? "Fonts/FiraSans");
+            this.FontAlternate = content.Load<FrameworkFont>(FontPath ?? "Fonts/SegoeUI");
 
             this.TextIcons = content.Load<Sprite>(IconPath ?? "Sprites/InterfaceIcons");
 
@@ -89,8 +89,8 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         }
 
         public SpriteBatch SpriteBatch { get; private set; }
-        public SedulousFont Font { get; private set; }
-        public SedulousFont FontAlternate { get; private set; }
+        public FrameworkFont Font { get; private set; }
+        public FrameworkFont FontAlternate { get; private set; }
         public String FontPath { get; set; }
         public String IconPath { get; set; }
         public String Text { get; private set; }

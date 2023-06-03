@@ -11,7 +11,7 @@ namespace Sedulous.Graphics
     /// <param name="height">The render buffer's height in pixels.</param>
     /// <param name="options">The render buffer's configuration options.</param>
     /// <returns>The instance of <see cref="RenderBuffer2D"/> that was created.</returns>
-    public delegate RenderBuffer2D RenderBuffer2DFactory(SedulousContext uv, RenderBufferFormat format, Int32 width, Int32 height, RenderBufferOptions options);
+    public delegate RenderBuffer2D RenderBuffer2DFactory(FrameworkContext uv, RenderBufferFormat format, Int32 width, Int32 height, RenderBufferOptions options);
 
     /// <summary>
     /// Represents a two-dimensional render buffer containing color, depth, or stencil data.
@@ -22,7 +22,7 @@ namespace Sedulous.Graphics
         /// Initializes a new instance of the <see cref="RenderBuffer2D"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public RenderBuffer2D(SedulousContext uv)
+        public RenderBuffer2D(FrameworkContext uv)
             : base(uv)
         {
 

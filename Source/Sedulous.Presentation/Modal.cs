@@ -37,7 +37,7 @@ namespace Sedulous.Presentation
         /// <param name="modal">The modal dialog box to open.</param>
         /// <param name="duration">The amount of time over which to transition the modal dialog 
         /// box's state, or <see langword="null"/> to use the default transition time.</param>
-        public static void ShowDialog(ISedulousWindow window, Modal modal, TimeSpan? duration = null)
+        public static void ShowDialog(IFrameworkWindow window, Modal modal, TimeSpan? duration = null)
         {
             Contract.Require(modal, nameof(modal));
 
@@ -66,7 +66,7 @@ namespace Sedulous.Presentation
         /// <param name="duration">The amount of time over which to transition the modal dialog 
         /// box's state, or <see langword="null"/> to use the default transition time.</param>
         /// <returns>A <see cref="ModalTask{T}"/> that completes when the modal dialog box is closed.</returns>
-        public static ModalTask<Boolean?> ShowDialogAsync(ISedulousWindow window, Modal modal, TimeSpan? duration = null)
+        public static ModalTask<Boolean?> ShowDialogAsync(IFrameworkWindow window, Modal modal, TimeSpan? duration = null)
         {
             Contract.Require(modal, nameof(modal));
 
@@ -182,7 +182,7 @@ namespace Sedulous.Presentation
         /// </summary>
         /// <param name="window">The window in which to show the modal.</param>
         /// <param name="duration">The amount of time over which to transition the screen's state, or <see langword="null"/> to use the default transition time.</param>
-        private void Show(ISedulousWindow window, TimeSpan? duration = null)
+        private void Show(IFrameworkWindow window, TimeSpan? duration = null)
         {
             var screen = Screen;
             if (screen == null || open)
@@ -204,7 +204,7 @@ namespace Sedulous.Presentation
         /// <param name="window">The window in which to show the modal.</param>
         /// <param name="duration">The amount of time over which to transition the screen's state, or <see langword="null"/> to use the default transition time.</param>
         /// <returns>A <see cref="Task"/> which completes when the modal is closed.</returns>
-        private ModalTask<Boolean?> ShowAsync(ISedulousWindow window, TimeSpan? duration = null)
+        private ModalTask<Boolean?> ShowAsync(IFrameworkWindow window, TimeSpan? duration = null)
         {
             var screen = Screen;
             if (screen == null)
@@ -234,7 +234,7 @@ namespace Sedulous.Presentation
         /// <param name="screen">The screen on which the modal will be opened.</param>
         /// <param name="duration">The amount of time over which to transition the screen's state, or <see langword="null"/> to use the default transition time.</param>
         /// <returns>A <see cref="Task"/> which completes when the modal is closed.</returns>
-        private void Open(ISedulousWindow window, UIScreen screen, TimeSpan? duration = null)
+        private void Open(IFrameworkWindow window, UIScreen screen, TimeSpan? duration = null)
         {
             var screenStack = screen.Sedulous.GetUI().GetScreens(window);
 

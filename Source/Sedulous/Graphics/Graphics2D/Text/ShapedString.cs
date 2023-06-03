@@ -18,7 +18,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="script">A <see cref="TextScript"/> value specifying which script which this string contains.</param>
         /// <param name="direction">A <see cref="TextDirection"/> value specifying the direction in which this string should be written.</param>
         /// <param name="value">An array of <see cref="ShapedChar"/> values.</param>
-        public ShapedString(SedulousFontFace fontFace, String language, TextScript script, TextDirection direction, ShapedChar[] value)
+        public ShapedString(FrameworkFontFace fontFace, String language, TextScript script, TextDirection direction, ShapedChar[] value)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.Require(language, nameof(language));
@@ -41,7 +41,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="value">An array of <see cref="ShapedChar"/> values.</param>
         /// <param name="startIndex">The starting position within <paramref name="value"/>.</param>
         /// <param name="count">The number of characters within <paramref name="value"/> to use.</param>
-        public ShapedString(SedulousFontFace fontFace, String language, TextScript script, TextDirection direction, ShapedChar[] value, Int32 startIndex, Int32 count)
+        public ShapedString(FrameworkFontFace fontFace, String language, TextScript script, TextDirection direction, ShapedChar[] value, Int32 startIndex, Int32 count)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.Require(language, nameof(language));
@@ -124,7 +124,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Gets the font face with which the string was created.
         /// </summary>
-        public SedulousFontFace FontFace { get; }
+        public FrameworkFontFace FontFace { get; }
 
         /// <summary>
         /// Gets the name of the language which this string contains.

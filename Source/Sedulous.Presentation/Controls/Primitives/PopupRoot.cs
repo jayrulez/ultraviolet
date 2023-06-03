@@ -14,7 +14,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="resized">The action to perform when the popup content is resized.</param>
-        public PopupRoot(SedulousContext uv, Action resized)
+        public PopupRoot(FrameworkContext uv, Action resized)
             : base(uv, null)
         {
             this.resized = resized;

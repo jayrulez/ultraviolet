@@ -10,12 +10,12 @@ namespace Sedulous.Graphics
     /// <param name="itype">The index element type.</param>
     /// <param name="icount">The index element count.</param>
     /// <returns>The instance of <see cref="IndexBuffer"/> that was created.</returns>
-    public delegate IndexBuffer IndexBufferFactory(SedulousContext uv, IndexBufferElementType itype, Int32 icount);
+    public delegate IndexBuffer IndexBufferFactory(FrameworkContext uv, IndexBufferElementType itype, Int32 icount);
 
     /// <summary>
     /// Represents an index buffer.
     /// </summary>
-    public abstract class IndexBuffer : SedulousResource
+    public abstract class IndexBuffer : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IndexBuffer"/> class.
@@ -23,7 +23,7 @@ namespace Sedulous.Graphics
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="itype">The index element type.</param>
         /// <param name="icount">The index element count.</param>
-        protected IndexBuffer(SedulousContext uv, IndexBufferElementType itype, Int32 icount)
+        protected IndexBuffer(FrameworkContext uv, IndexBufferElementType itype, Int32 icount)
             : base(uv)
         {
             Contract.EnsureRange(icount > 0, nameof(icount));
@@ -42,7 +42,7 @@ namespace Sedulous.Graphics
         {
             Contract.EnsureRange(icount > 0, nameof(icount));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<IndexBufferFactory>()(uv, itype, icount);
         }
 

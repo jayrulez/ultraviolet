@@ -3,14 +3,14 @@
     /// <summary>
     /// Represents a bitmap font used for rendering text.
     /// </summary>
-    public class SpriteFont : SedulousFont<SpriteFontFace>
+    public class SpriteFont : FrameworkFont<SpriteFontFace>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteFont"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="face">The <see cref="SpriteFontFace"/> that constitutes the font.</param>
-        public SpriteFont(SedulousContext uv, SpriteFontFace face)
+        public SpriteFont(FrameworkContext uv, SpriteFontFace face)
             : this(uv, face, face, face, face)
         { }
 
@@ -22,7 +22,7 @@
         /// <param name="bold">The <see cref="SpriteFontFace"/> that represents the font's bold style.</param>
         /// <param name="italic">The <see cref="SpriteFontFace"/> that represents the font's italic style.</param>
         /// <param name="boldItalic">The <see cref="SpriteFontFace"/> that represents the font's bold/italic style.</param>
-        public SpriteFont(SedulousContext uv, SpriteFontFace regular, SpriteFontFace bold, SpriteFontFace italic, SpriteFontFace boldItalic)
+        public SpriteFont(FrameworkContext uv, SpriteFontFace regular, SpriteFontFace bold, SpriteFontFace italic, SpriteFontFace boldItalic)
             : base(uv, regular, bold, italic, boldItalic)
         { }      
     }

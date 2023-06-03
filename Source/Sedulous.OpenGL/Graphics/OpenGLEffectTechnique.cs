@@ -15,7 +15,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The technique's name.</param>
         /// <param name="passes">The technique's effect passes.</param>
-        public OpenGLEffectTechnique(SedulousContext uv, String name, IEnumerable<OpenGLEffectPass> passes)
+        public OpenGLEffectTechnique(FrameworkContext uv, String name, IEnumerable<OpenGLEffectPass> passes)
             : base(uv)
         {
             this.Name = name ?? String.Empty;

@@ -19,13 +19,13 @@ namespace Sedulous.FMOD.Audio
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="file">The path to the file from which to load the sound effect.</param>
-        public FMODSoundEffect(SedulousContext uv, String file)
+        public FMODSoundEffect(FrameworkContext uv, String file)
             : base(uv)
         {
             Contract.RequireNotEmpty(file, nameof(file));
 
             var result = default(FMOD_RESULT);
-            var system = ((FMODSedulousAudio)uv.GetAudio()).System;
+            var system = ((FMODAudioSubsystem)uv.GetAudio()).System;
 
             fixed (FMOD_SOUND** psound = &sound)
             {
@@ -53,7 +53,7 @@ namespace Sedulous.FMOD.Audio
 
             var result = default(FMOD_RESULT);
 
-            var system = ((FMODSedulousAudio)Sedulous.GetAudio()).System;
+            var system = ((FMODAudioSubsystem)Sedulous.GetAudio()).System;
             var channel = default(FMOD_CHANNEL*);
             var channelgroup = ChannelGroup;
 
@@ -69,7 +69,7 @@ namespace Sedulous.FMOD.Audio
 
             var result = default(FMOD_RESULT);
 
-            var system = ((FMODSedulousAudio)Sedulous.GetAudio()).System;
+            var system = ((FMODAudioSubsystem)Sedulous.GetAudio()).System;
             var channel = default(FMOD_CHANNEL*);
             var channelgroup = ChannelGroup;
 
@@ -105,7 +105,7 @@ namespace Sedulous.FMOD.Audio
         /// <summary>
         /// Gets the FMOD channel group for this object.
         /// </summary>
-        internal FMOD_CHANNELGROUP* ChannelGroup => ((FMODSedulousAudio)Sedulous.GetAudio()).ChannelGroupSoundEffects;
+        internal FMOD_CHANNELGROUP* ChannelGroup => ((FMODAudioSubsystem)Sedulous.GetAudio()).ChannelGroupSoundEffects;
 
         /// <inheritdoc/>
         protected override void Dispose(Boolean disposing)

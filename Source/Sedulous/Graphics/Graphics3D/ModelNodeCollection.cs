@@ -5,7 +5,7 @@ namespace Sedulous.Graphics.Graphics3D
     /// <summary>
     /// Represents a collection of <see cref="ModelNode"/> instances.
     /// </summary>
-    public sealed class ModelNodeCollection : SedulousCollection<ModelNode>
+    public sealed class ModelNodeCollection : FrameworkCollection<ModelNode>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelNodeCollection"/> class.

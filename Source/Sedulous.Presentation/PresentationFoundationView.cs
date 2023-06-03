@@ -31,11 +31,11 @@ namespace Sedulous.Presentation
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="panel">The panel that is creating the view.</param>
         /// <param name="viewModelType">The view's associated model type.</param>
-        public PresentationFoundationView(SedulousContext uv, UIPanel panel, Type viewModelType)
+        public PresentationFoundationView(FrameworkContext uv, UIPanel panel, Type viewModelType)
             : base(uv, panel, viewModelType)
         {
             if (uv.IsRunningInServiceMode)
-                throw new NotSupportedException(SedulousStrings.NotSupportedInServiceMode);
+                throw new NotSupportedException(FrameworkStrings.NotSupportedInServiceMode);
 
             var textShaperFactory = Sedulous.TryGetFactoryMethod<TextShaperFactory>();
             if (textShaperFactory != null)
@@ -81,7 +81,7 @@ namespace Sedulous.Presentation
         /// <param name="uiPanelDefinition">The <see cref="UIPanelDefinition"/> that defines the view's containing panel.</param>
         /// <param name="vmfactory">A view model factory which is used to create the view's initial view model, or <see langword="null"/> to skip view model creation.</param>
         /// <returns>The <see cref="PresentationFoundationView"/> that was loaded from the specified XML document.</returns>
-        public static PresentationFoundationView Load(SedulousContext uv, UIPanel uiPanel, UIPanelDefinition uiPanelDefinition, UIViewModelFactory vmfactory)
+        public static PresentationFoundationView Load(FrameworkContext uv, UIPanel uiPanel, UIPanelDefinition uiPanelDefinition, UIViewModelFactory vmfactory)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(uiPanel, nameof(uiPanel));
@@ -126,13 +126,13 @@ namespace Sedulous.Presentation
         }
 
         /// <inheritdoc/>
-        public override void Draw(SedulousTime time, SpriteBatch spriteBatch, Single opacity)
+        public override void Draw(FrameworkTime time, SpriteBatch spriteBatch, Single opacity)
         {
             Contract.Require(time, nameof(time));
             Contract.Require(spriteBatch, nameof(spriteBatch));
 
             if (Sedulous.IsRunningInServiceMode)
-                throw new NotSupportedException(SedulousStrings.NotSupportedInServiceMode);
+                throw new NotSupportedException(FrameworkStrings.NotSupportedInServiceMode);
 
             var upf = Sedulous.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.BeginDraw();
@@ -173,7 +173,7 @@ namespace Sedulous.Presentation
         }
 
         /// <inheritdoc/>
-        public override void Update(SedulousTime time)
+        public override void Update(FrameworkTime time)
         {
             Contract.Require(time, nameof(time));
 
@@ -1126,7 +1126,7 @@ namespace Sedulous.Presentation
         }
 
         /// <inheritdoc/>
-        protected override void OnViewWindowChanged(ISedulousWindow oldWindow, ISedulousWindow newWindow)
+        protected override void OnViewWindowChanged(IFrameworkWindow oldWindow, IFrameworkWindow newWindow)
         {
             if (newWindow == null)
             {
@@ -1506,7 +1506,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Handles user input by raising input messages on the elements in the view.
         /// </summary>
-        private void HandleUserInput(SedulousTime time)
+        private void HandleUserInput(FrameworkTime time)
         {
             var isInputPossibleThisFrame = IsInputEnabledAndAllowed;
             if (isInputPossibleThisFrame && !wasInputPossibleLastFrame)
@@ -1542,7 +1542,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Handles mouse input.
         /// </summary>
-        private void HandleMouseInput(SedulousTime time)
+        private void HandleMouseInput(FrameworkTime time)
         {
             mouseCursorTracker.Update();
             UpdateToolTip(time);
@@ -1570,7 +1570,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Updates the display state of the view's tooltip.
         /// </summary>
-        private void UpdateToolTip(SedulousTime time)
+        private void UpdateToolTip(FrameworkTime time)
         {
             if (toolTipElement != null)
             {
@@ -1591,7 +1591,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Updates the state of the view's tooltip while the tooltip popup is closed.
         /// </summary>
-        private void UpdateToolTip_PopupIsClosed(SedulousTime time, UIElement element)
+        private void UpdateToolTip_PopupIsClosed(FrameworkTime time, UIElement element)
         {
             if (toolTipWasShownForCurrentElement)
                 return;
@@ -1617,7 +1617,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Updates the state of the view's tooltip while the tooltip popup is open.
         /// </summary>
-        private void UpdateToolTip_PopupIsOpen(SedulousTime time, UIElement element)
+        private void UpdateToolTip_PopupIsOpen(FrameworkTime time, UIElement element)
         {
             timeSinceToolTipWasOpened += time.ElapsedTime.TotalMilliseconds;
             if (timeSinceToolTipWasOpened >= ToolTipService.GetShowDuration(element))
@@ -1829,7 +1829,7 @@ namespace Sedulous.Presentation
         /// <returns><see langword="true"/> if the element's tooltip was displayed; otherwise, <see langword="false"/>.</returns>
         private Boolean ShowToolTipForElement(UIElement uiToolTipElement)
         {
-            if (Sedulous.Platform == SedulousPlatform.Android || Sedulous.Platform == SedulousPlatform.iOS)
+            if (Sedulous.Platform == FrameworkPlatform.Android || Sedulous.Platform == FrameworkPlatform.iOS)
                 return false;
 
             var content = ToolTipService.GetToolTip(uiToolTipElement);
@@ -1992,7 +1992,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Handles the <see cref="KeyboardDevice.KeyPressed"/> event.
         /// </summary>
-        private void keyboard_KeyPressed(ISedulousWindow window, KeyboardDevice device, Key key, Boolean ctrl, Boolean alt, Boolean shift, Boolean repeat)
+        private void keyboard_KeyPressed(IFrameworkWindow window, KeyboardDevice device, Key key, Boolean ctrl, Boolean alt, Boolean shift, Boolean repeat)
         {
             if (!IsInputEnabledAndAllowed)
                 return;
@@ -2039,7 +2039,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Handles the <see cref="KeyboardDevice.KeyReleased"/> event.
         /// </summary>
-        private void keyboard_KeyReleased(ISedulousWindow window, KeyboardDevice device, Key key)
+        private void keyboard_KeyReleased(IFrameworkWindow window, KeyboardDevice device, Key key)
         {
             if (!IsInputEnabledAndAllowed)
                 return;
@@ -2067,7 +2067,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Handles the <see cref="KeyboardDevice.TextInput"/> event.
         /// </summary>
-        private void keyboard_TextInput(ISedulousWindow window, KeyboardDevice device)
+        private void keyboard_TextInput(IFrameworkWindow window, KeyboardDevice device)
         {
             if (!IsInputEnabledAndAllowed)
                 return;
@@ -2093,7 +2093,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Handles the <see cref="KeyboardDevice.TextEditing"/> event.
         /// </summary>
-        private void keyboard_TextEditing(ISedulousWindow window, KeyboardDevice device)
+        private void keyboard_TextEditing(IFrameworkWindow window, KeyboardDevice device)
         {
             if (!IsInputEnabledAndAllowed)
                 return;
@@ -2119,7 +2119,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Handles the <see cref="MouseDevice.Moved"/> event.
         /// </summary>
-        private void mouse_Moved(ISedulousWindow window, MouseDevice device, Int32 x, Int32 y, Int32 dx, Int32 dy)
+        private void mouse_Moved(IFrameworkWindow window, MouseDevice device, Int32 x, Int32 y, Int32 dx, Int32 dy)
         {
             if (window != Window || !IsInputEnabledAndAllowed)
                 return;
@@ -2153,7 +2153,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Handles the <see cref="MouseDevice.ButtonPressed"/> event.
         /// </summary>
-        private void mouse_ButtonPressed(ISedulousWindow window, MouseDevice device, MouseButton button)
+        private void mouse_ButtonPressed(IFrameworkWindow window, MouseDevice device, MouseButton button)
         {
             if (window != Window || !IsInputEnabledAndAllowed)
                 return;
@@ -2184,7 +2184,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Handles the <see cref="MouseDevice.ButtonReleased"/> event.
         /// </summary>
-        private void mouse_ButtonReleased(ISedulousWindow window, MouseDevice device, MouseButton button)
+        private void mouse_ButtonReleased(IFrameworkWindow window, MouseDevice device, MouseButton button)
         {
             if (window != Window || !IsInputEnabledAndAllowed)
                 return;
@@ -2213,7 +2213,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Handles the <see cref="MouseDevice.Click"/> event.
         /// </summary>
-        private void mouse_Click(ISedulousWindow window, MouseDevice device, MouseButton button)
+        private void mouse_Click(IFrameworkWindow window, MouseDevice device, MouseButton button)
         {
             if (window != Window || !IsInputEnabledAndAllowed)
                 return;
@@ -2240,7 +2240,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Handles the <see cref="MouseDevice.DoubleClick"/> event.
         /// </summary>
-        private void mouse_DoubleClick(ISedulousWindow window, MouseDevice device, MouseButton button)
+        private void mouse_DoubleClick(IFrameworkWindow window, MouseDevice device, MouseButton button)
         {
             if (window != Window || !IsInputEnabledAndAllowed)
                 return;
@@ -2267,7 +2267,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Handles the <see cref="MouseDevice.WheelScrolled"/> event.
         /// </summary>
-        private void mouse_WheelScrolled(ISedulousWindow window, MouseDevice device, Int32 x, Int32 y)
+        private void mouse_WheelScrolled(IFrameworkWindow window, MouseDevice device, Int32 x, Int32 y)
         {
             if (window != Window || !IsInputEnabledAndAllowed)
                 return;
@@ -2295,7 +2295,7 @@ namespace Sedulous.Presentation
         }
 
         /// <summary>
-        /// Handles the <see cref="ISedulousInput.GamePadConnected"/> event.
+        /// Handles the <see cref="IInputSubsystem.GamePadConnected"/> event.
         /// </summary>
         private void gamePad_GamePadConnected(GamePadDevice device, Int32 playerIndex)
         {
@@ -2306,7 +2306,7 @@ namespace Sedulous.Presentation
         }
 
         /// <summary>
-        /// Handles the <see cref="ISedulousInput.GamePadDisconnected"/> event.
+        /// Handles the <see cref="IInputSubsystem.GamePadDisconnected"/> event.
         /// </summary>
         private void gamePad_GamePadDisconnected(GamePadDevice device, Int32 playerIndex)
         {
@@ -2669,7 +2669,7 @@ namespace Sedulous.Presentation
         }
 
         /// <summary>
-        /// Handles the <see cref="ISedulousInput.TouchDeviceRegistered"/> event.
+        /// Handles the <see cref="IInputSubsystem.TouchDeviceRegistered"/> event.
         /// </summary>
         private void Input_TouchDeviceRegistered(TouchDevice device)
         {

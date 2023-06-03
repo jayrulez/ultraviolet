@@ -45,7 +45,7 @@ namespace Sedulous.Graphics.Graphics3D
         /// </summary>
         /// <param name="time">Time elapsed since the last update.</param>
         /// <returns><see langword="true"/> if the controller's animation state was updated; otherwise, <see langword="false"/>.</returns>
-        public Boolean Update(SedulousTime time)
+        public Boolean Update(FrameworkTime time)
         {
             Contract.Require(time, nameof(time));
 

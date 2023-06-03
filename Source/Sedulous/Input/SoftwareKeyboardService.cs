@@ -19,7 +19,7 @@ namespace Sedulous.Input
         /// <returns>The instance of <see cref="SoftwareKeyboardService"/> that was created.</returns>
         public static SoftwareKeyboardService Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<SoftwareKeyboardServiceFactory>()();
         }
 
@@ -43,22 +43,22 @@ namespace Sedulous.Input
 
         /// <summary>
         /// Informs the Sedulous context that the software keyboard is being shown by publishing
-        /// a <see cref="SedulousMessages.SoftwareKeyboardShown"/> message.
+        /// a <see cref="FrameworkMessages.SoftwareKeyboardShown"/> message.
         /// </summary>
         protected void OnShowingSoftwareKeyboard()
         {
-            var uv = SedulousContext.DemandCurrent();
-            uv.Messages.Publish(SedulousMessages.SoftwareKeyboardShown, null);
+            var uv = FrameworkContext.DemandCurrent();
+            uv.Messages.Publish(FrameworkMessages.SoftwareKeyboardShown, null);
         }
 
         /// <summary>
         /// Informs the Sedulous context that the software keyboard is being hidden by publishing
-        /// a <see cref="SedulousMessages.SoftwareKeyboardHidden"/> message.
+        /// a <see cref="FrameworkMessages.SoftwareKeyboardHidden"/> message.
         /// </summary>
         protected void OnHidingSoftwareKeyboard()
         {
-            var uv = SedulousContext.DemandCurrent();
-            uv.Messages.Publish(SedulousMessages.SoftwareKeyboardHidden, null);
+            var uv = FrameworkContext.DemandCurrent();
+            uv.Messages.Publish(FrameworkMessages.SoftwareKeyboardHidden, null);
         }
     }
 }

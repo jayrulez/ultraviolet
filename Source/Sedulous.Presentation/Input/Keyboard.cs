@@ -933,7 +933,7 @@ namespace Sedulous.Presentation.Input
         }
 
         // Represents the device state of the current Sedulous context.
-        private static readonly SedulousSingleton<KeyboardState> keyboardState = 
-            new SedulousSingleton<KeyboardState>(uv => new KeyboardState(uv));
+        private static readonly FrameworkSingleton<KeyboardState> keyboardState = 
+            new FrameworkSingleton<KeyboardState>(uv => new KeyboardState(uv));
     }
 }

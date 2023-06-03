@@ -7,14 +7,14 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Represents a vertex shader.
     /// </summary>
-    public unsafe sealed class OpenGLVertexShader : SedulousResource, IOpenGLResource
+    public unsafe sealed class OpenGLVertexShader : FrameworkResource, IOpenGLResource
     {
         /// <summary>
         /// Initializes a new instance of the OpenGLVertexShader class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="source">The shader source.</param>
-        public OpenGLVertexShader(SedulousContext uv, ShaderSource[] source)
+        public OpenGLVertexShader(FrameworkContext uv, ShaderSource[] source)
             : base(uv)
         {
             Contract.Require(source, nameof(source));
@@ -40,7 +40,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="source">The shader source.</param>
-        public OpenGLVertexShader(SedulousContext uv, ShaderSource source)
+        public OpenGLVertexShader(FrameworkContext uv, ShaderSource source)
             : this(uv, new[] { source })
         {
 

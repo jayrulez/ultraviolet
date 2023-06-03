@@ -9,10 +9,10 @@ namespace Sedulous.SDL2
     /// <summary>
     /// Initializes factory methods for the SDL implementation of the graphics subsystem.
     /// </summary>
-    public sealed class SDLFactoryInitializer : ISedulousFactoryInitializer
+    public sealed class SDLFactoryInitializer : IFrameworkFactoryInitializer
     {
         /// <inheritdoc/>
-        public void Initialize(SedulousContext owner, SedulousFactory factory)
+        public void Initialize(FrameworkContext owner, FrameworkFactory factory)
         {
             // Core classes.
             factory.SetFactoryMethod<PlatformNativeSurfaceFactory>((source) => new SDL2PlatformNativeSurface(source));

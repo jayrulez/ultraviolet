@@ -87,7 +87,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// </summary>
         /// <param name="name">The name of the font to register.</param>
         /// <param name="font">The font to register.</param>
-        public void RegisterFont(String name, SedulousFont font)
+        public void RegisterFont(String name, FrameworkFont font)
         {
             Contract.RequireNotEmpty(name, nameof(name));
             Contract.Require(font, nameof(font));
@@ -228,7 +228,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
             Contract.Require(output, nameof(output));
 
             if (settings.Font == null)
-                throw new ArgumentException(SedulousStrings.InvalidLayoutSettings);
+                throw new ArgumentException(FrameworkStrings.InvalidLayoutSettings);
 
             var state = new LayoutState() { LineInfoCommandIndex = 1 };
 
@@ -255,14 +255,14 @@ namespace Sedulous.Graphics.Graphics2D.Text
                 PrepareShapingBuffers(output, ref state);
             }
 
-            var bold = (settings.Style == SedulousFontStyle.Bold || settings.Style == SedulousFontStyle.BoldItalic);
-            var italic = (settings.Style == SedulousFontStyle.Italic || settings.Style == SedulousFontStyle.BoldItalic);
+            var bold = (settings.Style == FrameworkFontStyle.Bold || settings.Style == FrameworkFontStyle.BoldItalic);
+            var italic = (settings.Style == FrameworkFontStyle.Italic || settings.Style == FrameworkFontStyle.BoldItalic);
 
             if (settings.InitialLayoutStyle != null)
                 PrepareInitialStyle(output, ref bold, ref italic, ref settings);
 
             var currentFont = settings.Font;
-            var currentFontFace = settings.Font.GetFace(SedulousFontStyle.Regular);
+            var currentFontFace = settings.Font.GetFace(FrameworkFontStyle.Regular);
 
             var index = 0;
             var processing = true;
@@ -274,7 +274,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
 
                 var token = input[index];
 
-                currentFontFace = default(SedulousFontFace);
+                currentFontFace = default(FrameworkFontFace);
                 currentFont = GetCurrentFont(ref settings, bold, italic, out currentFontFace);
 
                 switch (token.TokenType)
@@ -341,7 +341,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
                             ProcessCustomCommandToken(output, ref token, ref state, ref index, ignoreCustomCommands);
                             break;
                         }
-                        else throw new InvalidOperationException(SedulousStrings.UnrecognizedLayoutCommand.Format(token.TokenType));
+                        else throw new InvalidOperationException(FrameworkStrings.UnrecognizedLayoutCommand.Format(token.TokenType));
                 }
             }
 
@@ -357,7 +357,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// Scans the specified token for glyphs which cannot be represented by the specified font and returns the length of the text
         /// up to the point where the first such glyph occurs.
         /// </summary>
-        private Int32 ScanForUnrepresentableGlyphs(SedulousFontFace primaryFont, SedulousFontFace activeFont,
+        private Int32 ScanForUnrepresentableGlyphs(FrameworkFontFace primaryFont, FrameworkFontFace activeFont,
             ref TextParserToken token, Int32 start, ref FallbackFontInfo? fallback, out Boolean changed)
         {
             var c = 0;
@@ -475,7 +475,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         private void PrepareShapingBuffers(TextLayoutCommandStream output, ref LayoutState state)
         {
             if (shaper == null)
-                throw new InvalidOperationException(SedulousStrings.TextShaperNotRegistered);
+                throw new InvalidOperationException(FrameworkStrings.TextShaperNotRegistered);
 
             if (shapedTokenBuffer == null)
                 shapedTokenBuffer = new ShapedStringBuilder();
@@ -493,7 +493,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Shapes the specified token's text and places it into the token buffer.
         /// </summary>
-        private void ShapeToken(SedulousFontFace font, ref TextParserToken token, Int32 start, ref TextLayoutSettings settings)
+        private void ShapeToken(FrameworkFontFace font, ref TextParserToken token, Int32 start, ref TextLayoutSettings settings)
         {
             var substr = token.Text.Substring(start);
 
@@ -508,7 +508,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Shapes the specified text and places it into the measurement buffer.
         /// </summary>
-        private void ShapeMeasuredText(SedulousFontFace font, StringSegment text, ref TextLayoutSettings settings)
+        private void ShapeMeasuredText(FrameworkFontFace font, StringSegment text, ref TextLayoutSettings settings)
         {
             shaper.Clear();
             shaper.SetUnicodeProperties(settings.Direction, settings.Script, settings.Language);
@@ -521,7 +521,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Shapes the specified text and places it into the output buffer.
         /// </summary>
-        private void ShapeEmittedText(SedulousFontFace font, ref TextLayoutSettings settings, Int32 start, Int32 length, TextLayoutCommandStream output)
+        private void ShapeEmittedText(FrameworkFontFace font, ref TextLayoutSettings settings, Int32 start, Int32 length, TextLayoutCommandStream output)
         {
             var buffer = output.GetShapedStringBuilder();
             var text = CreateStringSegmentFromCurrentSource(start, length);
@@ -535,7 +535,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Processes a parser token with type <see cref="TextParserTokenType.Text"/>.
         /// </summary>
-        private Boolean ProcessTextToken(TextParserTokenStream input, TextLayoutCommandStream output, SedulousFontFace currentFontFace,
+        private Boolean ProcessTextToken(TextParserTokenStream input, TextLayoutCommandStream output, FrameworkFontFace currentFontFace,
             ref TextParserToken token, ref LayoutState state, ref TextLayoutSettings settings, ref Int32 index)
         {
             if (token.IsNewLine)
@@ -829,10 +829,10 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// Pushes a font onto the font stack.
         /// </summary>
         /// <param name="font">The font to push onto the stack.</param>
-        private void PushFont(SedulousFont font)
+        private void PushFont(FrameworkFont font)
         {
             var scope = styleStack.Count;
-            fontStack.Push(new TextStyleScoped<SedulousFont>(font, scope));
+            fontStack.Push(new TextStyleScoped<FrameworkFont>(font, scope));
         }
 
         /// <summary>
@@ -889,7 +889,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Accumulates sequential text tokens into a single text command.
         /// </summary>
-        private Boolean AccumulateText(TextParserTokenStream input, TextLayoutCommandStream output, SedulousFontFace font, ref Int32 index, ref LayoutState state, ref TextLayoutSettings settings)
+        private Boolean AccumulateText(TextParserTokenStream input, TextLayoutCommandStream output, FrameworkFontFace font, ref Int32 index, ref LayoutState state, ref TextLayoutSettings settings)
         {
             var hyphenate = (settings.Options & TextLayoutOptions.Hyphenate) == TextLayoutOptions.Hyphenate;
             var shape = (settings.Options & TextLayoutOptions.Shape) == TextLayoutOptions.Shape;
@@ -1166,7 +1166,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Adds a <see cref="TextLayoutCommandType.Text"/> command to the output stream if the specified span of text has a non-zero length.
         /// </summary>
-        private Boolean EmitTextIfNecessary(SedulousFontFace font, TextLayoutCommandStream output, 
+        private Boolean EmitTextIfNecessary(FrameworkFontFace font, TextLayoutCommandStream output, 
             Int32 glyphOffset, Int32 sourceOffset, Int32 sourceLength, Int32 shapedOffset, out Int32 shapedLength, ref Rectangle bounds, ref LayoutState state, ref TextLayoutSettings settings)
         {
             shapedLength = sourceLength;
@@ -1195,7 +1195,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Given a string and an available space, returns the largest substring which will fit within that space.
         /// </summary>
-        private Boolean GetFittedSubstring(SedulousFontFace font, Int32 maxLineWidth, ref StringSegment tokenText, ref Int32 tokenLength, ref Size2 tokenSize, ref LayoutState state, ref TextLayoutSettings settings)
+        private Boolean GetFittedSubstring(FrameworkFontFace font, Int32 maxLineWidth, ref StringSegment tokenText, ref Int32 tokenLength, ref Size2 tokenSize, ref LayoutState state, ref TextLayoutSettings settings)
         {
             var hyphenate = (settings.Options & TextLayoutOptions.Hyphenate) == TextLayoutOptions.Hyphenate;
             var shape = (settings.Options & TextLayoutOptions.Shape) == TextLayoutOptions.Shape;
@@ -1266,14 +1266,14 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Calculates the size of the specified parser token when rendered according to the current layout state.
         /// </summary>
-        private Size2 MeasureToken(SedulousFontFace font, TextParserTokenType tokenType, StringSegment tokenText, TextParserToken? tokenNext, Int32 tokenNextOffset, ref TextLayoutSettings settings)
+        private Size2 MeasureToken(FrameworkFontFace font, TextParserTokenType tokenType, StringSegment tokenText, TextParserToken? tokenNext, Int32 tokenNextOffset, ref TextLayoutSettings settings)
         {
             switch (tokenType)
             {
                 case TextParserTokenType.Icon:
                     {
                         if (!registeredIcons.TryGetValue(tokenText, out var icon))
-                            throw new InvalidOperationException(SedulousStrings.UnrecognizedIcon.Format(tokenText));
+                            throw new InvalidOperationException(FrameworkStrings.UnrecognizedIcon.Format(tokenText));
 
                         var iconWidth = icon.Width ?? icon.Icon.Controller.Width;
                         var iconHeight = icon.Height ?? icon.Icon.Controller.Height;
@@ -1325,7 +1325,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         private Int16 RegisterStyleWithCommandStream(TextLayoutCommandStream output, StringSegment name, out TextStyle style)
         {
             if (!registeredStyles.TryGetValue(name, out style))
-                throw new InvalidOperationException(SedulousStrings.UnrecognizedStyle.Format(name));
+                throw new InvalidOperationException(FrameworkStrings.UnrecognizedStyle.Format(name));
 
             return output.RegisterStyle(name, style);
         }
@@ -1336,7 +1336,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         private Int16 RegisterIconWithCommandStream(TextLayoutCommandStream output, StringSegment name, out TextIconInfo icon)
         {
             if (!registeredIcons.TryGetValue(name, out icon))
-                throw new InvalidOperationException(SedulousStrings.UnrecognizedIcon.Format(name));
+                throw new InvalidOperationException(FrameworkStrings.UnrecognizedIcon.Format(name));
 
             return output.RegisterIcon(name, icon);
         }
@@ -1344,10 +1344,10 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Registers the specified font with the command stream and returns its resulting index.
         /// </summary>
-        private Int16 RegisterFontWithCommandStream(TextLayoutCommandStream output, StringSegment name, out SedulousFont font)
+        private Int16 RegisterFontWithCommandStream(TextLayoutCommandStream output, StringSegment name, out FrameworkFont font)
         {
             if (!registeredFonts.TryGetValue(name, out font))
-                throw new InvalidOperationException(SedulousStrings.UnrecognizedFont.Format(name));
+                throw new InvalidOperationException(FrameworkStrings.UnrecognizedFont.Format(name));
 
             return output.RegisterFont(name, font);
         }
@@ -1358,7 +1358,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         private Int16 RegisterGlyphShaderWithCommandStream(TextLayoutCommandStream output, StringSegment name, out GlyphShader glyphShader)
         {
             if (!registeredGlyphShaders.TryGetValue(name, out glyphShader))
-                throw new InvalidOperationException(SedulousStrings.UnrecognizedGlyphShader.Format(name));
+                throw new InvalidOperationException(FrameworkStrings.UnrecognizedGlyphShader.Format(name));
 
             return output.RegisterGlyphShader(name, glyphShader);
         }
@@ -1392,7 +1392,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Gets the currently active font.
         /// </summary>
-        private SedulousFont GetCurrentFont(ref TextLayoutSettings settings, Boolean bold, Boolean italic, out SedulousFontFace face)
+        private FrameworkFont GetCurrentFont(ref TextLayoutSettings settings, Boolean bold, Boolean italic, out FrameworkFontFace face)
         {
             var font = (fontStack.Count == 0) ? settings.Font : fontStack.Peek().Value;
             face = font.GetFace(bold, italic);
@@ -1402,7 +1402,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Gets the fallback font face with the specified name that matches the current font style.
         /// </summary>
-        private SedulousFontFace GetFallbackFontFace(StringSegment name)
+        private FrameworkFontFace GetFallbackFontFace(StringSegment name)
         {
             if (!registeredFonts.TryGetValue(name, out var font))
                 return null;
@@ -1417,8 +1417,8 @@ namespace Sedulous.Graphics.Graphics2D.Text
             new Dictionary<StringSegmentKey, TextStyle>();
         private readonly Dictionary<StringSegmentKey, TextIconInfo> registeredIcons =
             new Dictionary<StringSegmentKey, TextIconInfo>();
-        private readonly Dictionary<StringSegmentKey, SedulousFont> registeredFonts =
-            new Dictionary<StringSegmentKey, SedulousFont>();
+        private readonly Dictionary<StringSegmentKey, FrameworkFont> registeredFonts =
+            new Dictionary<StringSegmentKey, FrameworkFont>();
         private readonly Dictionary<StringSegmentKey, FallbackFontInfo> registeredFallbackFonts =
             new Dictionary<StringSegmentKey, FallbackFontInfo>();
         private readonly Dictionary<StringSegmentKey, GlyphShader> registeredGlyphShaders =
@@ -1426,7 +1426,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
 
         // Layout parameter stacks.
         private readonly Stack<TextStyleInstance> styleStack = new Stack<TextStyleInstance>();
-        private readonly Stack<TextStyleScoped<SedulousFont>> fontStack = new Stack<TextStyleScoped<SedulousFont>>();
+        private readonly Stack<TextStyleScoped<FrameworkFont>> fontStack = new Stack<TextStyleScoped<FrameworkFont>>();
 
         // Text shaping resources.
         private TextShaper shaper;

@@ -44,7 +44,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public Grid(SedulousContext uv, String name)
+        public Grid(FrameworkContext uv, String name)
             : base(uv, name)
         {
             this.rowDefinitions    = new RowDefinitionCollection(this);
@@ -274,7 +274,7 @@ namespace Sedulous.Presentation.Controls
         }
 
         /// <inheritdoc/>
-        protected override void DrawOverride(SedulousTime time, DrawingContext dc)
+        protected override void DrawOverride(FrameworkTime time, DrawingContext dc)
         {
             /* NOTE:
              * By pre-emptively setting the clip region in the Grid itself, we can prevent

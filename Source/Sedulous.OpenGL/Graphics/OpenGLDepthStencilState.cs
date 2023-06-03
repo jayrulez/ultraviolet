@@ -14,7 +14,7 @@ namespace Sedulous.OpenGL.Graphics
         /// Initializes a new instance of the OpenGLDepthStencilState class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public OpenGLDepthStencilState(SedulousContext uv)
+        public OpenGLDepthStencilState(FrameworkContext uv)
             : base(uv)
         {
 
@@ -25,7 +25,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The depth/stencil state that was created.</returns>
-        public static OpenGLDepthStencilState CreateDefault(SedulousContext uv)
+        public static OpenGLDepthStencilState CreateDefault(FrameworkContext uv)
         {
             var state = new OpenGLDepthStencilState(uv);
             state.DepthBufferEnable = true;
@@ -39,7 +39,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The depth/stencil state that was created.</returns>
-        public static OpenGLDepthStencilState CreateDepthRead(SedulousContext uv)
+        public static OpenGLDepthStencilState CreateDepthRead(FrameworkContext uv)
         {
             var state = new OpenGLDepthStencilState(uv);
             state.DepthBufferEnable = true;
@@ -53,7 +53,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The depth/stencil state that was created.</returns>
-        public static OpenGLDepthStencilState CreateNone(SedulousContext uv)
+        public static OpenGLDepthStencilState CreateNone(FrameworkContext uv)
         {
             var state = new OpenGLDepthStencilState(uv);
             state.DepthBufferEnable = false;

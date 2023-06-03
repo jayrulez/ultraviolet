@@ -23,7 +23,7 @@ namespace UvDebug
     /// <summary>
     /// Represents the main application object.
     /// </summary>
-    public partial class Game : SedulousApplication
+    public partial class Game : FrameworkApplication
     {
         /// <summary>
         /// Initializes a new instance of the Game 
@@ -54,7 +54,7 @@ namespace UvDebug
         /// Called when the application is creating its Sedulous context.
         /// </summary>
         /// <returns>The Sedulous context.</returns>
-        protected override SedulousContext OnCreatingSedulousContext()
+        protected override FrameworkContext OnCreatingSedulousContext()
         {
             var graphicsConfig = OpenGLGraphicsConfiguration.Default;
             graphicsConfig.MultiSampleBuffers = 1;
@@ -62,7 +62,7 @@ namespace UvDebug
             graphicsConfig.SrgbBuffersEnabled = false;
             graphicsConfig.SrgbDefaultForTexture2D = false;
 
-            var contextConfig = new SDL2SedulousConfiguration();
+            var contextConfig = new SDL2FrameworkConfiguration();
             contextConfig.SupportsHighDensityDisplayModes = true;
             contextConfig.EnableServiceMode = ShouldRunInServiceMode();
             contextConfig.WatchViewFilesForChanges = ShouldDynamicallyReloadContent();
@@ -81,7 +81,7 @@ namespace UvDebug
             };
 #endif
 
-            return new SDL2SedulousContext(this, contextConfig);
+            return new SDL2FrameworkContext(this, contextConfig);
         }
 
         /// <summary>
@@ -306,7 +306,7 @@ namespace UvDebug
         /// Called when the application state is being updated.
         /// </summary>
         /// <param name="time">Time elapsed since the last call to Update.</param>
-        protected override void OnUpdating(SedulousTime time)
+        protected override void OnUpdating(FrameworkTime time)
         {
             if (Sedulous.GetInput().GetActions().ExitApplication.IsPressed())
             {
@@ -319,7 +319,7 @@ namespace UvDebug
         /// Called when the application's scene is being drawn.
         /// </summary>
         /// <param name="time">Time elapsed since the last call to Draw.</param>
-        protected override void OnDrawing(SedulousTime time)
+        protected override void OnDrawing(FrameworkTime time)
         {
             var gfx = Sedulous.GetGraphics();
             var window = Sedulous.GetPlatform().Windows.GetCurrent();
@@ -447,7 +447,7 @@ namespace UvDebug
         {
             if (ShouldCompileContent())
             {
-                if (Sedulous.Platform == SedulousPlatform.Android || Sedulous.Platform == SedulousPlatform.iOS)
+                if (Sedulous.Platform == FrameworkPlatform.Android || Sedulous.Platform == FrameworkPlatform.iOS)
                     throw new NotSupportedException();
 
                 var archive = ContentArchive.FromFileSystem(new[] { "Content" });

@@ -15,13 +15,13 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Represents a diagnostics panel which displays various performance metrics relating to the Presentation Foundation.
         /// </summary>
-        private class DiagnosticsPanel : SedulousResource
+        private class DiagnosticsPanel : FrameworkResource
         {
             /// <summary>
             /// Initializes a new instance of the <see cref="DiagnosticsPanel"/> class.
             /// </summary>
             /// <param name="uv">The Sedulous context.</param>
-            public DiagnosticsPanel(SedulousContext uv)
+            public DiagnosticsPanel(FrameworkContext uv)
                 : base(uv)
             { }
             
@@ -166,7 +166,7 @@ namespace Sedulous.Presentation
 
                 var asm = Assembly.GetExecutingAssembly();
                 using (var stream = asm.GetManifestResourceStream("Sedulous.Presentation.Resources.Content.Fonts.SegoeUITexture.png"))
-                    font = content.LoadFromStream<SedulousFont>(stream, "png");
+                    font = content.LoadFromStream<FrameworkFont>(stream, "png");
 
                 blankTexture = Texture2D.CreateTexture(1, 1);
                 blankTexture.SetData(new[] { Color.White });
@@ -177,7 +177,7 @@ namespace Sedulous.Presentation
             private readonly StringBuilder buffer = new StringBuilder();
             private ContentManager content;
             private SpriteBatch spriteBatch;
-            private SedulousFont font;
+            private FrameworkFont font;
             private Texture2D blankTexture;
         }
     }

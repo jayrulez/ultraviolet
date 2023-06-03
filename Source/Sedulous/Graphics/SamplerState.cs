@@ -8,26 +8,26 @@ namespace Sedulous.Graphics
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="SamplerState"/> that was created.</returns>
-    public delegate SamplerState SamplerStateFactory(SedulousContext uv);
+    public delegate SamplerState SamplerStateFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents a graphics device's rasterizer state.
     /// </summary>
-    public abstract class SamplerState : SedulousResource
+    public abstract class SamplerState : FrameworkResource
     {
         /// <summary>
         /// Initializes the <see cref="SamplerState"/> type.
         /// </summary>
         static SamplerState()
         {
-            SedulousContext.ContextInvalidated += (sender, e) => { InvalidateCache(); };
+            FrameworkContext.ContextInvalidated += (sender, e) => { InvalidateCache(); };
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SamplerState"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        protected SamplerState(SedulousContext uv)
+        protected SamplerState(FrameworkContext uv)
             : base(uv)
         {
 
@@ -39,7 +39,7 @@ namespace Sedulous.Graphics
         /// <returns>The instance of <see cref="SamplerState"/> that was created.</returns>
         public static SamplerState Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<SamplerStateFactory>()(uv);
         }
 
@@ -54,7 +54,7 @@ namespace Sedulous.Graphics
                 if (cachedPointClamp != null)
                     return cachedPointClamp;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedPointClamp = uv.GetFactoryMethod<SamplerStateFactory>("PointClamp")(uv));
             }
         }
@@ -70,7 +70,7 @@ namespace Sedulous.Graphics
                 if (cachedPointWrap != null)
                     return cachedPointWrap;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedPointWrap = uv.GetFactoryMethod<SamplerStateFactory>("PointWrap")(uv));
             }
         }
@@ -86,7 +86,7 @@ namespace Sedulous.Graphics
                 if (cachedLinearClamp != null)
                     return cachedLinearClamp;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedLinearClamp = uv.GetFactoryMethod<SamplerStateFactory>("LinearClamp")(uv));
             }
         }
@@ -102,7 +102,7 @@ namespace Sedulous.Graphics
                 if (cachedLinearWrap != null)
                     return cachedLinearWrap;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedLinearWrap = uv.GetFactoryMethod<SamplerStateFactory>("LinearWrap")(uv));
             }
         }
@@ -118,7 +118,7 @@ namespace Sedulous.Graphics
                 if (cachedAnisotropicClamp != null)
                     return cachedAnisotropicClamp;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedAnisotropicClamp = uv.GetFactoryMethod<SamplerStateFactory>("AnisotropicClamp")(uv));
             }
         }
@@ -134,7 +134,7 @@ namespace Sedulous.Graphics
                 if (cachedAnisotropicWrap != null)
                     return cachedAnisotropicWrap;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedAnisotropicWrap = uv.GetFactoryMethod<SamplerStateFactory>("AnisotropicWrap")(uv));
             }
         }
@@ -147,7 +147,7 @@ namespace Sedulous.Graphics
             get => addressU;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 addressU = value;
             }
@@ -161,7 +161,7 @@ namespace Sedulous.Graphics
             get => addressV;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 addressV = value;
             }
@@ -175,7 +175,7 @@ namespace Sedulous.Graphics
             get => addressW;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 addressW = value;
             }
@@ -189,7 +189,7 @@ namespace Sedulous.Graphics
             get => filter;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 filter = value;
             }
@@ -203,7 +203,7 @@ namespace Sedulous.Graphics
             get => maxAnisotropy;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 maxAnisotropy = value;
             }
@@ -217,7 +217,7 @@ namespace Sedulous.Graphics
             get => mipMapLevelOfDetailBias;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 mipMapLevelOfDetailBias = value;
             }

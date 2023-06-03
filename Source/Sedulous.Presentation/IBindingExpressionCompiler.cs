@@ -12,7 +12,7 @@
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="options">The compiler options.</param>
         /// <returns>A <see cref="BindingExpressionCompilationResult"/> that represents the result of the compilation.</returns>
-        BindingExpressionCompilationResult Compile(SedulousContext uv, BindingExpressionCompilerOptions options);
+        BindingExpressionCompilationResult Compile(FrameworkContext uv, BindingExpressionCompilerOptions options);
 
         /// <summary>
         /// Compiles the specified view's binding expressions into a view model wrapper and produces a string
@@ -21,6 +21,6 @@
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="options">The compiler options.</param>
         /// <returns>A <see cref="BindingExpressionCompilationResult"/> that represents the result of the compilation.</returns>
-        BindingExpressionCompilationResult CompileSingleView(SedulousContext uv, BindingExpressionCompilerOptions options);
+        BindingExpressionCompilationResult CompileSingleView(FrameworkContext uv, BindingExpressionCompilerOptions options);
     }
 }

@@ -12,7 +12,7 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the OpenGLSpriteBatchEffect class.
         /// </summary>
-        public OpenGLSpriteBatchEffect(SedulousContext uv)
+        public OpenGLSpriteBatchEffect(FrameworkContext uv)
             : base(CreateEffectImplementation(uv))
         {
 
@@ -23,7 +23,7 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The effect implementation.</returns>
-        private static EffectImplementation CreateEffectImplementation(SedulousContext uv)
+        private static EffectImplementation CreateEffectImplementation(FrameworkContext uv)
         {
             Contract.Require(uv, nameof(uv));
 
@@ -34,11 +34,11 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         }
 
         // The shaders that make up this effect.
-        private static readonly SedulousSingleton<OpenGLVertexShader> vertShader = 
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy, uv => { 
+        private static readonly FrameworkSingleton<OpenGLVertexShader> vertShader = 
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy, uv => { 
                 return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("SpriteBatchEffect.vert")); });
-        private static readonly SedulousSingleton<OpenGLFragmentShader> fragShader = 
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy, uv => {
+        private static readonly FrameworkSingleton<OpenGLFragmentShader> fragShader = 
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy, uv => {
                 return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("SpriteBatchEffect.frag")); });
     }
 }

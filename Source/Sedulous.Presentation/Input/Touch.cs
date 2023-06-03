@@ -1328,7 +1328,7 @@ namespace Sedulous.Presentation.Input
         {
             get
             {
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return uv.GetInput().GetPrimaryTouchDevice();
             }
         }

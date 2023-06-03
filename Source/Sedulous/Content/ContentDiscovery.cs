@@ -17,7 +17,7 @@ namespace Sedulous.Content
         /// we have reason to believe that we're running in debug mode.
         /// </summary>
         /// <returns>The solution directory, if it was found; otherwise, <see langword="null"/>.</returns>
-        public static String FindSolutionDirectory(SedulousContext uv, String searchRootDirectory)
+        public static String FindSolutionDirectory(FrameworkContext uv, String searchRootDirectory)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(searchRootDirectory, nameof(searchRootDirectory));
@@ -25,7 +25,7 @@ namespace Sedulous.Content
             if (solutionDirectory != null)
                 return solutionDirectory == String.Empty ? null : solutionDirectory;
 
-            if (uv.Platform == SedulousPlatform.Android || uv.Platform == SedulousPlatform.iOS)
+            if (uv.Platform == FrameworkPlatform.Android || uv.Platform == FrameworkPlatform.iOS)
             {
                 solutionDirectory = String.Empty;
                 return null;
@@ -54,8 +54,8 @@ namespace Sedulous.Content
 
             // Break out of the bin directory. There's a different number of steps depending on our platform.
             var depth =
-                (uv.Runtime == SedulousRuntime.CoreCLR) ? 3 :
-                (uv.Platform == SedulousPlatform.macOS) ? 5 : 2;
+                (uv.Runtime == FrameworkRuntime.CoreCLR) ? 3 :
+                (uv.Platform == FrameworkPlatform.macOS) ? 5 : 2;
             for (int i = 0; i < depth; i++)
             {
                 asmDir = asmDir.Parent;
@@ -74,7 +74,7 @@ namespace Sedulous.Content
                 // going up another level and looking for a "Desktop" directory.
                 // If your app doesn't follow the Sedulous convention here, then
                 // unfortunately you're out of luck.
-                if (uv.Runtime == SedulousRuntime.Mono && uv.Platform == SedulousPlatform.macOS)
+                if (uv.Runtime == FrameworkRuntime.Mono && uv.Platform == FrameworkPlatform.macOS)
                 {
                     asmDir = asmDir.Parent;
                     if (asmDir != null && asmDir.Exists)

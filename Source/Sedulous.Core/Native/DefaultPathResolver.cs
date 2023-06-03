@@ -45,12 +45,12 @@ namespace Sedulous.Core.Native
             if (Int32.TryParse(str, out _))
                 return true;
 
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Windows:
+                case FrameworkPlatform.Windows:
                     return KnownExtensions_Win.Contains(str, StringComparer.InvariantCultureIgnoreCase);
 
-                case SedulousPlatform.macOS:
+                case FrameworkPlatform.macOS:
                     return KnownExtensions_Mac.Contains(str, StringComparer.InvariantCultureIgnoreCase);
 
                 default:
@@ -64,22 +64,22 @@ namespace Sedulous.Core.Native
         private Boolean TryLocateNativeAssetInPlatformFolder(String name, out String platformResolvedPath)
         {
             var dir = Path.Combine(AppContext.BaseDirectory);
-            if (SedulousPlatformInfo.CurrentPlatform == SedulousPlatform.macOS && SedulousPlatformInfo.CurrentRuntime != SedulousRuntime.CoreCLR)
+            if (FrameworkPlatformInfo.CurrentPlatform == FrameworkPlatform.macOS && FrameworkPlatformInfo.CurrentRuntime != FrameworkRuntime.CoreCLR)
                 dir = Path.Combine("..", "Resources");
 
             dir = Path.Combine(dir, Environment.Is64BitProcess ? "x64" : "x86");
 
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Windows:
+                case FrameworkPlatform.Windows:
                     dir = Path.Combine(dir, "win32nt");
                     break;
                     
-                case SedulousPlatform.Linux:
+                case FrameworkPlatform.Linux:
                     dir = Path.Combine(dir, "unix");
                     break;
 
-                case SedulousPlatform.macOS:
+                case FrameworkPlatform.macOS:
                     dir = Path.Combine(dir, "osx");
                     break;
             }
@@ -123,7 +123,7 @@ namespace Sedulous.Core.Native
             if (defaultContext == null)
                 return false;
 
-            var userHomeDirectory = SedulousPlatformInfo.CurrentPlatform == SedulousPlatform.Windows ?
+            var userHomeDirectory = FrameworkPlatformInfo.CurrentPlatform == FrameworkPlatform.Windows ?
                 Environment.GetEnvironmentVariable("USERPROFILE") : Environment.GetEnvironmentVariable("HOME");
             var nugetPackagesRootDir = Path.Combine(userHomeDirectory, ".nuget", "packages");
 

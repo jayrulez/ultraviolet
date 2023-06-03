@@ -7,7 +7,7 @@ namespace Sedulous.Graphics.Graphics2D
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="SpriteBatchEffect"/> that was created.</returns>
-    public delegate SpriteBatchEffect SpriteBatchEffectFactory(SedulousContext uv);
+    public delegate SpriteBatchEffect SpriteBatchEffectFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents the <see cref="Effect"/> used by <see cref="SpriteBatchBase{VertexType, SpriteData}"/> to render sprites.
@@ -33,7 +33,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <returns>The instance of <see cref="SpriteBatchEffect"/> that was created.</returns>
         public static SpriteBatchEffect Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<SpriteBatchEffectFactory>()(uv);
         }
 

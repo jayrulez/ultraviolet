@@ -7,12 +7,12 @@ using Sedulous.TestFramework;
 namespace Sedulous.Presentation.Tests.Input
 {
     [TestFixture]
-    public class GamePadGestureTests : SedulousTestFramework
+    public class GamePadGestureTests : FrameworkTestFramework
     {
         [Test]
         public void GamePadGesture_TryParse_SucceedsForValidStrings()
         {
-            RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+            RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
             var gesture = default(GamePadGesture);
             var result = GamePadGesture.TryParse("LeftStick", out gesture);
@@ -25,7 +25,7 @@ namespace Sedulous.Presentation.Tests.Input
         [Test]
         public void GamePadGesture_TryParse_SucceedsForValidStrings_WithExplicitAnyPlayerIndex()
         {
-            RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+            RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
             var gesture = default(GamePadGesture);
             var result = GamePadGesture.TryParse("ANY:LeftStick", out gesture);
@@ -38,7 +38,7 @@ namespace Sedulous.Presentation.Tests.Input
         [Test]
         public void GamePadGesture_TryParse_SucceedsForValidStrings_WithNumericPlayerIndex()
         {
-            RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+            RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
             var gesture = default(GamePadGesture);
             var result = GamePadGesture.TryParse("P1:LeftStick", out gesture);
@@ -51,7 +51,7 @@ namespace Sedulous.Presentation.Tests.Input
         [Test]
         public void GamePadGesture_TryParse_FailsForInvalidStrings()
         {
-            RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+            RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
             var gesture = default(GamePadGesture);
             var result = GamePadGesture.TryParse("asdfasdfas", out gesture);
@@ -63,7 +63,7 @@ namespace Sedulous.Presentation.Tests.Input
         [Test]
         public void GamePadGesture_TryParse_FailsForInvalidStringsWithNegativePlayerIndices()
         {
-            RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+            RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
             var gesture = default(GamePadGesture);
             var result = GamePadGesture.TryParse("P-1:LeftStick", out gesture);

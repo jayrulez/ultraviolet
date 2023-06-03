@@ -6,12 +6,12 @@ using Sedulous.TestFramework;
 namespace Sedulous.Presentation.Tests.Input
 {
     [TestFixture]
-    public class MouseGestureTests : SedulousTestFramework
+    public class MouseGestureTests : FrameworkTestFramework
     {
         [Test]
         public void MouseGesture_TryParse_SucceedsForValidStrings()
         {
-            RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+            RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
             var gesture = default(MouseGesture);
             var result = MouseGesture.TryParse("MiddleDoubleClick", out gesture);
@@ -24,7 +24,7 @@ namespace Sedulous.Presentation.Tests.Input
         [Test]
         public void MouseGesture_TryParse_SucceedsForValidStrings_WithModifierKeys()
         {
-            RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+            RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
             var gesture = default(MouseGesture);
             var result = MouseGesture.TryParse("Ctrl+Alt+MiddleDoubleClick", out gesture);
@@ -37,7 +37,7 @@ namespace Sedulous.Presentation.Tests.Input
         [Test]
         public void MouseGesture_TryParse_FailsForInvalidStrings()
         {
-            RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+            RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
             var gesture = default(MouseGesture);
             var result = MouseGesture.TryParse("asdfasdfas", out gesture);
@@ -49,7 +49,7 @@ namespace Sedulous.Presentation.Tests.Input
         [Test]
         public void MouseGesture_TryParse_FailsForInvalidStringsWithRepeatedModifiers()
         {
-            RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+            RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
             var gesture = default(MouseGesture);
             var result = MouseGesture.TryParse("Ctrl+Ctrl+LeftClick", out gesture);

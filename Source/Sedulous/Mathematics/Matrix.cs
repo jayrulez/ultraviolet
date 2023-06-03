@@ -8,7 +8,7 @@ namespace Sedulous
     /// Represents a 4x4 transformation matrix.
     /// </summary>
     [Serializable]
-    [JsonConverter(typeof(SedulousJsonConverter))]
+    [JsonConverter(typeof(FrameworkJsonConverter))]
     public partial struct Matrix : IEquatable<Matrix>, IInterpolatable<Matrix>
     {
         /// <summary>

@@ -24,8 +24,8 @@ namespace Sedulous.Presentation.Animations
         /// <summary>
         /// Updates the clock's state.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        public void Update(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        public void Update(FrameworkTime time)
         {
             if (!IsValid || state != ClockState.Playing)
                 return;

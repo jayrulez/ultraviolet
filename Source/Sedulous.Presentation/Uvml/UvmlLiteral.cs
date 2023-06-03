@@ -35,7 +35,7 @@ namespace Sedulous.Presentation.Uvml
         }
 
         /// <inheritdoc/>
-        public override Object Instantiate(SedulousContext uv, UvmlInstantiationContext context)
+        public override Object Instantiate(FrameworkContext uv, UvmlInstantiationContext context)
         {
             if (String.Equals(Literal, "{{null}}", StringComparison.Ordinal))
                 return Type.IsValueType ? Activator.CreateInstance(Type) : null;

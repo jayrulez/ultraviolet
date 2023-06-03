@@ -23,11 +23,11 @@ namespace Sedulous.Content
 
             var name = element.AttributeValueString("Name");
             if (String.IsNullOrEmpty(name))
-                throw new InvalidDataException(SedulousStrings.InvalidContentManifestAssetName);
+                throw new InvalidDataException(FrameworkStrings.InvalidContentManifestAssetName);
 
             var path = element.Value;
             if (String.IsNullOrEmpty(path))
-                throw new InvalidDataException(SedulousStrings.InvalidContentManifestAssetPath.Format(name));
+                throw new InvalidDataException(FrameworkStrings.InvalidContentManifestAssetPath.Format(name));
 
             this.ManifestGroup = group;
             this.Name = name;
@@ -47,10 +47,10 @@ namespace Sedulous.Content
             Contract.Require(desc, nameof(desc));
 
             if (String.IsNullOrEmpty(desc.Name))
-                throw new InvalidDataException(SedulousStrings.InvalidContentManifestAssetName);
+                throw new InvalidDataException(FrameworkStrings.InvalidContentManifestAssetName);
 
             if (String.IsNullOrEmpty(desc.Path))
-                throw new InvalidDataException(SedulousStrings.InvalidContentManifestAssetPath.Format(desc.Name));
+                throw new InvalidDataException(FrameworkStrings.InvalidContentManifestAssetPath.Format(desc.Name));
 
             this.ManifestGroup = group;
             this.Name = desc.Name;

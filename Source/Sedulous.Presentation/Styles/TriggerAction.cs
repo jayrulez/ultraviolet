@@ -19,13 +19,13 @@ namespace Sedulous.Presentation.Styles
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="dobj">The dependency object for which to activate the action.</param>
-        public virtual void Activate(SedulousContext uv, DependencyObject dobj) { }
+        public virtual void Activate(FrameworkContext uv, DependencyObject dobj) { }
 
         /// <summary>
         /// Deactivates the action.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="dobj">The dependency object for which to deactivate the action.</param>
-        public virtual void Deactivate(SedulousContext uv, DependencyObject dobj) { }
+        public virtual void Deactivate(FrameworkContext uv, DependencyObject dobj) { }
     }
 }

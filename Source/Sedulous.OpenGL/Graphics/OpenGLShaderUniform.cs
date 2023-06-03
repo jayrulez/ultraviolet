@@ -32,7 +32,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="program">The effect parameter's associated program identifier.</param>
         /// <param name="location">The effect parameter's uniform location.</param>
         /// <param name="sampler">The effect's corresponding texture sampler, if any.</param>
-        public OpenGLShaderUniform(SedulousContext uv, String name, UInt32 type, UInt32 count, UInt32 program, Int32 location, Int32 sampler)
+        public OpenGLShaderUniform(FrameworkContext uv, String name, UInt32 type, UInt32 count, UInt32 program, Int32 location, Int32 sampler)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(name, nameof(name));
@@ -933,7 +933,7 @@ namespace Sedulous.OpenGL.Graphics
         }
 
         // State values.
-        private readonly SedulousContext uv;
+        private readonly FrameworkContext uv;
         private readonly Int32 location;
         private readonly Int32 sampler;
         private OpenGLEffectParameterData source;

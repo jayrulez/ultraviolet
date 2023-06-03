@@ -7,7 +7,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Graphics
 {
     [TestFixture]
-    public class DynamicTextureAtlasTests : SedulousApplicationTestFramework
+    public class DynamicTextureAtlasTests : FrameworkApplicationTestFramework
     {
         [Test, Category("Rendering")]
         [Description("Ensures that dynamic texture atlases are constructed correctly.")]

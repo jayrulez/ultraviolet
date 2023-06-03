@@ -20,7 +20,7 @@ namespace Sedulous.ImGuiViewProvider
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="panel">The panel that is creating the view.</param>
         /// <param name="viewModelType">The view's associated model type.</param>
-        public ImGuiView(SedulousContext uv, UIPanel panel, Type viewModelType) 
+        public ImGuiView(FrameworkContext uv, UIPanel panel, Type viewModelType) 
             : base(uv, panel, viewModelType)
         {
             imGuiContext = ImGui.CreateContext();
@@ -47,7 +47,7 @@ namespace Sedulous.ImGuiViewProvider
         /// <param name="uiPanelDefinition">The <see cref="UIPanelDefinition"/> that defines the view's containing panel.</param>
         /// <param name="vmfactory">A view model factory which is used to create the view's initial view model, or <see langword="null"/> to skip view model creation.</param>
         /// <returns>The <see cref="ImGuiView"/> that was created.</returns>
-        public static ImGuiView Create(SedulousContext uv, UIPanel uiPanel, UIPanelDefinition uiPanelDefinition, UIViewModelFactory vmfactory)
+        public static ImGuiView Create(FrameworkContext uv, UIPanel uiPanel, UIPanelDefinition uiPanelDefinition, UIViewModelFactory vmfactory)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(uiPanel, nameof(uiPanel));
@@ -69,7 +69,7 @@ namespace Sedulous.ImGuiViewProvider
         }
 
         /// <inheritdoc/>
-        public override void Draw(SedulousTime time, SpriteBatch spriteBatch, Single opacity = 1)
+        public override void Draw(FrameworkTime time, SpriteBatch spriteBatch, Single opacity = 1)
         {
             if (imGuiContext != IntPtr.Zero)
             {
@@ -89,7 +89,7 @@ namespace Sedulous.ImGuiViewProvider
         }
 
         /// <inheritdoc/>
-        public override void Update(SedulousTime time)
+        public override void Update(FrameworkTime time)
         {
             if (imGuiContext != IntPtr.Zero)
             {
@@ -186,7 +186,7 @@ namespace Sedulous.ImGuiViewProvider
         /// <summary>
         /// Handles the <see cref="KeyboardDevice.TextInput"/> event.
         /// </summary>
-        private void Keyboard_TextInput(Platform.ISedulousWindow window, KeyboardDevice device)
+        private void Keyboard_TextInput(Platform.IFrameworkWindow window, KeyboardDevice device)
         {
             device.GetTextInput(textBuffer, true);
         }

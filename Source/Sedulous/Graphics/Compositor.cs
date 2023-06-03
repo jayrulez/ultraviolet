@@ -8,14 +8,14 @@ namespace Sedulous.Graphics
     /// Represents a window compositor, which is responsible for assembling the various components of a
     /// rendered scene into a final image for presentation to the user.
     /// </summary>
-    public abstract class Compositor : SedulousResource
+    public abstract class Compositor : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Compositor"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="window">The window with which this compositor is associated.</param>
-        public Compositor(SedulousContext uv, ISedulousWindow window)
+        public Compositor(FrameworkContext uv, IFrameworkWindow window)
             : base(uv)
         {
             Contract.Require(window, nameof(window));
@@ -110,7 +110,7 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Gets the window with which this compositor is associated.
         /// </summary>
-        public ISedulousWindow Window => window;
+        public IFrameworkWindow Window => window;
 
         /// <summary>
         /// Gets the current composition context.
@@ -133,7 +133,7 @@ namespace Sedulous.Graphics
         public Int32 Height => Size.Height;
 
         // Property values.
-        private readonly ISedulousWindow window;
+        private readonly IFrameworkWindow window;
         private CompositionContext currentContext;        
     }
 }

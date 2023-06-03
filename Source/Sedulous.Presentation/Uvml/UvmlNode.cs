@@ -18,6 +18,6 @@ namespace Sedulous.Presentation.Uvml
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="context">The instantiation context for this node.</param>
         /// <returns>The object which was instantiated by the node.</returns>
-        public abstract Object Instantiate(SedulousContext uv, UvmlInstantiationContext context);
+        public abstract Object Instantiate(FrameworkContext uv, UvmlInstantiationContext context);
     }
 }

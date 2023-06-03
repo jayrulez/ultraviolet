@@ -104,7 +104,7 @@ namespace Sedulous.Input
         /// Initializes a new instance of the <see cref="TouchDevice"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public TouchDevice(SedulousContext uv) :
+        public TouchDevice(FrameworkContext uv) :
             base(uv)
         { }
 
@@ -113,7 +113,7 @@ namespace Sedulous.Input
         /// to denormalize touch coordinates. If no window is bound to the device, the primary window is used.
         /// </summary>
         /// <param name="window">The window to bind to the device.</param>
-        public abstract void BindToWindow(ISedulousWindow window);
+        public abstract void BindToWindow(IFrameworkWindow window);
 
         /// <summary>
         /// Converts the specified window coordinates into normalized touch coordinates.
@@ -253,7 +253,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Gets the window which is bound to the device.
         /// </summary>
-        public abstract ISedulousWindow BoundWindow { get; }
+        public abstract IFrameworkWindow BoundWindow { get; }
 
         /// <summary>
         /// Gets a value indicating whether the device is recording a $1 gesture.

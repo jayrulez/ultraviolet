@@ -10,7 +10,7 @@ namespace Sedulous.Graphics
     /// <param name="itype">The index element type.</param>
     /// <param name="icount">The index element count.</param>
     /// <returns>The instance of <see cref="DynamicIndexBuffer"/> that was created.</returns>
-    public delegate DynamicIndexBuffer DynamicIndexBufferFactory(SedulousContext uv, IndexBufferElementType itype, Int32 icount);
+    public delegate DynamicIndexBuffer DynamicIndexBufferFactory(FrameworkContext uv, IndexBufferElementType itype, Int32 icount);
 
     /// <summary>
     /// Represents a index buffer that is optimized for dynamic updates.
@@ -23,7 +23,7 @@ namespace Sedulous.Graphics
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="itype">The index element type.</param>
         /// <param name="icount">The index element count.</param>
-        public DynamicIndexBuffer(SedulousContext uv, IndexBufferElementType itype, Int32 icount)
+        public DynamicIndexBuffer(FrameworkContext uv, IndexBufferElementType itype, Int32 icount)
             : base(uv, itype, icount)
         {
 
@@ -39,7 +39,7 @@ namespace Sedulous.Graphics
         {
             Contract.EnsureRange(icount > 0, nameof(icount));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<DynamicIndexBufferFactory>()(uv, itype, icount);
         }
 

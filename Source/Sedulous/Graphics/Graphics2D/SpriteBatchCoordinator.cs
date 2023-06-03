@@ -5,13 +5,13 @@ namespace Sedulous.Graphics.Graphics2D
     /// <summary>
     /// Contains methods for coordinating the operations of multiple sprite batches.
     /// </summary>
-    internal class SpriteBatchCoordinator : SedulousResource
+    internal class SpriteBatchCoordinator : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteBatchCoordinator"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        private SpriteBatchCoordinator(SedulousContext uv)
+        private SpriteBatchCoordinator(FrameworkContext uv)
             : base(uv)
         { }
 
@@ -21,7 +21,7 @@ namespace Sedulous.Graphics.Graphics2D
         public void DemandImmediate()
         {
             if (immediate > 0 || deferred > 0)
-                throw new InvalidOperationException(SedulousStrings.SpriteBatchNestingError);
+                throw new InvalidOperationException(FrameworkStrings.SpriteBatchNestingError);
 
             immediate++;
         }
@@ -32,7 +32,7 @@ namespace Sedulous.Graphics.Graphics2D
         public void DemandDeferred()
         {
             if (immediate > 0)
-                throw new InvalidOperationException(SedulousStrings.SpriteBatchNestingError);
+                throw new InvalidOperationException(FrameworkStrings.SpriteBatchNestingError);
 
             deferred++;
         }
@@ -43,7 +43,7 @@ namespace Sedulous.Graphics.Graphics2D
         public void RelinquishImmediate()
         {
             if (--immediate < 0)
-                throw new InvalidOperationException(SedulousStrings.SpriteBatchDemandImbalance);
+                throw new InvalidOperationException(FrameworkStrings.SpriteBatchDemandImbalance);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Sedulous.Graphics.Graphics2D
         public void RelinquishDeferred()
         {
             if (--deferred < 0)
-                throw new InvalidOperationException(SedulousStrings.SpriteBatchDemandImbalance);
+                throw new InvalidOperationException(FrameworkStrings.SpriteBatchDemandImbalance);
         }
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace Sedulous.Graphics.Graphics2D
         public static SpriteBatchCoordinator Instance => instance.Value;
 
         // The coordinator's singleton instance.
-        private static SedulousSingleton<SpriteBatchCoordinator> instance =
-            new SedulousSingleton<SpriteBatchCoordinator>(SedulousSingletonFlags.DisabledInServiceMode, uv => new SpriteBatchCoordinator(uv));
+        private static FrameworkSingleton<SpriteBatchCoordinator> instance =
+            new FrameworkSingleton<SpriteBatchCoordinator>(FrameworkSingletonFlags.DisabledInServiceMode, uv => new SpriteBatchCoordinator(uv));
 
         // Track how many batches are operating in each mode.
         private Int32 immediate;

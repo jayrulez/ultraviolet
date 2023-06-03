@@ -21,7 +21,7 @@ namespace Sedulous.FreeType2
     /// <summary>
     /// Represents one of a FreeType font's font faces.
     /// </summary>
-    public unsafe class FreeTypeFontFace : SedulousFontFace
+    public unsafe class FreeTypeFontFace : FrameworkFontFace
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FreeTypeFontFace"/> class.
@@ -29,7 +29,7 @@ namespace Sedulous.FreeType2
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="face">The FreeType2 face which this instance represents.</param>
         /// <param name="metadata">The processor metadata with which this font face was loaded.</param>
-        internal FreeTypeFontFace(SedulousContext uv, IntPtr face, FreeTypeFontProcessorMetadata metadata)
+        internal FreeTypeFontFace(FrameworkContext uv, IntPtr face, FreeTypeFontProcessorMetadata metadata)
             : base(uv)
         {
             Contract.Require(face, nameof(face));
@@ -710,7 +710,7 @@ namespace Sedulous.FreeType2
         /// <summary>
         /// Ensures that the specified scratch surface exists and has at least the specified size.
         /// </summary>
-        private static void CreateResamplingSurface(SedulousContext uv, ref Surface2D srf, Int32 w, Int32 h)
+        private static void CreateResamplingSurface(FrameworkContext uv, ref Surface2D srf, Int32 w, Int32 h)
         {
             if (srf == null)
             {

@@ -60,7 +60,7 @@ namespace Sedulous.TestApplication
         /// <param name="filename">The filename of the image to match against the bitmap.</param>
         public void ShouldMatch(String filename)
         {
-            var machineName = SedulousTestFramework.GetSanitizedMachineName();
+            var machineName = FrameworkTestFramework.GetSanitizedMachineName();
             Directory.CreateDirectory(machineName);
 
             var fileStream = File.Open(filename, FileMode.Open);

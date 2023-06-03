@@ -209,7 +209,7 @@ namespace Sedulous.Presentation.Input
             {
                 var manager = requeryManagerSingleton.Value;
                 if (manager == null)
-                    throw new InvalidOperationException(SedulousStrings.ContextMissing);
+                    throw new InvalidOperationException(FrameworkStrings.ContextMissing);
 
                 manager.Add(value);
             }
@@ -217,7 +217,7 @@ namespace Sedulous.Presentation.Input
             {
                 var manager = requeryManagerSingleton.Value;
                 if (manager == null)
-                    throw new InvalidOperationException(SedulousStrings.ContextMissing);
+                    throw new InvalidOperationException(FrameworkStrings.ContextMissing);
 
                 manager.Remove(value);
             }
@@ -1100,8 +1100,8 @@ namespace Sedulous.Presentation.Input
         private static readonly CommandManager instance = new CommandManager();
 
         // Manager for status requery requests
-        private static readonly SedulousSingleton<CommandRequeryManager> requeryManagerSingleton =
-            new SedulousSingleton<CommandRequeryManager>(SedulousSingletonFlags.DisabledInServiceMode, uv =>
+        private static readonly FrameworkSingleton<CommandRequeryManager> requeryManagerSingleton =
+            new FrameworkSingleton<CommandRequeryManager>(FrameworkSingletonFlags.DisabledInServiceMode, uv =>
                 new CommandRequeryManager(uv, instance));
 
         // Class binding collections

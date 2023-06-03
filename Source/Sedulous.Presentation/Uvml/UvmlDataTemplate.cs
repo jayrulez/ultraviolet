@@ -20,7 +20,7 @@ namespace Sedulous.Presentation.Uvml
         }
 
         /// <inheritdoc/>
-        public override Object Instantiate(SedulousContext uv, UvmlInstantiationContext context)
+        public override Object Instantiate(FrameworkContext uv, UvmlInstantiationContext context)
         {
             return Template;
         }

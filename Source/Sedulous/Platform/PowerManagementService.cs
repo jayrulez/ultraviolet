@@ -19,7 +19,7 @@ namespace Sedulous.Platform
         /// <returns>The instance of <see cref="PowerManagementService"/> that was created.</returns>
         public static PowerManagementService Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<PowerManagementServiceFactory>()();
         }
 

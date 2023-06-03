@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class RayTests : SedulousTestFramework
+    public class RayTests : FrameworkTestFramework
     {
         [Test]
         public void Ray_IsConstructedProperly()
@@ -320,7 +320,7 @@ namespace Sedulous.Tests
         {
             var ray = new Ray(new Vector3(1.2f, 2.3f, 3.4f), new Vector3(4.5f, 5.6f, 6.7f));
             var json = JsonConvert.SerializeObject(ray,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""position"":{""x"":1.2,""y"":2.3,""z"":3.4},""direction"":{""x"":4.5,""y"":5.6,""z"":6.7}}");
         }
@@ -330,7 +330,7 @@ namespace Sedulous.Tests
         {
             var ray = new Ray(new Vector3(1.2f, 2.3f, 3.4f), new Vector3(4.5f, 5.6f, 6.7f));
             var json = JsonConvert.SerializeObject((Ray?)ray,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""position"":{""x"":1.2,""y"":2.3,""z"":3.4},""direction"":{""x"":4.5,""y"":5.6,""z"":6.7}}");
         }
@@ -341,7 +341,7 @@ namespace Sedulous.Tests
             const String json = (@"{""position"":{""x"":1.2,""y"":2.3,""z"":3.4},""direction"":{""x"":4.5,""y"":5.6,""z"":6.7}}");
 
             var ray = JsonConvert.DeserializeObject<Ray>(json,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(ray)
                 .ShouldHavePosition(1.2f, 2.3f, 3.4f)
@@ -354,7 +354,7 @@ namespace Sedulous.Tests
             const String json1 = (@"{""position"":{""x"":1.2,""y"":2.3,""z"":3.4},""direction"":{""x"":4.5,""y"":5.6,""z"":6.7}}");
 
             var ray1 = JsonConvert.DeserializeObject<Ray?>(json1,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(ray1.Value)
                 .ShouldHavePosition(1.2f, 2.3f, 3.4f)
@@ -363,7 +363,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var ray2 = JsonConvert.DeserializeObject<Ray?>(json2,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(ray2.HasValue)
                 .ShouldBe(false);

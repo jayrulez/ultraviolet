@@ -19,7 +19,7 @@ namespace Sedulous.Graphics
         /// <returns>The instance of <see cref="SurfaceSaver"/> that was created.</returns>
         public static SurfaceSaver Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<SurfaceSaverFactory>()();
         }
 

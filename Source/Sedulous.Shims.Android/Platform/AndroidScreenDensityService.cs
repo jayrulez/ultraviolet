@@ -13,8 +13,8 @@ namespace Sedulous.Shims.Android.Platform
         /// <summary>
         /// Initializes a new instance of the <see cref="AndroidScreenDensityService"/> class.
         /// </summary>
-        /// <param name="display">The <see cref="ISedulousDisplay"/> for which to retrieve density information.</param>
-        public AndroidScreenDensityService(ISedulousDisplay display)
+        /// <param name="display">The <see cref="IFrameworkDisplay"/> for which to retrieve density information.</param>
+        public AndroidScreenDensityService(IFrameworkDisplay display)
             : base(display)
         {
             EnsureMetrics();
@@ -116,7 +116,7 @@ namespace Sedulous.Shims.Android.Platform
         /// </summary>
         private void EnsureMetrics()
         {
-            var activity = SedulousApplication.Instance;
+            var activity = FrameworkApplication.Instance;
             if (activity == this.activity)
                 return;
 

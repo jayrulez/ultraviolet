@@ -11,14 +11,14 @@ namespace Sedulous.Shims.NETCore
     /// <summary>
     /// Initializes factory methods for the .NET Core 3.0 platform compatibility shim.
     /// </summary>
-    internal sealed class NETCoreFactoryInitializer : ISedulousFactoryInitializer
+    internal sealed class NETCoreFactoryInitializer : IFrameworkFactoryInitializer
     {
         /// <summary>
         /// Initializes the specified factory.
         /// </summary>
         /// <param name="owner">The Sedulous context that owns the initializer.</param>
-        /// <param name="factory">The <see cref="SedulousFactory"/> to initialize.</param>
-        public void Initialize(SedulousContext owner, SedulousFactory factory)
+        /// <param name="factory">The <see cref="FrameworkFactory"/> to initialize.</param>
+        public void Initialize(FrameworkContext owner, FrameworkFactory factory)
         {
             factory.SetFactoryMethod<SurfaceSourceFactory>((stream) => new NETCoreSurfaceSource(stream));
             factory.SetFactoryMethod<SurfaceSaverFactory>(() => new NETCoreSurfaceSaver());
@@ -26,9 +26,9 @@ namespace Sedulous.Shims.NETCore
             factory.SetFactoryMethod<FileSystemServiceFactory>(() => new FileSystemService());
             factory.SetFactoryMethod<ScreenRotationServiceFactory>((display) => new NETCoreScreenOrientationService(display));
 
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Windows:
+                case FrameworkPlatform.Windows:
                     factory.SetFactoryMethod<ScreenDensityServiceFactory>((display) => new NETCoreScreenDensityService_Windows(owner, display));
                     break;
 

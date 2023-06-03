@@ -38,7 +38,7 @@ namespace Sedulous.Content
 
                 var baseProcessorType = GetBaseContentProcessorType(processor.Type);
                 if (baseProcessorType == null)
-                    throw new InvalidOperationException(SedulousStrings.ProcessorInvalidBaseClass.Format(processor.Type.FullName));
+                    throw new InvalidOperationException(FrameworkStrings.ProcessorInvalidBaseClass.Format(processor.Type.FullName));
                 
                 var args = baseProcessorType.GetGenericArguments();
                 var input = args[0];
@@ -48,7 +48,7 @@ namespace Sedulous.Content
                 if (registeredProcessors.ContainsKey(key))
                 {
                     throw new InvalidOperationException(
-                        SedulousStrings.ProcessorAlreadyRegistered.Format(processor.Type.FullName, input.FullName, output.FullName));
+                        FrameworkStrings.ProcessorAlreadyRegistered.Format(processor.Type.FullName, input.FullName, output.FullName));
                 }
                 registeredProcessors[key] = instance;
             }
@@ -151,7 +151,7 @@ namespace Sedulous.Content
 
             var baseProcessorType = GetBaseContentProcessorType(processorType);
             if (baseProcessorType == null)
-                throw new InvalidOperationException(SedulousStrings.ProcessorInvalidBaseClass.Format(processorType.FullName));
+                throw new InvalidOperationException(FrameworkStrings.ProcessorInvalidBaseClass.Format(processorType.FullName));
 
             var args = baseProcessorType.GetGenericArguments();
             var input = args[0];
@@ -161,7 +161,7 @@ namespace Sedulous.Content
             if (registeredProcessors.ContainsKey(key))
             {
                 throw new InvalidOperationException(
-                    SedulousStrings.ProcessorAlreadyRegistered.Format(processorType.FullName, input.FullName, output.FullName));
+                    FrameworkStrings.ProcessorAlreadyRegistered.Format(processorType.FullName, input.FullName, output.FullName));
             }
             registeredProcessors[key] = CreateProcessorInstance(processorType);
         }
@@ -206,7 +206,7 @@ namespace Sedulous.Content
         {
             var ctor = type.GetConstructor(Type.EmptyTypes);
             if (ctor == null)
-                throw new InvalidOperationException(SedulousStrings.ProcessorRequiresCtor.Format(type.FullName));
+                throw new InvalidOperationException(FrameworkStrings.ProcessorRequiresCtor.Format(type.FullName));
 
             return (IContentProcessor)ctor.Invoke(null);
         }

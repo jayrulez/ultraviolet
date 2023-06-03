@@ -38,7 +38,7 @@ namespace Sedulous.Content
             {
                 var baseImporterType = GetBaseContentImporterType(importer.Type);
                 if (baseImporterType == null)
-                    throw new InvalidOperationException(SedulousStrings.ImporterInvalidBaseClass.Format(importer.Type.FullName));
+                    throw new InvalidOperationException(FrameworkStrings.ImporterInvalidBaseClass.Format(importer.Type.FullName));
 
                 var instance = CreateImporterInstance(importer.Type);
                 foreach (var attr in importer.Attributes)
@@ -46,7 +46,7 @@ namespace Sedulous.Content
                     if (registeredImporters.ContainsKey(attr.Extension))
                     {
                         throw new InvalidOperationException(
-                            SedulousStrings.ImporterAlreadyRegistered.Format(importer.Type.FullName, attr.Extension));
+                            FrameworkStrings.ImporterAlreadyRegistered.Format(importer.Type.FullName, attr.Extension));
                     }
                     registeredImporters[attr.Extension] = new RegistryEntry(instance);
                 }
@@ -102,12 +102,12 @@ namespace Sedulous.Content
 
             var baseImporterType = GetBaseContentImporterType(typeof(T));
             if (baseImporterType == null)
-                throw new InvalidOperationException(SedulousStrings.ImporterInvalidBaseClass.Format(typeof(T).FullName));
+                throw new InvalidOperationException(FrameworkStrings.ImporterInvalidBaseClass.Format(typeof(T).FullName));
 
             if (registeredImporters.ContainsKey(extension))
             {
                 throw new InvalidOperationException(
-                    SedulousStrings.ImporterAlreadyRegistered.Format(typeof(T).FullName, extension));
+                    FrameworkStrings.ImporterAlreadyRegistered.Format(typeof(T).FullName, extension));
             }
             registeredImporters[extension] = new RegistryEntry(CreateImporterInstance(typeof(T)));
         }
@@ -152,7 +152,7 @@ namespace Sedulous.Content
             var ctor = type.GetConstructor(Type.EmptyTypes);
             if (ctor == null)
             {
-                throw new InvalidOperationException(SedulousStrings.ImporterRequiresCtor.Format(type.FullName));
+                throw new InvalidOperationException(FrameworkStrings.ImporterRequiresCtor.Format(type.FullName));
             }
             return (IContentImporter)ctor.Invoke(null);
         }

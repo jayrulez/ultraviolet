@@ -22,8 +22,8 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Updates the sprite's default animation controllers.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        public void Update(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        public void Update(FrameworkTime time)
         {
             foreach (var animation in animations)
             {

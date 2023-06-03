@@ -9,14 +9,14 @@ namespace Sedulous.FreeType2
     /// <summary>
     /// Represents a string buffer that lives in native memory.
     /// </summary>
-    internal unsafe class HarfBuzzNativeStringBuffer : SedulousResource
+    internal unsafe class HarfBuzzNativeStringBuffer : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HarfBuzzNativeStringBuffer"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="capacity">The initial capacity of the buffer, in characters.</param>
-        public HarfBuzzNativeStringBuffer(SedulousContext uv, Int32 capacity = 32)
+        public HarfBuzzNativeStringBuffer(FrameworkContext uv, Int32 capacity = 32)
             : base(uv)
         {
             EnsureCapacity(capacity);

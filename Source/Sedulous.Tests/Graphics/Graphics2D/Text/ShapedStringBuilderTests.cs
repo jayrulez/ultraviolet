@@ -9,7 +9,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Graphics.Graphics2D.Text
 {
     [TestFixture]
-    public class ShapedStringBuilderTests : SedulousApplicationTestFramework
+    public class ShapedStringBuilderTests : FrameworkApplicationTestFramework
     {
         [Test]
         [Category("Content")]
@@ -21,7 +21,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
-                    var font = content.Load<SedulousFont>("Fonts/FiraSans");
+                    var font = content.Load<FrameworkFont>("Fonts/FiraSans");
                     using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
@@ -46,7 +46,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
-                    var font = content.Load<SedulousFont>("Fonts/FiraSans");
+                    var font = content.Load<FrameworkFont>("Fonts/FiraSans");
                     using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
@@ -70,7 +70,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
-                    var font = content.Load<SedulousFont>("Fonts/FiraSans");
+                    var font = content.Load<FrameworkFont>("Fonts/FiraSans");
                     using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
@@ -96,7 +96,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
-                    var font = content.Load<SedulousFont>("Fonts/FiraSans");
+                    var font = content.Load<FrameworkFont>("Fonts/FiraSans");
                     using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
@@ -134,7 +134,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
-                    var font = content.Load<SedulousFont>("Fonts/FiraSans");
+                    var font = content.Load<FrameworkFont>("Fonts/FiraSans");
                     using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
@@ -166,7 +166,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
-                    var font = content.Load<SedulousFont>("Fonts/FiraSans");
+                    var font = content.Load<FrameworkFont>("Fonts/FiraSans");
                     using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");

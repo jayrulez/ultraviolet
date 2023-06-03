@@ -14,7 +14,7 @@ namespace Sedulous.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="window">The window with which this compositor is associated.</param>
-        public DefaultCompositor(SedulousContext uv, ISedulousWindow window)
+        public DefaultCompositor(FrameworkContext uv, IFrameworkWindow window)
             : base(uv, window)
         {
 
@@ -25,9 +25,9 @@ namespace Sedulous.Graphics
         /// </summary>
         /// <param name="window">The window with which the created compositor is associated.</param>
         /// <returns>The instance of <see cref="DefaultCompositor"/> that was created.</returns>
-        public static DefaultCompositor Create(ISedulousWindow window)
+        public static DefaultCompositor Create(IFrameworkWindow window)
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return new DefaultCompositor(uv, window);
         }
 

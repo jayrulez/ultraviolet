@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class ColorTests : SedulousTestFramework
+    public class ColorTests : FrameworkTestFramework
     {
         [Test]
         public void Color_IsConstructedProperly_FromPackedARGB()
@@ -170,7 +170,7 @@ namespace Sedulous.Tests
             var color = Color.CornflowerBlue;
             
             var json = JsonConvert.SerializeObject(color,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe($"[{color.R},{color.G},{color.B},{color.A}]");
         }
@@ -181,7 +181,7 @@ namespace Sedulous.Tests
             var color = Color.CornflowerBlue;
 
             var json = JsonConvert.SerializeObject((Color?)color, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe($"[{color.R},{color.G},{color.B},{color.A}]");
         }
@@ -192,7 +192,7 @@ namespace Sedulous.Tests
             const String json = "[255,0,255,255]";
             
             var color = JsonConvert.DeserializeObject<Color>(json, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(color).ShouldHavePackedValue(Color.Magenta.PackedValue);
         }
@@ -203,7 +203,7 @@ namespace Sedulous.Tests
             const String json1 = "[255,0,255,255]";
 
             var color1 = JsonConvert.DeserializeObject<Color?>(json1, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(color1.Value)
                 .ShouldHavePackedValue(Color.Magenta.PackedValue);
@@ -211,7 +211,7 @@ namespace Sedulous.Tests
             const String json2 = "null";
 
             var color2 = JsonConvert.DeserializeObject<Color?>(json2, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(color2.HasValue)
                 .ShouldBe(false);

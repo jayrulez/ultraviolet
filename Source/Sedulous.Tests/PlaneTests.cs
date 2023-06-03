@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class PlaneTests : SedulousTestFramework
+    public class PlaneTests : FrameworkTestFramework
     {
         [Test]
         public void Plane_IsConstructedProperly_FromComponents()
@@ -134,7 +134,7 @@ namespace Sedulous.Tests
         {
             var plane = new Plane(1.2f, 2.3f, 3.4f, 4.5f);
             var json = JsonConvert.SerializeObject(plane, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""normal"":{""x"":1.2,""y"":2.3,""z"":3.4},""d"":4.5}");
         }
@@ -144,7 +144,7 @@ namespace Sedulous.Tests
         {
             var plane = new Plane(1.2f, 2.3f, 3.4f, 4.5f);
             var json = JsonConvert.SerializeObject((Plane?)plane, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""normal"":{""x"":1.2,""y"":2.3,""z"":3.4},""d"":4.5}");
         }
@@ -155,7 +155,7 @@ namespace Sedulous.Tests
             const String json = @"{ ""normal"": { ""x"":1.2, ""y"":2.3, ""z"":3.4 },""d"":4.5 }";
 
             var plane = JsonConvert.DeserializeObject<Plane>(json, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(plane)
                 .ShouldHaveNormal(1.2f, 2.3f, 3.4f)
@@ -168,7 +168,7 @@ namespace Sedulous.Tests
             const String json1 = @"{ ""normal"": { ""x"":1.2, ""y"":2.3, ""z"":3.4 },""d"":4.5 }";
 
             var plane1 = JsonConvert.DeserializeObject<Plane?>(json1, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(plane1.Value)
                 .ShouldHaveNormal(1.2f, 2.3f, 3.4f)
@@ -177,7 +177,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var plane2 = JsonConvert.DeserializeObject<Plane?>(json2, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(plane2.HasValue)
                 .ShouldBe(false);

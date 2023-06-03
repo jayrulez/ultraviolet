@@ -182,8 +182,8 @@ namespace Sedulous.Presentation.Media.Effects
         }
 
         // The singleton instance of effect used to render the shadow.
-        private static readonly SedulousSingleton<Graphics.BlurEffect> effect =
-            new SedulousSingleton<Graphics.BlurEffect>(SedulousSingletonFlags.DisabledInServiceMode, uv =>
+        private static readonly FrameworkSingleton<Graphics.BlurEffect> effect =
+            new FrameworkSingleton<Graphics.BlurEffect>(FrameworkSingletonFlags.DisabledInServiceMode, uv =>
                 Graphics.BlurEffect.Create());
     }
 }

@@ -12,7 +12,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLSkinnedEffect"/> class.
         /// </summary>
-        public OpenGLSkinnedEffect(SedulousContext uv)
+        public OpenGLSkinnedEffect(FrameworkContext uv)
             : base(CreateEffectImplementation(uv))
         {
             epBlock.DiffuseColor = Parameters["DiffuseColor"];

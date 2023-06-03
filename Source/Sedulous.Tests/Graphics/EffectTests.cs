@@ -7,7 +7,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Graphics
 {
     [TestFixture]
-    public partial class EffectTests : SedulousApplicationTestFramework
+    public partial class EffectTests : FrameworkApplicationTestFramework
     {
         [Test]
         [Category("Content")]

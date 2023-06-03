@@ -25,9 +25,9 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws the contents of the queue.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="dc">The drawing context that describes the render state of the layout.</param>
-        public void Draw(SedulousTime time, DrawingContext dc)
+        public void Draw(FrameworkTime time, DrawingContext dc)
         {
             if (queue.Count == 0)
                 return;

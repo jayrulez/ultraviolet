@@ -11,22 +11,22 @@ namespace Sedulous.BASS.Audio
     /// Represents the BASS implementation of the <see cref="SoundEffectPlayer"/> class.
     /// </summary>
     public sealed class BASSSoundEffectPlayer : SoundEffectPlayer,
-        IMessageSubscriber<SedulousMessageID>
+        IMessageSubscriber<FrameworkMessageID>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BASSSoundEffectPlayer"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public BASSSoundEffectPlayer(SedulousContext uv)
+        public BASSSoundEffectPlayer(FrameworkContext uv)
             : base(uv)
         {
-            uv.Messages.Subscribe(this, BASSSedulousMessages.BASSDeviceChanged);
+            uv.Messages.Subscribe(this, BASSMessages.BASSDeviceChanged);
         }
 
         /// <inheritdoc/>
-        void IMessageSubscriber<SedulousMessageID>.ReceiveMessage(SedulousMessageID type, MessageData data)
+        void IMessageSubscriber<FrameworkMessageID>.ReceiveMessage(FrameworkMessageID type, MessageData data)
         {
-            if (type == BASSSedulousMessages.BASSDeviceChanged)
+            if (type == BASSMessages.BASSDeviceChanged)
             {
                 StopInternal();
 
@@ -41,7 +41,7 @@ namespace Sedulous.BASS.Audio
         }
 
         /// <inheritdoc/>
-        public override void Update(SedulousTime time)
+        public override void Update(FrameworkTime time)
         {
             Contract.EnsureNotDisposed(this, Disposed);
         }

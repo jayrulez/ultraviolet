@@ -22,7 +22,7 @@ namespace Sedulous.Graphics.Graphics2D
 
             var expectedGlyphs = regions.Sum(x => x.Count);
             if (expectedGlyphs > this.glyphs.Length)
-                throw new ArgumentException(SedulousStrings.SpriteFontMissingGlyphs.Format(expectedGlyphs, this.glyphs.Length));
+                throw new ArgumentException(FrameworkStrings.SpriteFontMissingGlyphs.Format(expectedGlyphs, this.glyphs.Length));
 
             this.substitutionCharacter = substitutionCharacter;
             this.lineSpacing = glyphs.Max(x => x.Height);

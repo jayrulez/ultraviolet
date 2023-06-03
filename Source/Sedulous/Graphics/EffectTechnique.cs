@@ -6,13 +6,13 @@ namespace Sedulous.Graphics
     /// Represents one of an effect's techniques, which contains all of the state necessary
     /// to render a particular material.
     /// </summary>
-    public abstract class EffectTechnique : SedulousResource
+    public abstract class EffectTechnique : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EffectTechnique"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public EffectTechnique(SedulousContext uv)
+        public EffectTechnique(FrameworkContext uv)
             : base(uv)
         {
 

@@ -26,7 +26,7 @@ namespace Sedulous
 
             var count = key1.Value.Count;
             if (count != key2.Value.Count || count != existing.Count)
-                throw new ArgumentException(SedulousStrings.SamplerArgumentsMustHaveSameLength);
+                throw new ArgumentException(FrameworkStrings.SamplerArgumentsMustHaveSameLength);
 
             for (var i = 0; i < count; i++)
             {
@@ -55,7 +55,7 @@ namespace Sedulous
 
             var count = key.Value.Count;
             if (count != existing.Count)
-                throw new ArgumentException(SedulousStrings.SamplerArgumentsMustHaveSameLength);
+                throw new ArgumentException(FrameworkStrings.SamplerArgumentsMustHaveSameLength);
 
             var positionDelta = (key.Position - position);
             switch (positionType)
@@ -86,7 +86,7 @@ namespace Sedulous
 
             var count = first.Count;
             if (count != last.Count || count != existing.Count)
-                throw new ArgumentException(SedulousStrings.SamplerArgumentsMustHaveSameLength);
+                throw new ArgumentException(FrameworkStrings.SamplerArgumentsMustHaveSameLength);
 
             for (var i = 0; i < count; i++)
                 existing.GetItemRef(i) = (last.GetItemRef(i) - first.GetItemRef(i)) * cycle;

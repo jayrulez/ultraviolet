@@ -11,7 +11,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The effect implementation.</returns>
-        private static EffectImplementation CreateEffectImplementation(SedulousContext uv)
+        private static EffectImplementation CreateEffectImplementation(FrameworkContext uv)
         {
             Contract.Require(uv, nameof(uv));
 
@@ -29,50 +29,50 @@ namespace Sedulous.OpenGL.Graphics
         }
 
         // An array containing all of the vertex shaders used by this effect.
-        private static readonly SedulousSingleton<OpenGLVertexShader>[] VSArray = new[]
+        private static readonly FrameworkSingleton<OpenGLVertexShader>[] VSArray = new[]
         {
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasic.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicNoFog.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicVc.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicVcNoFog.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicTx.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicTxNoFog.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicTxVc.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicTxVcNoFog.vert")); }),
 
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicVertexLighting.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicVertexLightingVc.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicVertexLightingTx.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicVertexLightingTxVc.vert")); }),
 
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicOneLight.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicOneLightVc.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicOneLightTx.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicOneLightTxVc.vert")); }),
 
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicPixelLighting.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicPixelLightingVc.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicPixelLightingTx.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_VSBasicPixelLightingTxVc.vert")); }),
         };
 
@@ -117,29 +117,29 @@ namespace Sedulous.OpenGL.Graphics
         };
 
         // An array containing all of the fragment shaders used by this effect.
-        private static readonly SedulousSingleton<OpenGLFragmentShader>[] PSArray = new[]
+        private static readonly FrameworkSingleton<OpenGLFragmentShader>[] PSArray = new[]
         {
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_PSBasic.frag")); }),
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_PSBasicNoFog.frag")); }),
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_PSBasicTx.frag")); }),
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_PSBasicTxNoFog.frag")); }),
 
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_PSBasicVertexLighting.frag")); }),
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_PSBasicVertexLightingNoFog.frag")); }),
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_PSBasicVertexLightingTx.frag")); }),
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_PSBasicVertexLightingTxNoFog.frag")); }),
 
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_PSBasicPixelLighting.frag")); }),
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BasicEffect_PSBasicPixelLightingTx.frag")); }),
         };
 

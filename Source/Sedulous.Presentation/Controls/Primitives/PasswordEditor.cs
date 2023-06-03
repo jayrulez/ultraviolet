@@ -18,7 +18,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public PasswordEditor(SedulousContext uv, String name)
+        public PasswordEditor(FrameworkContext uv, String name)
             : base(uv, name)
         {
 

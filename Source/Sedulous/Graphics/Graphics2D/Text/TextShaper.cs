@@ -10,18 +10,18 @@ namespace Sedulous.Graphics.Graphics2D.Text
     /// <param name="uv">The Sedulous context.</param>
     /// <param name="capacity">The initial capacity of the text builder.</param>
     /// <returns>The instance of <see cref="TextShaper"/> that was created.</returns>
-    public delegate TextShaper TextShaperFactory(SedulousContext uv, Int32 capacity = 0);
+    public delegate TextShaper TextShaperFactory(FrameworkContext uv, Int32 capacity = 0);
 
     /// <summary>
     /// Represents a mutable buffer which can be used to perform text shaping.
     /// </summary>
-    public abstract class TextShaper : SedulousResource
+    public abstract class TextShaper : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TextShaper"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public TextShaper(SedulousContext uv)
+        public TextShaper(FrameworkContext uv)
             : base(uv)
         { }
 
@@ -32,7 +32,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <returns>The instance of <see cref="TextShaper"/> that was created.</returns>
         public static TextShaper Create(Int32 capacity = 0)
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<TextShaperFactory>()(uv, capacity);
         }
         
@@ -145,7 +145,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="builder">The <see cref="ShapedStringBuilder"/> instance to which to append this shaper's contents.</param>
         /// <param name="fontFace">The font face with which to shape the string.</param>
         /// <param name="sourceIndexOffset">The offset which is applied to the source indices assigned to shaped characters in the resulting string.</param>
-        public abstract void AppendTo(ShapedStringBuilder builder, SedulousFontFace fontFace, Int32 sourceIndexOffset = 0);
+        public abstract void AppendTo(ShapedStringBuilder builder, FrameworkFontFace fontFace, Int32 sourceIndexOffset = 0);
 
         /// <summary>
         /// Appends the contents of a subset of this shaping buffer to the specified <see cref="ShapedStringBuilder"/> instance.
@@ -155,7 +155,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="start">The offset of the character in the original string which corresponds to the beginning of the shaped substring.</param>
         /// <param name="length">The number of characters in the raw substring from which to create the shaped substring.</param>
         /// <param name="sourceIndexOffset">The offset which is applied to the source indices assigned to shaped characters in the resulting string.</param>
-        public abstract void AppendTo(ShapedStringBuilder builder, SedulousFontFace fontFace, Int32 start, Int32 length, Int32 sourceIndexOffset = 0);
+        public abstract void AppendTo(ShapedStringBuilder builder, FrameworkFontFace fontFace, Int32 start, Int32 length, Int32 sourceIndexOffset = 0);
 
         /// <summary>
         /// Creates a new <see cref="ShapedString"/> instance from the current contents of the shaping buffer.
@@ -163,7 +163,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="fontFace">The font face with which to shape the string.</param>
         /// <param name="sourceIndexOffset">The offset which is applied to the source indices assigned to shaped characters in the resulting string.</param>
         /// <returns>A new shaped string instance.</returns>
-        public abstract ShapedString CreateShapedString(SedulousFontFace fontFace, Int32 sourceIndexOffset = 0);
+        public abstract ShapedString CreateShapedString(FrameworkFontFace fontFace, Int32 sourceIndexOffset = 0);
 
         /// <summary>
         /// Creates a new <see cref="ShapedString"/> instance from a subset of the current contents of the shaping buffer.
@@ -173,7 +173,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="length">The number of characters in the raw substring from which to create the shaped substring.</param>
         /// <param name="sourceIndexOffset">The offset which is applied to the source indices assigned to shaped characters in the resulting string.</param>
         /// <returns>A new shaped string instance.</returns>
-        public abstract ShapedString CreateShapedString(SedulousFontFace fontFace, Int32 start, Int32 length, Int32 sourceIndexOffset = 0);
+        public abstract ShapedString CreateShapedString(FrameworkFontFace fontFace, Int32 start, Int32 length, Int32 sourceIndexOffset = 0);
 
         /// <summary>
         /// Gets the length of the raw string data which is currently contained by the shaper.

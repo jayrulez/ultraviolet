@@ -15,7 +15,7 @@ namespace Sedulous.Content
         /// </summary>
         public void Reset()
         {
-            Contract.EnsureNot(IsLoading, SedulousStrings.ContentLoaderAlreadyLoading);
+            Contract.EnsureNot(IsLoading, FrameworkStrings.ContentLoaderAlreadyLoading);
 
             this.IsLoaded = false;
             this.steps.Clear();
@@ -28,7 +28,7 @@ namespace Sedulous.Content
         public void AddStep(Action step)
         {
             Contract.Require(step, nameof(step));
-            Contract.EnsureNot(IsLoading, SedulousStrings.ContentLoaderAlreadyLoading);
+            Contract.EnsureNot(IsLoading, FrameworkStrings.ContentLoaderAlreadyLoading);
 
             AddStepInternal(step);
         }
@@ -40,7 +40,7 @@ namespace Sedulous.Content
         public void AddStep(Action<ContentManager> step)
         {
             Contract.Require(step, nameof(step));
-            Contract.EnsureNot(IsLoading, SedulousStrings.ContentLoaderAlreadyLoading);
+            Contract.EnsureNot(IsLoading, FrameworkStrings.ContentLoaderAlreadyLoading);
 
             AddStepInternal(() => { step(content); });
         }
@@ -63,7 +63,7 @@ namespace Sedulous.Content
         /// <param name="milliseconds">The number of milliseconds to delay.</param>
         public void AddDelay(Int32 milliseconds)
         {
-            Contract.EnsureNot(IsLoading, SedulousStrings.ContentLoaderAlreadyLoading);
+            Contract.EnsureNot(IsLoading, FrameworkStrings.ContentLoaderAlreadyLoading);
 
             const Int32 MaxMillisecondsPerStep = 250;
             while (milliseconds > 0)
@@ -79,7 +79,7 @@ namespace Sedulous.Content
         /// </summary>
         public void AddGarbageCollection()
         {
-            Contract.EnsureNot(IsLoading, SedulousStrings.ContentLoaderAlreadyLoading);
+            Contract.EnsureNot(IsLoading, FrameworkStrings.ContentLoaderAlreadyLoading);
 
             AddStepInternal(() => GC.Collect());
         }
@@ -90,7 +90,7 @@ namespace Sedulous.Content
         /// <param name="generation">The generation on which to perform a collection.</param>
         public void AddGarbageCollection(Int32 generation)
         {
-            Contract.EnsureNot(IsLoading, SedulousStrings.ContentLoaderAlreadyLoading);
+            Contract.EnsureNot(IsLoading, FrameworkStrings.ContentLoaderAlreadyLoading);
 
             AddStepInternal(() => GC.Collect(generation));
         }
@@ -103,8 +103,8 @@ namespace Sedulous.Content
         /// <param name="onFaulted">An action to invoke when the loader faults due to an exception.</param>
         public void Load(ContentManager content, Action onLoaded = null, Action<Exception> onFaulted = null)
         {
-            Contract.Ensure(content != null, SedulousStrings.NoContentManagerSpecified);
-            Contract.EnsureNot(IsLoading, SedulousStrings.ContentLoaderAlreadyLoading);
+            Contract.Ensure(content != null, FrameworkStrings.NoContentManagerSpecified);
+            Contract.EnsureNot(IsLoading, FrameworkStrings.ContentLoaderAlreadyLoading);
 
             this.IsLoading = true;
             this.IsLoaded = false;

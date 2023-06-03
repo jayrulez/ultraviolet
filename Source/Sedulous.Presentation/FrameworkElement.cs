@@ -43,7 +43,7 @@ namespace Sedulous.Presentation
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The identifying name of this element within its layout.</param>
-        public FrameworkElement(SedulousContext uv, String name)
+        public FrameworkElement(FrameworkContext uv, String name)
             : base(uv)
         {
             this.name = name;
@@ -712,7 +712,7 @@ namespace Sedulous.Presentation
         }
 
         /// <inheritdoc/>
-        protected sealed override void DrawCore(SedulousTime time, DrawingContext dc)
+        protected sealed override void DrawCore(FrameworkTime time, DrawingContext dc)
         {
             if (!LayoutUtil.IsDrawn(this))
                 return;
@@ -721,7 +721,7 @@ namespace Sedulous.Presentation
         }
 
         /// <inheritdoc/>
-        protected sealed override void UpdateCore(SedulousTime time)
+        protected sealed override void UpdateCore(FrameworkTime time)
         {
             UpdateOverride(time);
         }
@@ -1018,9 +1018,9 @@ namespace Sedulous.Presentation
         /// When overridden in a derived class, draws the element using the 
         /// specified <see cref="Graphics.Graphics2D.SpriteBatch"/> for a <see cref="FrameworkElement"/> derived class.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="dc">The drawing context that describes the render state of the layout.</param>
-        protected virtual void DrawOverride(SedulousTime time, DrawingContext dc)
+        protected virtual void DrawOverride(FrameworkTime time, DrawingContext dc)
         {
             var children = VisualChildrenCount;
             for (int i = 0; i < children; i++)
@@ -1033,8 +1033,8 @@ namespace Sedulous.Presentation
         /// When overridden in a derived class, updates the element's state for
         /// a <see cref="FrameworkElement"/> derived class.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        protected virtual void UpdateOverride(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        protected virtual void UpdateOverride(FrameworkTime time)
         {
             var children = VisualChildrenCount;
             for (int i = 0; i < children; i++)

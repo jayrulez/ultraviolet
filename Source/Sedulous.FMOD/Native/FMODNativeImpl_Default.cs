@@ -16,12 +16,12 @@ namespace Sedulous.FMOD.Native
         
         static FMODNativeImpl_Default()
         {
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Linux:
+                case FrameworkPlatform.Linux:
                     lib = new NativeLibrary(new[] { "libfmodL", "libfmod" });
                     break;
-                case SedulousPlatform.macOS:
+                case FrameworkPlatform.macOS:
                     lib = new NativeLibrary(new[] { "libfmodL", "libfmod" });
                     break;
                 default:

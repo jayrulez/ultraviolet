@@ -4,13 +4,13 @@ using Sedulous.Core.Collections;
 
 namespace Sedulous.Presentation
 {
-    internal partial class WeakReferencePool : SedulousResource
+    internal partial class WeakReferencePool : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WeakReferencePool"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public WeakReferencePool(SedulousContext uv)
+        public WeakReferencePool(FrameworkContext uv)
             : base(uv)
         {
 
@@ -111,7 +111,7 @@ namespace Sedulous.Presentation
         private ExpandingPool<WeakReference> pool;
 
         // The singleton instance of the clock pool.
-        private static SedulousSingleton<WeakReferencePool> instance =
-            new SedulousSingleton<WeakReferencePool>(uv => new WeakReferencePool(uv));
+        private static FrameworkSingleton<WeakReferencePool> instance =
+            new FrameworkSingleton<WeakReferencePool>(uv => new WeakReferencePool(uv));
     }
 }

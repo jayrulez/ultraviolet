@@ -22,7 +22,7 @@ namespace Sedulous.Presentation
             this.boundType = expressionType;
             this.delegateType = typeof(DataBindingSetter<>).MakeGenericType(expressionType);
 
-            if (SedulousPlatformInfo.IsRuntimeCodeGenerationSupported())
+            if (FrameworkPlatformInfo.IsRuntimeCodeGenerationSupported())
             {
                 CreateReturnTarget();
 

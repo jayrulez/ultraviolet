@@ -26,7 +26,7 @@ namespace Sedulous.Presentation.Styles
         /// <param name="navigationExpression">The navigation expression associated with the style.</param>
         /// <param name="rule">The styling rule to add to the prioritizer.</param>
         /// <param name="index">The index of the rule's rule set within the style sheet.</param>
-        public void Add(SedulousContext uv, UvssSelector selector, NavigationExpression? navigationExpression, UvssRule rule, Int32 index)
+        public void Add(FrameworkContext uv, UvssSelector selector, NavigationExpression? navigationExpression, UvssRule rule, Int32 index)
         {
             Contract.Require(uv, nameof(uv));
 
@@ -59,7 +59,7 @@ namespace Sedulous.Presentation.Styles
         /// <param name="navigationExpression">The navigation expression associated with the style.</param>
         /// <param name="trigger">The trigger to add to the prioritizer.</param>
         /// <param name="index">The index of the trigger's rule set within the style sheet.</param>
-        public void Add(SedulousContext uv, UvssSelector selector, NavigationExpression? navigationExpression, UvssTrigger trigger, Int32 index)
+        public void Add(FrameworkContext uv, UvssSelector selector, NavigationExpression? navigationExpression, UvssTrigger trigger, Int32 index)
         {
             Contract.Require(uv, nameof(uv));
 

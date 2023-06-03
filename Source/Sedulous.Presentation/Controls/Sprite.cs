@@ -16,7 +16,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public Sprite(SedulousContext uv, String name)
+        public Sprite(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
@@ -176,7 +176,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <value>The identifier for the <see cref="SourceColor"/> dependency property.</value>
         public static readonly DependencyProperty SourceColorProperty = DependencyProperty.Register("SourceColor", typeof(Color), typeof(Sprite),
-            new PropertyMetadata<Color>(SedulousBoxedValues.Color.White));
+            new PropertyMetadata<Color>(FrameworkBoxedValues.Color.White));
 
         /// <summary>
         /// Identifies the <see cref="SourceAnimation"/> property.
@@ -230,7 +230,7 @@ namespace Sedulous.Presentation.Controls
         }
 
         /// <inheritdoc/>
-        protected override void UpdateOverride(SedulousTime time)
+        protected override void UpdateOverride(FrameworkTime time)
         {
             if (localAnimationController != null)
                 localAnimationController.Update(time);
@@ -239,7 +239,7 @@ namespace Sedulous.Presentation.Controls
         }
 
         /// <inheritdoc/>
-        protected override void DrawOverride(SedulousTime time, DrawingContext dc)
+        protected override void DrawOverride(FrameworkTime time, DrawingContext dc)
         {
             var position = Point2D.Zero;
             var width = 0.0;

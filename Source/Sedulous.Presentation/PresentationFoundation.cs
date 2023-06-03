@@ -9,7 +9,7 @@ namespace Sedulous.Presentation
     /// <summary>
     /// Represents the state of the Sedulous Presentation Foundation.
     /// </summary>
-    public sealed partial class PresentationFoundation : SedulousResource
+    public sealed partial class PresentationFoundation : FrameworkResource
     {
         /// <summary>
         /// Initializes the <see cref="PresentationFoundation"/> type.
@@ -19,7 +19,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Initializes a new instance of the <see cref="PresentationFoundation"/> class.
         /// </summary>
-        private PresentationFoundation(SedulousContext uv)
+        private PresentationFoundation(FrameworkContext uv)
             : base(uv)
         {
             RuntimeHelpers.RunClassConstructor(typeof(Tweening).TypeHandle);
@@ -36,12 +36,12 @@ namespace Sedulous.Presentation
         }
 
         /// <summary>
-        /// Modifies the specified <see cref="SedulousConfiguration"/> instance so that the Sedulous
+        /// Modifies the specified <see cref="FrameworkConfiguration"/> instance so that the Sedulous
         /// Presentation Foundation will be registered as the context's view provider.
         /// </summary>
-        /// <param name="sedulousConfig">The <see cref="SedulousConfiguration"/> instance to modify.</param>
+        /// <param name="sedulousConfig">The <see cref="FrameworkConfiguration"/> instance to modify.</param>
         /// <param name="presentationConfig">Configuration settings for the Sedulous Presentation Foundation.</param>
-        public static void Configure(SedulousConfiguration sedulousConfig, PresentationFoundationConfiguration presentationConfig = null)
+        public static void Configure(FrameworkConfiguration sedulousConfig, PresentationFoundationConfiguration presentationConfig = null)
         {
             Contract.Require(sedulousConfig, nameof(sedulousConfig));
 
@@ -83,7 +83,7 @@ namespace Sedulous.Presentation
         /// Called when the Sedulous context blah blah blah
         /// </summary>
         /// <param name="uv"></param>
-        private void OnFrameStart(SedulousContext uv)
+        private void OnFrameStart(FrameworkContext uv)
         {
             PerformanceStats.OnFrameStart();
         }
@@ -92,8 +92,8 @@ namespace Sedulous.Presentation
         /// Called when the Sedulous context is about to update its subsystems.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        private void OnUpdatingSubsystems(SedulousContext uv, SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        private void OnUpdatingSubsystems(FrameworkContext uv, FrameworkTime time)
         {
             digestCycleID++;
         }
@@ -102,8 +102,8 @@ namespace Sedulous.Presentation
         /// Called when the Sedulous UI subsystem is being updated.
         /// </summary>
         /// <param name="subsystem">The Sedulous subsystem.</param>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        private void OnUpdatingUI(ISedulousSubsystem subsystem, SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        private void OnUpdatingUI(IFrameworkSubsystem subsystem, FrameworkTime time)
         {
             PerformanceStats.BeginUpdate();
 
@@ -119,16 +119,16 @@ namespace Sedulous.Presentation
         /// Called when the Sedulous context is about to draw a frame.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
-        private void OnDrawing(SedulousContext uv, SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
+        private void OnDrawing(FrameworkContext uv, FrameworkTime time)
         {
             if (OutOfBandRenderer != null)
                 OutOfBandRenderer.DrawRenderTargets(time);
         }
         
         // The singleton instance of the Sedulous Presentation Foundation.
-        private static readonly SedulousSingleton<PresentationFoundation> instance =
-            new SedulousSingleton<PresentationFoundation>(uv =>
+        private static readonly FrameworkSingleton<PresentationFoundation> instance =
+            new FrameworkSingleton<PresentationFoundation>(uv =>
             {
                 var instance = new PresentationFoundation(uv);
                 uv.FrameStart += instance.OnFrameStart;

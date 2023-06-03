@@ -11,9 +11,9 @@ namespace Sedulous.ImGuiViewProvider.Bindings
         
         static ImGuiNative()
         {
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Android:
+                case FrameworkPlatform.Android:
                     impl = new ImGuiNativeImpl_Android();
                     break;
                     

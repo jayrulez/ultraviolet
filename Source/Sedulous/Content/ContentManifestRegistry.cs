@@ -8,7 +8,7 @@ namespace Sedulous.Content
     /// <summary>
     /// Represents an Sedulous context's registry of loaded content manifests.
     /// </summary>
-    public sealed class ContentManifestRegistry : SedulousNamedCollection<ContentManifest>
+    public sealed class ContentManifestRegistry : FrameworkNamedCollection<ContentManifest>
     {
         /// <summary>
         /// Loads a content manifest from the file at the specified path and adds it to the registry.
@@ -65,7 +65,7 @@ namespace Sedulous.Content
             Contract.Require(manifest, nameof(manifest));
 
             if (Contains(manifest.Name))
-                throw new InvalidOperationException(SedulousStrings.ContentManifestAlreadyContainsAsset.Format(manifest.Name));
+                throw new InvalidOperationException(FrameworkStrings.ContentManifestAlreadyContainsAsset.Format(manifest.Name));
 
             AddInternal(manifest);
         }

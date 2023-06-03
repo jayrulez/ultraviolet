@@ -11,14 +11,14 @@ namespace Sedulous.SDL2.Input
     /// <summary>
     /// Manages the Sedulous context's connected game pad devices.
     /// </summary>
-    internal sealed class GamePadDeviceInfo : SedulousResource,
-        IMessageSubscriber<SedulousMessageID>
+    internal sealed class GamePadDeviceInfo : FrameworkResource,
+        IMessageSubscriber<FrameworkMessageID>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GamePadDeviceInfo"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public GamePadDeviceInfo(SedulousContext uv)
+        public GamePadDeviceInfo(FrameworkContext uv)
             : base(uv)
         {
             this.devicesByPlayer = new SDL2GamePadDevice[SDL_NumJoysticks()];
@@ -32,13 +32,13 @@ namespace Sedulous.SDL2.Input
             }
 
             uv.Messages.Subscribe(this,
-                SDL2SedulousMessages.SDLEvent);
+                SDL2FrameworkMessages.SDLEvent);
         }
 
         /// <inheritdoc/>
-        void IMessageSubscriber<SedulousMessageID>.ReceiveMessage(SedulousMessageID type, MessageData data)
+        void IMessageSubscriber<FrameworkMessageID>.ReceiveMessage(FrameworkMessageID type, MessageData data)
         {
-            if (type != SDL2SedulousMessages.SDLEvent)
+            if (type != SDL2FrameworkMessages.SDLEvent)
                 return;
 
             var evt = ((SDL2EventMessageData)data).Event;
@@ -73,8 +73,8 @@ namespace Sedulous.SDL2.Input
         /// <summary>
         /// Updates the state of the attached game pad devices.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        public void Update(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        public void Update(FrameworkTime time)
         {
             Contract.EnsureNotDisposed(this, Disposed);
 

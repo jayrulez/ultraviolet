@@ -11,7 +11,7 @@ namespace UvDebug.UI
     /// <summary>
     /// Represents a service which provides instances of UI screen types upon request.
     /// </summary>
-    public sealed class UIScreenService : SedulousResource
+    public sealed class UIScreenService : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the UIScreenService type.

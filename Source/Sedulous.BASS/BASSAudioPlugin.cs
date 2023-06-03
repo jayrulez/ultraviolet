@@ -5,10 +5,10 @@ namespace Sedulous.BASS
     /// <summary>
     /// Represents an Sedulous plugin which registers BASS as the audio subsystem implementation.
     /// </summary>
-    public class BASSAudioPlugin : SedulousPlugin
+    public class BASSAudioPlugin : FrameworkPlugin
     {
         /// <inheritdoc/>
-        public override void Register(SedulousConfiguration configuration)
+        public override void Register(FrameworkConfiguration configuration)
         {
             Contract.Require(configuration, nameof(configuration));
 

@@ -5,13 +5,13 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents one render pass in an effect technique.
     /// </summary>
-    public abstract class EffectPass : SedulousResource
+    public abstract class EffectPass : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EffectPass"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public EffectPass(SedulousContext uv)
+        public EffectPass(FrameworkContext uv)
             : base(uv)
         {
 

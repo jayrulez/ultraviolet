@@ -5,13 +5,13 @@ namespace Sedulous.Input
     /// <summary>
     /// Represents any input device.
     /// </summary>
-    public abstract class InputDevice : SedulousResource
+    public abstract class InputDevice : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InputDevice"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        internal InputDevice(SedulousContext uv)
+        internal InputDevice(FrameworkContext uv)
             : base(uv)
         {
 
@@ -20,8 +20,8 @@ namespace Sedulous.Input
         /// <summary>
         /// Updates the device's state.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        public abstract void Update(SedulousTime time);
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        public abstract void Update(FrameworkTime time);
 
         /// <summary>
         /// Gets a value indicating whether the device has been registered with the context

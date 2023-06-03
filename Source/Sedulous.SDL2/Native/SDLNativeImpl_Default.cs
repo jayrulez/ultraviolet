@@ -15,12 +15,12 @@ namespace Sedulous.SDL2.Native
         
         static SDLNativeImpl_Default()
         {
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Linux:
+                case FrameworkPlatform.Linux:
                     lib = new NativeLibrary("libSDL2");
                     break;
-                case SedulousPlatform.macOS:
+                case FrameworkPlatform.macOS:
                     lib = new NativeLibrary("libSDL2");
                     break;
                 default:

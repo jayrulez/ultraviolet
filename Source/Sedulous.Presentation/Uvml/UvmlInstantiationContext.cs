@@ -19,7 +19,7 @@ namespace Sedulous.Presentation.Uvml
         /// <param name="dataSource">The data source for the instantiated object.</param>
         /// <param name="dataSourceType">The data source type for the instantiated object.</param>
         /// <param name="namescope">The context's namescope, or <see langword="null"/> to create a new namescope.</param>
-        internal UvmlInstantiationContext(SedulousContext uv, Object templatedParent, Object dataSource, Type dataSourceType, Namescope namescope = null)
+        internal UvmlInstantiationContext(FrameworkContext uv, Object templatedParent, Object dataSource, Type dataSourceType, Namescope namescope = null)
         {
             this.Sedulous = uv;
             this.Namescope = namescope ?? new Namescope();
@@ -36,7 +36,7 @@ namespace Sedulous.Presentation.Uvml
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="view">The view for which to create an instantiation context.</param>
         /// <returns>The instantiation context which was created.</returns>
-        internal static UvmlInstantiationContext ForView(SedulousContext uv, PresentationFoundationView view)
+        internal static UvmlInstantiationContext ForView(FrameworkContext uv, PresentationFoundationView view)
         {
             return new UvmlInstantiationContext(uv, null, view, view.ViewModelType, view.Namescope);
         }
@@ -47,7 +47,7 @@ namespace Sedulous.Presentation.Uvml
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="control">The control for which to create an instantiation context.</param>
         /// <returns>The instantiation context which was created.</returns>
-        internal static UvmlInstantiationContext ForControl(SedulousContext uv, Control control)
+        internal static UvmlInstantiationContext ForControl(FrameworkContext uv, Control control)
         {
             var wrapper = PresentationFoundation.GetDataSourceWrapper(control);
             return new UvmlInstantiationContext(uv, control, control, wrapper.GetType(), control.ComponentTemplateNamescope);
@@ -78,7 +78,7 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Gets the Sedulous context.
         /// </summary>
-        public SedulousContext Sedulous { get; }
+        public FrameworkContext Sedulous { get; }
 
         /// <summary>
         /// Gets the namescope for the current template.

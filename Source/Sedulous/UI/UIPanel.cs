@@ -17,21 +17,21 @@ namespace Sedulous.UI
     /// Represents the method that is called when a <see cref="UIPanel"/> is updated.
     /// </summary>
     /// <param name="panel">The <see cref="UIPanel"/> that raised the event.</param>
-    /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-    public delegate void UIPanelUpdateEventHandler(UIPanel panel, SedulousTime time);
+    /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+    public delegate void UIPanelUpdateEventHandler(UIPanel panel, FrameworkTime time);
 
     /// <summary>
     /// Represents the method that is called when a <see cref="UIPanel"/> is being drawn.
     /// </summary>
     /// <param name="panel">The <see cref="UIPanel"/> that raised the event.</param>
-    /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+    /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
     /// <param name="spriteBatch">The sprite batch with which the panel is being drawn.</param>
-    public delegate void UIPanelDrawEventHandler(UIPanel panel, SedulousTime time, SpriteBatch spriteBatch);
+    public delegate void UIPanelDrawEventHandler(UIPanel panel, FrameworkTime time, SpriteBatch spriteBatch);
 
     /// <summary>
     /// Represents a container for user interface elements which occupies a portion of the screen.
     /// </summary>
-    public abstract class UIPanel : SedulousResource
+    public abstract class UIPanel : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UIPanel"/> class.
@@ -50,8 +50,8 @@ namespace Sedulous.UI
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="rootDirectory">The root directory of the panel's local content manager.</param>
         /// <param name="globalContent">The content manager with which to load globally-available assets.</param>
-        internal UIPanel(SedulousContext uv, String rootDirectory, ContentManager globalContent)
-            : base(uv ?? SedulousContext.DemandCurrent())
+        internal UIPanel(FrameworkContext uv, String rootDirectory, ContentManager globalContent)
+            : base(uv ?? FrameworkContext.DemandCurrent())
         {
             Contract.RequireNotEmpty(rootDirectory, nameof(rootDirectory));
             Contract.Require(globalContent, nameof(globalContent));
@@ -114,15 +114,15 @@ namespace Sedulous.UI
         /// <summary>
         /// Updates the panel's state.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        public abstract void Update(SedulousTime time);
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        public abstract void Update(FrameworkTime time);
 
         /// <summary>
         /// Draws the panel using the specified sprite batch.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="spriteBatch">The <see cref="SpriteBatch"/> with which to draw the panel.</param>
-        public abstract void Draw(SedulousTime time, SpriteBatch spriteBatch);
+        public abstract void Draw(FrameworkTime time, SpriteBatch spriteBatch);
 
         /// <summary>
         /// Gets the content manager which is used to load globally-available assets.
@@ -258,7 +258,7 @@ namespace Sedulous.UI
         /// <summary>
         /// Gets the window to which the screen is drawn.
         /// </summary>
-        public ISedulousWindow Window
+        public IFrameworkWindow Window
         {
             get => this.window;
             internal set
@@ -390,31 +390,31 @@ namespace Sedulous.UI
         /// Raises the <see cref="Updating"/> event.
         /// </summary>
         /// <param name="time">The Sedulous time.</param>
-        protected virtual void OnUpdating(SedulousTime time) =>
+        protected virtual void OnUpdating(FrameworkTime time) =>
             Updating?.Invoke(this, time);
 
         /// <summary>
         /// Raises the <see cref="DrawingBackground"/> event.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="spriteBatch">The <see cref="SpriteBatch"/> with which the panel is being drawn.</param>
-        protected virtual void OnDrawingBackground(SedulousTime time, SpriteBatch spriteBatch) =>
+        protected virtual void OnDrawingBackground(FrameworkTime time, SpriteBatch spriteBatch) =>
             DrawingBackground?.Invoke(this, time, spriteBatch);
 
         /// <summary>
         /// Raises the <see cref="DrawingView"/> event.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="spriteBatch">The <see cref="SpriteBatch"/> with which the panel is being drawn.</param>
-        protected virtual void OnDrawingView(SedulousTime time, SpriteBatch spriteBatch) =>
+        protected virtual void OnDrawingView(FrameworkTime time, SpriteBatch spriteBatch) =>
             DrawingView?.Invoke(this, time, spriteBatch);
 
         /// <summary>
         /// Raises the <see cref="DrawingForeground"/> event.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="spriteBatch">The <see cref="SpriteBatch"/> with which the panel is being drawn.</param>
-        protected virtual void OnDrawingForeground(SedulousTime time, SpriteBatch spriteBatch) =>
+        protected virtual void OnDrawingForeground(FrameworkTime time, SpriteBatch spriteBatch) =>
             DrawingForeground?.Invoke(this, time, spriteBatch);
 
         /// <summary>
@@ -444,9 +444,9 @@ namespace Sedulous.UI
         /// <summary>
         /// Draws the panel's view.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="spriteBatch">The <see cref="SpriteBatch"/> with which the panel is being drawn.</param>
-        protected virtual void DrawView(SedulousTime time, SpriteBatch spriteBatch)
+        protected virtual void DrawView(FrameworkTime time, SpriteBatch spriteBatch)
         {
             view.Draw(time, spriteBatch);
         }
@@ -454,8 +454,8 @@ namespace Sedulous.UI
         /// <summary>
         /// Updates the panel's view.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        protected virtual void UpdateView(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        protected virtual void UpdateView(FrameworkTime time)
         {
             view.Update(time);
         }
@@ -508,7 +508,7 @@ namespace Sedulous.UI
             Contract.EnsureNotDisposed(this, Disposed);
 
             if (IsViewLoaded)
-                throw new InvalidOperationException(SedulousStrings.ViewAlreadyLoaded);
+                throw new InvalidOperationException(FrameworkStrings.ViewAlreadyLoaded);
 
             this.definition?.Dispose();
             this.definition = definition;
@@ -532,8 +532,8 @@ namespace Sedulous.UI
         /// <summary>
         /// Updates the panel's transition state.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        protected void UpdateTransition(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        protected void UpdateTransition(FrameworkTime time)
         {
             if (State == UIPanelState.Open || State == UIPanelState.Closed)
                 return;
@@ -772,7 +772,7 @@ namespace Sedulous.UI
         private Double transitionDirection = 0f;
         private TimeSpan defaultOpenTransitionDuration = TimeSpan.Zero;
         private TimeSpan defaultCloseTransitionDuration = TimeSpan.Zero;
-        private ISedulousWindow window;
+        private IFrameworkWindow window;
 
         // View lazy loading parameters.
         private WatchedAsset<UIPanelDefinition> definition;

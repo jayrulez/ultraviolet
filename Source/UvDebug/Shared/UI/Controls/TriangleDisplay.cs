@@ -19,7 +19,7 @@ namespace UvDebug.Content.UI.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The identifying name of this element within its layout.</param>
-        public TriangleDisplay(SedulousContext uv, String name)
+        public TriangleDisplay(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
@@ -141,7 +141,7 @@ namespace UvDebug.Content.UI.Controls
         }
 
         /// <inheritdoc/>
-        protected override void DrawOverride(SedulousTime time, DrawingContext dc)
+        protected override void DrawOverride(FrameworkTime time, DrawingContext dc)
         {
             DrawBlank(dc, Color.Black * 0.5f);
 

@@ -6,13 +6,13 @@ namespace Sedulous.Audio
     /// <para>Represents a song.</para>
     /// <para>Songs are audio resources, usually music, which are streamed from disk during playback.</para>
     /// </summary>
-    public abstract class Song : SedulousResource
+    public abstract class Song : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Song"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        protected Song(SedulousContext uv)
+        protected Song(FrameworkContext uv)
             : base(uv)
         {
 

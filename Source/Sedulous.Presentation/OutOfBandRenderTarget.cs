@@ -7,13 +7,13 @@ namespace Sedulous.Presentation
     /// <summary>
     /// Represents one of the render targets used to render an out-of-band element.
     /// </summary>
-    public class OutOfBandRenderTarget : SedulousResource
+    public class OutOfBandRenderTarget : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OutOfBandRenderTarget"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        internal OutOfBandRenderTarget(SedulousContext uv)
+        internal OutOfBandRenderTarget(FrameworkContext uv)
             : base(uv)
         {
             renderTarget = RenderTarget2D.Create(1, 1);

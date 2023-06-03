@@ -6,10 +6,11 @@ namespace UvDebug
     /// <summary>
     /// Represents the factory initializer for this application.
     /// </summary>
-    public class SedulousFactoryInitializer : ISedulousFactoryInitializer
+    public class SedulousFactoryInitializer
+        : IFrameworkFactoryInitializer
     {
         /// <inheritdoc/>
-        public void Initialize(SedulousContext owner, SedulousFactory factory)
+        public void Initialize(FrameworkContext owner, FrameworkFactory factory)
         {
 
         }

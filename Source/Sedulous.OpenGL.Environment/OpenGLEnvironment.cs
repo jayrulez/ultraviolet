@@ -8,18 +8,18 @@ namespace Sedulous.OpenGL
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The <see cref="OpenGLEnvironment"/> instance which was created.</returns>
-    public delegate OpenGLEnvironment OpenGLEnvironmentFactory(SedulousContext uv);
+    public delegate OpenGLEnvironment OpenGLEnvironmentFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents the interface that OpenGL uses to communicate with the underlying platform environment.
     /// </summary>
-    public abstract class OpenGLEnvironment : SedulousResource
+    public abstract class OpenGLEnvironment : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLEnvironment"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        protected OpenGLEnvironment(SedulousContext uv)
+        protected OpenGLEnvironment(FrameworkContext uv)
             : base(uv)
         { }
 
@@ -47,13 +47,13 @@ namespace Sedulous.OpenGL
         /// </summary>
         /// <param name="window">The window to designate as current.</param>
         /// <param name="openGLContext">A pointer to the OpenGL context.</param>
-        public abstract void DesignateCurrentWindow(ISedulousWindow window, IntPtr openGLContext);
+        public abstract void DesignateCurrentWindow(IFrameworkWindow window, IntPtr openGLContext);
 
         /// <summary>
         /// Draws the OpenGL framebuffer.
         /// </summary>
         /// <param name="time"></param>
-        public abstract void DrawFramebuffer(SedulousTime time);
+        public abstract void DrawFramebuffer(FrameworkTime time);
 
         /// <summary>
         /// Swaps the OpenGL framebuffers.

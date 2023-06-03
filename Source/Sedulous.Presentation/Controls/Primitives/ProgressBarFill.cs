@@ -13,7 +13,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ProgressBarFill(SedulousContext uv, String name)
+        public ProgressBarFill(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
@@ -78,7 +78,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         }
 
         /// <inheritdoc/>
-        protected override void DrawOverride(SedulousTime time, DrawingContext dc)
+        protected override void DrawOverride(FrameworkTime time, DrawingContext dc)
         {
             var percent = 1.0;
 

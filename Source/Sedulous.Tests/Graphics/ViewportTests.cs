@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests.Graphics
 {
     [TestFixture]
-    public class ViewportTests : SedulousTestFramework
+    public class ViewportTests : FrameworkTestFramework
     {
         [Test]
         public void Viewport_CalculatesProjectCorrectly()

@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Presentation.Tests
 {
     [TestFixture]
-    public class VersionedStringSourceTests : SedulousTestFramework
+    public class VersionedStringSourceTests : FrameworkTestFramework
     {
         [Test]
         public void VersionedStringSource_IsInvalid_WhenNoSourceIsSpecified()

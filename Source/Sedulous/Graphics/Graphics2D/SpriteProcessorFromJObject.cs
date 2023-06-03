@@ -33,7 +33,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// </summary>
         private static SpriteDescription CreateSpriteDescription(ContentManager manager, IContentProcessorMetadata metadata, JObject input)
         {
-            var serializer = JsonSerializer.CreateDefault(SedulousJsonSerializerSettings.Instance);
+            var serializer = JsonSerializer.CreateDefault(FrameworkJsonSerializerSettings.Instance);
             var spriteDesc = input.ToObject<SpriteDescription>();
             var spriteFrameDefaults = spriteDesc.FrameDefaults;
             var spriteFrameGroupDefaults = spriteDesc.FrameGroupDefaults;

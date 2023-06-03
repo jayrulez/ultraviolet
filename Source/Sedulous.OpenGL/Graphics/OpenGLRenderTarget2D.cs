@@ -20,7 +20,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="usage">A <see cref="RenderTargetUsage"/> value specifying whether the 
         /// render target's data is discarded or preserved when it is bound to the graphics device.</param>
         /// <param name="buffers">The collection of render buffers to attach to the target.</param>
-        public OpenGLRenderTarget2D(SedulousContext uv, Int32 width, Int32 height, RenderTargetUsage usage, IEnumerable<RenderBuffer2D> buffers = null)
+        public OpenGLRenderTarget2D(FrameworkContext uv, Int32 width, Int32 height, RenderTargetUsage usage, IEnumerable<RenderBuffer2D> buffers = null)
             : base(uv)
         {
             Contract.EnsureRange(width > 0, nameof(width));
@@ -103,7 +103,7 @@ namespace Sedulous.OpenGL.Graphics
 
             var bufferTargetSize = Width * Height;
             if (bufferTargetSize != data.Length)
-                throw new ArgumentException(SedulousStrings.BufferIsWrongSize);
+                throw new ArgumentException(FrameworkStrings.BufferIsWrongSize);
 
             GetDataInternal(data, new Rectangle(0, 0, Width, Height));
         }
@@ -119,7 +119,7 @@ namespace Sedulous.OpenGL.Graphics
 
             var bufferTargetSize = region.Width * region.Height;
             if (bufferTargetSize != data.Length)
-                throw new ArgumentException(SedulousStrings.BufferIsWrongSize);
+                throw new ArgumentException(FrameworkStrings.BufferIsWrongSize);
 
             GetDataInternal(data, region);
         }
@@ -419,7 +419,7 @@ namespace Sedulous.OpenGL.Graphics
             Contract.Ensure(colorAttachments < 16, OpenGLStrings.RenderBufferExceedsTargetCapacity);
 
             if (colorAttachments > 0 && buffer.SrgbEncoded != hasSrgbEncodedColorBuffer)
-                throw new InvalidOperationException(SedulousStrings.TargetsCannotHaveMultipleEncodings);
+                throw new InvalidOperationException(FrameworkStrings.TargetsCannotHaveMultipleEncodings);
 
             hasSrgbEncodedColorBuffer = buffer.SrgbEncoded;
 

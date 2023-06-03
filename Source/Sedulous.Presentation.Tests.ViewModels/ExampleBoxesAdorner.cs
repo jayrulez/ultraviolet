@@ -23,7 +23,7 @@ namespace Sedulous.Presentation.Tests.ViewModels
         }
 
         /// <inheritdoc/>
-        protected override void OnDrawing(SedulousTime time, DrawingContext dc)
+        protected override void OnDrawing(FrameworkTime time, DrawingContext dc)
         {
             DrawBlank(dc, new RectangleD(-HalfBoxSize, -HalfBoxSize, FullBoxSize, FullBoxSize), Color.Red);
             DrawBlank(dc, new RectangleD(AdornedElement.RenderSize.Width - HalfBoxSize, -HalfBoxSize, FullBoxSize, FullBoxSize), Color.Lime);

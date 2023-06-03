@@ -14,8 +14,8 @@ namespace Sedulous.SDL2.Platform
         /// Initializes a new instance of the <see cref="SDL2ScreenDensityService"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        /// <param name="display">The <see cref="ISedulousDisplay"/> for which to retrieve density information.</param>
-        public SDL2ScreenDensityService(SedulousContext uv, ISedulousDisplay display)
+        /// <param name="display">The <see cref="IFrameworkDisplay"/> for which to retrieve density information.</param>
+        public SDL2ScreenDensityService(FrameworkContext uv, IFrameworkDisplay display)
             : base(display)
         {
             Contract.Require(uv, nameof(uv));
@@ -80,8 +80,8 @@ namespace Sedulous.SDL2.Platform
         }
 
         // State values.
-        private readonly SedulousContext uv;
-        private readonly ISedulousDisplay display;
+        private readonly FrameworkContext uv;
+        private readonly IFrameworkDisplay display;
         private Single densityX;
         private Single densityY;
         private Single densityScale;

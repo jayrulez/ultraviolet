@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class QuaternionTests : SedulousTestFramework
+    public class QuaternionTests : FrameworkTestFramework
     {
         [Test]
         public void Quaternion_ConstructorSetsValues()
@@ -557,7 +557,7 @@ namespace Sedulous.Tests
         {
             var quaternion = new Quaternion(1.2f, 2.3f, 3.4f, 4.5f);
             var json = JsonConvert.SerializeObject(quaternion,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1.2,""y"":2.3,""z"":3.4,""w"":4.5}");
         }
@@ -567,7 +567,7 @@ namespace Sedulous.Tests
         {
             var quaternion = new Quaternion(1.2f, 2.3f, 3.4f, 4.5f);
             var json = JsonConvert.SerializeObject((Quaternion?)quaternion, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1.2,""y"":2.3,""z"":3.4,""w"":4.5}");
         }
@@ -578,7 +578,7 @@ namespace Sedulous.Tests
             const String json = @"{ ""x"": 1.2, ""y"": 2.3, ""z"": 3.4, ""w"": 4.5 }";
 
             var quaternion = JsonConvert.DeserializeObject<Quaternion>(json, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(quaternion)
                 .ShouldBe(1.2f, 2.3f, 3.4f, 4.5f);
@@ -590,7 +590,7 @@ namespace Sedulous.Tests
             const String json1 = @"{ ""x"": 1.2, ""y"": 2.3, ""z"": 3.4, ""w"": 4.5 }";
 
             var quaternion1 = JsonConvert.DeserializeObject<Quaternion?>(json1, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(quaternion1.Value)
                 .ShouldBe(1.2f, 2.3f, 3.4f, 4.5f);
@@ -598,7 +598,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var quaternion2 = JsonConvert.DeserializeObject<Quaternion?>(json2, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(quaternion2.HasValue)
                 .ShouldBe(false);

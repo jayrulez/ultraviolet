@@ -6,13 +6,13 @@ namespace Sedulous.Presentation.Animations
     /// <summary>
     /// Represents the Presentation Foundation's pool of <see cref="StoryboardInstance"/> objects.
     /// </summary>
-    internal partial class StoryboardInstancePool : SedulousResource
+    internal partial class StoryboardInstancePool : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StoryboardInstancePool"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        private StoryboardInstancePool(SedulousContext uv)
+        private StoryboardInstancePool(FrameworkContext uv)
             : base(uv)
         {
             uv.GetUI().Updating += StoryboardInstancePool_Updating;
@@ -113,7 +113,7 @@ namespace Sedulous.Presentation.Animations
         /// <summary>
         /// Updates the Presentation Foundation's pool of storyboard instances when the UI subsystem is updated.
         /// </summary>
-        private void StoryboardInstancePool_Updating(ISedulousSubsystem subsystem, SedulousTime time)
+        private void StoryboardInstancePool_Updating(IFrameworkSubsystem subsystem, FrameworkTime time)
         {
             if (pool == null)
                 return;
@@ -130,7 +130,7 @@ namespace Sedulous.Presentation.Animations
         private UpfPool<StoryboardInstance> pool;
 
         // The singleton instance of the clock pool.
-        private static SedulousSingleton<StoryboardInstancePool> instance =
-            new SedulousSingleton<StoryboardInstancePool>(uv => new StoryboardInstancePool(uv));
+        private static FrameworkSingleton<StoryboardInstancePool> instance =
+            new FrameworkSingleton<StoryboardInstancePool>(uv => new StoryboardInstancePool(uv));
     }
 }

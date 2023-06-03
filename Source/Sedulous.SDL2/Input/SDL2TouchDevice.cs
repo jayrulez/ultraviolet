@@ -17,14 +17,14 @@ namespace Sedulous.SDL2.Input
     /// Represents the SDL2 implementation of the <see cref="TouchDevice"/> class.
     /// </summary>
     public sealed class SDL2TouchDevice : TouchDevice,
-        IMessageSubscriber<SedulousMessageID>
+        IMessageSubscriber<FrameworkMessageID>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2TouchDevice"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="index">The index of the SDL2 touch device represented by this object.</param>
-        public SDL2TouchDevice(SedulousContext uv, Int32 index)
+        public SDL2TouchDevice(FrameworkContext uv, Int32 index)
             : base(uv)
         {
             // HACK: Working around an Android emulator glitch here -- it will
@@ -37,11 +37,11 @@ namespace Sedulous.SDL2.Input
             this.sdlTouchID = id;
 
             uv.Messages.Subscribe(this,
-                SDL2SedulousMessages.SDLEvent);
+                SDL2FrameworkMessages.SDLEvent);
         }
 
         /// <inheritdoc/>
-        void IMessageSubscriber<SedulousMessageID>.ReceiveMessage(SedulousMessageID type, MessageData data)
+        void IMessageSubscriber<FrameworkMessageID>.ReceiveMessage(FrameworkMessageID type, MessageData data)
         {
             var evt = ((SDL2EventMessageData)data).Event;
             switch (evt.type)
@@ -129,7 +129,7 @@ namespace Sedulous.SDL2.Input
         }
 
         /// <inheritdoc/>
-        public override void Update(SedulousTime time)
+        public override void Update(FrameworkTime time)
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
@@ -166,7 +166,7 @@ namespace Sedulous.SDL2.Input
         }
 
         /// <inheritdoc/>
-        public override void BindToWindow(ISedulousWindow window)
+        public override void BindToWindow(IFrameworkWindow window)
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
@@ -180,7 +180,7 @@ namespace Sedulous.SDL2.Input
 
             var window = BoundWindow;
             if (window == null)
-                throw new InvalidOperationException(SedulousStrings.TouchDeviceNotBoundToWindow);
+                throw new InvalidOperationException(FrameworkStrings.TouchDeviceNotBoundToWindow);
 
             return new Point2F(
                 coordinates.X / (Single)window.ClientSize.Width,
@@ -194,7 +194,7 @@ namespace Sedulous.SDL2.Input
 
             var window = BoundWindow;
             if (window == null)
-                throw new InvalidOperationException(SedulousStrings.TouchDeviceNotBoundToWindow);
+                throw new InvalidOperationException(FrameworkStrings.TouchDeviceNotBoundToWindow);
 
             return new Point2F(
                 x / (Single)window.ClientSize.Width,
@@ -208,7 +208,7 @@ namespace Sedulous.SDL2.Input
 
             var window = BoundWindow;
             if (window == null)
-                throw new InvalidOperationException(SedulousStrings.TouchDeviceNotBoundToWindow);
+                throw new InvalidOperationException(FrameworkStrings.TouchDeviceNotBoundToWindow);
 
             return new Point2(
                 (Int32)(coordinates.X * window.ClientSize.Width),
@@ -222,7 +222,7 @@ namespace Sedulous.SDL2.Input
 
             var window = BoundWindow;
             if (window == null)
-                throw new InvalidOperationException(SedulousStrings.TouchDeviceNotBoundToWindow);
+                throw new InvalidOperationException(FrameworkStrings.TouchDeviceNotBoundToWindow);
 
             return new Point2(
                 (Int32)(x * window.ClientSize.Width),
@@ -419,7 +419,7 @@ namespace Sedulous.SDL2.Input
         }
 
         /// <inheritdoc/>
-        public override ISedulousWindow BoundWindow => boundWindow ?? Sedulous.GetPlatform().Windows.GetPrimary();
+        public override IFrameworkWindow BoundWindow => boundWindow ?? Sedulous.GetPlatform().Windows.GetPrimary();
 
         /// <inheritdoc/>
         public override Boolean IsRecordingDollarGesture => isRecordingDollarGesture;
@@ -537,7 +537,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void Register()
         {
-            var input = (SDL2SedulousInput)Sedulous.GetInput();
+            var input = (SDL2FrameworkInput)Sedulous.GetInput();
             if (input.RegisterTouchDevice(this))
                 isRegistered = true;
         }
@@ -552,7 +552,7 @@ namespace Sedulous.SDL2.Input
         private TaskCompletionSource<Int64> dollarGestureTaskCompletionSource;
 
         // Property values.
-        private ISedulousWindow boundWindow;
+        private IFrameworkWindow boundWindow;
         private Boolean isRecordingDollarGesture;
     }
 }

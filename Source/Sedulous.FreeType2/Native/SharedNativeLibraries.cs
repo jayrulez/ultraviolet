@@ -12,30 +12,30 @@ namespace Sedulous.FreeType2.Native
         
         static SharedNativeLibraries()
         {
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
                 default:
                     libpng = new NativeLibrary("libpng16");
                     break;
             }
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Linux:
+                case FrameworkPlatform.Linux:
                     libharfbuzz = new NativeLibrary("libharfbuzz");
                     break;
-                case SedulousPlatform.macOS:
+                case FrameworkPlatform.macOS:
                     libharfbuzz = new NativeLibrary("libharfbuzz");
                     break;
                 default:
                     libharfbuzz = new NativeLibrary("harfbuzz");
                     break;
             }
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Linux:
+                case FrameworkPlatform.Linux:
                     libfreetype = new NativeLibrary("libfreetype");
                     break;
-                case SedulousPlatform.macOS:
+                case FrameworkPlatform.macOS:
                     libfreetype = new NativeLibrary("libfreetype");
                     break;
                 default:

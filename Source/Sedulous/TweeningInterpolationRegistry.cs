@@ -38,7 +38,7 @@ namespace Sedulous
         {
             var interpolator = default(Interpolator<T>);
 
-            if (SedulousPlatformInfo.IsRuntimeCodeGenerationSupported())
+            if (FrameworkPlatformInfo.IsRuntimeCodeGenerationSupported())
             {
                 var interpolateMethod = typeof(T).GetMethod("Interpolate",
                      BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] { typeof(T), typeof(Single) }, null);

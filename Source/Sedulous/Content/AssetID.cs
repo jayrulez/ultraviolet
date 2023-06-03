@@ -7,7 +7,7 @@ namespace Sedulous.Content
     /// <summary>
     /// Represents a value which identifies an asset within one of the application's content manifests.
     /// </summary>
-    [JsonConverter(typeof(SedulousJsonConverter))]
+    [JsonConverter(typeof(FrameworkJsonConverter))]
     public partial struct AssetID : IEquatable<AssetID>
     {
         /// <summary>

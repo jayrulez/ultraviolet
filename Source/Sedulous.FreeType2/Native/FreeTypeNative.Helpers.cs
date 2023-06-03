@@ -9,7 +9,7 @@ namespace Sedulous.FreeType2.Native
     /// </summary>
     unsafe static partial class FreeTypeNative
     {
-        public static Boolean Use64BitInterface => SedulousPlatformInfo.CurrentPlatform != SedulousPlatform.Windows && Environment.Is64BitProcess;
+        public static Boolean Use64BitInterface => FrameworkPlatformInfo.CurrentPlatform != FrameworkPlatform.Windows && Environment.Is64BitProcess;
     }
 #pragma warning restore 1591
 }

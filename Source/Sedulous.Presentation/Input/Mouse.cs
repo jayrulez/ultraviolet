@@ -1285,7 +1285,7 @@ namespace Sedulous.Presentation.Input
         }
 
         // Represents the device state of the current Sedulous context.
-        private static readonly SedulousSingleton<MouseState> mouseState = 
-            new SedulousSingleton<MouseState>(uv => new MouseState(uv));
+        private static readonly FrameworkSingleton<MouseState> mouseState = 
+            new FrameworkSingleton<MouseState>(uv => new MouseState(uv));
     }
 }

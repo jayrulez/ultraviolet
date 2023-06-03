@@ -17,12 +17,12 @@ namespace Sedulous.Graphics.Graphics2D.Text
             /// <summary>
             /// Gets the font with which text is rendered.
             /// </summary>
-            public SedulousFont Font;
+            public FrameworkFont Font;
 
             /// <summary>
             /// Gets the font face with which text is rendered.
             /// </summary>
-            public SedulousFontFace FontFace;
+            public FrameworkFontFace FontFace;
 
             /// <summary>
             /// Gets a value indicating whether the text is bold.

@@ -7,7 +7,7 @@ namespace Sedulous.Platform
     /// Represents a factory method which constructs instances of the <see cref="ScreenDensityService"/> class.
     /// </summary>
     /// <returns>The instance of <see cref="ScreenDensityService"/> that was created.</returns>
-    public delegate ScreenDensityService ScreenDensityServiceFactory(ISedulousDisplay display);
+    public delegate ScreenDensityService ScreenDensityServiceFactory(IFrameworkDisplay display);
 
     /// <summary>
     /// Represents a service which retrieve the pixel density (DPI) of the specified display device.
@@ -17,8 +17,8 @@ namespace Sedulous.Platform
         /// <summary>
         /// Initializes a new instance of the <see cref="ScreenDensityService"/> class.
         /// </summary>
-        /// <param name="display">The <see cref="ISedulousDisplay"/> for which to retrieve density information.</param>
-        protected ScreenDensityService(ISedulousDisplay display)
+        /// <param name="display">The <see cref="IFrameworkDisplay"/> for which to retrieve density information.</param>
+        protected ScreenDensityService(IFrameworkDisplay display)
         {
             Contract.Require(display, nameof(display));
         }
@@ -26,12 +26,12 @@ namespace Sedulous.Platform
         /// <summary>
         /// Creates a new instance of the <see cref="ScreenDensityService"/> class.
         /// </summary>
-        /// <param name="display">The <see cref="ISedulousDisplay"/> for which 
+        /// <param name="display">The <see cref="IFrameworkDisplay"/> for which 
         /// to retrieve a screen density service.</param>
         /// <returns>The instance of <see cref="ScreenDensityService"/> that was created.</returns>
-        public static ScreenDensityService Create(ISedulousDisplay display)
+        public static ScreenDensityService Create(IFrameworkDisplay display)
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<ScreenDensityServiceFactory>()(display);
         }
 

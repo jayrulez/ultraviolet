@@ -26,7 +26,7 @@ namespace Sedulous.Presentation
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public PresentationFoundationViewRoot(SedulousContext uv, String name) 
+        public PresentationFoundationViewRoot(FrameworkContext uv, String name) 
             : base(uv, name)
         {
             this.children = new VisualCollection(this);

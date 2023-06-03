@@ -13,7 +13,7 @@ namespace Sedulous.Graphics
     /// <param name="bytesPerPixel">The number of bytes which represent each pixel in the raw data.</param>
     /// <param name="options">The texture's configuration options.</param>
     /// <returns>The instance of <see cref="Texture2D"/> that was created.</returns>
-    public delegate Texture2D Texture2DFromRawDataFactory(SedulousContext uv, IntPtr pixels, Int32 width, Int32 height, Int32 bytesPerPixel, TextureOptions options);
+    public delegate Texture2D Texture2DFromRawDataFactory(FrameworkContext uv, IntPtr pixels, Int32 width, Int32 height, Int32 bytesPerPixel, TextureOptions options);
 
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Texture2D"/> class.
@@ -23,7 +23,7 @@ namespace Sedulous.Graphics
     /// <param name="height">The texture's height in pixels.</param>
     /// <param name="options">The texture's configuration options.</param>
     /// <returns>The instance of <see cref="Texture2D"/> that was created.</returns>
-    public delegate Texture2D Texture2DFactory(SedulousContext uv, Int32 width, Int32 height, TextureOptions options);
+    public delegate Texture2D Texture2DFactory(FrameworkContext uv, Int32 width, Int32 height, TextureOptions options);
 
     /// <summary>
     /// Represents a two-dimensional texture.
@@ -34,7 +34,7 @@ namespace Sedulous.Graphics
         /// Initializes a new instance of the <see cref="Texture2D"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public Texture2D(SedulousContext uv)
+        public Texture2D(FrameworkContext uv)
             : base(uv)
         {
 
@@ -54,7 +54,7 @@ namespace Sedulous.Graphics
             Contract.EnsureRange(width > 0, nameof(width));
             Contract.EnsureRange(height > 0, nameof(height));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<Texture2DFromRawDataFactory>()(uv, pixels, width, height, bytesPerPixel, options);
         }
 
@@ -70,7 +70,7 @@ namespace Sedulous.Graphics
             Contract.EnsureRange(width > 0, nameof(width));
             Contract.EnsureRange(height > 0, nameof(height));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<Texture2DFactory>()(uv, width, height, options);
         }
 
@@ -104,7 +104,7 @@ namespace Sedulous.Graphics
             Contract.EnsureRange(height > 0, nameof(height));
             Contract.Require(flushed, nameof(flushed));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<DynamicTexture2DFactory>()(uv, width, height, options, state, flushed);
         }
         
@@ -133,7 +133,7 @@ namespace Sedulous.Graphics
             Contract.EnsureRange(width > 0, nameof(width));
             Contract.EnsureRange(height > 0, nameof(height));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<RenderBuffer2DFactory>()(uv, format, width, height, options);
         }
 

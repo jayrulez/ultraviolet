@@ -29,7 +29,7 @@ namespace Sedulous.Presentation
         /// Resets the drawing context by clearing its render state stacks.
         /// </summary>
         /// <param name="display">The display on which the drawing context is rendering.</param>
-        public void Reset(ISedulousDisplay display)
+        public void Reset(IFrameworkDisplay display)
         {
             this.display = display;
             this.opacityStack.Clear();
@@ -746,11 +746,11 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-independent coordinates.</param>
         /// <param name="color">The text's color.</param>
-        public void DrawString(SedulousFontFace fontFace, String text, Point2D position, Color color)
+        public void DrawString(FrameworkFontFace fontFace, String text, Point2D position, Color color)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -762,11 +762,11 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-dependent coordinates.</param>
         /// <param name="color">The text's color.</param>
-        public void RawDrawString(SedulousFontFace fontFace, String text, Vector2 position, Color color)
+        public void RawDrawString(FrameworkFontFace fontFace, String text, Vector2 position, Color color)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -777,7 +777,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-independent coordinates.</param>
         /// <param name="color">The text's color.</param>
@@ -786,7 +786,7 @@ namespace Sedulous.Presentation
         /// <param name="scale">The text's scale factor.</param>
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
-        public void DrawString(SedulousFontFace fontFace, String text, Point2D position, Color color, Single rotation, Point2D origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(FrameworkFontFace fontFace, String text, Point2D position, Color color, Single rotation, Point2D origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -799,7 +799,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-dependent coordinates.</param>
         /// <param name="color">The text's color.</param>
@@ -808,7 +808,7 @@ namespace Sedulous.Presentation
         /// <param name="scale">The text's scale factor.</param>
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
-        public void RawDrawString(SedulousFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void RawDrawString(FrameworkFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -819,7 +819,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-independent coordinates.</param>
         /// <param name="color">The text's color.</param>
@@ -828,7 +828,7 @@ namespace Sedulous.Presentation
         /// <param name="scale">The text's scale factor.</param>
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
-        public void DrawString(SedulousFontFace fontFace, String text, Point2D position, Color color, Single rotation, Point2D origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(FrameworkFontFace fontFace, String text, Point2D position, Color color, Single rotation, Point2D origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -841,7 +841,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-dependent coordinates.</param>
         /// <param name="color">The text's color.</param>
@@ -850,7 +850,7 @@ namespace Sedulous.Presentation
         /// <param name="scale">The text's scale factor.</param>
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
-        public void RawDrawString(SedulousFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void RawDrawString(FrameworkFontFace fontFace, String text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -861,11 +861,11 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-independent coordinates.</param>
         /// <param name="color">The text's color.</param>
-        public void DrawString(SedulousFontFace fontFace, StringBuilder text, Point2D position, Color color)
+        public void DrawString(FrameworkFontFace fontFace, StringBuilder text, Point2D position, Color color)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -877,11 +877,11 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-dependent coordinates.</param>
         /// <param name="color">The text's color.</param>
-        public void RawDrawString(SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color)
+        public void RawDrawString(FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -892,7 +892,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-independent coordinates.</param>
         /// <param name="color">The text's color.</param>
@@ -901,7 +901,7 @@ namespace Sedulous.Presentation
         /// <param name="scale">The text's scale factor.</param>
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
-        public void DrawString(SedulousFontFace fontFace, StringBuilder text, Point2D position, Color color, Single rotation, Point2D origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(FrameworkFontFace fontFace, StringBuilder text, Point2D position, Color color, Single rotation, Point2D origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -914,7 +914,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-dependent coordinates.</param>
         /// <param name="color">The text's color.</param>
@@ -923,7 +923,7 @@ namespace Sedulous.Presentation
         /// <param name="scale">The text's scale factor.</param>
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
-        public void RawDrawString(SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void RawDrawString(FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -934,7 +934,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-independent coordinates.</param>
         /// <param name="color">The text's color.</param>
@@ -943,7 +943,7 @@ namespace Sedulous.Presentation
         /// <param name="scale">The text's scale factor.</param>
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
-        public void DrawString(SedulousFontFace fontFace, StringBuilder text, Point2D position, Color color, Single rotation, Point2D origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(FrameworkFontFace fontFace, StringBuilder text, Point2D position, Color color, Single rotation, Point2D origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -956,7 +956,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-dependent coordinates.</param>
         /// <param name="color">The text's color.</param>
@@ -965,7 +965,7 @@ namespace Sedulous.Presentation
         /// <param name="scale">The text's scale factor.</param>
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
-        public void RawDrawString(SedulousFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void RawDrawString(FrameworkFontFace fontFace, StringBuilder text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -976,11 +976,11 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-independent coordinates.</param>
         /// <param name="color">The text's color.</param>
-        public void DrawString(SedulousFontFace fontFace, StringSegment text, Point2D position, Color color)
+        public void DrawString(FrameworkFontFace fontFace, StringSegment text, Point2D position, Color color)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -992,11 +992,11 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-dependent coordinates.</param>
         /// <param name="color">The text's color.</param>
-        public void RawDrawString(SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color)
+        public void RawDrawString(FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -1007,7 +1007,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-independent coordinates.</param>
         /// <param name="color">The text's color.</param>
@@ -1016,7 +1016,7 @@ namespace Sedulous.Presentation
         /// <param name="scale">The text's scale factor.</param>
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
-        public void DrawString(SedulousFontFace fontFace, StringSegment text, Point2D position, Color color, Single rotation, Point2D origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(FrameworkFontFace fontFace, StringSegment text, Point2D position, Color color, Single rotation, Point2D origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -1029,7 +1029,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-dependent coordinates.</param>
         /// <param name="color">The text's color.</param>
@@ -1038,7 +1038,7 @@ namespace Sedulous.Presentation
         /// <param name="scale">The text's scale factor.</param>
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
-        public void RawDrawString(SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
+        public void RawDrawString(FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects effects, Single layerDepth)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -1049,7 +1049,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-independent coordinates.</param>
         /// <param name="color">The text's color.</param>
@@ -1058,7 +1058,7 @@ namespace Sedulous.Presentation
         /// <param name="scale">The text's scale factor.</param>
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
-        public void DrawString(SedulousFontFace fontFace, StringSegment text, Point2D position, Color color, Single rotation, Point2D origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void DrawString(FrameworkFontFace fontFace, StringSegment text, Point2D position, Color color, Single rotation, Point2D origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -1071,7 +1071,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws a string of text.
         /// </summary>
-        /// <param name="fontFace">The <see cref="SedulousFontFace"/> with which to draw the text.</param>
+        /// <param name="fontFace">The <see cref="FrameworkFontFace"/> with which to draw the text.</param>
         /// <param name="text">The text to draw.</param>
         /// <param name="position">The text's position in device-dependent coordinates.</param>
         /// <param name="color">The text's color.</param>
@@ -1080,7 +1080,7 @@ namespace Sedulous.Presentation
         /// <param name="scale">The text's scale factor.</param>
         /// <param name="effects">The text's rendering effects.</param>
         /// <param name="layerDepth">The text's layer depth.</param>
-        public void RawDrawString(SedulousFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
+        public void RawDrawString(FrameworkFontFace fontFace, StringSegment text, Vector2 position, Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth)
         {
             if (SpriteBatch == null)
                 throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
@@ -1269,7 +1269,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Gets the Sedulous context currently associated with the drawing context.
         /// </summary>
-        public SedulousContext Sedulous
+        public FrameworkContext Sedulous
         {
             get
             {
@@ -1394,7 +1394,7 @@ namespace Sedulous.Presentation
         }
 
         // State values.
-        private ISedulousDisplay display;
+        private IFrameworkDisplay display;
         private readonly Stack<OpacityState> opacityStack = new Stack<OpacityState>(32);
         private readonly Stack<ClipState> clipStack = new Stack<ClipState>(32);
         private Rectangle? currentStencil;

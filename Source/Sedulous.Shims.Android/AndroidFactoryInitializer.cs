@@ -10,10 +10,10 @@ namespace Sedulous.Shims.Android
     /// <summary>
     /// Initializes factory methods for the Android platform compatibility shim.
     /// </summary>
-    internal sealed class AndroidFactoryInitializer : ISedulousFactoryInitializer
+    internal sealed class AndroidFactoryInitializer : IFrameworkFactoryInitializer
     {
         /// <inheritdoc/>
-        public void Initialize(SedulousContext owner, SedulousFactory factory)
+        public void Initialize(FrameworkContext owner, FrameworkFactory factory)
         {
             factory.SetFactoryMethod<SurfaceSourceFactory>((stream) => new AndroidSurfaceSource(stream));
             factory.SetFactoryMethod<SurfaceSaverFactory>(() => new AndroidSurfaceSaver());

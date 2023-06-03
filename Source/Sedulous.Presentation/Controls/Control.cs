@@ -27,7 +27,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public Control(SedulousContext uv, String name)
+        public Control(FrameworkContext uv, String name)
             : base(uv, name)
         {
             var upf = uv.GetUI().GetPresentationFoundation();
@@ -66,17 +66,17 @@ namespace Sedulous.Presentation.Controls
         ///     <dpropMetadata><see cref="PropertyMetadataOptions.AffectsArrange"/></dpropMetadata>
         /// </dprop>
         /// </remarks>
-        public SourcedResource<SedulousFont> Font
+        public SourcedResource<FrameworkFont> Font
         {
-            get { return GetValue<SourcedResource<SedulousFont>>(FontProperty); }
+            get { return GetValue<SourcedResource<FrameworkFont>>(FontProperty); }
             set { SetValue(FontProperty, value); }
         }
 
         /// <summary>
         /// Gets or sets the font style which is used to draw the control's text.
         /// </summary>
-        /// <value>A <see cref="SedulousFontStyle"/> value that specifies the style
-        /// with which to draw the control's text. The default value is <see cref="SedulousFontStyle.Regular"/>.</value>
+        /// <value>A <see cref="FrameworkFontStyle"/> value that specifies the style
+        /// with which to draw the control's text. The default value is <see cref="FrameworkFontStyle.Regular"/>.</value>
         /// <remarks>
         /// <dprop>
         ///     <dpropField><see cref="FontStyleProperty"/></dpropField>
@@ -84,9 +84,9 @@ namespace Sedulous.Presentation.Controls
         ///     <dpropMetadata><see cref="PropertyMetadataOptions.AffectsArrange"/></dpropMetadata>
         /// </dprop>
         /// </remarks>
-        public SedulousFontStyle FontStyle
+        public FrameworkFontStyle FontStyle
         {
-            get { return GetValue<SedulousFontStyle>(FontStyleProperty); }
+            get { return GetValue<FrameworkFontStyle>(FontStyleProperty); }
             set { SetValue(FontStyleProperty, value); }
         }
 
@@ -175,14 +175,14 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <value>The identifier for the <see cref="Font"/> dependency property.</value>
         public static readonly DependencyProperty FontProperty = TextElement.FontProperty.AddOwner(typeof(Control),
-            new PropertyMetadata<SourcedResource<SedulousFont>>(null, PropertyMetadataOptions.AffectsArrange, HandleFontChanged));
+            new PropertyMetadata<SourcedResource<FrameworkFont>>(null, PropertyMetadataOptions.AffectsArrange, HandleFontChanged));
 
         /// <summary>
         /// Identifies the <see cref="FontStyle"/> dependency property.
         /// </summary>
         /// <value>The identifier for the <see cref="FontStyle"/> dependency property.</value>
         public static readonly DependencyProperty FontStyleProperty = TextElement.FontStyleProperty.AddOwner(typeof(Control),
-            new PropertyMetadata<SedulousFontStyle>(null, PropertyMetadataOptions.AffectsArrange));
+            new PropertyMetadata<FrameworkFontStyle>(null, PropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the <see cref="Foreground"/> dependency property.
@@ -358,7 +358,7 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Occurs when the value of the <see cref="Font"/> dependency property changes.
         /// </summary>
-        private static void HandleFontChanged(DependencyObject dobj, SourcedResource<SedulousFont> oldValue, SourcedResource<SedulousFont> newValue)
+        private static void HandleFontChanged(DependencyObject dobj, SourcedResource<FrameworkFont> oldValue, SourcedResource<FrameworkFont> newValue)
         {
             ((Control)dobj).ReloadFont();
         }

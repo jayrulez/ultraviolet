@@ -52,7 +52,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public Thumb(SedulousContext uv, String name)
+        public Thumb(FrameworkContext uv, String name)
             : base(uv, name)
         {
             VisualStateGroups.Create("common", new[] { "normal", "hover", "pressed", "disabled" });

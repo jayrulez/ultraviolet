@@ -8,7 +8,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class CurveTests : SedulousTestFramework
+    public class CurveTests : FrameworkTestFramework
     {
         private static String GetResourcePath(String filename) => Path.Combine("Resources", "Expected", filename);
 

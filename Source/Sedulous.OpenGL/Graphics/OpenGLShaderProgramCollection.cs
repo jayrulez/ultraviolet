@@ -5,7 +5,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Represents an effect pass' collection of shader programs.
     /// </summary>
-    public sealed class OpenGLShaderProgramCollection : SedulousCollection<OpenGLShaderProgram>
+    public sealed class OpenGLShaderProgramCollection : FrameworkCollection<OpenGLShaderProgram>
     {
         /// <summary>
         /// Initializes a new instance of the OpenGLShaderProgramCollection class.

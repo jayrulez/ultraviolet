@@ -207,7 +207,7 @@ namespace Sedulous.Presentation
         /// <param name="name">The name of the dependency property.</param>
         /// <returns>A <see cref="DependencyProperty"/> instance which represents the specified dependency property, 
         /// or <see langword="null"/> if no such dependency property exists.</returns>
-        public static DependencyProperty FindByName(SedulousContext uv, DependencyObject dobj, String owner, String name)
+        public static DependencyProperty FindByName(FrameworkContext uv, DependencyObject dobj, String owner, String name)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(dobj, nameof(dobj));
@@ -244,7 +244,7 @@ namespace Sedulous.Presentation
         /// <param name="name">The styling name of the dependency property.</param>
         /// <returns>A <see cref="DependencyProperty"/> instance which represents the specified dependency property, 
         /// or <see langword="null"/> if no such dependency property exists.</returns>
-        public static DependencyProperty FindByStylingName(SedulousContext uv, DependencyObject dobj, String owner, String name)
+        public static DependencyProperty FindByStylingName(FrameworkContext uv, DependencyObject dobj, String owner, String name)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(dobj, nameof(dobj));

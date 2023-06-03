@@ -13,30 +13,30 @@ namespace Sedulous.Input
     /// <summary>
     /// Represents a collection of named input actions.
     /// </summary>
-    public abstract partial class InputActionCollection : SedulousResource, IEnumerable<KeyValuePair<String, InputAction>>
+    public abstract partial class InputActionCollection : FrameworkResource, IEnumerable<KeyValuePair<String, InputAction>>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InputActionCollection"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        protected InputActionCollection(SedulousContext uv)
+        protected InputActionCollection(FrameworkContext uv)
             : base(uv)
         {
 
         }
 
         /// <summary>
-        /// Creates an <see cref="SedulousSingleton{T}"/> which encapsulates an instance of the specified input action collection type.
+        /// Creates an <see cref="FrameworkSingleton{T}"/> which encapsulates an instance of the specified input action collection type.
         /// </summary>
         /// <typeparam name="T">The type of input action collection for which to create a singleton.</typeparam>
-        /// <returns>An <see cref="SedulousSingleton{T}"/> which encapsulates an instance of the specified input action collection type.</returns>
-        public static SedulousSingleton<T> CreateSingleton<T>() where T : InputActionCollection
+        /// <returns>An <see cref="FrameworkSingleton{T}"/> which encapsulates an instance of the specified input action collection type.</returns>
+        public static FrameworkSingleton<T> CreateSingleton<T>() where T : InputActionCollection
         {
-            var ctor = typeof(T).GetConstructor(new[] { typeof(SedulousContext) });
+            var ctor = typeof(T).GetConstructor(new[] { typeof(FrameworkContext) });
             if (ctor == null)
-                throw new InvalidOperationException(SedulousStrings.NoValidConstructor.Format(typeof(T).Name));
+                throw new InvalidOperationException(FrameworkStrings.NoValidConstructor.Format(typeof(T).Name));
 
-            return new SedulousSingleton<T>(uv =>
+            return new FrameworkSingleton<T>(uv =>
             {
                 var input = uv.GetInput();
                 if (input.Disposed)
@@ -166,7 +166,7 @@ namespace Sedulous.Input
         /// </summary>
         public void CreateActions()
         {
-            Contract.EnsureNot(actionsCreated, SedulousStrings.InputActionCollectionAlreadyCreated);
+            Contract.EnsureNot(actionsCreated, FrameworkStrings.InputActionCollectionAlreadyCreated);
 
             OnCreatingActions();
             OnResetting();
@@ -302,7 +302,7 @@ namespace Sedulous.Input
             Contract.RequireNotEmpty(name, nameof(name));
 
             if (actions.ContainsKey(name))
-                throw new InvalidOperationException(SedulousStrings.InputActionAlreadyExists.Format(name));
+                throw new InvalidOperationException(FrameworkStrings.InputActionAlreadyExists.Format(name));
 
             var action = new InputAction(this);
             actions[name] = action;
@@ -405,9 +405,9 @@ namespace Sedulous.Input
                 typeName = typeName.Substring("TwistedLogik.".Length);
 
             var type = Type.GetType(typeName);
-            var ctor = type.GetConstructor(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] { typeof(SedulousContext), typeof(XElement) }, null);
+            var ctor = type.GetConstructor(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] { typeof(FrameworkContext), typeof(XElement) }, null);
             if (ctor == null)
-                throw new InvalidOperationException(SedulousStrings.NoValidConstructor.Format(typeName));
+                throw new InvalidOperationException(FrameworkStrings.NoValidConstructor.Format(typeName));
 
             return (InputBinding)ctor.Invoke(new object[] { Sedulous, element });
         }

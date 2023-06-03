@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class RadiansTest : SedulousTestFramework
+    public class RadiansTest : FrameworkTestFramework
     {
         [Test]
         public void Radians_Parse_RawValue()
@@ -118,7 +118,7 @@ namespace Sedulous.Tests
         {
             var radians = 1.234f;
             var json = JsonConvert.SerializeObject((Radians?)radians, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"1.234");
         }
@@ -129,7 +129,7 @@ namespace Sedulous.Tests
             const String json = @"1.234";
             
             var radians = JsonConvert.DeserializeObject<Radians>(json, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(radians)
                 .ShouldBe(1.234f);
@@ -141,7 +141,7 @@ namespace Sedulous.Tests
             const String json1 = @"1.234";
 
             var radians1 = JsonConvert.DeserializeObject<Radians?>(json1, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(radians1.Value)
                 .ShouldBe(1.234f);
@@ -149,7 +149,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var radians2 = JsonConvert.DeserializeObject<Radians?>(json2, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(radians2.HasValue)
                 .ShouldBe(false);

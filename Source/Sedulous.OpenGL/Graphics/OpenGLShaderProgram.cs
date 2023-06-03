@@ -30,7 +30,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Represents an OpenGL shader program.
     /// </summary>
-    public sealed class OpenGLShaderProgram : SedulousResource, IOpenGLResource
+    public sealed class OpenGLShaderProgram : FrameworkResource, IOpenGLResource
     {
         /// <summary>
         /// Initializes a new instance of the OpenGLShaderProgram class.
@@ -39,7 +39,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="vertexShader">The program's vertex shader.</param>
         /// <param name="fragmentShader">The program's fragment shader.</param>
         /// <param name="programOwnsShaders">A value indicating whether the program owns the shader objects.</param>
-        public OpenGLShaderProgram(SedulousContext uv, OpenGLVertexShader vertexShader, OpenGLFragmentShader fragmentShader, Boolean programOwnsShaders)
+        public OpenGLShaderProgram(FrameworkContext uv, OpenGLVertexShader vertexShader, OpenGLFragmentShader fragmentShader, Boolean programOwnsShaders)
             : base(uv)
         {
             Contract.Require(vertexShader, nameof(vertexShader));

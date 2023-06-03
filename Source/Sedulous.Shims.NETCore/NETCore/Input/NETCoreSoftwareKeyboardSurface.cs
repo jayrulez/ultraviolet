@@ -29,8 +29,8 @@ namespace Sedulous.Shims.NETCore.Input
                 if (textInputRegion != value)
                 {
                     textInputRegion = value;
-                    SedulousContext.RequestCurrent()?.Messages.Publish(
-                        SedulousMessages.TextInputRegionChanged, null);
+                    FrameworkContext.RequestCurrent()?.Messages.Publish(
+                        FrameworkMessages.TextInputRegionChanged, null);
                 }
             }
         }

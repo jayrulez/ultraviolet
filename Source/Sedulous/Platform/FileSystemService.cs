@@ -24,7 +24,7 @@ namespace Sedulous.Platform
         /// <returns>The instance of <see cref="FileSystemService"/> that was created.</returns>
         public static FileSystemService Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<FileSystemServiceFactory>()();
         }
 
@@ -64,7 +64,7 @@ namespace Sedulous.Platform
             
             root = root.EndsWith("/") ? root : root + "/";
 
-            var kind = (SedulousPlatformInfo.CurrentPlatform == SedulousPlatform.Android) ? 
+            var kind = (FrameworkPlatformInfo.CurrentPlatform == FrameworkPlatform.Android) ? 
                 UriKind.Relative : UriKind.Absolute;
 
             var rootFull = GetFullPath(root);
@@ -185,13 +185,13 @@ namespace Sedulous.Platform
                 {
                     source = value;
 
-                    var uv = SedulousContext.RequestCurrent();
+                    var uv = FrameworkContext.RequestCurrent();
                     if (uv != null && !uv.Disposed)
                     {
                         if (uv.IsExecutingOnCurrentThread)
-                            uv.Messages.PublishImmediate(SedulousMessages.FileSourceChanged, null);
+                            uv.Messages.PublishImmediate(FrameworkMessages.FileSourceChanged, null);
                         else
-                            uv.Messages.Publish(SedulousMessages.FileSourceChanged, null);
+                            uv.Messages.Publish(FrameworkMessages.FileSourceChanged, null);
                     }
                 }
             }

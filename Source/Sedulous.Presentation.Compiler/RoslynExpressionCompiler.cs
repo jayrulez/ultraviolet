@@ -21,7 +21,7 @@ namespace Sedulous.Presentation.Compiler
     public class RoslynExpressionCompiler : IBindingExpressionCompiler
     {
         /// <inheritdoc/>
-        public BindingExpressionCompilationResult Compile(SedulousContext uv, BindingExpressionCompilerOptions options)
+        public BindingExpressionCompilationResult Compile(FrameworkContext uv, BindingExpressionCompilerOptions options)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(options, nameof(options));
@@ -63,7 +63,7 @@ namespace Sedulous.Presentation.Compiler
         }
 
         /// <inheritdoc/>
-        public BindingExpressionCompilationResult CompileSingleView(SedulousContext uv, BindingExpressionCompilerOptions options)
+        public BindingExpressionCompilationResult CompileSingleView(FrameworkContext uv, BindingExpressionCompilerOptions options)
         {
             Contract.Require(options, nameof(options));
 
@@ -327,8 +327,8 @@ namespace Sedulous.Presentation.Compiler
 
             if (netStandardRefAsmDir == null)
             {
-                if (SedulousPlatformInfo.CurrentRuntime == SedulousRuntime.CoreCLR &&
-                    SedulousPlatformInfo.CurrentRuntimeVersion.Major > 2)
+                if (FrameworkPlatformInfo.CurrentRuntime == FrameworkRuntime.CoreCLR &&
+                    FrameworkPlatformInfo.CurrentRuntimeVersion.Major > 2)
                 {
                     throw new InvalidOperationException(CompilerStrings.CouldNotLocateReferenceAssembliesCore3);
                 }
@@ -349,7 +349,7 @@ namespace Sedulous.Presentation.Compiler
             }
 
             referencedAssemblies.Add(typeof(Contract).Assembly.Location);
-            referencedAssemblies.Add(typeof(SedulousContext).Assembly.Location);
+            referencedAssemblies.Add(typeof(FrameworkContext).Assembly.Location);
             referencedAssemblies.Add(typeof(PresentationFoundation).Assembly.Location);
 
             return referencedAssemblies;

@@ -81,7 +81,7 @@ namespace Sedulous.Graphics.Graphics3D
             Contract.Require(parent, nameof(parent));
 
             if (this.ParentModel != null)
-                throw new InvalidOperationException(SedulousStrings.ModelParentLinkAlreadyExists);
+                throw new InvalidOperationException(FrameworkStrings.ModelParentLinkAlreadyExists);
 
             this.ParentModel = parent;
 

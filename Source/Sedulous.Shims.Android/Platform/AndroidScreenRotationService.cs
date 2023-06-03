@@ -10,8 +10,8 @@ namespace Sedulous.Shims.Android.Platform
         /// <summary>
         /// Initializes a new instance of the <see cref="AndroidScreenRotationService"/> class.
         /// </summary>
-        /// <param name="display">The <see cref="ISedulousDisplay"/> for which to retrieve rotation information.</param>
-        public AndroidScreenRotationService(ISedulousDisplay display)
+        /// <param name="display">The <see cref="IFrameworkDisplay"/> for which to retrieve rotation information.</param>
+        public AndroidScreenRotationService(IFrameworkDisplay display)
             : base(display)
         {
 

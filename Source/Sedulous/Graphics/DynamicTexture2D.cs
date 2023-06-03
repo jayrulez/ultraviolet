@@ -13,7 +13,7 @@ namespace Sedulous.Graphics
     /// <param name="state">An arbitrary state object which will be passed to the flush handler.</param>
     /// <param name="flushed">The handler to invoke when the texture is flushed.</param>
     /// <returns>The instance of <see cref="DynamicTexture2D"/> that was created.</returns>
-    public delegate DynamicTexture2D DynamicTexture2DFactory(SedulousContext uv, Int32 width, Int32 height, TextureOptions options, Object state, Action<Texture2D, Object> flushed);
+    public delegate DynamicTexture2D DynamicTexture2DFactory(FrameworkContext uv, Int32 width, Int32 height, TextureOptions options, Object state, Action<Texture2D, Object> flushed);
 
     /// <summary>
     /// Represents a 2D texture which is designed to be dynamically updated from data which resides on the CPU.
@@ -29,7 +29,7 @@ namespace Sedulous.Graphics
         /// <param name="options">The texture's configuration options.</param>
         /// <param name="state">An arbitrary state object which will be passed to the flush handler.</param>
         /// <param name="flushed">The handler to invoke when the texture is flushed.</param>
-        protected DynamicTexture2D(SedulousContext uv, Int32 width, Int32 height, TextureOptions options, Object state, Action<Texture2D, Object> flushed)
+        protected DynamicTexture2D(FrameworkContext uv, Int32 width, Int32 height, TextureOptions options, Object state, Action<Texture2D, Object> flushed)
             : base(uv)
         {
             Contract.Require(flushed, nameof(flushed));

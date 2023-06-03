@@ -5,7 +5,7 @@
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="FMODPlatformSpecificImplementationDetails"/> that was created.</returns>
-    public delegate FMODPlatformSpecificImplementationDetails FMODPlatformSpecificImplementationDetailsFactory(SedulousContext uv);
+    public delegate FMODPlatformSpecificImplementationDetails FMODPlatformSpecificImplementationDetailsFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents platform-specific implementation details for FMOD which can be provided by an additional assembly.
@@ -18,7 +18,7 @@
         /// <returns>The instance of <see cref="FMODPlatformSpecificImplementationDetails"/> that was created.</returns>
         public static FMODPlatformSpecificImplementationDetails Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             var factory = uv.TryGetFactoryMethod<FMODPlatformSpecificImplementationDetailsFactory>();
             if (factory == null)
                 return new FMODGenericPlatformImplementationDetails();

@@ -7,7 +7,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests.Audio
 {
     [TestFixture]
-    public class SoundEffectPlayerTests : SedulousApplicationTestFramework
+    public class SoundEffectPlayerTests : FrameworkApplicationTestFramework
     {
         [Test]
         [TestCase(AudioImplementation.BASS)]

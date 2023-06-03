@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class Point2Tests : SedulousTestFramework
+    public class Point2Tests : FrameworkTestFramework
     {
         [Test]
         public void Point2_IsConstructedProperly()
@@ -160,7 +160,7 @@ namespace Sedulous.Tests
         {
             var point = new Point2(1, 2);
             var json = JsonConvert.SerializeObject(point, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1,""y"":2}");
         }
@@ -170,7 +170,7 @@ namespace Sedulous.Tests
         {
             var point = new Point2(1, 2);
             var json = JsonConvert.SerializeObject((Point2?)point, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1,""y"":2}");
         }
@@ -181,7 +181,7 @@ namespace Sedulous.Tests
             const String json = @"{""x"":1,""y"":2}";
             
             var point = JsonConvert.DeserializeObject<Point2>(json, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(point)
                 .ShouldBe(1, 2);
@@ -193,7 +193,7 @@ namespace Sedulous.Tests
             const String json1 = @"{""x"":1,""y"":2}";
 
             var point1 = JsonConvert.DeserializeObject<Point2?>(json1, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(point1.Value)
                 .ShouldBe(1, 2);
@@ -201,7 +201,7 @@ namespace Sedulous.Tests
             const String Json2 = @"null";
 
             var point2 = JsonConvert.DeserializeObject<Point2?>(Json2, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(point2.HasValue)
                 .ShouldBe(false);

@@ -13,7 +13,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// Initializes a new instance of the <see cref="VisualClone"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public VisualClone(SedulousContext uv)
+        public VisualClone(FrameworkContext uv)
             : base(uv)
         {
 
@@ -59,7 +59,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         }
 
         /// <inheritdoc/>
-        protected override void UpdateCore(SedulousTime time)
+        protected override void UpdateCore(FrameworkTime time)
         {
             var desiredEffect = (clonedElement == null) ? null : clonedElement.Effect;
             if (desiredEffect != this.Effect)
@@ -71,7 +71,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         }
 
         /// <inheritdoc/>
-        protected override void DrawCore(SedulousTime time, DrawingContext dc)
+        protected override void DrawCore(FrameworkTime time, DrawingContext dc)
         {
             if (clonedElement != null)
             {

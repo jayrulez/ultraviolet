@@ -8,14 +8,14 @@ namespace Sedulous.Presentation.Input
     /// <summary>
     /// Maintains a list of weak references to objects which are listening to the <see cref="CommandManager.RequerySuggested"/> event.
     /// </summary>
-    internal sealed class CommandRequeryManager : SedulousResource
+    internal sealed class CommandRequeryManager : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandRequeryManager"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="owner">The command manager that owns this instance.</param>
-        public CommandRequeryManager(SedulousContext uv, CommandManager owner)
+        public CommandRequeryManager(FrameworkContext uv, CommandManager owner)
             : base(uv)
         {
             this.owner = owner;
@@ -135,7 +135,7 @@ namespace Sedulous.Presentation.Input
         /// <summary>
         /// Cleans up the listener list when the Sedulous context is updated.
         /// </summary>
-        private void Updating(SedulousContext uv, SedulousTime time)
+        private void Updating(FrameworkContext uv, FrameworkTime time)
         {
             Cleanup();
             Raise();

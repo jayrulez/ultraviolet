@@ -13,8 +13,8 @@ namespace Sedulous.Shims.NETCore.Platform
         /// Initializes a new instance of the <see cref="NETCoreScreenDensityService_Windows"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        /// <param name="display">The <see cref="ISedulousDisplay"/> for which to retrieve density information.</param>
-        public NETCoreScreenDensityService_Windows(SedulousContext uv, ISedulousDisplay display)
+        /// <param name="display">The <see cref="IFrameworkDisplay"/> for which to retrieve density information.</param>
+        public NETCoreScreenDensityService_Windows(FrameworkContext uv, IFrameworkDisplay display)
             : base(display)
         {
             Contract.Require(uv, nameof(uv));
@@ -72,9 +72,9 @@ namespace Sedulous.Shims.NETCore.Platform
         /// <summary>
         /// Retrieves DPI information when running on Windows 8.1 and higher.
         /// </summary>
-        private Boolean InitWindows8_1(SedulousContext uv, ISedulousDisplay display)
+        private Boolean InitWindows8_1(FrameworkContext uv, IFrameworkDisplay display)
         {
-            if (uv.Platform != SedulousPlatform.Windows || Environment.OSVersion.Version < new Version(6, 3))
+            if (uv.Platform != FrameworkPlatform.Windows || Environment.OSVersion.Version < new Version(6, 3))
                 return false;
 
             var hmonitor = IntPtr.Zero;
@@ -105,7 +105,7 @@ namespace Sedulous.Shims.NETCore.Platform
         /// <summary>
         /// Retrieves DPI information in the general case.
         /// </summary>
-        private Boolean InitFallback(SedulousContext uv, ISedulousDisplay display)
+        private Boolean InitFallback(FrameworkContext uv, IFrameworkDisplay display)
         {
             // todo sed: load pixel density info
             //using (var graphics = System.Drawing.Graphics.FromHwnd(IntPtr.Zero))
@@ -121,8 +121,8 @@ namespace Sedulous.Shims.NETCore.Platform
         }
 
         // State values.
-        private readonly SedulousContext uv;
-        private readonly ISedulousDisplay display;
+        private readonly FrameworkContext uv;
+        private readonly IFrameworkDisplay display;
         private Single densityX;
         private Single densityY;
         private Single densityScale;

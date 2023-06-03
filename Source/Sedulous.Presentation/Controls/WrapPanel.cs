@@ -16,7 +16,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public WrapPanel(SedulousContext uv, String name)
+        public WrapPanel(FrameworkContext uv, String name)
             : base(uv, name)
         {
 

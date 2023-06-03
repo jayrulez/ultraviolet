@@ -21,7 +21,7 @@ namespace Sedulous.SDL2.Graphics
         /// <param name="depth">The surface's depth in pixels.</param>
         /// <param name="bytesPerPixel">The number of bytes used to represent a pixel on the surface.</param>
         /// <param name="options">The surface's configuration options.</param>
-        public SDL2Surface3D(SedulousContext uv, Int32 width, Int32 height, Int32 depth, Int32 bytesPerPixel, SurfaceOptions options)
+        public SDL2Surface3D(FrameworkContext uv, Int32 width, Int32 height, Int32 depth, Int32 bytesPerPixel, SurfaceOptions options)
             : base(uv)
         {
             Contract.EnsureRange(width > 0, nameof(width));
@@ -32,7 +32,7 @@ namespace Sedulous.SDL2.Graphics
             var isSrgb = (options & SurfaceOptions.SrgbColor) == SurfaceOptions.SrgbColor;
             var isLinear = (options & SurfaceOptions.LinearColor) == SurfaceOptions.LinearColor;
             if (isSrgb && isLinear)
-                throw new ArgumentException(SedulousStrings.SurfaceCannotHaveMultipleEncodings);
+                throw new ArgumentException(FrameworkStrings.SurfaceCannotHaveMultipleEncodings);
 
             this.width = width;
             this.height = height;
@@ -62,11 +62,11 @@ namespace Sedulous.SDL2.Graphics
             if (surface != null)
             {
                 if (surface.Width != Width)
-                    throw new ArgumentException(SedulousStrings.IncompatibleSurfaceLayer);
+                    throw new ArgumentException(FrameworkStrings.IncompatibleSurfaceLayer);
                 if (surface.Height != Height)
-                    throw new ArgumentException(SedulousStrings.IncompatibleSurfaceLayer);
+                    throw new ArgumentException(FrameworkStrings.IncompatibleSurfaceLayer);
                 if (surface.BytesPerPixel != BytesPerPixel)
-                    throw new ArgumentException(SedulousStrings.IncompatibleSurfaceLayer);
+                    throw new ArgumentException(FrameworkStrings.IncompatibleSurfaceLayer);
             }
 
             this.layers[layer] = surface;
@@ -237,7 +237,7 @@ namespace Sedulous.SDL2.Graphics
             for (int i = 0; i < layers.Length; i++)
             {
                 if (layers[i].SrgbEncoded != SrgbEncoded)
-                    throw new InvalidOperationException(SedulousStrings.SurfaceLayerEncodingMismatch);
+                    throw new InvalidOperationException(FrameworkStrings.SurfaceLayerEncodingMismatch);
             }
         }
 

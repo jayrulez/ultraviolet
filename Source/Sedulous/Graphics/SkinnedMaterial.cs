@@ -70,8 +70,8 @@ namespace Sedulous.Graphics
         public Texture2D Texture { get; set; }
 
         // Shared effect.
-        private static readonly SedulousSingleton<SkinnedEffect> sharedEffectSingleton =
-            new SedulousSingleton<SkinnedEffect>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+        private static readonly FrameworkSingleton<SkinnedEffect> sharedEffectSingleton =
+            new FrameworkSingleton<SkinnedEffect>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => SkinnedEffect.Create());
     }
 }

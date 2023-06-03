@@ -7,7 +7,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class BoundingSphereTests : SedulousTestFramework
+    public class BoundingSphereTests : FrameworkTestFramework
     {
         [Test]
         public void BoundingSphere_ConstructorSetsValues()
@@ -567,7 +567,7 @@ namespace Sedulous.Tests
         {
             var sphere = new BoundingSphere(new Vector3(1.2f, 2.3f, 3.4f), 4.5f);
             var json = JsonConvert.SerializeObject(sphere, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""center"":{""x"":1.2,""y"":2.3,""z"":3.4},""radius"":4.5}");
         }
@@ -577,7 +577,7 @@ namespace Sedulous.Tests
         {
             var sphere = new BoundingSphere(new Vector3(1.2f, 2.3f, 3.4f), 4.5f);
             var json = JsonConvert.SerializeObject((BoundingSphere?)sphere, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""center"":{""x"":1.2,""y"":2.3,""z"":3.4},""radius"":4.5}");
         }
@@ -588,7 +588,7 @@ namespace Sedulous.Tests
             const String json = @"{""center"":{""x"":1.2,""y"":2.3,""z"":3.4},""radius"":4.5}";
 
             var sphere = JsonConvert.DeserializeObject<BoundingSphere>(json, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(sphere)
                 .ShouldHaveCenter(1.2f, 2.3f, 3.4f)
@@ -601,7 +601,7 @@ namespace Sedulous.Tests
             const String json1 = @"{""center"":{""x"":1.2,""y"":2.3,""z"":3.4},""radius"":4.5}";
 
             var sphere1 = JsonConvert.DeserializeObject<BoundingSphere?>(json1, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(sphere1.Value)
                 .ShouldHaveCenter(1.2f, 2.3f, 3.4f)
@@ -610,7 +610,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var sphere2 = JsonConvert.DeserializeObject<BoundingSphere?>(json2, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(sphere2.HasValue)
                 .ShouldBe(false);

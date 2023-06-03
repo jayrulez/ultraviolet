@@ -7,13 +7,13 @@ namespace Sedulous
     /// <summary>
     /// Represents a collection of named <see cref="Cursor"/> objects.
     /// </summary>
-    public sealed class CursorCollection : SedulousResource
+    public sealed class CursorCollection : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CursorCollection"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        internal CursorCollection(SedulousContext uv)
+        internal CursorCollection(FrameworkContext uv)
             : base(uv)
         {
 

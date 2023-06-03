@@ -6,7 +6,7 @@ namespace Sedulous.OpenGL
     /// <summary>
     /// Represents the configuration settings for the OpenGL graphics subsystem implementation.
     /// </summary>
-    public class OpenGLGraphicsConfiguration : SedulousGraphicsConfiguration
+    public class OpenGLGraphicsConfiguration : FrameworkGraphicsConfiguration
     {
         /// <inheritdoc/>
         public override String GraphicsApiName { get; } = "OpenGL";

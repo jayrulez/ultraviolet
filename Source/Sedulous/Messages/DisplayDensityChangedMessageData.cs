@@ -11,7 +11,7 @@ namespace Sedulous.Messages
         /// <summary>
         /// Gets or sets the display which changed density.
         /// </summary>
-        public ISedulousDisplay Display
+        public IFrameworkDisplay Display
         {
             get;
             set;

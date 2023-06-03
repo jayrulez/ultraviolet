@@ -163,7 +163,7 @@ namespace Sedulous.Graphics
                         break;
 
                     default:
-                        throw new InvalidOperationException(SedulousStrings.UnsupportedVertexFormat);
+                        throw new InvalidOperationException(FrameworkStrings.UnsupportedVertexFormat);
                 }
             }
             return value;

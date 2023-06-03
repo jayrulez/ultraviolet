@@ -15,7 +15,7 @@ namespace Sedulous.Graphics.Graphics2D
             /// <summary>
             /// Creates a new <see cref="GlyphRenderState"/> structure from the parameters to the <see cref="DrawStringInternal{TSource}"/> method.
             /// </summary>
-            public static GlyphRenderState FromDrawStringParameters(SedulousFontFace fontFace,
+            public static GlyphRenderState FromDrawStringParameters(FrameworkFontFace fontFace,
                 Vector2 position, Vector2 origin, Vector2 scale, Single rotation, SpriteEffects effects, Size2 measure)
             {
                 // Determine whether the text is flipped.
@@ -229,7 +229,7 @@ namespace Sedulous.Graphics.Graphics2D
             /// <summary>
             /// The font face with which the string is being drawn.
             /// </summary>
-            public SedulousFontFace FontFace;
+            public FrameworkFontFace FontFace;
 
             /// <summary>
             /// The position at which text rendering starts.

@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class RectangleFTests : SedulousTestFramework
+    public class RectangleFTests : FrameworkTestFramework
     {
         [Test]
         public void RectangleF_IsConstructedProperly()
@@ -124,7 +124,7 @@ namespace Sedulous.Tests
         {
             var rect = new RectangleF(1.2f, 2.3f, 3.4f, 4.5f);
             var json = JsonConvert.SerializeObject(rect,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1.2,""y"":2.3,""width"":3.4,""height"":4.5}");
         }
@@ -134,7 +134,7 @@ namespace Sedulous.Tests
         {
             var rect = new RectangleF(1.2f, 2.3f, 3.4f, 4.5f);
             var json = JsonConvert.SerializeObject((RectangleF?)rect,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1.2,""y"":2.3,""width"":3.4,""height"":4.5}");
         }
@@ -145,7 +145,7 @@ namespace Sedulous.Tests
             const String json = @"{""x"":1.2,""y"":2.3,""width"":3.4,""height"":4.5}";
             
             var rect = JsonConvert.DeserializeObject<RectangleF>(json,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(rect)
                 .ShouldHavePosition(1.2f, 2.3f)
@@ -158,7 +158,7 @@ namespace Sedulous.Tests
             const String json1 = @"{""x"":1.2,""y"":2.3,""width"":3.4,""height"":4.5}";
 
             var rect1 = JsonConvert.DeserializeObject<RectangleF?>(json1,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(rect1.Value)
                 .ShouldHavePosition(1.2f, 2.3f)
@@ -167,7 +167,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var rect2 = JsonConvert.DeserializeObject<RectangleF?>(json2,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(rect2.HasValue)
                 .ShouldBe(false);

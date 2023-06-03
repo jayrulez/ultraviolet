@@ -14,7 +14,7 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLBlurEffect"/> class.
         /// </summary>
-        public OpenGLBlurEffect(SedulousContext uv)
+        public OpenGLBlurEffect(FrameworkContext uv)
             : base(CreateEffectImplementation(uv))
         {
             epDirection = Parameters["Direction"];
@@ -105,7 +105,7 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The effect implementation.</returns>
-        private static EffectImplementation CreateEffectImplementation(SedulousContext uv)
+        private static EffectImplementation CreateEffectImplementation(FrameworkContext uv)
         {
             Contract.Require(uv, nameof(uv));
 
@@ -127,28 +127,28 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         // Unrolled fragment shaders
         const Int32 UnrolledFragmentShaderCount = 5;
 
-        private static readonly SedulousSingleton<OpenGLFragmentShader> fragShader_Radius1 =
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy, 
+        private static readonly FrameworkSingleton<OpenGLFragmentShader> fragShader_Radius1 =
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy, 
                 uv => new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BlurEffectRadius1.frag")));
-        private static readonly SedulousSingleton<OpenGLFragmentShader> fragShader_Radius3 =
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy, 
+        private static readonly FrameworkSingleton<OpenGLFragmentShader> fragShader_Radius3 =
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy, 
                 uv => new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BlurEffectRadius3.frag")));
-        private static readonly SedulousSingleton<OpenGLFragmentShader> fragShader_Radius5 =
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+        private static readonly FrameworkSingleton<OpenGLFragmentShader> fragShader_Radius5 =
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BlurEffectRadius5.frag")));
-        private static readonly SedulousSingleton<OpenGLFragmentShader> fragShader_Radius7 =
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+        private static readonly FrameworkSingleton<OpenGLFragmentShader> fragShader_Radius7 =
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BlurEffectRadius7.frag")));
-        private static readonly SedulousSingleton<OpenGLFragmentShader> fragShader_Radius9 =
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+        private static readonly FrameworkSingleton<OpenGLFragmentShader> fragShader_Radius9 =
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BlurEffectRadius9.frag")));
 
         // Shaders
-        private static readonly SedulousSingleton<OpenGLVertexShader> vertShader = 
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+        private static readonly FrameworkSingleton<OpenGLVertexShader> vertShader = 
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("SpriteBatchEffect.vert")));
-        private static readonly SedulousSingleton<OpenGLFragmentShader> fragShader = 
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+        private static readonly FrameworkSingleton<OpenGLFragmentShader> fragShader = 
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => IsArbitaryRadiusBlurAvailable ? new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("BlurEffect.frag")) : null);
 
         // Cached effect parameters

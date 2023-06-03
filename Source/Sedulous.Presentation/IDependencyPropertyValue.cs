@@ -33,8 +33,8 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Evaluates whether the dependency property's value has changed and, if so, invokes the appropriate callbacks.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        void Digest(SedulousTime time);
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        void Digest(FrameworkTime time);
 
         /// <summary>
         /// Sets the dependency property to draw its value from the specified trigger action.

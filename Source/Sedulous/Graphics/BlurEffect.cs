@@ -7,7 +7,7 @@ namespace Sedulous.Graphics
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="BlurEffect"/> that was created.</returns>
-    public delegate BlurEffect BlurEffectFactory(SedulousContext uv);
+    public delegate BlurEffect BlurEffectFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents an <see cref="Effect"/> which draws 2D drop shadows using a two-pass Gaussian blur.
@@ -37,7 +37,7 @@ namespace Sedulous.Graphics
         /// <returns>The instance of <see cref="BlurEffect"/> that was created.</returns>
         public static BlurEffect Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<BlurEffectFactory>()(uv);
         }
 

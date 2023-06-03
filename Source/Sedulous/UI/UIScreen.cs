@@ -31,7 +31,7 @@ namespace Sedulous.UI
         /// <param name="rootDirectory">The root directory of the panel's local content manager.</param>
         /// <param name="definitionAsset">The asset path of the screen's definition file.</param>
         /// <param name="globalContent">The content manager with which to load globally-available assets.</param>
-        protected UIScreen(SedulousContext uv, String rootDirectory, String definitionAsset, ContentManager globalContent)
+        protected UIScreen(FrameworkContext uv, String rootDirectory, String definitionAsset, ContentManager globalContent)
             : base(uv, rootDirectory, globalContent)
         {
             var definitionWrapper = LoadPanelDefinition(definitionAsset);
@@ -48,7 +48,7 @@ namespace Sedulous.UI
         }
 
         /// <inheritdoc/>
-        public override void Update(SedulousTime time)
+        public override void Update(FrameworkTime time)
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
@@ -78,7 +78,7 @@ namespace Sedulous.UI
         }
 
         /// <inheritdoc/>
-        public override void Draw(SedulousTime time, SpriteBatch spriteBatch)
+        public override void Draw(FrameworkTime time, SpriteBatch spriteBatch)
         {
             Contract.Require(spriteBatch, nameof(spriteBatch));
             Contract.EnsureNotDisposed(this, Disposed);
@@ -262,7 +262,7 @@ namespace Sedulous.UI
             {
                 pendingView = null;
 
-                Debug.WriteLine(SedulousStrings.ExceptionDuringViewReloading);
+                Debug.WriteLine(FrameworkStrings.ExceptionDuringViewReloading);
                 Debug.WriteLine(e);
 
                 return false;

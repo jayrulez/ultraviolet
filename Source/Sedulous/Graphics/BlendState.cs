@@ -8,26 +8,26 @@ namespace Sedulous.Graphics
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="BlendState"/> that was created.</returns>
-    public delegate BlendState BlendStateFactory(SedulousContext uv);
+    public delegate BlendState BlendStateFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents a graphics device's blend state.
     /// </summary>
-    public abstract class BlendState : SedulousResource
+    public abstract class BlendState : FrameworkResource
     {
         /// <summary>
         /// Initializes the <see cref="BlendState"/> type.
         /// </summary>
         static BlendState()
         {
-            SedulousContext.ContextInvalidated += (sender, e) => { InvalidateCache(); };
+            FrameworkContext.ContextInvalidated += (sender, e) => { InvalidateCache(); };
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BlendState"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        protected BlendState(SedulousContext uv)
+        protected BlendState(FrameworkContext uv)
             : base(uv)
         {
 
@@ -39,7 +39,7 @@ namespace Sedulous.Graphics
         /// <returns>The instance of <see cref="BlendState"/> that was created.</returns>
         public static BlendState Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<BlendStateFactory>()(uv);
         }
 
@@ -54,7 +54,7 @@ namespace Sedulous.Graphics
                 if (cachedOpaque != null)
                     return cachedOpaque;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedOpaque = uv.GetFactoryMethod<BlendStateFactory>("Opaque")(uv));
             }
         }
@@ -70,7 +70,7 @@ namespace Sedulous.Graphics
                 if (cachedAlphaBlend != null)
                     return cachedAlphaBlend;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedAlphaBlend = uv.GetFactoryMethod<BlendStateFactory>("AlphaBlend")(uv));
             }
         }
@@ -86,7 +86,7 @@ namespace Sedulous.Graphics
                 if (cachedAdditive != null)
                     return cachedAdditive;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedAdditive = uv.GetFactoryMethod<BlendStateFactory>("Additive")(uv));
             }
         }
@@ -102,7 +102,7 @@ namespace Sedulous.Graphics
                 if (cachedNonPremultiplied != null)
                     return cachedNonPremultiplied;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedNonPremultiplied = uv.GetFactoryMethod<BlendStateFactory>("NonPremultiplied")(uv));
             }
         }
@@ -115,7 +115,7 @@ namespace Sedulous.Graphics
             get => alphaBlendFunction;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
                 
                 alphaBlendFunction = value;
             }
@@ -129,7 +129,7 @@ namespace Sedulous.Graphics
             get => alphaSourceBlend;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
                 
                 alphaSourceBlend = value;
             }
@@ -143,7 +143,7 @@ namespace Sedulous.Graphics
             get => alphaDestinationBlend;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 alphaDestinationBlend = value;
             }
@@ -157,7 +157,7 @@ namespace Sedulous.Graphics
             get => colorBlendFunction;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 colorBlendFunction = value;
             }
@@ -171,7 +171,7 @@ namespace Sedulous.Graphics
             get => colorSourceBlend;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 colorSourceBlend = value;
             }
@@ -185,7 +185,7 @@ namespace Sedulous.Graphics
             get => colorDestinationBlend;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 colorDestinationBlend = value;
             }
@@ -199,7 +199,7 @@ namespace Sedulous.Graphics
             get => blendFactor;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 blendFactor = value;
             }
@@ -213,7 +213,7 @@ namespace Sedulous.Graphics
             get => colorWriteChannels;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 colorWriteChannels = value;
             }

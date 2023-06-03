@@ -33,7 +33,7 @@ namespace Sedulous.Graphics
         /// </summary>
         private TextureAtlasDescription CreateTextureAtlasDescription(JObject input)
         {
-            var serializer = JsonSerializer.CreateDefault(SedulousJsonSerializerSettings.Instance);
+            var serializer = JsonSerializer.CreateDefault(FrameworkJsonSerializerSettings.Instance);
             var desc = input.ToObject<TextureAtlasDescription>(serializer);
             desc.Metadata = desc.Metadata ?? new TextureAtlasMetadataDescription();
 

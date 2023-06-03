@@ -6,13 +6,13 @@ namespace Sedulous.Audio
     /// <para>Represents a sound effect.</para>
     /// <para>Sound effects are usually small audio files which are loaded entirely into memory prior to playback.</para>
     /// </summary>
-    public abstract class SoundEffect : SedulousResource
+    public abstract class SoundEffect : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SoundEffect"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        protected SoundEffect(SedulousContext uv)
+        protected SoundEffect(FrameworkContext uv)
             : base(uv)
         {
 

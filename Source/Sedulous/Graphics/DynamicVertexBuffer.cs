@@ -10,7 +10,7 @@ namespace Sedulous.Graphics
     /// <param name="vdecl">The vertex declaration for the buffer.</param>
     /// <param name="vcount">The number of vertices in the buffer.</param>
     /// <returns>The instance of <see cref="DynamicVertexBuffer"/> that was created.</returns>
-    public delegate DynamicVertexBuffer DynamicVertexBufferFactory(SedulousContext uv, VertexDeclaration vdecl, Int32 vcount);
+    public delegate DynamicVertexBuffer DynamicVertexBufferFactory(FrameworkContext uv, VertexDeclaration vdecl, Int32 vcount);
 
     /// <summary>
     /// Represents a vertex buffer that is optimized for dynamic updates.
@@ -23,7 +23,7 @@ namespace Sedulous.Graphics
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="vdecl">The vertex declaration for the buffer.</param>
         /// <param name="vcount">The number of vertices in the buffer.</param>
-        public DynamicVertexBuffer(SedulousContext uv, VertexDeclaration vdecl, Int32 vcount)
+        public DynamicVertexBuffer(FrameworkContext uv, VertexDeclaration vdecl, Int32 vcount)
             : base(uv, vdecl, vcount)
         {
 
@@ -40,7 +40,7 @@ namespace Sedulous.Graphics
             Contract.Require(vdecl, nameof(vdecl));
             Contract.EnsureRange(vcount > 0, nameof(vcount));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<DynamicVertexBufferFactory>()(uv, vdecl, vcount);
         }
 
@@ -56,7 +56,7 @@ namespace Sedulous.Graphics
 
             var vdecl = new T().VertexDeclaration;
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<DynamicVertexBufferFactory>()(uv, vdecl, vcount);
         }
 

@@ -11,7 +11,7 @@ namespace Sedulous.Messages
         /// <summary>
         /// Gets or sets the window which changed density.
         /// </summary>
-        public ISedulousWindow Window
+        public IFrameworkWindow Window
         {
             get;
             set;

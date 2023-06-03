@@ -12,20 +12,20 @@ namespace Sedulous.FMOD.Audio
     /// <summary>
     /// Contains methods for playing and manipulating FMOD channels.
     /// </summary>
-    internal sealed unsafe class FMODChannelPlayer : SedulousResource
+    internal sealed unsafe class FMODChannelPlayer : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FMODChannelPlayer"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public FMODChannelPlayer(SedulousContext uv)
+        public FMODChannelPlayer(FrameworkContext uv)
             : base(uv)
         {
 
         }
 
-        /// <inheritdoc cref="SongPlayer.Update(SedulousTime)"/>
-        public void Update(SedulousTime time)
+        /// <inheritdoc cref="SongPlayer.Update(FrameworkTime)"/>
+        public void Update(FrameworkTime time)
         {
             if (State != PlaybackState.Stopped)
             {
@@ -374,7 +374,7 @@ namespace Sedulous.FMOD.Audio
 
             var result = default(FMOD_RESULT);
 
-            var system = ((FMODSedulousAudio)Sedulous.GetAudio()).System;
+            var system = ((FMODAudioSubsystem)Sedulous.GetAudio()).System;
             var channel = default(FMOD_CHANNEL*);
             
             if (loopStart > TimeSpan.Zero && loopLength <= TimeSpan.Zero)
@@ -439,7 +439,7 @@ namespace Sedulous.FMOD.Audio
         /// <summary>
         /// Updates the player's volume, if its volume is sliding.
         /// </summary>
-        private void UpdateSlidingVolume(SedulousTime time)
+        private void UpdateSlidingVolume(FrameworkTime time)
         {
             if (!isSlidingVolume)
                 return;
@@ -465,7 +465,7 @@ namespace Sedulous.FMOD.Audio
         /// <summary>
         /// Updates the player's pitch, if its pitch is sliding.
         /// </summary>
-        private void UpdateSlidingPitch(SedulousTime time)
+        private void UpdateSlidingPitch(FrameworkTime time)
         {
             if (!isSlidingPitch)
                 return;
@@ -491,7 +491,7 @@ namespace Sedulous.FMOD.Audio
         /// <summary>
         /// Updates the player's pan, if its pan is sliding.
         /// </summary>
-        private void UpdateSlidingPan(SedulousTime time)
+        private void UpdateSlidingPan(FrameworkTime time)
         {
             if (!isSlidingPan)
                 return;

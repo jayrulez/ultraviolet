@@ -92,7 +92,7 @@ namespace Sedulous.Presentation
         /// <param name="name">The name of the routed event.</param>
         /// <returns>A <see cref="RoutedEvent"/> instance which represents the specified routed event, 
         /// or <see langword="null"/> if no such routed event exists.</returns>
-        public static RoutedEvent FindByName(SedulousContext uv, DependencyObject dobj, String owner, String name)
+        public static RoutedEvent FindByName(FrameworkContext uv, DependencyObject dobj, String owner, String name)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(dobj, nameof(dobj));
@@ -129,7 +129,7 @@ namespace Sedulous.Presentation
         /// <param name="name">The styling name of the routed event.</param>
         /// <returns>A <see cref="RoutedEvent"/> instance which represents the specified routed event, 
         /// or <see langword="null"/> if no such routed event exists.</returns>
-        public static RoutedEvent FindByStylingName(SedulousContext uv, DependencyObject dobj, String owner, String name)
+        public static RoutedEvent FindByStylingName(FrameworkContext uv, DependencyObject dobj, String owner, String name)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(dobj, nameof(dobj));

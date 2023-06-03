@@ -62,14 +62,14 @@ namespace Sedulous.Graphics.Graphics2D
             {
                 var value = sprite[name];
                 if (value == null)
-                    throw new ArgumentException(SedulousStrings.InvalidSpriteAnimationReference.Format(id));
+                    throw new ArgumentException(FrameworkStrings.InvalidSpriteAnimationReference.Format(id));
 
                 return value;
             }
 
             var index = SpriteAnimationID.GetAnimationIndexRef(ref id);
             if (index < 0 || index >= sprite.AnimationCount)
-                throw new ArgumentException(SedulousStrings.InvalidSpriteAnimationReference.Format(id));
+                throw new ArgumentException(FrameworkStrings.InvalidSpriteAnimationReference.Format(id));
 
             return sprite[index];
         }

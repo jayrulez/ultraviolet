@@ -8,18 +8,18 @@ namespace Sedulous.Graphics
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="EffectImplementation"/> that was created.</returns>
-    public delegate EffectImplementation EffectImplementationFactory(SedulousContext uv);
+    public delegate EffectImplementation EffectImplementationFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents a shader effect's underlying implementation.
     /// </summary>
-    public abstract class EffectImplementation : SedulousResource
+    public abstract class EffectImplementation : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EffectImplementation"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        protected EffectImplementation(SedulousContext uv)
+        protected EffectImplementation(FrameworkContext uv)
             : base(uv)
         {
 
@@ -34,7 +34,7 @@ namespace Sedulous.Graphics
             internal set
             {
                 if (effect != null)
-                    throw new InvalidOperationException(SedulousStrings.EffectImplementationAlreadyHasOwner);
+                    throw new InvalidOperationException(FrameworkStrings.EffectImplementationAlreadyHasOwner);
 
                 effect = value;
             }
@@ -71,7 +71,7 @@ namespace Sedulous.Graphics
         protected void OnApplyInternal()
         {
             if (effect == null)
-                throw new InvalidOperationException(SedulousStrings.EffectImplementationHasNoOwner);
+                throw new InvalidOperationException(FrameworkStrings.EffectImplementationHasNoOwner);
 
             effect.OnApply();
         }

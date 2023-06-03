@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class Vector3Tests : SedulousTestFramework
+    public class Vector3Tests : FrameworkTestFramework
     {
         [Test]
         public void Vector3_ConstructorSetsValues()
@@ -813,7 +813,7 @@ namespace Sedulous.Tests
         {
             var vector = new Vector3(1.2f, 2.3f, 3.4f);
             var json = JsonConvert.SerializeObject(vector,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1.2,""y"":2.3,""z"":3.4}");
         }
@@ -823,7 +823,7 @@ namespace Sedulous.Tests
         {
             var vector = new Vector3(1.2f, 2.3f, 3.4f);
             var json = JsonConvert.SerializeObject((Vector3?)vector,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1.2,""y"":2.3,""z"":3.4}");
         }
@@ -834,7 +834,7 @@ namespace Sedulous.Tests
             const String json = @"{""x"":1.2,""y"":2.3,""z"":3.4}";
             
             var vector = JsonConvert.DeserializeObject<Vector3>(json,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(vector)
                 .ShouldBe(1.2f, 2.3f, 3.4f);
@@ -846,7 +846,7 @@ namespace Sedulous.Tests
             const String json1 = @"{""x"":1.2,""y"":2.3,""z"":3.4}";
 
             var vector1 = JsonConvert.DeserializeObject<Vector3?>(json1,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(vector1.Value)
                 .ShouldBe(1.2f, 2.3f, 3.4f);
@@ -854,7 +854,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var vector2 = JsonConvert.DeserializeObject<Vector3?>(json2,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(vector2.HasValue)
                 .ShouldBe(false);

@@ -65,7 +65,7 @@ namespace Sedulous.Graphics
 
         /// <summary>
         /// Gets or sets a value indicating whether the texture is SRGB encoded. If no value is provided,
-        /// the default specified by the <see cref="SedulousContextProperties.SrgbDefaultForTexture2D"/>
+        /// the default specified by the <see cref="FrameworkContextProperties.SrgbDefaultForTexture2D"/>
         /// property is used.
         /// </summary>
         [JsonProperty(Required = Required.Default)]

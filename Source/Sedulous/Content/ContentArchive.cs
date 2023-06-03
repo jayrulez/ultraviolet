@@ -41,7 +41,7 @@ namespace Sedulous.Content
                 {
                     var fileHeader = reader.ReadString();
                     if (fileHeader != "UVARC0")
-                        throw new InvalidDataException(SedulousStrings.InvalidContentArchive);
+                        throw new InvalidDataException(FrameworkStrings.InvalidContentArchive);
 
                     var rootCount = reader.ReadInt32();
                     for (int i = 0; i < rootCount; i++)

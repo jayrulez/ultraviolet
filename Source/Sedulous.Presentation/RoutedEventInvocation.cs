@@ -96,7 +96,7 @@ namespace Sedulous.Presentation
              * }
              */
 
-            if (SedulousPlatformInfo.IsRuntimeCodeGenerationSupported())
+            if (FrameworkPlatformInfo.IsRuntimeCodeGenerationSupported())
             {
                 var evtInvoke = evt.DelegateType.GetMethod("Invoke");
                 var evtParams = evtInvoke.GetParameters().ToArray();
@@ -190,7 +190,7 @@ namespace Sedulous.Presentation
              * }
              */
 
-            if (SedulousPlatformInfo.IsRuntimeCodeGenerationSupported())
+            if (FrameworkPlatformInfo.IsRuntimeCodeGenerationSupported())
             {
                 var evtInvoke = evt.DelegateType.GetMethod("Invoke");
                 var evtParams = evtInvoke.GetParameters().ToArray();
@@ -275,7 +275,7 @@ namespace Sedulous.Presentation
              * }
              */
 
-            if (SedulousPlatformInfo.IsRuntimeCodeGenerationSupported())
+            if (FrameworkPlatformInfo.IsRuntimeCodeGenerationSupported())
             {
                 var evtInvoke = evt.DelegateType.GetMethod("Invoke");
                 var evtParams = evtInvoke.GetParameters().ToArray();

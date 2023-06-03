@@ -18,7 +18,7 @@ namespace Sedulous.BASS.Audio
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="filename">The filename of the sample to load.</param>
-        public BASSSoundEffect(SedulousContext uv, String filename)
+        public BASSSoundEffect(FrameworkContext uv, String filename)
             : base(uv)
         {
             Contract.Require(filename, nameof(filename));
@@ -40,7 +40,7 @@ namespace Sedulous.BASS.Audio
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="fileData">An array containing the sample data to load.</param>
-        public BASSSoundEffect(SedulousContext uv, Byte[] fileData)
+        public BASSSoundEffect(FrameworkContext uv, Byte[] fileData)
             : base(uv)
         {
             Contract.Require(fileData, nameof(fileData));

@@ -19,7 +19,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="options">The texture's configuration options.</param>
         /// <param name="state">An arbitrary state object which will be passed to the flush handler.</param>
         /// <param name="flushed">The handler to invoke when the texture is flushed.</param>
-        public OpenGLDynamicTexture3D(SedulousContext uv, Int32 width, Int32 height, Int32 depth, TextureOptions options, Object state, Action<Texture3D, Object> flushed)
+        public OpenGLDynamicTexture3D(FrameworkContext uv, Int32 width, Int32 height, Int32 depth, TextureOptions options, Object state, Action<Texture3D, Object> flushed)
             : base(uv, width, height, depth, options, state, flushed)
         {
             this.texture = new OpenGLTexture3D(uv, width, height, depth, options);

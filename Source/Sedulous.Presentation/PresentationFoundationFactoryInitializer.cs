@@ -5,10 +5,10 @@ namespace Sedulous.Presentation
     /// <summary>
     /// Initializes factory methods for the Sedulous Presentation Foundation.
     /// </summary>
-    public sealed class PresentationFoundationFactoryInitializer : ISedulousFactoryInitializer
+    public sealed class PresentationFoundationFactoryInitializer : IFrameworkFactoryInitializer
     {
         /// <inheritdoc/>
-        public void Initialize(SedulousContext owner, SedulousFactory factory)
+        public void Initialize(FrameworkContext owner, FrameworkFactory factory)
         {
             factory.SetFactoryMethod<UIViewProviderInitializerFactory>(() => new PresentationFoundationInitializer());
             factory.SetFactoryMethod<UIViewFactory>((uv, uiPanel, uiPanelDefinition, vmfactory) => PresentationFoundationView.Load(uv, uiPanel, uiPanelDefinition, vmfactory));

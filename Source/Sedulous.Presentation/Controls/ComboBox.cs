@@ -35,7 +35,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ComboBox(SedulousContext uv, String name)
+        public ComboBox(FrameworkContext uv, String name)
             : base(uv, name)
         {
             visualClone = new VisualClone(uv);
@@ -255,7 +255,7 @@ namespace Sedulous.Presentation.Controls
         }
 
         /// <inheritdoc/>
-        protected override void UpdateOverride(SedulousTime time)
+        protected override void UpdateOverride(FrameworkTime time)
         {
             if (IsDropDownOpen)
             {

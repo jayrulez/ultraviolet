@@ -142,10 +142,10 @@ namespace UvDebug.UI.Screens
             {
                 switch (owner.Sedulous.Platform)
                 {
-                    case SedulousPlatform.Android:
+                    case FrameworkPlatform.Android:
                         return "Press |c:ffffff00|BACK|c| to exit.";
 
-                    case SedulousPlatform.iOS:
+                    case FrameworkPlatform.iOS:
                         return "Press |c:ffffff00|HOME|c| to exit.";
 
                     default:

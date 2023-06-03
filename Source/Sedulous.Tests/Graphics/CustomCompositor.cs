@@ -18,7 +18,7 @@ namespace Sedulous.Tests.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="window">The window with which this compositor is associated.</param>
-        public CustomCompositor(SedulousContext uv, ISedulousWindow window)
+        public CustomCompositor(FrameworkContext uv, IFrameworkWindow window)
             : base(uv, window)
         {
             rtScene = RenderTarget2D.Create(BufferWidth, BufferHeight);

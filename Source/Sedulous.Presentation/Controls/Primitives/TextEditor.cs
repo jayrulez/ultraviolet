@@ -32,7 +32,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public TextEditor(SedulousContext uv, String name)
+        public TextEditor(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
@@ -1744,7 +1744,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         }
 
         /// <inheritdoc/>
-        protected override void UpdateOverride(SedulousTime time)
+        protected override void UpdateOverride(FrameworkTime time)
         {
             if (textLayoutStream != null && textLayoutStream.Count > 0 && textLayoutStream.Settings.Font != TextFont)
             {
@@ -1754,7 +1754,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         }
 
         /// <inheritdoc/>
-        protected override void DrawOverride(SedulousTime time, DrawingContext dc)
+        protected override void DrawOverride(FrameworkTime time, DrawingContext dc)
         {
             var minClip = (Int32?)null;
             var maxClip = (Int32?)null;
@@ -1890,7 +1890,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Gets the font with which the editor draws its text.
         /// </summary>
-        protected SedulousFont TextFont
+        protected FrameworkFont TextFont
         {
             get
             {
@@ -1902,7 +1902,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Gets the font face with which the editor draws its text.
         /// </summary>
-        protected SedulousFontFace TextFontFace
+        protected FrameworkFontFace TextFontFace
         {
             get
             {
@@ -2123,7 +2123,7 @@ namespace Sedulous.Presentation.Controls.Primitives
             var textDirection = IsRightToLeft() ? TextDirection.RightToLeft : TextDirection.LeftToRight;
 
             var options = (textRenderingMode == TextRenderingMode.Shaped) ? TextLayoutOptions.Shape : TextLayoutOptions.None;
-            var settings = new TextLayoutSettings(owner.Font, layoutWidth, layoutHeight, textFlags, options, textDirection, textScript, SedulousFontStyle.Regular, null, textLanguage);
+            var settings = new TextLayoutSettings(owner.Font, layoutWidth, layoutHeight, textFlags, options, textDirection, textScript, FrameworkFontStyle.Regular, null, textLanguage);
             View.Resources.TextRenderer.CalculateLayout(textParserStream, textLayoutStream, settings);
 
             textOffsetX = 0;
@@ -2135,7 +2135,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Draws the current selection.
         /// </summary>
-        private void DrawSelection(SedulousTime time, Int32? minClip, Int32? maxClip, DrawingContext dc)
+        private void DrawSelection(FrameworkTime time, Int32? minClip, Int32? maxClip, DrawingContext dc)
         {
             if (!selectionPosition.HasValue || SelectionLength == 0)
                 return;
@@ -2201,7 +2201,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Draws the editor's text.
         /// </summary>
-        private void DrawText(SedulousTime time, Int32? minClip, Int32? maxClip, DrawingContext dc)
+        private void DrawText(FrameworkTime time, Int32? minClip, Int32? maxClip, DrawingContext dc)
         {
             if (textLayoutStream.Count == 0)
                 return;
@@ -2219,7 +2219,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Draws the editor's caret.
         /// </summary>
-        private void DrawCaret(SedulousTime time, Int32? minClip, Int32? maxClip, DrawingContext dc)
+        private void DrawCaret(FrameworkTime time, Int32? minClip, Int32? maxClip, DrawingContext dc)
         {
             var owner = TemplatedParent as Control;
             if (owner == null)

@@ -12,18 +12,18 @@ namespace Sedulous
     /// <param name="hx">The x-coordinate of the cursor's hotspot.</param>
     /// <param name="hy">The y-coordinate of the cursor's hotspot.</param>
     /// <returns>The instance of <see cref="Cursor"/> that was created.</returns>
-    public delegate Cursor CursorFactory(SedulousContext uv, Surface2D surface, Int32 hx, Int32 hy);
+    public delegate Cursor CursorFactory(FrameworkContext uv, Surface2D surface, Int32 hx, Int32 hy);
 
     /// <summary>
     /// Represents a mouse cursor.
     /// </summary>
-    public abstract class Cursor : SedulousResource
+    public abstract class Cursor : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Cursor"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public Cursor(SedulousContext uv)
+        public Cursor(FrameworkContext uv)
             : base(uv)
         {
 
@@ -38,7 +38,7 @@ namespace Sedulous
         {
             Contract.Require(surface, nameof(surface));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<CursorFactory>()(uv, surface, 0, 0);
         }
 
@@ -53,7 +53,7 @@ namespace Sedulous
         {
             Contract.Require(surface, nameof(surface));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<CursorFactory>()(uv, surface, hx, hy);
         }
 

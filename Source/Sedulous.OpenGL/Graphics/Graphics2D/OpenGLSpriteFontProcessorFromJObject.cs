@@ -32,7 +32,7 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         /// </summary>
         private static SpriteFontDescription CreateSpriteFontDescription(ContentManager manager, IContentProcessorMetadata metadata, JObject input)
         {
-            var serializer = JsonSerializer.CreateDefault(SedulousJsonSerializerSettings.Instance);
+            var serializer = JsonSerializer.CreateDefault(FrameworkJsonSerializerSettings.Instance);
             return input.ToObject<SpriteFontDescription>(serializer);
         }
         

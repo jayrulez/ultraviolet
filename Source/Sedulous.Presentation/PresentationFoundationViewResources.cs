@@ -259,11 +259,11 @@ namespace Sedulous.Presentation
             foreach (var kvp in dictionary)
             {
                 var description = kvp.Value;
-                var font = default(SedulousFont);
+                var font = default(FrameworkFont);
 
                 if (description.Font != null)
                 {
-                    font = view.LoadResource<SedulousFont>(description.Font.Value);
+                    font = view.LoadResource<FrameworkFont>(description.Font.Value);
                     if (font == null)
                         throw new InvalidOperationException(PresentationStrings.CollectionContainsInvalidResources);
                 }
@@ -293,7 +293,7 @@ namespace Sedulous.Presentation
                 if (!kvp.Value.AssetID.IsValid)
                     throw new InvalidOperationException(PresentationStrings.CollectionContainsInvalidResources);
 
-                var font = view.LoadResource<SedulousFont>(kvp.Value);
+                var font = view.LoadResource<FrameworkFont>(kvp.Value);
                 TextRenderer.LayoutEngine.RegisterFont(kvp.Key, font);
             }
         }
@@ -551,7 +551,7 @@ namespace Sedulous.Presentation
             if (definition == null)
                 return default(T);
 
-            var settings = new SedulousJsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
+            var settings = new FrameworkJsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
             var serializer = JsonSerializer.CreateDefault(settings);
             var resource = definition.ToObject<T>(serializer);
 

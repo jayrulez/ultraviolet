@@ -12,7 +12,7 @@ namespace Sedulous.Shims.Android.Input
         /// <inheritdoc/>
         public override Boolean ShowSoftwareKeyboard(KeyboardMode mode)
         {
-            var activity = SedulousApplication.Instance;
+            var activity = FrameworkApplication.Instance;
             if (activity == null)
                 return false;
 
@@ -46,7 +46,7 @@ namespace Sedulous.Shims.Android.Input
         /// <inheritdoc/>
         public override Boolean HideSoftwareKeyboard()
         {
-            var activity = SedulousApplication.Instance;
+            var activity = FrameworkApplication.Instance;
             if (activity == null)
                 return false;
 
@@ -64,8 +64,8 @@ namespace Sedulous.Shims.Android.Input
                 if (textInputRegion != value)
                 {
                     textInputRegion = value;
-                    SedulousContext.RequestCurrent()?.Messages.Publish(
-                        SedulousMessages.TextInputRegionChanged, null);
+                    FrameworkContext.RequestCurrent()?.Messages.Publish(
+                        FrameworkMessages.TextInputRegionChanged, null);
                 }
             }
         }

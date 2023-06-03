@@ -8,7 +8,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Presentation.Tests.Styles
 {
     [TestFixture]
-    public class UvssCompilerTests : SedulousApplicationTestFramework
+    public class UvssCompilerTests : FrameworkApplicationTestFramework
     {
         [Test]
         public void UvssCompiler_DefaultsToInvariantCulture()

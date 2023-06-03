@@ -31,7 +31,7 @@ namespace Sedulous.Presentation
         /// <returns>The root element of the content.</returns>
         public DependencyObject LoadContent(Object dataSource, Type dataSourceType)
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             var namescope = default(Namescope);
             var wrapper = CreateDataSourceWrapper(dataSource, out namescope);
             var context = new UvmlInstantiationContext(uv, null, wrapper, wrapper?.GetType(), namescope);
@@ -61,7 +61,7 @@ namespace Sedulous.Presentation
             if (String.IsNullOrEmpty(dataSourceWrapperName))
                 return dataSource;
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             var wrapper = uv.GetUI().GetPresentationFoundation().CreateDataSourceWrapperForView(dataSource, namescope);
 
             return wrapper;

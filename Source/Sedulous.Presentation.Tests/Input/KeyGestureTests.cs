@@ -7,14 +7,14 @@ using Sedulous.TestFramework;
 namespace Sedulous.Presentation.Tests.Input
 {
     [TestFixture]
-    public class KeyGestureTests : SedulousTestFramework
+    public class KeyGestureTests : FrameworkTestFramework
     {
         [Test]
         public void KeyGesture_TryParse_SucceedsForValidStrings()
         {
             UsingCulture("en-US", () =>
             {
-                RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+                RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
                 var gesture = default(KeyGesture);
                 var result = KeyGesture.TryParse("X", out gesture);
@@ -31,7 +31,7 @@ namespace Sedulous.Presentation.Tests.Input
         {
             UsingCulture("en-US", () =>
             {
-                RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+                RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
                 var gesture = default(KeyGesture);
                 var result = KeyGesture.TryParse("Ctrl+Alt+X", out gesture);
@@ -46,7 +46,7 @@ namespace Sedulous.Presentation.Tests.Input
         [Test]
         public void KeyGesture_TryParse_FailsForInvalidStrings()
         {
-            RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+            RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
             var gesture = default(KeyGesture);
             var result = KeyGesture.TryParse("asdfasdfas", out gesture);
@@ -58,7 +58,7 @@ namespace Sedulous.Presentation.Tests.Input
         [Test]
         public void KeyGesture_TryParse_FailsForInvalidStringsWithRepeatedModifiers()
         {
-            RuntimeHelpers.RunClassConstructor(typeof(SedulousStrings).TypeHandle);
+            RuntimeHelpers.RunClassConstructor(typeof(FrameworkStrings).TypeHandle);
 
             var gesture = default(KeyGesture);
             var result = KeyGesture.TryParse("Ctrl+Ctrl+X", out gesture);

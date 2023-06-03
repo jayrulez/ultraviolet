@@ -8,7 +8,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Graphics.Graphics2D
 {
     [TestFixture]
-    public class SpriteBatchTests : SedulousApplicationTestFramework
+    public class SpriteBatchTests : FrameworkApplicationTestFramework
     {
         [Test]
         [TestCase(FontKind.SpriteFont, ColorEncoding.Linear)]
@@ -19,7 +19,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
         public void SpriteBatch_CanRenderSimpleStrings(FontKind fontKind, ColorEncoding encoding)
         {
             var spriteBatch = default(SpriteBatch);
-            var spriteFont  = default(SedulousFont);
+            var spriteFont  = default(FrameworkFont);
 
             var result = GivenAnSedulousApplication()
                 .WithConfiguration(config =>
@@ -35,7 +35,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
-                    spriteFont  = content.Load<SedulousFont>(fontKind == FontKind.SpriteFont ?
+                    spriteFont  = content.Load<FrameworkFont>(fontKind == FontKind.SpriteFont ?
                         "Fonts/SegoeUI" : "Fonts/FiraSans");
                 })
                 .Render(uv =>
@@ -71,7 +71,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
         public void SpriteBatch_CanRenderSimpleStrings_RightToLeft()
         {
             var spriteBatch = default(SpriteBatch);
-            var spriteFont = default(SedulousFont);
+            var spriteFont = default(FrameworkFont);
 
             var result = GivenAnSedulousApplication()
                 .WithConfiguration(config =>
@@ -84,7 +84,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
-                    spriteFont = content.Load<SedulousFont>("Fonts/FiraGO-Regular");
+                    spriteFont = content.Load<FrameworkFont>("Fonts/FiraGO-Regular");
                 })
                 .Render(uv =>
                 {
@@ -104,7 +104,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
         public void SpriteBatch_CanRenderStrokedSimpleStrings()
         {
             var spriteBatch = default(SpriteBatch);
-            var spriteFont = default(SedulousFont);
+            var spriteFont = default(FrameworkFont);
 
             var result = GivenAnSedulousApplication()
                 .WithConfiguration(config =>
@@ -117,7 +117,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
-                    spriteFont = content.Load<SedulousFont>("Fonts/FiraSansStroked");
+                    spriteFont = content.Load<FrameworkFont>("Fonts/FiraSansStroked");
                 })
                 .Render(uv =>
                 {
@@ -140,14 +140,14 @@ namespace Sedulous.Tests.Graphics.Graphics2D
         public void SpriteBatch_CorrectlyRendersEastAsianCharacters(FontKind fontKind)
         {
             var spriteBatch = default(SpriteBatch);
-            var spriteFont = default(SedulousFont);
+            var spriteFont = default(FrameworkFont);
 
             var result = GivenAnSedulousApplication()
                 .WithPlugin(fontKind == FontKind.FreeType2 ? new FreeTypeFontPlugin() : null)
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
-                    spriteFont = content.Load<SedulousFont>(fontKind == FontKind.SpriteFont ?
+                    spriteFont = content.Load<FrameworkFont>(fontKind == FontKind.SpriteFont ?
                         "Fonts/MSGothic16" : "Fonts/NotoSansCJKjp-Regular");
                 })
                 .Render(uv =>
@@ -185,7 +185,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
         public void SpriteBatch_CorrectlyRendersShapedArabicScript()
         {
             var spriteBatch = default(SpriteBatch);
-            var spriteFont = default(SedulousFont);
+            var spriteFont = default(FrameworkFont);
             var sstr = default(ShapedString);
 
             var result = GivenAnSedulousApplication()
@@ -193,7 +193,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
-                    spriteFont = content.Load<SedulousFont>("Fonts/FiraGO-Regular");
+                    spriteFont = content.Load<FrameworkFont>("Fonts/FiraGO-Regular");
 
                     using (var textShaper = TextShaper.Create())
                     {
@@ -220,14 +220,14 @@ namespace Sedulous.Tests.Graphics.Graphics2D
         public void SpriteBatch_CorrectlyRendersStrokedEastAsianCharacters()
         {
             var spriteBatch = default(SpriteBatch);
-            var spriteFont = default(SedulousFont);
+            var spriteFont = default(FrameworkFont);
 
             var result = GivenAnSedulousApplication()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
-                    spriteFont = content.Load<SedulousFont>("Fonts/NotoSansCJKjpStroked");
+                    spriteFont = content.Load<FrameworkFont>("Fonts/NotoSansCJKjpStroked");
                 })
                 .Render(uv =>
                 {

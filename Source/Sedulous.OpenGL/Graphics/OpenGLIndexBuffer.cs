@@ -18,7 +18,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="itype">The index element type.</param>
         /// <param name="icount">The index element count.</param>
         /// <param name="usage">The buffer's usage type.</param>
-        public OpenGLIndexBuffer(SedulousContext uv, IndexBufferElementType itype, Int32 icount, UInt32 usage)
+        public OpenGLIndexBuffer(FrameworkContext uv, IndexBufferElementType itype, Int32 icount, UInt32 usage)
             : base(uv, itype, icount)
         {
             Contract.EnsureRange(icount >= 0, nameof(icount));

@@ -7,14 +7,14 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Represents a fragment shader.
     /// </summary>
-    public sealed class OpenGLFragmentShader : SedulousResource, IOpenGLResource
+    public sealed class OpenGLFragmentShader : FrameworkResource, IOpenGLResource
     {
         /// <summary>
         /// Initializes a new instance of the OpenGLFragmentShader class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="source">The shader source.</param>
-        public OpenGLFragmentShader(SedulousContext uv, ShaderSource[] source)
+        public OpenGLFragmentShader(FrameworkContext uv, ShaderSource[] source)
             : base(uv)
         {
             Contract.Require(source, nameof(source));
@@ -40,7 +40,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="source">The shader source.</param>
-        public OpenGLFragmentShader(SedulousContext uv, ShaderSource source)
+        public OpenGLFragmentShader(FrameworkContext uv, ShaderSource source)
             : this(uv, new[] { source })
         {
 

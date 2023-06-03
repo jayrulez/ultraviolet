@@ -23,7 +23,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public TabPanel(SedulousContext uv, String name)
+        public TabPanel(FrameworkContext uv, String name)
             : base(uv, name)
         {
 

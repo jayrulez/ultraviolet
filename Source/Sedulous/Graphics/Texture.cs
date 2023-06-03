@@ -5,13 +5,13 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents the base class for texture resources.
     /// </summary>
-    public abstract class Texture : SedulousResource, IComparable<Texture>
+    public abstract class Texture : FrameworkResource, IComparable<Texture>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Texture"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public Texture(SedulousContext uv)
+        public Texture(FrameworkContext uv)
             : base(uv)
         {
 

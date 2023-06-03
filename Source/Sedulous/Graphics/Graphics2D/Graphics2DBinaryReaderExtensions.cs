@@ -20,7 +20,7 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(reader, nameof(reader));
 
-            return ReadSpriteAnimationID(reader, SedulousContext.DemandCurrent().GetContent().Manifests);
+            return ReadSpriteAnimationID(reader, FrameworkContext.DemandCurrent().GetContent().Manifests);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Sedulous.Graphics.Graphics2D
         {
             Contract.Require(reader, nameof(reader));
 
-            return ReadNullableSpriteAnimationID(reader, SedulousContext.DemandCurrent().GetContent().Manifests);
+            return ReadNullableSpriteAnimationID(reader, FrameworkContext.DemandCurrent().GetContent().Manifests);
         }
 
         /// <summary>

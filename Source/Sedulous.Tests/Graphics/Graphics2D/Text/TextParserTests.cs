@@ -6,7 +6,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Graphics.Graphics2D.Text
 {
     [TestFixture]
-    public class TextParserTests : SedulousApplicationTestFramework
+    public class TextParserTests : FrameworkApplicationTestFramework
     {
         [Test]
         public void TextParser_ParseIncremental_CorrectlyHandlesAddedText()

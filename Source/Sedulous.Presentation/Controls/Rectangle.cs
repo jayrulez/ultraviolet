@@ -13,14 +13,14 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public Rectangle(SedulousContext uv, String name)
+        public Rectangle(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
         }
 
         /// <inheritdoc/>
-        protected override void DrawOverride(SedulousTime time, DrawingContext dc)
+        protected override void DrawOverride(FrameworkTime time, DrawingContext dc)
         {
             DrawBlank(dc, null, FillColor);
 

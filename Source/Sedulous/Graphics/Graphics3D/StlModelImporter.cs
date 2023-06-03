@@ -52,7 +52,7 @@ namespace Sedulous.Graphics.Graphics3D
                     {
                         var endsolidName = line.Trim();
                         if (!endsolidName.Equals(name, StringComparison.Ordinal))
-                            throw new InvalidDataException(SedulousStrings.MalformedContentFile);
+                            throw new InvalidDataException(FrameworkStrings.MalformedContentFile);
 
                         break;
                     }
@@ -103,7 +103,7 @@ namespace Sedulous.Graphics.Graphics3D
         private void Expect(ref String line, String text)
         {
             if (!line.Equals(text, StringComparison.Ordinal))
-                throw new InvalidDataException(SedulousStrings.MalformedContentFile);
+                throw new InvalidDataException(FrameworkStrings.MalformedContentFile);
 
             line = String.Empty;
         }
@@ -114,19 +114,19 @@ namespace Sedulous.Graphics.Graphics3D
         private void ExpectCoordinates(ref String line, String prefix, out Vector3 coordinates)
         {
             if (!line.StartsWith(prefix, StringComparison.Ordinal))
-                throw new InvalidDataException(SedulousStrings.MalformedContentFile);
+                throw new InvalidDataException(FrameworkStrings.MalformedContentFile);
 
             line = line.Substring(prefix.Length).Trim();
 
             var parts = line.ToString().Split(' ');
             if (parts.Length != 3)
-                throw new InvalidDataException(SedulousStrings.MalformedContentFile);
+                throw new InvalidDataException(FrameworkStrings.MalformedContentFile);
 
             if (!Single.TryParse(parts[0], out var c1) ||
                 !Single.TryParse(parts[1], out var c2) ||
                 !Single.TryParse(parts[2], out var c3))
             {
-                throw new InvalidDataException(SedulousStrings.MalformedContentFile);
+                throw new InvalidDataException(FrameworkStrings.MalformedContentFile);
             }
 
             coordinates = new Vector3(c1, c2, c3);
@@ -170,7 +170,7 @@ namespace Sedulous.Graphics.Graphics3D
 
                     var attributeByteCount = reader.ReadUInt16();
                     if (attributeByteCount > 0)
-                        throw new NotSupportedException(SedulousStrings.MalformedContentFile);
+                        throw new NotSupportedException(FrameworkStrings.MalformedContentFile);
 
                     triangles[i] = new StlModelTriangleDescription(normal, v1, v2, v3);
                 }

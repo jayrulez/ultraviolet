@@ -11,13 +11,13 @@ namespace Sedulous.Presentation.Input
     /// <summary>
     /// Represents an event manager which allows controls to weakly attach event handlers to the <see cref="ICommand.CanExecuteChanged"/> event.
     /// </summary>
-    public partial class CanExecuteChangedEventManager : SedulousResource
+    public partial class CanExecuteChangedEventManager : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CanExecuteChangedEventManager"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        internal CanExecuteChangedEventManager(SedulousContext uv)
+        internal CanExecuteChangedEventManager(FrameworkContext uv)
             : base(uv)
         {
             this.weakHandlerPool = new ExpandingPool<WeakHandler>(8, 32, () => new WeakHandler(this));
@@ -39,7 +39,7 @@ namespace Sedulous.Presentation.Input
 
             var instance = singleton.Value;
             if (instance == null)
-                throw new InvalidOperationException(SedulousStrings.ContextMissing);
+                throw new InvalidOperationException(FrameworkStrings.ContextMissing);
 
             instance.AddHandlerInternal(source, handler);
         }
@@ -56,7 +56,7 @@ namespace Sedulous.Presentation.Input
 
             var instance = singleton.Value;
             if (instance == null)
-                throw new InvalidOperationException(SedulousStrings.ContextMissing);
+                throw new InvalidOperationException(FrameworkStrings.ContextMissing);
 
             instance.RemoveHandlerInternal(source, handler);
         }
@@ -185,9 +185,9 @@ namespace Sedulous.Presentation.Input
         }
 
         /// <summary>
-        /// Handles the <see cref="SedulousContext.Updating"/> event.
+        /// Handles the <see cref="FrameworkContext.Updating"/> event.
         /// </summary>
-        private void Context_Updating(SedulousContext uv, SedulousTime time)
+        private void Context_Updating(FrameworkContext uv, FrameworkTime time)
         {
             if (!cleanupScheduled)
                 return;
@@ -263,8 +263,8 @@ namespace Sedulous.Presentation.Input
         }
 
         // Singleton instance.
-        private static readonly SedulousSingleton<CanExecuteChangedEventManager> singleton =
-            new SedulousSingleton<CanExecuteChangedEventManager>(SedulousSingletonFlags.DisabledInServiceMode,
+        private static readonly FrameworkSingleton<CanExecuteChangedEventManager> singleton =
+            new FrameworkSingleton<CanExecuteChangedEventManager>(FrameworkSingletonFlags.DisabledInServiceMode,
                 uv => new CanExecuteChangedEventManager(uv));
 
         // State values.

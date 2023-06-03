@@ -3,13 +3,13 @@
     /// <summary>
     /// Represents the base class for all surfaces.
     /// </summary>
-    public abstract class Surface : SedulousResource
+    public abstract class Surface : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Surface"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public Surface(SedulousContext uv)
+        public Surface(FrameworkContext uv)
             : base(uv)
         {
 

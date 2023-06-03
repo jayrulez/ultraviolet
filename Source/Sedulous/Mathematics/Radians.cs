@@ -7,7 +7,7 @@ namespace Sedulous
     /// <summary>
     /// Represents an angle in radians.
     /// </summary>
-    [JsonConverter(typeof(SedulousJsonConverter))]
+    [JsonConverter(typeof(FrameworkJsonConverter))]
     public partial struct Radians : IEquatable<Radians>, IComparable<Radians>, IComparable<Single>, IInterpolatable<Radians>
     {
         /// <summary>

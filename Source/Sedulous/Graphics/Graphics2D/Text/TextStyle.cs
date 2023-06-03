@@ -15,7 +15,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="italic">A value indicating whether this style makes the current font italic.</param>
         /// <param name="color">The color which is applied by this style, if any.</param>
         /// <param name="glyphShaders">The glyph shaders which are applied by this style, if any.</param>
-        public TextStyle(SedulousFont font, Boolean? bold, Boolean? italic, Color? color, params GlyphShader[] glyphShaders)
+        public TextStyle(FrameworkFont font, Boolean? bold, Boolean? italic, Color? color, params GlyphShader[] glyphShaders)
         {
             this.Font = font;
             this.Bold = bold;
@@ -27,7 +27,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Gets the font which is applied by this style, if any.
         /// </summary>
-        public SedulousFont Font
+        public FrameworkFont Font
         {
             get;
             private set;

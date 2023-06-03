@@ -11,9 +11,9 @@ namespace Sedulous.FreeType2.Native
         
         static FreeTypeNative()
         {
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Android:
+                case FrameworkPlatform.Android:
                     impl = new FreeTypeNativeImpl_Android();
                     break;
                     

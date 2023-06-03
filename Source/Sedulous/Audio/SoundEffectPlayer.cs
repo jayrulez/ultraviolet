@@ -7,18 +7,18 @@ namespace Sedulous.Audio
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="SoundEffectPlayer"/> that was created.</returns>
-    public delegate SoundEffectPlayer SoundEffectPlayerFactory(SedulousContext uv);
+    public delegate SoundEffectPlayer SoundEffectPlayerFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents an object which plays <see cref="SoundEffect"/> resources.
     /// </summary>
-    public abstract class SoundEffectPlayer : SedulousResource
+    public abstract class SoundEffectPlayer : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SoundEffectPlayer"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        protected SoundEffectPlayer(SedulousContext uv)
+        protected SoundEffectPlayer(FrameworkContext uv)
             : base(uv)
         {
 
@@ -30,7 +30,7 @@ namespace Sedulous.Audio
         /// <returns>The instance of <see cref="SoundEffectPlayer"/> that was created.</returns>
         public static SoundEffectPlayer Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<SoundEffectPlayerFactory>()(uv);
         }
 
@@ -38,7 +38,7 @@ namespace Sedulous.Audio
         /// Updates the player's state.
         /// </summary>
         /// <param name="time">Time elapsed since the last update.</param>
-        public abstract void Update(SedulousTime time);
+        public abstract void Update(FrameworkTime time);
 
         /// <summary>
         /// Plays a <see cref="SoundEffect"/>.

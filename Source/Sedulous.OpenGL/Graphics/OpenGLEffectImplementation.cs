@@ -18,7 +18,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="techniques">The effect's techniques.</param>
         /// <param name="parameters">The effect's list of expected parameters, or <see langword="null"/> to
         /// determine the parameters by querying shader uniforms.</param>
-        public OpenGLEffectImplementation(SedulousContext uv,
+        public OpenGLEffectImplementation(FrameworkContext uv,
             IEnumerable<OpenGLEffectTechnique> techniques, HashSet<String> parameters = null)
             : base(uv)
         {

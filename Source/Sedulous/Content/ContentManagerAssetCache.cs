@@ -9,14 +9,14 @@ namespace Sedulous.Content
     /// <summary>
     /// Represents a cache of content assets held by an instance of the <see cref="ContentManager"/> class.
     /// </summary>
-    public class ContentManagerAssetCache : SedulousResource
+    public class ContentManagerAssetCache : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentManagerAssetCache"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="contentManager">The <see cref="ContentManager"/> instance that owns this asset cache.</param>
-        internal ContentManagerAssetCache(SedulousContext uv, ContentManager contentManager)
+        internal ContentManagerAssetCache(FrameworkContext uv, ContentManager contentManager)
             : base(uv)
         {
             Contract.Require(contentManager, nameof(contentManager));

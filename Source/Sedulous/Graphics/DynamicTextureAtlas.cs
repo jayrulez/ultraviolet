@@ -12,12 +12,12 @@ namespace Sedulous.Graphics
     /// <param name="spacing">The number of pixels between cells on the texture atlas.</param>
     /// <param name="options">The texture's configuration options.</param>
     /// <returns>The instance of <see cref="DynamicTextureAtlas"/> that was created.</returns>
-    public delegate DynamicTextureAtlas DynamicTextureAtlasFactory(SedulousContext uv, Int32 width, Int32 height, Int32 spacing, TextureOptions options);
+    public delegate DynamicTextureAtlas DynamicTextureAtlasFactory(FrameworkContext uv, Int32 width, Int32 height, Int32 spacing, TextureOptions options);
 
     /// <summary>
     /// Represents a texture atlas which can be built dynamically at runtime.
     /// </summary>
-    public sealed partial class DynamicTextureAtlas : SedulousResource
+    public sealed partial class DynamicTextureAtlas : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicTextureAtlas"/> class.
@@ -27,7 +27,7 @@ namespace Sedulous.Graphics
         /// <param name="height">The height of the texture atlas in pixels.</param>
         /// <param name="spacing">The number of pixels between cells on the texture atlas.</param>
         /// <param name="options">The texture's configuration options.</param>
-        private DynamicTextureAtlas(SedulousContext uv, Int32 width, Int32 height, Int32 spacing, TextureOptions options)
+        private DynamicTextureAtlas(FrameworkContext uv, Int32 width, Int32 height, Int32 spacing, TextureOptions options)
             : base(uv)
         {
             Contract.EnsureRange(width > 0, nameof(width));
@@ -37,7 +37,7 @@ namespace Sedulous.Graphics
             var isSrgb = (options & TextureOptions.SrgbColor) == TextureOptions.SrgbColor;
             var isLinear = (options & TextureOptions.LinearColor) == TextureOptions.LinearColor;
             if (isSrgb && isLinear)
-                throw new ArgumentException(SedulousStrings.TextureCannotHaveMultipleEncodings);
+                throw new ArgumentException(FrameworkStrings.TextureCannotHaveMultipleEncodings);
 
             var caps = uv.GetGraphics().Capabilities;
             var srgbEncoded = (isLinear ? false : (isSrgb ? true : uv.Properties.SrgbDefaultForTexture2D)) && caps.SrgbEncodingEnabled;
@@ -68,7 +68,7 @@ namespace Sedulous.Graphics
         /// <returns>The instance of <see cref="DynamicTextureAtlas"/> that was created.</returns>
         public static DynamicTextureAtlas Create(Int32 width, Int32 height, Int32 spacing, TextureOptions options = TextureOptions.Default)
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return new DynamicTextureAtlas(uv, width, height, spacing, options);
         }
 

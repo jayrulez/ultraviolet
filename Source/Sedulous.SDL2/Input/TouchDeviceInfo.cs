@@ -8,13 +8,13 @@ namespace Sedulous.SDL2.Input
     /// <summary>
     /// Manages the Sedulous context's connected touch devices.
     /// </summary>
-    internal sealed class TouchDeviceInfo : SedulousResource
+    internal sealed class TouchDeviceInfo : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TouchDeviceInfo"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public TouchDeviceInfo(SedulousContext uv)
+        public TouchDeviceInfo(FrameworkContext uv)
             : base(uv)
         {
             var count = SDL_GetNumTouchDevices();
@@ -42,8 +42,8 @@ namespace Sedulous.SDL2.Input
         /// <summary>
         /// Updates the states of the connected touch devices.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        public void Update(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        public void Update(FrameworkTime time)
         {
             foreach (var device in devices)
             {

@@ -61,7 +61,7 @@ namespace Sedulous.UI
             {
                 var directiveType = (String)xmlDirective.Attribute("Type");
                 if (String.IsNullOrEmpty(directiveType))
-                    throw new InvalidDataException(SedulousStrings.ViewDirectiveMustHaveType.Format(metadata.AssetFilePath));
+                    throw new InvalidDataException(FrameworkStrings.ViewDirectiveMustHaveType.Format(metadata.AssetFilePath));
 
                 directives.Add(new UIPanelDirective(directiveType, xmlDirective.Value));
             }

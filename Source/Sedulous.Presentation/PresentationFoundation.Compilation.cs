@@ -280,14 +280,14 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Gets a value indicating whether the specified platform supports expression compilation.
         /// </summary>
-        private static Boolean IsSupportedPlatform(SedulousRuntime runtime, SedulousPlatform platform)
+        private static Boolean IsSupportedPlatform(FrameworkRuntime runtime, FrameworkPlatform platform)
         {
             // NOTE: This is checking to see if we're a .NET Native application.
             var entryAssembly = Assembly.GetEntryAssembly();
             if (entryAssembly != null && String.IsNullOrEmpty(entryAssembly.Location))
                 return false;
 
-            return platform != SedulousPlatform.Android && platform != SedulousPlatform.iOS;
+            return platform != FrameworkPlatform.Android && platform != FrameworkPlatform.iOS;
         }
 
         /// <summary>
@@ -313,7 +313,7 @@ namespace Sedulous.Presentation
                     foreach (var error in ((BindingExpressionCompilationFailedException)exception).Result.Errors)
                     {
                         var filename = !String.IsNullOrEmpty(error.Filename) && resolveContentFiles ?
-                            SedulousDebugUtil.GetOriginalContentFilePath(root, error.Filename) : error.Filename ?? exeName;
+                            FrameworkDebugUtil.GetOriginalContentFilePath(root, error.Filename) : error.Filename ?? exeName;
 
                         Console.WriteLine("{0}({1},{2}): expression compiler error {3}: {4}", filename, error.Line, error.Column, error.ErrorNumber, error.ErrorText);
                     }
@@ -324,7 +324,7 @@ namespace Sedulous.Presentation
                 {
                     var error = ((BindingExpressionCompilationErrorException)exception).Error;
                     var filename = !String.IsNullOrEmpty(error.Filename) && resolveContentFiles ?
-                        SedulousDebugUtil.GetOriginalContentFilePath("Content", error.Filename) : error.Filename ?? exeName;
+                        FrameworkDebugUtil.GetOriginalContentFilePath("Content", error.Filename) : error.Filename ?? exeName;
 
                     Console.WriteLine("{0}({1},{2}): expression compiler error {3}: {4}", filename, error.Line, error.Column, error.ErrorNumber, error.ErrorText);
                     return;
@@ -339,7 +339,7 @@ namespace Sedulous.Presentation
         /// </summary>
         private void LoadBindingExpressionCompiler()
         {
-            if (Sedulous.Platform == SedulousPlatform.Android || Sedulous.Platform == SedulousPlatform.iOS)
+            if (Sedulous.Platform == FrameworkPlatform.Android || Sedulous.Platform == FrameworkPlatform.iOS)
                 throw new NotSupportedException();
 
             if (bindingExpressionCompiler != null)
@@ -374,7 +374,7 @@ namespace Sedulous.Presentation
             }
             catch (MissingMethodException e)
             {
-                throw new InvalidOperationException(SedulousStrings.NoValidConstructor.Format(compilerType.Name), e);
+                throw new InvalidOperationException(FrameworkStrings.NoValidConstructor.Format(compilerType.Name), e);
             }
         }
 

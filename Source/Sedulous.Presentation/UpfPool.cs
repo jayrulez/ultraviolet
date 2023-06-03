@@ -7,7 +7,7 @@ namespace Sedulous.Presentation
     /// Represents a pool of objects used by the Presentation Foundation.
     /// </summary>
     /// <typeparam name="TPooledType">The type of object which is being pooled.</typeparam>
-    internal partial class UpfPool<TPooledType> : SedulousResource where TPooledType : class
+    internal partial class UpfPool<TPooledType> : FrameworkResource where TPooledType : class
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpfPool{TPooledType}"/> class.
@@ -16,7 +16,7 @@ namespace Sedulous.Presentation
         /// <param name="capacity">The pool's initial capacity.</param>
         /// <param name="watermark">The pool's high watermark value.</param>
         /// <param name="allocator">The pool's allocator function.</param>
-        public UpfPool(SedulousContext uv, Int32 capacity, Int32 watermark, Func<TPooledType> allocator)
+        public UpfPool(FrameworkContext uv, Int32 capacity, Int32 watermark, Func<TPooledType> allocator)
             : base(uv)
         {
             Contract.Require(allocator, nameof(allocator));

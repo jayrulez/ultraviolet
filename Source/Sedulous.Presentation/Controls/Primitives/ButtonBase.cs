@@ -24,7 +24,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ButtonBase(SedulousContext uv, String name)
+        public ButtonBase(FrameworkContext uv, String name)
             : base(uv, name)
         {
             VisualStateGroups.Create("common", new[] { "normal", "hover", "pressed", "disabled" });
@@ -190,7 +190,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         }
 
         /// <inheritdoc/>
-        protected override void UpdateOverride(SedulousTime time)
+        protected override void UpdateOverride(FrameworkTime time)
         {
             if (View != null && !View.IsInputEnabledAndAllowed)
             {

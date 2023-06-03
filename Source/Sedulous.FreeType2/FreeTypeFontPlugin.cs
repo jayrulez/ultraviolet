@@ -7,10 +7,10 @@ namespace Sedulous.FreeType2
     /// <summary>
     /// Contains methods for managing the lifetime of the FreeType2 Font Plugin for Sedulous.
     /// </summary>
-    public unsafe class FreeTypeFontPlugin : SedulousPlugin
+    public unsafe class FreeTypeFontPlugin : FrameworkPlugin
     {
         /// <inheritdoc/>
-        public override void Initialize(SedulousContext uv, SedulousFactory factory)
+        public override void Initialize(FrameworkContext uv, FrameworkFactory factory)
         {
             Contract.Require(uv, nameof(uv));
 
@@ -41,7 +41,7 @@ namespace Sedulous.FreeType2
         internal static IntPtr Library => library.Value.Native;
 
         // The native FreeType2 library object.
-        private static readonly SedulousSingleton<FreeTypeLibrary> library = 
-            new SedulousSingleton<FreeTypeLibrary>(uv => new FreeTypeLibrary(uv));
+        private static readonly FrameworkSingleton<FreeTypeLibrary> library = 
+            new FrameworkSingleton<FreeTypeLibrary>(uv => new FreeTypeLibrary(uv));
     }
 }

@@ -11,13 +11,13 @@ namespace Sedulous.Presentation
     /// Contains methods for rendering UI elements out-of-band, that is, prior to rendering the rest of the
     /// visual tree. This is necessary in order to properly render arbitrarily transformed elements.
     /// </summary>
-    internal sealed partial class OutOfBandRenderer : SedulousResource
+    internal sealed partial class OutOfBandRenderer : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OutOfBandRenderer"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public OutOfBandRenderer(SedulousContext uv)
+        public OutOfBandRenderer(FrameworkContext uv)
             : base(uv)
         {
             this.spriteBatch = SpriteBatch.Create();
@@ -173,8 +173,8 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws out-of-band elements to their render buffers.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
-        public void DrawRenderTargets(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
+        public void DrawRenderTargets(FrameworkTime time)
         {
             Contract.EnsureNotDisposed(this, Disposed);
 

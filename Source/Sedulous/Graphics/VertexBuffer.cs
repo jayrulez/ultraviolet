@@ -10,12 +10,12 @@ namespace Sedulous.Graphics
     /// <param name="vdecl">The vertex declaration for the buffer.</param>
     /// <param name="vcount">The number of vertices in the buffer.</param>
     /// <returns>The instance of <see cref="VertexBuffer"/> that was created.</returns>
-    public delegate VertexBuffer VertexBufferFactory(SedulousContext uv, VertexDeclaration vdecl, Int32 vcount);
+    public delegate VertexBuffer VertexBufferFactory(FrameworkContext uv, VertexDeclaration vdecl, Int32 vcount);
 
     /// <summary>
     /// Represents a buffer containing vertex data.
     /// </summary>
-    public abstract class VertexBuffer : SedulousResource
+    public abstract class VertexBuffer : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="VertexBuffer"/> class.
@@ -23,7 +23,7 @@ namespace Sedulous.Graphics
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="vdecl">The vertex declaration for the buffer.</param>
         /// <param name="vcount">The number of vertices in the buffer.</param>
-        protected VertexBuffer(SedulousContext uv, VertexDeclaration vdecl, Int32 vcount)
+        protected VertexBuffer(FrameworkContext uv, VertexDeclaration vdecl, Int32 vcount)
             : base(uv)
         {
             Contract.Require(vdecl, nameof(vdecl));
@@ -44,7 +44,7 @@ namespace Sedulous.Graphics
             Contract.Require(vdecl, nameof(vdecl));
             Contract.EnsureRange(vcount > 0, nameof(vcount));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<VertexBufferFactory>()(uv, vdecl, vcount);
         }
 
@@ -60,7 +60,7 @@ namespace Sedulous.Graphics
 
             var vdecl = new T().VertexDeclaration;
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<VertexBufferFactory>()(uv, vdecl, vcount);
         }
 

@@ -7,7 +7,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class BoundingBoxTests : SedulousTestFramework
+    public class BoundingBoxTests : FrameworkTestFramework
     {
         [Test]
         public void BoundingBox_ConstructorSetsValues()
@@ -633,7 +633,7 @@ namespace Sedulous.Tests
         {
             var box = new BoundingBox(new Vector3(1.2f, 2.3f, 3.4f), new Vector3(4.5f, 5.6f, 6.7f));
             var json = JsonConvert.SerializeObject(box,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""min"":{""x"":1.2,""y"":2.3,""z"":3.4},""max"":{""x"":4.5,""y"":5.6,""z"":6.7}}");
         }
@@ -643,7 +643,7 @@ namespace Sedulous.Tests
         {
             var box = new BoundingBox(new Vector3(1.2f, 2.3f, 3.4f), new Vector3(4.5f, 5.6f, 6.7f));
             var json = JsonConvert.SerializeObject((BoundingBox?)box, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""min"":{""x"":1.2,""y"":2.3,""z"":3.4},""max"":{""x"":4.5,""y"":5.6,""z"":6.7}}");
         }
@@ -654,7 +654,7 @@ namespace Sedulous.Tests
             const String json = @"{""min"":{""x"":1.2,""y"":2.3,""z"":3.4},""max"":{""x"":4.5,""y"":5.6,""z"":6.7}}";
 
             var box = JsonConvert.DeserializeObject<BoundingBox>(json, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(box)
                 .ShouldHaveMin(1.2f, 2.3f, 3.4f)
@@ -667,7 +667,7 @@ namespace Sedulous.Tests
             const String json1 = @"{""min"":{""x"":1.2,""y"":2.3,""z"":3.4},""max"":{""x"":4.5,""y"":5.6,""z"":6.7}}";
 
             var box1 = JsonConvert.DeserializeObject<BoundingBox?>(json1, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(box1.Value)
                 .ShouldHaveMin(1.2f, 2.3f, 3.4f)
@@ -676,7 +676,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var box2 = JsonConvert.DeserializeObject<BoundingBox?>(json2, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(box2.HasValue)
                 .ShouldBe(false);

@@ -18,7 +18,7 @@ namespace Sedulous.Presentation.Documents
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public AdornerLayer(SedulousContext uv, String name)
+        public AdornerLayer(FrameworkContext uv, String name)
             : base(uv, name)
         {
             adorners = new VisualCollection(this);
@@ -204,7 +204,7 @@ namespace Sedulous.Presentation.Documents
         }
 
         /// <inheritdoc/>
-        protected override void UpdateOverride(SedulousTime time)
+        protected override void UpdateOverride(FrameworkTime time)
         {
             CheckAdornersForChanges(false);
             base.UpdateOverride(time);

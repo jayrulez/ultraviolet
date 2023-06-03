@@ -76,7 +76,7 @@ namespace Sedulous.Content
         /// <returns><see langword="true"/> if the conversion succeeded; otherwise, <see langword="false"/>.</returns>
         public static Boolean TryParse(String s, NumberStyles style, IFormatProvider provider, out AssetID v)
         {
-            return TryParseInternal(SedulousContext.DemandCurrent().GetContent().Manifests, s, out v);
+            return TryParseInternal(FrameworkContext.DemandCurrent().GetContent().Manifests, s, out v);
         }
         
         /// <summary>
@@ -121,15 +121,15 @@ namespace Sedulous.Content
 
             var manifest = manifests[components[0]];
             if (manifest == null)
-                throw new AssetException(SedulousStrings.ContentManifestDoesNotExist.Format(components[0]));
+                throw new AssetException(FrameworkStrings.ContentManifestDoesNotExist.Format(components[0]));
 
             var manifestGroup = manifest[components[1]];
             if (manifestGroup == null)
-                throw new AssetException(SedulousStrings.ContentManifestGroupDoesNotExist.Format(components[0], components[1]));
+                throw new AssetException(FrameworkStrings.ContentManifestGroupDoesNotExist.Format(components[0], components[1]));
 
             var manifestAsset = manifestGroup[components[2]];
             if (manifestAsset == null)
-                throw new AssetException(SedulousStrings.AssetDoesNotExistWithinManifest.Format(components[0], components[1], components[2]));
+                throw new AssetException(FrameworkStrings.AssetDoesNotExistWithinManifest.Format(components[0], components[1], components[2]));
 
             var manifestIndex = manifestGroup.IndexOf(manifestAsset);
 

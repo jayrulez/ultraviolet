@@ -13,14 +13,14 @@ namespace Sedulous.FMOD.Audio
         /// Initializes a new instance of the <see cref="FMODSongPlayer"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public FMODSongPlayer(SedulousContext uv)
+        public FMODSongPlayer(FrameworkContext uv)
             : base(uv)
         {
             this.channelPlayer = new FMODChannelPlayer(uv);
         }
 
         /// <inheritdoc/>
-        public override void Update(SedulousTime time)
+        public override void Update(FrameworkTime time)
         {
             Contract.EnsureNotDisposed(this, Disposed);
 

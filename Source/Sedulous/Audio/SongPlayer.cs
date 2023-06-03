@@ -7,7 +7,7 @@ namespace Sedulous.Audio
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="SongPlayer"/> that was created.</returns>
-    public delegate SongPlayer SongPlayerFactory(SedulousContext uv);
+    public delegate SongPlayer SongPlayerFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents the method that is called when a <see cref="SongPlayer"/> raises an event.
@@ -18,13 +18,13 @@ namespace Sedulous.Audio
     /// <summary>
     /// Represents an object which plays <see cref="Song"/> resources.
     /// </summary>
-    public abstract class SongPlayer : SedulousResource
+    public abstract class SongPlayer : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SongPlayer"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        protected SongPlayer(SedulousContext uv)
+        protected SongPlayer(FrameworkContext uv)
             : base(uv)
         {
 
@@ -36,7 +36,7 @@ namespace Sedulous.Audio
         /// <returns>The instance of <see cref="SongPlayer"/> that was created.</returns>
         public static SongPlayer Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<SongPlayerFactory>()(uv);
         }
 
@@ -44,7 +44,7 @@ namespace Sedulous.Audio
         /// Updates the player's state.
         /// </summary>
         /// <param name="time">Time elapsed since the last update.</param>
-        public abstract void Update(SedulousTime time);
+        public abstract void Update(FrameworkTime time);
 
         /// <summary>
         /// Plays the specified <see cref="Song"/>.

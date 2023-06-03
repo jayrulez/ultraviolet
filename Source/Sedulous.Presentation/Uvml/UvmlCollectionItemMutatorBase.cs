@@ -23,20 +23,20 @@ namespace Sedulous.Presentation.Uvml
         }
 
         /// <inheritdoc/>
-        public override Object InstantiateValue(SedulousContext uv, Object instance, UvmlInstantiationContext context)
+        public override Object InstantiateValue(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
         {
             return items.Select(x => x.Instantiate(uv, context)).ToList();
         }
 
         /// <inheritdoc/>
-        public override void Mutate(SedulousContext uv, Object instance, UvmlInstantiationContext context)
+        public override void Mutate(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
         {
             var value = InstantiateValue(uv, instance, context);
             Mutate(uv, instance, value, context);
         }
 
         /// <inheritdoc/>
-        public override void Mutate(SedulousContext uv, Object instance, Object value, UvmlInstantiationContext context)
+        public override void Mutate(FrameworkContext uv, Object instance, Object value, UvmlInstantiationContext context)
         {
             var items = ProcessPrecomputedValue<List<Object>>(value, context);
             if (items == null)
@@ -123,7 +123,7 @@ namespace Sedulous.Presentation.Uvml
         /// <param name="collection">The collection which was created.</param>
         /// <returns><see langword="true"/> if the collection was able to be created;
         /// otherwise, <see langword="false"/>.</returns>
-        protected abstract Boolean CreateCollection(SedulousContext uv,
+        protected abstract Boolean CreateCollection(FrameworkContext uv,
             Object instance, UvmlInstantiationContext context, out Object collection);
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Sedulous.Presentation.Uvml
         /// <param name="collection">The collection which was created.</param>
         /// <returns><see langword="true"/> if the collection was able to be created;
         /// otherwise, <see langword="false"/>.</returns>
-        protected Boolean CreateCollectionOfType(SedulousContext uv,
+        protected Boolean CreateCollectionOfType(FrameworkContext uv,
             Object instance, UvmlInstantiationContext context, Type type, out Object collection)
         {
             var ctor = type.GetConstructor(Type.EmptyTypes);

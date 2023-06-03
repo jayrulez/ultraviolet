@@ -7,7 +7,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Presentation.Tests
 {
     [TestFixture]
-    public class VersionedStringBuilderTests : SedulousTestFramework
+    public class VersionedStringBuilderTests : FrameworkTestFramework
     {
         [Test]
         public void VersionedStringBuilder_IsInitializedToSpecifiedString()

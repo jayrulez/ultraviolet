@@ -14,7 +14,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public Image(SedulousContext uv, String name)
+        public Image(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
@@ -68,7 +68,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <value>The identifier for the <see cref="SourceColor"/> property.</value>
         public static readonly DependencyProperty SourceColorProperty = DependencyProperty.Register("SourceColor", typeof(Color), typeof(Image),
-            new PropertyMetadata<Color>(SedulousBoxedValues.Color.White));
+            new PropertyMetadata<Color>(FrameworkBoxedValues.Color.White));
 
         /// <inheritdoc/>
         protected override void ReloadContentOverride(Boolean recursive)
@@ -79,7 +79,7 @@ namespace Sedulous.Presentation.Controls
         }
 
         /// <inheritdoc/>
-        protected override void DrawOverride(SedulousTime time, DrawingContext dc)
+        protected override void DrawOverride(FrameworkTime time, DrawingContext dc)
         {
             DrawImage(dc, Source, SourceColor);
             base.DrawOverride(time, dc);

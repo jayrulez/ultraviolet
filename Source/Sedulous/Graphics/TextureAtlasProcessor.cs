@@ -25,10 +25,10 @@ namespace Sedulous.Graphics
             var outputPlacement = PackImageRectangles(input, atlasImages, out outputWidth, out outputHeight);
 
             if (outputPlacement == null)
-                throw new InvalidOperationException(SedulousStrings.FailedToPackTextureAtlas);
+                throw new InvalidOperationException(FrameworkStrings.FailedToPackTextureAtlas);
 
             if (outputWidth == 0 || outputHeight == 0)
-                throw new InvalidOperationException(SedulousStrings.TextureAtlasContainsNoImages);
+                throw new InvalidOperationException(FrameworkStrings.TextureAtlasContainsNoImages);
 
             // Write out the texture as a PNG file.
             using (var outputSurface = CreateOutputSurface(input, atlasImages, manager, metadata, outputWidth, outputHeight, outputPlacement))
@@ -93,7 +93,7 @@ namespace Sedulous.Graphics
 
             var outputPlacement = PackImageRectangles(input, atlasImages, out outputWidth, out outputHeight);
             if (outputPlacement == null)
-                throw new InvalidOperationException(SedulousStrings.FailedToPackTextureAtlas);
+                throw new InvalidOperationException(FrameworkStrings.FailedToPackTextureAtlas);
 
             return CreateTextureAtlas(input, atlasImages, manager, metadata, outputWidth, outputHeight, outputPlacement);
         }
@@ -117,7 +117,7 @@ namespace Sedulous.Graphics
         {
             var images = LoadImages(content, metadata, atlasDesc);
             if (images == null)
-                throw new InvalidOperationException(SedulousStrings.TextureAtlasContainsNoImages);
+                throw new InvalidOperationException(FrameworkStrings.TextureAtlasContainsNoImages);
 
             return SortImages(images);
         }
@@ -135,14 +135,14 @@ namespace Sedulous.Graphics
                 {
                     var path = imageDesc.Path;
                     if (String.IsNullOrEmpty(path) || path.IndexOfAny(Path.GetInvalidPathChars()) >= 0)
-                        throw new InvalidDataException(SedulousStrings.InvalidTextureAtlasImagePath);
+                        throw new InvalidDataException(FrameworkStrings.InvalidTextureAtlasImagePath);
 
                     var name = imageDesc.Name;
 
                     if (path.Contains("*"))
                     {
                         if (name != null)
-                            throw new InvalidDataException(SedulousStrings.TextureAtlasWildcardsCannotBeNamed);
+                            throw new InvalidDataException(FrameworkStrings.TextureAtlasWildcardsCannotBeNamed);
 
                         var files = ExpandFileExpression(content, ResolveDependencyAssetPath(metadata, Path.Combine(atlasDesc.Metadata.RootDirectory, path)));
                         foreach (var file in files)
@@ -158,7 +158,7 @@ namespace Sedulous.Graphics
                                 name = FlattenCellName(name);
 
                             if (result.ContainsKey(name))
-                                throw new InvalidOperationException(SedulousStrings.TextureAtlasAlreadyContainsCell.Format(name));
+                                throw new InvalidOperationException(FrameworkStrings.TextureAtlasAlreadyContainsCell.Format(name));
 
                             metadata.AddAssetDependency(file);
 
@@ -175,7 +175,7 @@ namespace Sedulous.Graphics
                             name = FlattenCellName(name);
 
                         if (result.ContainsKey(name))
-                            throw new InvalidOperationException(SedulousStrings.TextureAtlasAlreadyContainsCell.Format(name));
+                            throw new InvalidOperationException(FrameworkStrings.TextureAtlasAlreadyContainsCell.Format(name));
 
                         metadata.AddAssetDependency(path);
 

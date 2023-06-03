@@ -15,12 +15,12 @@ namespace Sedulous.BASS.Native
         
         static BASSNativeImpl_Default()
         {
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Linux:
+                case FrameworkPlatform.Linux:
                     lib = new NativeLibrary("libbass");
                     break;
-                case SedulousPlatform.macOS:
+                case FrameworkPlatform.macOS:
                     lib = new NativeLibrary("libbass");
                     break;
                 default:

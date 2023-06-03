@@ -27,16 +27,16 @@ namespace Sedulous.Presentation
     /// Represents the method that is called when a UI element is drawn.
     /// </summary>
     /// <param name="element">The element being drawn.</param>
-    /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+    /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
     /// <param name="dc">The drawing context that describes the render state of the layout.</param>
-    public delegate void UIElementDrawingEventHandler(UIElement element, SedulousTime time, DrawingContext dc);
+    public delegate void UIElementDrawingEventHandler(UIElement element, FrameworkTime time, DrawingContext dc);
 
     /// <summary>
     /// Represents the method that is called when a UI element is updated.
     /// </summary>
     /// <param name="element">The element being updated.</param>
-    /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-    public delegate void UIElementUpdatingEventHandler(UIElement element, SedulousTime time);
+    /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+    public delegate void UIElementUpdatingEventHandler(UIElement element, FrameworkTime time);
 
     /// <summary>
     /// Represents the base class for all elements within the Sedulous Presentation Foundation.
@@ -63,7 +63,7 @@ namespace Sedulous.Presentation
         /// Initializes a new instance of the <see cref="UIElement"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public UIElement(SedulousContext uv)
+        public UIElement(FrameworkContext uv)
         {
             Contract.Require(uv, nameof(uv));
 
@@ -163,9 +163,9 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws the element using the specified <see cref="DrawingContext"/>.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="dc">The drawing context that describes the render state of the layout.</param>
-        public void Draw(SedulousTime time, DrawingContext dc)
+        public void Draw(FrameworkTime time, DrawingContext dc)
         {
             EnsureOutOfBandRenderTargetsExist();
 
@@ -277,11 +277,11 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Draws the element to a render target using the specified <see cref="DrawingContext"/>.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="dc">The drawing context that describes the render state of the layout.</param>
         /// <param name="target">The render target to which to draw the element.</param>
         /// <param name="transform">The transformation matrix to apply to the element, or <see langword="null"/> to use the cumulative sprite batch transformation.</param>
-        public void DrawToRenderTarget(SedulousTime time, DrawingContext dc, Graphics.RenderTarget2D target, Matrix? transform = null)
+        public void DrawToRenderTarget(FrameworkTime time, DrawingContext dc, Graphics.RenderTarget2D target, Matrix? transform = null)
         {
             Contract.Require(dc, nameof(dc));
             Contract.Require(target, nameof(target));
@@ -308,8 +308,8 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Updates the element's state.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        public void Update(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        public void Update(FrameworkTime time)
         {
             Digest(time);
 
@@ -775,7 +775,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Gets the Sedulous context that created this element.
         /// </summary>
-        public SedulousContext Sedulous
+        public FrameworkContext Sedulous
         {
             get { return uv; }
         }
@@ -1899,16 +1899,16 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Raises the <see cref="Drawing"/> event.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="dc">The drawing context that describes the render state of the layout.</param>
-        protected virtual void OnDrawing(SedulousTime time, DrawingContext dc) =>
+        protected virtual void OnDrawing(FrameworkTime time, DrawingContext dc) =>
             Drawing?.Invoke(this, time, dc);
 
         /// <summary>
         /// Raises the <see cref="Updating"/> event.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        protected virtual void OnUpdating(SedulousTime time) =>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        protected virtual void OnUpdating(FrameworkTime time) =>
             Updating?.Invoke(this, time);
 
         /// <summary>
@@ -2031,9 +2031,9 @@ namespace Sedulous.Presentation
         /// <summary>
         /// When overridden in a derived class, draws the element using the specified <see cref="SpriteBatch"/>.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="dc">The drawing context that describes the render state of the layout.</param>
-        protected virtual void DrawCore(SedulousTime time, DrawingContext dc)
+        protected virtual void DrawCore(FrameworkTime time, DrawingContext dc)
         {
 
         }
@@ -2041,8 +2041,8 @@ namespace Sedulous.Presentation
         /// <summary>
         /// When overridden in a derived class, updates the element's state.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        protected virtual void UpdateCore(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        protected virtual void UpdateCore(FrameworkTime time)
         {
 
         }
@@ -2880,7 +2880,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Gets the window in which the element is being displayed.
         /// </summary>
-        protected ISedulousWindow Window
+        protected IFrameworkWindow Window
         {
             get { return (View == null) ? null : View.Window; }
         }
@@ -2888,7 +2888,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Gets the display on which the element is being displayed.
         /// </summary>
-        protected ISedulousDisplay Display
+        protected IFrameworkDisplay Display
         {
             get { return (View == null) ? null : View.Display; }
         }
@@ -3309,7 +3309,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Recurses through the element's descendants and registers any open popups for drawing.
         /// </summary>
-        private void RegisterPopupsInVisualSubTree(SedulousTime time, DrawingContext dc)
+        private void RegisterPopupsInVisualSubTree(FrameworkTime time, DrawingContext dc)
         {
             var popup = this as Popup;
             if (popup != null)
@@ -3364,7 +3364,7 @@ namespace Sedulous.Presentation
         }
 
         // Property values.
-        private readonly SedulousContext uv;
+        private readonly FrameworkContext uv;
         private readonly UIElementClassCollection classes;
         private readonly String uvmlName;
         private PresentationFoundationView view;

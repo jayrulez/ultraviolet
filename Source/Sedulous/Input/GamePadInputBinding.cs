@@ -16,7 +16,7 @@ namespace Sedulous.Input
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="element">The XML element that contains the binding data.</param>
-        internal GamePadInputBinding(SedulousContext uv, XElement element)
+        internal GamePadInputBinding(FrameworkContext uv, XElement element)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(element, nameof(element));
@@ -34,7 +34,7 @@ namespace Sedulous.Input
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="playerIndex">The index of the player for which to create the binding.</param>
         /// <param name="button">A <see cref="GamePadButton"/> value representing the binding's primary button.</param>
-        public GamePadInputBinding(SedulousContext uv, Int32 playerIndex, GamePadButton button)
+        public GamePadInputBinding(FrameworkContext uv, Int32 playerIndex, GamePadButton button)
             : base()
         {
             Contract.Require(uv, nameof(uv));
@@ -183,7 +183,7 @@ namespace Sedulous.Input
         private readonly String stringRepresentation;
 
         // State values.
-        private readonly SedulousContext uv;
+        private readonly FrameworkContext uv;
         private Boolean pressed;
         private Boolean released;
     }

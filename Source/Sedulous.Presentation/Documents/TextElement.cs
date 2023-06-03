@@ -16,7 +16,7 @@ namespace Sedulous.Presentation.Documents
         /// </summary>
         /// <param name="uv"></param>
         /// <param name="name"></param>
-        public TextElement(SedulousContext uv, String name)
+        public TextElement(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
@@ -34,17 +34,17 @@ namespace Sedulous.Presentation.Documents
         ///		<dpropMetadata><see cref="PropertyMetadataOptions.AffectsArrange"/></dpropMetadata>
         /// </dprop>
         /// </remarks>
-        public SourcedResource<SedulousFont> Font
+        public SourcedResource<FrameworkFont> Font
         {
-            get { return GetValue<SourcedResource<SedulousFont>>(FontProperty); }
+            get { return GetValue<SourcedResource<FrameworkFont>>(FontProperty); }
             set { SetValue(FontProperty, value); }
         }
 
         /// <summary>
         /// Gets or sets the font style which is used to draw the element's text.
         /// </summary>
-        /// <value>A <see cref="SedulousFontStyle"/> value that represents the style which is used
-        /// to draw the element's text. The default value is <see cref="SedulousFontStyle.Regular"/>.</value>
+        /// <value>A <see cref="FrameworkFontStyle"/> value that represents the style which is used
+        /// to draw the element's text. The default value is <see cref="FrameworkFontStyle.Regular"/>.</value>
         /// <remarks>
         /// <dprop>
         ///		<dpropField><see cref="FontStyleProperty"/></dpropField>
@@ -52,9 +52,9 @@ namespace Sedulous.Presentation.Documents
         ///		<dpropMetadata><see cref="PropertyMetadataOptions.AffectsArrange"/></dpropMetadata>
         /// </dprop>
         /// </remarks>
-        public SedulousFontStyle FontStyle
+        public FrameworkFontStyle FontStyle
         {
-            get { return GetValue<SedulousFontStyle>(FontStyleProperty); }
+            get { return GetValue<FrameworkFontStyle>(FontStyleProperty); }
             set { SetValue(FontStyleProperty, value); }
         }
 
@@ -98,29 +98,29 @@ namespace Sedulous.Presentation.Documents
         /// Identifies the <see cref="Font"/> dependency property.
         /// </summary>
         /// <value>The identifier for the <see cref="Font"/> dependency property.</value>
-        public static readonly DependencyProperty FontProperty = DependencyProperty.RegisterAttached("Font", typeof(SourcedResource<SedulousFont>), typeof(TextElement),
-            new PropertyMetadata<SourcedResource<SedulousFont>>(null, PropertyMetadataOptions.AffectsMeasure | PropertyMetadataOptions.Inherits, HandleFontChanged));
+        public static readonly DependencyProperty FontProperty = DependencyProperty.RegisterAttached("Font", typeof(SourcedResource<FrameworkFont>), typeof(TextElement),
+            new PropertyMetadata<SourcedResource<FrameworkFont>>(null, PropertyMetadataOptions.AffectsMeasure | PropertyMetadataOptions.Inherits, HandleFontChanged));
 
         /// <summary>
         /// Identifies the <see cref="FontStyle"/> dependency property.
         /// </summary>
         /// <value>The identifier for the <see cref="FontStyle"/> dependency property.</value>
-        public static readonly DependencyProperty FontStyleProperty = DependencyProperty.RegisterAttached("FontStyle", typeof(SedulousFontStyle), typeof(TextElement),
-           new PropertyMetadata<SedulousFontStyle>(SedulousBoxedValues.SpriteFontStyle.Regular, PropertyMetadataOptions.AffectsMeasure | PropertyMetadataOptions.Inherits));
+        public static readonly DependencyProperty FontStyleProperty = DependencyProperty.RegisterAttached("FontStyle", typeof(FrameworkFontStyle), typeof(TextElement),
+           new PropertyMetadata<FrameworkFontStyle>(FrameworkBoxedValues.SpriteFontStyle.Regular, PropertyMetadataOptions.AffectsMeasure | PropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="Background"/> dependency property.
         /// </summary>
         /// <value>The identifier for the <see cref="Background"/> dependency property.</value>
         public static readonly DependencyProperty BackgroundProperty = DependencyProperty.RegisterAttached("Background", typeof(Color), typeof(TextElement),
-            new PropertyMetadata<Color>(SedulousBoxedValues.Color.White, PropertyMetadataOptions.Inherits));
+            new PropertyMetadata<Color>(FrameworkBoxedValues.Color.White, PropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="Foreground"/> dependency property.
         /// </summary>
         /// <value>The identifier for the <see cref="Foreground"/> dependency property.</value>
         public static readonly DependencyProperty ForegroundProperty = DependencyProperty.RegisterAttached("Foreground", typeof(Color), typeof(TextElement),
-            new PropertyMetadata<Color>(SedulousBoxedValues.Color.Black, PropertyMetadataOptions.Inherits));
+            new PropertyMetadata<Color>(FrameworkBoxedValues.Color.Black, PropertyMetadataOptions.Inherits));
 
         /// <inheritdoc/>
         protected override void ReloadContentOverride(Boolean recursive)
@@ -141,7 +141,7 @@ namespace Sedulous.Presentation.Documents
         /// <summary>
         /// Occurs when the value of the <see cref="TextElement.Font"/> dependency property changes.
         /// </summary>
-        private static void HandleFontChanged(DependencyObject dobj, SourcedResource<SedulousFont> oldValue, SourcedResource<SedulousFont> newValue)
+        private static void HandleFontChanged(DependencyObject dobj, SourcedResource<FrameworkFont> oldValue, SourcedResource<FrameworkFont> newValue)
         {
             var textElement = dobj as TextElement;
             if (textElement != null)

@@ -65,7 +65,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
             /// Pushes a font onto the font stack.
             /// </summary>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public void PushFont(SedulousFont font)
+            public void PushFont(FrameworkFont font)
             {
                 PushScopedStack(FontStack, font);
             }
@@ -194,7 +194,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
             /// <summary>
             /// Gets the stack that tracks fonts.
             /// </summary>
-            public Stack<TextStyleScoped<SedulousFont>> FontStack { get; } = new Stack<TextStyleScoped<SedulousFont>>();
+            public Stack<TextStyleScoped<FrameworkFont>> FontStack { get; } = new Stack<TextStyleScoped<FrameworkFont>>();
 
             /// <summary>
             /// Gets the stack that tracks colors.

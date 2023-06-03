@@ -12,7 +12,7 @@ namespace Sedulous.Presentation.Tests
     /// <summary>
     /// Represents the base class for tests which require the Presentation Foundation.
     /// </summary>
-    public class PresentationFoundationTestFramework : SedulousApplicationTestFramework
+    public class PresentationFoundationTestFramework : FrameworkApplicationTestFramework
     {
         /// <summary>
         /// Gets the element which currently has focus.
@@ -20,7 +20,7 @@ namespace Sedulous.Presentation.Tests
         /// <typeparam name="T">The type of element which is expected to have focus.</typeparam>
         /// <param name="app">The Sedulous test application.</param>
         /// <returns>The element which currently has focus.</returns>
-        protected T GetElementWithFocus<T>(ISedulousTestApplication app) where T : UIElement
+        protected T GetElementWithFocus<T>(IFrameworkTestApplication app) where T : UIElement
         {
             var screen = app.Sedulous.GetUI().GetScreens().Peek();
             if (screen == null)
@@ -38,7 +38,7 @@ namespace Sedulous.Presentation.Tests
         /// </summary>
         /// <param name="app">The test application.</param>
         /// <returns>The wrapped element.</returns>
-        protected ObjectResult<UIElement> TheElementWithFocus(ISedulousTestApplication app)
+        protected ObjectResult<UIElement> TheElementWithFocus(IFrameworkTestApplication app)
         {
             return TheResultingObject(GetElementWithFocus<UIElement>(app));
         }
@@ -48,7 +48,7 @@ namespace Sedulous.Presentation.Tests
         /// </summary>
         /// <param name="app">The test application.</param>
         /// <returns>The wrapped element.</returns>
-        protected ObjectResult<T> TheElementWithFocus<T>(ISedulousTestApplication app) where T : UIElement
+        protected ObjectResult<T> TheElementWithFocus<T>(IFrameworkTestApplication app) where T : UIElement
         {
             return TheResultingObject(GetElementWithFocus<T>(app));
         }
@@ -56,7 +56,7 @@ namespace Sedulous.Presentation.Tests
         /// <summary>
         /// Initializes a test application which displays the specified Presentation Foundation view.
         /// </summary>
-        protected ISedulousTestApplication GivenAPresentationFoundationTestFor<T>(Func<ContentManager, T> ctor) where T : UIScreen
+        protected IFrameworkTestApplication GivenAPresentationFoundationTestFor<T>(Func<ContentManager, T> ctor) where T : UIScreen
         {
             var globalStyleSheet = default(GlobalStyleSheet);
             var screen = default(UIScreen);

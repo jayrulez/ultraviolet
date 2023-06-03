@@ -128,7 +128,7 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Gets the current Sedulous context.
         /// </summary>
-        protected SedulousContext Sedulous
+        protected FrameworkContext Sedulous
         {
             get { return upf.Value.Sedulous; }
         }
@@ -188,8 +188,8 @@ namespace Sedulous.Presentation.Styles
         }
 
         // A singleton reference to the current Presentation Foundation.
-        private static readonly SedulousSingleton<PresentationFoundation> upf =
-            new SedulousSingleton<PresentationFoundation>(uv => uv.GetUI().GetPresentationFoundation());
+        private static readonly FrameworkSingleton<PresentationFoundation> upf =
+            new FrameworkSingleton<PresentationFoundation>(uv => uv.GetUI().GetPresentationFoundation());
 
         // State values.
         private readonly TriggerActionCollection actions = new TriggerActionCollection();

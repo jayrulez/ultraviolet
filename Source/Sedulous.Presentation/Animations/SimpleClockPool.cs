@@ -6,13 +6,13 @@ namespace Sedulous.Presentation.Animations
     /// <summary>
     /// Represents a pool of <see cref="SimpleClock"/> instances.
     /// </summary>
-    internal partial class SimpleClockPool : SedulousResource
+    internal partial class SimpleClockPool : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleClockPool"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        private SimpleClockPool(SedulousContext uv)
+        private SimpleClockPool(FrameworkContext uv)
             : base(uv)
         {
             uv.GetUI().Updating += SimpleClockPool_Updating;
@@ -119,7 +119,7 @@ namespace Sedulous.Presentation.Animations
         /// <summary>
         /// Updates the active clock instances when the UI subsystem is updated.
         /// </summary>
-        private void SimpleClockPool_Updating(ISedulousSubsystem subsystem, SedulousTime time)
+        private void SimpleClockPool_Updating(IFrameworkSubsystem subsystem, FrameworkTime time)
         {
             if (pool == null)
                 return;
@@ -129,7 +129,7 @@ namespace Sedulous.Presentation.Animations
 
             pool.Update(time, (value, state) =>
             {
-                value.Value.Update((SedulousTime)state);
+                value.Value.Update((FrameworkTime)state);
             });
 
             upf.PerformanceStats.EndUpdate();
@@ -139,7 +139,7 @@ namespace Sedulous.Presentation.Animations
         private UpfPool<SimpleClock> pool;
 
         // The singleton instance of the clock pool.
-        private static SedulousSingleton<SimpleClockPool> instance = 
-            new SedulousSingleton<SimpleClockPool>(uv => new SimpleClockPool(uv));
+        private static FrameworkSingleton<SimpleClockPool> instance = 
+            new FrameworkSingleton<SimpleClockPool>(uv => new SimpleClockPool(uv));
     }
 }

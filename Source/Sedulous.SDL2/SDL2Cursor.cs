@@ -19,14 +19,14 @@ namespace Sedulous.SDL2
         /// <param name="surface">The surface that contains the cursor image.</param>
         /// <param name="hx">The x-coordinate of the cursor's hotspot.</param>
         /// <param name="hy">The y-coordinate of the cursor's hotspot.</param>
-        public SDL2Cursor(SedulousContext uv, Surface2D surface, Int32 hx, Int32 hy)
+        public SDL2Cursor(FrameworkContext uv, Surface2D surface, Int32 hx, Int32 hy)
             : base(uv)
         {
             Contract.Require(surface, nameof(surface));
 
             uv.ValidateResource(surface);
 
-            if (uv.Platform != SedulousPlatform.Android && uv.Platform != SedulousPlatform.iOS)
+            if (uv.Platform != FrameworkPlatform.Android && uv.Platform != FrameworkPlatform.iOS)
             {
                 this.cursor = SDL_CreateColorCursor(((SDL2Surface2D)surface).NativePtr, hx, hy);
                 this.Width = surface.Width;

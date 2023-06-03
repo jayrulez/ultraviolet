@@ -8,7 +8,7 @@ namespace Sedulous.Graphics.Graphics3D
     /// <summary>
     /// Represents a model comprised of one or more scenes, each of which represents one or more logical objects in 3D space.
     /// </summary>
-    public class Model : SedulousResource
+    public class Model : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Model"/> class.
@@ -16,7 +16,7 @@ namespace Sedulous.Graphics.Graphics3D
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="scenes">The model's list of scenes.</param>
         /// <param name="textures">The model's list of textures.</param>
-        public Model(SedulousContext uv, IList<ModelScene> scenes, IList<Texture2D> textures = null)
+        public Model(FrameworkContext uv, IList<ModelScene> scenes, IList<Texture2D> textures = null)
             : base(uv)
         {
             Contract.Require(scenes, nameof(scenes));

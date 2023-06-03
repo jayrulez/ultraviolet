@@ -12,18 +12,18 @@ namespace Sedulous.Graphics
     /// <param name="usage">A <see cref="RenderTargetUsage"/> value specifying whether the 
     /// render target's data is discarded or preserved when it is bound to the graphics device.</param>
     /// <returns>The instance of <see cref="RenderTarget2D"/> that was created.</returns>
-    public delegate RenderTarget2D RenderTarget2DFactory(SedulousContext uv, Int32 width, Int32 height, RenderTargetUsage usage);
+    public delegate RenderTarget2D RenderTarget2DFactory(FrameworkContext uv, Int32 width, Int32 height, RenderTargetUsage usage);
 
     /// <summary>
     /// Represents a two-dimensional render target.
     /// </summary>
-    public abstract class RenderTarget2D : SedulousResource
+    public abstract class RenderTarget2D : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderTarget2D"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public RenderTarget2D(SedulousContext uv)
+        public RenderTarget2D(FrameworkContext uv)
             : base(uv)
         {
 
@@ -42,7 +42,7 @@ namespace Sedulous.Graphics
             Contract.EnsureRange(width > 0, nameof(width));
             Contract.EnsureRange(height > 0, nameof(height));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<RenderTarget2DFactory>()(uv, width, height, usage);
         }
 
@@ -85,7 +85,7 @@ namespace Sedulous.Graphics
         /// <param name="colorOffset">The offset of the first color buffer to invalidate, if <paramref name="color"/> is <see langword="true"/>.</param>
         /// <param name="colorCount">The number of color buffers to invalidate, if <paramref name="color"/> is <see langword="true"/>.</param>
         /// <remarks>For best effect, call this method after rendering to the target, but prior to unbinding 
-        /// the target from the graphics device using <see cref="ISedulousGraphics.SetRenderTarget(RenderTarget2D)"/>.</remarks>
+        /// the target from the graphics device using <see cref="IGraphicsSubsystem.SetRenderTarget(RenderTarget2D)"/>.</remarks>
         public abstract void Invalidate(Boolean color, Boolean depth, Boolean stencil, Boolean depthStencil, Int32 colorOffset, Int32 colorCount);
 
         /// <summary>

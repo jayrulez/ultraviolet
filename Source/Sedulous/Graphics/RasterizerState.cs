@@ -8,26 +8,26 @@ namespace Sedulous.Graphics
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="RasterizerState"/> that was created.</returns>
-    public delegate RasterizerState RasterizerStateFactory(SedulousContext uv);
+    public delegate RasterizerState RasterizerStateFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents a graphics device's rasterizer state.
     /// </summary>
-    public abstract class RasterizerState : SedulousResource
+    public abstract class RasterizerState : FrameworkResource
     {
         /// <summary>
         /// Initializes the <see cref="RasterizerState"/> type.
         /// </summary>
         static RasterizerState()
         {
-            SedulousContext.ContextInvalidated += (sender, e) => { InvalidateCache(); };
+            FrameworkContext.ContextInvalidated += (sender, e) => { InvalidateCache(); };
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RasterizerState"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        protected RasterizerState(SedulousContext uv)
+        protected RasterizerState(FrameworkContext uv)
             : base(uv)
         {
 
@@ -39,7 +39,7 @@ namespace Sedulous.Graphics
         /// <returns>The instance of <see cref="RasterizerState"/> that was created.</returns>
         public static RasterizerState Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<RasterizerStateFactory>()(uv);
         }
 
@@ -54,7 +54,7 @@ namespace Sedulous.Graphics
                 if (cachedCullClockwise != null)
                     return cachedCullClockwise;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedCullClockwise = uv.GetFactoryMethod<RasterizerStateFactory>("CullClockwise")(uv));
             }
         }
@@ -70,7 +70,7 @@ namespace Sedulous.Graphics
                 if (cachedCullCounterClockwise != null)
                     return cachedCullCounterClockwise;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedCullCounterClockwise = uv.GetFactoryMethod<RasterizerStateFactory>("CullCounterClockwise")(uv));
             }
         }
@@ -86,7 +86,7 @@ namespace Sedulous.Graphics
                 if (cachedCullNone != null)
                     return cachedCullNone;
 
-                var uv = SedulousContext.DemandCurrent();
+                var uv = FrameworkContext.DemandCurrent();
                 return (cachedCullNone = uv.GetFactoryMethod<RasterizerStateFactory>("CullNone")(uv));
             }
         }
@@ -99,7 +99,7 @@ namespace Sedulous.Graphics
             get => cullMode;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 cullMode = value;
             }
@@ -113,7 +113,7 @@ namespace Sedulous.Graphics
             get => fillMode;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 fillMode = value;
             }
@@ -127,7 +127,7 @@ namespace Sedulous.Graphics
             get => depthBias;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 depthBias = value;
             }
@@ -141,7 +141,7 @@ namespace Sedulous.Graphics
             get => slopeScaleDepthBias;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 slopeScaleDepthBias = value;
             }
@@ -155,7 +155,7 @@ namespace Sedulous.Graphics
             get => scissorTestEnable;
             set
             {
-                Contract.EnsureNot(immutable, SedulousStrings.StateIsImmutableAfterBind);
+                Contract.EnsureNot(immutable, FrameworkStrings.StateIsImmutableAfterBind);
 
                 scissorTestEnable = value;
             }

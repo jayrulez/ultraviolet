@@ -7,7 +7,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Graphics.Graphics2D.Text
 {
     [TestFixture]
-    public class TextShaperTests : SedulousApplicationTestFramework
+    public class TextShaperTests : FrameworkApplicationTestFramework
     {
         [Test]
         public void TextShaper_AppendsMultipleStrings()

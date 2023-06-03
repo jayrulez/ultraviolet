@@ -18,7 +18,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="options">The texture's configuration options.</param>
         /// <param name="state">An arbitrary state object which will be passed to the flush handler.</param>
         /// <param name="flushed">The handler to invoke when the texture is flushed.</param>
-        public OpenGLDynamicTexture2D(SedulousContext uv, Int32 width, Int32 height, TextureOptions options, Object state, Action<Texture2D, Object> flushed)
+        public OpenGLDynamicTexture2D(FrameworkContext uv, Int32 width, Int32 height, TextureOptions options, Object state, Action<Texture2D, Object> flushed)
             : base(uv, width, height, options, state, flushed)
         {
             this.texture = new OpenGLTexture2D(uv, width, height, options);

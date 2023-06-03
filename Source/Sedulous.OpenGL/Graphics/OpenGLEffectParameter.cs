@@ -17,7 +17,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="name">The effect parameter's name.</param>
         /// <param name="type">The effect parameter's uniform type.</param>
         /// <param name="sizeInBytes">The effect parameter's size in bytes.</param>
-        public OpenGLEffectParameter(SedulousContext uv, String name, UInt32 type, UInt32 sizeInBytes)
+        public OpenGLEffectParameter(FrameworkContext uv, String name, UInt32 type, UInt32 sizeInBytes)
             : base(uv)
         {
             Contract.Require(name, nameof(name));

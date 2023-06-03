@@ -15,13 +15,13 @@ namespace Sedulous.SDL2.Input
     /// Represents the SDL2 implementation of the KeyboardDevice class.
     /// </summary>
     public sealed class SDL2KeyboardDevice : KeyboardDevice,
-        IMessageSubscriber<SedulousMessageID>
+        IMessageSubscriber<FrameworkMessageID>
     {
         /// <summary>
         /// Initializes a new instance of the SDL2KeyboardDevice class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public SDL2KeyboardDevice(SedulousContext uv)
+        public SDL2KeyboardDevice(FrameworkContext uv)
             : base(uv)
         {
             Int32 numkeys;
@@ -30,26 +30,26 @@ namespace Sedulous.SDL2.Input
             this.states = new InternalButtonState[numkeys];
 
             uv.Messages.Subscribe(this,
-                SedulousMessages.SoftwareKeyboardShown);
+                FrameworkMessages.SoftwareKeyboardShown);
             uv.Messages.Subscribe(this,
-                SedulousMessages.SoftwareKeyboardHidden);
+                FrameworkMessages.SoftwareKeyboardHidden);
 
             uv.Messages.Subscribe(this,
-                SDL2SedulousMessages.SDLEvent);
+                SDL2FrameworkMessages.SDLEvent);
         }
 
         /// <inheritdoc/>
-        void IMessageSubscriber<SedulousMessageID>.ReceiveMessage(SedulousMessageID type, MessageData data)
+        void IMessageSubscriber<FrameworkMessageID>.ReceiveMessage(FrameworkMessageID type, MessageData data)
         {
-            if (type == SedulousMessages.SoftwareKeyboardShown)
+            if (type == FrameworkMessages.SoftwareKeyboardShown)
             {
                 SDL_StartTextInput();
             }
-            else if (type == SedulousMessages.SoftwareKeyboardHidden)
+            else if (type == FrameworkMessages.SoftwareKeyboardHidden)
             {
                 SDL_StopTextInput();
             }
-            else if (type == SDL2SedulousMessages.SDLEvent)
+            else if (type == SDL2FrameworkMessages.SDLEvent)
             {
                 var evt = ((SDL2EventMessageData)data).Event;
                 switch (evt.type)
@@ -105,7 +105,7 @@ namespace Sedulous.SDL2.Input
         }
 
         /// <inheritdoc/>
-        public override void Update(SedulousTime time)
+        public override void Update(FrameworkTime time)
         {
 
         }
@@ -342,7 +342,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void Register()
         {
-            var input = (SDL2SedulousInput)Sedulous.GetInput();
+            var input = (SDL2FrameworkInput)Sedulous.GetInput();
             if (input.RegisterKeyboardDevice(this))
                 isRegistered = true;
         }

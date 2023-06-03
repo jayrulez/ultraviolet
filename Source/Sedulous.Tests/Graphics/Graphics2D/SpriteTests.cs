@@ -6,7 +6,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Graphics.Graphics2D
 {
     [TestFixture]
-    public class SpriteTests : SedulousApplicationTestFramework
+    public class SpriteTests : FrameworkApplicationTestFramework
     {
         [Test]
         [Category("Rendering")]

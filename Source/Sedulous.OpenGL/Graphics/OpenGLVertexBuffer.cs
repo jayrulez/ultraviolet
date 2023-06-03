@@ -18,7 +18,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="vdecl">The vertex declaration for this buffer.</param>
         /// <param name="vcount">The number of vertices in the buffer.</param>
         /// <param name="usage">The buffer's usage type.</param>
-        public OpenGLVertexBuffer(SedulousContext uv, VertexDeclaration vdecl, Int32 vcount, UInt32 usage)
+        public OpenGLVertexBuffer(FrameworkContext uv, VertexDeclaration vdecl, Int32 vcount, UInt32 usage)
             : base(uv, vdecl, vcount)
         {
             Contract.Require(vdecl, nameof(vdecl));

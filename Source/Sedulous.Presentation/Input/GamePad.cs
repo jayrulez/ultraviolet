@@ -768,7 +768,7 @@ namespace Sedulous.Presentation.Input
         }
 
         // Represents the device state of the current Sedulous context.
-        private static readonly SedulousSingleton<GamePadState> gamePadState =
-            new SedulousSingleton<GamePadState>(uv => new GamePadState(uv));
+        private static readonly FrameworkSingleton<GamePadState> gamePadState =
+            new FrameworkSingleton<GamePadState>(uv => new GamePadState(uv));
     }
 }

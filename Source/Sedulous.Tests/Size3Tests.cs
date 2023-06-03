@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class Size3Tests : SedulousTestFramework
+    public class Size3Tests : FrameworkTestFramework
     {
         [Test]
         public void Size3_IsConstructedProperly()
@@ -125,7 +125,7 @@ namespace Sedulous.Tests
         {
             var size = new Size3(1, 2, 3);
             var json = JsonConvert.SerializeObject(size,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""width"":1,""height"":2,""depth"":3}");
         }
@@ -135,7 +135,7 @@ namespace Sedulous.Tests
         {
             var size = new Size3(1, 2, 3);
             var json = JsonConvert.SerializeObject((Size3?)size,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""width"":1,""height"":2,""depth"":3}");
         }
@@ -146,7 +146,7 @@ namespace Sedulous.Tests
             const String json = @"{""width"":1,""height"":2,""depth"":3}";
             
             var size = JsonConvert.DeserializeObject<Size3>(json,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(size)
                 .ShouldBe(1, 2, 3);
@@ -158,7 +158,7 @@ namespace Sedulous.Tests
             const String json1 = @"{""width"":1,""height"":2,""depth"":3}";
 
             var size1 = JsonConvert.DeserializeObject<Size3?>(json1,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(size1.Value)
                 .ShouldBe(1, 2, 3);
@@ -166,7 +166,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var size2 = JsonConvert.DeserializeObject<Size3?>(json2,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(size2.HasValue)
                 .ShouldBe(false);

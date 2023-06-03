@@ -145,7 +145,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
             public void AdvanceLayoutToNextLineWithBreak(TextLayoutCommandStream output, Int32 glyphOffset, 
                 Int32 sourceOffset, Int32 sourceLength, Int32 shapedOffset, ref TextLayoutSettings settings)
             {
-                var lineSpacing = settings.Font.GetFace(SedulousFontStyle.Regular).LineSpacing;
+                var lineSpacing = settings.Font.GetFace(FrameworkFontStyle.Regular).LineSpacing;
 
                 var lineHeightCurrent = LineHeight;
                 if (lineHeightCurrent == 0)
@@ -248,7 +248,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
 
                 var newLineHeight = sizeAfterBreak.Height;
                 if (newLineHeight == 0)
-                    newLineHeight = settings.Font.GetFace(SedulousFontStyle.Regular).LineSpacing;
+                    newLineHeight = settings.Font.GetFace(FrameworkFontStyle.Regular).LineSpacing;
 
                 // Truncate the command which is being broken.
                 output.Seek(LineBreakCommand.Value);
@@ -452,7 +452,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
             /// <summary>
             /// Gets or sets the fallback font which is currently active.
             /// </summary>
-            public SedulousFont FallbackFont { get; set; }
+            public FrameworkFont FallbackFont { get; set; }
 
             /// <summary>
             /// Gets or sets the x-coordinate at which the next token will be placed.

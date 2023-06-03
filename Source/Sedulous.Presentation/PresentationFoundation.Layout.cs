@@ -125,14 +125,14 @@ namespace Sedulous.Presentation
         /// </summary>
         internal void PerformLayout()
         {
-            using (SedulousProfiler.Section(PresentationProfilerSections.Layout))
+            using (FrameworkProfiler.Section(PresentationProfilerSections.Layout))
             {
                 while (ElementNeedsLayout)
                 {
                     digestCycleIDOfLastLayout = digestCycleID;
 
                     // 1. Style
-                    using (SedulousProfiler.Section(PresentationProfilerSections.Style))
+                    using (FrameworkProfiler.Section(PresentationProfilerSections.Style))
                     {
                         while (ElementNeedsStyle)
                         {
@@ -146,7 +146,7 @@ namespace Sedulous.Presentation
                     }
 
                     // 2. Measure
-                    using (SedulousProfiler.Section(PresentationProfilerSections.Measure))
+                    using (FrameworkProfiler.Section(PresentationProfilerSections.Measure))
                     {
                         while (ElementNeedsMeasure && !ElementNeedsStyle)
                         {
@@ -160,7 +160,7 @@ namespace Sedulous.Presentation
                     }
 
                     // 3. Arrange
-                    using (SedulousProfiler.Section(PresentationProfilerSections.Arrange))
+                    using (FrameworkProfiler.Section(PresentationProfilerSections.Arrange))
                     {
                         while (ElementNeedsArrange && !ElementNeedsStyle && !ElementNeedsMeasure)
                         {

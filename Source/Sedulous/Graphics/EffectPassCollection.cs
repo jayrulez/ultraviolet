@@ -7,7 +7,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents an effect technique's collection of passes.
     /// </summary>
-    public abstract class EffectPassCollection : SedulousNamedCollection<EffectPass>, IEnumerable<EffectPass>
+    public abstract class EffectPassCollection : FrameworkNamedCollection<EffectPass>, IEnumerable<EffectPass>
     {
         /// <summary>
         /// Gets an enumerator for the collection.
@@ -15,7 +15,7 @@ namespace Sedulous.Graphics
         /// <returns>An enumerator for the collection.</returns>
         public new List<EffectPass>.Enumerator GetEnumerator()
         {
-            return ((SedulousCollection<EffectPass>)this).GetEnumerator();
+            return ((FrameworkCollection<EffectPass>)this).GetEnumerator();
         }
 
         /// <summary>

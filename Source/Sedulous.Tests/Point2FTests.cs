@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class Point2FTests : SedulousTestFramework
+    public class Point2FTests : FrameworkTestFramework
     {
         [Test]
         public void Point2F_IsConstructedProperly()
@@ -161,7 +161,7 @@ namespace Sedulous.Tests
         {
             var point = new Point2F(1.2f, 2.3f);
             var json = JsonConvert.SerializeObject(point,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1.2,""y"":2.3}");
         }
@@ -171,7 +171,7 @@ namespace Sedulous.Tests
         {
             var point = new Point2F(1.2f, 2.3f);
             var json = JsonConvert.SerializeObject((Point2F?)point,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1.2,""y"":2.3}");
         }
@@ -182,7 +182,7 @@ namespace Sedulous.Tests
             const String json = @"{""x"":1.2,""y"":2.3}";
             
             var point = JsonConvert.DeserializeObject<Point2F>(json, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(point)
                 .ShouldBe(1.2f, 2.3f);
@@ -194,7 +194,7 @@ namespace Sedulous.Tests
             const String json1 = @"{""x"":1.2,""y"":2.3}";
 
             var point1 = JsonConvert.DeserializeObject<Point2F?>(json1,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(point1.Value)
                 .ShouldBe(1.2f, 2.3f);
@@ -202,7 +202,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var point2 = JsonConvert.DeserializeObject<Point2F?>(json2, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(point2.HasValue)
                 .ShouldBe(false);

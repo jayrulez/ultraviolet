@@ -18,7 +18,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="width">The render buffer's width in pixels.</param>
         /// <param name="height">The render buffer's height in pixels.</param>
         /// <param name="options">The render buffer's configuration options.</param>
-        public OpenGLRenderBuffer2D(SedulousContext uv, RenderBufferFormat format, Int32 width, Int32 height, RenderBufferOptions options)
+        public OpenGLRenderBuffer2D(FrameworkContext uv, RenderBufferFormat format, Int32 width, Int32 height, RenderBufferOptions options)
             : base(uv)
         {
             Contract.EnsureRange(width > 0, nameof(width));
@@ -27,10 +27,10 @@ namespace Sedulous.OpenGL.Graphics
             var isSrgb = (options & RenderBufferOptions.SrgbColor) == RenderBufferOptions.SrgbColor;
             var isLinear = (options & RenderBufferOptions.LinearColor) == RenderBufferOptions.LinearColor;
             if (isSrgb && isLinear)
-                throw new ArgumentException(SedulousStrings.BuffersCannotHaveMultipleEncodings);
+                throw new ArgumentException(FrameworkStrings.BuffersCannotHaveMultipleEncodings);
 
             if ((isSrgb || isLinear) && format != RenderBufferFormat.Color)
-                throw new ArgumentException(SedulousStrings.EncodingSpecifiedForNonColorBuffer);
+                throw new ArgumentException(FrameworkStrings.EncodingSpecifiedForNonColorBuffer);
 
             var caps = uv.GetGraphics().Capabilities;
             var srgbEncoded = (isLinear ? false : (isSrgb ? true : uv.Properties.SrgbDefaultForRenderBuffer2D)) && caps.SrgbEncodingEnabled;
@@ -288,7 +288,7 @@ namespace Sedulous.OpenGL.Graphics
             if (disposing)
             {
                 if (!Sedulous.Disposed)
-                    ((OpenGLSedulousGraphics)Sedulous.GetGraphics()).UnbindTexture(this);
+                    ((OpenGLGraphicsSubsystem)Sedulous.GetGraphics()).UnbindTexture(this);
 
                 if (willNotBeSampled)
                 {

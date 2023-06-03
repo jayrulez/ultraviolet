@@ -26,7 +26,7 @@ namespace Sedulous.Graphics.Graphics3D
                 {
                     var triangle = input.Triangles[i];
                     if (triangle == null)
-                        throw new InvalidDataException(SedulousStrings.MalformedContentFile);
+                        throw new InvalidDataException(FrameworkStrings.MalformedContentFile);
 
                     if (stlMetadata.SwapWindingOrder)
                     {

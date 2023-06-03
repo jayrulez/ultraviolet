@@ -7,7 +7,7 @@ namespace Sedulous.Presentation.Input
     /// <summary>
     /// Represents a collection of <see cref="InputGesture"/> objects.
     /// </summary>
-    public class InputGestureCollection : SedulousCollection<InputGesture>, IList<InputGesture>
+    public class InputGestureCollection : FrameworkCollection<InputGesture>, IList<InputGesture>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InputGestureCollection"/> class.

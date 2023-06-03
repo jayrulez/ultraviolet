@@ -145,7 +145,7 @@ namespace Sedulous.FreeType2
         /// <summary>
         /// Finds the best set of DPI values to use when loading the font for the specified density bucket.
         /// </summary>
-        private static void GetBestScreenDensityMatch(SedulousContext uv, ScreenDensityBucket bucket, out Single dpiX, out Single dpiY)
+        private static void GetBestScreenDensityMatch(FrameworkContext uv, ScreenDensityBucket bucket, out Single dpiX, out Single dpiY)
         {
             dpiX = 96f;
             dpiY = 96f;

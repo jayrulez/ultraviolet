@@ -72,7 +72,7 @@ namespace Sedulous.Core.Collections
             if (ctor == null)
                 throw new InvalidOperationException(CoreStrings.MissingDefaultCtor.Format(typeof(T).FullName));
 
-            if (SedulousPlatformInfo.IsRuntimeCodeGenerationSupported())
+            if (FrameworkPlatformInfo.IsRuntimeCodeGenerationSupported())
             {
                 return Expression.Lambda<Func<T>>(Expression.New(typeof(T))).Compile();
             }

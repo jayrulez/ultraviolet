@@ -7,13 +7,13 @@ namespace Sedulous.FreeType2
     /// <summary>
     /// Encapsulates the native FreeType2 library object.
     /// </summary>
-    internal sealed unsafe class FreeTypeLibrary : SedulousResource
+    internal sealed unsafe class FreeTypeLibrary : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FreeTypeLibrary"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public FreeTypeLibrary(SedulousContext uv)
+        public FreeTypeLibrary(FrameworkContext uv)
             : base(uv)
         {
             var lib = default(IntPtr);

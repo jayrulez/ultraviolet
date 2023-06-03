@@ -7,7 +7,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Content
 {
     [TestFixture]
-    public class AssetIDTests : SedulousApplicationTestFramework
+    public class AssetIDTests : FrameworkApplicationTestFramework
     {
         [Test]
         [Category("Content")]
@@ -20,7 +20,7 @@ namespace Sedulous.Tests.Content
                     
                     var id = content.Sedulous.GetContent().Manifests["Test"]["Textures"]["Triangle"].CreateAssetID();
                     var json = JsonConvert.SerializeObject(id, 
-                        SedulousJsonSerializerSettings.Instance);
+                        FrameworkJsonSerializerSettings.Instance);
 
                     TheResultingString(json)
                         .ShouldBe(@"""#Test:Textures:Triangle""");
@@ -38,7 +38,7 @@ namespace Sedulous.Tests.Content
                     content.Sedulous.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "Test.manifest"));
                     
                     var id = JsonConvert.DeserializeObject<AssetID>(@"""#Test:Textures:Triangle""", 
-                        SedulousJsonSerializerSettings.Instance);
+                        FrameworkJsonSerializerSettings.Instance);
 
                     TheResultingValue(id)
                         .ShouldBe(AssetID.Parse("#Test:Textures:Triangle"));
@@ -56,7 +56,7 @@ namespace Sedulous.Tests.Content
                     content.Sedulous.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "TestJson.jsmanifest"));
 
                     var id = JsonConvert.DeserializeObject<AssetID>(@"""#Test:Textures:Triangle""",
-                        SedulousJsonSerializerSettings.Instance);
+                        FrameworkJsonSerializerSettings.Instance);
 
                     TheResultingValue(id)
                         .ShouldBe(AssetID.Parse("#Test:Textures:Triangle"));

@@ -6,7 +6,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Graphics
 {
     [TestFixture]
-    public class TextureAtlasTests : SedulousApplicationTestFramework
+    public class TextureAtlasTests : FrameworkApplicationTestFramework
     {
         [Test]
         [Category("Rendering")]

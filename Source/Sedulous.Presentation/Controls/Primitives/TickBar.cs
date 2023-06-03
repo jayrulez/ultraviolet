@@ -14,7 +14,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public TickBar(SedulousContext uv, String name)
+        public TickBar(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
@@ -278,7 +278,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="time"></param>
         /// <param name="dc"></param>
-        protected override void OnDrawing(SedulousTime time, DrawingContext dc)
+        protected override void OnDrawing(FrameworkTime time, DrawingContext dc)
         {
             RectangleD NormalizeRect(Double x, Double y, Double width, Double height)
             {

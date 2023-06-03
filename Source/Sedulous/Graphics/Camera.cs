@@ -5,13 +5,13 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a camera which provides a view and projection matrix.
     /// </summary>
-    public abstract class Camera : SedulousResource
+    public abstract class Camera : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        protected Camera(SedulousContext uv)
+        protected Camera(FrameworkContext uv)
             : base(uv)
         {
 
@@ -22,7 +22,7 @@ namespace Sedulous.Graphics
         /// </summary>
         /// <param name="window">The window for which to update the camera. If not specified, the current window is 
         /// used, or if there is no current window, the primary window is used.</param>
-        public abstract void Update(ISedulousWindow window = null);
+        public abstract void Update(IFrameworkWindow window = null);
 
         /// <summary>
         /// Gets the camera's view matrix.

@@ -7,7 +7,7 @@ namespace Sedulous.Presentation.Input
     /// <summary>
     /// Represents a collection of <see cref="InputBinding"/> objects.
     /// </summary>
-    public class InputBindingCollection : SedulousCollection<InputBinding>, IList<InputBinding>
+    public class InputBindingCollection : FrameworkCollection<InputBinding>, IList<InputBinding>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InputBindingCollection"/> class.

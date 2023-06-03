@@ -347,28 +347,28 @@
     <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\TextureAtlas_LoadsAndRendersCorrectly_FromXml.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\SedulousGraphics_CanRender3DTextures.png">
+    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\Graphics_CanRender3DTextures.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\SedulousGraphics_CanRender3DTextures_FromPreprocessedAsset.png">
+    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\Graphics_CanRender3DTextures_FromPreprocessedAsset.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\SedulousGraphics_CanRenderAColoredTriangle%28Srgb%29.png">
+    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\Graphics_CanRenderAColoredTriangle%28Srgb%29.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\SedulousGraphics_CanRenderAColoredTriangle%28Linear%29.png">
+    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\Graphics_CanRenderAColoredTriangle%28Linear%29.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\SedulousGraphics_CanRenderATexturedTriangle.png">
+    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\Graphics_CanRenderATexturedTriangle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\SedulousGraphics_CanRenderInstancedTriangles.png">
+    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\Graphics_CanRenderInstancedTriangles.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\SedulousGraphics_CanRenderSprites_WhenUsingCustomVertexElementNames.png">
+    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\Graphics_CanRenderSprites_WhenUsingCustomVertexElementNames.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\SedulousGraphics_RendersFrameCorrectly_WithCustomCompositor.png">
+    <None Include="$(MSBuildThisFileDirectory)Resources\Expected\Graphics\Graphics_RendersFrameCorrectly_WithCustomCompositor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

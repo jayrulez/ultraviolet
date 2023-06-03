@@ -5,10 +5,10 @@ namespace Sedulous.FMOD
     /// <summary>
     /// Represents an Sedulous plugin which registers FMOD as the audio subsystem implementation.
     /// </summary>
-    public class FMODAudioPlugin : SedulousPlugin
+    public class FMODAudioPlugin : FrameworkPlugin
     {
         /// <inheritdoc/>
-        public override void Register(SedulousConfiguration configuration)
+        public override void Register(FrameworkConfiguration configuration)
         {
             Contract.Require(configuration, nameof(configuration));
 

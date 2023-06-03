@@ -92,7 +92,7 @@ namespace Sedulous.Presentation
             }
 
             /// <inheritdoc/>
-            public void Digest(SedulousTime time)
+            public void Digest(FrameworkTime time)
             {
                 CheckForChanges(time);
             }
@@ -445,7 +445,7 @@ namespace Sedulous.Presentation
             }
 
             /// <summary>
-            /// Gets the dependency property's previous value as of the last call to <see cref="Digest(SedulousTime)"/>.
+            /// Gets the dependency property's previous value as of the last call to <see cref="Digest(FrameworkTime)"/>.
             /// </summary>
             public T PreviousValue
             {
@@ -819,7 +819,7 @@ namespace Sedulous.Presentation
             /// Checks to determine whether the property's underlying value has changed,
             /// and if so, handles it appropriately.
             /// </summary>
-            private void CheckForChanges(SedulousTime time = null)
+            private void CheckForChanges(FrameworkTime time = null)
             {
                 var original = GetValue();
 
@@ -957,8 +957,8 @@ namespace Sedulous.Presentation
             /// <summary>
             /// Updates the value's animation state.
             /// </summary>
-            /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-            private void UpdateAnimation(SedulousTime time)
+            /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+            private void UpdateAnimation(FrameworkTime time)
             {
                 var animState = GetAnimationState(false);
                 if (animState == null)
@@ -977,8 +977,8 @@ namespace Sedulous.Presentation
             /// <summary>
             /// Updates the value's animation state when using a storyboard animation.
             /// </summary>
-            /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-            private void UpdateStoryboardAnimation(SedulousTime time)
+            /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+            private void UpdateStoryboardAnimation(FrameworkTime time)
             {
                 var animState = GetAnimationState(false);
                 if (animState == null)
@@ -1043,8 +1043,8 @@ namespace Sedulous.Presentation
             /// <summary>
             /// Updates the value's animation state when using a simple animation.
             /// </summary>
-            /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-            private void UpdateSimpleAnimation(SedulousTime time)
+            /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+            private void UpdateSimpleAnimation(FrameworkTime time)
             {
                 var animState = GetAnimationState(false);
                 if (animState == null)

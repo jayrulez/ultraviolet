@@ -27,7 +27,7 @@ namespace Sedulous.OpenGL.Graphics
         /// Initializes a new instance of the OpenGLGeometryStream class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public OpenGLGeometryStream(SedulousContext uv)
+        public OpenGLGeometryStream(FrameworkContext uv)
             : base(uv)
         {
             var vao = 0u;
@@ -71,7 +71,7 @@ namespace Sedulous.OpenGL.Graphics
         public override void Attach(IndexBuffer ibuffer)
         {
             Contract.Require(ibuffer, nameof(ibuffer));
-            Contract.EnsureNot(HasIndices, SedulousStrings.GeometryStreamAlreadyHasIndices);
+            Contract.EnsureNot(HasIndices, FrameworkStrings.GeometryStreamAlreadyHasIndices);
             Contract.EnsureNotDisposed(this, Disposed);
 
             Sedulous.ValidateResource(ibuffer);

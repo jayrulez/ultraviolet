@@ -6,7 +6,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Graphics.Graphics2D
 {
     [TestFixture]
-    public class FreeTypeFontTests : SedulousApplicationTestFramework
+    public class FreeTypeFontTests : FrameworkApplicationTestFramework
     {
         [Test]
         [Category("Content")]

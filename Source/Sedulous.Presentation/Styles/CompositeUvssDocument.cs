@@ -9,13 +9,13 @@ namespace Sedulous.Presentation.Styles
     /// <summary>
     /// Represents a Sedulous Style Sheet (UVSS) document which is composed of multiple smaller documents.
     /// </summary>
-    public abstract class CompositeUvssDocument : SedulousResource
+    public abstract class CompositeUvssDocument : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CompositeUvssDocument"/> class.
         /// </summary>
         /// <param name="uv">The sedulous context.</param>
-        internal CompositeUvssDocument(SedulousContext uv)
+        internal CompositeUvssDocument(FrameworkContext uv)
             : base(uv)
         {
             this.validating = OnValidating;

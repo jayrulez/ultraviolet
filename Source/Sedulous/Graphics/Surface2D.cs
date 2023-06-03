@@ -12,7 +12,7 @@ namespace Sedulous.Graphics
     /// <param name="height">The surface's height in pixels.</param>
     /// <param name="options">The surface's configuration options.</param>
     /// <returns>The instance of <see cref="Surface2D"/> that was created.</returns>
-    public delegate Surface2D Surface2DFactory(SedulousContext uv, Int32 width, Int32 height, SurfaceOptions options);
+    public delegate Surface2D Surface2DFactory(FrameworkContext uv, Int32 width, Int32 height, SurfaceOptions options);
 
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Surface2D"/> class from an instance of <see cref="SurfaceSource"/>.
@@ -21,7 +21,7 @@ namespace Sedulous.Graphics
     /// <param name="source">The surface source from which to create the surface.</param>
     /// <param name="options">The surface's configuration options.</param>
     /// <returns>The instance of <see cref="Surface2D"/> that was created.</returns>
-    public delegate Surface2D Surface2DFromSourceFactory(SedulousContext uv, SurfaceSource source, SurfaceOptions options);
+    public delegate Surface2D Surface2DFromSourceFactory(FrameworkContext uv, SurfaceSource source, SurfaceOptions options);
 
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Surface2D"/> class from an instance of <see cref="PlatformNativeSurface"/>.
@@ -30,7 +30,7 @@ namespace Sedulous.Graphics
     /// <param name="surface">The native surface from which to create the surface.</param>
     /// <param name="options">The surface's configuration options.</param>
     /// <returns>The instance of <see cref="Surface2D"/> that was created.</returns>
-    public delegate Surface2D Surface2DFromNativeSurfaceFactory(SedulousContext uv, PlatformNativeSurface surface, SurfaceOptions options);
+    public delegate Surface2D Surface2DFromNativeSurfaceFactory(FrameworkContext uv, PlatformNativeSurface surface, SurfaceOptions options);
 
     /// <summary>
     /// Represents a two-dimensional image which is held in CPU memory.
@@ -43,7 +43,7 @@ namespace Sedulous.Graphics
         /// Initializes a new instance of the <see cref="Surface2D"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public Surface2D(SedulousContext uv)
+        public Surface2D(FrameworkContext uv)
             : base(uv)
         {
 
@@ -61,7 +61,7 @@ namespace Sedulous.Graphics
             Contract.EnsureRange(width > 0, nameof(width));
             Contract.EnsureRange(height > 0, nameof(height));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<Surface2DFactory>()(uv, width, height, options);
         }
 
@@ -75,7 +75,7 @@ namespace Sedulous.Graphics
         {
             Contract.Require(source, nameof(source));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<Surface2DFromSourceFactory>()(uv, source, options);
         }
 
@@ -89,7 +89,7 @@ namespace Sedulous.Graphics
         {
             Contract.Require(surface, nameof(surface));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<Surface2DFromNativeSurfaceFactory>()(uv, surface, options);
         }
         
@@ -234,7 +234,7 @@ namespace Sedulous.Graphics
 
         /// <summary>
         /// Gets or sets a value indicating whether the surface's data is SRGB encoded. The default value of this property
-        /// is determined by the value of the <see cref="SedulousContextProperties.SrgbDefaultForSurface2D"/> property.
+        /// is determined by the value of the <see cref="FrameworkContextProperties.SrgbDefaultForSurface2D"/> property.
         /// </summary>
         public abstract Boolean SrgbEncoded { get; set; }
 

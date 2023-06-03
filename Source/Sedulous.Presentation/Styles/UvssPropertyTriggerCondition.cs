@@ -28,7 +28,7 @@ namespace Sedulous.Presentation.Styles
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="dobj">The object against which to evaluate the trigger condition.</param>
         /// <returns><see langword="true"/> if the condition is true for the specified object; otherwise, <see langword="false"/>.</returns>
-        internal Boolean Evaluate(SedulousContext uv, DependencyObject dobj)
+        internal Boolean Evaluate(FrameworkContext uv, DependencyObject dobj)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(dobj, nameof(dobj));

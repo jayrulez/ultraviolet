@@ -31,7 +31,7 @@ namespace Sedulous.Presentation.Styles
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="uvssexp">The UVSS navigation expression from which to create a new structure.</param>
         /// <returns>The <see cref="NavigationExpression"/> that was created.</returns>
-        public static NavigationExpression? FromUvssNavigationExpression(SedulousContext uv, UvssNavigationExpression uvssexp)
+        public static NavigationExpression? FromUvssNavigationExpression(FrameworkContext uv, UvssNavigationExpression uvssexp)
         {
             Contract.Require(uv, nameof(uv));
 
@@ -72,7 +72,7 @@ namespace Sedulous.Presentation.Styles
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="source">The dependency object to which to apply the expression.</param>
         /// <returns>The dependency object that was navigated to, or <see langword="null"/> if no valid target was found.</returns>
-        public DependencyObject ApplyExpression(SedulousContext uv, DependencyObject source)
+        public DependencyObject ApplyExpression(FrameworkContext uv, DependencyObject source)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(source, nameof(source));

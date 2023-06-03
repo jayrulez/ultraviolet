@@ -24,7 +24,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
             lock (customCommands)
             {
                 if (customCommands.Count == MaximumCustomCommandCount)
-                    throw new InvalidOperationException(SedulousStrings.TextParserHasTooManyCommands);
+                    throw new InvalidOperationException(FrameworkStrings.TextParserHasTooManyCommands);
 
                 customCommands.Add(name);
 

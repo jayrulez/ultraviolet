@@ -240,11 +240,11 @@ namespace Sedulous.Presentation
             var isFrameworkElement = typeof(FrameworkElement).IsAssignableFrom(registration.Type);
 
             var ctor = isFrameworkElement ?
-                registration.Type.GetConstructor(new[] { typeof(SedulousContext), typeof(String) }) :
-                registration.Type.GetConstructor(new[] { typeof(SedulousContext) });
+                registration.Type.GetConstructor(new[] { typeof(FrameworkContext), typeof(String) }) :
+                registration.Type.GetConstructor(new[] { typeof(FrameworkContext) });
 
             if (ctor == null)
-                throw new InvalidOperationException(SedulousStrings.NoValidConstructor.Format(registration.Type));
+                throw new InvalidOperationException(FrameworkStrings.NoValidConstructor.Format(registration.Type));
 
             var instance = (UIElement)ctor.Invoke(isFrameworkElement ?
                 new Object[] { Sedulous, name } :
@@ -365,7 +365,7 @@ namespace Sedulous.Presentation
                 defaultProperty = defaultPropertyAttr.Name;
             }
 
-            var ctor = type.GetConstructor(new[] { typeof(SedulousContext), typeof(String) });
+            var ctor = type.GetConstructor(new[] { typeof(FrameworkContext), typeof(String) });
             if (ctor == null && !type.IsAbstract)
                 throw new InvalidOperationException(PresentationStrings.UIElementInvalidCtor.Format(type.Name));
 

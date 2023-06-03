@@ -6,7 +6,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Content
 {
     [TestFixture]
-    public class ContentManagerTests : SedulousApplicationTestFramework
+    public class ContentManagerTests : FrameworkApplicationTestFramework
     {
         [Test]
         [Category("Content")]
@@ -18,7 +18,7 @@ namespace Sedulous.Tests.Content
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
-                    var font = content.LoadFromStream<SedulousFont>(contentStream, "uvmeta");
+                    var font = content.LoadFromStream<FrameworkFont>(contentStream, "uvmeta");
 
                     TheResultingString(font.Regular.ToString())
                         .ShouldBe("Fira Sans Regular 32pt");

@@ -14,7 +14,7 @@ namespace Sedulous.Presentation.Uvml
     /// <param name="uv">The Sedulous context.</param>
     /// <param name="name">The name of the object being instantiated.</param>
     /// <returns>The object that was instantiated.</returns>
-    public delegate Object UvmlTemplateInstantiator(SedulousContext uv, String name);
+    public delegate Object UvmlTemplateInstantiator(FrameworkContext uv, String name);
 
     /// <summary>
     /// Represents a template which produces object instances based on a UVML document.
@@ -51,7 +51,7 @@ namespace Sedulous.Presentation.Uvml
         }
         
         /// <inheritdoc/>
-        public override Object Instantiate(SedulousContext uv, UvmlInstantiationContext context)
+        public override Object Instantiate(FrameworkContext uv, UvmlInstantiationContext context)
         {
             var instance = instantiator(uv, name);
             if (instance == null)
@@ -105,17 +105,17 @@ namespace Sedulous.Presentation.Uvml
         /// <returns>The instantiator function which was created.</returns>
         private static UvmlTemplateInstantiator CreateDefaultInstantiator(Type type)
         {
-            var paramUv = Expression.Parameter(typeof(SedulousContext), "uv");
+            var paramUv = Expression.Parameter(typeof(FrameworkContext), "uv");
             var paramName = Expression.Parameter(typeof(String), "name");
 
-            var ctorWithContextAndName = type.GetConstructor(new[] { typeof(SedulousContext), typeof(String) });
+            var ctorWithContextAndName = type.GetConstructor(new[] { typeof(FrameworkContext), typeof(String) });
             if (ctorWithContextAndName != null)
             {
                 return Expression.Lambda<UvmlTemplateInstantiator>(
                     Expression.New(ctorWithContextAndName, paramUv, paramName), paramUv, paramName).Compile();
             }
 
-            var ctorWithContext = type.GetConstructor(new[] { typeof(SedulousContext) });
+            var ctorWithContext = type.GetConstructor(new[] { typeof(FrameworkContext) });
             if (ctorWithContext != null)
             {
                 return Expression.Lambda<UvmlTemplateInstantiator>(
@@ -124,7 +124,7 @@ namespace Sedulous.Presentation.Uvml
 
             var ctorDefault = type.GetConstructor(Type.EmptyTypes);
             if (ctorDefault == null)
-                throw new UvmlException(SedulousStrings.NoValidConstructor.Format(type.Name));
+                throw new UvmlException(FrameworkStrings.NoValidConstructor.Format(type.Name));
 
             return Expression.Lambda<UvmlTemplateInstantiator>(
                 Expression.New(ctorDefault), paramUv, paramName).Compile();
@@ -133,7 +133,7 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Performs initialization required by instances of the <see cref="FrameworkElement"/> class.
         /// </summary>
-        private void InitializeFrameworkElement(SedulousContext uv, Object instance, UvmlInstantiationContext context)
+        private void InitializeFrameworkElement(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
         {
             var frameworkElement = instance as FrameworkElement;
             if (frameworkElement == null)
@@ -149,7 +149,7 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Performs initialization required by instances of the <see cref="UIElement"/> class.
         /// </summary>
-        private void InitializeElement(SedulousContext uv, Object instance, UvmlInstantiationContext context)
+        private void InitializeElement(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
         {
             var uiElement = instance as UIElement;
             if (uiElement == null)
@@ -165,7 +165,7 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Performs initialization required by instances of the <see cref="DependencyObject"/> class.
         /// </summary>
-        private void InitializeDependencyObject(SedulousContext uv, Object instance, UvmlInstantiationContext context)
+        private void InitializeDependencyObject(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
         {
             var dobj = instance as DependencyObject;
             if (dobj == null)
@@ -177,7 +177,7 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Performs initialization required by instances of the <see cref="ContentPresenter"/> class.
         /// </summary>
-        private void InitializeContentPresenter(SedulousContext uv, Object instance, UvmlInstantiationContext context)
+        private void InitializeContentPresenter(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
         {
             var contentPresenter = instance as ContentPresenter;
             if (contentPresenter == null)

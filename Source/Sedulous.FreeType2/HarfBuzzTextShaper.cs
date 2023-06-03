@@ -22,7 +22,7 @@ namespace Sedulous.FreeType2
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="capacity">The initial capacity of the text builder.</param>
-        public HarfBuzzTextShaper(SedulousContext uv, Int32 capacity = 0)
+        public HarfBuzzTextShaper(FrameworkContext uv, Int32 capacity = 0)
             : base(uv)
         {
             this.native = hb_buffer_create();
@@ -189,11 +189,11 @@ namespace Sedulous.FreeType2
         }
 
         /// <inheritdoc/>
-        public override void AppendTo(ShapedStringBuilder builder, SedulousFontFace fontFace, Int32 sourceIndexOffset = 0) =>
+        public override void AppendTo(ShapedStringBuilder builder, FrameworkFontFace fontFace, Int32 sourceIndexOffset = 0) =>
             AppendTo(builder, fontFace, 0, rawstr.Length, sourceIndexOffset);
 
         /// <inheritdoc/>
-        public override void AppendTo(ShapedStringBuilder builder, SedulousFontFace fontFace, Int32 start, Int32 length, Int32 sourceIndexOffset = 0)
+        public override void AppendTo(ShapedStringBuilder builder, FrameworkFontFace fontFace, Int32 start, Int32 length, Int32 sourceIndexOffset = 0)
         {
             Contract.Require(builder, nameof(builder));
             Contract.Require(fontFace, nameof(fontFace));
@@ -224,11 +224,11 @@ namespace Sedulous.FreeType2
         }
 
         /// <inheritdoc/>
-        public override ShapedString CreateShapedString(SedulousFontFace fontFace, Int32 sourceIndexOffset = 0) =>
+        public override ShapedString CreateShapedString(FrameworkFontFace fontFace, Int32 sourceIndexOffset = 0) =>
             CreateShapedString(fontFace, 0, rawstr.Length, sourceIndexOffset);
 
         /// <inheritdoc/>
-        public override ShapedString CreateShapedString(SedulousFontFace fontFace, Int32 start, Int32 length, Int32 sourceIndexOffset = 0)
+        public override ShapedString CreateShapedString(FrameworkFontFace fontFace, Int32 start, Int32 length, Int32 sourceIndexOffset = 0)
         {
             Contract.Require(fontFace, nameof(fontFace));
             Contract.EnsureRange(start >= 0 && start < rawstr.Length, nameof(start));
@@ -314,7 +314,7 @@ namespace Sedulous.FreeType2
         /// <summary>
         /// Performs shaping on the native buffer using the specified font..
         /// </summary>
-        private unsafe void Shape(SedulousFontFace fontFace, out hb_glyph_info_t* infos, out hb_glyph_position_t* positions, out UInt32 count)
+        private unsafe void Shape(FrameworkFontFace fontFace, out hb_glyph_info_t* infos, out hb_glyph_position_t* positions, out UInt32 count)
         {
             ValidateUnicodeProperties();
 

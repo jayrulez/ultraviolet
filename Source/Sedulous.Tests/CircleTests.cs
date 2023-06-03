@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class CircleTests : SedulousTestFramework
+    public class CircleTests : FrameworkTestFramework
     {
         [Test]
         public void Circle_IsConstructedProperly()
@@ -116,7 +116,7 @@ namespace Sedulous.Tests
         {
             var circle = new Circle(1, 2, 3);
             var json = JsonConvert.SerializeObject(circle,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1,""y"":2,""radius"":3}");
         }
@@ -126,7 +126,7 @@ namespace Sedulous.Tests
         {
             var circle = new Circle(1, 2, 3);
             var json = JsonConvert.SerializeObject((Circle?)circle, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1,""y"":2,""radius"":3}");
         }
@@ -137,7 +137,7 @@ namespace Sedulous.Tests
             const String json = @"{ ""x"":1,""y"":2,""radius"":3 }";
             
             var circle = JsonConvert.DeserializeObject<Circle>(json, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(circle)
                 .ShouldHavePosition(1, 2)
@@ -150,7 +150,7 @@ namespace Sedulous.Tests
             const String json1 = @"{ ""x"":1,""y"":2,""radius"":3 }";
 
             var circle1 = JsonConvert.DeserializeObject<Circle?>(json1, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(circle1.Value)
                 .ShouldHavePosition(1, 2)
@@ -159,7 +159,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var circle2 = JsonConvert.DeserializeObject<Circle?>(json2, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(circle2.HasValue)
                 .ShouldBe(false);

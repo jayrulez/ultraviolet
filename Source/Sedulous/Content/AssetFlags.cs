@@ -16,7 +16,7 @@ namespace Sedulous.Content
 
         /// <summary>
         /// The asset will not be removed from the content manager's cache during
-        /// a <see cref="SedulousMessages.LowMemory"/> event.
+        /// a <see cref="FrameworkMessages.LowMemory"/> event.
         /// </summary>
         PreserveThroughLowMemory = 0x0001,
     }

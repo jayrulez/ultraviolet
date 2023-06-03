@@ -9,14 +9,14 @@ namespace Sedulous.Content
     /// <summary>
     /// Contains methods for managing file watches for an instance of the <see cref="ContentManager"/> class.
     /// </summary>
-    public class ContentWatchManager : SedulousResource
+    public class ContentWatchManager : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentWatchManager"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="contentManager">The <see cref="ContentManager"/> instance that owns this file watcher.</param>
-        internal ContentWatchManager(SedulousContext uv, ContentManager contentManager)
+        internal ContentWatchManager(FrameworkContext uv, ContentManager contentManager)
             : base(uv)
         {
             Contract.Require(contentManager, nameof(contentManager));

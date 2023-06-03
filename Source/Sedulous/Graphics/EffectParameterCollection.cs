@@ -9,7 +9,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a collection of <see cref="EffectParameter"/> instances.
     /// </summary>
-    public abstract class EffectParameterCollection : SedulousNamedCollection<EffectParameter>, IEnumerable<EffectParameter>
+    public abstract class EffectParameterCollection : FrameworkNamedCollection<EffectParameter>, IEnumerable<EffectParameter>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EffectParameterCollection"/> class.
@@ -67,7 +67,7 @@ namespace Sedulous.Graphics
         /// <returns>An enumerator for the collection.</returns>
         public new List<EffectParameter>.Enumerator GetEnumerator()
         {
-            return ((SedulousCollection<EffectParameter>)this).GetEnumerator();
+            return ((FrameworkCollection<EffectParameter>)this).GetEnumerator();
         }
 
         /// <summary>

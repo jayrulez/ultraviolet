@@ -28,7 +28,7 @@ namespace Sedulous.Presentation
         /// <param name="root">The root element of the UVML template to load.</param>
         /// <param name="cultureInfo">The <see cref="CultureInfo"/> to use when parsing values.</param>
         /// <returns>The <see cref="DataTemplate"/> instance that was created from the specified UVML element.</returns>
-        public static DataTemplate FromUvml(SedulousContext uv, XElement root, CultureInfo cultureInfo = null)
+        public static DataTemplate FromUvml(FrameworkContext uv, XElement root, CultureInfo cultureInfo = null)
         {
             Contract.Require(uv, nameof(uv));
             Contract.Require(root, nameof(root));

@@ -8,13 +8,13 @@ namespace Sedulous.Presentation.Input
         /// <summary>
         /// Represents the game pad state of the current Sedulous context.
         /// </summary>
-        private class GamePadState : SedulousResource
+        private class GamePadState : FrameworkResource
         {
             /// <summary>
             /// Initializes a new instance of the <see cref="GamePadState"/> class.
             /// </summary>
             /// <param name="uv">The Sedulous context.</param>
-            public GamePadState(SedulousContext uv)
+            public GamePadState(FrameworkContext uv)
                 : base(uv)
             {
 

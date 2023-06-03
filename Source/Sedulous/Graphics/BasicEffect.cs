@@ -8,7 +8,7 @@ namespace Sedulous.Graphics
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="BasicEffect"/> that was created.</returns>
-    public delegate BasicEffect BasicEffectFactory(SedulousContext uv);
+    public delegate BasicEffect BasicEffectFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents a basic rendering effect.
@@ -41,7 +41,7 @@ namespace Sedulous.Graphics
         /// <returns>The instance of <see cref="BasicEffect"/> that was created.</returns>
         public static BasicEffect Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<BasicEffectFactory>()(uv);
         }
 

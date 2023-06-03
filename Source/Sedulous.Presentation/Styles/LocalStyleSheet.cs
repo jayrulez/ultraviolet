@@ -14,7 +14,7 @@ namespace Sedulous.Presentation.Styles
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="validating">A delegate which implements the <see cref="DelegateAssetWatcher{T}.OnValidating(String, T)"/> method.</param>
         /// <param name="validationComplete">A delegate which implements the <see cref="DelegateAssetWatcher{T}.OnValidationComplete(String, T, Boolean)"/> method.</param>
-        private LocalStyleSheet(SedulousContext uv, 
+        private LocalStyleSheet(FrameworkContext uv, 
             AssetWatcherValidatingHandler<UvssDocument> validating = null, AssetWatcherValidationCompleteHandler<UvssDocument> validationComplete = null)
             : base(uv)
         {
@@ -30,7 +30,7 @@ namespace Sedulous.Presentation.Styles
         /// <returns>The <see cref="LocalStyleSheet"/> which was created.</returns>
         public static LocalStyleSheet Create(AssetWatcherValidatingHandler<UvssDocument> validating = null, AssetWatcherValidationCompleteHandler<UvssDocument> validationComplete = null)
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return new LocalStyleSheet(uv, validating, validationComplete);
         }
 

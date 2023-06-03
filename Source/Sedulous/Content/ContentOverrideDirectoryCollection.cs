@@ -7,7 +7,7 @@ namespace Sedulous.Content
     /// <summary>
     /// Represents a collection of content override directories.
     /// </summary>
-    public sealed class ContentOverrideDirectoryCollection : SedulousCollection<String>, IDisposable
+    public sealed class ContentOverrideDirectoryCollection : FrameworkCollection<String>, IDisposable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentOverrideDirectoryCollection"/> class.

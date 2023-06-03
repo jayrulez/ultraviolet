@@ -14,7 +14,7 @@ namespace Sedulous.Presentation.Uvml
         /// <param name="instance">The object instance to mutate.</param>
         /// <param name="context">The current instantiation context.</param>
         /// <returns>The value which was instantiated.</returns>
-        public abstract Object InstantiateValue(SedulousContext uv, Object instance, UvmlInstantiationContext context);
+        public abstract Object InstantiateValue(FrameworkContext uv, Object instance, UvmlInstantiationContext context);
 
         /// <summary>
         /// Applies the mutation to the specified object instance.
@@ -22,7 +22,7 @@ namespace Sedulous.Presentation.Uvml
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="instance">The object instance to mutate.</param>
         /// <param name="context">The current instantiation context.</param>
-        public abstract void Mutate(SedulousContext uv, Object instance, UvmlInstantiationContext context);
+        public abstract void Mutate(FrameworkContext uv, Object instance, UvmlInstantiationContext context);
 
         /// <summary>
         /// Applies the mutation to the specified object instance using the specified precomputed value.
@@ -31,7 +31,7 @@ namespace Sedulous.Presentation.Uvml
         /// <param name="instance">The object instance to mutate.</param>
         /// <param name="value">The precomputed value to apply with the mutation.</param>
         /// <param name="context">The current instantiation context.</param>
-        public abstract void Mutate(SedulousContext uv, Object instance, Object value, UvmlInstantiationContext context);
+        public abstract void Mutate(FrameworkContext uv, Object instance, Object value, UvmlInstantiationContext context);
 
         /// <summary>
         /// Processes the specified value for use by a mutator.

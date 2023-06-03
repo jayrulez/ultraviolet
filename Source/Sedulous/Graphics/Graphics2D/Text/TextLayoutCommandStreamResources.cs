@@ -167,7 +167,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// </summary>
         /// <param name="name">The name of the font to retrieve.</param>
         /// <returns>The registered font with the specified name.</returns>
-        public SedulousFont GetFont(StringSegment name)
+        public FrameworkFont GetFont(StringSegment name)
         {
             if (fontsByName == null)
                 return null;
@@ -184,7 +184,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// </summary>
         /// <param name="index">The index of the registered font to retrieve.</param>
         /// <returns>The registered font at the specified index within the command stream's internal registry.</returns>
-        public SedulousFont GetFont(Int16 index)
+        public FrameworkFont GetFont(Int16 index)
         {
             if (fonts == null)
                 throw new IndexOutOfRangeException(nameof(index));
@@ -257,7 +257,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
             index = (Int16)sources.Count;
 
             if (index > Int16.MaxValue)
-                throw new InvalidOperationException(SedulousStrings.LayoutEngineHasTooManyStringSources);
+                throw new InvalidOperationException(FrameworkStrings.LayoutEngineHasTooManyStringSources);
 
             sources.Add(source);
             sourcesByReference[source] = index;
@@ -307,12 +307,12 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="name">The name that identifies the font.</param>
         /// <param name="font">The font to register.</param>
         /// <returns>The index of the font within the command stream's internal registry.</returns>
-        public Int16 RegisterFont(StringSegment name, SedulousFont font)
+        public Int16 RegisterFont(StringSegment name, FrameworkFont font)
         {
             Contract.Require(font, nameof(font));
 
             if (fonts == null)
-                fonts = new List<SedulousFont>();
+                fonts = new List<FrameworkFont>();
 
             if (fontsByName == null)
                 fontsByName = new Dictionary<StringSegmentKey, Int16>();
@@ -366,7 +366,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
             index = (Int16)resourcesList.Count;
 
             if (index > Int16.MaxValue)
-                throw new InvalidOperationException(SedulousStrings.LayoutEngineHasTooManyResources);
+                throw new InvalidOperationException(FrameworkStrings.LayoutEngineHasTooManyResources);
 
             resourcesList.Add(resource);
 
@@ -389,7 +389,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         private Dictionary<StringSegmentKey, Int16> iconsByName;
 
         // Font registry
-        private List<SedulousFont> fonts = new List<SedulousFont>();
+        private List<FrameworkFont> fonts = new List<FrameworkFont>();
         private Dictionary<StringSegmentKey, Int16> fontsByName;
 
         // Glyph shader registry

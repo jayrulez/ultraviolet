@@ -14,7 +14,7 @@ namespace Sedulous.Graphics
     /// <param name="bytesPerPixel">The number of bytes which represent each pixel in the raw data.</param>
     /// <param name="options">The texture's configuration options.</param>
     /// <returns>The instance of <see cref="Texture3D"/> that was created.</returns>
-    public delegate Texture3D Texture3DFromRawDataFactory(SedulousContext uv, IList<IntPtr> layers, Int32 width, Int32 height, Int32 bytesPerPixel, TextureOptions options);
+    public delegate Texture3D Texture3DFromRawDataFactory(FrameworkContext uv, IList<IntPtr> layers, Int32 width, Int32 height, Int32 bytesPerPixel, TextureOptions options);
 
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Texture3D"/> class.
@@ -25,7 +25,7 @@ namespace Sedulous.Graphics
     /// <param name="depth">The texture's depth in layers.</param>
     /// <param name="options">The texture's configuration options.</param>
     /// <returns>The instance of <see cref="Texture3D"/> that was created.</returns>
-    public delegate Texture3D Texture3DFactory(SedulousContext uv, Int32 width, Int32 height, Int32 depth, TextureOptions options);
+    public delegate Texture3D Texture3DFactory(FrameworkContext uv, Int32 width, Int32 height, Int32 depth, TextureOptions options);
 
     /// <summary>
     /// Represents a three-dimensional texture.
@@ -36,7 +36,7 @@ namespace Sedulous.Graphics
         /// Initializes a new instance of the <see cref="Texture3D"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public Texture3D(SedulousContext uv)
+        public Texture3D(FrameworkContext uv)
             : base(uv)
         {
 
@@ -56,7 +56,7 @@ namespace Sedulous.Graphics
             Contract.EnsureRange(height > 0, nameof(height));
             Contract.EnsureRange(depth > 0, nameof(depth));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<Texture3DFactory>()(uv, width, height, depth, options);
         }
 
@@ -76,7 +76,7 @@ namespace Sedulous.Graphics
             Contract.EnsureRange(height > 0, nameof(height));
             Contract.EnsureRange(bytesPerPixel == 3 || bytesPerPixel == 4, nameof(bytesPerPixel));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<Texture3DFromRawDataFactory>()(uv, layers, width, height, bytesPerPixel, options);
         }
 
@@ -112,7 +112,7 @@ namespace Sedulous.Graphics
             Contract.EnsureRange(height > 0, nameof(height));
             Contract.Require(flushed, nameof(flushed));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<DynamicTexture3DFactory>()(uv, width, height, depth, options, state, flushed);
         }
 

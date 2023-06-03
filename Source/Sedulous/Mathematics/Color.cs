@@ -12,7 +12,7 @@ namespace Sedulous
     /// Represents an RGBA color.
     /// </summary>
     [Serializable]
-    [JsonConverter(typeof(SedulousJsonConverter))]
+    [JsonConverter(typeof(FrameworkJsonConverter))]
     public partial struct Color : IEquatable<Color>, IInterpolatable<Color>
     {
         /// <summary>

@@ -7,7 +7,7 @@ namespace Sedulous.Graphics
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="SkinnedEffect"/> that was created.</returns>
-    public delegate SkinnedEffect SkinnedEffectFactory(SedulousContext uv);
+    public delegate SkinnedEffect SkinnedEffectFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents a basic rendering effect.
@@ -40,7 +40,7 @@ namespace Sedulous.Graphics
         /// <returns>The instance of <see cref="SkinnedEffect"/> that was created.</returns>
         public static SkinnedEffect Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<SkinnedEffectFactory>()(uv);
         }
 

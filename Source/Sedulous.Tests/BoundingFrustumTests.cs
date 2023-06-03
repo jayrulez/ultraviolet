@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class BoundingFrustumTests : SedulousTestFramework
+    public class BoundingFrustumTests : FrameworkTestFramework
     {
         [Test]
         public void BoundingFrustum_ConstructorSetsValues()
@@ -453,7 +453,7 @@ namespace Sedulous.Tests
             var matrix = frustum.Matrix;
 
             var json = JsonConvert.SerializeObject(frustum, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""matrix"":[" + 
                 matrix.M11.ToString("r") + ",0.0,0.0,0.0,0.0," + 
@@ -468,7 +468,7 @@ namespace Sedulous.Tests
             const String json = @"{""matrix"":[1.81066,0.0,0.0,0.0,0.0,2.41421342,0.0,0.0,0.0,0.0,-1.001001,-1.0,0.0,0.0,4.004004,5.0]}";
 
             var frustum1 = JsonConvert.DeserializeObject<BoundingFrustum>(json, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(frustum1.Near).WithinDelta(0.0001f)
                 .ShouldHaveNormal(0f, 0f, 1f).ShouldHaveDistance(-4f);
@@ -486,7 +486,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var frustum2 = JsonConvert.DeserializeObject<BoundingFrustum>(json2, 
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingObject(frustum2)
                 .ShouldBeNull();

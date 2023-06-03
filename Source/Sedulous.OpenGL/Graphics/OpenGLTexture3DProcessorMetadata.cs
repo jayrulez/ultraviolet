@@ -41,7 +41,7 @@ namespace Sedulous.OpenGL.Graphics
 
         /// <summary>
         /// Gets or sets a value indicating whether the texture is SRGB encoded. If no value is provided,
-        /// the default specified by the <see cref="SedulousContextProperties.SrgbDefaultForTexture3D"/>
+        /// the default specified by the <see cref="FrameworkContextProperties.SrgbDefaultForTexture3D"/>
         /// property is used.
         /// </summary>
         public Boolean? SrgbEncoded { get; private set; }

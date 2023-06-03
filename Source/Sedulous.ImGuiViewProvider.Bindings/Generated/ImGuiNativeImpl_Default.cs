@@ -15,12 +15,12 @@ namespace Sedulous.ImGuiViewProvider.Bindings
         
         static ImGuiNativeImpl_Default()
         {
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Linux:
+                case FrameworkPlatform.Linux:
                     lib = new NativeLibrary("libcimgui");
                     break;
-                case SedulousPlatform.macOS:
+                case FrameworkPlatform.macOS:
                     lib = new NativeLibrary("libcimgui");
                     break;
                 default:

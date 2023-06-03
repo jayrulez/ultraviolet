@@ -13,7 +13,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public Shape(SedulousContext uv, String name)
+        public Shape(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
@@ -42,6 +42,6 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <value>The identifier for the <see cref="FillColor"/> dependency property.</value>
         public static readonly DependencyProperty FillColorProperty = DependencyProperty.Register("FillColor", typeof(Color), typeof(Shape),
-            new PropertyMetadata<Color>(SedulousBoxedValues.Color.White));        
+            new PropertyMetadata<Color>(FrameworkBoxedValues.Color.White));        
     }
 }

@@ -5,13 +5,13 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents an effect parameter.
     /// </summary>
-    public abstract class EffectParameter : SedulousResource
+    public abstract class EffectParameter : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EffectParameter"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public EffectParameter(SedulousContext uv)
+        public EffectParameter(FrameworkContext uv)
             : base(uv)
         {
 

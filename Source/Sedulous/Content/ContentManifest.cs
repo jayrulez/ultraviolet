@@ -13,7 +13,7 @@ namespace Sedulous.Content
     /// <summary>
     /// Represents a manifest containing a list of related content assets.
     /// </summary>
-    public sealed class ContentManifest : SedulousNamedCollection<ContentManifestGroup>
+    public sealed class ContentManifest : FrameworkNamedCollection<ContentManifestGroup>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentManifest"/> class.
@@ -125,7 +125,7 @@ namespace Sedulous.Content
 
             var name = xml.Root.AttributeValueString("Name");
             if (String.IsNullOrEmpty(name))
-                throw new InvalidDataException(SedulousStrings.InvalidContentManifestName);
+                throw new InvalidDataException(FrameworkStrings.InvalidContentManifestName);
 
             var groups = xml.Root.Elements("ContentGroup") ?? Enumerable.Empty<XElement>();
             return new ContentManifest(name, groups);
@@ -144,7 +144,7 @@ namespace Sedulous.Content
             {
                 using (var jreader = new JsonTextReader(sreader))
                 {
-                    var serializer = JsonSerializer.CreateDefault(SedulousJsonSerializerSettings.Instance);
+                    var serializer = JsonSerializer.CreateDefault(FrameworkJsonSerializerSettings.Instance);
                     var desc = serializer.Deserialize<ContentManifestDescription>(jreader);
                     return new ContentManifest(desc);
                 }

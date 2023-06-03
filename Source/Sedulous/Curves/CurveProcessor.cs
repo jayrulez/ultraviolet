@@ -66,7 +66,7 @@ namespace Sedulous
         {
             var asset = input.Root.Element("Asset");
             if (asset == null || asset.AttributeValueString("Type") != "Framework:Curve")
-                throw new InvalidDataException(SedulousStrings.InvalidCurveData);
+                throw new InvalidDataException(FrameworkStrings.InvalidCurveData);
 
             var preLoop  = asset.ElementValue<CurveLoopType>("PreLoop");
             var postLoop = asset.ElementValue<CurveLoopType>("PostLoop");
@@ -76,7 +76,7 @@ namespace Sedulous
             var keysString     = asset.ElementValueString("Keys");
             var keysComponents = keysString.Split((Char[])null, StringSplitOptions.RemoveEmptyEntries);
             if (keysComponents.Length % ComponentsPerKey != 0)
-                throw new InvalidDataException(SedulousStrings.InvalidCurveData);
+                throw new InvalidDataException(FrameworkStrings.InvalidCurveData);
 
             var curveKeyCollection = new List<CubicSplineCurveKey<Single>>();
             var curveKeyContinuities = new List<CurveContinuity>();

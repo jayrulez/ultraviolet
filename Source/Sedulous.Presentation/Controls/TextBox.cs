@@ -34,7 +34,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public TextBox(SedulousContext uv, String name)
+        public TextBox(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
@@ -570,7 +570,7 @@ namespace Sedulous.Presentation.Controls
             if (!font.IsLoaded)
                 return;
 
-            var fontFace = font.Resource.Value.GetFace(SedulousFontStyle.Regular);
+            var fontFace = font.Resource.Value.GetFace(FrameworkFontStyle.Regular);
             var fontLineHeight = fontFace.LineSpacing;
 
             var scrollViewer = TextEditorScrollViewer;
@@ -588,7 +588,7 @@ namespace Sedulous.Presentation.Controls
             if (!font.IsLoaded)
                 return;
 
-            var fontFace = font.Resource.Value.GetFace(SedulousFontStyle.Regular);
+            var fontFace = font.Resource.Value.GetFace(FrameworkFontStyle.Regular);
             var fontLineHeight = fontFace.LineSpacing;
 
             var scrollViewer = TextEditorScrollViewer;

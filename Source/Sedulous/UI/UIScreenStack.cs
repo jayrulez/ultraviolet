@@ -12,7 +12,7 @@ namespace Sedulous.UI
     /// <summary>
     /// Represents a window's stack of active screens.
     /// </summary>
-    public sealed partial class UIScreenStack : SedulousResource, IEnumerable<UIScreen>
+    public sealed partial class UIScreenStack : FrameworkResource, IEnumerable<UIScreen>
     {
         /// <summary>
         /// Represents a screen that is waiting for another screen to close before being opened.
@@ -35,7 +35,7 @@ namespace Sedulous.UI
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="window">The window that owns the screen stack.</param>
-        internal UIScreenStack(SedulousContext uv, ISedulousWindow window)
+        internal UIScreenStack(FrameworkContext uv, IFrameworkWindow window)
             : base(uv)
         {
             this.window = window;
@@ -58,9 +58,9 @@ namespace Sedulous.UI
         /// <summary>
         /// Draws the screens in the stack.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="spriteBatch">The <see cref="SpriteBatch"/> with which to draw the screen stack's screens.</param>
-        public void Draw(SedulousTime time, SpriteBatch spriteBatch)
+        public void Draw(FrameworkTime time, SpriteBatch spriteBatch)
         {
             Contract.Require(spriteBatch, nameof(spriteBatch));
 
@@ -78,8 +78,8 @@ namespace Sedulous.UI
         /// <summary>
         /// Updates the screen stack's state.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        public void Update(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        public void Update(FrameworkTime time)
         {
             RemoveClosedScreensFromStack();
 
@@ -100,7 +100,7 @@ namespace Sedulous.UI
             Contract.Require(screen, nameof(screen));
 
             if (!screens.Remove(screen))
-                throw new ArgumentException(SedulousStrings.ScreenNotInStack);
+                throw new ArgumentException(FrameworkStrings.ScreenNotInStack);
 
             screens.AddLast(screen);
         }
@@ -114,7 +114,7 @@ namespace Sedulous.UI
             Contract.Require(screen, nameof(screen));
 
             if (!screens.Remove(screen))
-                throw new ArgumentException(SedulousStrings.ScreenNotInStack);
+                throw new ArgumentException(FrameworkStrings.ScreenNotInStack);
 
             screens.AddFirst(screen);
         }
@@ -130,10 +130,10 @@ namespace Sedulous.UI
             Contract.Require(screen, nameof(screen));
 
             if (screens.Contains(screen))
-                throw new ArgumentException(SedulousStrings.ScreenAlreadyInStack);
+                throw new ArgumentException(FrameworkStrings.ScreenAlreadyInStack);
 
             if (screen.Window != null)
-                throw new ArgumentException(SedulousStrings.ScreenOpenInAnotherStack);
+                throw new ArgumentException(FrameworkStrings.ScreenOpenInAnotherStack);
 
             screens.AddLast(screen);
             screen.Window = window;
@@ -153,10 +153,10 @@ namespace Sedulous.UI
             Contract.Require(screen, nameof(screen));
 
             if (screens.Contains(screen))
-                throw new ArgumentException(SedulousStrings.ScreenAlreadyInStack);
+                throw new ArgumentException(FrameworkStrings.ScreenAlreadyInStack);
 
             if (screen.Window != null)
-                throw new ArgumentException(SedulousStrings.ScreenOpenInAnotherStack);
+                throw new ArgumentException(FrameworkStrings.ScreenOpenInAnotherStack);
 
             screens.AddLast(screen);
             screen.Window = window;
@@ -178,14 +178,14 @@ namespace Sedulous.UI
             Contract.Require(screenAbove, nameof(screenAbove));
 
             if (screens.Contains(screenToOpen))
-                throw new ArgumentException(SedulousStrings.ScreenAlreadyInStack);
+                throw new ArgumentException(FrameworkStrings.ScreenAlreadyInStack);
 
             if (screenToOpen.Window != null)
-                throw new ArgumentException(SedulousStrings.ScreenOpenInAnotherStack);
+                throw new ArgumentException(FrameworkStrings.ScreenOpenInAnotherStack);
 
             var node = screens.Find(screenAbove);
             if (node == null)
-                throw new ArgumentException(SedulousStrings.ScreenNotInStack);
+                throw new ArgumentException(FrameworkStrings.ScreenNotInStack);
 
             screens.AddBefore(node, screenToOpen);
             screenToOpen.Window = window;
@@ -208,14 +208,14 @@ namespace Sedulous.UI
             Contract.Require(screenAbove, nameof(screenAbove));
 
             if (screens.Contains(screenToOpen))
-                throw new ArgumentException(SedulousStrings.ScreenAlreadyInStack);
+                throw new ArgumentException(FrameworkStrings.ScreenAlreadyInStack);
 
             if (screenToOpen.Window != null)
-                throw new ArgumentException(SedulousStrings.ScreenOpenInAnotherStack);
+                throw new ArgumentException(FrameworkStrings.ScreenOpenInAnotherStack);
 
             var node = screens.Find(screenAbove);
             if (node == null)
-                throw new ArgumentException(SedulousStrings.ScreenNotInStack);
+                throw new ArgumentException(FrameworkStrings.ScreenNotInStack);
 
             screens.AddBefore(node, screenToOpen);
             screenToOpen.Window = window;
@@ -237,14 +237,14 @@ namespace Sedulous.UI
             Contract.Require(screenBelow, nameof(screenBelow));
 
             if (screens.Contains(screenToOpen))
-                throw new ArgumentException(SedulousStrings.ScreenAlreadyInStack);
+                throw new ArgumentException(FrameworkStrings.ScreenAlreadyInStack);
 
             if (screenToOpen.Window != null)
-                throw new ArgumentException(SedulousStrings.ScreenOpenInAnotherStack);
+                throw new ArgumentException(FrameworkStrings.ScreenOpenInAnotherStack);
 
             var node = screens.Find(screenBelow);
             if (node == null)
-                throw new ArgumentException(SedulousStrings.ScreenNotInStack);
+                throw new ArgumentException(FrameworkStrings.ScreenNotInStack);
 
             screens.AddAfter(node, screenToOpen);
             screenToOpen.Window = window;
@@ -267,14 +267,14 @@ namespace Sedulous.UI
             Contract.Require(screenBelow, nameof(screenBelow));
 
             if (screens.Contains(screenToOpen))
-                throw new ArgumentException(SedulousStrings.ScreenAlreadyInStack);
+                throw new ArgumentException(FrameworkStrings.ScreenAlreadyInStack);
 
             if (screenToOpen.Window != null)
-                throw new ArgumentException(SedulousStrings.ScreenOpenInAnotherStack);
+                throw new ArgumentException(FrameworkStrings.ScreenOpenInAnotherStack);
 
             var node = screens.Find(screenBelow);
             if (node == null)
-                throw new ArgumentException(SedulousStrings.ScreenNotInStack);
+                throw new ArgumentException(FrameworkStrings.ScreenNotInStack);
 
             screens.AddAfter(node, screenToOpen);
             screenToOpen.Window = window;
@@ -433,7 +433,7 @@ namespace Sedulous.UI
             Contract.Require(opening, nameof(opening));
 
             if (!Contains(closing))
-                throw new InvalidOperationException(SedulousStrings.ScreenNotInStack);
+                throw new InvalidOperationException(FrameworkStrings.ScreenNotInStack);
 
             return CloseThenOpenInternal(closing, closing.DefaultCloseTransitionDuration, opening, opening.DefaultOpenTransitionDuration);
         }
@@ -452,7 +452,7 @@ namespace Sedulous.UI
             Contract.Require(opening, nameof(opening));
 
             if (!Contains(closing))
-                throw new InvalidOperationException(SedulousStrings.ScreenNotInStack);
+                throw new InvalidOperationException(FrameworkStrings.ScreenNotInStack);
 
             return CloseThenOpenInternal(closing, closingDuration, opening, openingDuration);
         }
@@ -476,7 +476,7 @@ namespace Sedulous.UI
         public UIScreen Peek()
         {
             if (screens.Count == 0)
-                throw new InvalidOperationException(SedulousStrings.StackIsEmpty);
+                throw new InvalidOperationException(FrameworkStrings.StackIsEmpty);
 
             return screens.Last.Value;
         }
@@ -484,7 +484,7 @@ namespace Sedulous.UI
         /// <summary>
         /// Gets the window that owns the screen stack.
         /// </summary>
-        public ISedulousWindow Window
+        public IFrameworkWindow Window
         {
             get { return window; }
         }
@@ -619,7 +619,7 @@ namespace Sedulous.UI
         }
 
         // Property values.
-        private readonly ISedulousWindow window;
+        private readonly IFrameworkWindow window;
 
         // The current list of active screens.
         private readonly PooledLinkedList<UIScreen> screens = new PooledLinkedList<UIScreen>();

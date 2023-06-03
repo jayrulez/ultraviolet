@@ -8,7 +8,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a collection of images that have been composited onto a single texture.
     /// </summary>
-    public sealed partial class TextureAtlas : SedulousResource, IEnumerable<KeyValuePair<String, Rectangle>>
+    public sealed partial class TextureAtlas : FrameworkResource, IEnumerable<KeyValuePair<String, Rectangle>>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TextureAtlas"/> class.

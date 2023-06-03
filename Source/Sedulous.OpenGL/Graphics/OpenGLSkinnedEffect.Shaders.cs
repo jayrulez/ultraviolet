@@ -12,7 +12,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The effect implementation.</returns>
-        private static EffectImplementation CreateEffectImplementation(SedulousContext uv)
+        private static EffectImplementation CreateEffectImplementation(FrameworkContext uv)
         {
             Contract.Require(uv, nameof(uv));
 
@@ -30,27 +30,27 @@ namespace Sedulous.OpenGL.Graphics
         }
 
         // An array containing all of the vertex shaders used by this effect.
-        private static readonly SedulousSingleton<OpenGLVertexShader>[] VSArray = new[]
+        private static readonly FrameworkSingleton<OpenGLVertexShader>[] VSArray = new[]
         {
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("SkinnedEffect_VSSkinnedVertexLightingOneBone.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("SkinnedEffect_VSSkinnedVertexLightingTwoBones.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("SkinnedEffect_VSSkinnedVertexLightingFourBones.vert")); }),
 
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("SkinnedEffect_VSSkinnedOneLightOneBone.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("SkinnedEffect_VSSkinnedOneLightTwoBones.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("SkinnedEffect_VSSkinnedOneLightFourBones.vert")); }),
 
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("SkinnedEffect_VSSkinnedPixelLightingOneBone.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("SkinnedEffect_VSSkinnedPixelLightingTwoBones.vert")); }),
-            new SedulousSingleton<OpenGLVertexShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLVertexShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLVertexShader(uv, ResourceUtil.ReadShaderResourceString("SkinnedEffect_VSSkinnedPixelLightingFourBones.vert")); }),
         };
 
@@ -80,13 +80,13 @@ namespace Sedulous.OpenGL.Graphics
         };
 
         // An array containing all of the fragment shaders used by this effect.
-        private static readonly SedulousSingleton<OpenGLFragmentShader>[] PSArray = new[]
+        private static readonly FrameworkSingleton<OpenGLFragmentShader>[] PSArray = new[]
         {
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("SkinnedEffect_PSSkinnedVertexLighting.frag")); }),
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("SkinnedEffect_PSSkinnedVertexLightingNoFog.frag")); }),
-            new SedulousSingleton<OpenGLFragmentShader>(SedulousSingletonFlags.DisabledInServiceMode | SedulousSingletonFlags.Lazy,
+            new FrameworkSingleton<OpenGLFragmentShader>(FrameworkSingletonFlags.DisabledInServiceMode | FrameworkSingletonFlags.Lazy,
                 uv => { return new OpenGLFragmentShader(uv, ResourceUtil.ReadShaderResourceString("SkinnedEffect_PSSkinnedPixelLighting.frag")); }),
         };
 

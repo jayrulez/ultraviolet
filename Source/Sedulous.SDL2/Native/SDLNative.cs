@@ -11,9 +11,9 @@ namespace Sedulous.SDL2.Native
         
         static SDLNative()
         {
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Android:
+                case FrameworkPlatform.Android:
                     impl = new SDLNativeImpl_Android();
                     break;
                     

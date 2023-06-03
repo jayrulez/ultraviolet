@@ -10,8 +10,8 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Updates the controller.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        public void Update(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        public void Update(FrameworkTime time)
         {
             if (IsPlaying)
             {

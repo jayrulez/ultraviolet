@@ -14,13 +14,13 @@ namespace Sedulous.SDL2.Input
     /// <summary>
     /// Represents the SDL2 implementation of the MouseDevice class.
     /// </summary>
-    public sealed class SDL2MouseDevice : MouseDevice, IMessageSubscriber<SedulousMessageID>
+    public sealed class SDL2MouseDevice : MouseDevice, IMessageSubscriber<FrameworkMessageID>
     {
         /// <summary>
         /// Initializes a new instance of the SDL2MouseDevice class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public SDL2MouseDevice(SedulousContext uv)
+        public SDL2MouseDevice(FrameworkContext uv)
             : base(uv)
         {
             this.window = Sedulous.GetPlatform().Windows.GetPrimary();
@@ -29,13 +29,13 @@ namespace Sedulous.SDL2.Input
             this.states = new InternalButtonState[buttonCount];
 
             uv.Messages.Subscribe(this,
-                SDL2SedulousMessages.SDLEvent);
+                SDL2FrameworkMessages.SDLEvent);
         }
 
         /// <inheritdoc/>
-        void IMessageSubscriber<SedulousMessageID>.ReceiveMessage(SedulousMessageID type, MessageData data)
+        void IMessageSubscriber<FrameworkMessageID>.ReceiveMessage(FrameworkMessageID type, MessageData data)
         {
-            if (type == SDL2SedulousMessages.SDLEvent)
+            if (type == SDL2FrameworkMessages.SDLEvent)
             {
                 var evt = ((SDL2EventMessageData)data).Event;
                 switch (evt.type)
@@ -105,13 +105,13 @@ namespace Sedulous.SDL2.Input
         }
 
         /// <inheritdoc/>
-        public override void Update(SedulousTime time)
+        public override void Update(FrameworkTime time)
         {
 
         }
 
         /// <inheritdoc/>
-        public override void WarpToWindow(ISedulousWindow window, Int32 x, Int32 y)
+        public override void WarpToWindow(IFrameworkWindow window, Int32 x, Int32 y)
         {
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.Require(window, nameof(window));
@@ -120,7 +120,7 @@ namespace Sedulous.SDL2.Input
         }
 
         /// <inheritdoc/>
-        public override void WarpToWindowCenter(ISedulousWindow window)
+        public override void WarpToWindowCenter(IFrameworkWindow window)
         {
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.Require(window, nameof(window));
@@ -136,7 +136,7 @@ namespace Sedulous.SDL2.Input
 
             var primary = Sedulous.GetPlatform().Windows.GetPrimary();
             if (primary == null)
-                throw new InvalidOperationException(SedulousStrings.NoPrimaryWindow);
+                throw new InvalidOperationException(FrameworkStrings.NoPrimaryWindow);
 
             primary.WarpMouseWithinWindow(x, y);
         }
@@ -148,14 +148,14 @@ namespace Sedulous.SDL2.Input
 
             var primary = Sedulous.GetPlatform().Windows.GetPrimary();
             if (primary == null)
-                throw new InvalidOperationException(SedulousStrings.NoPrimaryWindow);
+                throw new InvalidOperationException(FrameworkStrings.NoPrimaryWindow);
 
             var size = primary.ClientSize;
             primary.WarpMouseWithinWindow(size.Width / 2, size.Height / 2);
         }
 
         /// <inheritdoc/>
-        public override Point2? GetPositionInWindow(ISedulousWindow window)
+        public override Point2? GetPositionInWindow(IFrameworkWindow window)
         {
             Contract.Require(window, nameof(window));
 
@@ -241,7 +241,7 @@ namespace Sedulous.SDL2.Input
         }
 
         /// <inheritdoc/>
-        public override ISedulousWindow Window => window;
+        public override IFrameworkWindow Window => window;
 
         /// <inheritdoc/>
         public override Point2 Position => new Point2(x, y);
@@ -422,7 +422,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void Register(UInt32 windowID)
         {
-            var input = (SDL2SedulousInput)Sedulous.GetInput();
+            var input = (SDL2FrameworkInput)Sedulous.GetInput();
             if (input.RegisterMouseDevice(this))
             {
                 isRegistered = true;
@@ -468,7 +468,7 @@ namespace Sedulous.SDL2.Input
         private Int32 wheelDeltaX;
         private Int32 wheelDeltaY;
         private Boolean isRegistered;
-        private ISedulousWindow window;
+        private IFrameworkWindow window;
 
         // State values.
         private InternalButtonState[] states;

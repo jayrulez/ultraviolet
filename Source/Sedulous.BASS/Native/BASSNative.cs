@@ -11,9 +11,9 @@ namespace Sedulous.BASS.Native
         
         static BASSNative()
         {
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Android:
+                case FrameworkPlatform.Android:
                     impl = new BASSNativeImpl_Android();
                     break;
                     

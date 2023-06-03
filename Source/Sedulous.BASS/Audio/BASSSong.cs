@@ -19,7 +19,7 @@ namespace Sedulous.BASS.Audio
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="file">The path to the file from which to stream the song.</param>
-        public BASSSong(SedulousContext uv, String file)
+        public BASSSong(FrameworkContext uv, String file)
             : base(uv)
         {
             Contract.RequireNotEmpty(file, nameof(file));

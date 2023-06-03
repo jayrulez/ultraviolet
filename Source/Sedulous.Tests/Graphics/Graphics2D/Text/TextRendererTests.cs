@@ -12,7 +12,7 @@ using Sedulous.TestFramework.Graphics.Graphics2D.Text;
 namespace Sedulous.Tests.Graphics.Graphics2D.Text
 {
     [TestFixture]
-    public class TextRendererTests : SedulousApplicationTestFramework
+    public class TextRendererTests : FrameworkApplicationTestFramework
     {
         [Test]
         [Category("Rendering")]
@@ -1408,7 +1408,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         [Description("Ensures that the TextRenderer class correctly renders text which makes use of fallback fonts.")]
         public void TextRenderer_CorrectlyRendersFallbackFonts(ColorEncoding encoding)
         {
-            var emojiFont = default(SedulousFont);
+            var emojiFont = default(FrameworkFont);
             var content = new TextRendererTestContent(
                 "😀Lorem ipsum😀 dolor sit 😀🤣😀 amet 🤣 😀", TextParserOptions.IgnoreCommandCodes);
 
@@ -1426,7 +1426,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithContent(manager =>
                 {
                     content.LoadFreeType(manager);
-                    emojiFont = manager.Load<SedulousFont>("Fonts/NotoColorEmoji");
+                    emojiFont = manager.Load<FrameworkFont>("Fonts/NotoColorEmoji");
                 })
                 .Render(uv =>
                 {

@@ -15,7 +15,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public RangeBase(SedulousContext uv, String name)
+        public RangeBase(FrameworkContext uv, String name)
             : base(uv, name)
         {
 

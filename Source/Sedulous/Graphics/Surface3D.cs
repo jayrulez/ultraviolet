@@ -15,7 +15,7 @@ namespace Sedulous.Graphics
     /// <param name="bytesPerPixel">The number of bytes used to represent a pixel on the surface.</param>
     /// <param name="options">The surface's configuration options.</param>
     /// <returns>The instance of <see cref="Surface3D"/> that was created.</returns>
-    public delegate Surface3D Surface3DFactory(SedulousContext uv, Int32 width, Int32 height, Int32 depth, Int32 bytesPerPixel, SurfaceOptions options);
+    public delegate Surface3D Surface3DFactory(FrameworkContext uv, Int32 width, Int32 height, Int32 depth, Int32 bytesPerPixel, SurfaceOptions options);
 
     /// <summary>
     /// Represents a three-dimensional image which is held in CPU memory.
@@ -26,7 +26,7 @@ namespace Sedulous.Graphics
         /// Initializes a new instance of the <see cref="Surface3D"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public Surface3D(SedulousContext uv)
+        public Surface3D(FrameworkContext uv)
             : base(uv)
         {
 
@@ -60,7 +60,7 @@ namespace Sedulous.Graphics
             Contract.Ensure(height > 0, nameof(height));
             Contract.Ensure(depth > 0, nameof(depth));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<Surface3DFactory>()(uv, width, height, depth, bytesPerPixel, options);
         }
 
@@ -135,7 +135,7 @@ namespace Sedulous.Graphics
 
         /// <summary>
         /// Gets or sets a value indicating whether the surface's data is SRGB encoded. The default value of this property
-        /// is determined by the value of the <see cref="SedulousContextProperties.SrgbDefaultForSurface3D"/> property.
+        /// is determined by the value of the <see cref="FrameworkContextProperties.SrgbDefaultForSurface3D"/> property.
         /// </summary>
         /// <remarks>Sedulous does not require that all of a 3D surface's layers match this property until the surface
         /// is converted to a texture. At that point, any mismatch will cause an exception to be thrown.</remarks>

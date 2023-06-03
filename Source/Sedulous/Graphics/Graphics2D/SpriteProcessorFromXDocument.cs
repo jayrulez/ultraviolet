@@ -96,15 +96,15 @@ namespace Sedulous.Graphics.Graphics2D
 
                     // VALIDATION: Both atlas and texture specified
                     if (frameDescription.Atlas != null && frameDescription.Texture != null)
-                        throw new InvalidDataException(SedulousStrings.SpriteContainsBothTextureAndAtlas);
+                        throw new InvalidDataException(FrameworkStrings.SpriteContainsBothTextureAndAtlas);
 
                     // VALIDATION: Atlas cell, but no atlas
                     if (frameDescription.Atlas == null && frameDescription.AtlasCell != null)
-                        throw new InvalidDataException(SedulousStrings.SpriteContainsCellButNoAtlas);
+                        throw new InvalidDataException(FrameworkStrings.SpriteContainsCellButNoAtlas);
 
                     // VALIDATION: Atlas, but no atlas cell
                     if (frameDescription.Atlas != null && frameDescription.AtlasCell == null)
-                        throw new InvalidDataException(SedulousStrings.SpriteContainsAtlasButNoCell);
+                        throw new InvalidDataException(FrameworkStrings.SpriteContainsAtlasButNoCell);
 
                     frameList.Add(frameDescription);
                 }

@@ -7,19 +7,19 @@ namespace Sedulous.Graphics
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="GeometryStream"/> that was created.</returns>
-    public delegate GeometryStream GeometryStreamFactory(SedulousContext uv);
+    public delegate GeometryStream GeometryStreamFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents a buffer containing references to vertex and index data and which
     /// can stream geometry to the graphics device.
     /// </summary>
-    public abstract class GeometryStream : SedulousResource
+    public abstract class GeometryStream : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GeometryStream"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public GeometryStream(SedulousContext uv)
+        public GeometryStream(FrameworkContext uv)
             : base(uv)
         {
 
@@ -31,7 +31,7 @@ namespace Sedulous.Graphics
         /// <returns>The instance of <see cref="GeometryStream"/> that was created.</returns>
         public static GeometryStream Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<GeometryStreamFactory>()(uv);
         }
 

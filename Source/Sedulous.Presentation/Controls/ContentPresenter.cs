@@ -19,7 +19,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ContentPresenter(SedulousContext uv, String name)
+        public ContentPresenter(FrameworkContext uv, String name)
             : base(uv, name)
         {
 
@@ -203,9 +203,9 @@ namespace Sedulous.Presentation.Controls
         }
 
         /// <inheritdoc/>
-        protected override void UpdateOverride(SedulousTime time)
+        protected override void UpdateOverride(FrameworkTime time)
         {
-            var font = GetValue<SourcedResource<SedulousFont>>(TextElement.FontProperty);
+            var font = GetValue<SourcedResource<FrameworkFont>>(TextElement.FontProperty);
             if (textLayoutCommands != null && textLayoutCommands.Settings.Font != font.Resource?.Value)
             {
                 InvalidateMeasure();
@@ -214,7 +214,7 @@ namespace Sedulous.Presentation.Controls
         }
 
         /// <inheritdoc/>
-        protected override void DrawOverride(SedulousTime time, DrawingContext dc)
+        protected override void DrawOverride(FrameworkTime time, DrawingContext dc)
         {
             if (textLayoutCommands != null && textLayoutCommands.Count > 0)
             {
@@ -257,7 +257,7 @@ namespace Sedulous.Presentation.Controls
             {
                 if (textParserResult == null || textParserResult.Count == 0)
                 {
-                    var font = GetValue<SourcedResource<SedulousFont>>(TextElement.FontProperty);
+                    var font = GetValue<SourcedResource<FrameworkFont>>(TextElement.FontProperty);
                     if (font.IsLoaded)
                     {
                         var lineSpacing = font.Resource.Value.Regular.LineSpacing;
@@ -464,8 +464,8 @@ namespace Sedulous.Presentation.Controls
                 if (textLayoutCommands == null)
                     textLayoutCommands = new TextLayoutCommandStream();
 
-                var font = GetValue<SourcedResource<SedulousFont>>(TextElement.FontProperty);
-                var fontStyle = GetValue<SedulousFontStyle>(TextElement.FontStyleProperty);
+                var font = GetValue<SourcedResource<FrameworkFont>>(TextElement.FontProperty);
+                var fontStyle = GetValue<FrameworkFontStyle>(TextElement.FontStyleProperty);
                 if (font.IsLoaded)
                 {
                     var availableSizeInPixels = Display.DipsToPixels(availableSize);

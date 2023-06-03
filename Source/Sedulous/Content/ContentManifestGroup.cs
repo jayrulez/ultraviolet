@@ -12,7 +12,7 @@ namespace Sedulous.Content
     /// <summary>
     /// Represents a group of related assets within a content manifest.
     /// </summary>
-    public sealed class ContentManifestGroup : SedulousNamedCollection<ContentManifestAsset>
+    public sealed class ContentManifestGroup : FrameworkNamedCollection<ContentManifestAsset>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentManifestGroup"/> class.
@@ -26,19 +26,19 @@ namespace Sedulous.Content
 
             var name = element.AttributeValueString("Name");
             if (String.IsNullOrEmpty(name))
-                throw new InvalidDataException(SedulousStrings.InvalidContentManifestGroupName);
+                throw new InvalidDataException(FrameworkStrings.InvalidContentManifestGroupName);
 
             var directory = element.AttributeValueString("Directory");
 
             var typeName = element.AttributeValueString("Type");
             if (String.IsNullOrEmpty(typeName))
-                throw new InvalidDataException(SedulousStrings.InvalidContentManifestGroupType.Format(name));
+                throw new InvalidDataException(FrameworkStrings.InvalidContentManifestGroupType.Format(name));
 
             var type = FindTypeByName(typeName);
             
             this.Manifest = manifest;
             this.Name = name;
-            this.Type = type ?? throw new InvalidDataException(SedulousStrings.InvalidContentManifestGroupType.Format(name));
+            this.Type = type ?? throw new InvalidDataException(FrameworkStrings.InvalidContentManifestGroupType.Format(name));
             this.Directory = directory;
 
             var assets = element.Elements("Asset");
@@ -59,14 +59,14 @@ namespace Sedulous.Content
             Contract.Require(desc, nameof(desc));
 
             if (String.IsNullOrEmpty(desc.Name))
-                throw new InvalidDataException(SedulousStrings.InvalidContentManifestGroupName);
+                throw new InvalidDataException(FrameworkStrings.InvalidContentManifestGroupName);
 
             if (String.IsNullOrEmpty(desc.Type))
-                throw new InvalidDataException(SedulousStrings.InvalidContentManifestGroupType.Format(desc.Name));
+                throw new InvalidDataException(FrameworkStrings.InvalidContentManifestGroupType.Format(desc.Name));
 
             var type = Type.GetType(desc.Type, false);
             if (type == null)
-                throw new InvalidDataException(SedulousStrings.InvalidContentManifestGroupType.Format(desc.Name));
+                throw new InvalidDataException(FrameworkStrings.InvalidContentManifestGroupType.Format(desc.Name));
 
             this.Manifest = manifest;
             this.Name = desc.Name;

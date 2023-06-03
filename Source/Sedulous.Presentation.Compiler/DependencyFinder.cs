@@ -20,7 +20,7 @@ namespace Sedulous.Presentation.Compiler
         /// <returns><see langword="true"/> if NuGet is available; otherwise, <see langword="false"/>.</returns>
         public static Boolean IsNuGetAvailable()
         {
-            return SedulousPlatformInfo.CurrentRuntime != SedulousRuntime.CoreCLR;
+            return FrameworkPlatformInfo.CurrentRuntime != FrameworkRuntime.CoreCLR;
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Sedulous.Presentation.Compiler
                 return nugetPackagesDir;
             }
 
-            var home = SedulousPlatformInfo.CurrentPlatform == SedulousPlatform.Windows ?
+            var home = FrameworkPlatformInfo.CurrentPlatform == FrameworkPlatform.Windows ?
                 Environment.GetEnvironmentVariable("USERPROFILE") :
                 Environment.GetEnvironmentVariable("HOME");
             var dir = Path.Combine(home, ".nuget", "packages");
@@ -166,16 +166,16 @@ namespace Sedulous.Presentation.Compiler
             // If the .NET Core SDK is installed, we can try the NETStandard.Library.Ref metapackage, which is in a 
             // couple of different places depending on the current platform...
             var refFolderDir = default(DirectoryInfo);
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Windows:
+                case FrameworkPlatform.Windows:
                     {
                         refFolderDir = new DirectoryInfo(Path.Combine(Environment.GetEnvironmentVariable("PROGRAMW6432"), "dotnet", "packs", "NETStandard.Library.Ref"));
                     }
                     break;
 
-                case SedulousPlatform.Linux:
-                case SedulousPlatform.macOS:
+                case FrameworkPlatform.Linux:
+                case FrameworkPlatform.macOS:
                     {
                         refFolderDir = new DirectoryInfo(Path.Combine("/", "usr", "local", "share", "dotnet", "packs", "NETStandard.Library.Ref"));
                         if (refFolderDir.Exists)

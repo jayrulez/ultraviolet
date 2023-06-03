@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class Size2Tests : SedulousTestFramework
+    public class Size2Tests : FrameworkTestFramework
     {
         [Test]
         public void Size2_IsConstructedProperly()
@@ -119,7 +119,7 @@ namespace Sedulous.Tests
         {
             var size = new Size2(1, 2);
             var json = JsonConvert.SerializeObject(size,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""width"":1,""height"":2}");
         }
@@ -129,7 +129,7 @@ namespace Sedulous.Tests
         {
             var size = new Size2(1, 2);
             var json = JsonConvert.SerializeObject((Size2?)size,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""width"":1,""height"":2}");
         }
@@ -140,7 +140,7 @@ namespace Sedulous.Tests
             const String json = @"{""width"":1,""height"":2}";
             
             var size = JsonConvert.DeserializeObject<Size2>(json,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(size)
                 .ShouldBe(1, 2);
@@ -152,7 +152,7 @@ namespace Sedulous.Tests
             const String json1 = @"{""width"":1,""height"":2}";
 
             var size1 = JsonConvert.DeserializeObject<Size2?>(json1,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(size1.Value)
                 .ShouldBe(1, 2);
@@ -160,7 +160,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var size2 = JsonConvert.DeserializeObject<Size2?>(json2,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(size2.HasValue)
                 .ShouldBe(false);

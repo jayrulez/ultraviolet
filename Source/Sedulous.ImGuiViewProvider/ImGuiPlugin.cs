@@ -5,10 +5,10 @@ namespace Sedulous.ImGuiViewProvider
     /// <summary>
     /// Represents a plugin for the Sedulous Framework which provides user interface views using Dear ImGui.
     /// </summary>
-    public sealed class ImGuiPlugin : SedulousPlugin
+    public sealed class ImGuiPlugin : FrameworkPlugin
     {
         /// <inheritdoc/>
-        public override void Register(SedulousConfiguration sedulousConfig)
+        public override void Register(FrameworkConfiguration sedulousConfig)
         {
             Contract.Require(sedulousConfig, nameof(sedulousConfig));
 

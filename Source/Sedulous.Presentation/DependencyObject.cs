@@ -91,8 +91,8 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Evaluates whether any of the object's dependency property values have changed and, if so, invokes the appropriate callbacks.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        public void Digest(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        public void Digest(FrameworkTime time)
         {
             var digestCycleID = PresentationFoundation.Instance.DigestCycleID;
             if (digestCycleID == lastDigestedCycleID)
@@ -949,8 +949,8 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Called when the object is being digested.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        protected virtual void OnDigesting(SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        protected virtual void OnDigesting(FrameworkTime time)
         {
 
         }

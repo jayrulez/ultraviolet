@@ -14,7 +14,7 @@ namespace Sedulous.OpenGL.Graphics
         /// Initializes a new instance of the OpenGLRasterizerState class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public OpenGLRasterizerState(SedulousContext uv)
+        public OpenGLRasterizerState(FrameworkContext uv)
             : base(uv)
         {
 
@@ -25,7 +25,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The rasterizer state that was created.</returns>
-        public static OpenGLRasterizerState CreateCullClockwise(SedulousContext uv)
+        public static OpenGLRasterizerState CreateCullClockwise(FrameworkContext uv)
         {
             var state = new OpenGLRasterizerState(uv);
             state.CullMode = CullMode.CullClockwiseFace;
@@ -38,7 +38,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The rasterizer state that was created.</returns>
-        public static OpenGLRasterizerState CreateCullCounterClockwise(SedulousContext uv)
+        public static OpenGLRasterizerState CreateCullCounterClockwise(FrameworkContext uv)
         {
             var state = new OpenGLRasterizerState(uv);
             state.CullMode = CullMode.CullCounterClockwiseFace;
@@ -51,7 +51,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The rasterizer state that was created.</returns>
-        public static OpenGLRasterizerState CreateCullNone(SedulousContext uv)
+        public static OpenGLRasterizerState CreateCullNone(FrameworkContext uv)
         {
             var state = new OpenGLRasterizerState(uv);
             state.CullMode = CullMode.None;

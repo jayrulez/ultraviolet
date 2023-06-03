@@ -9,7 +9,7 @@ namespace Sedulous.Presentation
     internal sealed class PresentationFoundationInitializer : UIViewProviderInitializer
     {
         /// <inheritdoc/>
-        public override void Initialize(SedulousContext uv, Object configuration)
+        public override void Initialize(FrameworkContext uv, Object configuration)
         {
             var config = (PresentationFoundationConfiguration)configuration ?? new PresentationFoundationConfiguration();
 

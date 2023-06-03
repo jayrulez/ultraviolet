@@ -138,7 +138,7 @@ namespace Sedulous.Presentation.Media
             new PropertyMetadata<TransformCollection>(null, PropertyMetadataOptions.None));
 
         /// <inheritdoc/>
-        protected override void OnDigesting(SedulousTime time)
+        protected override void OnDigesting(FrameworkTime time)
         {
             var children = Children;
             if (children != null)

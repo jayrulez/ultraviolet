@@ -6,7 +6,7 @@ using Sedulous.TestFramework;
 namespace Sedulous.Tests
 {
     [TestFixture]
-    public class RectangleDTests : SedulousTestFramework
+    public class RectangleDTests : FrameworkTestFramework
     {
         [Test]
         public void RectangleD_IsConstructedProperly()
@@ -124,7 +124,7 @@ namespace Sedulous.Tests
         {
             var rect = new RectangleD(1.2, 2.3, 3.4, 4.5);
             var json = JsonConvert.SerializeObject(rect,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1.2,""y"":2.3,""width"":3.4,""height"":4.5}");
         }
@@ -134,7 +134,7 @@ namespace Sedulous.Tests
         {
             var rect = new RectangleD(1.2, 2.3, 3.4, 4.5);
             var json = JsonConvert.SerializeObject((RectangleD?)rect,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingString(json).ShouldBe(@"{""x"":1.2,""y"":2.3,""width"":3.4,""height"":4.5}");
         }
@@ -145,7 +145,7 @@ namespace Sedulous.Tests
             const String json = @"{""x"":1.2,""y"":2.3,""width"":3.4,""height"":4.5}";
             
             var rect = JsonConvert.DeserializeObject<RectangleD>(json,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(rect)
                 .ShouldHavePosition(1.2, 2.3)
@@ -158,7 +158,7 @@ namespace Sedulous.Tests
             const String json1 = @"{""x"":1.2,""y"":2.3,""width"":3.4,""height"":4.5}";
 
             var rect1 = JsonConvert.DeserializeObject<RectangleD?>(json1,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(rect1.Value)
                 .ShouldHavePosition(1.2, 2.3)
@@ -167,7 +167,7 @@ namespace Sedulous.Tests
             const String json2 = @"null";
 
             var rect2 = JsonConvert.DeserializeObject<RectangleD?>(json2,
-                SedulousJsonSerializerSettings.Instance);
+                FrameworkJsonSerializerSettings.Instance);
 
             TheResultingValue(rect2.HasValue)
                 .ShouldBe(false);

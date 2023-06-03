@@ -440,8 +440,8 @@ namespace Sedulous.Graphics.Graphics2D.Text
             var settings = input.Settings;
             var rtl = (settings.Direction == TextDirection.RightToLeft);
             var shaped = (settings.Options & TextLayoutOptions.Shape) == TextLayoutOptions.Shape;
-            var bold = (settings.Style == SedulousFontStyle.Bold || settings.Style == SedulousFontStyle.BoldItalic);
-            var italic = (settings.Style == SedulousFontStyle.Italic || settings.Style == SedulousFontStyle.BoldItalic);
+            var bold = (settings.Style == FrameworkFontStyle.Bold || settings.Style == FrameworkFontStyle.BoldItalic);
+            var italic = (settings.Style == FrameworkFontStyle.Italic || settings.Style == FrameworkFontStyle.BoldItalic);
             var source = shaped ? input.GetShapedStringBuilder() : CreateSourceUnionFromSegmentOrigin(input.SourceText);
 
             var acquiredPointers = !input.HasAcquiredPointers;
@@ -716,8 +716,8 @@ namespace Sedulous.Graphics.Graphics2D.Text
 
             var drawState = new TextDrawState();
             drawState.Source = shape ? input.GetShapedStringBuilder() : CreateSourceUnionFromSegmentOrigin(input.SourceText);
-            drawState.Bold = (input.Settings.Style == SedulousFontStyle.Bold || input.Settings.Style == SedulousFontStyle.BoldItalic);
-            drawState.Italic = (input.Settings.Style == SedulousFontStyle.Italic || input.Settings.Style == SedulousFontStyle.BoldItalic);
+            drawState.Bold = (input.Settings.Style == FrameworkFontStyle.Bold || input.Settings.Style == FrameworkFontStyle.BoldItalic);
+            drawState.Italic = (input.Settings.Style == FrameworkFontStyle.Italic || input.Settings.Style == FrameworkFontStyle.BoldItalic);
             drawState.Font = input.Settings.Font;
             drawState.FontFace = input.Settings.Font.GetFace(drawState.Bold, drawState.Italic);
 
@@ -949,7 +949,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
             if (input.TotalGlyphLength == index)
             {
                 var lineDefaultHeight = (input.Settings.Font == null) ? 0 :
-                    input.Settings.Font.GetFace(SedulousFontStyle.Regular).LineSpacing;
+                    input.Settings.Font.GetFace(FrameworkFontStyle.Regular).LineSpacing;
 
                 lineInfo = (input.TotalGlyphLength > 0) ? input.GetLineInfo(input.LineCount - 1) :
                     new LineInfo(input, 0, 0, 0, 0, 0, 0, 0, lineDefaultHeight, 0, 0, 0, 0);
@@ -1405,11 +1405,11 @@ namespace Sedulous.Graphics.Graphics2D.Text
         private RectangleF DrawInternal(SpriteBatch spriteBatch, TextLayoutCommandStream input, Vector2 position, Int32? minClip, Int32? maxClip, Color defaultColor, Int32 start, Int32 count)
         {
             if (input.Settings.Font == null)
-                throw new ArgumentException(SedulousStrings.InvalidLayoutSettings);
+                throw new ArgumentException(FrameworkStrings.InvalidLayoutSettings);
 
             var settings = input.Settings;
-            var bold = (settings.Style == SedulousFontStyle.Bold || settings.Style == SedulousFontStyle.BoldItalic);
-            var italic = (settings.Style == SedulousFontStyle.Italic || settings.Style == SedulousFontStyle.BoldItalic);
+            var bold = (settings.Style == FrameworkFontStyle.Bold || settings.Style == FrameworkFontStyle.BoldItalic);
+            var italic = (settings.Style == FrameworkFontStyle.Italic || settings.Style == FrameworkFontStyle.BoldItalic);
             var font = settings.Font;
             var fontFace = font.GetFace(bold, italic);
             var color = defaultColor;
@@ -1554,7 +1554,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// Gets a value indicating whether a text command is split by a hyphen.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private Boolean GetIsTextSplitByHyphen(TextLayoutCommandStream input, SedulousFontFace font, Boolean wasDrawnToCompletion, out Int32 hyphenGlyphIndex, out Boolean hyphenIsVisible)
+        private Boolean GetIsTextSplitByHyphen(TextLayoutCommandStream input, FrameworkFontFace font, Boolean wasDrawnToCompletion, out Int32 hyphenGlyphIndex, out Boolean hyphenIsVisible)
         {
             var isSplitByHyphen = (input.StreamPositionInObjects < input.Count && *(TextLayoutCommandType*)input.Data == TextLayoutCommandType.Hyphen);
             if (isSplitByHyphen)
@@ -1587,7 +1587,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Draws a text command.
         /// </summary>
-        private void DrawText(SpriteBatch spriteBatch, TextLayoutCommandStream input, SedulousFontFace fontFace, ref StringSourceUnion source,
+        private void DrawText(SpriteBatch spriteBatch, TextLayoutCommandStream input, FrameworkFontFace fontFace, ref StringSourceUnion source,
             Single x, Single y, Int32 lineWidth, Int32 lineHeight, Int32 start, Int32 end, Color color, TextDirection direction, ref Int32 glyphsSeen)
         {
             var shaped = source.IsShaped;
@@ -1620,7 +1620,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Draws a text command.
         /// </summary>
-        private void DrawTextCore(SpriteBatch spriteBatch, TextLayoutCommandStream input, SedulousFontFace fontFace, ref StringSegment cmdText,
+        private void DrawTextCore(SpriteBatch spriteBatch, TextLayoutCommandStream input, FrameworkFontFace fontFace, ref StringSegment cmdText,
             Single x, Single y, Int32 lineWidth, Int32 lineHeight, Int32 start, Int32 end, Color color, TextDirection direction, ref Int32 glyphsSeen)
         {
             var cmd = (TextLayoutTextCommand*)input.Data;
@@ -1671,7 +1671,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Draws a text command.
         /// </summary>
-        private void DrawShapedTextCore(SpriteBatch spriteBatch, TextLayoutCommandStream input, SedulousFontFace fontFace, ref ShapedStringSegment cmdText,
+        private void DrawShapedTextCore(SpriteBatch spriteBatch, TextLayoutCommandStream input, FrameworkFontFace fontFace, ref ShapedStringSegment cmdText,
             Single x, Single y, Int32 lineWidth, Int32 lineHeight, Int32 start, Int32 end, Color color, TextDirection direction, ref Int32 glyphsSeen)
         {
             var cmd = (TextLayoutTextCommand*)input.Data;
@@ -1782,7 +1782,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Updates the current font by examining the state of the layout stacks.
         /// </summary>
-        private void RefreshFont(SedulousFont baseFont, Boolean bold, Boolean italic, out SedulousFont font, out SedulousFontFace fontFace)
+        private void RefreshFont(FrameworkFont baseFont, Boolean bold, Boolean italic, out FrameworkFont font, out FrameworkFontFace fontFace)
         {
             font = (styleManager.FontStack.Count == 0) ? baseFont : styleManager.FontStack.Peek().Value;
             fontFace = font.GetFace(bold, italic);
@@ -2105,7 +2105,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Gets the index of the glyph within the specified text that contains the specified position.
         /// </summary>
-        private Int32? GetGlyphAtPositionWithinText(SedulousFontFace fontFace, ref StringSegment text, ref Int32 position, TextDirection direction, out Int32 glyphWidth, out Int32 glyphHeight)
+        private Int32? GetGlyphAtPositionWithinText(FrameworkFontFace fontFace, ref StringSegment text, ref Int32 position, TextDirection direction, out Int32 glyphWidth, out Int32 glyphHeight)
         {
             var glyphPosition = 0;
 
@@ -2163,7 +2163,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Gets the index of the glyph within the specified shaped text that contains the specified position.
         /// </summary>
-        private Int32? GetGlyphAtPositionWithinShapedText(SedulousFontFace fontFace, ref ShapedStringSegment text, ref Int32 position, out Int32 glyphWidth, out Int32 glyphHeight)
+        private Int32? GetGlyphAtPositionWithinShapedText(FrameworkFontFace fontFace, ref ShapedStringSegment text, ref Int32 position, out Int32 glyphWidth, out Int32 glyphHeight)
         {
             var glyphPosition = 0;
             for (int i = 0; i < text.Length; i++)
@@ -2216,8 +2216,8 @@ namespace Sedulous.Graphics.Graphics2D.Text
             var seekState = new TextSeekState { LineIndex = -1 };
 
             var settings = input.Settings;
-            var bold = (settings.Style == SedulousFontStyle.Bold || settings.Style == SedulousFontStyle.BoldItalic);
-            var italic = (settings.Style == SedulousFontStyle.Italic || settings.Style == SedulousFontStyle.BoldItalic);
+            var bold = (settings.Style == FrameworkFontStyle.Bold || settings.Style == FrameworkFontStyle.BoldItalic);
+            var italic = (settings.Style == FrameworkFontStyle.Italic || settings.Style == FrameworkFontStyle.BoldItalic);
             var font = settings.Font;
             var fontFace = font.GetFace(bold, italic);
             var direction = settings.Direction;

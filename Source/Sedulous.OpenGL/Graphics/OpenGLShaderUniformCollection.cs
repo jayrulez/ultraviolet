@@ -7,7 +7,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Represents a collection of shader uniforms.
     /// </summary>
-    public sealed class OpenGLShaderUniformCollection : SedulousNamedCollection<OpenGLShaderUniform>
+    public sealed class OpenGLShaderUniformCollection : FrameworkNamedCollection<OpenGLShaderUniform>
     {
         /// <summary>
         /// Initializes a new instance of the OpenGLShaderUniformCollection class.

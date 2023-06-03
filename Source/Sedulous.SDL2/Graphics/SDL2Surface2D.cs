@@ -19,7 +19,7 @@ namespace Sedulous.SDL2.Graphics
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="source">The surface source from which to create the surface.</param>
         /// <param name="options">The surface's configuration options.</param>
-        public SDL2Surface2D(SedulousContext uv, SurfaceSource source, SurfaceOptions options)
+        public SDL2Surface2D(FrameworkContext uv, SurfaceSource source, SurfaceOptions options)
             : this(uv, new SDL2PlatformNativeSurface(source), options)
         {
 
@@ -31,7 +31,7 @@ namespace Sedulous.SDL2.Graphics
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="nativesurf">The native SDL surface that this object represents.</param>
         /// <param name="options">The surface's configuration options.</param>
-        public SDL2Surface2D(SedulousContext uv, PlatformNativeSurface nativesurf, SurfaceOptions options)
+        public SDL2Surface2D(FrameworkContext uv, PlatformNativeSurface nativesurf, SurfaceOptions options)
             : base(uv)
         {
             if (nativesurf == null)
@@ -40,7 +40,7 @@ namespace Sedulous.SDL2.Graphics
             var isSrgb = (options & SurfaceOptions.SrgbColor) == SurfaceOptions.SrgbColor;
             var isLinear = (options & SurfaceOptions.LinearColor) == SurfaceOptions.LinearColor;
             if (isSrgb && isLinear)
-                throw new ArgumentException(SedulousStrings.SurfaceCannotHaveMultipleEncodings);
+                throw new ArgumentException(FrameworkStrings.SurfaceCannotHaveMultipleEncodings);
 
             this.nativesurf = (SDL2PlatformNativeSurface)nativesurf;
             this.SrgbEncoded = isLinear ? false : (isSrgb ? true : uv.Properties.SrgbDefaultForSurface2D);
@@ -53,7 +53,7 @@ namespace Sedulous.SDL2.Graphics
         /// <param name="width">The width of the surface in pixels.</param>
         /// <param name="height">The height of the surface in pixels.</param>
         /// <param name="options">The surface's configuration options.</param>
-        public SDL2Surface2D(SedulousContext uv, Int32 width, Int32 height, SurfaceOptions options)
+        public SDL2Surface2D(FrameworkContext uv, Int32 width, Int32 height, SurfaceOptions options)
             : base(uv)
         {
             Contract.EnsureRange(width > 0, nameof(width));
@@ -62,7 +62,7 @@ namespace Sedulous.SDL2.Graphics
             var isSrgb = (options & SurfaceOptions.SrgbColor) == SurfaceOptions.SrgbColor;
             var isLinear = (options & SurfaceOptions.LinearColor) == SurfaceOptions.LinearColor;
             if (isSrgb && isLinear)
-                throw new ArgumentException(SedulousStrings.SurfaceCannotHaveMultipleEncodings);
+                throw new ArgumentException(FrameworkStrings.SurfaceCannotHaveMultipleEncodings);
 
             this.nativesurf = new SDL2PlatformNativeSurface(width, height);
             this.SrgbEncoded = isLinear ? false : (isSrgb ? true : uv.Properties.SrgbDefaultForSurface2D);

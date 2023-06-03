@@ -22,7 +22,7 @@ namespace Sedulous.Presentation.Styles
         /// <param name="tree">A <see cref="UvssDocumentSyntax"/> that represents the
         /// abstract syntax tree to compile.</param>
         /// <returns>A new instance of <see cref="UvssDocument"/> that represents the compiled data.</returns>
-        public static UvssDocument Compile(SedulousContext uv, UvssDocumentSyntax tree)
+        public static UvssDocument Compile(FrameworkContext uv, UvssDocumentSyntax tree)
         {
             Contract.Require(uv, nameof(uv));
 

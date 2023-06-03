@@ -7,7 +7,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents an effect's collection of techniques.
     /// </summary>
-    public abstract class EffectTechniqueCollection : SedulousNamedCollection<EffectTechnique>, IEnumerable<EffectTechnique>
+    public abstract class EffectTechniqueCollection : FrameworkNamedCollection<EffectTechnique>, IEnumerable<EffectTechnique>
     {
         /// <summary>
         /// Gets an enumerator for the collection.
@@ -15,7 +15,7 @@ namespace Sedulous.Graphics
         /// <returns>An enumerator for the collection.</returns>
         public new List<EffectTechnique>.Enumerator GetEnumerator()
         {
-            return ((SedulousCollection<EffectTechnique>)this).GetEnumerator();
+            return ((FrameworkCollection<EffectTechnique>)this).GetEnumerator();
         }
 
         /// <summary>

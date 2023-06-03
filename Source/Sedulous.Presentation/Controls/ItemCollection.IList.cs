@@ -20,7 +20,7 @@ namespace Sedulous.Presentation.Controls
             else
             {
                 if (arrayIndex + itemsStorage.Count > array.Length)
-                    throw new ArgumentException(SedulousStrings.BufferIsWrongSize);
+                    throw new ArgumentException(FrameworkStrings.BufferIsWrongSize);
 
                 for (int i = 0; i < itemsStorage.Count; i++)
                     array[arrayIndex + i] = itemsStorage[i];

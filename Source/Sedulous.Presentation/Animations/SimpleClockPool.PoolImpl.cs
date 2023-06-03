@@ -16,7 +16,7 @@ namespace Sedulous.Presentation.Animations
             /// <param name="capacity">The pool's initial capacity.</param>
             /// <param name="watermark">The pool's high watermark value.</param>
             /// <param name="allocator">The pool's allocator function.</param>
-            public PoolImpl(SedulousContext uv, Int32 capacity, Int32 watermark, Func<SimpleClock> allocator)
+            public PoolImpl(FrameworkContext uv, Int32 capacity, Int32 watermark, Func<SimpleClock> allocator)
                 : base(uv, capacity, watermark, allocator) { }
 
             /// <inheritdoc/>

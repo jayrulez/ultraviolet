@@ -1,7 +1,7 @@
 ﻿namespace Sedulous
 {
     /// <summary>
-    /// Represents the types of message box which can be displayed by the <see cref="ISedulousPlatform.ShowMessageBox"/> method.
+    /// Represents the types of message box which can be displayed by the <see cref="IPlatformSubsystem.ShowMessageBox"/> method.
     /// </summary>
     public enum MessageBoxType
     {

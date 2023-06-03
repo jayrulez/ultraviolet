@@ -66,7 +66,7 @@ namespace sspack
             Vector2 point;
 
             if (!TryPack(rectangleWidth, rectangleHeight, out point))
-                throw new OutOfSpaceException(SedulousStrings.RectanglePackerOutOfSpace);
+                throw new OutOfSpaceException(FrameworkStrings.RectanglePackerOutOfSpace);
             
             return point;
         }

@@ -21,7 +21,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The identifying name of this element within its layout.</param>
-        public Popup(SedulousContext uv, String name)
+        public Popup(FrameworkContext uv, String name)
             : base(uv, name)
         {
             this.root = new PopupRoot(uv, () =>
@@ -239,9 +239,9 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Adds the popup to the view's popup queue for drawing.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="dc">The drawing context that describes the render state of the layout.</param>
-        internal void EnqueueForDrawing(SedulousTime time, DrawingContext dc)
+        internal void EnqueueForDrawing(FrameworkTime time, DrawingContext dc)
         {
             if (View.Popups.IsDrawingPopup(this))
                 return;
@@ -252,9 +252,9 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// If the popup is currently open, this method adds it to the view's popup queue for drawing.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="dc">The drawing context that describes the render state of the layout.</param>
-        internal void EnqueueForDrawingIfOpen(SedulousTime time, DrawingContext dc)
+        internal void EnqueueForDrawingIfOpen(FrameworkTime time, DrawingContext dc)
         {
             if (!IsOpen)
                 return;
@@ -378,7 +378,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         }
 
         /// <inheritdoc/>
-        protected override void DrawOverride(SedulousTime time, DrawingContext dc)
+        protected override void DrawOverride(FrameworkTime time, DrawingContext dc)
         {
             if (View.Popups.IsDrawingPopup(this))
             {
@@ -391,7 +391,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         }
 
         /// <inheritdoc/>
-        protected override void UpdateOverride(SedulousTime time)
+        protected override void UpdateOverride(FrameworkTime time)
         {
             base.UpdateOverride(time);
             root.Update(time);

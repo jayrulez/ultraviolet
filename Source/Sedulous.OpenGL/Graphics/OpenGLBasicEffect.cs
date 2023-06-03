@@ -11,7 +11,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLBasicEffect"/> class.
         /// </summary>
-        public OpenGLBasicEffect(SedulousContext uv)
+        public OpenGLBasicEffect(FrameworkContext uv)
             : base(CreateEffectImplementation(uv))
         {
             epBlock.DiffuseColor = Parameters["DiffuseColor"];

@@ -15,7 +15,7 @@ namespace Sedulous.Presentation.Documents
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public AdornerDecorator(SedulousContext uv, String name)
+        public AdornerDecorator(FrameworkContext uv, String name)
             : base(uv, name)
         {
             this.adornerLayer = new AdornerLayer(uv, null);

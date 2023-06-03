@@ -20,7 +20,7 @@ namespace Sedulous
 
             var image = input.Root.AttributeValueString("Image");
             if (String.IsNullOrEmpty(image))
-                throw new InvalidOperationException(SedulousStrings.InvalidCursorImage);
+                throw new InvalidOperationException(FrameworkStrings.InvalidCursorImage);
             
             collectionDesc.Texture = image;
             collectionDesc.Cursors = collectionCursors;
@@ -29,7 +29,7 @@ namespace Sedulous
             {
                 var name = cursorElement.AttributeValueString("Name");
                 if (String.IsNullOrEmpty(name))
-                    throw new InvalidOperationException(SedulousStrings.InvalidCursorName);
+                    throw new InvalidOperationException(FrameworkStrings.InvalidCursorName);
 
                 var position = cursorElement.AttributeValue<Point2>("Position");
                 var size = cursorElement.AttributeValue<Size2>("Size");

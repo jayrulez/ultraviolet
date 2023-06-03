@@ -51,7 +51,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="script">A <see cref="TextScript"/> value specifying which script which this string contains.</param>
         /// <param name="direction">A <see cref="TextDirection"/> value specifying the direction in which this string should be written.</param>
         /// <returns>The <see cref="ShapedString"/> instance which was created.</returns>
-        public ShapedString ToShapedString(SedulousFontFace fontFace, String language, TextScript script, TextDirection direction) =>
+        public ShapedString ToShapedString(FrameworkFontFace fontFace, String language, TextScript script, TextDirection direction) =>
             new ShapedString(fontFace, language, script, direction, buffer, 0, length);
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <param name="shaper">The <see cref="TextShaper"/> instance from which to append values.</param>
         /// <param name="fontFace">The font face with which to shape the string.</param>
         /// <returns>A reference to this instance after the append operation has completed.</returns>
-        public ShapedStringBuilder Append(TextShaper shaper, SedulousFontFace fontFace)
+        public ShapedStringBuilder Append(TextShaper shaper, FrameworkFontFace fontFace)
         {
             Contract.Require(shaper, nameof(shaper));
 

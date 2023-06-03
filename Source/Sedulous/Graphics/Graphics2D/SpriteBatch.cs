@@ -7,7 +7,7 @@ namespace Sedulous.Graphics.Graphics2D
     /// </summary>
     /// <param name="uv">The Sedulous context.</param>
     /// <returns>The instance of <see cref="SpriteBatch"/> that was created.</returns>
-    public delegate SpriteBatch SpriteBatchFactory(SedulousContext uv);
+    public delegate SpriteBatch SpriteBatchFactory(FrameworkContext uv);
 
     /// <summary>
     /// Represents a standard implementation of <see cref="SpriteBatchBase{VertexType, SpriteData}"/> using vertices which
@@ -20,7 +20,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="batchSize">The maximum number of sprites that can be drawn in a single batch.</param>
-        internal SpriteBatch(SedulousContext uv, Int32 batchSize = 2048)
+        internal SpriteBatch(FrameworkContext uv, Int32 batchSize = 2048)
             : base(uv, batchSize)
         {
 
@@ -32,7 +32,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <returns>The instance of <see cref="SpriteBatch"/> that was created.</returns>
         public static SpriteBatch Create()
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return uv.GetFactoryMethod<SpriteBatchFactory>()(uv);
         }
 

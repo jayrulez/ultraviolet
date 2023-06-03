@@ -81,7 +81,7 @@ namespace Sedulous.Graphics.Graphics3D
                     return PrimitiveType.TriangleStrip;
 
                 default:
-                    throw new NotSupportedException(SedulousStrings.UnsupportedPrimitiveType.Format(type));
+                    throw new NotSupportedException(FrameworkStrings.UnsupportedPrimitiveType.Format(type));
             }
         }
 
@@ -143,7 +143,7 @@ namespace Sedulous.Graphics.Graphics3D
                             return format.Normalized ? VertexElementFormat.NormalizedSByte4 : VertexElementFormat.SByte4;
 
                         default:
-                            throw new NotSupportedException(SedulousStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
+                            throw new NotSupportedException(FrameworkStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
                     }
 
                 case EncodingType.UNSIGNED_BYTE:
@@ -166,7 +166,7 @@ namespace Sedulous.Graphics.Graphics3D
                             return format.Normalized ? VertexElementFormat.NormalizedByte4 : VertexElementFormat.Byte4;
 
                         default:
-                            throw new NotSupportedException(SedulousStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
+                            throw new NotSupportedException(FrameworkStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
                     }
 
                 case EncodingType.SHORT:
@@ -189,7 +189,7 @@ namespace Sedulous.Graphics.Graphics3D
                             return format.Normalized ? VertexElementFormat.NormalizedShort4 : VertexElementFormat.Short4;
 
                         default:
-                            throw new NotSupportedException(SedulousStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
+                            throw new NotSupportedException(FrameworkStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
                     }
 
                 case EncodingType.UNSIGNED_SHORT:
@@ -212,7 +212,7 @@ namespace Sedulous.Graphics.Graphics3D
                             return format.Normalized ? VertexElementFormat.NormalizedUnsignedShort4 : VertexElementFormat.UnsignedShort4;
 
                         default:
-                            throw new NotSupportedException(SedulousStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
+                            throw new NotSupportedException(FrameworkStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
                     }
 
 
@@ -236,7 +236,7 @@ namespace Sedulous.Graphics.Graphics3D
                             return format.Normalized ? VertexElementFormat.Int4 : VertexElementFormat.NormalizedInt4;
 
                         default:
-                            throw new NotSupportedException(SedulousStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
+                            throw new NotSupportedException(FrameworkStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
                     }
 
                 case EncodingType.FLOAT:
@@ -259,11 +259,11 @@ namespace Sedulous.Graphics.Graphics3D
                             return VertexElementFormat.Vector4;
 
                         default:
-                            throw new NotSupportedException(SedulousStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
+                            throw new NotSupportedException(FrameworkStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
                     }
 
                 default:
-                    throw new NotSupportedException(SedulousStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
+                    throw new NotSupportedException(FrameworkStrings.UnsupportedVertexAccessorFormat.Format(format.Encoding, format.Dimensions));
             }
         }
 
@@ -293,7 +293,7 @@ namespace Sedulous.Graphics.Graphics3D
             if (attributeName.StartsWith("TEXCOORD_", StringComparison.OrdinalIgnoreCase))
             {
                 if (!Int32.TryParse(attributeName.Substring("TEXCOORD_".Length), out index))
-                    throw new InvalidDataException(SedulousStrings.InvalidVertexAttributeName.Format(attributeName));
+                    throw new InvalidDataException(FrameworkStrings.InvalidVertexAttributeName.Format(attributeName));
 
                 return VertexElementUsage.TextureCoordinate;
             }
@@ -301,7 +301,7 @@ namespace Sedulous.Graphics.Graphics3D
             if (attributeName.StartsWith("COLOR_", StringComparison.OrdinalIgnoreCase))
             {
                 if (!Int32.TryParse(attributeName.Substring("COLOR_".Length), out index))
-                    throw new InvalidDataException(SedulousStrings.InvalidVertexAttributeName.Format(attributeName));
+                    throw new InvalidDataException(FrameworkStrings.InvalidVertexAttributeName.Format(attributeName));
 
                 return VertexElementUsage.Color;
             }
@@ -309,7 +309,7 @@ namespace Sedulous.Graphics.Graphics3D
             if (attributeName.StartsWith("JOINTS_", StringComparison.OrdinalIgnoreCase))
             {
                 if (!Int32.TryParse(attributeName.Substring("JOINTS_".Length), out index))
-                    throw new InvalidDataException(SedulousStrings.InvalidVertexAttributeName.Format(attributeName));
+                    throw new InvalidDataException(FrameworkStrings.InvalidVertexAttributeName.Format(attributeName));
 
                 return VertexElementUsage.BlendIndices;
             }
@@ -317,7 +317,7 @@ namespace Sedulous.Graphics.Graphics3D
             if (attributeName.StartsWith("WEIGHTS_", StringComparison.OrdinalIgnoreCase))
             {
                 if (!Int32.TryParse(attributeName.Substring("WEIGHTS_".Length), out index))
-                    throw new InvalidDataException(SedulousStrings.InvalidVertexAttributeName.Format(attributeName));
+                    throw new InvalidDataException(FrameworkStrings.InvalidVertexAttributeName.Format(attributeName));
 
                 return VertexElementUsage.BlendWeight;
             }
@@ -661,7 +661,7 @@ namespace Sedulous.Graphics.Graphics3D
 
 
                     default:
-                        throw new NotSupportedException(SedulousStrings.UnsupportedElementFormatInGltfLoader.Format(vElement.Format));
+                        throw new NotSupportedException(FrameworkStrings.UnsupportedElementFormatInGltfLoader.Format(vElement.Format));
                 }
             }
 
@@ -691,7 +691,7 @@ namespace Sedulous.Graphics.Graphics3D
                         break;
 
                     default:
-                        throw new NotSupportedException(SedulousStrings.UnsupportedIndexAccessorFormat.Format(accessor.Format.ByteSize));
+                        throw new NotSupportedException(FrameworkStrings.UnsupportedIndexAccessorFormat.Format(accessor.Format.ByteSize));
                 }
 
                 var data = accessor.AsIndicesArray();

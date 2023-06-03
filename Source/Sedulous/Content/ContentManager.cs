@@ -17,7 +17,7 @@ namespace Sedulous.Content
     /// <summary>
     /// Represents a collection of related content assets.
     /// </summary>
-    public sealed partial class ContentManager : SedulousResource, IMessageSubscriber<SedulousMessageID>
+    public sealed partial class ContentManager : FrameworkResource, IMessageSubscriber<FrameworkMessageID>
     {
         /// <summary>
         /// Initializes the <see cref="ContentManager"/> type.
@@ -32,7 +32,7 @@ namespace Sedulous.Content
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="rootDirectory">The content manager's root directory.</param>
-        private ContentManager(SedulousContext uv, String rootDirectory)
+        private ContentManager(FrameworkContext uv, String rootDirectory)
             : base(uv)
         {
             this.RootDirectory = rootDirectory;
@@ -45,7 +45,7 @@ namespace Sedulous.Content
             this.watchers = new ContentWatchManager(Sedulous, this);
             this.dependencies = new ContentDependencyManager(Sedulous, this);
 
-            uv.Messages.Subscribe(this, SedulousMessages.LowMemory, SedulousMessages.DisplayDensityChanged);
+            uv.Messages.Subscribe(this, FrameworkMessages.LowMemory, FrameworkMessages.DisplayDensityChanged);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Sedulous.Content
         /// <returns>The <see cref="ContentManager"/> that was created.</returns>
         public static ContentManager Create(String rootDirectory = null)
         {
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             return new ContentManager(uv, rootDirectory);
         }
 
@@ -78,7 +78,7 @@ namespace Sedulous.Content
         {
             // Make sure the path isn't rooted.
             if (Path.IsPathRooted(path))
-                throw new ArgumentException(SedulousStrings.AssetPathMustBeRelative);
+                throw new ArgumentException(FrameworkStrings.AssetPathMustBeRelative);
 
             // Remove any directory traversal operators.
             var stack = new Stack<String>();
@@ -90,7 +90,7 @@ namespace Sedulous.Content
                 {
                     if (stack.Count == 0)
                     {
-                        throw new InvalidOperationException(SedulousStrings.AssetPathCannotTraverseDirectories);
+                        throw new InvalidOperationException(FrameworkStrings.AssetPathCannotTraverseDirectories);
                     }
                     stack.Pop();
                     continue;
@@ -112,15 +112,15 @@ namespace Sedulous.Content
         }
 
         /// <inheritdoc/>
-        void IMessageSubscriber<SedulousMessageID>.ReceiveMessage(SedulousMessageID type, MessageData data)
+        void IMessageSubscriber<FrameworkMessageID>.ReceiveMessage(FrameworkMessageID type, MessageData data)
         {
-            if (type == SedulousMessages.LowMemory)
+            if (type == FrameworkMessages.LowMemory)
             {
                 AssetCache.Purge(true);
                 return;
             }
 
-            if (type == SedulousMessages.DisplayDensityChanged)
+            if (type == FrameworkMessages.DisplayDensityChanged)
             {
                 AssetCache.PurgeUnusedScreenDensities();
                 return;
@@ -659,7 +659,7 @@ namespace Sedulous.Content
         /// </summary>
         public void FlushDeletedFiles()
         {
-            Contract.Ensure(batchDeletedFiles, SedulousStrings.ContentManagerNotBatchingDeletes);
+            Contract.Ensure(batchDeletedFiles, FrameworkStrings.ContentManagerNotBatchingDeletes);
 
             foreach (var file in filesPendingDeletion)
             {
@@ -817,11 +817,11 @@ namespace Sedulous.Content
         {
             get
             {
-                var platform = SedulousPlatformInfo.CurrentPlatform;
-                if (platform == SedulousPlatform.Android || platform == SedulousPlatform.iOS)
+                var platform = FrameworkPlatformInfo.CurrentPlatform;
+                if (platform == FrameworkPlatform.Android || platform == FrameworkPlatform.iOS)
                     return false;
 
-                if (platform == SedulousPlatform.Windows)
+                if (platform == FrameworkPlatform.Windows)
                     return true;
 
                 return String.Equals("true", Environment.GetEnvironmentVariable("UV_ALLOW_FILE_WATCHERS") ?? "false", StringComparison.OrdinalIgnoreCase);
@@ -859,7 +859,7 @@ namespace Sedulous.Content
             set
             {
                 Contract.EnsureNotDisposed(this, Disposed);
-                Contract.EnsureNot(batchDeletedFilesGuarantee, SedulousStrings.ContentManagerRequiresBatch);
+                Contract.EnsureNot(batchDeletedFilesGuarantee, FrameworkStrings.ContentManagerRequiresBatch);
 
                 if (batchDeletedFiles)
                 {
@@ -1061,13 +1061,13 @@ namespace Sedulous.Content
             var extension = Path.GetExtension(asset);
             if (String.IsNullOrEmpty(extension))
             {
-                throw new InvalidOperationException(SedulousStrings.ImporterNeedsExtension.Format(asset));
+                throw new InvalidOperationException(FrameworkStrings.ImporterNeedsExtension.Format(asset));
             }
 
             var importer = Sedulous.GetContent().Importers.FindImporter(extension, ref outputType);
             if (importer == null)
             {
-                throw new InvalidOperationException(SedulousStrings.NoValidImporter.Format(asset));
+                throw new InvalidOperationException(FrameworkStrings.NoValidImporter.Format(asset));
             }
 
             return importer;
@@ -1086,7 +1086,7 @@ namespace Sedulous.Content
             if (processor == null)
             {
                 if (inputType != outputType)
-                    throw new InvalidOperationException(SedulousStrings.NoValidProcessor.Format(asset));
+                    throw new InvalidOperationException(FrameworkStrings.NoValidProcessor.Format(asset));
 
                 return PassthroughContentProcessor.Instance;
             }
@@ -1128,7 +1128,7 @@ namespace Sedulous.Content
                 if (watchers == null || watchers.Count == 0 || lastKnownGood == null)
                     throw;
 
-                Debug.WriteLine(SedulousStrings.ExceptionDuringContentReloading);
+                Debug.WriteLine(FrameworkStrings.ExceptionDuringContentReloading);
                 Debug.WriteLine(e);
 
                 instance = lastKnownGood;
@@ -1235,7 +1235,7 @@ namespace Sedulous.Content
             try
             {
                 if (intermediate == null)
-                    throw new InvalidOperationException(SedulousStrings.ImporterOutputInvalid.Format(filename));
+                    throw new InvalidOperationException(FrameworkStrings.ImporterOutputInvalid.Format(filename));
 
                 var processor = FindContentProcessor(metadata.AssetFileName, importerOutputType, type);
                 return processor.Process(this, metadata, intermediate);
@@ -1265,7 +1265,7 @@ namespace Sedulous.Content
                 {
                     intermediate = importer.Import(metadata, stream);
                     if (intermediate == null)
-                        throw new InvalidOperationException(SedulousStrings.ImporterOutputInvalid.Format(asset));
+                        throw new InvalidOperationException(FrameworkStrings.ImporterOutputInvalid.Format(asset));
                 }
 
                 processor = FindContentProcessor(metadata.AssetFilePath, importerOutputType, type);
@@ -1304,14 +1304,14 @@ namespace Sedulous.Content
                             if (genericTypeDef == typeof(ContentProcessor<,>))
                             {
                                 if (!type.IsAssignableFrom(currentType.GetGenericArguments()[1]))
-                                    throw new InvalidOperationException(SedulousStrings.PreprocessedAssetTypeMismatch.Format(path, type.Name));
+                                    throw new InvalidOperationException(FrameworkStrings.PreprocessedAssetTypeMismatch.Format(path, type.Name));
 
                                 break;
                             }
                         }
 
                         if (currentType.BaseType == null)
-                            throw new InvalidOperationException(SedulousStrings.ProcessorInvalidBaseClass.Format(uvcProcessorType.FullName));
+                            throw new InvalidOperationException(FrameworkStrings.ProcessorInvalidBaseClass.Format(uvcProcessorType.FullName));
                     }
 
 
@@ -1506,7 +1506,7 @@ namespace Sedulous.Content
                 select assetMatch;
 
             if (filteredMatches.Count() > 1)
-                throw new FileNotFoundException(SedulousStrings.FileAmbiguous.Format(asset));
+                throw new FileNotFoundException(FrameworkStrings.FileAmbiguous.Format(asset));
 
             var singleMatch = filteredMatches.SingleOrDefault();
             if (singleMatch != null)
@@ -1606,7 +1606,7 @@ namespace Sedulous.Content
                     if (includePreprocessedFiles || !IsPreprocessedFile(asset))
                         return CreateMetadataFromFile(asset, assetPath, assetDirectory, assetOverridden, includeDetailedMetadata, fromsln, density);
                 }
-                throw new FileNotFoundException(SedulousStrings.FileNotFound.Format(asset));
+                throw new FileNotFoundException(FrameworkStrings.FileNotFound.Format(asset));
             }
 
             // Find the highest-ranking preprocessed file, if one exists.
@@ -1637,7 +1637,7 @@ namespace Sedulous.Content
             }
 
             // If we still have no matches, we can't find the file.
-            throw new FileNotFoundException(SedulousStrings.FileNotFound.Format(asset));
+            throw new FileNotFoundException(FrameworkStrings.FileNotFound.Format(asset));
         }
 
         /// <summary>
@@ -1721,7 +1721,7 @@ namespace Sedulous.Content
                 }
 
                 if (String.IsNullOrWhiteSpace(wrappedFilename) || String.IsNullOrWhiteSpace(Path.GetExtension(wrappedFilename)))
-                    throw new InvalidDataException(SedulousStrings.AssetMetadataHasInvalidFilename);
+                    throw new InvalidDataException(FrameworkStrings.AssetMetadataHasInvalidFilename);
 
                 var directory = Path.GetDirectoryName(filename);
                 var relative = isStream ? wrappedFilename : fileSystemService.GetRelativePath(RootDirectory, Path.Combine(directory, wrappedFilename));
@@ -1731,7 +1731,7 @@ namespace Sedulous.Content
                 wrappedAssetPath = GetAssetPath(relative, Path.GetExtension(relative), out wrappedAssetDirectory, out wrappedAssetOverridden);
 
                 if (String.IsNullOrEmpty(wrappedAssetPath) || !fileSystemService.FileExists(wrappedAssetPath))
-                    throw new InvalidDataException(SedulousStrings.AssetMetadataFileNotFound);
+                    throw new InvalidDataException(FrameworkStrings.AssetMetadataFileNotFound);
 
                 source = null;
 

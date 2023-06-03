@@ -6,7 +6,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a shader effect.
     /// </summary>
-    public class Effect : SedulousResource
+    public class Effect : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Effect"/> class.

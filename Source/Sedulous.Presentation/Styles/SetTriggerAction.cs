@@ -22,7 +22,7 @@ namespace Sedulous.Presentation.Styles
         }
 
         /// <inheritdoc/>
-        public override void Activate(SedulousContext uv, DependencyObject dobj)
+        public override void Activate(FrameworkContext uv, DependencyObject dobj)
         {
             if (selector == null)
             {
@@ -74,7 +74,7 @@ namespace Sedulous.Presentation.Styles
         }
 
         /// <inheritdoc/>
-        public override void Deactivate(SedulousContext uv, DependencyObject dobj)
+        public override void Deactivate(FrameworkContext uv, DependencyObject dobj)
         {
             if (selector == null)
             {

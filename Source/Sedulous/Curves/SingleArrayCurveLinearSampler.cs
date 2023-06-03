@@ -29,7 +29,7 @@ namespace Sedulous
 
             var count = key1Value.Count;
             if (count != key2Value.Count || count != existing.Count)
-                throw new ArgumentException(SedulousStrings.SamplerArgumentsMustHaveSameLength);
+                throw new ArgumentException(FrameworkStrings.SamplerArgumentsMustHaveSameLength);
 
             for (var i = 0; i < count; i++)
             {
@@ -45,7 +45,7 @@ namespace Sedulous
         public ArraySegment<Single> CalculateLinearExtension(CurveKey<ArraySegment<Single>> key, Single position, CurvePositionType positionType, in ArraySegment<Single> existing)
         {
             if (key.Value.Count != existing.Count)
-                throw new ArgumentException(SedulousStrings.SamplerArgumentsMustHaveSameLength);
+                throw new ArgumentException(FrameworkStrings.SamplerArgumentsMustHaveSameLength);
 
             key.Value.CopyTo(existing);
             return existing;
@@ -58,7 +58,7 @@ namespace Sedulous
 
             var count = first.Count;
             if (count != last.Count || count != existing.Count)
-                throw new ArgumentException(SedulousStrings.SamplerArgumentsMustHaveSameLength);
+                throw new ArgumentException(FrameworkStrings.SamplerArgumentsMustHaveSameLength);
 
             for (var i = 0; i < count; i++)
                 existing.GetItemRef(i) = (last.GetItemRef(i) - first.GetItemRef(i)) * cycle;

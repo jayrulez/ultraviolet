@@ -15,12 +15,12 @@
         /// Called when the ImGui interface is updated.
         /// </summary>
         /// <param name="time">Time elapsed since the last update call.</param>
-        void ImGuiUpdate(SedulousTime time);
+        void ImGuiUpdate(FrameworkTime time);
 
         /// <summary>
         /// Called when the ImGui interface is drawn.
         /// </summary>
         /// <param name="time">Time elapsed since the last draw call.</param>
-        void ImGuiDraw(SedulousTime time);      
+        void ImGuiDraw(FrameworkTime time);      
     }
 }

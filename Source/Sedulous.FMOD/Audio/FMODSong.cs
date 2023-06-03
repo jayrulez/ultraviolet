@@ -21,13 +21,13 @@ namespace Sedulous.FMOD.Audio
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="file">The path to the file from which to stream the song.</param>
-        public FMODSong(SedulousContext uv, String file)
+        public FMODSong(FrameworkContext uv, String file)
             : base(uv)
         {
             Contract.RequireNotEmpty(file, nameof(file));
 
             var result = default(FMOD_RESULT);
-            var system = ((FMODSedulousAudio)uv.GetAudio()).System;
+            var system = ((FMODAudioSubsystem)uv.GetAudio()).System;
 
             // Load song as a sound
             fixed (FMOD_SOUND** psound = &sound)
@@ -67,7 +67,7 @@ namespace Sedulous.FMOD.Audio
         /// <summary>
         /// Gets the FMOD channel group for this object.
         /// </summary>
-        internal FMOD_CHANNELGROUP* ChannelGroup => ((FMODSedulousAudio)Sedulous.GetAudio()).ChannelGroupSongs;
+        internal FMOD_CHANNELGROUP* ChannelGroup => ((FMODAudioSubsystem)Sedulous.GetAudio()).ChannelGroupSongs;
 
         /// <inheritdoc/>
         protected override void Dispose(Boolean disposing)

@@ -8,14 +8,14 @@ namespace Sedulous.ImGuiViewProvider
     /// <summary>
     /// Represents a buffer for ImGui geometry.
     /// </summary>
-    public sealed unsafe class ImGuiGeometryBuffer : SedulousResource
+    public sealed unsafe class ImGuiGeometryBuffer : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ImGuiGeometryBuffer"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="view">The view which owns the geometry buffer.</param>
-        public ImGuiGeometryBuffer(SedulousContext uv, ImGuiView view)
+        public ImGuiGeometryBuffer(FrameworkContext uv, ImGuiView view)
             : base(uv)
         {
             this.effect = SpriteBatchEffect.Create();

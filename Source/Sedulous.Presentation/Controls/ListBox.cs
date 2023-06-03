@@ -28,7 +28,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ListBox(SedulousContext uv, String name)
+        public ListBox(FrameworkContext uv, String name)
             : base(uv, name)
         {
             SetValue(SelectedItemsPropertyKey, selectedItems);

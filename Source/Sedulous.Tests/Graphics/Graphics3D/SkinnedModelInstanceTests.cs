@@ -11,7 +11,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Graphics.Graphics3D
 {
     [TestFixture]
-    public class SkinnedModelInstanceTests : SedulousApplicationTestFramework
+    public class SkinnedModelInstanceTests : FrameworkApplicationTestFramework
     {
         private Dictionary<Double, Matrix[]> LoadBoneData(String name)
         {

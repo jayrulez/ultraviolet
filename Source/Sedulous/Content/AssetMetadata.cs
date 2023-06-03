@@ -87,7 +87,7 @@ namespace Sedulous.Content
             {
                 if (IsJson)
                 {
-                    var serializer = JsonSerializer.CreateDefault(SedulousJsonSerializerSettings.Instance);                    
+                    var serializer = JsonSerializer.CreateDefault(FrameworkJsonSerializerSettings.Instance);                    
                     return ((JObject)ImporterMetadata).ToObject<T>(serializer);
                 }
                 else
@@ -109,7 +109,7 @@ namespace Sedulous.Content
             {
                 if (IsJson)
                 {
-                    var serializer = JsonSerializer.CreateDefault(SedulousJsonSerializerSettings.Instance);
+                    var serializer = JsonSerializer.CreateDefault(FrameworkJsonSerializerSettings.Instance);
                     return ((JObject)ProcessorMetadata).ToObject<T>(serializer);
                 }
                 else

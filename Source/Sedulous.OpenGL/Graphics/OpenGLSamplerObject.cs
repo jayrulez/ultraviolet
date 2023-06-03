@@ -8,13 +8,13 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Represents an OpenGL Sampler Object.
     /// </summary>
-    public sealed class OpenGLSamplerObject : SedulousResource, IOpenGLResource
+    public sealed class OpenGLSamplerObject : FrameworkResource, IOpenGLResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLSamplerObject"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public OpenGLSamplerObject(SedulousContext uv) 
+        public OpenGLSamplerObject(FrameworkContext uv) 
             : base(uv)
         {
             var sampler = 0u;

@@ -13,7 +13,7 @@ namespace Sedulous.OpenGL.Graphics
         /// Initializes a new instance of the OpenGLSamplerState class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public OpenGLSamplerState(SedulousContext uv)
+        public OpenGLSamplerState(FrameworkContext uv)
             : base(uv)
         {
 
@@ -24,7 +24,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The sampler state that was created.</returns>
-        public static OpenGLSamplerState CreatePointClamp(SedulousContext uv)
+        public static OpenGLSamplerState CreatePointClamp(FrameworkContext uv)
         {
             var state = new OpenGLSamplerState(uv);
             state.Filter = TextureFilter.Point;
@@ -40,7 +40,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The sampler state that was created.</returns>
-        public static OpenGLSamplerState CreatePointWrap(SedulousContext uv)
+        public static OpenGLSamplerState CreatePointWrap(FrameworkContext uv)
         {
             var state = new OpenGLSamplerState(uv);
             state.Filter = TextureFilter.Point;
@@ -56,7 +56,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The sampler state that was created.</returns>
-        public static OpenGLSamplerState CreateLinearClamp(SedulousContext uv)
+        public static OpenGLSamplerState CreateLinearClamp(FrameworkContext uv)
         {
             var state = new OpenGLSamplerState(uv);
             state.Filter = TextureFilter.Linear;
@@ -72,7 +72,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The sampler state that was created.</returns>
-        public static OpenGLSamplerState CreateLinearWrap(SedulousContext uv)
+        public static OpenGLSamplerState CreateLinearWrap(FrameworkContext uv)
         {
             var state = new OpenGLSamplerState(uv);
             state.Filter = TextureFilter.Linear;
@@ -88,7 +88,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The sampler state that was created.</returns>
-        public static OpenGLSamplerState CreateAnisotropicClamp(SedulousContext uv)
+        public static OpenGLSamplerState CreateAnisotropicClamp(FrameworkContext uv)
         {
             var state = new OpenGLSamplerState(uv);
             state.Filter = TextureFilter.Anisotropic;
@@ -104,7 +104,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The sampler state that was created.</returns>
-        public static OpenGLSamplerState CreateAnisotropicWrap(SedulousContext uv)
+        public static OpenGLSamplerState CreateAnisotropicWrap(FrameworkContext uv)
         {
             var state = new OpenGLSamplerState(uv);
             state.Filter = TextureFilter.Anisotropic;
@@ -123,7 +123,7 @@ namespace Sedulous.OpenGL.Graphics
         internal void Apply(Int32 sampler, UInt32 target)
         {
             if (Sedulous.GetGraphics().Capabilities.SupportsIndependentSamplerState)
-                throw new InvalidOperationException(SedulousStrings.GenericError);
+                throw new InvalidOperationException(FrameworkStrings.GenericError);
 
             OpenGLState.ActiveTexture((uint)(gl.GL_TEXTURE0 + sampler));
 

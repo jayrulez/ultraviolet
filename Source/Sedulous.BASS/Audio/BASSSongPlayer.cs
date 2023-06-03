@@ -13,24 +13,24 @@ namespace Sedulous.BASS.Audio
     /// Represents the BASS implementation of the <see cref="SongPlayer"/> class.
     /// </summary>
     public sealed class BASSSongPlayer : SongPlayer,
-        IMessageSubscriber<SedulousMessageID>
+        IMessageSubscriber<FrameworkMessageID>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BASSSongPlayer"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public BASSSongPlayer(SedulousContext uv)
+        public BASSSongPlayer(FrameworkContext uv)
             : base(uv)
         {
             gcHandle = GCHandle.Alloc(this, GCHandleType.Weak);
 
-            uv.Messages.Subscribe(this, BASSSedulousMessages.BASSDeviceChanged);
+            uv.Messages.Subscribe(this, BASSMessages.BASSDeviceChanged);
         }
 
         /// <inheritdoc/>
-        void IMessageSubscriber<SedulousMessageID>.ReceiveMessage(SedulousMessageID type, MessageData data)
+        void IMessageSubscriber<FrameworkMessageID>.ReceiveMessage(FrameworkMessageID type, MessageData data)
         {
-            if (type == BASSSedulousMessages.BASSDeviceChanged)
+            if (type == BASSMessages.BASSDeviceChanged)
             {
                 if (BASSUtil.IsValidHandle(stream))
                 {
@@ -43,7 +43,7 @@ namespace Sedulous.BASS.Audio
         }
 
         /// <inheritdoc/>
-        public override void Update(SedulousTime time)
+        public override void Update(FrameworkTime time)
         {
 
         }

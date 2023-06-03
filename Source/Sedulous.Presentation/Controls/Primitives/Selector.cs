@@ -25,7 +25,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The identifying name of this element within a layout.</param>
-        public Selector(SedulousContext uv, String name)
+        public Selector(FrameworkContext uv, String name)
             : base(uv, name)
         {
             this.selection = new SelectionCollection(this);

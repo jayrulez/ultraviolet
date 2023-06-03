@@ -24,7 +24,7 @@ namespace UvDebug.UI.Screens
         }
 
         /// <inheritdoc/>
-        public override void Update(SedulousTime time)
+        public override void Update(FrameworkTime time)
         {
             var vm = View.GetViewModel<GamePlayViewModel>();
             if (vm != null && vm.IsTriangleSpinning)

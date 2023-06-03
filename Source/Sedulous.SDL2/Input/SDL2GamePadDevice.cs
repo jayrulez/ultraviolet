@@ -14,7 +14,7 @@ namespace Sedulous.SDL2.Input
     /// Represents the SDL2 implementation of the <see cref="GamePadDevice"/> class.
     /// </summary>
     public sealed class SDL2GamePadDevice : GamePadDevice,
-        IMessageSubscriber<SedulousMessageID>
+        IMessageSubscriber<FrameworkMessageID>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2GamePadDevice"/> class.
@@ -22,7 +22,7 @@ namespace Sedulous.SDL2.Input
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="joystickIndex">The index of the SDL2 joystick device.</param>
         /// <param name="playerIndex">The index of the player that owns the device.</param>
-        public SDL2GamePadDevice(SedulousContext uv, Int32 joystickIndex, Int32 playerIndex)
+        public SDL2GamePadDevice(FrameworkContext uv, Int32 joystickIndex, Int32 playerIndex)
             : base(uv)
         {
             this.timeLastPressAxis = new Double[Enum.GetValues(typeof(GamePadAxis)).Length];
@@ -48,7 +48,7 @@ namespace Sedulous.SDL2.Input
             }
 
             uv.Messages.Subscribe(this,
-                SDL2SedulousMessages.SDLEvent);
+                SDL2FrameworkMessages.SDLEvent);
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         /// <param name="type">The type of message that was received.</param>
         /// <param name="data">The data for the message that was received.</param>
-        void IMessageSubscriber<SedulousMessageID>.ReceiveMessage(SedulousMessageID type, MessageData data)
+        void IMessageSubscriber<FrameworkMessageID>.ReceiveMessage(FrameworkMessageID type, MessageData data)
         {
-            if (type != SDL2SedulousMessages.SDLEvent)
+            if (type != SDL2FrameworkMessages.SDLEvent)
                 return;
             
             var evt = ((SDL2EventMessageData)data).Event;
@@ -129,7 +129,7 @@ namespace Sedulous.SDL2.Input
         }
 
         /// <inheritdoc/>
-        public override void Update(SedulousTime time)
+        public override void Update(FrameworkTime time)
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
@@ -675,7 +675,7 @@ namespace Sedulous.SDL2.Input
         /// <summary>
         /// Raises repeated <see cref="GamePadDevice.AxisPressed"/> and <see cref="GamePadDevice.ButtonPressed"/> events as necessary.
         /// </summary>
-        private void CheckForRepeatedPresses(SedulousTime time)
+        private void CheckForRepeatedPresses(FrameworkTime time)
         {
             for (int i = 0; i < repeatingAxis.Length; i++)
             {
@@ -789,7 +789,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void Register()
         {
-            var input = (SDL2SedulousInput)Sedulous.GetInput();
+            var input = (SDL2FrameworkInput)Sedulous.GetInput();
             if (input.RegisterGamePadDevice(this))
                 isRegistered = true;
         }

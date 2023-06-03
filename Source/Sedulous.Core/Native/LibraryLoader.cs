@@ -17,15 +17,15 @@ namespace Sedulous.Core.Native
         /// <returns>The <see cref="LibraryLoader"/> instance which was created.</returns>
         public static LibraryLoader GetPlatformDefaultLoader()
         {
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Windows:
+                case FrameworkPlatform.Windows:
                     return new Win32LibraryLoader();
 
-                case SedulousPlatform.macOS:
+                case FrameworkPlatform.macOS:
                     return new UnixLibraryLoaderLibdl();
 
-                case SedulousPlatform.Linux:
+                case FrameworkPlatform.Linux:
                     return FindLibraryLoaderForLinux();
 
                 default:

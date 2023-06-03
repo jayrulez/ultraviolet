@@ -30,7 +30,7 @@ namespace Sedulous.Presentation.Tests
                     };
                 })
                 .OnUpdate(0, (app, time) => { ((RotateTransform)dobj.Transform).Angle = 100; })
-                .OnUpdate(1, (app, time) => { dobj.Digest(new SedulousTime(TimeSpan.FromMilliseconds(16), TimeSpan.FromMilliseconds(16))); })
+                .OnUpdate(1, (app, time) => { dobj.Digest(new FrameworkTime(TimeSpan.FromMilliseconds(16), TimeSpan.FromMilliseconds(16))); })
                 .RunUntil(() => PresentationFoundation.Instance.DigestCycleID == 3);
 
             TheResultingValue(dobj.TransformChanged).ShouldBe(true);
@@ -388,7 +388,7 @@ namespace Sedulous.Presentation.Tests
                 {
                     using (var spriteBatch = SpriteBatch.Create())
                     {
-                        uv.GetUI().GetScreens().Draw(new SedulousTime(), spriteBatch);
+                        uv.GetUI().GetScreens().Draw(new FrameworkTime(), spriteBatch);
                     }
                 });
 
@@ -405,7 +405,7 @@ namespace Sedulous.Presentation.Tests
                 {
                     using (var spriteBatch = SpriteBatch.Create())
                     {
-                        uv.GetUI().GetScreens().Draw(new SedulousTime(), spriteBatch);
+                        uv.GetUI().GetScreens().Draw(new FrameworkTime(), spriteBatch);
                     }
                 });
         }

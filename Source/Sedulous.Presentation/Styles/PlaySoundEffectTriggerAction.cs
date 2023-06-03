@@ -18,7 +18,7 @@ namespace Sedulous.Presentation.Styles
         }
 
         /// <inheritdoc/>
-        public override void Activate(SedulousContext uv, DependencyObject dobj)
+        public override void Activate(FrameworkContext uv, DependencyObject dobj)
         {
             var element = dobj as UIElement;
             if (element == null || element.View == null)

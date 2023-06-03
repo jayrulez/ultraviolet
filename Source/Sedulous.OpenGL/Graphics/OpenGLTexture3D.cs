@@ -20,7 +20,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="height">The texture's height in pixels.</param>
         /// <param name="bytesPerPixel">The number of bytes which represent each pixel in the raw data.</param>
         /// <param name="options">The texture's configuration options.</param>
-        public OpenGLTexture3D(SedulousContext uv, IList<IntPtr> data, Int32 width, Int32 height, Int32 bytesPerPixel, TextureOptions options)
+        public OpenGLTexture3D(FrameworkContext uv, IList<IntPtr> data, Int32 width, Int32 height, Int32 bytesPerPixel, TextureOptions options)
             : base(uv)
         {
             Contract.Require(data, nameof(data));
@@ -31,7 +31,7 @@ namespace Sedulous.OpenGL.Graphics
             var isLinear = (options & TextureOptions.LinearColor) == TextureOptions.LinearColor;
             var isSrgb = (options & TextureOptions.SrgbColor) == TextureOptions.SrgbColor;
             if (isLinear && isSrgb)
-                throw new ArgumentException(SedulousStrings.TextureCannotHaveMultipleEncodings);
+                throw new ArgumentException(FrameworkStrings.TextureCannotHaveMultipleEncodings);
 
             var caps = uv.GetGraphics().Capabilities;
             var srgbEncoded = isLinear ? false : (isSrgb ? true : uv.Properties.SrgbDefaultForSurface3D) && caps.SrgbEncodingEnabled;
@@ -64,7 +64,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="height">The texture's height in pixels.</param>
         /// <param name="depth">The texture's depth in layers.</param>
         /// <param name="options">The texture's configuration options.</param>
-        public OpenGLTexture3D(SedulousContext uv, Int32 width, Int32 height, Int32 depth, TextureOptions options)
+        public OpenGLTexture3D(FrameworkContext uv, Int32 width, Int32 height, Int32 depth, TextureOptions options)
             : base(uv)
         {
             Contract.EnsureRange(width > 0, nameof(width));
@@ -74,7 +74,7 @@ namespace Sedulous.OpenGL.Graphics
             var isLinear = (options & TextureOptions.LinearColor) == TextureOptions.LinearColor;
             var isSrgb = (options & TextureOptions.SrgbColor) == TextureOptions.SrgbColor;
             if (isLinear && isSrgb)
-                throw new ArgumentException(SedulousStrings.TextureCannotHaveMultipleEncodings);
+                throw new ArgumentException(FrameworkStrings.TextureCannotHaveMultipleEncodings);
 
             var caps = uv.GetGraphics().Capabilities;
             var srgbEncoded = isLinear ? false : (isSrgb ? true : uv.Properties.SrgbDefaultForSurface3D) && caps.SrgbEncodingEnabled;
@@ -96,7 +96,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="type">The texture's texel type.</param>
         /// <param name="data">A list of pointers to the raw pixel data for each of the texture's layers.</param>
         /// <param name="immutable">A value indicating whether to use immutable texture storage.</param>
-        public OpenGLTexture3D(SedulousContext uv, UInt32 internalformat, Int32 width, Int32 height, UInt32 format, UInt32 type, IList<IntPtr> data, Boolean immutable)
+        public OpenGLTexture3D(FrameworkContext uv, UInt32 internalformat, Int32 width, Int32 height, UInt32 format, UInt32 type, IList<IntPtr> data, Boolean immutable)
             : this(uv, internalformat, width, height, format, type, data, immutable, false)
         {
             
@@ -115,7 +115,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="immutable">A value indicating whether to use immutable texture storage.</param>
         /// <param name="rbuffer">A value indicating whether this texture is being used as a render buffer.</param>
         /// <returns>The instance of Texture2D that was created.</returns>
-        internal OpenGLTexture3D(SedulousContext uv, UInt32 internalformat, Int32 width, Int32 height, UInt32 format, UInt32 type, IList<IntPtr> data, Boolean immutable, Boolean rbuffer)
+        internal OpenGLTexture3D(FrameworkContext uv, UInt32 internalformat, Int32 width, Int32 height, UInt32 format, UInt32 type, IList<IntPtr> data, Boolean immutable, Boolean rbuffer)
             : base(uv)
         {
             Contract.Require(data, nameof(data));
@@ -326,7 +326,7 @@ namespace Sedulous.OpenGL.Graphics
                 var glname = texture;
                 if (glname != 0 && !Sedulous.Disposed)
                 {
-                    ((OpenGLSedulousGraphics)Sedulous.GetGraphics()).UnbindTexture(this);
+                    ((OpenGLGraphicsSubsystem)Sedulous.GetGraphics()).UnbindTexture(this);
                     Sedulous.QueueWorkItem((state) =>
                     {
                         gl.DeleteTexture(glname);
@@ -418,11 +418,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the underlying native OpenGL texture with the specified format and data.
         /// </summary>
-        private void CreateNativeTexture(SedulousContext uv, UInt32 internalformat, Int32 width, Int32 height, Int32 depth, 
+        private void CreateNativeTexture(FrameworkContext uv, UInt32 internalformat, Int32 width, Int32 height, Int32 depth, 
             UInt32 format, UInt32 type, void* pixels, Boolean immutable)
         {
             if (uv.IsRunningInServiceMode)
-                throw new NotSupportedException(SedulousStrings.NotSupportedInServiceMode);
+                throw new NotSupportedException(FrameworkStrings.NotSupportedInServiceMode);
 
             this.width = width;
             this.height = height;
@@ -550,7 +550,7 @@ namespace Sedulous.OpenGL.Graphics
 
             var pixelSizeInBytes = (format == gl.GL_RGB || format == gl.GL_BGR) ? 3 : 4;
             if (pixelSizeInBytes * width * height * depth != sizeInBytes)
-                throw new ArgumentException(SedulousStrings.BufferIsWrongSize);
+                throw new ArgumentException(FrameworkStrings.BufferIsWrongSize);
 
             Upload(level, left, top, right, bottom, front, back, data, offsetInBytes, sizeInBytes);
         }
@@ -566,7 +566,7 @@ namespace Sedulous.OpenGL.Graphics
 
             var pixelSizeInBytes = (format == gl.GL_RGB || format == gl.GL_BGR) ? 3 : 4;
             if (pixelSizeInBytes * width * height * depth != sizeInBytes)
-                throw new ArgumentException(SedulousStrings.BufferIsWrongSize);
+                throw new ArgumentException(FrameworkStrings.BufferIsWrongSize);
 
             Sedulous.QueueWorkItem(state =>
             {

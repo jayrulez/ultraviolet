@@ -9,13 +9,13 @@ namespace Sedulous.UI
     /// <summary>
     /// Represents a collection of screen stacks organized by window.
     /// </summary>
-    public sealed class UIScreenStackCollection : SedulousCollection<UIScreenStack>, IDisposable
+    public sealed class UIScreenStackCollection : FrameworkCollection<UIScreenStack>, IDisposable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UIScreenStackCollection"/> class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public UIScreenStackCollection(SedulousContext uv)
+        public UIScreenStackCollection(FrameworkContext uv)
         {
             Contract.Require(uv, nameof(uv));
 
@@ -48,7 +48,7 @@ namespace Sedulous.UI
         /// </summary>
         /// <param name="window">The window for which to retrieve a screen stack.</param>
         /// <returns>The <see cref="UIScreenStack"/> associated with the specified window.</returns>
-        public UIScreenStack this[ISedulousWindow window]
+        public UIScreenStack this[IFrameworkWindow window]
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Sedulous.UI
 
                 UIScreenStack stack;
                 if (!screenStacks.TryGetValue(window, out stack))
-                    throw new ArgumentException(SedulousStrings.InvalidWindow);
+                    throw new ArgumentException(FrameworkStrings.InvalidWindow);
 
                 return stack;
             }
@@ -66,8 +66,8 @@ namespace Sedulous.UI
         /// Handles a window's DrawingUI event.
         /// </summary>
         /// <param name="window">The window being drawn.</param>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
-        private void Window_DrawingUI(ISedulousWindow window, SedulousTime time)
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
+        private void Window_DrawingUI(IFrameworkWindow window, FrameworkTime time)
         {
             screenStacks[window].Draw(time, spriteBatch);
         }
@@ -76,7 +76,7 @@ namespace Sedulous.UI
         /// Handles the window manager's WindowCreated event.
         /// </summary>
         /// <param name="window">The window that was created.</param>
-        private void WindowInfo_WindowCreated(ISedulousWindow window)
+        private void WindowInfo_WindowCreated(IFrameworkWindow window)
         {
             CreateScreenStack(window);
         }
@@ -85,7 +85,7 @@ namespace Sedulous.UI
         /// Handles the window manager's WindowDestroyed event.
         /// </summary>
         /// <param name="window">The window that was destroyed.</param>
-        private void WindowInfo_WindowDestroyed(ISedulousWindow window)
+        private void WindowInfo_WindowDestroyed(IFrameworkWindow window)
         {
             DestroyScreenStack(window);
         }
@@ -94,7 +94,7 @@ namespace Sedulous.UI
         /// Creates the specified window's screen stack.
         /// </summary>
         /// <param name="window">The window being created.</param>
-        private void CreateScreenStack(ISedulousWindow window)
+        private void CreateScreenStack(IFrameworkWindow window)
         {
             var stack = new UIScreenStack(uv, window);
 
@@ -108,7 +108,7 @@ namespace Sedulous.UI
         /// Destroys the specified window's screen stack.
         /// </summary>
         /// <param name="window">The window being destroyed.</param>
-        private void DestroyScreenStack(ISedulousWindow window)
+        private void DestroyScreenStack(IFrameworkWindow window)
         {
             var stack = screenStacks[window];
             stack.Dispose();
@@ -137,12 +137,12 @@ namespace Sedulous.UI
         }
 
         // The sprite batch with which screens are drawn.
-        private readonly SedulousContext uv;
+        private readonly FrameworkContext uv;
         private readonly SpriteBatch spriteBatch;
         private Boolean disposed;
 
         // The registry of screen stacks for each window.
-        private readonly Dictionary<ISedulousWindow, UIScreenStack> screenStacks = 
-            new Dictionary<ISedulousWindow, UIScreenStack>();
+        private readonly Dictionary<IFrameworkWindow, UIScreenStack> screenStacks = 
+            new Dictionary<IFrameworkWindow, UIScreenStack>();
     }
 }

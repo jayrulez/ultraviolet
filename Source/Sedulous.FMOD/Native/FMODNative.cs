@@ -12,9 +12,9 @@ namespace Sedulous.FMOD.Native
         
         static FMODNative()
         {
-            switch (SedulousPlatformInfo.CurrentPlatform)
+            switch (FrameworkPlatformInfo.CurrentPlatform)
             {
-                case SedulousPlatform.Android:
+                case FrameworkPlatform.Android:
                     impl = new FMODNativeImpl_Android();
                     break;
                     

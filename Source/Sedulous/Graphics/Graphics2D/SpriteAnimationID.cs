@@ -7,7 +7,7 @@ namespace Sedulous.Graphics.Graphics2D
     /// <summary>
     /// Represents a value which identifies a particular sprite animation.
     /// </summary>
-    [JsonConverter(typeof(SedulousJsonConverter))]
+    [JsonConverter(typeof(FrameworkJsonConverter))]
     public partial struct SpriteAnimationID : IEquatable<SpriteAnimationID>
     {
         /// <summary>

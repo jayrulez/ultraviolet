@@ -21,12 +21,12 @@ namespace Sedulous.UI
     /// <param name="uiPanelDefinition">The <see cref="UIPanelDefinition"/> that defines the view's containing panel.</param>
     /// <param name="vmfactory">A view model factory which is used to create the view's initial view model, or <see langword="null"/> to skip view model creation.</param>
     /// <returns>The instance of <see cref="UIView"/> that was created.</returns>
-    public delegate UIView UIViewFactory(SedulousContext uv, UIPanel uiPanel, UIPanelDefinition uiPanelDefinition, UIViewModelFactory vmfactory);
+    public delegate UIView UIViewFactory(FrameworkContext uv, UIPanel uiPanel, UIPanelDefinition uiPanelDefinition, UIViewModelFactory vmfactory);
     
     /// <summary>
     /// Represents the graphical user interface of a <see cref="UIPanel"/> instance, which can optionally be bound to a view model.
     /// </summary>
-    public abstract class UIView : SedulousResource
+    public abstract class UIView : FrameworkResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UIView"/> class.
@@ -34,7 +34,7 @@ namespace Sedulous.UI
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="panel">The panel that owns the view.</param>
         /// <param name="viewModelType">The view's associated view model type.</param>
-        public UIView(SedulousContext uv, UIPanel panel, Type viewModelType)
+        public UIView(FrameworkContext uv, UIPanel panel, Type viewModelType)
             : base(uv)
         {
             Contract.Require(panel, nameof(panel));
@@ -55,7 +55,7 @@ namespace Sedulous.UI
             Contract.Require(uiPanel, nameof(uiPanel));
             Contract.Require(uiPanelDefinition, nameof(uiPanelDefinition));
 
-            var uv = SedulousContext.DemandCurrent();
+            var uv = FrameworkContext.DemandCurrent();
             var factory = uv.TryGetFactoryMethod<UIViewFactory>();
             if (factory != null)
             {
@@ -68,16 +68,16 @@ namespace Sedulous.UI
         /// <summary>
         /// Draws the view.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Draw(SedulousTime)"/>.</param>
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
         /// <param name="spriteBatch">The <see cref="SpriteBatch"/> with which to draw the view.</param>
         /// <param name="opacity">The view's overall opacity.</param>
-        public abstract void Draw(SedulousTime time, SpriteBatch spriteBatch, Single opacity = 1f);
+        public abstract void Draw(FrameworkTime time, SpriteBatch spriteBatch, Single opacity = 1f);
 
         /// <summary>
         /// Updates the view's state.
         /// </summary>
-        /// <param name="time">Time elapsed since the last call to <see cref="SedulousContext.Update(SedulousTime)"/>.</param>
-        public abstract void Update(SedulousTime time);
+        /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
+        public abstract void Update(FrameworkTime time);
 
         /// <summary>
         /// Sets the content managers used to load UI assets.
@@ -99,7 +99,7 @@ namespace Sedulous.UI
         public virtual void SetViewModel(Object viewModel)
         {
             if (viewModel != null && viewModel.GetType() != viewModelType)
-                throw new ArgumentException(SedulousStrings.IncompatibleViewModel.Format(viewModelType));
+                throw new ArgumentException(FrameworkStrings.IncompatibleViewModel.Format(viewModelType));
 
             this.viewModel = viewModel;
 
@@ -111,7 +111,7 @@ namespace Sedulous.UI
         /// </summary>
         /// <param name="window">The window on which to position the view.</param>
         /// <param name="area">The area on the window in which to position the view.</param>
-        public virtual void SetViewPosition(ISedulousWindow window, Rectangle area)
+        public virtual void SetViewPosition(IFrameworkWindow window, Rectangle area)
         {
             var oldWindow = this.window;
 
@@ -353,12 +353,12 @@ namespace Sedulous.UI
         /// <summary>
         /// Gets the window in which the view is being rendered.
         /// </summary>
-        public ISedulousWindow Window => window;
+        public IFrameworkWindow Window => window;
 
         /// <summary>
         /// Gets the display on which the view is being rendered.
         /// </summary>
-        public ISedulousDisplay Display => window?.Display;
+        public IFrameworkDisplay Display => window?.Display;
 
         /// <summary>
         /// Occurs when the view is about to be opened.
@@ -393,7 +393,7 @@ namespace Sedulous.UI
         /// </summary>
         /// <param name="oldWindow">The window that previously contained the view.</param>
         /// <param name="newWindow">The window that currently contains the view.</param>
-        protected virtual void OnViewWindowChanged(ISedulousWindow oldWindow, ISedulousWindow newWindow)
+        protected virtual void OnViewWindowChanged(IFrameworkWindow oldWindow, IFrameworkWindow newWindow)
         {
 
         }
@@ -443,6 +443,6 @@ namespace Sedulous.UI
         private ContentManager localContent;
         private Object viewModel;
         private Rectangle area;
-        private ISedulousWindow window;
+        private IFrameworkWindow window;
     }
 }

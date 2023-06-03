@@ -69,7 +69,7 @@ namespace Sedulous.Graphics.Graphics3D
         public void UpdateFromMatrix(in Matrix transform)
         {
             if (!transform.Decompose(out this.scale, out this.rotation, out this.translation))
-                throw new ArgumentException(SedulousStrings.NonAffineTransformationMatrix);
+                throw new ArgumentException(FrameworkStrings.NonAffineTransformationMatrix);
 
             this.matrix = transform;
         }

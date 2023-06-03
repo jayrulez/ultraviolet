@@ -5,7 +5,7 @@ namespace Sedulous.OpenGL
     /// <summary>
     /// Represents an Sedulous plugin which registers OpenGL as the graphics subsystem implementation.
     /// </summary>
-    public class OpenGLGraphicsPlugin : SedulousPlugin
+    public class OpenGLGraphicsPlugin : FrameworkPlugin
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLGraphicsPlugin"/> class.
@@ -17,7 +17,7 @@ namespace Sedulous.OpenGL
         }
 
         /// <inheritdoc/>
-        public override void Register(SedulousConfiguration configuration)
+        public override void Register(FrameworkConfiguration configuration)
         {
             Contract.Require(configuration, nameof(configuration));
 

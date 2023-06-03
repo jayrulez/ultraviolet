@@ -14,7 +14,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ScrollContentPresenter(SedulousContext uv, String name)
+        public ScrollContentPresenter(FrameworkContext uv, String name)
             : base(uv, name)
         {
 

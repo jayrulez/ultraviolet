@@ -7,7 +7,7 @@ using Sedulous.TestApplication;
 namespace Sedulous.Tests.Graphics
 {
     [TestFixture]
-    public partial class BasicEffectTests : SedulousApplicationTestFramework
+    public partial class BasicEffectTests : FrameworkApplicationTestFramework
     {
         private static IEnumerable<TestCaseData> BasicEffectTestCases
         {
@@ -45,7 +45,7 @@ namespace Sedulous.Tests.Graphics
         [Description("Ensures that #include directives in GLSL shader source are correctly processed.")]
         public void BasicEffect_RendersACubeCorrectly(BasicEffectTestParameters parameters)
         {
-            void DrawGeometry(ISedulousGraphics gfx, Effect eff, RasterizerState rasterizerState, DepthStencilState depthStencilState, Int32 count)
+            void DrawGeometry(IGraphicsSubsystem gfx, Effect eff, RasterizerState rasterizerState, DepthStencilState depthStencilState, Int32 count)
             {
                 foreach (var pass in eff.CurrentTechnique.Passes)
                 {

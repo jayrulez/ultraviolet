@@ -14,7 +14,7 @@ namespace Sedulous.OpenGL.Graphics
         /// Initializes a new instance of the OpenGLBlendState class.
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
-        public OpenGLBlendState(SedulousContext uv)
+        public OpenGLBlendState(FrameworkContext uv)
             : base(uv)
         {
 
@@ -25,7 +25,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The blend state that was created.</returns>
-        public static OpenGLBlendState CreateOpaque(SedulousContext uv)
+        public static OpenGLBlendState CreateOpaque(FrameworkContext uv)
         {
             var state = new OpenGLBlendState(uv);
             state.AlphaSourceBlend = Blend.One;
@@ -41,7 +41,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The blend state that was created.</returns>
-        public static OpenGLBlendState CreateAlphaBlend(SedulousContext uv)
+        public static OpenGLBlendState CreateAlphaBlend(FrameworkContext uv)
         {
             var state = new OpenGLBlendState(uv);
             state.AlphaSourceBlend = Blend.One;
@@ -57,7 +57,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The blend state that was created.</returns>
-        public static OpenGLBlendState CreateAdditive(SedulousContext uv)
+        public static OpenGLBlendState CreateAdditive(FrameworkContext uv)
         {
             var state = new OpenGLBlendState(uv);
             state.AlphaSourceBlend = Blend.SourceAlpha;
@@ -73,7 +73,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         /// <param name="uv">The Sedulous context.</param>
         /// <returns>The blend state that was created.</returns>
-        public static OpenGLBlendState CreateNonPremultiplied(SedulousContext uv)
+        public static OpenGLBlendState CreateNonPremultiplied(FrameworkContext uv)
         {
             var state = new OpenGLBlendState(uv);
             state.AlphaSourceBlend = Blend.SourceAlpha;
