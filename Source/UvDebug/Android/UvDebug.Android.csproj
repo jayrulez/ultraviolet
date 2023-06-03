@@ -16,7 +16,7 @@
 		<AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
 		<AndroidUseAapt2>true</AndroidUseAapt2>
 		<IncludeSedulousContentFiles>false</IncludeSedulousContentFiles>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

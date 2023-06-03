@@ -14,7 +14,7 @@ namespace Sedulous.FMOD
         {
             Java.Lang.JavaSystem.LoadLibrary("fmod");
 
-            var context = Android.App.Application.Context;
+            var context = Application.Context;
             if (context != null)
             {
                 Org.Fmod.FMOD.Init(context);
@@ -25,7 +25,7 @@ namespace Sedulous.FMOD
         /// <inheritdoc/>
         public override void OnApplicationCreated()
         {
-            var context = Android.App.Application.Context;
+            var context = Application.Context;
             if (context != null && !initialized)
             {
                 Org.Fmod.FMOD.Init(context);

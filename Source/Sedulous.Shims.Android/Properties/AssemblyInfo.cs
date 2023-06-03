@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle(@"Platform Compatibility Shim for Android")]
+//[assembly: AssemblyTitle(@"Platform Compatibility Shim for Android")]
 [assembly: AssemblyDescription(
     @"Provides Sedulous type implementations which are specific to the Android platform.")]
 

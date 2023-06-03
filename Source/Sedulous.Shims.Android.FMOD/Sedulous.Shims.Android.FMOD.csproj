@@ -8,7 +8,7 @@
     <RootNamespace>Sedulous.FMOD</RootNamespace>
     <AssemblyName>Sedulous.Shims.Android.FMOD</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>

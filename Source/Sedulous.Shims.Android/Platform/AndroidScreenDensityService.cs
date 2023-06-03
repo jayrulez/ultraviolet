@@ -33,7 +33,8 @@ namespace Sedulous.Shims.Android.Platform
             var oldDensityY = DensityY;
             var oldDensityBucket = DensityBucket;
 
-            activity.WindowManager.DefaultDisplay.GetMetrics(metrics);
+            //activity.WindowManager.DefaultDisplay.GetMetrics(metrics);
+            metrics = activity.ApplicationContext.Resources.DisplayMetrics;
 
             return
                 oldDensityScale != DensityScale ||
@@ -127,8 +128,9 @@ namespace Sedulous.Shims.Android.Platform
             else
             {
                 this.activity = activity;
-                this.metrics = new DisplayMetrics();
-                activity.WindowManager.DefaultDisplay.GetMetrics(metrics);
+                //this.metrics = new DisplayMetrics();
+                //activity.WindowManager.DefaultDisplay.GetMetrics(metrics);
+                this.metrics = activity.ApplicationContext.Resources.DisplayMetrics;
             }
         }
 
