@@ -58,7 +58,7 @@ namespace Sedulous.Presentation.Media.Effects
         {
             var blurTarget = target.Next.RenderTarget;
 
-            var gfx = dc.Sedulous.GetGraphics();
+            var gfx = dc.FrameworkContext.GetGraphics();
             gfx.SetRenderTarget(blurTarget, Color.Transparent);
 
             effect.Value.Radius = GetRadiusInPixels(element);

@@ -25,12 +25,12 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="Control"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public Control(FrameworkContext uv, String name)
-            : base(uv, name)
+        public Control(FrameworkContext context, String name)
+            : base(context, name)
         {
-            var upf = uv.GetUI().GetPresentationFoundation();
+            var upf = context.GetUI().GetPresentationFoundation();
             dataSourceWrapper = upf.CreateDataSourceWrapperForControl(this);
 
             LoadComponentRoot();

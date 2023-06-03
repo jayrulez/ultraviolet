@@ -16,7 +16,7 @@ namespace Sedulous.BASS.Audio
             if (!input.IsFilename)
                 throw new NotSupportedException();
 
-            return new BASSSong(manager.Sedulous, (String)input.Data);
+            return new BASSSong(manager.FrameworkContext, (String)input.Data);
         }
     }
 }

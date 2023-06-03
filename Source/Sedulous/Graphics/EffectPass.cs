@@ -10,9 +10,9 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="EffectPass"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public EffectPass(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public EffectPass(FrameworkContext context)
+            : base(context)
         {
 
         }

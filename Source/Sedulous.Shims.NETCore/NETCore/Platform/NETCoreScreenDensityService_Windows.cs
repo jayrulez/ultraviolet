@@ -12,14 +12,14 @@ namespace Sedulous.Shims.NETCore.Platform
         /// <summary>
         /// Initializes a new instance of the <see cref="NETCoreScreenDensityService_Windows"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="display">The <see cref="IFrameworkDisplay"/> for which to retrieve density information.</param>
-        public NETCoreScreenDensityService_Windows(FrameworkContext uv, IFrameworkDisplay display)
+        public NETCoreScreenDensityService_Windows(FrameworkContext context, IFrameworkDisplay display)
             : base(display)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
-            this.uv = uv;
+            this.context = context;
             this.display = display;
 
             Refresh();
@@ -33,8 +33,8 @@ namespace Sedulous.Shims.NETCore.Platform
             var oldDensityScale = densityScale;
             var oldDensityBucket = densityBucket;
 
-            if (!InitWindows8_1(uv, display))
-                InitFallback(uv, display);
+            if (!InitWindows8_1(context, display))
+                InitFallback(context, display);
 
             return oldDensityX != densityX || oldDensityY != densityY || oldDensityScale != densityScale || oldDensityBucket != densityBucket;
         }
@@ -72,9 +72,9 @@ namespace Sedulous.Shims.NETCore.Platform
         /// <summary>
         /// Retrieves DPI information when running on Windows 8.1 and higher.
         /// </summary>
-        private Boolean InitWindows8_1(FrameworkContext uv, IFrameworkDisplay display)
+        private Boolean InitWindows8_1(FrameworkContext context, IFrameworkDisplay display)
         {
-            if (uv.Platform != FrameworkPlatform.Windows || Environment.OSVersion.Version < new Version(6, 3))
+            if (context.Platform != FrameworkPlatform.Windows || Environment.OSVersion.Version < new Version(6, 3))
                 return false;
 
             var hmonitor = IntPtr.Zero;
@@ -105,7 +105,7 @@ namespace Sedulous.Shims.NETCore.Platform
         /// <summary>
         /// Retrieves DPI information in the general case.
         /// </summary>
-        private Boolean InitFallback(FrameworkContext uv, IFrameworkDisplay display)
+        private Boolean InitFallback(FrameworkContext context, IFrameworkDisplay display)
         {
             // todo sed: load pixel density info
             //using (var graphics = System.Drawing.Graphics.FromHwnd(IntPtr.Zero))
@@ -121,7 +121,7 @@ namespace Sedulous.Shims.NETCore.Platform
         }
 
         // State values.
-        private readonly FrameworkContext uv;
+        private readonly FrameworkContext context;
         private readonly IFrameworkDisplay display;
         private Single densityX;
         private Single densityY;

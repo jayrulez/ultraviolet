@@ -16,7 +16,7 @@ namespace Sedulous.FMOD.Audio
             if (!input.IsFilename)
                 throw new NotSupportedException();
 
-            return new FMODSong(manager.Sedulous, (String)input.Data);
+            return new FMODSong(manager.FrameworkContext, (String)input.Data);
         }
     }
 }

@@ -30,10 +30,10 @@ namespace Sedulous.Content
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentManager"/> class with the specified root directory.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="rootDirectory">The content manager's root directory.</param>
-        private ContentManager(FrameworkContext uv, String rootDirectory)
-            : base(uv)
+        private ContentManager(FrameworkContext context, String rootDirectory)
+            : base(context)
         {
             this.RootDirectory = rootDirectory;
             this.FullRootDirectory = (rootDirectory == null) ? Directory.GetCurrentDirectory() : Path.GetFullPath(rootDirectory);
@@ -41,11 +41,11 @@ namespace Sedulous.Content
             this.fileSystemService = FileSystemService.Create();
             this.overrideDirectories = new ContentOverrideDirectoryCollection(this);
 
-            this.assetCache = new ContentManagerAssetCache(Sedulous, this);
-            this.watchers = new ContentWatchManager(Sedulous, this);
-            this.dependencies = new ContentDependencyManager(Sedulous, this);
+            this.assetCache = new ContentManagerAssetCache(FrameworkContext, this);
+            this.watchers = new ContentWatchManager(FrameworkContext, this);
+            this.dependencies = new ContentDependencyManager(FrameworkContext, this);
 
-            uv.Messages.Subscribe(this, FrameworkMessages.LowMemory, FrameworkMessages.DisplayDensityChanged);
+            context.Messages.Subscribe(this, FrameworkMessages.LowMemory, FrameworkMessages.DisplayDensityChanged);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Sedulous.Content
             Contract.Require(manifest, nameof(manifest));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDpi = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             foreach (var group in manifest)
@@ -983,7 +983,7 @@ namespace Sedulous.Content
             var assetPath = assetWatchersForFile?.AssetPath ?? assetDependenciesForFile?.AssetPath;
             if (assetPath != null && assetCache.TryGetCacheEntry(assetPath, out var assetEntry))
             {
-                Sedulous.QueueWorkItem(state =>
+                FrameworkContext.QueueWorkItem(state =>
                 {
                     assetEntry.Reload(this, assetPath, assetWatchersForFile);
                 });
@@ -1011,7 +1011,7 @@ namespace Sedulous.Content
 
             if (disposing)
             {
-                Sedulous.Messages.Unsubscribe(this);
+                FrameworkContext.Messages.Unsubscribe(this);
 
                 lock (assetCache.SyncObject)
                 {
@@ -1027,7 +1027,7 @@ namespace Sedulous.Content
         /// <summary>
         /// Gets the density bucket for the primary display.
         /// </summary>
-        private ScreenDensityBucket GetPrimaryDisplayDensity() => Sedulous.GetPlatform().Displays.PrimaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
+        private ScreenDensityBucket GetPrimaryDisplayDensity() => FrameworkContext.GetPlatform().Displays.PrimaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
         /// <summary>
         /// Lists the assets which can serve as substitutions for the specified asset.
@@ -1064,7 +1064,7 @@ namespace Sedulous.Content
                 throw new InvalidOperationException(FrameworkStrings.ImporterNeedsExtension.Format(asset));
             }
 
-            var importer = Sedulous.GetContent().Importers.FindImporter(extension, ref outputType);
+            var importer = FrameworkContext.GetContent().Importers.FindImporter(extension, ref outputType);
             if (importer == null)
             {
                 throw new InvalidOperationException(FrameworkStrings.NoValidImporter.Format(asset));
@@ -1082,7 +1082,7 @@ namespace Sedulous.Content
         /// <returns>The processor for the specified type.</returns>
         private IContentProcessor FindContentProcessor(String asset, Type inputType, Type outputType)
         {
-            var processor = Sedulous.GetContent().Processors.FindProcessor(inputType, outputType);
+            var processor = FrameworkContext.GetContent().Processors.FindProcessor(inputType, outputType);
             if (processor == null)
             {
                 if (inputType != outputType)
@@ -1522,7 +1522,7 @@ namespace Sedulous.Content
         /// </summary>
         private String GetAssetPath(String asset, String extension, out String directory, out Boolean overridden, AssetResolutionFlags flags = AssetResolutionFlags.Default)
         {
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return GetAssetPath(asset, extension, primaryDisplayDensity, out directory, out overridden, flags);
@@ -1539,7 +1539,7 @@ namespace Sedulous.Content
                 extension = specifiedExtension;
 
             var isLoadedFromSln = (flags & AssetResolutionFlags.LoadFromSolutionDirectory) == AssetResolutionFlags.LoadFromSolutionDirectory;
-            var rootdir = isLoadedFromSln ? ContentDiscovery.FindSolutionDirectory(Sedulous, RootDirectory) ?? RootDirectory : RootDirectory;
+            var rootdir = isLoadedFromSln ? ContentDiscovery.FindSolutionDirectory(FrameworkContext, RootDirectory) ?? RootDirectory : RootDirectory;
             var path = GetAssetPathFromDirectory(rootdir, asset, ref extension, flags);
             directory = rootdir;
             overridden = false;
@@ -1582,7 +1582,7 @@ namespace Sedulous.Content
         /// </summary>
         private AssetMetadata GetAssetMetadata(String asset, Boolean includePreprocessedFiles, Boolean includeDetailedMetadata, Boolean fromsln)
         {
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return GetAssetMetadata(asset, primaryDisplayDensity, includePreprocessedFiles, includeDetailedMetadata, fromsln);

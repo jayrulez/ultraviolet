@@ -11,12 +11,12 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameworkResource"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        protected FrameworkResource(FrameworkContext uv)
+        /// <param name="context">The Sedulous context.</param>
+        protected FrameworkResource(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
-            this.uv = uv;
+            this.context = context;
         }
 
         /// <summary>
@@ -31,9 +31,9 @@ namespace Sedulous
         /// <summary>
         /// Gets the Sedulous context.
         /// </summary>
-        public FrameworkContext Sedulous
+        public FrameworkContext FrameworkContext
         {
-            get { return uv; }
+            get { return context; }
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Sedulous
         }
 
         // Property values.
-        private readonly FrameworkContext uv;
+        private readonly FrameworkContext context;
 
         // State values.
         private Boolean disposed;

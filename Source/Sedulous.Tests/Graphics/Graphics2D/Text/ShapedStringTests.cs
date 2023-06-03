@@ -21,7 +21,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithContent(content =>
                 {
                     var font = content.Load<FrameworkFont>("Fonts/FiraSans");
-                    using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
+                    using (var textShaper = new HarfBuzzTextShaper(content.FrameworkContext))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
                         textShaper.Append("Hello, world!");
@@ -48,7 +48,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithContent(content =>
                 {
                     var font = content.Load<FrameworkFont>("Fonts/FiraSans");
-                    using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
+                    using (var textShaper = new HarfBuzzTextShaper(content.FrameworkContext))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
                         textShaper.Append("Hello, world!");
@@ -75,7 +75,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithContent(content =>
                 {
                     var font = content.Load<FrameworkFont>("Fonts/FiraSans");
-                    using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
+                    using (var textShaper = new HarfBuzzTextShaper(content.FrameworkContext))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
                         textShaper.Append("Hello, world!");
@@ -122,7 +122,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithContent(content =>
                 {
                     var font = content.Load<FrameworkFont>("Fonts/FiraGO-Regular");
-                    using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
+                    using (var textShaper = new HarfBuzzTextShaper(content.FrameworkContext))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.RightToLeft, TextScript.Arabic, "ar");
                         textShaper.Append("مرحبا بالعالم");
@@ -169,7 +169,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithContent(content =>
                 {
                     var font = content.Load<FrameworkFont>("Fonts/NotoColorEmoji");
-                    using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
+                    using (var textShaper = new HarfBuzzTextShaper(content.FrameworkContext))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
                         textShaper.Append("Hello ");
@@ -207,7 +207,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithContent(content =>
                 {
                     var font = content.Load<FrameworkFont>("Fonts/NotoColorEmoji");
-                    using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
+                    using (var textShaper = new HarfBuzzTextShaper(content.FrameworkContext))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
                         textShaper.Append("Hello, world!");
@@ -248,7 +248,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 .WithContent(content =>
                 {
                     var font = content.Load<FrameworkFont>("Fonts/NotoColorEmoji");
-                    using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
+                    using (var textShaper = new HarfBuzzTextShaper(content.FrameworkContext))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
                         textShaper.Append("👨");

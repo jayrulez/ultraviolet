@@ -26,10 +26,10 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="ListBox"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ListBox(FrameworkContext uv, String name)
-            : base(uv, name)
+        public ListBox(FrameworkContext context, String name)
+            : base(context, name)
         {
             SetValue(SelectedItemsPropertyKey, selectedItems);
         }
@@ -110,7 +110,7 @@ namespace Sedulous.Presentation.Controls
         /// <inheritdoc/>
         protected internal override Panel CreateItemsPanel()
         {
-            return new StackPanel(Sedulous, null);
+            return new StackPanel(FrameworkContext, null);
         }
 
         /// <inheritdoc/>
@@ -122,7 +122,7 @@ namespace Sedulous.Presentation.Controls
         /// <inheritdoc/>
         protected override DependencyObject GetContainerForItemOverride()
         {
-            return new ListBoxItem(Sedulous, null);
+            return new ListBoxItem(FrameworkContext, null);
         }
 
         /// <inheritdoc/>

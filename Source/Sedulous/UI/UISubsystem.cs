@@ -13,12 +13,12 @@ namespace Sedulous.UI
         /// <summary>
         /// Initializes a new instance of the <see cref="UISubsystem"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="configuration">The Sedulous Framework configuration settings for the current context.</param>
-        public UISubsystem(FrameworkContext uv, FrameworkConfiguration configuration)
-            : base(uv)
+        public UISubsystem(FrameworkContext context, FrameworkConfiguration configuration)
+            : base(context)
         {
-            screenStacks = new UIScreenStackCollection(uv);
+            screenStacks = new UIScreenStackCollection(context);
 
             if (ContentManager.IsWatchedContentSupported)
                 WatchingViewFilesForChanges = configuration.WatchViewFilesForChanges;
@@ -45,7 +45,7 @@ namespace Sedulous.UI
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primary = Sedulous.GetPlatform().Windows.GetPrimary();
+            var primary = FrameworkContext.GetPlatform().Windows.GetPrimary();
             if (primary == null)
                 throw new InvalidOperationException(FrameworkStrings.NoPrimaryWindow);
 

@@ -14,10 +14,10 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Initializes a new instance of the <see cref="TextEditingControl"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public TextEditingControl(FrameworkContext uv, String name)
-            : base(uv, name)
+        public TextEditingControl(FrameworkContext context, String name)
+            : base(context, name)
         {
             var canExecuteIsEditable = new UpfCanExecuteRoutedEventHandler(CanExecuteIsEditable);
             var canExecuteIsCaretVisible = new UpfCanExecuteRoutedEventHandler(CanExecuteIsCaretVisible);

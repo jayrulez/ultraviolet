@@ -14,13 +14,13 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLEffect class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="techniques">The effect's techniques.</param>
         /// <param name="parameters">The effect's list of expected parameters, or <see langword="null"/> to
         /// determine the parameters by querying shader uniforms.</param>
-        public OpenGLEffectImplementation(FrameworkContext uv,
+        public OpenGLEffectImplementation(FrameworkContext context,
             IEnumerable<OpenGLEffectTechnique> techniques, HashSet<String> parameters = null)
-            : base(uv)
+            : base(context)
         {
             Contract.RequireNotEmpty(techniques, nameof(techniques));
 
@@ -159,7 +159,7 @@ namespace Sedulous.OpenGL.Graphics
 
                 var type = uniformData.Type;
                 var sizeInBytes = uniformData.SizeInBytes;
-                var parameter = new OpenGLEffectParameter(Sedulous, uniformName, type, sizeInBytes);
+                var parameter = new OpenGLEffectParameter(FrameworkContext, uniformName, type, sizeInBytes);
                 paramlist[uniformName] = parameter;
 
                 foreach (var uniform in kvp)

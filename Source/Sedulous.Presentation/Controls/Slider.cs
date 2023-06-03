@@ -51,10 +51,10 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="Slider"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public Slider(FrameworkContext uv, String name)
-            : base(uv, name)
+        public Slider(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }

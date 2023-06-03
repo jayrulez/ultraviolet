@@ -22,10 +22,10 @@ namespace Sedulous.SDL2.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2TouchDevice"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="index">The index of the SDL2 touch device represented by this object.</param>
-        public SDL2TouchDevice(FrameworkContext uv, Int32 index)
-            : base(uv)
+        public SDL2TouchDevice(FrameworkContext context, Int32 index)
+            : base(context)
         {
             // HACK: Working around an Android emulator glitch here -- it will
             // return a touch ID of 0 even after saying that the device exists,
@@ -36,7 +36,7 @@ namespace Sedulous.SDL2.Input
 
             this.sdlTouchID = id;
 
-            uv.Messages.Subscribe(this,
+            context.Messages.Subscribe(this,
                 SDL2FrameworkMessages.SDLEvent);
         }
 
@@ -419,7 +419,7 @@ namespace Sedulous.SDL2.Input
         }
 
         /// <inheritdoc/>
-        public override IFrameworkWindow BoundWindow => boundWindow ?? Sedulous.GetPlatform().Windows.GetPrimary();
+        public override IFrameworkWindow BoundWindow => boundWindow ?? FrameworkContext.GetPlatform().Windows.GetPrimary();
 
         /// <inheritdoc/>
         public override Boolean IsRecordingDollarGesture => isRecordingDollarGesture;
@@ -441,9 +441,9 @@ namespace Sedulous.SDL2.Input
 
             if (disposing)
             {
-                if (!Sedulous.Disposed)
+                if (!FrameworkContext.Disposed)
                 {
-                    Sedulous.Messages.Unsubscribe(this);
+                    FrameworkContext.Messages.Unsubscribe(this);
                 }
             }
 
@@ -537,7 +537,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void Register()
         {
-            var input = (SDL2FrameworkInput)Sedulous.GetInput();
+            var input = (SDL2FrameworkInput)FrameworkContext.GetInput();
             if (input.RegisterTouchDevice(this))
                 isRegistered = true;
         }

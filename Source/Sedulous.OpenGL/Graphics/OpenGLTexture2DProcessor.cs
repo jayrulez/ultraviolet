@@ -16,8 +16,8 @@ namespace Sedulous.OpenGL.Graphics
         public override void ExportPreprocessed(ContentManager manager, IContentProcessorMetadata metadata, BinaryWriter writer, PlatformNativeSurface input, Boolean delete)
         {
             var mdat = metadata.As<OpenGLTexture2DProcessorMetadata>();
-            var caps = manager.Sedulous.GetGraphics().Capabilities;
-            var srgbEncoded = mdat.SrgbEncoded ?? manager.Sedulous.Properties.SrgbDefaultForTexture2D;
+            var caps = manager.FrameworkContext.GetGraphics().Capabilities;
+            var srgbEncoded = mdat.SrgbEncoded ?? manager.FrameworkContext.Properties.SrgbDefaultForTexture2D;
             var surfOptions = srgbEncoded ? SurfaceOptions.SrgbColor : SurfaceOptions.LinearColor;
 
             using (var surface = Surface2D.Create(input, surfOptions))
@@ -40,7 +40,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <inheritdoc/>
         public override Texture2D ImportPreprocessed(ContentManager manager, IContentProcessorMetadata metadata, BinaryReader reader)
         {
-            var caps = manager.Sedulous.GetGraphics().Capabilities;
+            var caps = manager.FrameworkContext.GetGraphics().Capabilities;
 
             var version = 0u;
             var length = reader.ReadInt32();
@@ -63,7 +63,7 @@ namespace Sedulous.OpenGL.Graphics
                     var format = (source.DataFormat == SurfaceSourceDataFormat.RGBA) ? gl.GL_RGBA : gl.GL_BGRA;
                     var internalformat = OpenGLTextureUtil.GetInternalFormatFromBytesPerPixel(4, srgbEncoded);
 
-                    return new OpenGLTexture2D(manager.Sedulous, internalformat,
+                    return new OpenGLTexture2D(manager.FrameworkContext, internalformat,
                         source.Width, source.Height, format, gl.GL_UNSIGNED_BYTE, source.Data, true);
                 }
             }
@@ -72,14 +72,14 @@ namespace Sedulous.OpenGL.Graphics
         /// <inheritdoc/>
         public override Texture2D Process(ContentManager manager, IContentProcessorMetadata metadata, PlatformNativeSurface input)
         {
-            var caps = manager.Sedulous.GetGraphics().Capabilities;
+            var caps = manager.FrameworkContext.GetGraphics().Capabilities;
             var mdat = metadata.As<OpenGLTexture2DProcessorMetadata>();
-            var srgbEncoded = mdat.SrgbEncoded ?? manager.Sedulous.Properties.SrgbDefaultForTexture2D;
+            var srgbEncoded = mdat.SrgbEncoded ?? manager.FrameworkContext.Properties.SrgbDefaultForTexture2D;
             var surfOptions = srgbEncoded ? SurfaceOptions.SrgbColor : SurfaceOptions.LinearColor;
 
             using (var surface = Surface2D.Create(input, surfOptions))
             {
-                var flipdir = manager.Sedulous.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None;
+                var flipdir = manager.FrameworkContext.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None;
                 surface.FlipAndProcessAlpha(flipdir, mdat.PremultiplyAlpha, mdat.Opaque ? null : (Color?)Color.Magenta);
 
                 return surface.CreateTexture(unprocessed: true);

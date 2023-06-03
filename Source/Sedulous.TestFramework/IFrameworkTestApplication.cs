@@ -161,6 +161,6 @@ namespace Sedulous.TestFramework
         /// <summary>
         /// Gets the Sedulous context.
         /// </summary>
-        FrameworkContext Sedulous { get; }
+        FrameworkContext FrameworkContext { get; }
     }
 }

@@ -19,8 +19,8 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Initializes a new instance of the <see cref="PresentationFoundation"/> class.
         /// </summary>
-        private PresentationFoundation(FrameworkContext uv)
-            : base(uv)
+        private PresentationFoundation(FrameworkContext context)
+            : base(context)
         {
             RuntimeHelpers.RunClassConstructor(typeof(Tweening).TypeHandle);
             RuntimeHelpers.RunClassConstructor(typeof(SimpleClockPool).TypeHandle);
@@ -28,7 +28,7 @@ namespace Sedulous.Presentation
 
             RegisterCoreTypes();
 
-            this.outOfBandRenderer = uv.IsRunningInServiceMode ? null : new OutOfBandRenderer(uv);
+            this.outOfBandRenderer = context.IsRunningInServiceMode ? null : new OutOfBandRenderer(context);
 
             this.styleQueue = new LayoutQueue(InvalidateStyle, false);
             this.measureQueue = new LayoutQueue(InvalidateMeasure);
@@ -82,8 +82,8 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Called when the Sedulous context blah blah blah
         /// </summary>
-        /// <param name="uv"></param>
-        private void OnFrameStart(FrameworkContext uv)
+        /// <param name="context"></param>
+        private void OnFrameStart(FrameworkContext context)
         {
             PerformanceStats.OnFrameStart();
         }
@@ -91,9 +91,9 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Called when the Sedulous context is about to update its subsystems.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
-        private void OnUpdatingSubsystems(FrameworkContext uv, FrameworkTime time)
+        private void OnUpdatingSubsystems(FrameworkContext context, FrameworkTime time)
         {
             digestCycleID++;
         }
@@ -118,9 +118,9 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Called when the Sedulous context is about to draw a frame.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
-        private void OnDrawing(FrameworkContext uv, FrameworkTime time)
+        private void OnDrawing(FrameworkContext context, FrameworkTime time)
         {
             if (OutOfBandRenderer != null)
                 OutOfBandRenderer.DrawRenderTargets(time);

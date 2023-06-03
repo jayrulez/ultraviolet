@@ -12,11 +12,11 @@ namespace Sedulous.BASS.Audio
         /// <summary>
         /// Initializes a new instance of the <see cref="BASSAudioDevice"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="id">The device's BASS identifier.</param>
         /// <param name="name">The device's name.</param>
-        public BASSAudioDevice(FrameworkContext uv, UInt32 id, String name)
-            : base(uv)
+        public BASSAudioDevice(FrameworkContext context, UInt32 id, String name)
+            : base(context)
         {
             Contract.Require(name, nameof(name));
 

@@ -6,24 +6,24 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Texture2D"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="pixels">A pointer to the raw pixel data with which to populate the texture.</param>
     /// <param name="width">The texture's width in pixels.</param>
     /// <param name="height">The texture's height in pixels.</param>
     /// <param name="bytesPerPixel">The number of bytes which represent each pixel in the raw data.</param>
     /// <param name="options">The texture's configuration options.</param>
     /// <returns>The instance of <see cref="Texture2D"/> that was created.</returns>
-    public delegate Texture2D Texture2DFromRawDataFactory(FrameworkContext uv, IntPtr pixels, Int32 width, Int32 height, Int32 bytesPerPixel, TextureOptions options);
+    public delegate Texture2D Texture2DFromRawDataFactory(FrameworkContext context, IntPtr pixels, Int32 width, Int32 height, Int32 bytesPerPixel, TextureOptions options);
 
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Texture2D"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="width">The texture's width in pixels.</param>
     /// <param name="height">The texture's height in pixels.</param>
     /// <param name="options">The texture's configuration options.</param>
     /// <returns>The instance of <see cref="Texture2D"/> that was created.</returns>
-    public delegate Texture2D Texture2DFactory(FrameworkContext uv, Int32 width, Int32 height, TextureOptions options);
+    public delegate Texture2D Texture2DFactory(FrameworkContext context, Int32 width, Int32 height, TextureOptions options);
 
     /// <summary>
     /// Represents a two-dimensional texture.
@@ -33,9 +33,9 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="Texture2D"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public Texture2D(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public Texture2D(FrameworkContext context)
+            : base(context)
         {
 
         }

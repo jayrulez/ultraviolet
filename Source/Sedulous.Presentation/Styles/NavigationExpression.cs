@@ -28,17 +28,17 @@ namespace Sedulous.Presentation.Styles
         /// Creates a new instance of the <see cref="NavigationExpression"/> from the
         /// specified <see cref="UvssNavigationExpression"/> object.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="uvssexp">The UVSS navigation expression from which to create a new structure.</param>
         /// <returns>The <see cref="NavigationExpression"/> that was created.</returns>
-        public static NavigationExpression? FromUvssNavigationExpression(FrameworkContext uv, UvssNavigationExpression uvssexp)
+        public static NavigationExpression? FromUvssNavigationExpression(FrameworkContext context, UvssNavigationExpression uvssexp)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
             if (uvssexp == null)
                 return null;
 
-            var upf = uv.GetUI().GetPresentationFoundation();
+            var upf = context.GetUI().GetPresentationFoundation();
 
             var navigationPropertyName = new DependencyName(uvssexp.NavigationProperty);
             var navigationPropertyIndex = uvssexp.NavigationPropertyIndex;
@@ -69,15 +69,15 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Applies the navigation expression to the specified dependency object.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="source">The dependency object to which to apply the expression.</param>
         /// <returns>The dependency object that was navigated to, or <see langword="null"/> if no valid target was found.</returns>
-        public DependencyObject ApplyExpression(FrameworkContext uv, DependencyObject source)
+        public DependencyObject ApplyExpression(FrameworkContext context, DependencyObject source)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(source, nameof(source));
 
-            var dp = DependencyProperty.FindByStylingName(uv, source, propertyName.Owner, propertyName.Name);
+            var dp = DependencyProperty.FindByStylingName(context, source, propertyName.Owner, propertyName.Name);
             if (dp == null)
                 return null;
 

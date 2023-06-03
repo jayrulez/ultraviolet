@@ -25,15 +25,15 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Evaluates whether the condition is true for the specified object.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="dobj">The object against which to evaluate the trigger condition.</param>
         /// <returns><see langword="true"/> if the condition is true for the specified object; otherwise, <see langword="false"/>.</returns>
-        internal Boolean Evaluate(FrameworkContext uv, DependencyObject dobj)
+        internal Boolean Evaluate(FrameworkContext context, DependencyObject dobj)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(dobj, nameof(dobj));
 
-            var dprop = DependencyProperty.FindByStylingName(uv, dobj, propertyName.Owner, propertyName.Name);
+            var dprop = DependencyProperty.FindByStylingName(context, dobj, propertyName.Owner, propertyName.Name);
             if (dprop == null)
                 return false;
 

@@ -16,7 +16,7 @@ namespace Sedulous.Graphics.Graphics3D
     {
         /// <inheritdoc/>
         protected override Model CreateModelResource(ContentManager contentManager, ModelRoot input, IList<ModelScene> scenes, IList<Texture2D> textures) =>
-            new Model(contentManager.Sedulous, scenes, textures);
+            new Model(contentManager.FrameworkContext, scenes, textures);
     }
 
     /// <summary>

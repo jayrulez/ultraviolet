@@ -18,38 +18,38 @@ namespace Sedulous
     /// <summary>
     /// Represents a callback that is invoked when the Sedulous Framework logs a debug message.
     /// </summary>
-    /// <param name="uv">The Sedulous Context that logged the message.</param>
+    /// <param name="context">The Sedulous Context that logged the message.</param>
     /// <param name="level">A <see cref="DebugLevels"/> value representing the debug level of the message.</param>
     /// <param name="message">The debug message text.</param>
-    public delegate void DebugCallback(FrameworkContext uv, DebugLevels level, String message);
+    public delegate void DebugCallback(FrameworkContext context, DebugLevels level, String message);
 
     /// <summary>
     /// Represents a method that is called in response to an Sedulous context event.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
-    public delegate void SedulousContextEventHandler(FrameworkContext uv);
+    /// <param name="context">The Sedulous context.</param>
+    public delegate void SedulousContextEventHandler(FrameworkContext context);
 
     /// <summary>
     /// Represents the method that is called when an Sedulous context is about to draw the current scene.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
-    public delegate void SedulousContextDrawEventHandler(FrameworkContext uv, FrameworkTime time);
+    public delegate void SedulousContextDrawEventHandler(FrameworkContext context, FrameworkTime time);
 
     /// <summary>
     /// Represents the method that is called when an Sedulous context has drawn or is about to draw a particular window.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
     /// <param name="window">The window that was drawn or is about to be drawn.</param>
-    public delegate void SedulousContextWindowDrawEventHandler(FrameworkContext uv, FrameworkTime time, IFrameworkWindow window);
+    public delegate void SedulousContextWindowDrawEventHandler(FrameworkContext context, FrameworkTime time, IFrameworkWindow window);
 
     /// <summary>
     /// Represents the method that is called when an Sedulous context updates the application state.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
-    public delegate void SedulousContextUpdateEventHandler(FrameworkContext uv, FrameworkTime time);
+    public delegate void SedulousContextUpdateEventHandler(FrameworkContext context, FrameworkTime time);
 
     /// <summary>
     /// Represents the Sedulous Framework and all of its subsystems.
@@ -523,7 +523,7 @@ namespace Sedulous
         [Conditional("DEBUG")]
         public void ValidateResource(FrameworkResource resource)
         {
-            if (resource != null && resource.Sedulous != this)
+            if (resource != null && resource.FrameworkContext != this)
                 throw new InvalidOperationException(FrameworkStrings.InvalidResource);
         }
 

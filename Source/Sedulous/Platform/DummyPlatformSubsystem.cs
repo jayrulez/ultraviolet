@@ -12,9 +12,9 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="DummyPlatformSubsystem"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public DummyPlatformSubsystem(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public DummyPlatformSubsystem(FrameworkContext context)
+            : base(context)
         {
             this.clipboard = new DummyClipboardService();
             this.windows = new DummyFrameworkWindowInfo();

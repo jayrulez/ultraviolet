@@ -14,14 +14,14 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Initializes a new instance of the <see cref="UvmlInstantiationContext"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="templatedParent">The templated parent for the instantiated object.</param>
         /// <param name="dataSource">The data source for the instantiated object.</param>
         /// <param name="dataSourceType">The data source type for the instantiated object.</param>
         /// <param name="namescope">The context's namescope, or <see langword="null"/> to create a new namescope.</param>
-        internal UvmlInstantiationContext(FrameworkContext uv, Object templatedParent, Object dataSource, Type dataSourceType, Namescope namescope = null)
+        internal UvmlInstantiationContext(FrameworkContext context, Object templatedParent, Object dataSource, Type dataSourceType, Namescope namescope = null)
         {
-            this.Sedulous = uv;
+            this.FrameworkContext = context;
             this.Namescope = namescope ?? new Namescope();
             this.TemplatedParent = templatedParent;
             this.DataSource = dataSource;
@@ -33,24 +33,24 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Creates an instantiation context for the specified view.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="view">The view for which to create an instantiation context.</param>
         /// <returns>The instantiation context which was created.</returns>
-        internal static UvmlInstantiationContext ForView(FrameworkContext uv, PresentationFoundationView view)
+        internal static UvmlInstantiationContext ForView(FrameworkContext context, PresentationFoundationView view)
         {
-            return new UvmlInstantiationContext(uv, null, view, view.ViewModelType, view.Namescope);
+            return new UvmlInstantiationContext(context, null, view, view.ViewModelType, view.Namescope);
         }
 
         /// <summary>
         /// Creates an instantiation context for the specified view.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="control">The control for which to create an instantiation context.</param>
         /// <returns>The instantiation context which was created.</returns>
-        internal static UvmlInstantiationContext ForControl(FrameworkContext uv, Control control)
+        internal static UvmlInstantiationContext ForControl(FrameworkContext context, Control control)
         {
             var wrapper = PresentationFoundation.GetDataSourceWrapper(control);
-            return new UvmlInstantiationContext(uv, control, control, wrapper.GetType(), control.ComponentTemplateNamescope);
+            return new UvmlInstantiationContext(context, control, control, wrapper.GetType(), control.ComponentTemplateNamescope);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Gets the Sedulous context.
         /// </summary>
-        public FrameworkContext Sedulous { get; }
+        public FrameworkContext FrameworkContext { get; }
 
         /// <summary>
         /// Gets the namescope for the current template.
@@ -111,7 +111,7 @@ namespace Sedulous.Presentation.Uvml
             {
                 for (var templateType = TemplatedParent.GetType(); templateType != null; templateType = templateType.BaseType)
                 {
-                    wrapperType = Sedulous.GetUI().GetPresentationFoundation().GetDataSourceWrapperType(templateType);
+                    wrapperType = FrameworkContext.GetUI().GetPresentationFoundation().GetDataSourceWrapperType(templateType);
 
                     if (wrapperType != null)
                         break;

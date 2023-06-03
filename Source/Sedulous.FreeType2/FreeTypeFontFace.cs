@@ -26,11 +26,11 @@ namespace Sedulous.FreeType2
         /// <summary>
         /// Initializes a new instance of the <see cref="FreeTypeFontFace"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="face">The FreeType2 face which this instance represents.</param>
         /// <param name="metadata">The processor metadata with which this font face was loaded.</param>
-        internal FreeTypeFontFace(FrameworkContext uv, IntPtr face, FreeTypeFontProcessorMetadata metadata)
-            : base(uv)
+        internal FreeTypeFontFace(FrameworkContext context, IntPtr face, FreeTypeFontProcessorMetadata metadata)
+            : base(context)
         {
             Contract.Require(face, nameof(face));
 
@@ -710,11 +710,11 @@ namespace Sedulous.FreeType2
         /// <summary>
         /// Ensures that the specified scratch surface exists and has at least the specified size.
         /// </summary>
-        private static void CreateResamplingSurface(FrameworkContext uv, ref Surface2D srf, Int32 w, Int32 h)
+        private static void CreateResamplingSurface(FrameworkContext context, ref Surface2D srf, Int32 w, Int32 h)
         {
             if (srf == null)
             {
-                var srgb = uv.GetGraphics().Capabilities.SrgbEncodingEnabled;
+                var srgb = context.GetGraphics().Capabilities.SrgbEncodingEnabled;
                 var opts = srgb ? SurfaceOptions.SrgbColor : SurfaceOptions.LinearColor;
 
                 srf?.Dispose();
@@ -803,8 +803,8 @@ namespace Sedulous.FreeType2
                     resampleRadius = 1f;
 
                 // Ensure that our scratch surfaces exist with enough space.
-                CreateResamplingSurface(Sedulous, ref resamplingSurface1, width, height);
-                CreateResamplingSurface(Sedulous, ref resamplingSurface2, scaledWidth, height);
+                CreateResamplingSurface(FrameworkContext, ref resamplingSurface1, width, height);
+                CreateResamplingSurface(FrameworkContext, ref resamplingSurface2, scaledWidth, height);
 
                 // Precalculate pixel weights.
                 CreateResamplingWeights(ref resamplingWeightsX, width, reservation.Width, resampleRatio, resampleRadius);
@@ -1284,7 +1284,7 @@ namespace Sedulous.FreeType2
                     // Attempt to create a new atlas if we weren't able to make a reservation.
                     if (!reservationFound)
                     {
-                        var srgb = Sedulous.GetGraphics().Capabilities.SrgbEncodingEnabled;
+                        var srgb = FrameworkContext.GetGraphics().Capabilities.SrgbEncodingEnabled;
                         var opts = TextureOptions.ImmutableStorage | (srgb ? TextureOptions.SrgbColor : TextureOptions.LinearColor);
                         var atlas = DynamicTextureAtlas.Create(AtlasWidth, AtlasHeight, AtlasSpacing, opts);
                         atlas.Surface.Clear(Color.Transparent);

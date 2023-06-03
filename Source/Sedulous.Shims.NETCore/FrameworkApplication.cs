@@ -94,7 +94,7 @@ namespace Sedulous
 
             timingLogic.Cleanup();
 
-            uv.WaitForPendingTasks(true);
+            context.WaitForPendingTasks(true);
         }
 
         /// <summary>
@@ -117,14 +117,14 @@ namespace Sedulous
         /// <summary>
         /// Gets the Sedulous context.
         /// </summary>
-        public FrameworkContext Sedulous
+        public FrameworkContext FrameworkContext
         {
             get
             {
                 Contract.EnsureNotDisposed(this, disposed);
                 Contract.Ensure(created, FrameworkStrings.ContextMissing);
 
-                return uv;
+                return context;
             }
         }
 
@@ -270,9 +270,9 @@ namespace Sedulous
             {
                 if (!disposed)
                 {
-                    if (disposing && uv != null)
+                    if (disposing && context != null)
                     {
-                        uv.Messages.Unsubscribe(this);
+                        context.Messages.Unsubscribe(this);
 
                         DisposePlatformResources();
 
@@ -282,12 +282,12 @@ namespace Sedulous
                             primary = null;
                         }
 
-                        uv.Dispose();
+                        context.Dispose();
 
-                        uv.Updating -= uv_Updating;
-                        uv.Shutdown -= uv_Shutdown;
-                        uv.WindowDrawing -= uv_WindowDrawing;
-                        uv.WindowDrawn -= uv_WindowDrawn;
+                        context.Updating -= uv_Updating;
+                        context.Shutdown -= uv_Shutdown;
+                        context.WindowDrawing -= uv_WindowDrawing;
+                        context.WindowDrawn -= uv_WindowDrawn;
 
                         timingLogic = null;
                     }
@@ -606,8 +606,8 @@ namespace Sedulous
         {
             LoadSettings();
 
-            uv = FrameworkContext.EnsureSuccessfulCreation(OnCreatingSedulousContext);
-            if (uv == null)
+            context = FrameworkContext.EnsureSuccessfulCreation(OnCreatingSedulousContext);
+            if (context == null)
                 throw new InvalidOperationException(FrameworkStrings.ContextNotCreated);
 
             ApplySettings();
@@ -616,7 +616,7 @@ namespace Sedulous
             if (this.timingLogic == null)
                 throw new InvalidOperationException(FrameworkStrings.InvalidTimingLogic);
 
-            this.uv.Messages.Subscribe(this,
+            this.context.Messages.Subscribe(this,
                 FrameworkMessages.ApplicationTerminating,
                 FrameworkMessages.ApplicationSuspending,
                 FrameworkMessages.ApplicationSuspended,
@@ -624,13 +624,13 @@ namespace Sedulous
                 FrameworkMessages.ApplicationResumed,
                 FrameworkMessages.LowMemory,
                 FrameworkMessages.Quit);
-            this.uv.Updating += uv_Updating;
-            this.uv.Shutdown += uv_Shutdown;
-            this.uv.WindowDrawing += uv_WindowDrawing;
-            this.uv.WindowDrawn += uv_WindowDrawn;
+            this.context.Updating += uv_Updating;
+            this.context.Shutdown += uv_Shutdown;
+            this.context.WindowDrawing += uv_WindowDrawing;
+            this.context.WindowDrawn += uv_WindowDrawn;
 
-            this.uv.GetPlatform().Windows.PrimaryWindowChanging += uv_PrimaryWindowChanging;
-            this.uv.GetPlatform().Windows.PrimaryWindowChanged += uv_PrimaryWindowChanged;
+            this.context.GetPlatform().Windows.PrimaryWindowChanging += uv_PrimaryWindowChanging;
+            this.context.GetPlatform().Windows.PrimaryWindowChanged += uv_PrimaryWindowChanged;
             HookPrimaryWindowEvents();
 
             this.created = true;
@@ -648,7 +648,7 @@ namespace Sedulous
                 primary.Drawing -= uv_Drawing;
             }
 
-            primary = uv.GetPlatform().Windows.GetPrimary();
+            primary = context.GetPlatform().Windows.GetPrimary();
 
             if (primary != null)
             {
@@ -707,9 +707,9 @@ namespace Sedulous
         /// <summary>
         /// Handles the Sedulous context's Updating event.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
-        private void uv_Updating(FrameworkContext uv, FrameworkTime time)
+        private void uv_Updating(FrameworkContext context, FrameworkTime time)
         {
             OnUpdating(time);
         }
@@ -717,8 +717,8 @@ namespace Sedulous
         /// <summary>
         /// Handles the Sedulous context's Shutdown event.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        private void uv_Shutdown(FrameworkContext uv)
+        /// <param name="context">The Sedulous context.</param>
+        private void uv_Shutdown(FrameworkContext context)
         {
             OnShutdown();
         }
@@ -726,7 +726,7 @@ namespace Sedulous
         /// <summary>
         /// Handles the Sedulous context's <see cref="FrameworkContext.WindowDrawing"/> event.
         /// </summary>
-        private void uv_WindowDrawing(FrameworkContext uv, FrameworkTime time, IFrameworkWindow window)
+        private void uv_WindowDrawing(FrameworkContext context, FrameworkTime time, IFrameworkWindow window)
         {
             OnWindowDrawing(time, window);
         }
@@ -734,13 +734,13 @@ namespace Sedulous
         /// <summary>
         /// Handles the Sedulous context's <see cref="FrameworkContext.WindowDrawn"/> event.
         /// </summary>
-        private void uv_WindowDrawn(FrameworkContext uv, FrameworkTime time, IFrameworkWindow window)
+        private void uv_WindowDrawn(FrameworkContext context, FrameworkTime time, IFrameworkWindow window)
         {
             OnWindowDrawn(time, window);
         }
 
         // Property values.
-        private FrameworkContext uv;
+        private FrameworkContext context;
 
         // State values.
         private readonly Object stateSyncObject = new Object();

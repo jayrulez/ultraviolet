@@ -11,11 +11,11 @@ namespace Sedulous.Presentation.Animations
         /// <summary>
         /// Initializes a new instance of the <see cref="StoryboardClockPool"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        private StoryboardClockPool(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        private StoryboardClockPool(FrameworkContext context)
+            : base(context)
         {
-            uv.GetUI().Updating += StoryboardClockPool_Updating;
+            context.GetUI().Updating += StoryboardClockPool_Updating;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Sedulous.Presentation.Animations
             if (pool != null)
                 return;
 
-            this.pool = new PoolImpl(Sedulous, 32, 256, () => new StoryboardClock());
+            this.pool = new PoolImpl(FrameworkContext, 32, 256, () => new StoryboardClock());
         }
 
         /// <summary>
@@ -108,9 +108,9 @@ namespace Sedulous.Presentation.Animations
         /// <inheritdoc/>
         protected override void Dispose(Boolean disposing)
         {
-            if (disposing && !Sedulous.Disposed)
+            if (disposing && !FrameworkContext.Disposed)
             {
-                Sedulous.GetUI().Updating -= StoryboardClockPool_Updating;
+                FrameworkContext.GetUI().Updating -= StoryboardClockPool_Updating;
 
                 SafeDispose.DisposeRef(ref pool);
             }
@@ -126,7 +126,7 @@ namespace Sedulous.Presentation.Animations
             if (pool == null)
                 return;
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.BeginUpdate();
 
             pool.Update(time, (value, state) =>

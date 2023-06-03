@@ -13,10 +13,10 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentControl"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ContentControl(FrameworkContext uv, String name)
-            : base(uv, name)
+        public ContentControl(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }

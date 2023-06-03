@@ -14,14 +14,14 @@ namespace Sedulous.Presentation.Compiler
         /// <summary>
         /// Initializes a new instance of the <see cref="RoslynExpressionCompilerState"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public RoslynExpressionCompilerState(ICrossThreadFrameworkContext uv)
+        /// <param name="context">The Sedulous context.</param>
+        public RoslynExpressionCompilerState(ICrossThreadFrameworkContext context)
         {
-            this.uv = uv;
+            this.context = context;
             this.knownTypes = new Dictionary<String, Type>();
             this.knownDefaultProperties = new Dictionary<Type, String>();
-            this.componentTemplateManager = uv?.QueueWorkItem(state => 
-                FrameworkContext.DemandCurrent().GetUI().GetPresentationFoundation().ComponentTemplates).Result;
+            this.componentTemplateManager = context?.QueueWorkItem(state =>
+                Sedulous.FrameworkContext.DemandCurrent().GetUI().GetPresentationFoundation().ComponentTemplates).Result;
 
             LoadKnownTypes();
         }
@@ -82,9 +82,9 @@ namespace Sedulous.Presentation.Compiler
         /// <summary>
         /// Gets the Sedulous context.
         /// </summary>
-        public ICrossThreadFrameworkContext Sedulous
+        public ICrossThreadFrameworkContext FrameworkContext
         {
-            get { return uv; }
+            get { return context; }
         }
         
         /// <summary>
@@ -129,9 +129,9 @@ namespace Sedulous.Presentation.Compiler
         /// </summary>
         private void LoadKnownTypes()
         {
-            if (uv != null)
+            if (context != null)
             {
-                var upf = uv.QueueWorkItem(state => FrameworkContext.DemandCurrent().GetUI().GetPresentationFoundation()).Result;
+                var upf = context.QueueWorkItem(state => Sedulous.FrameworkContext.DemandCurrent().GetUI().GetPresentationFoundation()).Result;
                 foreach (var kvp in upf.GetKnownTypes())
                     knownTypes[kvp.Key] = kvp.Value;
 
@@ -163,7 +163,7 @@ namespace Sedulous.Presentation.Compiler
         }
 
         // Property values.
-        private readonly ICrossThreadFrameworkContext uv;
+        private readonly ICrossThreadFrameworkContext context;
         private readonly ComponentTemplateManager componentTemplateManager;
 
         // State values.

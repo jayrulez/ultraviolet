@@ -15,13 +15,13 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseInputBinding"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="element">The XML element that contains the binding data.</param>
-        internal MouseInputBinding(FrameworkContext uv, XElement element)
+        internal MouseInputBinding(FrameworkContext context, XElement element)
         {
             Contract.Require(element, nameof(element));
 
-            this.mouse = uv.GetInput().GetMouse();
+            this.mouse = context.GetInput().GetMouse();
 
             this.button = element.ElementValueEnum<MouseButton>("Button") ?? MouseButton.None;
             this.control = element.ElementValueBoolean("Control") ?? false;
@@ -34,18 +34,18 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseInputBinding"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="button">The <see cref="MouseButton"/> value that represents the binding's primary button.</param>
-        public MouseInputBinding(FrameworkContext uv, MouseButton button)
+        public MouseInputBinding(FrameworkContext context, MouseButton button)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
-            if (!uv.GetInput().IsMouseSupported())
+            if (!context.GetInput().IsMouseSupported())
             {
                 throw new NotSupportedException();
             }
 
-            this.mouse = uv.GetInput().GetMouse();
+            this.mouse = context.GetInput().GetMouse();
             this.button = button;
 
             this.stringRepresentation = BuildStringRepresentation();
@@ -54,19 +54,19 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseInputBinding"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="button">The <see cref="MouseButton"/> value that represents the binding's primary button.</param>
         /// <param name="control">A value indicating whether the binding requires the Control modifier.</param>
         /// <param name="alt">A value indicating whether the binding requires the Alt modifier.</param>
         /// <param name="shift">A value indicating whether the binding requires the Shift modifier.</param>
-        public MouseInputBinding(FrameworkContext uv, MouseButton button, Boolean control, Boolean alt, Boolean shift)
+        public MouseInputBinding(FrameworkContext context, MouseButton button, Boolean control, Boolean alt, Boolean shift)
         {
-            if (!uv.GetInput().IsMouseSupported())
+            if (!context.GetInput().IsMouseSupported())
             {
                 throw new NotSupportedException();
             }
 
-            this.mouse = uv.GetInput().GetMouse();
+            this.mouse = context.GetInput().GetMouse();
             this.button = button;
             this.control = control;
             this.alt = alt;

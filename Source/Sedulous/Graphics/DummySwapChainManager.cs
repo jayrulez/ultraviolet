@@ -11,8 +11,8 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="DummySwapChainManager"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public DummySwapChainManager(FrameworkContext uv) : base(uv) { }
+        /// <param name="context">The Sedulous context.</param>
+        public DummySwapChainManager(FrameworkContext context) : base(context) { }
 
         /// <inheritdoc/>
         public override void DrawAndSwap(FrameworkTime time,

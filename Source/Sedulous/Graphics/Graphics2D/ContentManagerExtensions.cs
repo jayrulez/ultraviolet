@@ -25,7 +25,7 @@ namespace Sedulous.Graphics.Graphics2D
             Contract.Ensure<ArgumentException>(id.IsValid, nameof(id));
             Contract.EnsureNotDisposed(contentManager, contentManager.Disposed);
 
-            var primaryDisplay = contentManager.Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = contentManager.FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return LoadInternal(contentManager, id, primaryDisplayDensity, cache);

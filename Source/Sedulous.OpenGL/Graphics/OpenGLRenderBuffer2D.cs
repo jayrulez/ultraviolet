@@ -13,13 +13,13 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLRenderBuffer2D class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="format">The render buffer's format.</param>
         /// <param name="width">The render buffer's width in pixels.</param>
         /// <param name="height">The render buffer's height in pixels.</param>
         /// <param name="options">The render buffer's configuration options.</param>
-        public OpenGLRenderBuffer2D(FrameworkContext uv, RenderBufferFormat format, Int32 width, Int32 height, RenderBufferOptions options)
-            : base(uv)
+        public OpenGLRenderBuffer2D(FrameworkContext context, RenderBufferFormat format, Int32 width, Int32 height, RenderBufferOptions options)
+            : base(context)
         {
             Contract.EnsureRange(width > 0, nameof(width));
             Contract.EnsureRange(height > 0, nameof(height));
@@ -32,8 +32,8 @@ namespace Sedulous.OpenGL.Graphics
             if ((isSrgb || isLinear) && format != RenderBufferFormat.Color)
                 throw new ArgumentException(FrameworkStrings.EncodingSpecifiedForNonColorBuffer);
 
-            var caps = uv.GetGraphics().Capabilities;
-            var srgbEncoded = (isLinear ? false : (isSrgb ? true : uv.Properties.SrgbDefaultForRenderBuffer2D)) && caps.SrgbEncodingEnabled;
+            var caps = context.GetGraphics().Capabilities;
+            var srgbEncoded = (isLinear ? false : (isSrgb ? true : context.Properties.SrgbDefaultForRenderBuffer2D)) && caps.SrgbEncodingEnabled;
 
             this.format = format;
             this.width = width;
@@ -56,25 +56,25 @@ namespace Sedulous.OpenGL.Graphics
                         {
                             var texformat = OpenGLTextureUtil.GetFormatFromBytesPerPixel(4);
                             var texinternalformat = OpenGLTextureUtil.GetInternalFormatFromBytesPerPixel(4, srgbEncoded);
-                            this.texture = new OpenGLTexture2D(uv, texinternalformat, width, height, texformat, gl.GL_UNSIGNED_BYTE, IntPtr.Zero, immutable, true);
+                            this.texture = new OpenGLTexture2D(context, texinternalformat, width, height, texformat, gl.GL_UNSIGNED_BYTE, IntPtr.Zero, immutable, true);
                             this.SrgbEncoded = this.texture.SrgbEncoded;
                         }
                         break;
 
                     case RenderBufferFormat.Depth24Stencil8:
-                        this.texture = new OpenGLTexture2D(uv, gl.GL_DEPTH24_STENCIL8, width, height, gl.GL_DEPTH_STENCIL, gl.GL_UNSIGNED_INT_24_8, IntPtr.Zero, immutable, true);
+                        this.texture = new OpenGLTexture2D(context, gl.GL_DEPTH24_STENCIL8, width, height, gl.GL_DEPTH_STENCIL, gl.GL_UNSIGNED_INT_24_8, IntPtr.Zero, immutable, true);
                         break;
 
                     case RenderBufferFormat.Depth32:
-                        this.texture = new OpenGLTexture2D(uv, gl.GL_DEPTH_COMPONENT32, width, height, gl.GL_DEPTH_COMPONENT, gl.GL_UNSIGNED_INT, IntPtr.Zero, immutable, true);
+                        this.texture = new OpenGLTexture2D(context, gl.GL_DEPTH_COMPONENT32, width, height, gl.GL_DEPTH_COMPONENT, gl.GL_UNSIGNED_INT, IntPtr.Zero, immutable, true);
                         break;
 
                     case RenderBufferFormat.Depth16:
-                        this.texture = new OpenGLTexture2D(uv, gl.GL_DEPTH_COMPONENT16, width, height, gl.GL_DEPTH_COMPONENT, gl.GL_UNSIGNED_SHORT, IntPtr.Zero, immutable, true);
+                        this.texture = new OpenGLTexture2D(context, gl.GL_DEPTH_COMPONENT16, width, height, gl.GL_DEPTH_COMPONENT, gl.GL_UNSIGNED_SHORT, IntPtr.Zero, immutable, true);
                         break;
 
                     case RenderBufferFormat.Stencil8:
-                        this.texture = new OpenGLTexture2D(uv, gl.GL_STENCIL_INDEX8, width, height, gl.GL_STENCIL, gl.GL_UNSIGNED_INT, IntPtr.Zero, immutable, true);
+                        this.texture = new OpenGLTexture2D(context, gl.GL_STENCIL_INDEX8, width, height, gl.GL_STENCIL, gl.GL_UNSIGNED_INT, IntPtr.Zero, immutable, true);
                         break;
 
                     default:
@@ -287,16 +287,16 @@ namespace Sedulous.OpenGL.Graphics
 
             if (disposing)
             {
-                if (!Sedulous.Disposed)
-                    ((OpenGLGraphicsSubsystem)Sedulous.GetGraphics()).UnbindTexture(this);
+                if (!FrameworkContext.Disposed)
+                    ((OpenGLGraphicsSubsystem)FrameworkContext.GetGraphics()).UnbindTexture(this);
 
                 if (willNotBeSampled)
                 {
                     var glname = renderbuffer;
 
-                    if (!Sedulous.Disposed && glname != 0)
+                    if (!FrameworkContext.Disposed && glname != 0)
                     {
-                        Sedulous.QueueWorkItem((state) =>
+                        FrameworkContext.QueueWorkItem((state) =>
                         {
                             gl.DeleteRenderBuffers(glname);
                             gl.ThrowIfError();

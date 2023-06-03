@@ -9,11 +9,11 @@ namespace Sedulous.Presentation
     internal sealed class PresentationFoundationInitializer : UIViewProviderInitializer
     {
         /// <inheritdoc/>
-        public override void Initialize(FrameworkContext uv, Object configuration)
+        public override void Initialize(FrameworkContext context, Object configuration)
         {
             var config = (PresentationFoundationConfiguration)configuration ?? new PresentationFoundationConfiguration();
 
-            var upf = uv.GetUI().GetPresentationFoundation();
+            var upf = context.GetUI().GetPresentationFoundation();
             upf.BindingExpressionCompilerAssemblyName = config.BindingExpressionCompilerAssembly;
         }
     }

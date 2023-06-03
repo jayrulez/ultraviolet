@@ -18,14 +18,14 @@ namespace Sedulous.SDL2.Platform
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2FrameworkWindowInfo"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="configuration">The Sedulous configuration settings for the current context.</param>
-        internal SDL2FrameworkWindowInfo(FrameworkContext uv, FrameworkConfiguration configuration)
+        internal SDL2FrameworkWindowInfo(FrameworkContext context, FrameworkConfiguration configuration)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(configuration, nameof(configuration));
 
-            this.Sedulous = uv;
+            this.FrameworkContext = context;
         }
         
         /// <summary>
@@ -157,7 +157,7 @@ namespace Sedulous.SDL2.Platform
         {
             var sdlflags = (RenderingApi == SDL2PlatformRenderingAPI.OpenGL) ? SDL_WINDOW_OPENGL : 0;
 
-            if (Sedulous.Properties.SupportsHighDensityDisplayModes)
+            if (FrameworkContext.Properties.SupportsHighDensityDisplayModes)
                 sdlflags |= SDL_WINDOW_ALLOW_HIGHDPI;
 
             if ((flags & WindowFlags.Hidden) == WindowFlags.Hidden || (flags & WindowFlags.ShownImmediately) != WindowFlags.ShownImmediately)
@@ -178,10 +178,10 @@ namespace Sedulous.SDL2.Platform
                 throw new SDL2Exception();
 
             var visible = (flags & WindowFlags.Hidden) != WindowFlags.Hidden;
-            var win = new SDL2FrameworkWindow(Sedulous, sdlptr, visible);
+            var win = new SDL2FrameworkWindow(FrameworkContext, sdlptr, visible);
             windows.Add(win);
 
-            Sedulous.Messages.Subscribe(win, SDL2FrameworkMessages.SDLEvent);
+            FrameworkContext.Messages.Subscribe(win, SDL2FrameworkMessages.SDLEvent);
 
             OnWindowCreated(win);
 
@@ -199,10 +199,10 @@ namespace Sedulous.SDL2.Platform
             if (sdlptr == IntPtr.Zero)
                 throw new SDL2Exception();
 
-            var win = new SDL2FrameworkWindow(Sedulous, sdlptr, true);
+            var win = new SDL2FrameworkWindow(FrameworkContext, sdlptr, true);
             windows.Add(win);
 
-            Sedulous.Messages.Subscribe(win, SDL2FrameworkMessages.SDLEvent);
+            FrameworkContext.Messages.Subscribe(win, SDL2FrameworkMessages.SDLEvent);
 
             OnWindowCreated(win);
 
@@ -234,7 +234,7 @@ namespace Sedulous.SDL2.Platform
             OnWindowCleanup(window);
 
             var sdlwin = (SDL2FrameworkWindow)window;
-            Sedulous.Messages.Unsubscribe(sdlwin, SDL2FrameworkMessages.SDLEvent);
+            FrameworkContext.Messages.Unsubscribe(sdlwin, SDL2FrameworkMessages.SDLEvent);
 
             var native = sdlwin.Native;
             sdlwin.Dispose();
@@ -287,7 +287,7 @@ namespace Sedulous.SDL2.Platform
         /// <summary>
         /// Gets the Sedulous context.
         /// </summary>
-        public FrameworkContext Sedulous { get; }
+        public FrameworkContext FrameworkContext { get; }
 
         /// <summary>
         /// Occurs after a window has been created.
@@ -322,7 +322,7 @@ namespace Sedulous.SDL2.Platform
         /// <summary>
         /// Initializes the context's primary window.
         /// </summary>
-        internal void InitializePrimaryWindow(FrameworkContext uv, FrameworkConfiguration configuration)
+        internal void InitializePrimaryWindow(FrameworkContext context, FrameworkConfiguration configuration)
         {
             if (Master != null)
                 throw new InvalidOperationException(FrameworkStrings.PrimaryWindowAlreadyInitialized);
@@ -331,7 +331,7 @@ namespace Sedulous.SDL2.Platform
             InitializeRenderingAPI(configuration.GraphicsConfiguration, 0);
 
             // If we're running on Android or iOS, we can't create a headless context.
-            var isRunningOnMobile = (Sedulous.Platform == FrameworkPlatform.Android || Sedulous.Platform == FrameworkPlatform.iOS);
+            var isRunningOnMobile = (FrameworkContext.Platform == FrameworkPlatform.Android || FrameworkContext.Platform == FrameworkPlatform.iOS);
             if (isRunningOnMobile && configuration.Headless)
                 throw new InvalidOperationException(SDL2Strings.CannotCreateHeadlessContextOnMobile);
 
@@ -340,7 +340,7 @@ namespace Sedulous.SDL2.Platform
             var masterHeight = 0;
             var masterFlags = (RenderingApi == SDL2PlatformRenderingAPI.OpenGL) ? SDL_WINDOW_OPENGL : 0;
 
-            if (Sedulous.Properties.SupportsHighDensityDisplayModes)
+            if (FrameworkContext.Properties.SupportsHighDensityDisplayModes)
                 masterFlags |= SDL_WINDOW_ALLOW_HIGHDPI;
 
             if (isRunningOnMobile)
@@ -353,7 +353,7 @@ namespace Sedulous.SDL2.Platform
             }
 
             // Attempt to create the master window. If that fails, reduce our requirements and try again before failing.
-            var caption = String.IsNullOrEmpty(uv.Host.ApplicationName) ? (String)FrameworkStrings.DefaultWindowCaption : uv.Host.ApplicationName;
+            var caption = String.IsNullOrEmpty(context.Host.ApplicationName) ? (String)FrameworkStrings.DefaultWindowCaption : context.Host.ApplicationName;
             var masterptr = SDL_CreateWindow(isRunningOnMobile ? caption : String.Empty, 0, 0, masterWidth, masterHeight, masterFlags);
             if (masterptr == IntPtr.Zero)
             {
@@ -378,7 +378,7 @@ namespace Sedulous.SDL2.Platform
                 configuration.GraphicsConfiguration.SrgbBuffersEnabled = (srgbFramebufferEnabled > 0);
             }
 
-            this.Master = new SDL2FrameworkWindow(Sedulous, masterptr, isRunningOnMobile);
+            this.Master = new SDL2FrameworkWindow(FrameworkContext, masterptr, isRunningOnMobile);
 
             // Set SDL_HINT_VIDEO_WINDOW_SHARE_PIXEL_FORMAT so that enlisted windows
             // will be OpenGL-enabled and set to the correct pixel format.

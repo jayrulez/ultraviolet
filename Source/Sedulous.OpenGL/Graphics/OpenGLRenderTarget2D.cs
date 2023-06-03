@@ -14,21 +14,21 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLRenderTarget2D class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="width">The render target's width in pixels.</param>
         /// <param name="height">The render target's height in pixels.</param>
         /// <param name="usage">A <see cref="RenderTargetUsage"/> value specifying whether the 
         /// render target's data is discarded or preserved when it is bound to the graphics device.</param>
         /// <param name="buffers">The collection of render buffers to attach to the target.</param>
-        public OpenGLRenderTarget2D(FrameworkContext uv, Int32 width, Int32 height, RenderTargetUsage usage, IEnumerable<RenderBuffer2D> buffers = null)
-            : base(uv)
+        public OpenGLRenderTarget2D(FrameworkContext context, Int32 width, Int32 height, RenderTargetUsage usage, IEnumerable<RenderBuffer2D> buffers = null)
+            : base(context)
         {
             Contract.EnsureRange(width > 0, nameof(width));
             Contract.EnsureRange(height > 0, nameof(height));
 
             var framebuffer = 0u;
 
-            uv.QueueWorkItem(state =>
+            context.QueueWorkItem(state =>
             {
                 using (OpenGLState.ScopedCreateFramebuffer(out framebuffer))
                 {
@@ -57,11 +57,11 @@ namespace Sedulous.OpenGL.Graphics
                 buffer.Height == height, OpenGLStrings.RenderBufferIsWrongSize);
             Contract.EnsureNotDisposed(this, Disposed);
 
-            Sedulous.ValidateResource(buffer);
+            FrameworkContext.ValidateResource(buffer);
 
             var oglBuffer = (OpenGLRenderBuffer2D)buffer;
 
-            Sedulous.QueueWorkItem(state =>
+            FrameworkContext.QueueWorkItem(state =>
             {
                 using (OpenGLState.ScopedBindFramebuffer(framebuffer))
                 {
@@ -362,9 +362,9 @@ namespace Sedulous.OpenGL.Graphics
             if (disposing)
             {
                 var glname = framebuffer;
-                if (glname != 0 && !Sedulous.Disposed)
+                if (glname != 0 && !FrameworkContext.Disposed)
                 {
-                    Sedulous.QueueWorkItem((state) =>
+                    FrameworkContext.QueueWorkItem((state) =>
                     {
                         gl.DeleteFramebuffer(glname);
                         gl.ThrowIfError();

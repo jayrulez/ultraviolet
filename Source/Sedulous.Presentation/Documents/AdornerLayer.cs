@@ -16,10 +16,10 @@ namespace Sedulous.Presentation.Documents
         /// <summary>
         /// Initializes a new instance of the <see cref="AdornerLayer"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public AdornerLayer(FrameworkContext uv, String name)
-            : base(uv, name)
+        public AdornerLayer(FrameworkContext context, String name)
+            : base(context, name)
         {
             adorners = new VisualCollection(this);
             adornersStates = new List<AdornerState>();

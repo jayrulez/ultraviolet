@@ -13,11 +13,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLEffectPass"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The effect pass' name.</param>
         /// <param name="programs">The effect pass' collection of shader programs.</param>
-        public OpenGLEffectPass(FrameworkContext uv, String name, ICollection<OpenGLShaderProgram> programs)
-            : base(uv)
+        public OpenGLEffectPass(FrameworkContext context, String name, ICollection<OpenGLShaderProgram> programs)
+            : base(context)
         {
             Contract.RequireNotEmpty(programs, nameof(programs));
 

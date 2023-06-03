@@ -103,7 +103,7 @@ namespace UvDebug
             ContentManager.GloballySuppressDependencyTracking = !ShouldDynamicallyReloadContent();
             this.content = ContentManager.Create("Content");
 
-            if (Sedulous.IsRunningInServiceMode)
+            if (FrameworkContext.IsRunningInServiceMode)
             {
                 LoadPresentation();
                 CompileContent();
@@ -167,7 +167,7 @@ namespace UvDebug
         protected void LoadInputBindings()
         {
             var inputBindingsPath = Path.Combine(GetRoamingApplicationSettingsDirectory(), "InputBindings.xml");
-            Sedulous.GetInput().GetActions().Load(inputBindingsPath, throwIfNotFound: false);
+            FrameworkContext.GetInput().GetActions().Load(inputBindingsPath, throwIfNotFound: false);
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace UvDebug
         protected void SaveInputBindings()
         {
             var inputBindingsPath = Path.Combine(GetRoamingApplicationSettingsDirectory(), "InputBindings.xml");
-            Sedulous.GetInput().GetActions().Save(inputBindingsPath);
+            FrameworkContext.GetInput().GetActions().Save(inputBindingsPath);
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace UvDebug
         /// </summary>
         protected void LoadContentManifests()
         {
-            var uvContent = Sedulous.GetContent();
+            var uvContent = FrameworkContext.GetContent();
 
             var contentManifestFiles = this.content.GetAssetFilePathsInDirectory("Manifests");
             uvContent.Manifests.Load(contentManifestFiles);
@@ -196,7 +196,7 @@ namespace UvDebug
         protected void LoadPresentation()
         {
 #if !IMGUI
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.RegisterKnownTypes(GetType().Assembly);
 
             if (!ShouldRunInServiceMode())
@@ -308,7 +308,7 @@ namespace UvDebug
         /// <param name="time">Time elapsed since the last call to Update.</param>
         protected override void OnUpdating(FrameworkTime time)
         {
-            if (Sedulous.GetInput().GetActions().ExitApplication.IsPressed())
+            if (FrameworkContext.GetInput().GetActions().ExitApplication.IsPressed())
             {
                 Exit();
             }
@@ -321,8 +321,8 @@ namespace UvDebug
         /// <param name="time">Time elapsed since the last call to Draw.</param>
         protected override void OnDrawing(FrameworkTime time)
         {
-            var gfx = Sedulous.GetGraphics();
-            var window = Sedulous.GetPlatform().Windows.GetCurrent();
+            var gfx = FrameworkContext.GetGraphics();
+            var window = FrameworkContext.GetPlatform().Windows.GetCurrent();
             var aspectRatio = window.DrawableSize.Width / (Single)window.DrawableSize.Height;
 
             effect.World = Matrix.CreateRotationY((float)(2.0 * Math.PI * (time.TotalTime.TotalSeconds / 10.0)));
@@ -447,7 +447,7 @@ namespace UvDebug
         {
             if (ShouldCompileContent())
             {
-                if (Sedulous.Platform == FrameworkPlatform.Android || Sedulous.Platform == FrameworkPlatform.iOS)
+                if (FrameworkContext.Platform == FrameworkPlatform.Android || FrameworkContext.Platform == FrameworkPlatform.iOS)
                     throw new NotSupportedException();
 
                 var archive = ContentArchive.FromFileSystem(new[] { "Content" });
@@ -469,7 +469,7 @@ namespace UvDebug
 #if !IMGUI
             if (ShouldCompileBindingExpressions())
             {
-                var upf = Sedulous.GetUI().GetPresentationFoundation();
+                var upf = FrameworkContext.GetUI().GetPresentationFoundation();
 
                 var flags = CompileExpressionsFlags.None;
 

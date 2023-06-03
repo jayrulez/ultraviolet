@@ -215,13 +215,13 @@ namespace Sedulous.TestApplication
         /// <inheritdoc/>
         public void SpoofKeyDown(Scancode scancode, Key key, Boolean ctrl, Boolean alt, Boolean shift)
         {
-            var data = Sedulous.Messages.CreateMessageData<SDL2EventMessageData>();
+            var data = FrameworkContext.Messages.CreateMessageData<SDL2EventMessageData>();
             data.Event = new SDL_Event()
             {
                 key = new SDL_KeyboardEvent()
                 {
                     type = (uint)SDL_KEYDOWN,
-                    windowID = (uint)Sedulous.GetPlatform().Windows.GetPrimary().ID,
+                    windowID = (uint)FrameworkContext.GetPlatform().Windows.GetPrimary().ID,
                     keysym = new SDL_Keysym()
                     {
                         keycode = (SDL_Keycode)key,
@@ -233,19 +233,19 @@ namespace Sedulous.TestApplication
                     },
                 }
             };
-            Sedulous.Messages.Publish(SDL2FrameworkMessages.SDLEvent, data);
+            FrameworkContext.Messages.Publish(SDL2FrameworkMessages.SDLEvent, data);
         }
 
         /// <inheritdoc/>
         public void SpoofKeyUp(Scancode scancode, Key key, Boolean ctrl, Boolean alt, Boolean shift)
         {
-            var data = Sedulous.Messages.CreateMessageData<SDL2EventMessageData>();
+            var data = FrameworkContext.Messages.CreateMessageData<SDL2EventMessageData>();
             data.Event = new SDL_Event()
             {
                 key = new SDL_KeyboardEvent()
                 {
                     type = (uint)SDL_KEYUP,
-                    windowID = (uint)Sedulous.GetPlatform().Windows.GetPrimary().ID,
+                    windowID = (uint)FrameworkContext.GetPlatform().Windows.GetPrimary().ID,
                     keysym = new SDL_Keysym()
                     {
                         keycode = (SDL_Keycode)key,
@@ -257,7 +257,7 @@ namespace Sedulous.TestApplication
                     },
                 }
             };
-            Sedulous.Messages.Publish(SDL2FrameworkMessages.SDLEvent, data);
+            FrameworkContext.Messages.Publish(SDL2FrameworkMessages.SDLEvent, data);
         }
 
         /// <inheritdoc/>
@@ -307,11 +307,11 @@ namespace Sedulous.TestApplication
         protected override void OnInitialized()
         {
             if (!headless)
-                Sedulous.GetPlatform().Windows.GetPrimary().ClientSize = new Size2(480, 360);
+                FrameworkContext.GetPlatform().Windows.GetPrimary().ClientSize = new Size2(480, 360);
 
-            initializer?.Invoke(Sedulous);
+            initializer?.Invoke(FrameworkContext);
 
-            Sedulous.FrameStart += OnFrameStart;
+            FrameworkContext.FrameStart += OnFrameStart;
 
             base.OnInitialized();
         }
@@ -319,9 +319,9 @@ namespace Sedulous.TestApplication
         /// <inheritdoc/>
         protected override void OnShutdown()
         {
-            if (!Sedulous.Disposed)
+            if (!FrameworkContext.Disposed)
             {
-                Sedulous.FrameStart -= OnFrameStart;
+                FrameworkContext.FrameStart -= OnFrameStart;
             }
             base.OnShutdown();
         }
@@ -329,7 +329,7 @@ namespace Sedulous.TestApplication
         /// <inheritdoc/>
         protected override void OnLoadingContent()
         {
-            var window = Sedulous.GetPlatform().Windows.GetPrimary();
+            var window = FrameworkContext.GetPlatform().Windows.GetPrimary();
 
             if (!headless)
             {
@@ -379,20 +379,20 @@ namespace Sedulous.TestApplication
 
             if (framesToSkip == 0)
             {
-                var window = 
-                    Sedulous.GetPlatform().Windows.GetPrimary();
+                var window =
+                    FrameworkContext.GetPlatform().Windows.GetPrimary();
 
                 var compositor = window.Compositor as ITestFrameworkCompositor;
                 if (compositor != null)
                     compositor.TestFrameworkRenderTarget = rtarget;
                 else
                 {
-                    Sedulous.GetGraphics().SetRenderTarget(rtarget);
-                    Sedulous.GetGraphics().SetViewport(new Viewport(0, 0, window.ClientSize.Width, window.ClientSize.Height));
-                    Sedulous.GetGraphics().Clear(Color.Black);
+                    FrameworkContext.GetGraphics().SetRenderTarget(rtarget);
+                    FrameworkContext.GetGraphics().SetViewport(new Viewport(0, 0, window.ClientSize.Width, window.ClientSize.Height));
+                    FrameworkContext.GetGraphics().Clear(Color.Black);
                 }
 
-                renderer?.Invoke(Sedulous);
+                renderer?.Invoke(FrameworkContext);
 
                 if (compositor != null)
                 {
@@ -400,8 +400,8 @@ namespace Sedulous.TestApplication
                     window.Compositor.Present();
                 }
 
-                Sedulous.GetGraphics().SetRenderTargetToBackBuffer();
-                Sedulous.GetGraphics().Clear(Color.CornflowerBlue);
+                FrameworkContext.GetGraphics().SetRenderTargetToBackBuffer();
+                FrameworkContext.GetGraphics().Clear(Color.CornflowerBlue);
                 image = ConvertRenderTargetToBitmap(rtarget);
             }
             else
@@ -429,8 +429,8 @@ namespace Sedulous.TestApplication
         /// <summary>
         /// Occurs at the start of a frame.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        private void OnFrameStart(FrameworkContext uv)
+        /// <param name="context">The Sedulous context.</param>
+        private void OnFrameStart(FrameworkContext context)
         {
             if (frameCount == 0)
                 startTime = DateTime.UtcNow;
@@ -474,7 +474,7 @@ namespace Sedulous.TestApplication
             // power of two, so at this point we clip it back down
             // to the size of the window.
 
-            var window = Sedulous.GetPlatform().Windows.GetPrimary();
+            var window = FrameworkContext.GetPlatform().Windows.GetPrimary();
             var windowWidth = window.DrawableSize.Width;
             var windowHeight = window.DrawableSize.Height;
 

@@ -20,13 +20,13 @@ namespace Sedulous.FreeType2
         /// <summary>
         /// Initializes a new instance of the <see cref="HarfBuzzTextShaper"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="capacity">The initial capacity of the text builder.</param>
-        public HarfBuzzTextShaper(FrameworkContext uv, Int32 capacity = 0)
-            : base(uv)
+        public HarfBuzzTextShaper(FrameworkContext context, Int32 capacity = 0)
+            : base(context)
         {
             this.native = hb_buffer_create();
-            this.rawstr = new HarfBuzzNativeStringBuffer(uv, capacity);
+            this.rawstr = new HarfBuzzNativeStringBuffer(context, capacity);
 
             if (capacity > 0)
                 hb_buffer_pre_allocate(native, (UInt32)capacity);

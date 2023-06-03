@@ -6,13 +6,13 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="DynamicTextureAtlas"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="width">The width of the texture atlas in pixels.</param>
     /// <param name="height">The height of the texture atlas in pixels.</param>
     /// <param name="spacing">The number of pixels between cells on the texture atlas.</param>
     /// <param name="options">The texture's configuration options.</param>
     /// <returns>The instance of <see cref="DynamicTextureAtlas"/> that was created.</returns>
-    public delegate DynamicTextureAtlas DynamicTextureAtlasFactory(FrameworkContext uv, Int32 width, Int32 height, Int32 spacing, TextureOptions options);
+    public delegate DynamicTextureAtlas DynamicTextureAtlasFactory(FrameworkContext context, Int32 width, Int32 height, Int32 spacing, TextureOptions options);
 
     /// <summary>
     /// Represents a texture atlas which can be built dynamically at runtime.
@@ -22,13 +22,13 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicTextureAtlas"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="width">The width of the texture atlas in pixels.</param>
         /// <param name="height">The height of the texture atlas in pixels.</param>
         /// <param name="spacing">The number of pixels between cells on the texture atlas.</param>
         /// <param name="options">The texture's configuration options.</param>
-        private DynamicTextureAtlas(FrameworkContext uv, Int32 width, Int32 height, Int32 spacing, TextureOptions options)
-            : base(uv)
+        private DynamicTextureAtlas(FrameworkContext context, Int32 width, Int32 height, Int32 spacing, TextureOptions options)
+            : base(context)
         {
             Contract.EnsureRange(width > 0, nameof(width));
             Contract.EnsureRange(height > 0, nameof(height));
@@ -39,11 +39,11 @@ namespace Sedulous.Graphics
             if (isSrgb && isLinear)
                 throw new ArgumentException(FrameworkStrings.TextureCannotHaveMultipleEncodings);
 
-            var caps = uv.GetGraphics().Capabilities;
-            var srgbEncoded = (isLinear ? false : (isSrgb ? true : uv.Properties.SrgbDefaultForTexture2D)) && caps.SrgbEncodingEnabled;
+            var caps = context.GetGraphics().Capabilities;
+            var srgbEncoded = (isLinear ? false : (isSrgb ? true : context.Properties.SrgbDefaultForTexture2D)) && caps.SrgbEncodingEnabled;
             var surfOptions = (srgbEncoded ? SurfaceOptions.SrgbColor : SurfaceOptions.LinearColor);
 
-            this.IsFlipped = Sedulous.GetGraphics().Capabilities.FlippedTextures;
+            this.IsFlipped = FrameworkContext.GetGraphics().Capabilities.FlippedTextures;
 
             this.Width = width;
             this.Height = height;

@@ -8,14 +8,14 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Surface3D"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="width">The surface's width in pixels.</param>
     /// <param name="height">The surface's height in pixels.</param>
     /// <param name="depth">The number of layers in the surface.</param>
     /// <param name="bytesPerPixel">The number of bytes used to represent a pixel on the surface.</param>
     /// <param name="options">The surface's configuration options.</param>
     /// <returns>The instance of <see cref="Surface3D"/> that was created.</returns>
-    public delegate Surface3D Surface3DFactory(FrameworkContext uv, Int32 width, Int32 height, Int32 depth, Int32 bytesPerPixel, SurfaceOptions options);
+    public delegate Surface3D Surface3DFactory(FrameworkContext context, Int32 width, Int32 height, Int32 depth, Int32 bytesPerPixel, SurfaceOptions options);
 
     /// <summary>
     /// Represents a three-dimensional image which is held in CPU memory.
@@ -25,9 +25,9 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="Surface3D"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public Surface3D(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public Surface3D(FrameworkContext context)
+            : base(context)
         {
 
         }

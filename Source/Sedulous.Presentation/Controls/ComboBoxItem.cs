@@ -22,10 +22,10 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="ComboBoxItem"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ComboBoxItem(FrameworkContext uv, String name)
-            : base(uv, name)
+        public ComboBoxItem(FrameworkContext context, String name)
+            : base(context, name)
         {
             HighlightOnSelect = false;
             HighlightOnMouseOver = true;
@@ -47,7 +47,7 @@ namespace Sedulous.Presentation.Controls
         /// <inheritdoc/>
         protected override void OnTouchTap(TouchDevice device, Int64 id, Double x, Double y, RoutedEventData data)
         {
-            if (!Sedulous.GetInput().IsMouseCursorAvailable)
+            if (!FrameworkContext.GetInput().IsMouseCursorAvailable)
             {
                 if (device.IsFirstTouchInGesture(id) && !data.Handled)
                 {

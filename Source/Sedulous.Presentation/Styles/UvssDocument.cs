@@ -57,9 +57,9 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Initializes a new instance of the <see cref="UvssDocument"/> class with no rules or storyboards.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public UvssDocument(FrameworkContext uv)
-            : this(uv, null, null)
+        /// <param name="context">The Sedulous context.</param>
+        public UvssDocument(FrameworkContext context)
+            : this(context, null, null)
         {
 
         }
@@ -67,11 +67,11 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Initializes a new instance of the <see cref="UvssDocument"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="rules">A collection containing the document's rules.</param>
         /// <param name="storyboards">A collection containing the document's storyboards.</param>
-        public UvssDocument(FrameworkContext uv, IEnumerable<UvssRuleSet> rules, IEnumerable<UvssStoryboard> storyboards)
-            : base(uv)
+        public UvssDocument(FrameworkContext context, IEnumerable<UvssRuleSet> rules, IEnumerable<UvssStoryboard> storyboards)
+            : base(context)
         {
             this.ruleSets = (rules ?? Enumerable.Empty<UvssRuleSet>())
                 .ToList();
@@ -96,28 +96,28 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Compiles an Sedulous Style Sheet (UVSS) document from the specified source text.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="source">The source text from which to compile the document.</param>
         /// <returns>A new instance of <see cref="UvssDocument"/> that represents the compiled data.</returns>
-        public static UvssDocument Compile(FrameworkContext uv, String source)
+        public static UvssDocument Compile(FrameworkContext context, String source)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(source, nameof(source));
 
             var document = UvssParser.Parse(source);
 
-            return Compile(uv, document);
+            return Compile(context, document);
         }
 
         /// <summary>
         /// Compiles an Sedulous Style Sheet (UVSS) document from the specified stream.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="stream">The <see cref="Stream"/> that contains the document to compile.</param>
         /// <returns>A new instance of <see cref="UvssDocument"/> that represents the compiled data.</returns>
-        public static UvssDocument Compile(FrameworkContext uv, Stream stream)
+        public static UvssDocument Compile(FrameworkContext context, Stream stream)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(stream, nameof(stream));
 
             using (var reader = new StreamReader(stream))
@@ -125,23 +125,23 @@ namespace Sedulous.Presentation.Styles
                 var source = reader.ReadToEnd();
                 var document = UvssParser.Parse(source);
 
-                return Compile(uv, document);
+                return Compile(context, document);
             }
         }
 
         /// <summary>
         /// Compiles an Sedulous Style Sheet (UVSS) document from the specified abstract syntax tree.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="tree">A <see cref="UvssDocumentSyntax"/> that represents the
         /// abstract syntax tree to compile.</param>
         /// <returns>A new instance of <see cref="UvssDocument"/> that represents the compiled data.</returns>
-        public static UvssDocument Compile(FrameworkContext uv, UvssDocumentSyntax tree)
+        public static UvssDocument Compile(FrameworkContext context, UvssDocumentSyntax tree)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(tree, nameof(tree));
 
-            return UvssCompiler.Compile(uv, tree);
+            return UvssCompiler.Compile(context, tree);
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace Sedulous.Presentation.Styles
         {
             Contract.Require(document, nameof(document));
 
-            Sedulous.ValidateResource(document);
+            FrameworkContext.ValidateResource(document);
 
             this.ruleSets.AddRange(document.RuleSets);
             this.storyboardDefinitions.AddRange(document.StoryboardDefinitions);
@@ -239,13 +239,13 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Retrieves the registered element type with the specified name.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The name of the type to retrieve.</param>
         /// <returns>The registered element type with the specified name.</returns>
-        private static Type ResolveKnownType(FrameworkContext uv, String name)
+        private static Type ResolveKnownType(FrameworkContext context, String name)
         {
             Type type;
-            if (!uv.GetUI().GetPresentationFoundation().GetKnownType(name, false, out type))
+            if (!context.GetUI().GetPresentationFoundation().GetKnownType(name, false, out type))
                 throw new InvalidOperationException(PresentationStrings.UnrecognizedType.Format(name));
 
             return type;
@@ -255,17 +255,17 @@ namespace Sedulous.Presentation.Styles
         /// Retrieves the type of the dependency property with the specified name that
         /// matches the specified type filter.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="filter">The type filter for which to resolve a property type.</param>
         /// <param name="property">The property name for which to resolve a property type.</param>
         /// <returns>The type of the dependency property that was resolved.</returns>
-        private static Type ResolvePropertyTypeFromFilter(FrameworkContext uv, IEnumerable<String> filter, ref String property)
+        private static Type ResolvePropertyTypeFromFilter(FrameworkContext context, IEnumerable<String> filter, ref String property)
         {
             var propertyName = property;
 
             var possiblePropertyMatches =
                 from f in filter
-                let elementType = ResolveKnownType(uv, f)
+                let elementType = ResolveKnownType(context, f)
                 let propertyID = DependencyProperty.FindByStylingName(propertyName, elementType)
                 let propertyType = (propertyID == null) ? null : propertyID.PropertyType
                 where propertyType != null
@@ -320,7 +320,7 @@ namespace Sedulous.Presentation.Styles
         private Storyboard InstantiateStoryboard(UvssStoryboard storyboardDefinition)
         {
             var storyboardInstance = new Storyboard(
-                Sedulous, storyboardDefinition.LoopBehavior);
+                FrameworkContext, storyboardDefinition.LoopBehavior);
 
             foreach (var targetDefinition in storyboardDefinition.Targets)
             {
@@ -359,17 +359,17 @@ namespace Sedulous.Presentation.Styles
                 }
                 else
                 {
-                    animatedPropertyType = ResolvePropertyTypeFromFilter(Sedulous, targetDefinition.Filter, ref animatedPropertyName);
+                    animatedPropertyType = ResolvePropertyTypeFromFilter(FrameworkContext, targetDefinition.Filter, ref animatedPropertyName);
                 }
 
                 var navigationExpression = default(NavigationExpression?);
                 var navigationExpressionDef = animationDefinition.NavigationExpression;
                 if (navigationExpressionDef != null)
                 {
-                    animatedPropertyType = ResolvePropertyTypeFromFilter(Sedulous,
+                    animatedPropertyType = ResolvePropertyTypeFromFilter(FrameworkContext,
                         new[] { navigationExpressionDef.NavigationPropertyType }, ref animatedPropertyName);
 
-                    navigationExpression = NavigationExpression.FromUvssNavigationExpression(Sedulous, navigationExpressionDef);
+                    navigationExpression = NavigationExpression.FromUvssNavigationExpression(FrameworkContext, navigationExpressionDef);
                 }
 
                 var animationDependencyName = new DependencyName(animationDefinition.AnimatedProperty.IsAttached ? 
@@ -445,13 +445,13 @@ namespace Sedulous.Presentation.Styles
             if (!selector.MatchesElement(element))
                 return;
 
-            var navexp = NavigationExpression.FromUvssNavigationExpression(Sedulous, selector.NavigationExpression);
+            var navexp = NavigationExpression.FromUvssNavigationExpression(FrameworkContext, selector.NavigationExpression);
 
             foreach (var rule in ruleSet.Rules)
-                prioritizer.Add(Sedulous, selector, navexp, rule, index);
+                prioritizer.Add(FrameworkContext, selector, navexp, rule, index);
 
             foreach (var trigger in ruleSet.Triggers)
-                prioritizer.Add(Sedulous, selector, navexp, trigger, index);
+                prioritizer.Add(FrameworkContext, selector, navexp, trigger, index);
         }
 
         /// <summary>

@@ -12,9 +12,9 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLSwapChainManager"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public OpenGLSwapChainManager(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public OpenGLSwapChainManager(FrameworkContext context)
+            : base(context)
         { }
 
         /// <inheritdoc/>
@@ -22,8 +22,8 @@ namespace Sedulous.OpenGL.Graphics
             Action<FrameworkContext, FrameworkTime, IFrameworkWindow> onWindowDrawing, 
             Action<FrameworkContext, FrameworkTime, IFrameworkWindow> onWindowDrawn)
         {
-            var graphics = (OpenGLGraphicsSubsystem)Sedulous.GetGraphics();
-            var platform = Sedulous.GetPlatform();
+            var graphics = (OpenGLGraphicsSubsystem)FrameworkContext.GetGraphics();
+            var platform = FrameworkContext.GetPlatform();
 
             var glenv = graphics.OpenGLEnvironment;
             var glcontext = graphics.OpenGLContext;
@@ -35,11 +35,11 @@ namespace Sedulous.OpenGL.Graphics
                 window.Compositor.BeginFrame();
                 window.Compositor.BeginContext(CompositionContext.Scene);
 
-                onWindowDrawing?.Invoke(Sedulous, time, window);
+                onWindowDrawing?.Invoke(FrameworkContext, time, window);
 
                 glenv.DrawFramebuffer(time);
 
-                onWindowDrawn?.Invoke(Sedulous, time, window);
+                onWindowDrawn?.Invoke(FrameworkContext, time, window);
 
                 window.Compositor.Compose();
                 window.Compositor.Present();

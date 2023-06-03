@@ -11,7 +11,7 @@ namespace Sedulous
         /// <inheritdoc/>
         public override CursorCollection Process(ContentManager manager, IContentProcessorMetadata metadata, CursorCollectionDescription input)
         {
-            var collection = new CursorCollection(manager.Sedulous);
+            var collection = new CursorCollection(manager.FrameworkContext);
             var texture = ResolveDependencyAssetPath(metadata, input.Texture);
             metadata.AddAssetDependency(texture);
 

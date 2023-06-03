@@ -12,9 +12,9 @@ namespace Sedulous.Presentation.Input
             /// <summary>
             /// Initializes a new instance of the <see cref="MouseState"/> class.
             /// </summary>
-            /// <param name="uv">The Sedulous context.</param>
-            public MouseState(FrameworkContext uv)
-                : base(uv)
+            /// <param name="context">The Sedulous context.</param>
+            public MouseState(FrameworkContext context)
+                : base(context)
             {
 
             }
@@ -24,7 +24,7 @@ namespace Sedulous.Presentation.Input
             /// </summary>
             public MouseDevice PrimaryDevice
             {
-                get { return Sedulous.GetInput().GetMouse(); }
+                get { return FrameworkContext.GetInput().GetMouse(); }
             }
         }
     }

@@ -52,13 +52,13 @@ namespace Sedulous.Windows.Forms
         /// <summary>
         /// Gets the Sedulous context.
         /// </summary>
-        public FrameworkContext Sedulous
+        public FrameworkContext FrameworkContext
         {
             get
             {
                 Contract.EnsureNotDisposed(this, IsDisposed);
 
-                return uv;
+                return context;
             }
         }
 
@@ -83,7 +83,7 @@ namespace Sedulous.Windows.Forms
 
                 if (!DesignMode)
                 {
-                    var primary = Sedulous.GetPlatform().Windows.GetPrimary();
+                    var primary = FrameworkContext.GetPlatform().Windows.GetPrimary();
                     if (primary == null)
                         throw new InvalidOperationException(FrameworkStrings.NoPrimaryWindow);
 
@@ -97,7 +97,7 @@ namespace Sedulous.Windows.Forms
 
                 if (!DesignMode)
                 {
-                    var primary = Sedulous.GetPlatform().Windows.GetPrimary();
+                    var primary = FrameworkContext.GetPlatform().Windows.GetPrimary();
                     if (primary == null)
                         throw new InvalidOperationException(FrameworkStrings.NoPrimaryWindow);
 
@@ -254,8 +254,8 @@ namespace Sedulous.Windows.Forms
 
                 timingLogic.Cleanup();
 
-                if (uv != null)
-                    uv.WaitForPendingTasks(true);
+                if (context != null)
+                    context.WaitForPendingTasks(true);
             }
             base.OnClosing(e);
         }
@@ -269,7 +269,7 @@ namespace Sedulous.Windows.Forms
             if (disposing)
             {
                 SafeDispose.Dispose(components);
-                SafeDispose.Dispose(uv);
+                SafeDispose.Dispose(context);
 
                 timingLogic = null;
             }
@@ -286,16 +286,16 @@ namespace Sedulous.Windows.Forms
 
             OnInitializing();
 
-            uv = OnCreatingSedulousContext();
-            if (uv == null)
+            context = OnCreatingSedulousContext();
+            if (context == null)
                 throw new InvalidOperationException(FrameworkStrings.ContextNotCreated);
 
             this.timingLogic = CreateTimingLogic();
             if (this.timingLogic == null)
                 throw new InvalidOperationException(FrameworkStrings.InvalidTimingLogic);
 
-            uv.Updating += uv_Updating;
-            uv.Shutdown += uv_Shutdown;
+            context.Updating += uv_Updating;
+            context.Shutdown += uv_Shutdown;
 
             Application.Idle += Application_Idle;
 
@@ -326,7 +326,7 @@ namespace Sedulous.Windows.Forms
             NativeMethods.Message message;
             while (!NativeMethods.PeekMessage(out message, IntPtr.Zero, 0, 0, 0))
             {
-                if (!Sedulous.Disposed)
+                if (!FrameworkContext.Disposed)
                 {
                     Tick();
                 }
@@ -344,9 +344,9 @@ namespace Sedulous.Windows.Forms
         /// <summary>
         /// Handles the Sedulous context's Updating event.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="time">Time elapsed since the last call to Update.</param>
-        private void uv_Updating(FrameworkContext uv, FrameworkTime time)
+        private void uv_Updating(FrameworkContext context, FrameworkTime time)
         {
             OnUpdating(time);
         }
@@ -354,13 +354,13 @@ namespace Sedulous.Windows.Forms
         /// <summary>
         /// Called when the application is being shut down.
         /// </summary>
-        private void uv_Shutdown(FrameworkContext uv)
+        private void uv_Shutdown(FrameworkContext context)
         {
             OnShutdown();
         }
 
         // The Sedulous context.
-        private FrameworkContext uv;
+        private FrameworkContext context;
         private IFrameworkHostTimingLogic timingLogic;
 
         // The application's tick state.

@@ -12,9 +12,9 @@ namespace Sedulous.Presentation.Input
             /// <summary>
             /// Initializes a new instance of the <see cref="KeyboardState"/> class.
             /// </summary>
-            /// <param name="uv">The Sedulous context.</param>
-            public KeyboardState(FrameworkContext uv)
-                : base(uv)
+            /// <param name="context">The Sedulous context.</param>
+            public KeyboardState(FrameworkContext context)
+                : base(context)
             {
 
             }
@@ -24,7 +24,7 @@ namespace Sedulous.Presentation.Input
             /// </summary>
             public KeyboardDevice PrimaryDevice
             {
-                get { return Sedulous.GetInput().GetKeyboard(); }
+                get { return FrameworkContext.GetInput().GetKeyboard(); }
             }
         }
     }

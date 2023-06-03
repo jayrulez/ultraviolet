@@ -63,10 +63,10 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="ScrollViewer"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ScrollViewer(FrameworkContext uv, String name)
-            : base(uv, name)
+        public ScrollViewer(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }

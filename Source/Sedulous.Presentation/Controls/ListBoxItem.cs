@@ -24,10 +24,10 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="ListBoxItem"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ListBoxItem(FrameworkContext uv, String name)
-            : base(uv, name)
+        public ListBoxItem(FrameworkContext context, String name)
+            : base(context, name)
         {
             HighlightOnSelect = true;
             HighlightOnTouchOver = true;
@@ -174,7 +174,7 @@ namespace Sedulous.Presentation.Controls
         /// <inheritdoc/>
         protected override void OnTouchTap(TouchDevice device, Int64 id, Double x, Double y, RoutedEventData data)
         {
-            if (!Sedulous.GetInput().IsMouseCursorAvailable)
+            if (!FrameworkContext.GetInput().IsMouseCursorAvailable)
             {
                 if (device.IsFirstTouchInGesture(id) && !data.Handled)
                 {
@@ -288,7 +288,7 @@ namespace Sedulous.Presentation.Controls
 
             if (!isHighlit && HighlightOnTouchOver && AreAnyTouchesOver)
             {
-                var touchDevice = Sedulous.GetInput().GetFirstRegisteredTouchDevice();
+                var touchDevice = FrameworkContext.GetInput().GetFirstRegisteredTouchDevice();
                 if (touchDevice != null)
                 {
                     foreach (var touch in TouchesOver)

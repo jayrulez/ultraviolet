@@ -59,7 +59,7 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
             var faceItalic = ImportPreprocessedFace(manager, metadata, reader, characterRegions, fileVersion);
             var faceBoldItalic = ImportPreprocessedFace(manager, metadata, reader, characterRegions, fileVersion);
 
-            return new SpriteFont(manager.Sedulous, faceRegular, faceBold, faceItalic, faceBoldItalic);
+            return new SpriteFont(manager.FrameworkContext, faceRegular, faceBold, faceItalic, faceBoldItalic);
         }
 
         /// <inheritdoc/>
@@ -82,7 +82,7 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
                 var faceItalic = ProcessFace(textures, manager, metadata, input.Faces?.Italic, "Italic", characterRegions);
                 var faceBoldItalic = ProcessFace(textures, manager, metadata, input.Faces?.BoldItalic, "BoldItalic", characterRegions);
 
-                return new SpriteFont(manager.Sedulous, faceRegular, faceBold, faceItalic, faceBoldItalic);
+                return new SpriteFont(manager.FrameworkContext, faceRegular, faceBold, faceItalic, faceBoldItalic);
             }
             finally
             {
@@ -214,7 +214,7 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
             var ascender = (fileVersion > 0) ? reader.ReadInt32() : 0;
             var descender = (fileVersion > 0) ? reader.ReadInt32() : 0;
 
-            return new SpriteFontFace(manager.Sedulous, 
+            return new SpriteFontFace(manager.FrameworkContext, 
                 texture, characterRegions, glyphPositions, kerning, ascender, descender, substitution);
         }
 
@@ -248,7 +248,7 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
             var descender = description.Descender;
 
             var faceTexture = manager.Load<Texture2D>(textureName, metadata.AssetDensity);
-            var face = new SpriteFontFace(manager.Sedulous, 
+            var face = new SpriteFontFace(manager.FrameworkContext, 
                 faceTexture, characterRegions, faceGlyphs, kerning, ascender, descender, description.Glyphs?.Substitution ?? '?');
 
             return face;

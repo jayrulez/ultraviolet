@@ -16,9 +16,9 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Initializes a new instance of the <see cref="OutOfBandRenderer"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public OutOfBandRenderer(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public OutOfBandRenderer(FrameworkContext context)
+            : base(context)
         {
             this.spriteBatch = SpriteBatch.Create();
 
@@ -74,7 +74,7 @@ namespace Sedulous.Presentation
             if (renderTargetPool != null)
                 return;
 
-            renderTargetPool = new UpfPool<OutOfBandRenderTarget>(Sedulous, 8, 32, () => new OutOfBandRenderTarget(Sedulous));
+            renderTargetPool = new UpfPool<OutOfBandRenderTarget>(FrameworkContext, 8, 32, () => new OutOfBandRenderTarget(FrameworkContext));
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Sedulous.Presentation
             if (renderTargetPool == null)
                 return;
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.BeginUpdate();
 
             renderTargetPool.Update();
@@ -181,9 +181,9 @@ namespace Sedulous.Presentation
             if (registeredElements.Count == 0)
                 return;
 
-            var graphics = Sedulous.GetGraphics();
+            var graphics = FrameworkContext.GetGraphics();
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.BeginDraw();
 
             try

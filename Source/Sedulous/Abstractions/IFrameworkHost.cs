@@ -15,7 +15,7 @@ namespace Sedulous
         /// <summary>
         /// Gets the Sedulous context.
         /// </summary>
-        FrameworkContext Sedulous
+        FrameworkContext FrameworkContext
         {
             get;
         }

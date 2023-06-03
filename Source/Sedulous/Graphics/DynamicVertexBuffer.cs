@@ -6,11 +6,11 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="DynamicVertexBuffer"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="vdecl">The vertex declaration for the buffer.</param>
     /// <param name="vcount">The number of vertices in the buffer.</param>
     /// <returns>The instance of <see cref="DynamicVertexBuffer"/> that was created.</returns>
-    public delegate DynamicVertexBuffer DynamicVertexBufferFactory(FrameworkContext uv, VertexDeclaration vdecl, Int32 vcount);
+    public delegate DynamicVertexBuffer DynamicVertexBufferFactory(FrameworkContext context, VertexDeclaration vdecl, Int32 vcount);
 
     /// <summary>
     /// Represents a vertex buffer that is optimized for dynamic updates.
@@ -20,11 +20,11 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicVertexBuffer"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="vdecl">The vertex declaration for the buffer.</param>
         /// <param name="vcount">The number of vertices in the buffer.</param>
-        public DynamicVertexBuffer(FrameworkContext uv, VertexDeclaration vdecl, Int32 vcount)
-            : base(uv, vdecl, vcount)
+        public DynamicVertexBuffer(FrameworkContext context, VertexDeclaration vdecl, Int32 vcount)
+            : base(context, vdecl, vcount)
         {
 
         }

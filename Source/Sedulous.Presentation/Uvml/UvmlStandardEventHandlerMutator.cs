@@ -24,20 +24,20 @@ namespace Sedulous.Presentation.Uvml
         }
 
         /// <inheritdoc/>
-        public override Object InstantiateValue(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
+        public override Object InstantiateValue(FrameworkContext frameworkContext, Object instance, UvmlInstantiationContext context)
         {
-            return eventHandler.Instantiate(uv, context);
+            return eventHandler.Instantiate(frameworkContext, context);
         }
 
         /// <inheritdoc/>
-        public override void Mutate(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
+        public override void Mutate(FrameworkContext frameworkContext, Object instance, UvmlInstantiationContext context)
         {
-            var value = InstantiateValue(uv, instance, context);
-            Mutate(uv, instance, value, context);
+            var value = InstantiateValue(frameworkContext, instance, context);
+            Mutate(frameworkContext, instance, value, context);
         }
 
         /// <inheritdoc/>
-        public override void Mutate(FrameworkContext uv, Object instance, Object value, UvmlInstantiationContext context)
+        public override void Mutate(FrameworkContext frameworkContext, Object instance, Object value, UvmlInstantiationContext context)
         {
             var eventHandlerName = ProcessPrecomputedValue<String>(value, context);
             if (eventHandlerName == null)

@@ -26,15 +26,15 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLGeometryStream class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public OpenGLGeometryStream(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public OpenGLGeometryStream(FrameworkContext context)
+            : base(context)
         {
             var vao = 0u;
 
             if (gl.IsVertexArrayObjectAvailable)
             {
-                uv.QueueWorkItem(state =>
+                context.QueueWorkItem(state =>
                 {
                     vao = gl.GenVertexArray();
                     gl.ThrowIfError();
@@ -49,7 +49,7 @@ namespace Sedulous.OpenGL.Graphics
         {
             Contract.Require(vbuffer, nameof(vbuffer));
 
-            Sedulous.ValidateResource(vbuffer);
+            FrameworkContext.ValidateResource(vbuffer);
 
             AttachInternal(vbuffer, 0);
         }
@@ -62,7 +62,7 @@ namespace Sedulous.OpenGL.Graphics
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.Ensure<NotSupportedException>(SupportsInstancedRendering || instanceFrequency == 0);
 
-            Sedulous.ValidateResource(vbuffer);
+            FrameworkContext.ValidateResource(vbuffer);
 
             AttachInternal(vbuffer, instanceFrequency);
         }
@@ -74,7 +74,7 @@ namespace Sedulous.OpenGL.Graphics
             Contract.EnsureNot(HasIndices, FrameworkStrings.GeometryStreamAlreadyHasIndices);
             Contract.EnsureNotDisposed(this, Disposed);
 
-            Sedulous.ValidateResource(ibuffer);
+            FrameworkContext.ValidateResource(ibuffer);
 
             var oglIndexBuffer = (OpenGLIndexBuffer)ibuffer;
             var oglIndexBufferName = oglIndexBuffer.OpenGLName;
@@ -149,7 +149,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         public Boolean SupportsInstancedRendering
         {
-            get { return Sedulous.GetGraphics().Capabilities.SupportsInstancedRendering; }
+            get { return FrameworkContext.GetGraphics().Capabilities.SupportsInstancedRendering; }
         }
 
         /// <inheritdoc/>
@@ -193,16 +193,16 @@ namespace Sedulous.OpenGL.Graphics
 
             if (disposing)
             {
-                if (!Sedulous.Disposed)
+                if (!FrameworkContext.Disposed)
                 {
-                    var gfx = Sedulous.GetGraphics();
+                    var gfx = FrameworkContext.GetGraphics();
                     if (gfx.GetGeometryStream() == this)
                         gfx.SetGeometryStream(null);
 
                     var glname = vao;
                     if (glname != 0)
                     {
-                        Sedulous.QueueWorkItem((state) =>
+                        FrameworkContext.QueueWorkItem((state) =>
                         {
                             gl.DeleteVertexArray(glname);
                             gl.ThrowIfError();

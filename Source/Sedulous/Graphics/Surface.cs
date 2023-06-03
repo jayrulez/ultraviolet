@@ -8,9 +8,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Surface"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public Surface(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public Surface(FrameworkContext context)
+            : base(context)
         {
 
         }

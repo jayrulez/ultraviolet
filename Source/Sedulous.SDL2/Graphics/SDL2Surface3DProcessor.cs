@@ -41,7 +41,7 @@ namespace Sedulous.SDL2.Graphics
         private Surface3D ProcessSingleFile(ContentManager manager, IContentProcessorMetadata metadata, PlatformNativeSurface input)
         {
             var mdat = metadata.As<SDL2Surface3DProcessorMetadata>();
-            var srgbEncoded = mdat.SrgbEncoded ?? manager.Sedulous.Properties.SrgbDefaultForSurface3D;
+            var srgbEncoded = mdat.SrgbEncoded ?? manager.FrameworkContext.Properties.SrgbDefaultForSurface3D;
 
             // Layers must be square. Validate our dimensions.
             var layerHeight = input.Height;
@@ -56,7 +56,7 @@ namespace Sedulous.SDL2.Graphics
                 mainSurface.SrgbEncoded = srgbEncoded;
 
                 var resultOpts = srgbEncoded ? SurfaceOptions.SrgbColor : SurfaceOptions.LinearColor;
-                var result = new SDL2Surface3D(manager.Sedulous, layerWidth, layerHeight, layerCount, mainSurface.BytesPerPixel, resultOpts);
+                var result = new SDL2Surface3D(manager.FrameworkContext, layerWidth, layerHeight, layerCount, mainSurface.BytesPerPixel, resultOpts);
                 for (int i = 0; i < layerCount; i++)
                 {
                     var layerSurface = mainSurface.CreateSurface(new Rectangle(i * layerWidth, 0, layerWidth, layerHeight));
@@ -72,7 +72,7 @@ namespace Sedulous.SDL2.Graphics
         private Surface3D ProcessMultipleFiles(ContentManager manager, IContentProcessorMetadata metadata, PlatformNativeSurface input, String filename)
         {
             var mdat = metadata.As<SDL2Surface3DProcessorMetadata>();
-            var srgbEncoded = mdat.SrgbEncoded ?? manager.Sedulous.Properties.SrgbDefaultForSurface3D;
+            var srgbEncoded = mdat.SrgbEncoded ?? manager.FrameworkContext.Properties.SrgbDefaultForSurface3D;
 
             var layer0 = input.CreateCopy();
             var layers = new Dictionary<Int32, String>();
@@ -98,7 +98,7 @@ namespace Sedulous.SDL2.Graphics
             }
 
             var surfaceOpts = srgbEncoded ? SurfaceOptions.SrgbColor : SurfaceOptions.LinearColor;
-            var surface = new SDL2Surface3D(manager.Sedulous, layer0.Width, layer0.Height, 1 + layers.Count, layer0.BytesPerPixel, surfaceOpts);
+            var surface = new SDL2Surface3D(manager.FrameworkContext, layer0.Width, layer0.Height, 1 + layers.Count, layer0.BytesPerPixel, surfaceOpts);
 
             var surfaceLayer0 = Surface2D.Create(layer0);
             surfaceLayer0.SrgbEncoded = srgbEncoded;

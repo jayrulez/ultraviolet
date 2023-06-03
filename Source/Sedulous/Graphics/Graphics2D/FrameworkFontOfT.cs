@@ -12,13 +12,13 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameworkFont{TFontFace}"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="regular">The font's regular font face.</param>
         /// <param name="bold">The font's bold font face.</param>
         /// <param name="italic">The font's italic font face.</param>
         /// <param name="boldItalic">The font's bold italic font face.</param>
-        public FrameworkFont(FrameworkContext uv, TFontFace regular, TFontFace bold, TFontFace italic, TFontFace boldItalic)
-            : base(uv, regular, bold, italic, boldItalic)
+        public FrameworkFont(FrameworkContext context, TFontFace regular, TFontFace bold, TFontFace italic, TFontFace boldItalic)
+            : base(context, regular, bold, italic, boldItalic)
         { }
         
         /// <inheritdoc/>

@@ -26,16 +26,16 @@ namespace Sedulous.OpenGL.Graphics
             metadata.AddAssetDependency(isFragShader ? vertShaderFilePath : fragShaderFilePath);
 
             var vertShaderSource = ShaderSource.ProcessExterns(manager.Load<ShaderSource>(vertShaderFilePath), Externs);
-            var vertShader = new OpenGLVertexShader(manager.Sedulous, new[] { vertShaderSource });
+            var vertShader = new OpenGLVertexShader(manager.FrameworkContext, new[] { vertShaderSource });
 
             var fragShaderSource = ShaderSource.ProcessExterns(manager.Load<ShaderSource>(fragShaderFilePath), Externs);
-            var fragShader = new OpenGLFragmentShader(manager.Sedulous, new[] { fragShaderSource });
+            var fragShader = new OpenGLFragmentShader(manager.FrameworkContext, new[] { fragShaderSource });
 
-            var program = new OpenGLShaderProgram(manager.Sedulous, vertShader, fragShader, false);
-            var pass = new OpenGLEffectPass(manager.Sedulous, "Default", new[] { program });
-            var technique = new OpenGLEffectTechnique(manager.Sedulous, "Default", new[] { pass });
+            var program = new OpenGLShaderProgram(manager.FrameworkContext, vertShader, fragShader, false);
+            var pass = new OpenGLEffectPass(manager.FrameworkContext, "Default", new[] { program });
+            var technique = new OpenGLEffectTechnique(manager.FrameworkContext, "Default", new[] { pass });
 
-            return new OpenGLEffectImplementation(manager.Sedulous, new[] { technique });
+            return new OpenGLEffectImplementation(manager.FrameworkContext, new[] { technique });
         }
 
         /// <inheritdoc/>

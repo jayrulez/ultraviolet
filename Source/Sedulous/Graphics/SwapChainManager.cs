@@ -6,9 +6,9 @@ namespace Sedulous
     /// <summary>
     /// Represents a factory method which creates new instances of the <see cref="SwapChainManager"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <returns>The <see cref="SwapChainManager"/> instance which was created.</returns>
-    public delegate SwapChainManager SwapChainManagerFactory(FrameworkContext uv);
+    public delegate SwapChainManager SwapChainManagerFactory(FrameworkContext context);
 
     /// <summary>
     /// Represents a service which manages the graphics swap chain.
@@ -18,9 +18,9 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="SwapChainManager"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public SwapChainManager(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public SwapChainManager(FrameworkContext context)
+            : base(context)
         { }
 
         /// <summary>

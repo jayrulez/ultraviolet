@@ -5,9 +5,9 @@ namespace Sedulous
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="FrameworkProfilerBase"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <returns>The instance of <see cref="FrameworkProfilerBase"/> that was created.</returns>
-    public delegate FrameworkProfilerBase SedulousProfilerFactory(FrameworkContext uv);
+    public delegate FrameworkProfilerBase SedulousProfilerFactory(FrameworkContext context);
 
     /// <summary>
     /// Represents the base class for Sedulous profilers.
@@ -17,9 +17,9 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameworkProfilerBase"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public FrameworkProfilerBase(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public FrameworkProfilerBase(FrameworkContext context)
+            : base(context)
         {
 
         }

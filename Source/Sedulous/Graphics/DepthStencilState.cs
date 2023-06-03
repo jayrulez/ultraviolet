@@ -6,9 +6,9 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="DepthStencilState"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <returns>The instance of <see cref="DepthStencilState"/> that was created.</returns>
-    public delegate DepthStencilState DepthStencilStateFactory(FrameworkContext uv);
+    public delegate DepthStencilState DepthStencilStateFactory(FrameworkContext context);
 
     /// <summary>
     /// Represents a graphics device's depth/stencil state.
@@ -26,9 +26,9 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="DepthStencilState"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        protected DepthStencilState(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        protected DepthStencilState(FrameworkContext context)
+            : base(context)
         {
 
         }

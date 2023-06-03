@@ -29,7 +29,7 @@ namespace Sedulous.Tests.Audio
                     songPlayer.Play(song, 0.25f, 0.50f, 0.75f, false);
 
                     TheResultingValue(songPlayer.Volume).ShouldBe(0.25f);
-                    TheResultingValue(songPlayer.Pitch).ShouldBe(content.Sedulous.GetAudio().Capabilities.SupportsPitchShifting ? 0.50f : 0.00f);
+                    TheResultingValue(songPlayer.Pitch).ShouldBe(content.FrameworkContext.GetAudio().Capabilities.SupportsPitchShifting ? 0.50f : 0.00f);
                     TheResultingValue(songPlayer.Pan).ShouldBe(0.75f);
                 })
                 .OnUpdate((app, time) =>
@@ -128,7 +128,7 @@ namespace Sedulous.Tests.Audio
 
                     songPlayer.SlidePitch(-1f, TimeSpan.FromSeconds(1));
 
-                    supported = content.Sedulous.GetAudio().Capabilities.SupportsPitchShifting;
+                    supported = content.FrameworkContext.GetAudio().Capabilities.SupportsPitchShifting;
                 })
                 .OnUpdate((app, time) =>
                 {

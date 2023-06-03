@@ -24,13 +24,13 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Loads a new instance of the <see cref="DataTemplate"/> class from the specified UVML element.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="root">The root element of the UVML template to load.</param>
         /// <param name="cultureInfo">The <see cref="CultureInfo"/> to use when parsing values.</param>
         /// <returns>The <see cref="DataTemplate"/> instance that was created from the specified UVML element.</returns>
-        public static DataTemplate FromUvml(FrameworkContext uv, XElement root, CultureInfo cultureInfo = null)
+        public static DataTemplate FromUvml(FrameworkContext context, XElement root, CultureInfo cultureInfo = null)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(root, nameof(root));
 
             var dataSourceAnnotation = root.Parent?.Annotation<FrameworkTemplateNameAnnotation>();
@@ -41,10 +41,10 @@ namespace Sedulous.Presentation
             var templatedObjectName = root.Name.LocalName;
             var templatedObjectType = default(Type);
 
-            if (!uv.GetUI().GetPresentationFoundation().GetKnownType(templatedObjectName, out templatedObjectType))
+            if (!context.GetUI().GetPresentationFoundation().GetKnownType(templatedObjectName, out templatedObjectType))
                 throw new UvmlException(PresentationStrings.UnrecognizedType.Format(templatedObjectName));
 
-            var template = UvmlLoader.CreateTemplateFromXml(uv, root, templatedParentType, templatedObjectType, cultureInfo);
+            var template = UvmlLoader.CreateTemplateFromXml(context, root, templatedParentType, templatedObjectType, cultureInfo);
             var instance = new DataTemplate(template, dataSourceWrapperName);
 
             return instance;

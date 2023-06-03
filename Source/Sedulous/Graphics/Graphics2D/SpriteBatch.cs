@@ -5,9 +5,9 @@ namespace Sedulous.Graphics.Graphics2D
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="SpriteBatch"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <returns>The instance of <see cref="SpriteBatch"/> that was created.</returns>
-    public delegate SpriteBatch SpriteBatchFactory(FrameworkContext uv);
+    public delegate SpriteBatch SpriteBatchFactory(FrameworkContext context);
 
     /// <summary>
     /// Represents a standard implementation of <see cref="SpriteBatchBase{VertexType, SpriteData}"/> using vertices which
@@ -18,10 +18,10 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteBatch"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="batchSize">The maximum number of sprites that can be drawn in a single batch.</param>
-        internal SpriteBatch(FrameworkContext uv, Int32 batchSize = 2048)
-            : base(uv, batchSize)
+        internal SpriteBatch(FrameworkContext context, Int32 batchSize = 2048)
+            : base(context, batchSize)
         {
 
         }
@@ -49,7 +49,7 @@ namespace Sedulous.Graphics.Graphics2D
         protected override unsafe void GenerateVertices(Texture2D texture, SpriteHeader[] sprites,
             SpriteVertex[] vertices, SpriteBatchData[] data, Int32 offset, Int32 count)
         {
-            var srgb = Sedulous.GetGraphics().CurrentRenderTargetIsSrgbEncoded;
+            var srgb = FrameworkContext.GetGraphics().CurrentRenderTargetIsSrgbEncoded;
 
             fixed (SpriteHeader* pSprites1 = &sprites[offset])
             fixed (SpriteBatchData* pData1 = &data[offset])

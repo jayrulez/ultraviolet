@@ -26,12 +26,12 @@ namespace Sedulous.SDL2.Platform
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2FrameworkWindow"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="ptr">The SDL2 pointer that represents the window.</param>
         /// <param name="visible">A value indicating whether this window should be visible by default.</param>
         /// <param name="native">A value indicating whether the window was created from a native pointer.</param>
-        internal SDL2FrameworkWindow(FrameworkContext uv, IntPtr ptr, Boolean visible, Boolean native = false)
-            : base(uv)
+        internal SDL2FrameworkWindow(FrameworkContext context, IntPtr ptr, Boolean visible, Boolean native = false)
+            : base(context)
         {
             this.ptr = ptr;
             this.ID = (Int32)SDL_GetWindowID(ptr);
@@ -157,7 +157,7 @@ namespace Sedulous.SDL2.Platform
             if (displayIndex.HasValue)
             {
                 var displayIndexValue = displayIndex.Value;
-                if (displayIndexValue < 0 || displayIndexValue >= Sedulous.GetPlatform().Displays.Count)
+                if (displayIndexValue < 0 || displayIndexValue >= FrameworkContext.GetPlatform().Displays.Count)
                     throw new ArgumentOutOfRangeException(nameof(displayIndex));
             }
 
@@ -233,7 +233,7 @@ namespace Sedulous.SDL2.Platform
                         SDL_SetWindowSize(ptr, w, h);
                         SDL_SetWindowPosition(ptr, x, y);
 
-                        if (Sedulous.Platform == FrameworkPlatform.Windows)
+                        if (FrameworkContext.Platform == FrameworkPlatform.Windows)
                             win32CachedStyle = IntPtr.Zero;
                     }
                     break;
@@ -244,7 +244,7 @@ namespace Sedulous.SDL2.Platform
                         {
                             if (displayMode.DisplayIndex.HasValue)
                             {
-                                var display = Sedulous.GetPlatform().Displays[displayMode.DisplayIndex.Value];
+                                var display = FrameworkContext.GetPlatform().Displays[displayMode.DisplayIndex.Value];
                                 ChangeDisplay(display);
                             }
                         }
@@ -256,7 +256,7 @@ namespace Sedulous.SDL2.Platform
                         if (SDL_SetWindowFullscreen(ptr, (uint)SDL_WINDOW_FULLSCREEN) < 0)
                             throw new SDL2Exception();
 
-                        if (Sedulous.Platform == FrameworkPlatform.Windows)
+                        if (FrameworkContext.Platform == FrameworkPlatform.Windows)
                             win32CachedStyle = IntPtr.Zero;
                     }
                     break;
@@ -350,10 +350,10 @@ namespace Sedulous.SDL2.Platform
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
-            if (displayIndex < 0 || displayIndex >= Sedulous.GetPlatform().Displays.Count)
+            if (displayIndex < 0 || displayIndex >= FrameworkContext.GetPlatform().Displays.Count)
                 displayIndex = 0;
 
-            var display = Sedulous.GetPlatform().Displays[displayIndex];
+            var display = FrameworkContext.GetPlatform().Displays[displayIndex];
             ChangeDisplay(display);
         }
 
@@ -693,9 +693,9 @@ namespace Sedulous.SDL2.Platform
                 Contract.EnsureNotDisposed(this, Disposed);
 
                 var index = SDL_GetWindowDisplayIndex(ptr);
-                var platform = Sedulous.GetPlatform();
+                var platform = FrameworkContext.GetPlatform();
                 if (platform != null)
-                    return Sedulous.GetPlatform().Displays[index];
+                    return FrameworkContext.GetPlatform().Displays[index];
 
                 return null;
             }
@@ -783,11 +783,11 @@ namespace Sedulous.SDL2.Platform
         /// <summary>
         /// Loads the default window icon.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The default window icon.</returns>
-        private static Surface2D LoadDefaultWindowIcon(FrameworkContext uv)
+        private static Surface2D LoadDefaultWindowIcon(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
             return IconLoader.Create().LoadIcon();
         }
@@ -916,7 +916,7 @@ namespace Sedulous.SDL2.Platform
                 var displayIndex = displayMode.DisplayIndex;
                 if (displayIndex.HasValue)
                 {
-                    if (displayIndex < 0 || displayIndex >= Sedulous.GetPlatform().Displays.Count)
+                    if (displayIndex < 0 || displayIndex >= FrameworkContext.GetPlatform().Displays.Count)
                         displayIndex = null;
                 }
 
@@ -988,7 +988,7 @@ namespace Sedulous.SDL2.Platform
             ((SDL2FrameworkDisplay)Display)?.RefreshDensityInformation();
 
             // On Windows, resize the window to match the new scale.
-            if (Sedulous.Platform == FrameworkPlatform.Windows && Sedulous.Properties.SupportsHighDensityDisplayModes)
+            if (FrameworkContext.Platform == FrameworkPlatform.Windows && FrameworkContext.Properties.SupportsHighDensityDisplayModes)
             {
                 var factor = (reportedScale ?? Display.DensityScale) / WindowScale;
 
@@ -1005,9 +1005,9 @@ namespace Sedulous.SDL2.Platform
             WindowScale = (reportedScale ?? Display.DensityScale);
 
             // Inform the rest of the system that this window's DPI has changed.
-            var messageData = Sedulous.Messages.CreateMessageData<WindowDensityChangedMessageData>();
+            var messageData = FrameworkContext.Messages.CreateMessageData<WindowDensityChangedMessageData>();
             messageData.Window = this;
-            Sedulous.Messages.Publish(FrameworkMessages.WindowDensityChanged, messageData);
+            FrameworkContext.Messages.Publish(FrameworkMessages.WindowDensityChanged, messageData);
         }
 
         /// <summary>
@@ -1073,7 +1073,7 @@ namespace Sedulous.SDL2.Platform
         /// </summary>
         private Boolean GetHwnd(out IntPtr hwnd)
         {
-            if (Sedulous.Platform != FrameworkPlatform.Windows)
+            if (FrameworkContext.Platform != FrameworkPlatform.Windows)
                 throw new NotSupportedException();
 
             SDL_SysWMinfo sysInfo;
@@ -1095,7 +1095,7 @@ namespace Sedulous.SDL2.Platform
         /// </summary>
         private Boolean ApplyWin32FullscreenWindowedFix_Windowed()
         {
-            if (Sedulous.Platform != FrameworkPlatform.Windows || win32CachedStyle == IntPtr.Zero)
+            if (FrameworkContext.Platform != FrameworkPlatform.Windows || win32CachedStyle == IntPtr.Zero)
                 return false;
 
             IntPtr hwnd;
@@ -1113,7 +1113,7 @@ namespace Sedulous.SDL2.Platform
         /// </summary>
         private Boolean ApplyWin32FullscreenWindowedFix_FullscreenWindowed()
         {
-            if (Sedulous.Platform != FrameworkPlatform.Windows)
+            if (FrameworkContext.Platform != FrameworkPlatform.Windows)
                 return false;
 
             IntPtr hwnd;

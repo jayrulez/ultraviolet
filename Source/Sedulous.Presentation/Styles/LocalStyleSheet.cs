@@ -11,12 +11,12 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalStyleSheet"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="validating">A delegate which implements the <see cref="DelegateAssetWatcher{T}.OnValidating(String, T)"/> method.</param>
         /// <param name="validationComplete">A delegate which implements the <see cref="DelegateAssetWatcher{T}.OnValidationComplete(String, T, Boolean)"/> method.</param>
-        private LocalStyleSheet(FrameworkContext uv, 
+        private LocalStyleSheet(FrameworkContext context, 
             AssetWatcherValidatingHandler<UvssDocument> validating = null, AssetWatcherValidationCompleteHandler<UvssDocument> validationComplete = null)
-            : base(uv)
+            : base(context)
         {
             this.validating = validating;
             this.validationComplete = validationComplete;

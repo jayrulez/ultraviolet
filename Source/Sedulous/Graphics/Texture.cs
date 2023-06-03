@@ -10,9 +10,9 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="Texture"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public Texture(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public Texture(FrameworkContext context)
+            : base(context)
         {
 
         }

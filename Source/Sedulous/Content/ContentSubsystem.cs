@@ -14,9 +14,9 @@ namespace Sedulous.Content
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentSubsystem"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public ContentSubsystem(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public ContentSubsystem(FrameworkContext context)
+            : base(context)
         {
 
         }
@@ -38,10 +38,10 @@ namespace Sedulous.Content
             Contract.EnsureNotDisposed(this, Disposed);
 
             var asmCore = typeof(FrameworkContext).Assembly;
-            var asmImpl = Sedulous.GetType().Assembly;
+            var asmImpl = FrameworkContext.GetType().Assembly;
             var asmEntry = Assembly.GetEntryAssembly();
-            var asmShim = Sedulous.PlatformCompatibilityShimAssembly;
-            var asmViews = Sedulous.ViewProviderAssembly;
+            var asmShim = FrameworkContext.PlatformCompatibilityShimAssembly;
+            var asmViews = FrameworkContext.ViewProviderAssembly;
 
             var assemblies = new[] { asmCore, asmImpl, asmShim, asmViews }
                 .Union(additionalAssemblies ?? Enumerable.Empty<Assembly>()).Where(x => x != null).Distinct();

@@ -19,12 +19,12 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameworkElement"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The identifying name of this element within its layout.</param>
-        public Popup(FrameworkContext uv, String name)
-            : base(uv, name)
+        public Popup(FrameworkContext context, String name)
+            : base(context, name)
         {
-            this.root = new PopupRoot(uv, () =>
+            this.root = new PopupRoot(context, () =>
             {
                 this.UpdatePopupArrange(MostRecentFinalRect.Size);
             });
@@ -1194,11 +1194,11 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <returns>The area in device-independent coordinates which is inhabited by the mouse cursor.</returns>
         private RectangleD GetMouseCursorArea()
         {
-            var mouse = Sedulous.GetInput().GetMouse();
+            var mouse = FrameworkContext.GetInput().GetMouse();
             if (mouse == null)
                 return RectangleD.Empty;
             
-            var cursor = Sedulous.GetPlatform().Cursor;
+            var cursor = FrameworkContext.GetPlatform().Cursor;
 
             var mousePosInWindow = mouse.GetPositionInWindow(Window);
             if (mousePosInWindow == null)

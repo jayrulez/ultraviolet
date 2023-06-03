@@ -16,10 +16,10 @@ namespace Sedulous.BASS.Audio
         /// <summary>
         /// Initializes a new instance of the <see cref="BASSSoundEffect"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="filename">The filename of the sample to load.</param>
-        public BASSSoundEffect(FrameworkContext uv, String filename)
-            : base(uv)
+        public BASSSoundEffect(FrameworkContext context, String filename)
+            : base(context)
         {
             Contract.Require(filename, nameof(filename));
 
@@ -38,10 +38,10 @@ namespace Sedulous.BASS.Audio
         /// <summary>
         /// Initializes a new instance of the <see cref="BASSSoundEffect"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="fileData">An array containing the sample data to load.</param>
-        public BASSSoundEffect(FrameworkContext uv, Byte[] fileData)
-            : base(uv)
+        public BASSSoundEffect(FrameworkContext context, Byte[] fileData)
+            : base(context)
         {
             Contract.Require(fileData, nameof(fileData));
 

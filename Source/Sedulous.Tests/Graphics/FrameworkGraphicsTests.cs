@@ -14,7 +14,7 @@ namespace Sedulous.Tests.Graphics
         [TestCase(ColorEncoding.Srgb)]
         [Category("Rendering")]
         [Description("Ensures that the Graphics subsystem can render a single untextured triangle.")]
-        public void SedulousGraphics_CanRenderAColoredTriangle(ColorEncoding encoding)
+        public void Graphics_CanRenderAColoredTriangle(ColorEncoding encoding)
         {
             var effect = default(BasicEffect);
             var vertexBuffer = default(VertexBuffer);
@@ -72,19 +72,19 @@ namespace Sedulous.Tests.Graphics
             if (encoding == ColorEncoding.Linear)
             {
                 TheResultingImage(result)
-                    .ShouldMatch(@"Resources/Expected/Graphics/SedulousGraphics_CanRenderAColoredTriangle(Linear).png");
+                    .ShouldMatch(@"Resources/Expected/Graphics/Graphics_CanRenderAColoredTriangle(Linear).png");
             }
             else
             {
                 TheResultingImage(result)
-                    .ShouldMatch(@"Resources/Expected/Graphics/SedulousGraphics_CanRenderAColoredTriangle(Srgb).png");
+                    .ShouldMatch(@"Resources/Expected/Graphics/Graphics_CanRenderAColoredTriangle(Srgb).png");
             }
         }
 
         [Test]
         [Category("Rendering")]
         [Description("Ensures that the Graphics subsystem can render a single textured triangle.")]
-        public void SedulousGraphics_CanRenderATexturedTriangle()
+        public void Graphics_CanRenderATexturedTriangle()
         {
             var effect = default(BasicEffect);
             var vertexBuffer = default(VertexBuffer);
@@ -136,13 +136,13 @@ namespace Sedulous.Tests.Graphics
                 });
 
             TheResultingImage(result)
-                .ShouldMatch(@"Resources/Expected/Graphics/SedulousGraphics_CanRenderATexturedTriangle.png");
+                .ShouldMatch(@"Resources/Expected/Graphics/Graphics_CanRenderATexturedTriangle.png");
         }
 
         [Test]
         [Category("Rendering")]
         [Description("Ensures that the Graphics subsystem can render several triangles using hardware instancing.")]
-        public void SedulousGraphics_CanRenderInstancedTriangles()
+        public void Graphics_CanRenderInstancedTriangles()
         {
             var effect = default(Effect);
             var vbuffer0 = default(VertexBuffer);
@@ -219,13 +219,13 @@ namespace Sedulous.Tests.Graphics
                 });
 
             TheResultingImage(result)
-                .ShouldMatch(@"Resources/Expected/Graphics/SedulousGraphics_CanRenderInstancedTriangles.png");
+                .ShouldMatch(@"Resources/Expected/Graphics/Graphics_CanRenderInstancedTriangles.png");
         }
 
         [Test]
         [Category("Rendering")]
         [Description("Ensures that the Graphics subsystem correctly renders a scene when using a custom compositor.")]
-        public void SedulousGraphics_RendersFrameCorrectly_WithCustomCompositor()
+        public void Graphics_RendersFrameCorrectly_WithCustomCompositor()
         {
             var spriteBatch = default(SpriteBatch);
             var spriteTexture = default(Texture2D);
@@ -277,13 +277,13 @@ namespace Sedulous.Tests.Graphics
                 });
 
             TheResultingImage(result)
-                .ShouldMatch(@"Resources/Expected/Graphics/SedulousGraphics_RendersFrameCorrectly_WithCustomCompositor.png");
+                .ShouldMatch(@"Resources/Expected/Graphics/Graphics_RendersFrameCorrectly_WithCustomCompositor.png");
         }
 
         [Test]
         [Category("Rendering")]
         [Description("Ensures that the Graphics subsystem correctly handles 3D textures which are used as a shader parameter.")]
-        public void SedulousGraphics_CanRender3DTextures()
+        public void Graphics_CanRender3DTextures()
         {
             var spriteBatch = default(SpriteBatch);
             var spriteTexture = default(Texture2D);
@@ -330,13 +330,13 @@ namespace Sedulous.Tests.Graphics
                 });
 
             TheResultingImage(result)
-                .ShouldMatch(@"Resources/Expected/Graphics/SedulousGraphics_CanRender3DTextures.png");
+                .ShouldMatch(@"Resources/Expected/Graphics/Graphics_CanRender3DTextures.png");
         }
 
         [Test]
         [Category("Rendering")]
         [Description("Ensures that the Graphics subsystem correctly handles preprocessed 3D textures which are used as a shader parameter.")]
-        public void SedulousGraphics_CanRender3DTextures_FromPreprocessedAsset()
+        public void Graphics_CanRender3DTextures_FromPreprocessedAsset()
         {
             var spriteBatch = default(SpriteBatch);
             var spriteTexture = default(Texture2D);
@@ -396,13 +396,13 @@ namespace Sedulous.Tests.Graphics
                 });
 
             TheResultingImage(result)
-                .ShouldMatch(@"Resources/Expected/Graphics/SedulousGraphics_CanRender3DTextures_FromPreprocessedAsset.png");
+                .ShouldMatch(@"Resources/Expected/Graphics/Graphics_CanRender3DTextures_FromPreprocessedAsset.png");
         }
 
         [Test]
         [Category("Rendering")]
         [Description("Ensures that the Graphics subsystem correctly handles custom vertex element names.")]
-        public void SedulousGraphics_CanRenderSprites_WhenUsingCustomVertexElementNames()
+        public void Graphics_CanRenderSprites_WhenUsingCustomVertexElementNames()
         {
             var effect = default(Effect);
             var vertexDeclaration = default(VertexDeclaration);
@@ -455,7 +455,7 @@ namespace Sedulous.Tests.Graphics
                 });
 
             TheResultingImage(result)
-                .ShouldMatch(@"Resources/Expected/Graphics/SedulousGraphics_CanRenderSprites_WhenUsingCustomVertexElementNames.png");
+                .ShouldMatch(@"Resources/Expected/Graphics/Graphics_CanRenderSprites_WhenUsingCustomVertexElementNames.png");
         }
     }
 }

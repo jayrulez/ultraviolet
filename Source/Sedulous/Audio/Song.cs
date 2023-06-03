@@ -11,9 +11,9 @@ namespace Sedulous.Audio
         /// <summary>
         /// Initializes a new instance of the <see cref="Song"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        protected Song(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        protected Song(FrameworkContext context)
+            : base(context)
         {
 
         }

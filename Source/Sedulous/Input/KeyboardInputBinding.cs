@@ -15,13 +15,13 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyboardInputBinding"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="element">The XML element that contains the binding data.</param>
-        internal KeyboardInputBinding(FrameworkContext uv, XElement element)
+        internal KeyboardInputBinding(FrameworkContext context, XElement element)
         {
             Contract.Require(element, nameof(element));
 
-            this.keyboard = uv.GetInput().GetKeyboard();
+            this.keyboard = context.GetInput().GetKeyboard();
 
             this.key = element.ElementValueEnum<Key>("Key") ?? Key.None;
             this.control = element.ElementValueBoolean("Control") ?? false;
@@ -34,18 +34,18 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyboardInputBinding"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="key">A <see cref="Key"/> value representing the binding's primary key.</param>
-        public KeyboardInputBinding(FrameworkContext uv, Key key)
+        public KeyboardInputBinding(FrameworkContext context, Key key)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
-            if (!uv.GetInput().IsKeyboardSupported())
+            if (!context.GetInput().IsKeyboardSupported())
             {
                 throw new NotSupportedException();
             }
 
-            this.keyboard = uv.GetInput().GetKeyboard();
+            this.keyboard = context.GetInput().GetKeyboard();
             this.key = key;
 
             this.stringRepresentation = BuildStringRepresentation();
@@ -54,19 +54,19 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyboardInputBinding"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="key">A <see cref="Key"/> value representing the binding's primary key.</param>
         /// <param name="control">A value indicating whether the binding requires the Control modifier.</param>
         /// <param name="alt">A value indicating whether the binding requires the Alt modifier.</param>
         /// <param name="shift">A value indicating whether the binding requires the Shift modifier.</param>
-        public KeyboardInputBinding(FrameworkContext uv, Key key, Boolean control, Boolean alt, Boolean shift)
+        public KeyboardInputBinding(FrameworkContext context, Key key, Boolean control, Boolean alt, Boolean shift)
         {
-            if (!uv.GetInput().IsKeyboardSupported())
+            if (!context.GetInput().IsKeyboardSupported())
             {
                 throw new NotSupportedException();
             }
 
-            this.keyboard = uv.GetInput().GetKeyboard();
+            this.keyboard = context.GetInput().GetKeyboard();
             this.key = key;
             this.control = control;
             this.alt = alt;

@@ -163,7 +163,7 @@ namespace Sedulous.Graphics.Graphics3D
             {
                 pass.Apply();
 
-                var gfx = geometry.GeometryStream.Sedulous.GetGraphics();
+                var gfx = geometry.GeometryStream.FrameworkContext.GetGraphics();
                 gfx.SetGeometryStream(geometry.GeometryStream);
 
                 if (geometry.GeometryStream.HasIndices)

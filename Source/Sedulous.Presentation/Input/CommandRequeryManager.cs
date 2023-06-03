@@ -13,13 +13,13 @@ namespace Sedulous.Presentation.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandRequeryManager"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="owner">The command manager that owns this instance.</param>
-        public CommandRequeryManager(FrameworkContext uv, CommandManager owner)
-            : base(uv)
+        public CommandRequeryManager(FrameworkContext context, CommandManager owner)
+            : base(context)
         {
             this.owner = owner;
-            uv.Updating += Updating;
+            context.Updating += Updating;
         }
         
         /// <summary>
@@ -135,7 +135,7 @@ namespace Sedulous.Presentation.Input
         /// <summary>
         /// Cleans up the listener list when the Sedulous context is updated.
         /// </summary>
-        private void Updating(FrameworkContext uv, FrameworkTime time)
+        private void Updating(FrameworkContext context, FrameworkTime time)
         {
             Cleanup();
             Raise();

@@ -63,8 +63,8 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
                 glyphPositions[i] = new Rectangle(glyphX, glyphY, glyphWidth, glyphHeight);
             }
 
-            var fontFace = new SpriteFontFace(manager.Sedulous, texture, null, glyphPositions, null, glyphSubst, true);
-            var font = new SpriteFont(manager.Sedulous, fontFace);
+            var fontFace = new SpriteFontFace(manager.FrameworkContext, texture, null, glyphPositions, null, glyphSubst, true);
+            var font = new SpriteFont(manager.FrameworkContext, fontFace);
 
             return font;
         }
@@ -74,8 +74,8 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         {
             var positions = OpenGLSpriteFontHelper.IdentifyGlyphs(input);
             var texture = manager.Process<PlatformNativeSurface, Texture2D>(input);
-            var face = new SpriteFontFace(manager.Sedulous, texture, null, positions, null, true);
-            return new SpriteFont(manager.Sedulous, face);
+            var face = new SpriteFontFace(manager.FrameworkContext, texture, null, positions, null, true);
+            return new SpriteFont(manager.FrameworkContext, face);
         }
 
         /// <inheritdoc/>

@@ -43,7 +43,7 @@ namespace UvDebug.UI.Dialogs
             /// </summary>
             public void HandleClickExitToDesktop(DependencyObject dobj, RoutedEventData data)
             {
-                screen.Dialog.Screen.Sedulous.Host.Exit();
+                screen.Dialog.Screen.FrameworkContext.Host.Exit();
             }
 
             // State values.

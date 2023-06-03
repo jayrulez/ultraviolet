@@ -116,19 +116,19 @@ namespace Sedulous.OpenGL.Graphics
                     metadata.AddAssetDependency(fragPath);
 
                     var vertShaderSource = ShaderSource.ProcessExterns(manager.Load<ShaderSource>(vertPath), Externs);
-                    var vertShader = new OpenGLVertexShader(manager.Sedulous, new[] { vertShaderSource });
+                    var vertShader = new OpenGLVertexShader(manager.FrameworkContext, new[] { vertShaderSource });
 
                     var fragShaderSource = ShaderSource.ProcessExterns(manager.Load<ShaderSource>(fragPath), Externs);
-                    var fragShader = new OpenGLFragmentShader(manager.Sedulous, new[] { fragShaderSource });
+                    var fragShader = new OpenGLFragmentShader(manager.FrameworkContext, new[] { fragShaderSource });
 
-                    var programs = new[] { new OpenGLShaderProgram(manager.Sedulous, vertShader, fragShader, false) };
-                    passes.Add(new OpenGLEffectPass(manager.Sedulous, passName, programs));
+                    var programs = new[] { new OpenGLShaderProgram(manager.FrameworkContext, vertShader, fragShader, false) };
+                    passes.Add(new OpenGLEffectPass(manager.FrameworkContext, passName, programs));
                 }
 
-                techniques.Add(new OpenGLEffectTechnique(manager.Sedulous, techniqueName, passes));
+                techniques.Add(new OpenGLEffectTechnique(manager.FrameworkContext, techniqueName, passes));
             }
 
-            return new OpenGLEffectImplementation(manager.Sedulous, techniques);
+            return new OpenGLEffectImplementation(manager.FrameworkContext, techniques);
         }
 
         /// <inheritdoc/>
@@ -167,19 +167,19 @@ namespace Sedulous.OpenGL.Graphics
                     metadata.AddAssetDependency(fragPath);
 
                     var vertShaderSource = ShaderSource.ProcessExterns(manager.Load<ShaderSource>(vertPath), Externs);
-                    var vertShader = new OpenGLVertexShader(manager.Sedulous, new[] { vertShaderSource });
+                    var vertShader = new OpenGLVertexShader(manager.FrameworkContext, new[] { vertShaderSource });
 
                     var fragShaderSource = ShaderSource.ProcessExterns(manager.Load<ShaderSource>(fragPath), Externs);
-                    var fragShader = new OpenGLFragmentShader(manager.Sedulous, new[] { fragShaderSource });
+                    var fragShader = new OpenGLFragmentShader(manager.FrameworkContext, new[] { fragShaderSource });
 
-                    var programs = new[] { new OpenGLShaderProgram(manager.Sedulous, vertShader, fragShader, false) };
-                    techniquePasses.Add(new OpenGLEffectPass(manager.Sedulous, passName, programs));
+                    var programs = new[] { new OpenGLShaderProgram(manager.FrameworkContext, vertShader, fragShader, false) };
+                    techniquePasses.Add(new OpenGLEffectPass(manager.FrameworkContext, passName, programs));
                 }
 
-                techniques.Add(new OpenGLEffectTechnique(manager.Sedulous, techniqueName, techniquePasses));
+                techniques.Add(new OpenGLEffectTechnique(manager.FrameworkContext, techniqueName, techniquePasses));
             }
 
-            return new OpenGLEffectImplementation(manager.Sedulous, techniques);
+            return new OpenGLEffectImplementation(manager.FrameworkContext, techniques);
         }
 
         /// <inheritdoc/>

@@ -12,16 +12,16 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Initializes a new instance of the <see cref="OutOfBandRenderTarget"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        internal OutOfBandRenderTarget(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        internal OutOfBandRenderTarget(FrameworkContext context)
+            : base(context)
         {
             renderTarget = RenderTarget2D.Create(1, 1);
 
             colorBuffer = Texture2D.CreateRenderBuffer(RenderBufferFormat.Color, 1, 1, RenderBufferOptions.SrgbColor);
             renderTarget.Attach(colorBuffer);
 
-            if (uv.GetGraphics().Capabilities.SupportsDepthStencilTextures)
+            if (context.GetGraphics().Capabilities.SupportsDepthStencilTextures)
             {
                 depthBuffer = Texture2D.CreateRenderBuffer(RenderBufferFormat.Depth24Stencil8, 1, 1, RenderBufferOptions.WillNotBeSampled);
                 renderTarget.Attach(depthBuffer);

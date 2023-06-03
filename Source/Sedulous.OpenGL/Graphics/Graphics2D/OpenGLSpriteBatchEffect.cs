@@ -12,8 +12,8 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the OpenGLSpriteBatchEffect class.
         /// </summary>
-        public OpenGLSpriteBatchEffect(FrameworkContext uv)
-            : base(CreateEffectImplementation(uv))
+        public OpenGLSpriteBatchEffect(FrameworkContext context)
+            : base(CreateEffectImplementation(context))
         {
 
         }
@@ -21,16 +21,16 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         /// <summary>
         /// Creates the effect implementation.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The effect implementation.</returns>
-        private static EffectImplementation CreateEffectImplementation(FrameworkContext uv)
+        private static EffectImplementation CreateEffectImplementation(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
-            var programs = new[] { new OpenGLShaderProgram(uv, vertShader, fragShader, false) };
-            var passes = new[] { new OpenGLEffectPass(uv, null, programs) };
-            var techniques = new[] { new OpenGLEffectTechnique(uv, null, passes) };
-            return new OpenGLEffectImplementation(uv, techniques);
+            var programs = new[] { new OpenGLShaderProgram(context, vertShader, fragShader, false) };
+            var passes = new[] { new OpenGLEffectPass(context, null, programs) };
+            var techniques = new[] { new OpenGLEffectTechnique(context, null, passes) };
+            return new OpenGLEffectImplementation(context, techniques);
         }
 
         // The shaders that make up this effect.

@@ -12,26 +12,26 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Activates the actions in the collection, with the specified dependency object as their implicit target.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="dobj">The dependency object which is the implicit target of the activated actions.</param>
-        internal void Activate(FrameworkContext uv, DependencyObject dobj)
+        internal void Activate(FrameworkContext context, DependencyObject dobj)
         {
             foreach (var action in actions)
             {
-                action.Activate(uv, dobj);
+                action.Activate(context, dobj);
             }
         }
 
         /// <summary>
         /// Deactivates the actions in the collection, with the specified dependency object as their implicit target.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="dobj">The dependency object which is the implicit target of the deactivated actions.</param>
-        internal void Deactivate(FrameworkContext uv, DependencyObject dobj)
+        internal void Deactivate(FrameworkContext context, DependencyObject dobj)
         {
             foreach (var action in actions)
             {
-                action.Deactivate(uv, dobj);
+                action.Deactivate(context, dobj);
             }
         }
 

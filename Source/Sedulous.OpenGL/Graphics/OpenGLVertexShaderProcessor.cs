@@ -13,7 +13,7 @@ namespace Sedulous.OpenGL.Graphics
         public override OpenGLVertexShader Process(ContentManager manager, IContentProcessorMetadata metadata, String input)
         {
             var source = ShaderSource.ProcessRawSource(manager, metadata, input, ShaderStage.Vertex);
-            return new OpenGLVertexShader(manager.Sedulous, new[] { source });
+            return new OpenGLVertexShader(manager.FrameworkContext, new[] { source });
         }
     }
 }

@@ -16,13 +16,13 @@ namespace Sedulous.SDL2.Platform
         /// <summary>
         /// Initializes a new instance of the OpenGLSedulousDisplayInfo class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public SDL2FrameworkDisplayInfo(FrameworkContext uv)
+        /// <param name="context">The Sedulous context.</param>
+        public SDL2FrameworkDisplayInfo(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
             this.displays = Enumerable.Range(0, SDL_GetNumVideoDisplays())
-                .Select(x => new SDL2FrameworkDisplay(uv, x))
+                .Select(x => new SDL2FrameworkDisplay(context, x))
                 .ToList<IFrameworkDisplay>();
         }
 

@@ -16,9 +16,9 @@ namespace Sedulous.Tests.Content
             GivenAnSedulousApplicationWithNoWindow()
                 .WithContent(content =>
                 {
-                    content.Sedulous.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "Test.manifest"));
+                    content.FrameworkContext.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "Test.manifest"));
                     
-                    var id = content.Sedulous.GetContent().Manifests["Test"]["Textures"]["Triangle"].CreateAssetID();
+                    var id = content.FrameworkContext.GetContent().Manifests["Test"]["Textures"]["Triangle"].CreateAssetID();
                     var json = JsonConvert.SerializeObject(id, 
                         FrameworkJsonSerializerSettings.Instance);
 
@@ -35,7 +35,7 @@ namespace Sedulous.Tests.Content
             GivenAnSedulousApplicationWithNoWindow()
                 .WithContent(content =>
                 {
-                    content.Sedulous.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "Test.manifest"));
+                    content.FrameworkContext.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "Test.manifest"));
                     
                     var id = JsonConvert.DeserializeObject<AssetID>(@"""#Test:Textures:Triangle""", 
                         FrameworkJsonSerializerSettings.Instance);
@@ -53,7 +53,7 @@ namespace Sedulous.Tests.Content
             GivenAnSedulousApplicationWithNoWindow()
                 .WithContent(content =>
                 {
-                    content.Sedulous.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "TestJson.jsmanifest"));
+                    content.FrameworkContext.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "TestJson.jsmanifest"));
 
                     var id = JsonConvert.DeserializeObject<AssetID>(@"""#Test:Textures:Triangle""",
                         FrameworkJsonSerializerSettings.Instance);

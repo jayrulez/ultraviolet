@@ -14,14 +14,14 @@ namespace Sedulous.UI
         /// <summary>
         /// Initializes a new instance of the <see cref="UIScreenStackCollection"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public UIScreenStackCollection(FrameworkContext uv)
+        /// <param name="context">The Sedulous context.</param>
+        public UIScreenStackCollection(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
-            this.uv = uv;
+            this.context = context;
 
-            var windows = uv.GetPlatform().Windows;
+            var windows = context.GetPlatform().Windows;
 
             foreach (var window in windows)
             {
@@ -96,7 +96,7 @@ namespace Sedulous.UI
         /// <param name="window">The window being created.</param>
         private void CreateScreenStack(IFrameworkWindow window)
         {
-            var stack = new UIScreenStack(uv, window);
+            var stack = new UIScreenStack(context, window);
 
             AddInternal(stack);
             screenStacks.Add(window, stack);
@@ -137,7 +137,7 @@ namespace Sedulous.UI
         }
 
         // The sprite batch with which screens are drawn.
-        private readonly FrameworkContext uv;
+        private readonly FrameworkContext context;
         private readonly SpriteBatch spriteBatch;
         private Boolean disposed;
 

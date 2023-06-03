@@ -22,10 +22,10 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Initializes a new instance of the <see cref="ButtonBase"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ButtonBase(FrameworkContext uv, String name)
-            : base(uv, name)
+        public ButtonBase(FrameworkContext context, String name)
+            : base(context, name)
         {
             VisualStateGroups.Create("common", new[] { "normal", "hover", "pressed", "disabled" });
         }
@@ -280,7 +280,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <inheritdoc/>
         protected override void OnTouchDown(TouchDevice device, Int64 id, Double x, Double y, Single pressure, RoutedEventData data)
         {
-            if (!Sedulous.GetInput().IsMouseCursorAvailable)
+            if (!FrameworkContext.GetInput().IsMouseCursorAvailable)
             {
                 if (device.IsFirstTouchInGesture(id))
                 {
@@ -294,7 +294,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <inheritdoc/>
         protected override void OnTouchUp(TouchDevice device, Int64 id, RoutedEventData data)
         {
-            if (!Sedulous.GetInput().IsMouseCursorAvailable)
+            if (!FrameworkContext.GetInput().IsMouseCursorAvailable)
             {
                 if (device.IsFirstTouchInGesture(id))
                 {
@@ -308,7 +308,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <inheritdoc/>
         protected override void OnTouchTap(TouchDevice device, Int64 id, Double x, Double y, RoutedEventData data)
         {
-            if (!Sedulous.GetInput().IsMouseCursorAvailable)
+            if (!FrameworkContext.GetInput().IsMouseCursorAvailable)
             {
                 if (device.IsFirstTouchInGesture(id))
                 {
@@ -322,7 +322,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <inheritdoc/>
         protected override void OnTouchEnter(TouchDevice device, Int64 id, RoutedEventData data)
         {
-            if (!Sedulous.GetInput().IsMouseCursorAvailable)
+            if (!FrameworkContext.GetInput().IsMouseCursorAvailable)
             {
                 if (device.IsFirstTouchInGesture(id) && ClickMode == ClickMode.Hover)
                 {
@@ -336,7 +336,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <inheritdoc/>
         protected override void OnTouchLeave(TouchDevice device, Int64 id, RoutedEventData data)
         {
-            if (!Sedulous.GetInput().IsMouseCursorAvailable)
+            if (!FrameworkContext.GetInput().IsMouseCursorAvailable)
             {
                 if (device.IsFirstTouchInGesture(id))
                 {

@@ -11,9 +11,9 @@ namespace Sedulous.Presentation.Animations
         /// <summary>
         /// Initializes a new instance of the <see cref="Storyboard"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="loopBehavior">The storyboard's loop behavior.</param>
-        public Storyboard(FrameworkContext uv, LoopBehavior loopBehavior = LoopBehavior.None)
+        public Storyboard(FrameworkContext context, LoopBehavior loopBehavior = LoopBehavior.None)
         {
             this.targets = new StoryboardTargetCollection(this);
             this.loopBehavior = loopBehavior;

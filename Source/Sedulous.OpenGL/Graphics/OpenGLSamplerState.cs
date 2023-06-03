@@ -12,9 +12,9 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLSamplerState class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public OpenGLSamplerState(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public OpenGLSamplerState(FrameworkContext context)
+            : base(context)
         {
 
         }
@@ -22,11 +22,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the PointClamp sampler state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The sampler state that was created.</returns>
-        public static OpenGLSamplerState CreatePointClamp(FrameworkContext uv)
+        public static OpenGLSamplerState CreatePointClamp(FrameworkContext context)
         {
-            var state = new OpenGLSamplerState(uv);
+            var state = new OpenGLSamplerState(context);
             state.Filter = TextureFilter.Point;
             state.AddressU = TextureAddressMode.Clamp;
             state.AddressV = TextureAddressMode.Clamp;
@@ -38,11 +38,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the PointWrap sampler state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The sampler state that was created.</returns>
-        public static OpenGLSamplerState CreatePointWrap(FrameworkContext uv)
+        public static OpenGLSamplerState CreatePointWrap(FrameworkContext context)
         {
-            var state = new OpenGLSamplerState(uv);
+            var state = new OpenGLSamplerState(context);
             state.Filter = TextureFilter.Point;
             state.AddressU = TextureAddressMode.Wrap;
             state.AddressV = TextureAddressMode.Wrap;
@@ -54,11 +54,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the LinearClamp sampler state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The sampler state that was created.</returns>
-        public static OpenGLSamplerState CreateLinearClamp(FrameworkContext uv)
+        public static OpenGLSamplerState CreateLinearClamp(FrameworkContext context)
         {
-            var state = new OpenGLSamplerState(uv);
+            var state = new OpenGLSamplerState(context);
             state.Filter = TextureFilter.Linear;
             state.AddressU = TextureAddressMode.Clamp;
             state.AddressV = TextureAddressMode.Clamp;
@@ -70,11 +70,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the LinearWrap sampler state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The sampler state that was created.</returns>
-        public static OpenGLSamplerState CreateLinearWrap(FrameworkContext uv)
+        public static OpenGLSamplerState CreateLinearWrap(FrameworkContext context)
         {
-            var state = new OpenGLSamplerState(uv);
+            var state = new OpenGLSamplerState(context);
             state.Filter = TextureFilter.Linear;
             state.AddressU = TextureAddressMode.Wrap;
             state.AddressV = TextureAddressMode.Wrap;
@@ -86,11 +86,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the AnisotropicClamp sampler state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The sampler state that was created.</returns>
-        public static OpenGLSamplerState CreateAnisotropicClamp(FrameworkContext uv)
+        public static OpenGLSamplerState CreateAnisotropicClamp(FrameworkContext context)
         {
-            var state = new OpenGLSamplerState(uv);
+            var state = new OpenGLSamplerState(context);
             state.Filter = TextureFilter.Anisotropic;
             state.AddressU = TextureAddressMode.Clamp;
             state.AddressV = TextureAddressMode.Clamp;
@@ -102,11 +102,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the AnisotropicWrap sampler state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The sampler state that was created.</returns>
-        public static OpenGLSamplerState CreateAnisotropicWrap(FrameworkContext uv)
+        public static OpenGLSamplerState CreateAnisotropicWrap(FrameworkContext context)
         {
-            var state = new OpenGLSamplerState(uv);
+            var state = new OpenGLSamplerState(context);
             state.Filter = TextureFilter.Anisotropic;
             state.AddressU = TextureAddressMode.Wrap;
             state.AddressV = TextureAddressMode.Wrap;
@@ -122,12 +122,12 @@ namespace Sedulous.OpenGL.Graphics
         /// <param name="target">GL_TEXTURE_2D or GL_TEXTURE_3D, as appropriate.</param>
         internal void Apply(Int32 sampler, UInt32 target)
         {
-            if (Sedulous.GetGraphics().Capabilities.SupportsIndependentSamplerState)
+            if (FrameworkContext.GetGraphics().Capabilities.SupportsIndependentSamplerState)
                 throw new InvalidOperationException(FrameworkStrings.GenericError);
 
             OpenGLState.ActiveTexture((uint)(gl.GL_TEXTURE0 + sampler));
 
-            if (Sedulous.GetGraphics().Capabilities.Supports3DTextures)
+            if (FrameworkContext.GetGraphics().Capabilities.Supports3DTextures)
             {
                 gl.TexParameteri(target, gl.GL_TEXTURE_WRAP_R, GetTextureAddressModeGL(AddressW));
                 gl.ThrowIfError();

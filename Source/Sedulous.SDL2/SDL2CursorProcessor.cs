@@ -19,9 +19,9 @@ namespace Sedulous.SDL2
         /// <returns>The game asset that was created.</returns>
         public override Cursor Process(ContentManager manager, IContentProcessorMetadata metadata, PlatformNativeSurface input)
         {
-            using (var surface = new SDL2Surface2D(manager.Sedulous, input.CreateCopy(), SurfaceOptions.SrgbColor))
+            using (var surface = new SDL2Surface2D(manager.FrameworkContext, input.CreateCopy(), SurfaceOptions.SrgbColor))
             {
-                return new SDL2Cursor(manager.Sedulous, surface, 0, 0);
+                return new SDL2Cursor(manager.FrameworkContext, surface, 0, 0);
             }
         }
     }

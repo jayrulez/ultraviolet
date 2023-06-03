@@ -43,7 +43,7 @@ namespace Sedulous.Presentation
         /// <param name="density">The screen density for which to load the resource.</param>
         public void Load(ContentManager contentManager, ScreenDensityBucket density)
         {
-            var watch = contentManager.Sedulous.GetUI().WatchingViewFilesForChanges;
+            var watch = contentManager.FrameworkContext.GetUI().WatchingViewFilesForChanges;
             Resource.Load(contentManager, density, watch);
         }
 

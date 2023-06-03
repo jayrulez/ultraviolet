@@ -6,13 +6,13 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="RenderTarget2D"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="width">The render target's width in pixels.</param>
     /// <param name="height">The render target's height in pixels.</param>
     /// <param name="usage">A <see cref="RenderTargetUsage"/> value specifying whether the 
     /// render target's data is discarded or preserved when it is bound to the graphics device.</param>
     /// <returns>The instance of <see cref="RenderTarget2D"/> that was created.</returns>
-    public delegate RenderTarget2D RenderTarget2DFactory(FrameworkContext uv, Int32 width, Int32 height, RenderTargetUsage usage);
+    public delegate RenderTarget2D RenderTarget2DFactory(FrameworkContext context, Int32 width, Int32 height, RenderTargetUsage usage);
 
     /// <summary>
     /// Represents a two-dimensional render target.
@@ -22,9 +22,9 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderTarget2D"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public RenderTarget2D(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public RenderTarget2D(FrameworkContext context)
+            : base(context)
         {
 
         }

@@ -17,7 +17,7 @@ namespace Sedulous.Presentation.Compiler
         /// <summary>
         /// Initializes a new instance of the <see cref="LegacyExpressionCompilerState"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="compiler">The compiler used to produce view model code.</param>
         public LegacyExpressionCompilerState(ICrossThreadSedulousContext uv, CSharpCodeProvider compiler)
         {

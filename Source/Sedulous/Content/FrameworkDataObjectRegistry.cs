@@ -15,7 +15,7 @@ namespace Sedulous.Content
         /// <summary>
         /// Gets the Sedulous context.
         /// </summary>
-        public FrameworkContext Sedulous =>
+        public FrameworkContext FrameworkContext =>
             FrameworkContext.DemandCurrent();
 
         /// <inheritdoc/>

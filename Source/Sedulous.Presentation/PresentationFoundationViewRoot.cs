@@ -24,18 +24,18 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Initializes a new instance of the <see cref="PresentationFoundationViewRoot"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public PresentationFoundationViewRoot(FrameworkContext uv, String name) 
-            : base(uv, name)
+        public PresentationFoundationViewRoot(FrameworkContext context, String name) 
+            : base(context, name)
         {
             this.children = new VisualCollection(this);
 
-            this.toolTipPopup = new Popup(uv, null);
+            this.toolTipPopup = new Popup(context, null);
             this.toolTipPopup.IsHitTestVisible = false;
             this.children.Add(this.toolTipPopup);
 
-            this.toolTip = new ToolTip(uv, null);
+            this.toolTip = new ToolTip(context, null);
             this.toolTipPopup.Child = this.toolTip;
         }
 

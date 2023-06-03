@@ -105,7 +105,7 @@ namespace Sedulous.Presentation
             }
 
             /// <inheritdoc/>
-            protected override Boolean IsEnabled => device.IsRegistered || device.Sedulous.GetInput().EmulateMouseWithTouchInput;
+            protected override Boolean IsEnabled => device.IsRegistered || device.FrameworkContext.GetInput().EmulateMouseWithTouchInput;
 
             /// <inheritdoc/>
             protected override Boolean OpensToolTips { get; } = true;

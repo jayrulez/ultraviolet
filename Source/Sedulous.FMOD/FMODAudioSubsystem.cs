@@ -23,10 +23,10 @@ namespace Sedulous.FMOD
         /// <summary>
         /// Initializes a new instance of the FMODSedulousAudio class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="configuration">The Sedulous configuration.</param>
-        public FMODAudioSubsystem(FrameworkContext uv, FrameworkConfiguration configuration)
-            : base(uv)
+        public FMODAudioSubsystem(FrameworkContext context, FrameworkConfiguration configuration)
+            : base(context)
         {
             platformSpecificImpl = FMODPlatformSpecificImplementationDetails.Create();
             platformSpecificImpl.OnInitialized();
@@ -79,12 +79,12 @@ namespace Sedulous.FMOD
             result = FMOD_System_SetCallback(system, systemDeviceCallbackFMOD, FMOD_SYSTEM_CALLBACK_TYPE.DEVICELISTCHANGED | FMOD_SYSTEM_CALLBACK_TYPE.DEVICELOST);
             if (result != FMOD_OK)
                 throw new FMODException(result);
-            
-            uv.Messages.Subscribe(this, FrameworkMessages.ApplicationCreated);
-            uv.Messages.Subscribe(this, FrameworkMessages.ApplicationTerminating);
-            uv.Messages.Subscribe(this, FrameworkMessages.ApplicationSuspending);
-            uv.Messages.Subscribe(this, FrameworkMessages.ApplicationResumed);
-            uv.Messages.Subscribe(this, FrameworkMessages.FileSourceChanged);
+
+            context.Messages.Subscribe(this, FrameworkMessages.ApplicationCreated);
+            context.Messages.Subscribe(this, FrameworkMessages.ApplicationTerminating);
+            context.Messages.Subscribe(this, FrameworkMessages.ApplicationSuspending);
+            context.Messages.Subscribe(this, FrameworkMessages.ApplicationResumed);
+            context.Messages.Subscribe(this, FrameworkMessages.FileSourceChanged);
         }
 
         /// <inheritdoc/>
@@ -211,7 +211,7 @@ namespace Sedulous.FMOD
                 {
                     if (val is FMODAudioDevice device)
                     {
-                        Sedulous.ValidateResource(device);
+                        FrameworkContext.ValidateResource(device);
 
                         var result = default(FMOD_RESULT);
                         var olddriver = 0;
@@ -385,9 +385,9 @@ namespace Sedulous.FMOD
             if (result != FMOD_OK)
                 throw new FMODException(result);
 
-            if (disposing && !Sedulous.Disposed)
+            if (disposing && !FrameworkContext.Disposed)
             {
-                Sedulous.Messages.Unsubscribe(this);
+                FrameworkContext.Messages.Unsubscribe(this);
             }
 
             base.Dispose(disposing);
@@ -413,7 +413,7 @@ namespace Sedulous.FMOD
             }
             
             if (FrameworkContext.RequestCurrent()?.GetAudio() is FMODAudioSubsystem audio)
-                audio.debugCallback?.Invoke(audio.Sedulous, messageLevel, messageString);
+                audio.debugCallback?.Invoke(audio.FrameworkContext, messageLevel, messageString);
 
             return FMOD_OK;
         }
@@ -505,7 +505,7 @@ namespace Sedulous.FMOD
                     if (result != FMOD_OK)
                         throw new FMODException(result);
 
-                    var device = new FMODAudioDevice(Sedulous, i, namebuf.ToString())
+                    var device = new FMODAudioDevice(FrameworkContext, i, namebuf.ToString())
                     {
                         IsValid = true,
                         IsDefault = i == 0

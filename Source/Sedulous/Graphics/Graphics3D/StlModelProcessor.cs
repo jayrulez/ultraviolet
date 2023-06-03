@@ -68,7 +68,7 @@ namespace Sedulous.Graphics.Graphics3D
             var modelMesh = new ModelMesh(0, null, new[] { modelMeshGeometry });
             var modelNode = new ModelNode(0, null, modelMesh, null, globalTransform);
             var modelScene = new ModelScene(0, input.Name, new[] { modelNode });
-            var model = new Model(manager.Sedulous, new[] { modelScene });
+            var model = new Model(manager.FrameworkContext, new[] { modelScene });
 
             return model;
         }

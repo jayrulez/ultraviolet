@@ -12,11 +12,11 @@ namespace Sedulous.FMOD.Audio
         /// <summary>
         /// Initializes a new instance of the <see cref="FMODAudioDevice"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="id">The device's FMOD identifier.</param>
         /// <param name="name">The device's name.</param>
-        public FMODAudioDevice(FrameworkContext uv, Int32 id, String name)
-            : base(uv)
+        public FMODAudioDevice(FrameworkContext context, Int32 id, String name)
+            : base(context)
         {
             Contract.Require(name, nameof(name));
 

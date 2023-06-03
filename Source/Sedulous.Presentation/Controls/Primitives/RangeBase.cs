@@ -13,10 +13,10 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Initializes a new instance of the <see cref="RangeBase"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public RangeBase(FrameworkContext uv, String name)
-            : base(uv, name)
+        public RangeBase(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }

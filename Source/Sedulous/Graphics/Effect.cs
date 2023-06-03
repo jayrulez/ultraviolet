@@ -13,7 +13,7 @@ namespace Sedulous.Graphics
         /// </summary>
         /// <param name="impl">The <see cref="EffectImplementation"/> that implements this effect.</param>
         protected Effect(EffectImplementation impl)
-            : base(impl.Sedulous)
+            : base(impl.FrameworkContext)
         {
             Contract.Require(impl, nameof(impl));
 

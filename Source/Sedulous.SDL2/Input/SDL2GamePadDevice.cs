@@ -19,11 +19,11 @@ namespace Sedulous.SDL2.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2GamePadDevice"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="joystickIndex">The index of the SDL2 joystick device.</param>
         /// <param name="playerIndex">The index of the player that owns the device.</param>
-        public SDL2GamePadDevice(FrameworkContext uv, Int32 joystickIndex, Int32 playerIndex)
-            : base(uv)
+        public SDL2GamePadDevice(FrameworkContext context, Int32 joystickIndex, Int32 playerIndex)
+            : base(context)
         {
             this.timeLastPressAxis = new Double[Enum.GetValues(typeof(GamePadAxis)).Length];
             this.timeLastPressButton = new Double[Enum.GetValues(typeof(GamePadButton)).Length];
@@ -47,7 +47,7 @@ namespace Sedulous.SDL2.Input
                 throw new SDL2Exception();
             }
 
-            uv.Messages.Subscribe(this,
+            context.Messages.Subscribe(this,
                 SDL2FrameworkMessages.SDLEvent);
         }
 
@@ -507,9 +507,9 @@ namespace Sedulous.SDL2.Input
 
             if (disposing)
             {
-                if (!Sedulous.Disposed)
+                if (!FrameworkContext.Disposed)
                 {
-                    Sedulous.Messages.Unsubscribe(this);
+                    FrameworkContext.Messages.Unsubscribe(this);
                 }
 
                 instanceID = 0;
@@ -789,7 +789,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void Register()
         {
-            var input = (SDL2FrameworkInput)Sedulous.GetInput();
+            var input = (SDL2FrameworkInput)FrameworkContext.GetInput();
             if (input.RegisterGamePadDevice(this))
                 isRegistered = true;
         }

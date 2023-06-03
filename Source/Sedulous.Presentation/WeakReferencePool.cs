@@ -9,9 +9,9 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Initializes a new instance of the <see cref="WeakReferencePool"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public WeakReferencePool(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public WeakReferencePool(FrameworkContext context)
+            : base(context)
         {
 
         }
@@ -99,7 +99,7 @@ namespace Sedulous.Presentation
         /// <inheritdoc/>
         protected override void Dispose(Boolean disposing)
         {
-            if (disposing && !Sedulous.Disposed)
+            if (disposing && !FrameworkContext.Disposed)
             {
                 SafeDispose.DisposeRef(ref pool);
             }

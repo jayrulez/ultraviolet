@@ -12,9 +12,9 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="CursorCollection"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        internal CursorCollection(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        internal CursorCollection(FrameworkContext context)
+            : base(context)
         {
 
         }

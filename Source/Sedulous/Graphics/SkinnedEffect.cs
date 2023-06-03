@@ -5,9 +5,9 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="SkinnedEffect"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <returns>The instance of <see cref="SkinnedEffect"/> that was created.</returns>
-    public delegate SkinnedEffect SkinnedEffectFactory(FrameworkContext uv);
+    public delegate SkinnedEffect SkinnedEffectFactory(FrameworkContext context);
 
     /// <summary>
     /// Represents a basic rendering effect.

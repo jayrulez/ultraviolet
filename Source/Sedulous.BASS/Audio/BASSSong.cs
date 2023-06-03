@@ -17,10 +17,10 @@ namespace Sedulous.BASS.Audio
         /// <summary>
         /// Initializes a new instance of the BASSSong class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="file">The path to the file from which to stream the song.</param>
-        public BASSSong(FrameworkContext uv, String file)
-            : base(uv)
+        public BASSSong(FrameworkContext context, String file)
+            : base(context)
         {
             Contract.RequireNotEmpty(file, nameof(file));
 

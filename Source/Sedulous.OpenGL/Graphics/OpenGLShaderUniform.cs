@@ -25,19 +25,19 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLShaderUniform class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The effect parameter's name.</param>
         /// <param name="type">The effect parameter's uniform type.</param>
         /// <param name="count">The effect parameter's count of array elements.</param>
         /// <param name="program">The effect parameter's associated program identifier.</param>
         /// <param name="location">The effect parameter's uniform location.</param>
         /// <param name="sampler">The effect's corresponding texture sampler, if any.</param>
-        public OpenGLShaderUniform(FrameworkContext uv, String name, UInt32 type, UInt32 count, UInt32 program, Int32 location, Int32 sampler)
+        public OpenGLShaderUniform(FrameworkContext context, String name, UInt32 type, UInt32 count, UInt32 program, Int32 location, Int32 sampler)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(name, nameof(name));
 
-            this.uv = uv;
+            this.context = context;
             this.Name = name ?? String.Empty;
             this.Type = type;
             this.Count = count;
@@ -60,12 +60,12 @@ namespace Sedulous.OpenGL.Graphics
                 switch (source.DataType)
                 {
                     case OpenGLEffectParameterDataType.Texture2D:
-                        if (uv.GetGraphics().GetTexture(sampler) == source.GetTexture2D())
+                        if (context.GetGraphics().GetTexture(sampler) == source.GetTexture2D())
                             return;
                         break;
 
                     case OpenGLEffectParameterDataType.Texture3D:
-                        if (uv.GetGraphics().GetTexture(sampler) == source.GetTexture3D())
+                        if (context.GetGraphics().GetTexture(sampler) == source.GetTexture3D())
                             return;
                         break;
 
@@ -789,7 +789,7 @@ namespace Sedulous.OpenGL.Graphics
             gl.Uniform1i(location, sampler);
             gl.ThrowIfError();
 
-            uv.GetGraphics().SetTexture(sampler, value);
+            context.GetGraphics().SetTexture(sampler, value);
         }
 
         /// <summary>
@@ -801,7 +801,7 @@ namespace Sedulous.OpenGL.Graphics
             gl.Uniform1i(location, sampler);
             gl.ThrowIfError();
 
-            uv.GetGraphics().SetTexture(sampler, value);
+            context.GetGraphics().SetTexture(sampler, value);
         }
 
         /// <summary>
@@ -933,7 +933,7 @@ namespace Sedulous.OpenGL.Graphics
         }
 
         // State values.
-        private readonly FrameworkContext uv;
+        private readonly FrameworkContext context;
         private readonly Int32 location;
         private readonly Int32 sampler;
         private OpenGLEffectParameterData source;

@@ -10,13 +10,13 @@ namespace Sedulous.Graphics.Graphics3D
         /// <summary>
         /// Initializes a new instance of the <see cref="SkinnedModel"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="scenes">The model's list of scenes.</param>
         /// <param name="textures">The model's list of textures.</param>
         /// <param name="skins">The model's list of skins.</param>
         /// <param name="animations">The models' list of animations.</param>
-        public SkinnedModel(FrameworkContext uv, IList<ModelScene> scenes, IList<Texture2D> textures, IEnumerable<Skin> skins, IEnumerable<SkinnedAnimation> animations)
-            : base(uv, scenes, textures)
+        public SkinnedModel(FrameworkContext context, IList<ModelScene> scenes, IList<Texture2D> textures, IEnumerable<Skin> skins, IEnumerable<SkinnedAnimation> animations)
+            : base(context, scenes, textures)
         {
             this.Skins = new SkinnedModelSkinCollection(skins);
             this.Animations = new SkinnedAnimationCollection(animations);

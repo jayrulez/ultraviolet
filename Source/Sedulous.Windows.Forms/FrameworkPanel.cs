@@ -51,13 +51,13 @@ namespace Sedulous.Windows.Forms
         /// <summary>
         /// Gets the panel's Sedulous context.
         /// </summary>
-        public FrameworkContext Sedulous
+        public FrameworkContext FrameworkContext
         {
             get
             {
                 Contract.EnsureNotDisposed(this, IsDisposed);
 
-                return uv;
+                return context;
             }
         }
 
@@ -175,13 +175,13 @@ namespace Sedulous.Windows.Forms
         /// <param name="e">An EventArgs that contains the event data.</param>
         protected override void OnLoad(EventArgs e)
         {
-            if (uv == null && !DesignMode)
+            if (context == null && !DesignMode)
             {
-                var uvform = TopLevelControl as FrameworkForm;
-                if (uvform == null)
+                var form = TopLevelControl as FrameworkForm;
+                if (form == null)
                     throw new InvalidOperationException(WindowsFormsStrings.SedulousFormRequired);
                 
-                CreateSedulousWindow(uvform.Sedulous);
+                CreateSedulousWindow(form.FrameworkContext);
             }
             base.OnLoad(e);
         }
@@ -194,7 +194,7 @@ namespace Sedulous.Windows.Forms
         {
             if (disposing)
             {
-                if (uv != null && !uv.Disposed)
+                if (context != null && !context.Disposed)
                 {
                     DestroySedulousWindow();
                 }
@@ -216,19 +216,19 @@ namespace Sedulous.Windows.Forms
         /// <summary>
         /// Enlists the panel in the specified Sedulous context.
         /// </summary>
-        /// <param name="uv">The Sedulous context in which to enlist the panel.</param>
-        private void CreateSedulousWindow(FrameworkContext uv)
+        /// <param name="context">The Sedulous context in which to enlist the panel.</param>
+        private void CreateSedulousWindow(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
-            if (this.uv != null)
+            if (this.context != null)
                 throw new InvalidOperationException(WindowsFormsStrings.PanelAlreadyEnlisted);
             
             OnCreatingSedulousWindow(EventArgs.Empty);
 
-            this.uv = uv;
+            this.context = context;
 
-            this.uvWindow = uv.GetPlatform().Windows.CreateFromNativePointer(this.Handle);
+            this.uvWindow = context.GetPlatform().Windows.CreateFromNativePointer(this.Handle);
             this.uvWindow.Drawing += uvWindow_Drawing;
             
             OnCreatedSedulousWindow(EventArgs.Empty);
@@ -239,22 +239,22 @@ namespace Sedulous.Windows.Forms
         /// </summary>
         private void DestroySedulousWindow()
         {
-            if (this.uv == null)
+            if (this.context == null)
                 throw new InvalidOperationException(WindowsFormsStrings.PanelNotEnlisted);
             
             OnDestroyingSedulousWindow(EventArgs.Empty);
 
             this.uvWindow.Drawing -= uvWindow_Drawing;
-            this.uv.GetPlatform().Windows.Destroy(uvWindow);
+            this.context.GetPlatform().Windows.Destroy(uvWindow);
             this.uvWindow = null;
 
-            this.uv = null;
+            this.context = null;
 
             OnDestroyedSedulousWindow(EventArgs.Empty);
         }
 
         // The panel's ID within the Sedulous context.
-        private FrameworkContext uv;
+        private FrameworkContext context;
         private IFrameworkWindow uvWindow;
 
         // Property values.

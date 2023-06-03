@@ -366,7 +366,7 @@ namespace Sedulous.Presentation
                         {
                             var selector = ruleSet.Selectors[0];
                             var navexp = NavigationExpression.FromUvssNavigationExpression(
-                                view.Sedulous, selector.NavigationExpression);
+                                view.FrameworkContext, selector.NavigationExpression);
                             base.ApplyStyle(rule, selector, navexp, dp);
                         }
                     }

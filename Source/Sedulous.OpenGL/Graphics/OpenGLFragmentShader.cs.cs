@@ -12,17 +12,17 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLFragmentShader class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="source">The shader source.</param>
-        public OpenGLFragmentShader(FrameworkContext uv, ShaderSource[] source)
-            : base(uv)
+        public OpenGLFragmentShader(FrameworkContext context, ShaderSource[] source)
+            : base(context)
         {
             Contract.Require(source, nameof(source));
 
             var shader = 0u;
             var ssmd = default(ShaderSourceMetadata);
 
-            uv.QueueWorkItem(state =>
+            context.QueueWorkItem(state =>
             {
                 shader = gl.CreateShader(gl.GL_FRAGMENT_SHADER);
                 gl.ThrowIfError();
@@ -38,10 +38,10 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLFragmentShader class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="source">The shader source.</param>
-        public OpenGLFragmentShader(FrameworkContext uv, ShaderSource source)
-            : this(uv, new[] { source })
+        public OpenGLFragmentShader(FrameworkContext context, ShaderSource source)
+            : this(context, new[] { source })
         {
 
         }
@@ -68,9 +68,9 @@ namespace Sedulous.OpenGL.Graphics
             if (disposing)
             {
                 var glname = shader;
-                if (glname != 0 && !Sedulous.Disposed)
+                if (glname != 0 && !FrameworkContext.Disposed)
                 {
-                    Sedulous.QueueWorkItem((state) =>
+                    FrameworkContext.QueueWorkItem((state) =>
                     {
                         gl.DeleteShader(glname);
                         gl.ThrowIfError();

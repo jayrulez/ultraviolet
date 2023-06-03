@@ -15,15 +15,15 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteFontFace"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="texture">The texture that contains the glyph images.</param>
         /// <param name="regions">A collection containing the font face's character regions.</param>
         /// <param name="glyphs">A collection containing the positions of the font's glyphs.</param>
         /// <param name="kerning">The font's kerning information.</param>
         /// <param name="ownsTexture">A value indicating whether this font face is responsible for disposing of its texture.</param>
-        public SpriteFontFace(FrameworkContext uv, Texture2D texture, IEnumerable<CharacterRegion> regions, IEnumerable<Rectangle> glyphs,
+        public SpriteFontFace(FrameworkContext context, Texture2D texture, IEnumerable<CharacterRegion> regions, IEnumerable<Rectangle> glyphs,
             SpriteFontKerning kerning, Boolean ownsTexture = false)
-            : this(uv, texture, regions, glyphs, kerning, 0, 0, '?', ownsTexture)
+            : this(context, texture, regions, glyphs, kerning, 0, 0, '?', ownsTexture)
         {
 
         }
@@ -31,16 +31,16 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteFontFace"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="texture">The texture that contains the font face's glyphs.</param>
         /// <param name="regions">A collection containing the font face's character regions.</param>
         /// <param name="glyphs">A collection containing the positions of the font face's glyphs on its texture.</param>
         /// <param name="kerning">The font's kerning information.</param>
         /// <param name="substitutionCharacter">The character that corresponds to the font face's substitution glyph.</param>
         /// <param name="ownsTexture">A value indicating whether this font face is responsible for disposing of its texture.</param>
-        public SpriteFontFace(FrameworkContext uv, Texture2D texture, IEnumerable<CharacterRegion> regions, IEnumerable<Rectangle> glyphs, 
+        public SpriteFontFace(FrameworkContext context, Texture2D texture, IEnumerable<CharacterRegion> regions, IEnumerable<Rectangle> glyphs, 
             SpriteFontKerning kerning, Char substitutionCharacter, Boolean ownsTexture = false)
-            : this(uv, texture, regions, glyphs, kerning, 0, 0, substitutionCharacter, ownsTexture)
+            : this(context, texture, regions, glyphs, kerning, 0, 0, substitutionCharacter, ownsTexture)
         {
 
         }
@@ -48,7 +48,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteFontFace"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="texture">The texture that contains the font face's glyphs.</param>
         /// <param name="regions">A collection containing the font face's character regions.</param>
         /// <param name="glyphs">A collection containing the positions of the font face's glyphs on its texture.</param>
@@ -57,9 +57,9 @@ namespace Sedulous.Graphics.Graphics2D
         /// <param name="descender">The height of the font's descender in pixels.</param>
         /// <param name="substitutionCharacter">The character that corresponds to the font face's substitution glyph.</param>
         /// <param name="ownsTexture">A value indicating whether this font face is responsible for disposing of its texture.</param>
-        public SpriteFontFace(FrameworkContext uv, Texture2D texture, IEnumerable<CharacterRegion> regions, IEnumerable<Rectangle> glyphs, 
+        public SpriteFontFace(FrameworkContext context, Texture2D texture, IEnumerable<CharacterRegion> regions, IEnumerable<Rectangle> glyphs, 
             SpriteFontKerning kerning, Int32 ascender, Int32 descender, Char substitutionCharacter, Boolean ownsTexture = false)
-            : base(uv)
+            : base(context)
         {
             Contract.Require(texture, nameof(texture));
             Contract.Require(glyphs, nameof(glyphs));

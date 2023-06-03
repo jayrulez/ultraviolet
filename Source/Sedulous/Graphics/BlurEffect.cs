@@ -5,9 +5,9 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="BlurEffect"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <returns>The instance of <see cref="BlurEffect"/> that was created.</returns>
-    public delegate BlurEffect BlurEffectFactory(FrameworkContext uv);
+    public delegate BlurEffect BlurEffectFactory(FrameworkContext context);
 
     /// <summary>
     /// Represents an <see cref="Effect"/> which draws 2D drop shadows using a two-pass Gaussian blur.

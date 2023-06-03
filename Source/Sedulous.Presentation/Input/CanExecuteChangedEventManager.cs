@@ -16,15 +16,15 @@ namespace Sedulous.Presentation.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="CanExecuteChangedEventManager"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        internal CanExecuteChangedEventManager(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        internal CanExecuteChangedEventManager(FrameworkContext context)
+            : base(context)
         {
             this.weakHandlerPool = new ExpandingPool<WeakHandler>(8, 32, () => new WeakHandler(this));
             this.weakHandlerTable = new WeakKeyDictionary<Object, List<WeakHandler>>(8);
             this.keepAliveTable = new ConditionalWeakTable<Object, List<EventHandler>>();
 
-            uv.Updating += Context_Updating;
+            context.Updating += Context_Updating;
         }
 
         /// <summary>
@@ -66,9 +66,9 @@ namespace Sedulous.Presentation.Input
         {
             if (disposing)
             {
-                if (!(Sedulous?.Disposed ?? true))
+                if (!(FrameworkContext?.Disposed ?? true))
                 {
-                    Sedulous.Updating -= Context_Updating;
+                    FrameworkContext.Updating -= Context_Updating;
                 }
             }
             base.Dispose(disposing);
@@ -187,7 +187,7 @@ namespace Sedulous.Presentation.Input
         /// <summary>
         /// Handles the <see cref="FrameworkContext.Updating"/> event.
         /// </summary>
-        private void Context_Updating(FrameworkContext uv, FrameworkTime time)
+        private void Context_Updating(FrameworkContext context, FrameworkTime time)
         {
             if (!cleanupScheduled)
                 return;

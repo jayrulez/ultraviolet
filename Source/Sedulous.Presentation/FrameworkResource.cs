@@ -20,7 +20,7 @@ namespace Sedulous.Presentation
         {
             Contract.Require(content, nameof(content));
 
-            var watch = content.Sedulous.GetUI().WatchingViewFilesForChanges;
+            var watch = content.FrameworkContext.GetUI().WatchingViewFilesForChanges;
             value = watch ? content.Watchers.GetSharedWatchedAsset<TResource>(asset, density) :
                 (WatchableAssetReference<TResource>)content.Load<TResource>(asset, density);
         }

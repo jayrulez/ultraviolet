@@ -13,9 +13,9 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLDepthStencilState class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public OpenGLDepthStencilState(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public OpenGLDepthStencilState(FrameworkContext context)
+            : base(context)
         {
 
         }
@@ -23,11 +23,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the Default depth/stencil state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The depth/stencil state that was created.</returns>
-        public static OpenGLDepthStencilState CreateDefault(FrameworkContext uv)
+        public static OpenGLDepthStencilState CreateDefault(FrameworkContext context)
         {
-            var state = new OpenGLDepthStencilState(uv);
+            var state = new OpenGLDepthStencilState(context);
             state.DepthBufferEnable = true;
             state.DepthBufferWriteEnable = true;
             state.MakeImmutable();
@@ -37,11 +37,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the DepthRead depth/stencil state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The depth/stencil state that was created.</returns>
-        public static OpenGLDepthStencilState CreateDepthRead(FrameworkContext uv)
+        public static OpenGLDepthStencilState CreateDepthRead(FrameworkContext context)
         {
-            var state = new OpenGLDepthStencilState(uv);
+            var state = new OpenGLDepthStencilState(context);
             state.DepthBufferEnable = true;
             state.DepthBufferWriteEnable = false;
             state.MakeImmutable();
@@ -51,11 +51,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the None depth/stencil state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The depth/stencil state that was created.</returns>
-        public static OpenGLDepthStencilState CreateNone(FrameworkContext uv)
+        public static OpenGLDepthStencilState CreateNone(FrameworkContext context)
         {
-            var state = new OpenGLDepthStencilState(uv);
+            var state = new OpenGLDepthStencilState(context);
             state.DepthBufferEnable = false;
             state.DepthBufferWriteEnable = false;
             state.MakeImmutable();

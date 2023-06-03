@@ -45,7 +45,7 @@ namespace Sedulous
                 var directory = GetLocalApplicationSettingsDirectory();
                 var path = Path.Combine(directory, "SedulousSettings.xml");
 
-                this.settings = FrameworkApplicationSettings.FromCurrentSettings(Sedulous);
+                this.settings = FrameworkApplicationSettings.FromCurrentSettings(FrameworkContext);
                 FrameworkApplicationSettings.Save(path, settings);
             }
         }
@@ -60,7 +60,7 @@ namespace Sedulous
                 if (this.settings == null)
                     return;
 
-                this.settings.Apply(uv);
+                this.settings.Apply(context);
             }
         }
 

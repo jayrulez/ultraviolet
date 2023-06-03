@@ -15,9 +15,9 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Instantiates the value represented by the node.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="frameworkContext">The Sedulous context.</param>
         /// <param name="context">The instantiation context for this node.</param>
         /// <returns>The object which was instantiated by the node.</returns>
-        public abstract Object Instantiate(FrameworkContext uv, UvmlInstantiationContext context);
+        public abstract Object Instantiate(FrameworkContext frameworkContext, UvmlInstantiationContext context);
     }
 }

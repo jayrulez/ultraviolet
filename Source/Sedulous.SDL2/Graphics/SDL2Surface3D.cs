@@ -15,14 +15,14 @@ namespace Sedulous.SDL2.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2Surface3D"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="width">The surface's width in pixels.</param>
         /// <param name="height">The surface's height in pixels.</param>
         /// <param name="depth">The surface's depth in pixels.</param>
         /// <param name="bytesPerPixel">The number of bytes used to represent a pixel on the surface.</param>
         /// <param name="options">The surface's configuration options.</param>
-        public SDL2Surface3D(FrameworkContext uv, Int32 width, Int32 height, Int32 depth, Int32 bytesPerPixel, SurfaceOptions options)
-            : base(uv)
+        public SDL2Surface3D(FrameworkContext context, Int32 width, Int32 height, Int32 depth, Int32 bytesPerPixel, SurfaceOptions options)
+            : base(context)
         {
             Contract.EnsureRange(width > 0, nameof(width));
             Contract.EnsureRange(height > 0, nameof(height));
@@ -41,7 +41,7 @@ namespace Sedulous.SDL2.Graphics
             this.layers = new Surface2D[depth];
             this.layerOwnership = new Boolean[depth];
 
-            this.SrgbEncoded = isLinear ? false : (isSrgb ? true : uv.Properties.SrgbDefaultForSurface3D);
+            this.SrgbEncoded = isLinear ? false : (isSrgb ? true : context.Properties.SrgbDefaultForSurface3D);
         }
 
         /// <inheritdoc/>
@@ -103,7 +103,7 @@ namespace Sedulous.SDL2.Graphics
             Contract.EnsureNotDisposed(this, Disposed);
 
             var resultOpts = SrgbEncoded ? SurfaceOptions.SrgbColor : SurfaceOptions.LinearColor;
-            var result = new SDL2Surface3D(Sedulous, Width, Height, Depth, BytesPerPixel, resultOpts);
+            var result = new SDL2Surface3D(FrameworkContext, Width, Height, Depth, BytesPerPixel, resultOpts);
             for (int i = 0; i < Depth; i++)
             {
                 var layerCopy = this.GetLayer(i).CreateSurface();
@@ -125,7 +125,7 @@ namespace Sedulous.SDL2.Graphics
             try
             {
                 var flipdir = unprocessed ? SurfaceFlipDirection.None :
-                    (Sedulous.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None);
+                    (FrameworkContext.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None);
 
                 for (int i = 0; i < copysurfs.Length; i++)
                 {

@@ -17,8 +17,8 @@ namespace Sedulous.OpenGL.Graphics
         public override void ExportPreprocessed(ContentManager manager, IContentProcessorMetadata metadata, BinaryWriter writer, PlatformNativeSurface input, Boolean delete)
         {
             var mdat = metadata.As<OpenGLTexture3DProcessorMetadata>();
-            var caps = manager.Sedulous.GetGraphics().Capabilities;
-            var srgbEncoded = (mdat.SrgbEncoded ?? manager.Sedulous.Properties.SrgbDefaultForTexture3D) && caps.SrgbEncodingEnabled;
+            var caps = manager.FrameworkContext.GetGraphics().Capabilities;
+            var srgbEncoded = (mdat.SrgbEncoded ?? manager.FrameworkContext.Properties.SrgbDefaultForTexture3D) && caps.SrgbEncodingEnabled;
 
             using (var surface = manager.Process<PlatformNativeSurface, Surface3D>(input, metadata.AssetDensity))
             {
@@ -51,7 +51,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <inheritdoc/>
         public override Texture3D ImportPreprocessed(ContentManager manager, IContentProcessorMetadata metadata, BinaryReader reader)
         {
-            var caps = manager.Sedulous.GetGraphics().Capabilities;
+            var caps = manager.FrameworkContext.GetGraphics().Capabilities;
 
             var version = 0u;
             var depth = reader.ReadInt32();
@@ -88,7 +88,7 @@ namespace Sedulous.OpenGL.Graphics
                 var internalformat = OpenGLTextureUtil.GetInternalFormatFromBytesPerPixel(4, srgbEncoded);
                 var format = (layerSurfaces[0].DataFormat == SurfaceSourceDataFormat.RGBA) ? gl.GL_RGBA : gl.GL_BGRA;
 
-                return new OpenGLTexture3D(manager.Sedulous, internalformat, layerWidth, layerHeight, format, 
+                return new OpenGLTexture3D(manager.FrameworkContext, internalformat, layerWidth, layerHeight, format, 
                     gl.GL_UNSIGNED_BYTE, layerPointers, true);
             }
             finally
@@ -102,12 +102,12 @@ namespace Sedulous.OpenGL.Graphics
         public override Texture3D Process(ContentManager manager, IContentProcessorMetadata metadata, PlatformNativeSurface input)
         {
             var mdat = metadata.As<OpenGLTexture3DProcessorMetadata>();
-            var caps = manager.Sedulous.GetGraphics().Capabilities;
-            var srgbEncoded = (mdat.SrgbEncoded ?? manager.Sedulous.Properties.SrgbDefaultForTexture3D) && caps.SrgbEncodingEnabled;
+            var caps = manager.FrameworkContext.GetGraphics().Capabilities;
+            var srgbEncoded = (mdat.SrgbEncoded ?? manager.FrameworkContext.Properties.SrgbDefaultForTexture3D) && caps.SrgbEncodingEnabled;
 
             using (var surface = manager.Load<Surface3D>(metadata.AssetPath, false, metadata.IsLoadedFromSolution))
             {
-                var flipdir = manager.Sedulous.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None;
+                var flipdir = manager.FrameworkContext.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None;
                 for (int i = 0; i < surface.Depth; i++)
                 {
                     var layer = surface.GetLayer(i);

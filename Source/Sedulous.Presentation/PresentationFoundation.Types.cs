@@ -247,8 +247,8 @@ namespace Sedulous.Presentation
                 throw new InvalidOperationException(FrameworkStrings.NoValidConstructor.Format(registration.Type));
 
             var instance = (UIElement)ctor.Invoke(isFrameworkElement ?
-                new Object[] { Sedulous, name } :
-                new Object[] { Sedulous });
+                new Object[] { FrameworkContext, name } :
+                new Object[] { FrameworkContext });
 
             return instance;
         }

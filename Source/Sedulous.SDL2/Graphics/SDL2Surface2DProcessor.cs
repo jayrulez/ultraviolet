@@ -19,11 +19,11 @@ namespace Sedulous.SDL2.Graphics
         public override Surface2D Process(ContentManager manager, IContentProcessorMetadata metadata, PlatformNativeSurface input)
         {
             var mdat = metadata.As<SDL2Surface2DProcessorMetadata>();
-            var srgbEncoded = mdat.SrgbEncoded ?? manager.Sedulous.Properties.SrgbDefaultForSurface2D;
+            var srgbEncoded = mdat.SrgbEncoded ?? manager.FrameworkContext.Properties.SrgbDefaultForSurface2D;
             var surfOptions = srgbEncoded ? SurfaceOptions.SrgbColor : SurfaceOptions.LinearColor;
 
             var copy = input.CreateCopy();
-            var result = new SDL2Surface2D(manager.Sedulous, copy, surfOptions);
+            var result = new SDL2Surface2D(manager.FrameworkContext, copy, surfOptions);
 
             return result;
         }

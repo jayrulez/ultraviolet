@@ -19,7 +19,7 @@ namespace Sedulous.Presentation.Tests.Styles
                     UsingCulture("ru-RU", () =>
                     {
                         var tree = UvssParser.Parse("@foo { target { animation Width { keyframe 0 { 100.0 } } } }");
-                        var document = UvssCompiler.Compile(app.Sedulous, tree);
+                        var document = UvssCompiler.Compile(app.FrameworkContext, tree);
 
                         var keyframe = document?
                             .StoryboardDefinitions?.FirstOrDefault()?
@@ -46,7 +46,7 @@ namespace Sedulous.Presentation.Tests.Styles
                        var tree = UvssParser.Parse(
                            "$culture { ru-RU }\r\n" +
                            "@foo { target { animation Width { keyframe 0 { 100.0 } } } }");
-                       var document = UvssCompiler.Compile(app.Sedulous, tree);
+                       var document = UvssCompiler.Compile(app.FrameworkContext, tree);
 
                        var keyframe = document?
                            .StoryboardDefinitions?.FirstOrDefault()?
@@ -74,7 +74,7 @@ namespace Sedulous.Presentation.Tests.Styles
                             "$culture { ru-RU }\r\n" +
                             "$culture { fr-FR }\r\n" +
                             "@foo { target { animation Width { keyframe 0 { 100.0 } } } }");
-                        var document = UvssCompiler.Compile(app.Sedulous, tree);
+                        var document = UvssCompiler.Compile(app.FrameworkContext, tree);
 
                         var keyframe = document?
                             .StoryboardDefinitions?.FirstOrDefault()?

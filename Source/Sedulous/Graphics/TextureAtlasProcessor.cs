@@ -420,7 +420,7 @@ namespace Sedulous.Graphics
         {
             using (var output = CreateOutputSurface(atlasDesc, atlasImages, content, metadata, width, height, images))
             {
-                var flipdir = content.Sedulous.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None;
+                var flipdir = content.FrameworkContext.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None;
                 output.FlipAndProcessAlpha(flipdir, true, Color.Magenta);
                 return output.CreateTexture(unprocessed: true);
             }

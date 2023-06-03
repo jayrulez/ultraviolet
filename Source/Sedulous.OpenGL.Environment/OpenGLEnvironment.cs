@@ -6,9 +6,9 @@ namespace Sedulous.OpenGL
     /// <summary>
     /// Represents a factory method which produces instances of the <see cref="OpenGLEnvironment"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <returns>The <see cref="OpenGLEnvironment"/> instance which was created.</returns>
-    public delegate OpenGLEnvironment OpenGLEnvironmentFactory(FrameworkContext uv);
+    public delegate OpenGLEnvironment OpenGLEnvironmentFactory(FrameworkContext context);
 
     /// <summary>
     /// Represents the interface that OpenGL uses to communicate with the underlying platform environment.
@@ -18,9 +18,9 @@ namespace Sedulous.OpenGL
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLEnvironment"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        protected OpenGLEnvironment(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        protected OpenGLEnvironment(FrameworkContext context)
+            : base(context)
         { }
 
         /// <summary>

@@ -12,10 +12,10 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Initializes a new instance of the <see cref="TextBlockBase"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public TextBlockBase(FrameworkContext uv, String name)
-            : base(uv, name)
+        public TextBlockBase(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }

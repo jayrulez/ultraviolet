@@ -123,7 +123,7 @@ namespace Sedulous.Content
             else
             {
                 this.content = content;
-                this.content.Sedulous.SpawnTask((ct) =>
+                this.content.FrameworkContext.SpawnTask((ct) =>
                 {
                     try
                     {

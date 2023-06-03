@@ -59,9 +59,9 @@ namespace Sedulous.Presentation.Uvml
         }
 
         /// <inheritdoc/>
-        protected override Boolean CreateCollection(FrameworkContext uv, Object instance, UvmlInstantiationContext context, out Object collection)
+        protected override Boolean CreateCollection(FrameworkContext frameworkContext, Object instance, UvmlInstantiationContext context, out Object collection)
         {
-            return CreateCollectionOfType(uv, instance, context, dpropID.PropertyType, out collection);
+            return CreateCollectionOfType(frameworkContext, instance, context, dpropID.PropertyType, out collection);
         }
 
         /// <inheritdoc/>

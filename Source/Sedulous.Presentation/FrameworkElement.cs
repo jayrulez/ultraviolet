@@ -41,10 +41,10 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameworkElement"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The identifying name of this element within its layout.</param>
-        public FrameworkElement(FrameworkContext uv, String name)
-            : base(uv)
+        public FrameworkElement(FrameworkContext context, String name)
+            : base(context)
         {
             this.name = name;
 
@@ -520,7 +520,7 @@ namespace Sedulous.Presentation
 
             if (!value)
             {
-                var upf = Sedulous.GetUI().GetPresentationFoundation();
+                var upf = FrameworkContext.GetUI().GetPresentationFoundation();
                 upf.RemoveFromQueues(this);
             }
 

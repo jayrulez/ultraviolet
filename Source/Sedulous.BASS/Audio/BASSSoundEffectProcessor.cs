@@ -14,8 +14,8 @@ namespace Sedulous.BASS.Audio
         public override SoundEffect Process(ContentManager manager, IContentProcessorMetadata metadata, BASSMediaDescription input)
         {
             return input.IsFilename ?
-                new BASSSoundEffect(manager.Sedulous, (String)input.Data) :
-                new BASSSoundEffect(manager.Sedulous, (Byte[])input.Data);
+                new BASSSoundEffect(manager.FrameworkContext, (String)input.Data) :
+                new BASSSoundEffect(manager.FrameworkContext, (Byte[])input.Data);
         }
     }
 }

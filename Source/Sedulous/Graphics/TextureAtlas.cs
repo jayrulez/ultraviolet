@@ -16,7 +16,7 @@ namespace Sedulous.Graphics
         /// <param name="texture">The atlas' texture.</param>
         /// <param name="cells">The atlas' cells.</param>
         internal TextureAtlas(Texture2D texture, IEnumerable<KeyValuePair<String, Rectangle>> cells)
-            : base((texture == null) ? null : texture.Sedulous)
+            : base((texture == null) ? null : texture.FrameworkContext)
         {
             Contract.Require(texture, nameof(texture));
             Contract.Require(cells, nameof(cells));

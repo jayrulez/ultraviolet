@@ -13,17 +13,17 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Gets a value indicating whether the specified dependency object satisfies all of the conditions in the collection.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="dobj">The dependency object to evaluate.</param>
         /// <returns><see langword="true"/> if the specified object satisfies all of the collection's conditions; otherwise, <see langword="false"/>.</returns>
-        internal Boolean Evaluate(FrameworkContext uv, DependencyObject dobj)
+        internal Boolean Evaluate(FrameworkContext context, DependencyObject dobj)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(dobj, nameof(dobj));
 
             foreach (var condition in conditions)
             {
-                if (!condition.Evaluate(uv, dobj))
+                if (!condition.Evaluate(context, dobj))
                     return false;
             }
             return true;

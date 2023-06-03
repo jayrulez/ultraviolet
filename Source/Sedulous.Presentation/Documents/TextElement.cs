@@ -14,10 +14,10 @@ namespace Sedulous.Presentation.Documents
         /// <summary>
         /// Initializes a new instance of the <see cref="TextElement"/> class.
         /// </summary>
-        /// <param name="uv"></param>
+        /// <param name="context"></param>
         /// <param name="name"></param>
-        public TextElement(FrameworkContext uv, String name)
-            : base(uv, name)
+        public TextElement(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }

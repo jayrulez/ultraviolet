@@ -24,12 +24,12 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Initializes a new instance of the <see cref="Track"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public Track(FrameworkContext uv, String name)
-            : base(uv, name)
+        public Track(FrameworkContext context, String name)
+            : base(context, name)
         {
-            this.thumb = new Thumb(uv, null)
+            this.thumb = new Thumb(context, null)
             {
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Stretch,
@@ -39,7 +39,7 @@ namespace Sedulous.Presentation.Controls.Primitives
             this.thumb.ChangeLogicalAndVisualParents(this, this);
             KeyboardNavigation.SetIsTabStop(this.thumb, false);
 
-            this.increaseRepeatButton = new RepeatButton(uv, null)
+            this.increaseRepeatButton = new RepeatButton(context, null)
             {
                 Width = Double.NaN,
                 Height = Double.NaN,
@@ -54,7 +54,7 @@ namespace Sedulous.Presentation.Controls.Primitives
             this.increaseRepeatButton.ChangeLogicalAndVisualParents(this, this);
             KeyboardNavigation.SetIsTabStop(this.increaseRepeatButton, false);
 
-            this.decreaseRepeatButton = new RepeatButton(uv, null)
+            this.decreaseRepeatButton = new RepeatButton(context, null)
             {
                 Width = Double.NaN,
                 Height = Double.NaN,

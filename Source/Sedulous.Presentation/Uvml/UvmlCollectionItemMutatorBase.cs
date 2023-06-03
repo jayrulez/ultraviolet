@@ -23,20 +23,20 @@ namespace Sedulous.Presentation.Uvml
         }
 
         /// <inheritdoc/>
-        public override Object InstantiateValue(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
+        public override Object InstantiateValue(FrameworkContext frameworkContext, Object instance, UvmlInstantiationContext context)
         {
-            return items.Select(x => x.Instantiate(uv, context)).ToList();
+            return items.Select(x => x.Instantiate(frameworkContext, context)).ToList();
         }
 
         /// <inheritdoc/>
-        public override void Mutate(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
+        public override void Mutate(FrameworkContext frameworkContext, Object instance, UvmlInstantiationContext context)
         {
-            var value = InstantiateValue(uv, instance, context);
-            Mutate(uv, instance, value, context);
+            var value = InstantiateValue(frameworkContext, instance, context);
+            Mutate(frameworkContext, instance, value, context);
         }
 
         /// <inheritdoc/>
-        public override void Mutate(FrameworkContext uv, Object instance, Object value, UvmlInstantiationContext context)
+        public override void Mutate(FrameworkContext frameworkContext, Object instance, Object value, UvmlInstantiationContext context)
         {
             var items = ProcessPrecomputedValue<List<Object>>(value, context);
             if (items == null)
@@ -49,7 +49,7 @@ namespace Sedulous.Presentation.Uvml
 
             if (collection == null)
             {
-                if (!CreateCollection(uv, instance, context, out collection))
+                if (!CreateCollection(frameworkContext, instance, context, out collection))
                     throw new UvmlException(PresentationStrings.CollectionCannotBeCreated.Format(propname));
 
                 if (!SetCollection(instance, collection))
@@ -117,13 +117,13 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Creates a new collection instance for the mutated property.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="frameworkContext">The Sedulous context.</param>
         /// <param name="instance">The object instance which is being mutated.</param>
         /// <param name="context">The current instantiation context.</param>
         /// <param name="collection">The collection which was created.</param>
         /// <returns><see langword="true"/> if the collection was able to be created;
         /// otherwise, <see langword="false"/>.</returns>
-        protected abstract Boolean CreateCollection(FrameworkContext uv,
+        protected abstract Boolean CreateCollection(FrameworkContext frameworkContext,
             Object instance, UvmlInstantiationContext context, out Object collection);
 
         /// <summary>
@@ -148,14 +148,14 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Creates a new collection instance of the specified type.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="frameworkContext">The Sedulous context.</param>
         /// <param name="instance">The object instance which is being mutated.</param>
         /// <param name="context">The current instantiation context.</param>
         /// <param name="type">The type of collection to create.</param>
         /// <param name="collection">The collection which was created.</param>
         /// <returns><see langword="true"/> if the collection was able to be created;
         /// otherwise, <see langword="false"/>.</returns>
-        protected Boolean CreateCollectionOfType(FrameworkContext uv,
+        protected Boolean CreateCollectionOfType(FrameworkContext frameworkContext,
             Object instance, UvmlInstantiationContext context, Type type, out Object collection)
         {
             var ctor = type.GetConstructor(Type.EmptyTypes);

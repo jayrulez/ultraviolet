@@ -11,11 +11,11 @@ namespace Sedulous.Presentation.Animations
         /// <summary>
         /// Initializes a new instance of the <see cref="StoryboardInstancePool"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        private StoryboardInstancePool(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        private StoryboardInstancePool(FrameworkContext context)
+            : base(context)
         {
-            uv.GetUI().Updating += StoryboardInstancePool_Updating;
+            context.GetUI().Updating += StoryboardInstancePool_Updating;
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Sedulous.Presentation.Animations
             if (pool != null)
                 return;
 
-            this.pool = new PoolImpl(Sedulous, 32, 256, () => new StoryboardInstance());
+            this.pool = new PoolImpl(FrameworkContext, 32, 256, () => new StoryboardInstance());
         }
 
         /// <summary>
@@ -100,9 +100,9 @@ namespace Sedulous.Presentation.Animations
         /// <inheritdoc/>
         protected override void Dispose(Boolean disposing)
         {
-            if (disposing && !Sedulous.Disposed)
+            if (disposing && !FrameworkContext.Disposed)
             {
-                Sedulous.GetUI().Updating -= StoryboardInstancePool_Updating;
+                FrameworkContext.GetUI().Updating -= StoryboardInstancePool_Updating;
 
                 SafeDispose.DisposeRef(ref pool);
             }
@@ -118,7 +118,7 @@ namespace Sedulous.Presentation.Animations
             if (pool == null)
                 return;
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.BeginUpdate();
 
             pool.Update();

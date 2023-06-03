@@ -14,7 +14,7 @@ namespace Sedulous.Presentation.Documents
         /// </summary>
         /// <param name="adornedElement">The element which is being adorned by this element.</param>
         protected Adorner(UIElement adornedElement)
-            : base(adornedElement.Sedulous, null)
+            : base(adornedElement.FrameworkContext, null)
         {
             Contract.Require(adornedElement, nameof(adornedElement));
 

@@ -10,9 +10,9 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        protected Camera(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        protected Camera(FrameworkContext context)
+            : base(context)
         {
 
         }

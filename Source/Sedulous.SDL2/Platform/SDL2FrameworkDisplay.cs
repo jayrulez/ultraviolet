@@ -17,13 +17,13 @@ namespace Sedulous.SDL2.Platform
         /// <summary>
         /// Initializes a new instance of the OpenGLSedulousDisplay class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="displayIndex">The SDL2 display index that this object represents.</param>
-        public SDL2FrameworkDisplay(FrameworkContext uv, Int32 displayIndex)
+        public SDL2FrameworkDisplay(FrameworkContext context, Int32 displayIndex)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
-            this.uv = uv;
+            this.context = context;
 
             this.displayIndex = displayIndex;
             this.displayModes = Enumerable.Range(0, SDL_GetNumDisplayModes(displayIndex))
@@ -432,9 +432,9 @@ namespace Sedulous.SDL2.Platform
 
             if (screenDensityService.Refresh())
             {
-                var messageData = uv.Messages.CreateMessageData<DisplayDensityChangedMessageData>();
+                var messageData = context.Messages.CreateMessageData<DisplayDensityChangedMessageData>();
                 messageData.Display = this;
-                uv.Messages.Publish(FrameworkMessages.DisplayDensityChanged, messageData);
+                context.Messages.Publish(FrameworkMessages.DisplayDensityChanged, messageData);
 
                 GC.Collect(2, GCCollectionMode.Forced);
             }
@@ -464,7 +464,7 @@ namespace Sedulous.SDL2.Platform
         }
 
         // SDL2 display info.
-        private readonly FrameworkContext uv;
+        private readonly FrameworkContext context;
         private readonly Int32 displayIndex;
         private readonly String name;
         private readonly List<DisplayMode> displayModes;

@@ -17,14 +17,14 @@ namespace Sedulous.ImGuiViewProvider
         /// <summary>
         /// Initializes a new instance of the <see cref="ImGuiView"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="panel">The panel that is creating the view.</param>
         /// <param name="viewModelType">The view's associated model type.</param>
-        public ImGuiView(FrameworkContext uv, UIPanel panel, Type viewModelType) 
-            : base(uv, panel, viewModelType)
+        public ImGuiView(FrameworkContext context, UIPanel panel, Type viewModelType) 
+            : base(context, panel, viewModelType)
         {
             imGuiContext = ImGui.CreateContext();
-            imGuiGeometry = new ImGuiGeometryBuffer(uv, this);
+            imGuiGeometry = new ImGuiGeometryBuffer(context, this);
 
             ImGui.SetCurrentContext(imGuiContext);
 
@@ -42,14 +42,14 @@ namespace Sedulous.ImGuiViewProvider
         /// <summary>
         /// Creates a new instance of the <see cref="ImGuiView"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="uiPanel">The <see cref="UIPanel"/> that is creating the view.</param>
         /// <param name="uiPanelDefinition">The <see cref="UIPanelDefinition"/> that defines the view's containing panel.</param>
         /// <param name="vmfactory">A view model factory which is used to create the view's initial view model, or <see langword="null"/> to skip view model creation.</param>
         /// <returns>The <see cref="ImGuiView"/> that was created.</returns>
-        public static ImGuiView Create(FrameworkContext uv, UIPanel uiPanel, UIPanelDefinition uiPanelDefinition, UIViewModelFactory vmfactory)
+        public static ImGuiView Create(FrameworkContext context, UIPanel uiPanel, UIPanelDefinition uiPanelDefinition, UIViewModelFactory vmfactory)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(uiPanel, nameof(uiPanel));
             Contract.Require(uiPanelDefinition, nameof(uiPanelDefinition));
 
@@ -65,7 +65,7 @@ namespace Sedulous.ImGuiViewProvider
                     throw new InvalidOperationException(ImGuiStrings.ViewModelTypeNotFound.Format(viewModelTypeName));
             }
 
-            return new ImGuiView(uv, uiPanel, viewModelType);
+            return new ImGuiView(context, uiPanel, viewModelType);
         }
 
         /// <inheritdoc/>
@@ -202,7 +202,7 @@ namespace Sedulous.ImGuiViewProvider
                 io.KeyMap[i] = (Int32)ScancodeMap[i];
             }
 
-            var input = Sedulous.GetInput();
+            var input = FrameworkContext.GetInput();
             var keyboard = input.GetKeyboard();
             if (keyboard != null)
             {
@@ -216,7 +216,7 @@ namespace Sedulous.ImGuiViewProvider
         /// </summary>
         private void QuitInput()
         {
-            var input = Sedulous.GetInput();
+            var input = FrameworkContext.GetInput();
             var keyboard = input.GetKeyboard();
             if (keyboard != null)
             {
@@ -236,7 +236,7 @@ namespace Sedulous.ImGuiViewProvider
                 io.Fonts.GetTexDataAsRGBA32(out var textureData,
                     out var textureWidth, out var textureHeight, out var textureBytesPerPixel);
 
-                var srgb = Sedulous.GetGraphics().Capabilities.SrgbEncodingEnabled;
+                var srgb = FrameworkContext.GetGraphics().Capabilities.SrgbEncodingEnabled;
 
                 var surfaceOptions = srgb ? SurfaceOptions.SrgbColor : SurfaceOptions.LinearColor;
                 var surface = Surface2D.Create(textureWidth, textureHeight, surfaceOptions);
@@ -261,7 +261,7 @@ namespace Sedulous.ImGuiViewProvider
         {
             var io = ImGui.GetIO();
 
-            var keyboard = Sedulous.GetInput().GetKeyboard();
+            var keyboard = FrameworkContext.GetInput().GetKeyboard();
             if (keyboard != null)
             {
                 io.KeyAlt = new Bool8(IsAltDown(keyboard));
@@ -278,7 +278,7 @@ namespace Sedulous.ImGuiViewProvider
                 textBuffer.Clear();
             }
 
-            var mouse = Sedulous.GetInput().GetMouse();
+            var mouse = FrameworkContext.GetInput().GetMouse();
             if (mouse != null)
             {
                 io.MousePos = (Vector2)mouse.Position;

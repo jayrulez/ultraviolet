@@ -30,10 +30,10 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Initializes a new instance of the <see cref="TextEditor"/> control.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public TextEditor(FrameworkContext uv, String name)
-            : base(uv, name)
+        public TextEditor(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }
@@ -328,7 +328,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// </summary>
         public void Copy()
         {
-            Sedulous.GetPlatform().Clipboard.Text = GetSelectedText();
+            FrameworkContext.GetPlatform().Clipboard.Text = GetSelectedText();
         }
 
         /// <summary>
@@ -338,7 +338,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         {
             BeginTrackingSelectionChanges();
 
-            Sedulous.GetPlatform().Clipboard.Text = GetSelectedText();
+            FrameworkContext.GetPlatform().Clipboard.Text = GetSelectedText();
             DeleteSelection(true);
 
             EndTrackingSelectionChanges();
@@ -351,7 +351,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         {
             BeginTrackingSelectionChanges();
 
-            var text = Sedulous.GetPlatform().Clipboard.Text;
+            var text = FrameworkContext.GetPlatform().Clipboard.Text;
             if (!String.IsNullOrEmpty(text))
                 InsertTextAtCaret(text, false);
 
@@ -1578,7 +1578,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         internal void HandleTouchDown(TouchDevice device, 
             Int64 id, Double x, Double y, Single pressure, RoutedEventData data)
         {
-            if (Sedulous.GetInput().IsMouseCursorAvailable || textLayoutStream.Count == 0)
+            if (FrameworkContext.GetInput().IsMouseCursorAvailable || textLayoutStream.Count == 0)
                 return;
 
             if (device.IsFirstTouchInGesture(id))
@@ -1596,7 +1596,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         internal void HandleTouchUp(TouchDevice device,
             Int64 id, RoutedEventData data)
         {
-            if (Sedulous.GetInput().IsMouseCursorAvailable || textLayoutStream.Count == 0)
+            if (FrameworkContext.GetInput().IsMouseCursorAvailable || textLayoutStream.Count == 0)
                 return;
 
             if (device.IsFirstTouchInGesture(id))
@@ -1617,7 +1617,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         internal void HandleTouchLongPress(TouchDevice device,
             Int64 id, Double x, Double y, Single pressure, RoutedEventData data)
         {
-            if (Sedulous.GetInput().IsMouseCursorAvailable)
+            if (FrameworkContext.GetInput().IsMouseCursorAvailable)
                 return;
 
             if (device.IsFirstTouchInGesture(id))
@@ -1643,7 +1643,7 @@ namespace Sedulous.Presentation.Controls.Primitives
         internal void HandleTouchMove(TouchDevice device, 
             Int64 id, Double x, Double y, Double dx, Double dy, Single pressure, RoutedEventData data)
         {
-            if (Sedulous.GetInput().IsMouseCursorAvailable)
+            if (FrameworkContext.GetInput().IsMouseCursorAvailable)
                 return;
 
             if (selectionFollowingCursor && selectionFollowingCursorID == id)

@@ -47,7 +47,7 @@ namespace UvDebug.UI.Screens
             {
                 case Key.AppControlBack:
                     {
-                        owner.Sedulous.Host.Exit();
+                        owner.FrameworkContext.Host.Exit();
                         data.Handled = true;
                     }
                     break;
@@ -60,7 +60,7 @@ namespace UvDebug.UI.Screens
         public void Click_Start(DependencyObject element, RoutedEventData data)
         {
             var playScreen = owner.UIScreenService.Get<GamePlayScreen>();
-            owner.Sedulous.GetUI().GetScreens().CloseThenOpen(owner, playScreen);
+            owner.FrameworkContext.GetUI().GetScreens().CloseThenOpen(owner, playScreen);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace UvDebug.UI.Screens
         /// </summary>
         public void Click_Exit(DependencyObject element, RoutedEventData data)
         {
-            owner.Sedulous.Host.Exit();
+            owner.FrameworkContext.Host.Exit();
         }
         
         /// <summary>

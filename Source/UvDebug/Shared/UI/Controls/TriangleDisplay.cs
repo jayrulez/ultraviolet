@@ -17,10 +17,10 @@ namespace UvDebug.Content.UI.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="TriangleDisplay"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The identifying name of this element within its layout.</param>
-        public TriangleDisplay(FrameworkContext uv, String name)
-            : base(uv, name)
+        public TriangleDisplay(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }
@@ -151,7 +151,7 @@ namespace UvDebug.Content.UI.Controls
             var triangleDistance = 5f - (TriangleZoom * 2.5f);
             var triangleAspectRatio = (Single)(ActualWidth / ActualHeight);
 
-            var gfx = Sedulous.GetGraphics();
+            var gfx = FrameworkContext.GetGraphics();
             var effect = EnsureEffect();
             effect.World = Matrix.CreateRotationY(TriangleRotation);
             effect.View = Matrix.CreateLookAt(new Vector3(0, 0, triangleDistance), Vector3.Zero, Vector3.Up);
@@ -274,11 +274,11 @@ namespace UvDebug.Content.UI.Controls
             var transform = dc.GlobalTransform;
             Vector2.Transform(ref posPixs, ref transform, out posPixs);
             
-            var oldViewport = Sedulous.GetGraphics().GetViewport();
+            var oldViewport = FrameworkContext.GetGraphics().GetViewport();
             var newViewport = new Viewport((Int32)posPixs.X, (Int32)posPixs.Y, 
                 (Int32)Display.DipsToPixels(ActualWidth), (Int32)Display.DipsToPixels(ActualHeight));
 
-            Sedulous.GetGraphics().SetViewport(newViewport);
+            FrameworkContext.GetGraphics().SetViewport(newViewport);
 
             return oldViewport;
         }

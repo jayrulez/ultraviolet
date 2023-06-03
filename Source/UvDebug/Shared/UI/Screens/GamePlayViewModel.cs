@@ -140,7 +140,7 @@ namespace UvDebug.UI.Screens
         {
             get
             {
-                switch (owner.Sedulous.Platform)
+                switch (owner.FrameworkContext.Platform)
                 {
                     case FrameworkPlatform.Android:
                         return "Press |c:ffffff00|BACK|c| to exit.";
@@ -172,7 +172,7 @@ namespace UvDebug.UI.Screens
         {
             var screenClosing = owner;
             var screenOpening = owner.UIScreenService.Get<GameMenuScreen>();
-            owner.Sedulous.GetUI().GetScreens().CloseThenOpen(screenClosing, screenOpening);
+            owner.FrameworkContext.GetUI().GetScreens().CloseThenOpen(screenClosing, screenOpening);
         }
         
         // Property values.

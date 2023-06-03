@@ -13,12 +13,12 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLEffectParameter class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The effect parameter's name.</param>
         /// <param name="type">The effect parameter's uniform type.</param>
         /// <param name="sizeInBytes">The effect parameter's size in bytes.</param>
-        public OpenGLEffectParameter(FrameworkContext uv, String name, UInt32 type, UInt32 sizeInBytes)
-            : base(uv)
+        public OpenGLEffectParameter(FrameworkContext context, String name, UInt32 type, UInt32 sizeInBytes)
+            : base(context)
         {
             Contract.Require(name, nameof(name));
 

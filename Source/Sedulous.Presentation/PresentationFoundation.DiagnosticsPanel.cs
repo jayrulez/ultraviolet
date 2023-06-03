@@ -20,9 +20,9 @@ namespace Sedulous.Presentation
             /// <summary>
             /// Initializes a new instance of the <see cref="DiagnosticsPanel"/> class.
             /// </summary>
-            /// <param name="uv">The Sedulous context.</param>
-            public DiagnosticsPanel(FrameworkContext uv)
-                : base(uv)
+            /// <param name="context">The Sedulous context.</param>
+            public DiagnosticsPanel(FrameworkContext context)
+                : base(context)
             { }
             
             /// <summary>
@@ -32,11 +32,11 @@ namespace Sedulous.Presentation
             {
                 LoadContentIfNecessary();
 
-                var window = Sedulous.GetPlatform().Windows.GetCurrent();
+                var window = FrameworkContext.GetPlatform().Windows.GetCurrent();
                 if (window == null)
                     throw new InvalidOperationException();
 
-                var upf = Sedulous.GetUI().GetPresentationFoundation();
+                var upf = FrameworkContext.GetUI().GetPresentationFoundation();
 
                 var panelWidth = 400;
                 var panelHeight = 16f + (7.5f * font.Regular.LineSpacing);

@@ -12,9 +12,9 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="DummyGraphicsSubsystem"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public DummyGraphicsSubsystem(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public DummyGraphicsSubsystem(FrameworkContext context)
+            : base(context)
         {
 
         }

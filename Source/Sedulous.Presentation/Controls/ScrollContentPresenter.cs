@@ -12,10 +12,10 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="ScrollContentPresenter"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ScrollContentPresenter(FrameworkContext uv, String name)
-            : base(uv, name)
+        public ScrollContentPresenter(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }

@@ -32,10 +32,10 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="TextBox"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public TextBox(FrameworkContext uv, String name)
-            : base(uv, name)
+        public TextBox(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }
@@ -688,7 +688,7 @@ namespace Sedulous.Presentation.Controls
         /// <inheritdoc/>
         protected override void OnPreviewTouchDown(TouchDevice device, Int64 id, Double x, Double y, Single pressure, RoutedEventData data)
         {
-            if (!Sedulous.GetInput().IsMouseCursorAvailable && device.IsFirstTouchInGesture(id))
+            if (!FrameworkContext.GetInput().IsMouseCursorAvailable && device.IsFirstTouchInGesture(id))
                 Focus();
 
             if (TextEditor != null && IsTouchWithinEditor(id))
@@ -699,7 +699,7 @@ namespace Sedulous.Presentation.Controls
             }
 
             UpdateTextInputRegion();
-            Sedulous.GetInput().ShowSoftwareKeyboard();
+            FrameworkContext.GetInput().ShowSoftwareKeyboard();
 
             base.OnPreviewTouchDown(device, id, x, y, pressure, data);
         }
@@ -758,7 +758,7 @@ namespace Sedulous.Presentation.Controls
         protected override void OnGotKeyboardFocus(KeyboardDevice device, IInputElement oldFocus, IInputElement newFocus, RoutedEventData data)
         {
             UpdateTextInputRegion();
-            Sedulous.GetInput().ShowSoftwareKeyboard(KeyboardMode);
+            FrameworkContext.GetInput().ShowSoftwareKeyboard(KeyboardMode);
 
             if (TextEditor != null)
                 TextEditor.HandleGotKeyboardFocus();
@@ -770,7 +770,7 @@ namespace Sedulous.Presentation.Controls
         protected override void OnLostKeyboardFocus(KeyboardDevice device, IInputElement oldFocus, IInputElement newFocus, RoutedEventData data)
         {
             UpdateTextInputRegion(clear: true);
-            Sedulous.GetInput().HideSoftwareKeyboard();
+            FrameworkContext.GetInput().HideSoftwareKeyboard();
 
             if (TextEditor != null)
                 TextEditor.HandleLostKeyboardFocus();

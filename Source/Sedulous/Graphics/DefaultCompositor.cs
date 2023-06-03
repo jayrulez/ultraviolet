@@ -12,10 +12,10 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultCompositor"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="window">The window with which this compositor is associated.</param>
-        public DefaultCompositor(FrameworkContext uv, IFrameworkWindow window)
-            : base(uv, window)
+        public DefaultCompositor(FrameworkContext context, IFrameworkWindow window)
+            : base(context, window)
         {
 
         }
@@ -44,8 +44,8 @@ namespace Sedulous.Graphics
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var window = Sedulous.GetPlatform().Windows.GetCurrent();
-            var graphics = Sedulous.GetGraphics();
+            var window = FrameworkContext.GetPlatform().Windows.GetCurrent();
+            var graphics = FrameworkContext.GetGraphics();
             graphics.SetRenderTarget(null);
             graphics.SetViewport(new Viewport(0, 0, window.DrawableSize.Width, window.DrawableSize.Height));
             graphics.Clear(Color.CornflowerBlue, 1.0f, 0);

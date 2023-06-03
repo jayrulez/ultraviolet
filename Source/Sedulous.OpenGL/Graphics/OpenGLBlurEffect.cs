@@ -14,8 +14,8 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLBlurEffect"/> class.
         /// </summary>
-        public OpenGLBlurEffect(FrameworkContext uv)
-            : base(CreateEffectImplementation(uv))
+        public OpenGLBlurEffect(FrameworkContext context)
+            : base(CreateEffectImplementation(context))
         {
             epDirection = Parameters["Direction"];
             epResolution = Parameters["Resolution"];
@@ -103,25 +103,25 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         /// <summary>
         /// Creates the effect implementation.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The effect implementation.</returns>
-        private static EffectImplementation CreateEffectImplementation(FrameworkContext uv)
+        private static EffectImplementation CreateEffectImplementation(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
             var programs = new[] 
             { 
-                new OpenGLShaderProgram(uv, vertShader, fragShader_Radius1, false),
-                new OpenGLShaderProgram(uv, vertShader, fragShader_Radius3, false),
-                new OpenGLShaderProgram(uv, vertShader, fragShader_Radius5, false),
-                new OpenGLShaderProgram(uv, vertShader, fragShader_Radius7, false),
-                new OpenGLShaderProgram(uv, vertShader, fragShader_Radius9, false),
-                IsArbitaryRadiusBlurAvailable ? new OpenGLShaderProgram(uv, vertShader, fragShader, false) : null,
+                new OpenGLShaderProgram(context, vertShader, fragShader_Radius1, false),
+                new OpenGLShaderProgram(context, vertShader, fragShader_Radius3, false),
+                new OpenGLShaderProgram(context, vertShader, fragShader_Radius5, false),
+                new OpenGLShaderProgram(context, vertShader, fragShader_Radius7, false),
+                new OpenGLShaderProgram(context, vertShader, fragShader_Radius9, false),
+                IsArbitaryRadiusBlurAvailable ? new OpenGLShaderProgram(context, vertShader, fragShader, false) : null,
             };
 
-            var passes     = new[] { new OpenGLEffectPass(uv, null, programs.Where(x => x != null).ToArray()) };
-            var techniques = new[] { new OpenGLEffectTechnique(uv, null, passes) };
-            return new OpenGLEffectImplementation(uv, techniques);
+            var passes     = new[] { new OpenGLEffectPass(context, null, programs.Where(x => x != null).ToArray()) };
+            var techniques = new[] { new OpenGLEffectTechnique(context, null, passes) };
+            return new OpenGLEffectImplementation(context, techniques);
         }
 
         // Unrolled fragment shaders

@@ -22,7 +22,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
                 {
                     freetypeFont = content.Load<FreeTypeFont>("Fonts/FiraSans");
 
-                    using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
+                    using (var textShaper = new HarfBuzzTextShaper(content.FrameworkContext))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
                         textShaper.Append("Hello, world!");
@@ -51,7 +51,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
                 {
                     freetypeFont = content.Load<FreeTypeFont>("Fonts/FiraSans");
 
-                    using (var textShaper = new HarfBuzzTextShaper(content.Sedulous))
+                    using (var textShaper = new HarfBuzzTextShaper(content.FrameworkContext))
                     {
                         textShaper.SetUnicodeProperties(TextDirection.LeftToRight, TextScript.Latin, "en");
                         textShaper.Append("Hello, world!");

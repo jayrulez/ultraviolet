@@ -16,10 +16,10 @@ namespace Sedulous.Tests.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomCompositor"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="window">The window with which this compositor is associated.</param>
-        public CustomCompositor(FrameworkContext uv, IFrameworkWindow window)
-            : base(uv, window)
+        public CustomCompositor(FrameworkContext context, IFrameworkWindow window)
+            : base(context, window)
         {
             rtScene = RenderTarget2D.Create(BufferWidth, BufferHeight);
 
@@ -86,7 +86,7 @@ namespace Sedulous.Tests.Graphics
         /// <inheritdoc/>
         public override void BeginFrame()
         {
-            var gfx = Sedulous.GetGraphics();
+            var gfx = FrameworkContext.GetGraphics();
 
             gfx.SetRenderTarget(rtComposition);
             gfx.Clear(Color.Transparent, 1.0f, 0);
@@ -103,7 +103,7 @@ namespace Sedulous.Tests.Graphics
             if (CurrentContext == context && !force)
                 return;
 
-            var gfx = Sedulous.GetGraphics();
+            var gfx = FrameworkContext.GetGraphics();
 
             switch (context)
             {
@@ -139,7 +139,7 @@ namespace Sedulous.Tests.Graphics
         /// <inheritdoc/>
         public override void Compose()
         {
-            var gfx = Sedulous.GetGraphics();
+            var gfx = FrameworkContext.GetGraphics();
             gfx.SetRenderTarget(rtComposition);
 
             var area = new RectangleF(0, 0,
@@ -159,7 +159,7 @@ namespace Sedulous.Tests.Graphics
         /// <inheritdoc/>
         public override void Present()
         {
-            var gfx = Sedulous.GetGraphics();
+            var gfx = FrameworkContext.GetGraphics();
             gfx.SetRenderTarget(TestFrameworkRenderTarget);
             gfx.Clear(Color.Black, 1.0f, 0);
 

@@ -11,10 +11,10 @@ namespace Sedulous.Presentation.Uvml
     /// <summary>
     /// Represents a function which instantiates templated object instances.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="name">The name of the object being instantiated.</param>
     /// <returns>The object that was instantiated.</returns>
-    public delegate Object UvmlTemplateInstantiator(FrameworkContext uv, String name);
+    public delegate Object UvmlTemplateInstantiator(FrameworkContext context, String name);
 
     /// <summary>
     /// Represents a template which produces object instances based on a UVML document.
@@ -51,30 +51,30 @@ namespace Sedulous.Presentation.Uvml
         }
         
         /// <inheritdoc/>
-        public override Object Instantiate(FrameworkContext uv, UvmlInstantiationContext context)
+        public override Object Instantiate(FrameworkContext frameworkContext, UvmlInstantiationContext context)
         {
-            var instance = instantiator(uv, name);
+            var instance = instantiator(frameworkContext, name);
             if (instance == null)
                 throw new NullReferenceException(nameof(instance));
 
-            InitializeFrameworkElement(uv, instance, context);
-            InitializeElement(uv, instance, context);
-            InitializeDependencyObject(uv, instance, context);
+            InitializeFrameworkElement(frameworkContext, instance, context);
+            InitializeElement(frameworkContext, instance, context);
+            InitializeDependencyObject(frameworkContext, instance, context);
             
             var mutatorsWithValues =
                 (from mutator in mutators
                  select new
                  {
                      Mutator = mutator,
-                     Value = mutator.InstantiateValue(uv, instance, context)
+                     Value = mutator.InstantiateValue(frameworkContext, instance, context)
                  }).ToArray();
 
             return new UvmlTemplateInstance(instance, () =>
             {
                 foreach (var mutator in mutatorsWithValues)
-                    mutator.Mutator.Mutate(uv, instance, mutator.Value, context);
+                    mutator.Mutator.Mutate(frameworkContext, instance, mutator.Value, context);
 
-                InitializeContentPresenter(uv, instance, context);
+                InitializeContentPresenter(frameworkContext, instance, context);
 
                 if (IsItemsPanelForTemplatedParent)
                 {
@@ -133,7 +133,7 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Performs initialization required by instances of the <see cref="FrameworkElement"/> class.
         /// </summary>
-        private void InitializeFrameworkElement(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
+        private void InitializeFrameworkElement(FrameworkContext frameworkContext, Object instance, UvmlInstantiationContext context)
         {
             var frameworkElement = instance as FrameworkElement;
             if (frameworkElement == null)
@@ -149,7 +149,7 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Performs initialization required by instances of the <see cref="UIElement"/> class.
         /// </summary>
-        private void InitializeElement(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
+        private void InitializeElement(FrameworkContext frameworkContext, Object instance, UvmlInstantiationContext context)
         {
             var uiElement = instance as UIElement;
             if (uiElement == null)
@@ -165,7 +165,7 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Performs initialization required by instances of the <see cref="DependencyObject"/> class.
         /// </summary>
-        private void InitializeDependencyObject(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
+        private void InitializeDependencyObject(FrameworkContext frameworkContext, Object instance, UvmlInstantiationContext context)
         {
             var dobj = instance as DependencyObject;
             if (dobj == null)
@@ -177,7 +177,7 @@ namespace Sedulous.Presentation.Uvml
         /// <summary>
         /// Performs initialization required by instances of the <see cref="ContentPresenter"/> class.
         /// </summary>
-        private void InitializeContentPresenter(FrameworkContext uv, Object instance, UvmlInstantiationContext context)
+        private void InitializeContentPresenter(FrameworkContext frameworkContext, Object instance, UvmlInstantiationContext context)
         {
             var contentPresenter = instance as ContentPresenter;
             if (contentPresenter == null)
@@ -191,7 +191,7 @@ namespace Sedulous.Presentation.Uvml
                 return;
 
             var templateType = contentPresenter.TemplatedParent.GetType();
-            var templateWrapperType = uv.GetUI().GetPresentationFoundation().GetDataSourceWrapperType(templateType);
+            var templateWrapperType = frameworkContext.GetUI().GetPresentationFoundation().GetDataSourceWrapperType(templateType);
 
             var dpAliasedContent = DependencyProperty.FindByName(alias, templateType);
             if (dpAliasedContent != null)

@@ -42,10 +42,10 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="Grid"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public Grid(FrameworkContext uv, String name)
-            : base(uv, name)
+        public Grid(FrameworkContext context, String name)
+            : base(context, name)
         {
             this.rowDefinitions    = new RowDefinitionCollection(this);
             this.columnDefinitions = new ColumnDefinitionCollection(this);

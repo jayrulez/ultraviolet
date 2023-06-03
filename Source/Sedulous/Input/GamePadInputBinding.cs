@@ -14,14 +14,14 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="GamePadInputBinding"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="element">The XML element that contains the binding data.</param>
-        internal GamePadInputBinding(FrameworkContext uv, XElement element)
+        internal GamePadInputBinding(FrameworkContext context, XElement element)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(element, nameof(element));
 
-            this.uv = uv;
+            this.context = context;
             this.playerIndex = element.ElementValueInt32("Player") ?? 0;
             this.button = element.ElementValueEnum<GamePadButton>("Button") ?? GamePadButton.None;
 
@@ -31,16 +31,16 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="GamePadInputBinding"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="playerIndex">The index of the player for which to create the binding.</param>
         /// <param name="button">A <see cref="GamePadButton"/> value representing the binding's primary button.</param>
-        public GamePadInputBinding(FrameworkContext uv, Int32 playerIndex, GamePadButton button)
+        public GamePadInputBinding(FrameworkContext context, Int32 playerIndex, GamePadButton button)
             : base()
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.EnsureRange(playerIndex >= 0, nameof(playerIndex));
 
-            this.uv = uv;
+            this.context = context;
             this.playerIndex = playerIndex;
             this.button = button;
 
@@ -56,7 +56,7 @@ namespace Sedulous.Input
         /// <inheritdoc/>
         public override void Update()
         {
-            var gamePad = uv.GetInput().GetGamePadForPlayer(playerIndex);
+            var gamePad = context.GetInput().GetGamePadForPlayer(playerIndex);
 
             released = false;
             if (pressed)
@@ -127,14 +127,14 @@ namespace Sedulous.Input
         /// <inheritdoc/>
         public override Boolean IsPressed(Boolean ignoreRepeats = true)
         {
-            var gamePad = uv.GetInput().GetGamePadForPlayer(playerIndex);
+            var gamePad = context.GetInput().GetGamePadForPlayer(playerIndex);
             return pressed && (gamePad != null && gamePad.IsButtonPressed(button, ignoreRepeats: ignoreRepeats));
         }
 
         /// <inheritdoc/>
         public override Boolean IsReleased()
         {
-            var gamePad = uv.GetInput().GetGamePadForPlayer(playerIndex);
+            var gamePad = context.GetInput().GetGamePadForPlayer(playerIndex);
             return released && (gamePad == null || gamePad.IsButtonReleased(button));
         }
 
@@ -183,7 +183,7 @@ namespace Sedulous.Input
         private readonly String stringRepresentation;
 
         // State values.
-        private readonly FrameworkContext uv;
+        private readonly FrameworkContext context;
         private Boolean pressed;
         private Boolean released;
     }

@@ -34,7 +34,7 @@ namespace Sedulous.Graphics.Graphics3D
 
             var uvSkins = ProcessSkins(input, nodesByLogicalIndex, nodesBySkin);
             var uvAnimations = ProcessAnimations(input, scenes, nodesCount);
-            return new SkinnedModel(contentManager.Sedulous, scenes, textures, uvSkins, uvAnimations);
+            return new SkinnedModel(contentManager.FrameworkContext, scenes, textures, uvSkins, uvAnimations);
         }
 
         /// <inheritdoc/>

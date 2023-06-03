@@ -15,15 +15,15 @@ namespace Sedulous.SDL2
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2PlatformSubsystem"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="configuration">The Sedulous Framework's configuration settings.</param>
-        public SDL2PlatformSubsystem(FrameworkContext uv, FrameworkConfiguration configuration)
-            : base(uv)
+        public SDL2PlatformSubsystem(FrameworkContext context, FrameworkConfiguration configuration)
+            : base(context)
         {
             this.clipboard = ClipboardService.Create();
             this.messageBoxService = MessageBoxService.Create();
-            this.windows = new SDL2FrameworkWindowInfoOpenGL(uv, configuration);
-            this.displays = new SDL2FrameworkDisplayInfo(uv);
+            this.windows = new SDL2FrameworkWindowInfoOpenGL(context, configuration);
+            this.displays = new SDL2FrameworkDisplayInfo(context);
             this.isCursorVisible = SDL_ShowCursor(SDL_QUERY) != 0;
         }
 
@@ -47,7 +47,7 @@ namespace Sedulous.SDL2
             if (IsPrimaryWindowInitialized)
                 throw new InvalidOperationException();
 
-            this.windows.InitializePrimaryWindow(Sedulous, configuration);
+            this.windows.InitializePrimaryWindow(FrameworkContext, configuration);
             this.IsPrimaryWindowInitialized = true;
         }
 

@@ -12,17 +12,17 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLDynamicTexture2D"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="width">The texture's width in pixels.</param>
         /// <param name="height">The texture's height in pixels.</param>
         /// <param name="depth">The texture's depth in pixels.</param>
         /// <param name="options">The texture's configuration options.</param>
         /// <param name="state">An arbitrary state object which will be passed to the flush handler.</param>
         /// <param name="flushed">The handler to invoke when the texture is flushed.</param>
-        public OpenGLDynamicTexture3D(FrameworkContext uv, Int32 width, Int32 height, Int32 depth, TextureOptions options, Object state, Action<Texture3D, Object> flushed)
-            : base(uv, width, height, depth, options, state, flushed)
+        public OpenGLDynamicTexture3D(FrameworkContext context, Int32 width, Int32 height, Int32 depth, TextureOptions options, Object state, Action<Texture3D, Object> flushed)
+            : base(context, width, height, depth, options, state, flushed)
         {
-            this.texture = new OpenGLTexture3D(uv, width, height, depth, options);
+            this.texture = new OpenGLTexture3D(context, width, height, depth, options);
         }
 
         /// <inheritdoc/>

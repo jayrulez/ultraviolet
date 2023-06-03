@@ -35,7 +35,7 @@ namespace Sedulous
         /// <inheritdoc/>
         public void RunOneTickSuspended()
         {
-            var uv = host.Sedulous;
+            var uv = host.FrameworkContext;
 
             UpdateSystemTimerResolution();
 
@@ -49,7 +49,7 @@ namespace Sedulous
         /// <inheritdoc/>
         public void RunOneTick()
         {
-            var uv = host.Sedulous;
+            var context = host.FrameworkContext;
 
             if (SynchronizationContext.Current is FrameworkSynchronizationContext syncContext)
                 syncContext.ProcessWorkItems();
@@ -116,12 +116,12 @@ namespace Sedulous
             if (gameTicksToRun == 0)
                 return;
 
-            uv.HandleFrameStart();
+            context.HandleFrameStart();
 
             for (var i = 0; i < gameTicksToRun; i++)
             {
                 var updateTime = timeTrackerUpdate.Increment(timeDeltaUpdate, runningSlowly);
-                if (!UpdateContext(uv, updateTime))
+                if (!UpdateContext(context, updateTime))
                 {
                     return;
                 }
@@ -132,17 +132,17 @@ namespace Sedulous
                 var drawTime = timeTrackerDraw.Increment(timeDeltaDraw, runningSlowly);
                 using (FrameworkProfiler.Section(FrameworkProfilerSections.Draw))
                 {
-                    uv.Draw(drawTime);
+                    context.Draw(drawTime);
                 }
             }
 
-            uv.HandleFrameEnd();
+            context.HandleFrameEnd();
         }
 
         /// <inheritdoc/>
         public void Cleanup()
         {
-            if (Sedulous.Platform == FrameworkPlatform.Windows)
+            if (FrameworkContext.Platform == FrameworkPlatform.Windows)
             {
                 if (systemTimerPeriod > 0)
                     Win32Native.timeEndPeriod(systemTimerPeriod);
@@ -167,9 +167,9 @@ namespace Sedulous
         public static Boolean DefaultIsFixedTimeStep { get; } = true;
 
         /// <inheritdoc/>
-        public FrameworkContext Sedulous
+        public FrameworkContext FrameworkContext
         {
-            get { return host.Sedulous; }
+            get { return host.FrameworkContext; }
         }
 
         /// <inheritdoc/>
@@ -184,16 +184,16 @@ namespace Sedulous
         /// <summary>
         /// Updates the specified context.
         /// </summary>
-        /// <param name="uv">The Sedulous context to update.</param>
+        /// <param name="context">The Sedulous context to update.</param>
         /// <param name="time">Time elapsed since the last update.</param>
         /// <returns><see langword="true"/> if the host should continue processing; otherwise, <see langword="false"/>.</returns>
-        private Boolean UpdateContext(FrameworkContext uv, FrameworkTime time)
+        private Boolean UpdateContext(FrameworkContext context, FrameworkTime time)
         {
             using (FrameworkProfiler.Section(FrameworkProfilerSections.Update))
             {
-                uv.Update(time);
+                context.Update(time);
             }
-            return !uv.Disposed;
+            return !context.Disposed;
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Sedulous
         /// </summary>
         private Boolean UpdateSystemTimerResolution()
         {
-            if (Sedulous.Platform != FrameworkPlatform.Windows)
+            if (FrameworkContext.Platform != FrameworkPlatform.Windows)
             {
                 systemTimerPeriod = 1u;
                 return false;

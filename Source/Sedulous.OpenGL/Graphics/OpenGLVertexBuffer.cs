@@ -14,12 +14,12 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLVertexBuffer.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="vdecl">The vertex declaration for this buffer.</param>
         /// <param name="vcount">The number of vertices in the buffer.</param>
         /// <param name="usage">The buffer's usage type.</param>
-        public OpenGLVertexBuffer(FrameworkContext uv, VertexDeclaration vdecl, Int32 vcount, UInt32 usage)
-            : base(uv, vdecl, vcount)
+        public OpenGLVertexBuffer(FrameworkContext context, VertexDeclaration vdecl, Int32 vcount, UInt32 usage)
+            : base(context, vdecl, vcount)
         {
             Contract.Require(vdecl, nameof(vdecl));
 
@@ -29,7 +29,7 @@ namespace Sedulous.OpenGL.Graphics
 
             var buffer = 0u;
 
-            uv.QueueWorkItem(state =>
+            context.QueueWorkItem(state =>
             {
                 using (OpenGLState.ScopedCreateArrayBuffer(out buffer))
                 {
@@ -51,7 +51,7 @@ namespace Sedulous.OpenGL.Graphics
             if (inputSizeInBytes > size.ToInt32())
                 throw new InvalidOperationException(OpenGLStrings.DataTooLargeForBuffer);
 
-            if (Sedulous.IsExecutingOnCurrentThread)
+            if (FrameworkContext.IsExecutingOnCurrentThread)
                 SetDataInternal_OnMainThread(data, 0, 0, inputSizeInBytes, SetDataOptions.None);
             else
                 SetDataInternal_OnBackgroundThread(data, 0, 0, inputSizeInBytes, SetDataOptions.None);
@@ -69,7 +69,7 @@ namespace Sedulous.OpenGL.Graphics
             if (inputSizeInBytes > size.ToInt32())
                 throw new InvalidOperationException(OpenGLStrings.DataTooLargeForBuffer);
 
-            if (Sedulous.IsExecutingOnCurrentThread)
+            if (FrameworkContext.IsExecutingOnCurrentThread)
                 SetDataInternal_OnMainThread(data, (offset * inputElemSize), 0, inputSizeInBytes, options);
             else
                 SetDataInternal_OnBackgroundThread(data, (offset * inputElemSize), 0, inputSizeInBytes, options);
@@ -82,7 +82,7 @@ namespace Sedulous.OpenGL.Graphics
             Contract.EnsureRange(dstOffsetInBytes >= 0, nameof(dstOffsetInBytes));
             Contract.EnsureRange(sizeInBytes >= 0, nameof(sizeInBytes));
 
-            if (Sedulous.IsExecutingOnCurrentThread)
+            if (FrameworkContext.IsExecutingOnCurrentThread)
                 SetRawDataInternal_OnMainThread(data + srcOffsetInBytes, dstOffsetInBytes, sizeInBytes, options);
             else
                 SetRawDataInternal_OnBackgroundThread(data + srcOffsetInBytes, dstOffsetInBytes, sizeInBytes, options);
@@ -106,7 +106,7 @@ namespace Sedulous.OpenGL.Graphics
             var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
             try
             {
-                var caps = (OpenGLGraphicsCapabilities)Sedulous.GetGraphics().Capabilities;
+                var caps = (OpenGLGraphicsCapabilities)FrameworkContext.GetGraphics().Capabilities;
                 if (caps.MinMapBufferAlignment > 0)
                     bufferSize = Math.Min(Math.Max(caps.MinMapBufferAlignment, MathUtil.FindNextPowerOfTwo(bufferSize)), SizeInBytes - bufferOffset);
 
@@ -166,7 +166,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <inheritdoc/>
         public override Int32 GetAlignmentUnit()
         {
-            return Math.Max(1, ((OpenGLGraphicsCapabilities)Sedulous.GetGraphics().Capabilities).MinMapBufferAlignment);
+            return Math.Max(1, ((OpenGLGraphicsCapabilities)FrameworkContext.GetGraphics().Capabilities).MinMapBufferAlignment);
         }
 
         /// <inheritdoc/>
@@ -174,7 +174,7 @@ namespace Sedulous.OpenGL.Graphics
         {
             Contract.EnsureRange(count >= 0, nameof(count));
             
-            var caps = (OpenGLGraphicsCapabilities)Sedulous.GetGraphics().Capabilities;
+            var caps = (OpenGLGraphicsCapabilities)FrameworkContext.GetGraphics().Capabilities;
             if (caps.MinMapBufferAlignment == 0 || count == VertexCount)
             {
                 return count * vdecl.VertexStride;
@@ -202,9 +202,9 @@ namespace Sedulous.OpenGL.Graphics
                     OpenGLState.GL_ARRAY_BUFFER_BINDING.Update(0);
 
                 var glname = buffer;
-                if (glname != 0 && !Sedulous.Disposed)
+                if (glname != 0 && !FrameworkContext.Disposed)
                 {
-                    Sedulous.QueueWorkItem((state) =>
+                    FrameworkContext.QueueWorkItem((state) =>
                     {
                         gl.DeleteBuffer(glname);
                         gl.ThrowIfError();
@@ -235,7 +235,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         private void SetDataInternal_OnBackgroundThread(Object data, Int32 srcOffsetInBytes, Int32 dstOffsetInBytes, Int32 countInBytes, SetDataOptions options)
         {
-            Sedulous.QueueWorkItem(state =>
+            FrameworkContext.QueueWorkItem(state =>
             {
                 var pData = GCHandle.Alloc(data, GCHandleType.Pinned);
                 try
@@ -259,7 +259,7 @@ namespace Sedulous.OpenGL.Graphics
         /// </summary>
         private void SetRawDataInternal_OnBackgroundThread(IntPtr data, Int32 offsetInBytes, Int32 countInBytes, SetDataOptions options)
         {
-            Sedulous.QueueWorkItem(state =>
+            FrameworkContext.QueueWorkItem(state =>
             {
                 Upload(data, offsetInBytes, countInBytes, options);
             }, null, WorkItemOptions.ForceAsynchronousExecution)?.Wait();

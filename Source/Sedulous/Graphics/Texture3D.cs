@@ -7,25 +7,25 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Texture3D"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="layers">A pointer to the raw pixel data for each of the texture's layers.</param>
     /// <param name="width">The texture's width in pixels.</param>
     /// <param name="height">The texture's height in pixels.</param>
     /// <param name="bytesPerPixel">The number of bytes which represent each pixel in the raw data.</param>
     /// <param name="options">The texture's configuration options.</param>
     /// <returns>The instance of <see cref="Texture3D"/> that was created.</returns>
-    public delegate Texture3D Texture3DFromRawDataFactory(FrameworkContext uv, IList<IntPtr> layers, Int32 width, Int32 height, Int32 bytesPerPixel, TextureOptions options);
+    public delegate Texture3D Texture3DFromRawDataFactory(FrameworkContext context, IList<IntPtr> layers, Int32 width, Int32 height, Int32 bytesPerPixel, TextureOptions options);
 
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Texture3D"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="width">The texture's width in pixels.</param>
     /// <param name="height">The texture's height in pixels.</param>
     /// <param name="depth">The texture's depth in layers.</param>
     /// <param name="options">The texture's configuration options.</param>
     /// <returns>The instance of <see cref="Texture3D"/> that was created.</returns>
-    public delegate Texture3D Texture3DFactory(FrameworkContext uv, Int32 width, Int32 height, Int32 depth, TextureOptions options);
+    public delegate Texture3D Texture3DFactory(FrameworkContext context, Int32 width, Int32 height, Int32 depth, TextureOptions options);
 
     /// <summary>
     /// Represents a three-dimensional texture.
@@ -35,9 +35,9 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="Texture3D"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public Texture3D(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public Texture3D(FrameworkContext context)
+            : base(context)
         {
 
         }

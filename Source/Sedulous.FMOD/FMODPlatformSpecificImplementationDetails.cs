@@ -3,9 +3,9 @@
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="FMODPlatformSpecificImplementationDetails"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <returns>The instance of <see cref="FMODPlatformSpecificImplementationDetails"/> that was created.</returns>
-    public delegate FMODPlatformSpecificImplementationDetails FMODPlatformSpecificImplementationDetailsFactory(FrameworkContext uv);
+    public delegate FMODPlatformSpecificImplementationDetails FMODPlatformSpecificImplementationDetailsFactory(FrameworkContext context);
 
     /// <summary>
     /// Represents platform-specific implementation details for FMOD which can be provided by an additional assembly.

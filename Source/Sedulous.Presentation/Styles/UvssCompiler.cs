@@ -18,13 +18,13 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Compiles an Sedulous Style Sheet (UVSS) document from the specified abstract syntax tree.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="tree">A <see cref="UvssDocumentSyntax"/> that represents the
         /// abstract syntax tree to compile.</param>
         /// <returns>A new instance of <see cref="UvssDocument"/> that represents the compiled data.</returns>
-        public static UvssDocument Compile(FrameworkContext uv, UvssDocumentSyntax tree)
+        public static UvssDocument Compile(FrameworkContext context, UvssDocumentSyntax tree)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
             // Fail to compile if the tree reports any error diagnostics.
             var errors = tree.GetDiagnostics().Where(x => x.Severity == DiagnosticSeverity.Error);
@@ -67,7 +67,7 @@ namespace Sedulous.Presentation.Styles
                 }
             }
 
-            return new UvssDocument(uv, docRuleSets, docStoryboards);
+            return new UvssDocument(context, docRuleSets, docStoryboards);
         }
         
         /// <summary>

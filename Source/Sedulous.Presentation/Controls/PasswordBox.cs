@@ -26,10 +26,10 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="PasswordBox"/> control.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public PasswordBox(FrameworkContext uv, String name)
-            : base(uv, name)
+        public PasswordBox(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }
@@ -337,7 +337,7 @@ namespace Sedulous.Presentation.Controls
         /// <inheritdoc/>
         protected override void OnPreviewTouchDown(TouchDevice device, Int64 id, Double x, Double y, Single pressure, RoutedEventData data)
         {
-            if (!Sedulous.GetInput().IsMouseCursorAvailable && device.IsFirstTouchInGesture(id))
+            if (!FrameworkContext.GetInput().IsMouseCursorAvailable && device.IsFirstTouchInGesture(id))
                 Focus();
 
             if (PART_Editor != null && IsTouchWithinEditor(id))
@@ -348,7 +348,7 @@ namespace Sedulous.Presentation.Controls
             }
 
             UpdateTextInputRegion();
-            Sedulous.GetInput().ShowSoftwareKeyboard();
+            FrameworkContext.GetInput().ShowSoftwareKeyboard();
 
             base.OnPreviewTouchDown(device, id, x, y, pressure, data);
         }
@@ -407,7 +407,7 @@ namespace Sedulous.Presentation.Controls
         protected override void OnGotKeyboardFocus(KeyboardDevice device, IInputElement oldFocus, IInputElement newFocus, RoutedEventData data)
         {
             UpdateTextInputRegion();
-            Sedulous.GetInput().ShowSoftwareKeyboard(KeyboardMode.Text);
+            FrameworkContext.GetInput().ShowSoftwareKeyboard(KeyboardMode.Text);
 
             if (PART_Editor != null)
                 PART_Editor.HandleGotKeyboardFocus();
@@ -420,7 +420,7 @@ namespace Sedulous.Presentation.Controls
         /// <inheritdoc/>
         protected override void OnLostKeyboardFocus(KeyboardDevice device, IInputElement oldFocus, IInputElement newFocus, RoutedEventData data)
         {
-            Sedulous.GetInput().HideSoftwareKeyboard();
+            FrameworkContext.GetInput().HideSoftwareKeyboard();
 
             if (PART_Editor != null)
                 PART_Editor.HandleLostKeyboardFocus();

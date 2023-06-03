@@ -13,13 +13,13 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLSamplerObject"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public OpenGLSamplerObject(FrameworkContext uv) 
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public OpenGLSamplerObject(FrameworkContext context) 
+            : base(context)
         {
             var sampler = 0u;
 
-            uv.QueueWorkItem(state =>
+            context.QueueWorkItem(state =>
             {
                 sampler = gl.GenSampler();
                 gl.ThrowIfError();
@@ -181,9 +181,9 @@ namespace Sedulous.OpenGL.Graphics
             if (disposing)
             {
                 var glname = sampler;
-                if (glname != 0 && !Sedulous.Disposed)
+                if (glname != 0 && !FrameworkContext.Disposed)
                 {
-                    Sedulous.QueueWorkItem((state) =>
+                    FrameworkContext.QueueWorkItem((state) =>
                     {
                         gl.DeleteSampler(glname);
                         gl.ThrowIfError();

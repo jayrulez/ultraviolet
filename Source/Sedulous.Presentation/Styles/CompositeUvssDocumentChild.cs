@@ -39,7 +39,7 @@ namespace Sedulous.Presentation.Styles
         {
             Contract.EnsureNotDisposed(this, disposed);
 
-            var primaryDisplay = contentManager.Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = contentManager.FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return Get(primaryDisplayDensity);
@@ -56,7 +56,7 @@ namespace Sedulous.Presentation.Styles
 
             if (!assetVersions.TryGetValue((Byte)density, out var document))
             {
-                var watching = contentManager.Sedulous.GetUI().WatchingViewFilesForChanges;
+                var watching = contentManager.FrameworkContext.GetUI().WatchingViewFilesForChanges;
                 if (watching)
                 {
                     document = new WatchedAsset<UvssDocument>(contentManager, assetPath, density,

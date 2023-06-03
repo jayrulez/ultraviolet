@@ -33,12 +33,12 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="ComboBox"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ComboBox(FrameworkContext uv, String name)
-            : base(uv, name)
+        public ComboBox(FrameworkContext context, String name)
+            : base(context, name)
         {
-            visualClone = new VisualClone(uv);
+            visualClone = new VisualClone(context);
 
             VisualStateGroups.Create("common", new[] { "normal", "hover", "disabled" });
             VisualStateGroups.Create("opened", new[] { "closed", "open" });
@@ -223,7 +223,7 @@ namespace Sedulous.Presentation.Controls
         /// <inheritdoc/>
         protected internal override Panel CreateItemsPanel()
         {
-            return new StackPanel(Sedulous, null);
+            return new StackPanel(FrameworkContext, null);
         }
 
         /// <inheritdoc/>
@@ -235,7 +235,7 @@ namespace Sedulous.Presentation.Controls
         /// <inheritdoc/>
         protected override DependencyObject GetContainerForItemOverride()
         {
-            return new ComboBoxItem(Sedulous, null);
+            return new ComboBoxItem(FrameworkContext, null);
         }
 
         /// <inheritdoc/>
@@ -686,7 +686,7 @@ namespace Sedulous.Presentation.Controls
         private static void HandleTouchDown(DependencyObject dobj, TouchDevice device, Int64 touchID, Double x, Double y, Single pressure, RoutedEventData data)
         {
             var comboBox = (ComboBox)dobj;
-            if (comboBox.Sedulous.GetInput().IsMouseCursorAvailable)
+            if (comboBox.FrameworkContext.GetInput().IsMouseCursorAvailable)
                 return;
 
             if (comboBox == Touch.GetCapturedNew(comboBox.View) && comboBox == data.OriginalSource)
@@ -701,7 +701,7 @@ namespace Sedulous.Presentation.Controls
         private static void HandleLostNewTouchCapture(DependencyObject dobj, RoutedEventData data)
         {
             var comboBox = (ComboBox)dobj;
-            if (comboBox.Sedulous.GetInput().IsMouseCursorAvailable)
+            if (comboBox.FrameworkContext.GetInput().IsMouseCursorAvailable)
                 return;
 
             if (comboBox != data.OriginalSource)
@@ -801,7 +801,7 @@ namespace Sedulous.Presentation.Controls
         {
             if (captured)
             {
-                if (Sedulous.GetInput().IsMouseCursorAvailable)
+                if (FrameworkContext.GetInput().IsMouseCursorAvailable)
                 {
                     Mouse.Capture(View, this, CaptureMode.SubTree);
                 }
@@ -812,7 +812,7 @@ namespace Sedulous.Presentation.Controls
             }
             else
             {
-                if (Sedulous.GetInput().IsMouseCursorAvailable)
+                if (FrameworkContext.GetInput().IsMouseCursorAvailable)
                 {
                     if (IsMouseCaptured)
                         Mouse.Capture(View, null, CaptureMode.None);
@@ -830,7 +830,7 @@ namespace Sedulous.Presentation.Controls
         /// </summary>
         private void UpdateActualMaxDropDownHeight()
         {
-            var primary = Sedulous.GetPlatform().Windows.GetPrimary();
+            var primary = FrameworkContext.GetPlatform().Windows.GetPrimary();
             var actualMaxDropDownHeight = Double.IsNaN(MaxDropDownHeight) ? Display.PixelsToDips(primary.Compositor.Height) / 3.0 : MaxDropDownHeight;
             if (actualMaxDropDownHeight != GetValue<Double>(ActualMaxDropDownHeightProperty))
             {

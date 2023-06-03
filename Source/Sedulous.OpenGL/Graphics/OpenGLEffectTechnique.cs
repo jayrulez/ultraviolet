@@ -12,11 +12,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenGLEffectTechnique"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The technique's name.</param>
         /// <param name="passes">The technique's effect passes.</param>
-        public OpenGLEffectTechnique(FrameworkContext uv, String name, IEnumerable<OpenGLEffectPass> passes)
-            : base(uv)
+        public OpenGLEffectTechnique(FrameworkContext context, String name, IEnumerable<OpenGLEffectPass> passes)
+            : base(context)
         {
             this.Name = name ?? String.Empty;
             this.Passes = new OpenGLEffectPassCollection(passes);

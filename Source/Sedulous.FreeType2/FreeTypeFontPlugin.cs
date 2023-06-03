@@ -10,13 +10,13 @@ namespace Sedulous.FreeType2
     public unsafe class FreeTypeFontPlugin : FrameworkPlugin
     {
         /// <inheritdoc/>
-        public override void Initialize(FrameworkContext uv, FrameworkFactory factory)
+        public override void Initialize(FrameworkContext context, FrameworkFactory factory)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
             library.InitializeResource();
 
-            var content = uv.GetContent();
+            var content = context.GetContent();
             var existing = content.Importers.FindImporter(".ttf");
             if (existing != null)
             {

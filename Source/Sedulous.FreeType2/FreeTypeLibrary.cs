@@ -12,9 +12,9 @@ namespace Sedulous.FreeType2
         /// <summary>
         /// Initializes a new instance of the <see cref="FreeTypeLibrary"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public FreeTypeLibrary(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public FreeTypeLibrary(FrameworkContext context)
+            : base(context)
         {
             var lib = default(IntPtr);
             var err = FT_Init_FreeType((IntPtr)(&lib));

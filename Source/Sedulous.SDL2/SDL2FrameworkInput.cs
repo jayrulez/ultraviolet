@@ -16,22 +16,22 @@ namespace Sedulous.SDL2
         /// <summary>
         /// Initializes a new instance of the SDL2SedulousInput class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public SDL2FrameworkInput(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public SDL2FrameworkInput(FrameworkContext context)
+            : base(context)
         {
-            this.softwareKeyboardService = uv.GetFactoryMethod<SoftwareKeyboardServiceFactory>()();
+            this.softwareKeyboardService = context.GetFactoryMethod<SoftwareKeyboardServiceFactory>()();
 
-            this.keyboard = new SDL2KeyboardDevice(uv);
-            this.mouse = new SDL2MouseDevice(uv);
-            this.gamePadInfo = new GamePadDeviceInfo(uv);
+            this.keyboard = new SDL2KeyboardDevice(context);
+            this.mouse = new SDL2MouseDevice(context);
+            this.gamePadInfo = new GamePadDeviceInfo(context);
             this.gamePadInfo.GamePadConnected += OnGamePadConnected;
             this.gamePadInfo.GamePadDisconnected += OnGamePadDisconnected;
-            this.touchInfo = new TouchDeviceInfo(uv);
+            this.touchInfo = new TouchDeviceInfo(context);
 
-            LoadGameControllerMappingDatabase(uv);
+            LoadGameControllerMappingDatabase(context);
 
-            uv.Messages.Subscribe(this,
+            context.Messages.Subscribe(this,
                 FrameworkMessages.TextInputRegionChanged);
         }
 
@@ -434,8 +434,8 @@ namespace Sedulous.SDL2
 
             if (disposing)
             {
-                if (Sedulous != null && !Sedulous.Disposed)
-                    Sedulous.Messages.Unsubscribe(this);
+                if (FrameworkContext != null && !FrameworkContext.Disposed)
+                    FrameworkContext.Messages.Unsubscribe(this);
 
                 SafeDispose.DisposeRef(ref keyboard);
                 SafeDispose.DisposeRef(ref mouse);
@@ -449,7 +449,7 @@ namespace Sedulous.SDL2
         /// <summary>
         /// Attempts to load gamecontrollerdb.txt, if it is located in the application's root directory. 
         /// </summary>
-        private void LoadGameControllerMappingDatabase(FrameworkContext uv)
+        private void LoadGameControllerMappingDatabase(FrameworkContext context)
         {
             const string DatabasePath = "gamecontrollerdb.txt";
 

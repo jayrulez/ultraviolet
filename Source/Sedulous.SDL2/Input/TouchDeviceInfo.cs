@@ -13,16 +13,16 @@ namespace Sedulous.SDL2.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="TouchDeviceInfo"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public TouchDeviceInfo(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public TouchDeviceInfo(FrameworkContext context)
+            : base(context)
         {
             var count = SDL_GetNumTouchDevices();
             devices = new SDL2TouchDevice[count];
 
             for (int i = 0; i < count; i++)
             {
-                devices[i] = new SDL2TouchDevice(uv, i);
+                devices[i] = new SDL2TouchDevice(context, i);
             }
         }
 

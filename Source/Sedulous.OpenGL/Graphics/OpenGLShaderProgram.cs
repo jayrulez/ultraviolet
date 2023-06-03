@@ -35,18 +35,18 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLShaderProgram class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="vertexShader">The program's vertex shader.</param>
         /// <param name="fragmentShader">The program's fragment shader.</param>
         /// <param name="programOwnsShaders">A value indicating whether the program owns the shader objects.</param>
-        public OpenGLShaderProgram(FrameworkContext uv, OpenGLVertexShader vertexShader, OpenGLFragmentShader fragmentShader, Boolean programOwnsShaders)
-            : base(uv)
+        public OpenGLShaderProgram(FrameworkContext context, OpenGLVertexShader vertexShader, OpenGLFragmentShader fragmentShader, Boolean programOwnsShaders)
+            : base(context)
         {
             Contract.Require(vertexShader, nameof(vertexShader));
             Contract.Require(fragmentShader, nameof(fragmentShader));
 
-            Sedulous.ValidateResource(vertexShader);
-            Sedulous.ValidateResource(fragmentShader);
+            FrameworkContext.ValidateResource(vertexShader);
+            FrameworkContext.ValidateResource(fragmentShader);
 
             this.vertexShader = vertexShader;
             this.fragmentShader = fragmentShader;
@@ -58,7 +58,7 @@ namespace Sedulous.OpenGL.Graphics
             
             var program = 0u;
 
-            uv.QueueWorkItem(state =>
+            context.QueueWorkItem(state =>
             {
                 program = gl.CreateProgram();
                 gl.ThrowIfError();
@@ -197,9 +197,9 @@ namespace Sedulous.OpenGL.Graphics
             if (disposing)
             {
                 var glname = program;
-                if (glname != 0 && !Sedulous.Disposed)
+                if (glname != 0 && !FrameworkContext.Disposed)
                 {
-                    Sedulous.QueueWorkItem((state) =>
+                    FrameworkContext.QueueWorkItem((state) =>
                     {
                         gl.DeleteProgram(glname);
                         gl.ThrowIfError();
@@ -225,7 +225,7 @@ namespace Sedulous.OpenGL.Graphics
         /// <returns>The collection of uniforms that was created.</returns>
         private OpenGLShaderUniformCollection CreateUniformCollection(ShaderSourceMetadata ssmd)
         {
-            var result = Sedulous.QueueWorkItem(state =>
+            var result = FrameworkContext.QueueWorkItem(state =>
             {
                 var programObject = ((OpenGLShaderProgram)state);
                 var program = programObject.program;
@@ -274,7 +274,7 @@ namespace Sedulous.OpenGL.Graphics
                         sampler = samplerCount++;
                     }
 
-                    uniforms.Add(new OpenGLShaderUniform(programObject.Sedulous, name, type, elements, program, location, sampler));                
+                    uniforms.Add(new OpenGLShaderUniform(programObject.FrameworkContext, name, type, elements, program, location, sampler));                
                 }
 
                 return uniforms;

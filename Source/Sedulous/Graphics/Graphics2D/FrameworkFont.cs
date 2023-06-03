@@ -10,18 +10,18 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameworkFont{TFontFace}"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="regular">The font's regular font face.</param>
         /// <param name="bold">The font's bold font face.</param>
         /// <param name="italic">The font's italic font face.</param>
         /// <param name="boldItalic">The font's bold italic font face.</param>
-        protected FrameworkFont(FrameworkContext uv, FrameworkFontFace regular, FrameworkFontFace bold, FrameworkFontFace italic, FrameworkFontFace boldItalic)
-            : base(uv)
+        protected FrameworkFont(FrameworkContext context, FrameworkFontFace regular, FrameworkFontFace bold, FrameworkFontFace italic, FrameworkFontFace boldItalic)
+            : base(context)
         {
-            uv.ValidateResource(regular);
-            uv.ValidateResource(bold);
-            uv.ValidateResource(italic);
-            uv.ValidateResource(boldItalic);
+            context.ValidateResource(regular);
+            context.ValidateResource(bold);
+            context.ValidateResource(italic);
+            context.ValidateResource(boldItalic);
 
             if (regular == null && bold == null && italic == null && boldItalic == null)
                 throw new ArgumentException(FrameworkStrings.InvalidFontFaces);

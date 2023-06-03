@@ -17,9 +17,9 @@ namespace Sedulous.SDL2.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="GamePadDeviceInfo"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public GamePadDeviceInfo(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public GamePadDeviceInfo(FrameworkContext context)
+            : base(context)
         {
             this.devicesByPlayer = new SDL2GamePadDevice[SDL_NumJoysticks()];
 
@@ -31,7 +31,7 @@ namespace Sedulous.SDL2.Input
                 }
             }
 
-            uv.Messages.Subscribe(this,
+            context.Messages.Subscribe(this,
                 SDL2FrameworkMessages.SDLEvent);
         }
 
@@ -159,9 +159,9 @@ namespace Sedulous.SDL2.Input
                         device.Dispose();
                     }
                 }
-                if (!Sedulous.Disposed)
+                if (!FrameworkContext.Disposed)
                 {
-                    Sedulous.Messages.Unsubscribe(this);
+                    FrameworkContext.Messages.Unsubscribe(this);
                 }
             }
             base.Dispose(disposing);
@@ -186,7 +186,7 @@ namespace Sedulous.SDL2.Input
             }
 
             var playerIndex = GetFirstAvailablePlayerIndex();
-            var device = new SDL2GamePadDevice(Sedulous, joystickIndex, playerIndex);
+            var device = new SDL2GamePadDevice(FrameworkContext, joystickIndex, playerIndex);
 
             devicesByPlayer[playerIndex] = device;
             count++;

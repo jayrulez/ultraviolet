@@ -7,10 +7,10 @@ namespace Sedulous.Graphics.Graphics2D.Text
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="TextShaper"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="capacity">The initial capacity of the text builder.</param>
     /// <returns>The instance of <see cref="TextShaper"/> that was created.</returns>
-    public delegate TextShaper TextShaperFactory(FrameworkContext uv, Int32 capacity = 0);
+    public delegate TextShaper TextShaperFactory(FrameworkContext context, Int32 capacity = 0);
 
     /// <summary>
     /// Represents a mutable buffer which can be used to perform text shaping.
@@ -20,9 +20,9 @@ namespace Sedulous.Graphics.Graphics2D.Text
         /// <summary>
         /// Initializes a new instance of the <see cref="TextShaper"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public TextShaper(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public TextShaper(FrameworkContext context)
+            : base(context)
         { }
 
         /// <summary>

@@ -23,10 +23,10 @@ namespace UvDebug.UI.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="TriangleColorSelector"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public TriangleColorSelector(FrameworkContext uv, String name)
-            : base(uv, name)
+        public TriangleColorSelector(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }

@@ -11,9 +11,9 @@ namespace Sedulous.Graphics.Graphics3D
         /// <summary>
         /// Initializes a new instance of the <see cref="PerspectiveCamera"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        private PerspectiveCamera(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        private PerspectiveCamera(FrameworkContext context)
+            : base(context)
         {
 
         }
@@ -27,7 +27,7 @@ namespace Sedulous.Graphics.Graphics3D
         /// <inheritdoc/>
         public override void Update(IFrameworkWindow window = null)
         {
-            var win = window ?? Sedulous.GetPlatform().Windows.GetCurrent() ?? Sedulous.GetPlatform().Windows.GetPrimary();
+            var win = window ?? FrameworkContext.GetPlatform().Windows.GetCurrent() ?? FrameworkContext.GetPlatform().Windows.GetPrimary();
             var aspectRatio = win.DrawableSize.Width / (Single)win.DrawableSize.Height;
 
             view = Matrix.CreateLookAt(Position, Target, Up);

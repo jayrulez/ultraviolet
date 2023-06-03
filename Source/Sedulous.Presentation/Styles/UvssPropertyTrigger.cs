@@ -45,7 +45,7 @@ namespace Sedulous.Presentation.Styles
 
             foreach (var condition in conditions)
             {
-                var dprop = DependencyProperty.FindByStylingName(Sedulous, dobj, condition.PropertyName.Owner, condition.PropertyName.Name);
+                var dprop = DependencyProperty.FindByStylingName(FrameworkContext, dobj, condition.PropertyName.Owner, condition.PropertyName.Name);
                 if (dprop == null)
                     throw new InvalidOperationException(PresentationStrings.EventOrPropertyDoesNotExist.Format(condition.PropertyName, dobj.GetType()));
 
@@ -65,7 +65,7 @@ namespace Sedulous.Presentation.Styles
 
             foreach (var condition in conditions)
             {
-                var dprop = DependencyProperty.FindByStylingName(Sedulous, dobj, condition.PropertyName.Owner, condition.PropertyName.Name);
+                var dprop = DependencyProperty.FindByStylingName(FrameworkContext, dobj, condition.PropertyName.Owner, condition.PropertyName.Name);
                 if (dprop == null)
                     throw new InvalidOperationException(PresentationStrings.EventOrPropertyDoesNotExist.Format(condition.PropertyName, dobj.GetType()));
 
@@ -85,7 +85,7 @@ namespace Sedulous.Presentation.Styles
         /// </summary>
         private void Evaluate(DependencyObject dobj)
         {
-            if (conditions.Evaluate(Sedulous, dobj))
+            if (conditions.Evaluate(FrameworkContext, dobj))
             {
                 if (!IsActivatedOn(dobj))
                 {

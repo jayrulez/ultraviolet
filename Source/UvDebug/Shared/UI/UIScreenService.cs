@@ -17,7 +17,7 @@ namespace UvDebug.UI
         /// Initializes a new instance of the UIScreenService type.
         /// </summary>
         public UIScreenService(ContentManager globalContent)
-            : base(globalContent?.Sedulous)
+            : base(globalContent?.FrameworkContext)
         {
             Contract.Require(globalContent, nameof(globalContent));
 

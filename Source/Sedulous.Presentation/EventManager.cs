@@ -86,22 +86,22 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Finds the routed event with the specified name.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="dobj">The dependency object which is searching for a routed event.</param>
         /// <param name="owner">The name of the routed event's owner type.</param>
         /// <param name="name">The name of the routed event.</param>
         /// <returns>A <see cref="RoutedEvent"/> instance which represents the specified routed event, 
         /// or <see langword="null"/> if no such routed event exists.</returns>
-        public static RoutedEvent FindByName(FrameworkContext uv, DependencyObject dobj, String owner, String name)
+        public static RoutedEvent FindByName(FrameworkContext context, DependencyObject dobj, String owner, String name)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(dobj, nameof(dobj));
             Contract.RequireNotEmpty(name, nameof(name));
 
             var type = String.IsNullOrEmpty(owner) ? dobj.GetType() : null;
             if (type == null)
             {
-                if (!uv.GetUI().GetPresentationFoundation().GetKnownType(owner, false, out type))
+                if (!context.GetUI().GetPresentationFoundation().GetKnownType(owner, false, out type))
                     throw new InvalidOperationException(PresentationStrings.UnrecognizedType.Format(owner));
             }
 
@@ -123,22 +123,22 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Finds the routed event with the specified styling name.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="dobj">The dependency object which is searching for a routed event.</param>
         /// <param name="owner">The name of the routed event's owner type.</param>
         /// <param name="name">The styling name of the routed event.</param>
         /// <returns>A <see cref="RoutedEvent"/> instance which represents the specified routed event, 
         /// or <see langword="null"/> if no such routed event exists.</returns>
-        public static RoutedEvent FindByStylingName(FrameworkContext uv, DependencyObject dobj, String owner, String name)
+        public static RoutedEvent FindByStylingName(FrameworkContext context, DependencyObject dobj, String owner, String name)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(dobj, nameof(dobj));
             Contract.RequireNotEmpty(name, nameof(name));
 
             var type = String.IsNullOrEmpty(owner) ? dobj.GetType() : null;
             if (type == null)
             {
-                if (!uv.GetUI().GetPresentationFoundation().GetKnownType(owner, false, out type))
+                if (!context.GetUI().GetPresentationFoundation().GetKnownType(owner, false, out type))
                     throw new InvalidOperationException(PresentationStrings.UnrecognizedType.Format(owner));
             }
 

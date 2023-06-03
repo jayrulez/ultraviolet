@@ -16,28 +16,28 @@ namespace Sedulous.OpenGL
         /// <summary>
         /// Initializes a new instance of the OpenGLSedulousGraphics class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="configuration">The Sedulous Framework configuration settings for the current context.</param>
-        public unsafe OpenGLGraphicsSubsystem(FrameworkContext uv, FrameworkConfiguration configuration) : base(uv)
+        public unsafe OpenGLGraphicsSubsystem(FrameworkContext context, FrameworkConfiguration configuration) : base(context)
         {
             var glGraphicsConfiguration = configuration.GraphicsConfiguration as OpenGLGraphicsConfiguration;
             if (glGraphicsConfiguration == null)
                 throw new InvalidOperationException(OpenGLStrings.InvalidGraphicsConfiguration);
 
-            this.OpenGLEnvironment = uv.GetFactoryMethod<OpenGLEnvironmentFactory>()(uv);
+            this.OpenGLEnvironment = context.GetFactoryMethod<OpenGLEnvironmentFactory>()(context);
 
             InitOpenGLVersion(glGraphicsConfiguration, out var versionRequested, out var versionRequired, out var isGLES);
             InitOpenGLEnvironment(glGraphicsConfiguration, isGLES);
 
-            uv.GetPlatform().InitializePrimaryWindow(configuration);
+            context.GetPlatform().InitializePrimaryWindow(configuration);
 
             if (this.context == IntPtr.Zero && configuration.Debug)
-                this.context = TryCreateOpenGLContext(uv, OpenGLEnvironment, versionRequested, versionRequired, true, false) ?? IntPtr.Zero;
+                this.context = TryCreateOpenGLContext(context, OpenGLEnvironment, versionRequested, versionRequired, true, false) ?? IntPtr.Zero;
 
             if (this.context == IntPtr.Zero)
-                this.context = TryCreateOpenGLContext(uv, OpenGLEnvironment, versionRequested, versionRequired, false, true) ?? IntPtr.Zero;
+                this.context = TryCreateOpenGLContext(context, OpenGLEnvironment, versionRequested, versionRequired, false, true) ?? IntPtr.Zero;
 
-            if (!OpenGLEnvironment.SetSwapInterval(1) && uv.Platform != FrameworkPlatform.iOS)
+            if (!OpenGLEnvironment.SetSwapInterval(1) && context.Platform != FrameworkPlatform.iOS)
                 OpenGLEnvironment.ThrowPlatformErrorException();
 
             if (gl.Initialized)
@@ -76,7 +76,7 @@ namespace Sedulous.OpenGL
             {
                 for (int i = 0; i < samplerObjects.Length; i++)
                 {
-                    samplerObjects[i] = new OpenGLSamplerObject(Sedulous);
+                    samplerObjects[i] = new OpenGLSamplerObject(FrameworkContext);
                     samplerObjects[i].Bind((uint)i);
                 }
             }            
@@ -165,7 +165,7 @@ namespace Sedulous.OpenGL
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var currentWindow = Sedulous.GetPlatform().Windows.GetCurrent();
+            var currentWindow = FrameworkContext.GetPlatform().Windows.GetCurrent();
             if (currentWindow != null && rt == null)
                 rt = currentWindow.Compositor.GetRenderTarget();
 
@@ -177,7 +177,7 @@ namespace Sedulous.OpenGL
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var currentWindow = Sedulous.GetPlatform().Windows.GetCurrent();
+            var currentWindow = FrameworkContext.GetPlatform().Windows.GetCurrent();
             if (currentWindow != null && rt == null)
                 rt = currentWindow.Compositor.GetRenderTarget();
 
@@ -189,7 +189,7 @@ namespace Sedulous.OpenGL
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var currentWindow = Sedulous.GetPlatform().Windows.GetCurrent();
+            var currentWindow = FrameworkContext.GetPlatform().Windows.GetCurrent();
             if (currentWindow != null && rt == null)
                 rt = currentWindow.Compositor.GetRenderTarget();
 
@@ -329,7 +329,7 @@ namespace Sedulous.OpenGL
             Contract.EnsureRange(sampler >= 0 && sampler < maxTextureStages, nameof(sampler));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            Sedulous.ValidateResource(texture);
+            FrameworkContext.ValidateResource(texture);
 
             if (texture != null && texture.BoundForWriting)
                 throw new InvalidOperationException(OpenGLStrings.RenderBufferCannotBeUsedAsTexture);
@@ -392,7 +392,7 @@ namespace Sedulous.OpenGL
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
-            Sedulous.ValidateResource(stream);
+            FrameworkContext.ValidateResource(stream);
 
             if (stream == null)
             {
@@ -423,7 +423,7 @@ namespace Sedulous.OpenGL
             Contract.Require(state, nameof(state));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            Sedulous.ValidateResource(state);
+            FrameworkContext.ValidateResource(state);
 
             if (this.blendState != state)
             {
@@ -446,7 +446,7 @@ namespace Sedulous.OpenGL
             Contract.Require(state, nameof(state));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            Sedulous.ValidateResource(state);
+            FrameworkContext.ValidateResource(state);
 
             if (this.depthStencilState != state)
             {
@@ -469,7 +469,7 @@ namespace Sedulous.OpenGL
             Contract.Require(state, nameof(state));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            Sedulous.ValidateResource(state);
+            FrameworkContext.ValidateResource(state);
 
             if (this.rasterizerState != state)
             {
@@ -493,7 +493,7 @@ namespace Sedulous.OpenGL
             Contract.Require(state, nameof(state));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            Sedulous.ValidateResource(state);
+            FrameworkContext.ValidateResource(state);
 
             var oglstate = (OpenGLSamplerState)state;
 
@@ -808,19 +808,19 @@ namespace Sedulous.OpenGL
         /// <summary>
         /// Attempts to create an OpenGL context.
         /// </summary>
-        private static IntPtr? TryCreateOpenGLContext(FrameworkContext uv, OpenGLEnvironment environment,
+        private static IntPtr? TryCreateOpenGLContext(FrameworkContext context, OpenGLEnvironment environment,
             Version versionRequested, Version versionRequired, Boolean debug, Boolean throwOnFailure)
         {
             if (!environment.RequestDebugContext(debug))
                 environment.ThrowPlatformErrorException();
 
-            var gles = (uv.Platform == FrameworkPlatform.Android || uv.Platform == FrameworkPlatform.iOS);
+            var gles = (context.Platform == FrameworkPlatform.Android || context.Platform == FrameworkPlatform.iOS);
             var versionArray = gles ? KnownOpenGLESVersions : KnownOpenGLVersions;
             var versionMin = versionRequested ?? versionRequired;
             var versionCurrent = versionRequested ?? versionArray[0];
             var versionCurrentIndex = Array.IndexOf(versionArray, versionCurrent);
 
-            IntPtr context;
+            IntPtr glContext;
             do
             {
                 if (versionCurrent < versionMin)
@@ -836,9 +836,9 @@ namespace Sedulous.OpenGL
 
                 versionCurrent = versionArray[++versionCurrentIndex];
             }
-            while ((context = environment.CreateOpenGLContext()) == IntPtr.Zero);
+            while ((glContext = environment.CreateOpenGLContext()) == IntPtr.Zero);
 
-            return context;
+            return glContext;
         }
 
         /// <summary>
@@ -951,7 +951,7 @@ namespace Sedulous.OpenGL
         /// </summary>
         private void InitOpenGLVersion(OpenGLGraphicsConfiguration configuration, out Version versionRequested, out Version versionRequired, out Boolean isGLES)
         {
-            isGLES = (Sedulous.Platform == FrameworkPlatform.Android || Sedulous.Platform == FrameworkPlatform.iOS);
+            isGLES = (FrameworkContext.Platform == FrameworkPlatform.Android || FrameworkContext.Platform == FrameworkPlatform.iOS);
 
             versionRequired = isGLES ? new Version(2, 0) : new Version(3, 1);
             versionRequested = isGLES ? configuration.MinimumOpenGLESVersion : configuration.MinimumOpenGLVersion;
@@ -1048,7 +1048,7 @@ namespace Sedulous.OpenGL
             }
             else
             {
-                var currentWindow = Sedulous.GetPlatform().Windows.GetCurrent();
+                var currentWindow = FrameworkContext.GetPlatform().Windows.GetCurrent();
                 if (currentWindow == null)
                     return;
 
@@ -1064,7 +1064,7 @@ namespace Sedulous.OpenGL
         private void SetRenderTargetInternal(RenderTarget2D renderTarget,
             Color? clearColor = null, Double? clearDepth = null, Int32? clearStencil = null)
         {
-            Sedulous.ValidateResource(renderTarget);
+            FrameworkContext.ValidateResource(renderTarget);
 
             var usage = renderTarget?.RenderTargetUsage ?? backBufferRenderTargetUsage;
             if (usage == RenderTargetUsage.PlatformContents)
@@ -1089,7 +1089,7 @@ namespace Sedulous.OpenGL
                 }
                 else
                 {
-                    var currentWindow = Sedulous.GetPlatform().Windows.GetCurrent();
+                    var currentWindow = FrameworkContext.GetPlatform().Windows.GetCurrent();
                     if (currentWindow != null)
                         targetSize = currentWindow.DrawableSize;
                 }

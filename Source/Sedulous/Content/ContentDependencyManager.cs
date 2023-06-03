@@ -15,10 +15,10 @@ namespace Sedulous.Content
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentDependencyManager"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="contentManager">The content manager that owns this dependency manager.</param>
-        internal ContentDependencyManager(FrameworkContext uv, ContentManager contentManager)
-            : base(uv)
+        internal ContentDependencyManager(FrameworkContext context, ContentManager contentManager)
+            : base(context)
         {
             Contract.Require(contentManager, nameof(contentManager));
 
@@ -37,7 +37,7 @@ namespace Sedulous.Content
             Contract.Require(dependency, nameof(dependency));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             AddAssetDependencyInternal(asset, dependency, primaryDisplayDensity);
@@ -55,7 +55,7 @@ namespace Sedulous.Content
             Contract.Ensure<ArgumentException>(dependency.IsValid, nameof(dependency));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             AddAssetDependencyInternal(AssetID.GetAssetPath(asset), AssetID.GetAssetPath(dependency), primaryDisplayDensity);
@@ -147,7 +147,7 @@ namespace Sedulous.Content
             Contract.Require(dependency, nameof(dependency));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return RemoveAssetDependencyInternal(asset, dependency, primaryDisplayDensity);
@@ -164,7 +164,7 @@ namespace Sedulous.Content
             Contract.Ensure<ArgumentException>(dependency.IsValid, nameof(dependency));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return RemoveAssetDependencyInternal(AssetID.GetAssetPath(asset), AssetID.GetAssetPath(dependency), primaryDisplayDensity);
@@ -182,7 +182,7 @@ namespace Sedulous.Content
             Contract.Require(dependency, nameof(dependency));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return IsAssetDependencyInternal(asset, dependency, primaryDisplayDensity);
@@ -200,7 +200,7 @@ namespace Sedulous.Content
             Contract.Ensure<ArgumentException>(dependency.IsValid, nameof(dependency));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return IsAssetDependencyInternal(AssetID.GetAssetPath(asset), AssetID.GetAssetPath(dependency), primaryDisplayDensity);
@@ -250,7 +250,7 @@ namespace Sedulous.Content
             Contract.Require(dependency, nameof(dependency));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return IsAssetDependencyPathInternal(asset, dependency, primaryDisplayDensity);
@@ -268,7 +268,7 @@ namespace Sedulous.Content
             Contract.Require(dependency, nameof(dependency));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return IsAssetDependencyPathInternal(AssetID.GetAssetPath(asset), dependency, primaryDisplayDensity);
@@ -422,7 +422,7 @@ namespace Sedulous.Content
         {
             get
             {
-                return (Sedulous.Platform == FrameworkPlatform.Android || Sedulous.Platform == FrameworkPlatform.iOS) ||
+                return (FrameworkContext.Platform == FrameworkPlatform.Android || FrameworkContext.Platform == FrameworkPlatform.iOS) ||
                     ContentManager.GloballySuppressDependencyTracking || ContentManager.SuppressDependencyTracking;
             }
         }

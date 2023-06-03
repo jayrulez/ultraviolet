@@ -14,10 +14,10 @@ namespace Sedulous.Content
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentWatchManager"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="contentManager">The <see cref="ContentManager"/> instance that owns this file watcher.</param>
-        internal ContentWatchManager(FrameworkContext uv, ContentManager contentManager)
-            : base(uv)
+        internal ContentWatchManager(FrameworkContext context, ContentManager contentManager)
+            : base(context)
         {
             Contract.Require(contentManager, nameof(contentManager));
 
@@ -35,7 +35,7 @@ namespace Sedulous.Content
             Contract.Require(asset, nameof(asset));
             Contract.Require(watcher, nameof(watcher));
 
-            var primaryDisplay = ContentManager.Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = ContentManager.FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensityBucket = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return AddWatcherInternal(asset, primaryDisplayDensityBucket, watcher);
@@ -51,7 +51,7 @@ namespace Sedulous.Content
         {
             Contract.Require(watcher, nameof(watcher));
 
-            var primaryDisplay = ContentManager.Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = ContentManager.FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensityBucket = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return AddWatcherInternal(AssetID.GetAssetPath(asset), primaryDisplayDensityBucket, watcher);
@@ -97,7 +97,7 @@ namespace Sedulous.Content
             Contract.Require(asset, nameof(asset));
             Contract.Require(watcher, nameof(watcher));
 
-            var primaryDisplay = ContentManager.Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = ContentManager.FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensityBucket = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return RemoveWatcherInternal(asset, primaryDisplayDensityBucket, watcher);
@@ -113,7 +113,7 @@ namespace Sedulous.Content
         {
             Contract.Require(watcher, nameof(watcher));
 
-            var primaryDisplay = ContentManager.Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = ContentManager.FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensityBucket = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return RemoveWatcherInternal(AssetID.GetAssetPath(asset), primaryDisplayDensityBucket, watcher);
@@ -161,7 +161,7 @@ namespace Sedulous.Content
             Contract.RequireNotEmpty(asset, nameof(asset));
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay.DensityBucket;
 
             return GetSharedWatchedAssetInternal<TOutput>(asset, primaryDisplayDensity);
@@ -179,7 +179,7 @@ namespace Sedulous.Content
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay.DensityBucket;
 
             return GetSharedWatchedAssetInternal<TOutput>(AssetID.GetAssetPath(asset), primaryDisplayDensity);
@@ -275,7 +275,7 @@ namespace Sedulous.Content
             {
                 if (rootFileSystemWatcher == null)
                 {
-                    var rootdir = ContentDiscovery.FindSolutionDirectory(Sedulous, ContentManager.RootDirectory) ?? ContentManager.RootDirectory;
+                    var rootdir = ContentDiscovery.FindSolutionDirectory(FrameworkContext, ContentManager.RootDirectory) ?? ContentManager.RootDirectory;
                     rootFileSystemWatcher = new FileSystemWatcher(rootdir);
                     rootFileSystemWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime;
                     rootFileSystemWatcher.IncludeSubdirectories = true;

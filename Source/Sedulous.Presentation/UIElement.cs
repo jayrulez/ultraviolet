@@ -62,14 +62,14 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Initializes a new instance of the <see cref="UIElement"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public UIElement(FrameworkContext uv)
+        /// <param name="context">The Sedulous context.</param>
+        public UIElement(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
             var attr = (UvmlKnownTypeAttribute)GetType().GetCustomAttributes(typeof(UvmlKnownTypeAttribute), false).SingleOrDefault();
 
-            this.uv = uv;
+            this.context = context;
             this.classes = new UIElementClassCollection(this);
             this.uvmlName = (attr == null || attr.Name == null) ? GetType().Name : attr.Name;
 
@@ -196,7 +196,7 @@ namespace Sedulous.Presentation
 
                 var forceFullOpacity = false;
 
-                var upf = Sedulous.GetUI().GetPresentationFoundation();
+                var upf = FrameworkContext.GetUI().GetPresentationFoundation();
                 if (upf.OutOfBandRenderer.IsDrawingRenderTargetFor(this))
                     forceFullOpacity = true;
 
@@ -286,7 +286,7 @@ namespace Sedulous.Presentation
             Contract.Require(dc, nameof(dc));
             Contract.Require(target, nameof(target));
 
-            var graphics = Sedulous.GetGraphics();
+            var graphics = FrameworkContext.GetGraphics();
             graphics.SetRenderTarget(target, Color.Transparent);
 
             var bounds = Display.DipsToPixels(TransformedVisualBounds);
@@ -384,7 +384,7 @@ namespace Sedulous.Presentation
             if (isStyleValid && mostRecentStyleSheet == styleSheet)
                 return;
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.StyleCount++;
 
             this.mostRecentStyleSheet = styleSheet;
@@ -427,7 +427,7 @@ namespace Sedulous.Presentation
             if (isMeasureValid && mostRecentAvailableSize.Equals(availableSize))
                 return;
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.MeasureCount++;
 
             this.mostRecentAvailableSize = availableSize;
@@ -483,7 +483,7 @@ namespace Sedulous.Presentation
             if (isArrangeValid && mostRecentFinalRect.Equals(finalRect) && ((Int32)mostRecentArrangeOptions).Equals((Int32)options))
                 return;
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.ArrangeCount++;
 
             this.mostRecentArrangeOptions = options;
@@ -542,7 +542,7 @@ namespace Sedulous.Presentation
 
             mostRecentPositionOffset = offset;
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.PositionCount++;
 
             var parent = VisualTreeHelper.GetParent(this) as UIElement;
@@ -601,7 +601,7 @@ namespace Sedulous.Presentation
             {
                 this.isStyleValid = false;
 
-                var upf = uv.GetUI().GetPresentationFoundation();
+                var upf = context.GetUI().GetPresentationFoundation();
                 upf.PerformanceStats.InvalidateStyleCount++;
                 upf.StyleQueue.Enqueue(this);
             }
@@ -625,7 +625,7 @@ namespace Sedulous.Presentation
 
             this.isMeasureValid = false;
 
-            var upf = uv.GetUI().GetPresentationFoundation();
+            var upf = context.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.InvalidateMeasureCount++;
             upf.MeasureQueue.Enqueue(this);
         }
@@ -642,7 +642,7 @@ namespace Sedulous.Presentation
             this.isArrangeValid = false;
             this.forceInvalidatePosition = forceInvalidatePosition;
 
-            var upf = uv.GetUI().GetPresentationFoundation();
+            var upf = context.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.InvalidateArrangeCount++;
             upf.ArrangeQueue.Enqueue(this);
         }
@@ -775,9 +775,9 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Gets the Sedulous context that created this element.
         /// </summary>
-        public FrameworkContext Sedulous
+        public FrameworkContext FrameworkContext
         {
-            get { return uv; }
+            get { return context; }
         }
 
         /// <summary>
@@ -1146,7 +1146,7 @@ namespace Sedulous.Presentation
 
                 if (oldNull && !newNull)
                 {
-                    Sedulous.GetUI().GetPresentationFoundation().RegisterForLayoutUpdated(this);
+                    FrameworkContext.GetUI().GetPresentationFoundation().RegisterForLayoutUpdated(this);
                 }
             }
             remove
@@ -1157,7 +1157,7 @@ namespace Sedulous.Presentation
 
                 if (!oldNull && newNull)
                 {
-                    Sedulous.GetUI().GetPresentationFoundation().UnregisterForLayoutUpdated(this);
+                    FrameworkContext.GetUI().GetPresentationFoundation().UnregisterForLayoutUpdated(this);
                 }
             }
         }
@@ -1567,10 +1567,10 @@ namespace Sedulous.Presentation
                         var propertyName = animation.Key.PropertyName;
 
                         var dpSource = animation.Key.NavigationExpression.HasValue ?
-                            animation.Key.NavigationExpression.Value.ApplyExpression(Sedulous, this) : this;
+                            animation.Key.NavigationExpression.Value.ApplyExpression(FrameworkContext, this) : this;
                         if (dpSource != null)
                         {
-                            var dp = DependencyProperty.FindByName(Sedulous, dpSource, propertyName.Owner, propertyName.Name);
+                            var dp = DependencyProperty.FindByName(FrameworkContext, dpSource, propertyName.Owner, propertyName.Name);
                             if (dp != null)
                             {
                                 dpSource.EnlistDependencyPropertyInStoryboard(dp, storyboardInstance, animation.Value);
@@ -1801,11 +1801,11 @@ namespace Sedulous.Presentation
             var target = (DependencyObject)this;
             if (navigationExpression.HasValue)
             {
-                target = navigationExpression.Value.ApplyExpression(Sedulous, this);
+                target = navigationExpression.Value.ApplyExpression(FrameworkContext, this);
                 if (target == null)
                     return;
 
-                dprop = DependencyProperty.FindByStylingName(Sedulous, target, style.Owner, style.Name);
+                dprop = DependencyProperty.FindByStylingName(FrameworkContext, target, style.Owner, style.Name);
             }
 
             var name = style.Name;
@@ -3085,7 +3085,7 @@ namespace Sedulous.Presentation
             if (this is PopupRoot)
                 element = Parent as Popup;
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             if (upf.OutOfBandRenderer.IsTextureReady(element))
             {
                 var target = upf.OutOfBandRenderer.GetElementRenderTarget(element);
@@ -3211,7 +3211,7 @@ namespace Sedulous.Presentation
             if (RequiredOutOfBandTargets == 0)
                 return;
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.OutOfBandRenderer.Unregister(this);
         }
 
@@ -3334,7 +3334,7 @@ namespace Sedulous.Presentation
             if (OutOfBandRenderTarget != null || RequiredOutOfBandTargets <= 0)
                 return;
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             if (upf.OutOfBandRenderer.IsDrawingRenderTargets)
                 return;
 
@@ -3354,7 +3354,7 @@ namespace Sedulous.Presentation
 
                 if (requiredOutOfBandTargets > 0)
                 {
-                    var upf = Sedulous.GetUI().GetPresentationFoundation();
+                    var upf = FrameworkContext.GetUI().GetPresentationFoundation();
                     upf.OutOfBandRenderer.Unregister(this);
                 }
 
@@ -3364,7 +3364,7 @@ namespace Sedulous.Presentation
         }
 
         // Property values.
-        private readonly FrameworkContext uv;
+        private readonly FrameworkContext context;
         private readonly UIElementClassCollection classes;
         private readonly String uvmlName;
         private PresentationFoundationView view;

@@ -15,7 +15,7 @@ namespace Sedulous.Presentation.Styles
         /// <inheritdoc/>
         public override UvssDocument Process(ContentManager manager, IContentProcessorMetadata metadata, String input)
         {
-            return UvssDocument.Compile(manager.Sedulous, input);
+            return UvssDocument.Compile(manager.FrameworkContext, input);
         }
 
         /// <inheritdoc/>
@@ -38,7 +38,7 @@ namespace Sedulous.Presentation.Styles
                 throw new InvalidDataException();
             
             var ast = (UvssDocumentSyntax)SyntaxSerializer.FromStream(reader, version);           
-            return UvssCompiler.Compile(manager.Sedulous, ast);
+            return UvssCompiler.Compile(manager.FrameworkContext, ast);
         }
 
         /// <inheritdoc/>

@@ -17,9 +17,9 @@ namespace Sedulous.FMOD.Audio
         /// <summary>
         /// Initializes a new instance of the <see cref="FMODChannelPlayer"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public FMODChannelPlayer(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public FMODChannelPlayer(FrameworkContext context)
+            : base(context)
         {
 
         }
@@ -344,7 +344,7 @@ namespace Sedulous.FMOD.Audio
             if (Disposed)
                 return;
 
-            if (Sedulous != null && !Sedulous.Disposed)
+            if (FrameworkContext != null && !FrameworkContext.Disposed)
                 Stop();
 
             base.Dispose(disposing);
@@ -374,7 +374,7 @@ namespace Sedulous.FMOD.Audio
 
             var result = default(FMOD_RESULT);
 
-            var system = ((FMODAudioSubsystem)Sedulous.GetAudio()).System;
+            var system = ((FMODAudioSubsystem)FrameworkContext.GetAudio()).System;
             var channel = default(FMOD_CHANNEL*);
             
             if (loopStart > TimeSpan.Zero && loopLength <= TimeSpan.Zero)

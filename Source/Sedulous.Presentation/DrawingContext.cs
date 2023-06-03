@@ -1241,7 +1241,7 @@ namespace Sedulous.Presentation
             currentStencil = cliprect;
             if (currentStencil.HasValue)
             {
-                SpriteBatch.Sedulous.GetGraphics().Clear(ClearOptions.Stencil, Color.White, 0.0, 1);
+                SpriteBatch.FrameworkContext.GetGraphics().Clear(ClearOptions.Stencil, Color.White, 0.0, 1);
                 
                 SpriteBatch.Begin(SpriteSortMode.Immediate, StencilBlendState, SamplerState.LinearClamp,
                     StencilWriteDepthState, RasterizerState.CullCounterClockwise, null, state.CombinedTransform);
@@ -1250,7 +1250,7 @@ namespace Sedulous.Presentation
             }
             else
             {
-                SpriteBatch.Sedulous.GetGraphics().Clear(ClearOptions.Stencil, Color.White, 0.0, 0);
+                SpriteBatch.FrameworkContext.GetGraphics().Clear(ClearOptions.Stencil, Color.White, 0.0, 0);
             }
 
             Begin(state);
@@ -1269,14 +1269,14 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Gets the Sedulous context currently associated with the drawing context.
         /// </summary>
-        public FrameworkContext Sedulous
+        public FrameworkContext FrameworkContext
         {
             get
             {
                 if (SpriteBatch == null)
                     throw new InvalidOperationException(PresentationStrings.DrawingContextDoesNotHaveSpriteBatch);
 
-                return SpriteBatch.Sedulous;
+                return SpriteBatch.FrameworkContext;
             }
         }
 

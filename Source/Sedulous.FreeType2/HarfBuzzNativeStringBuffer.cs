@@ -14,10 +14,10 @@ namespace Sedulous.FreeType2
         /// <summary>
         /// Initializes a new instance of the <see cref="HarfBuzzNativeStringBuffer"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="capacity">The initial capacity of the buffer, in characters.</param>
-        public HarfBuzzNativeStringBuffer(FrameworkContext uv, Int32 capacity = 32)
-            : base(uv)
+        public HarfBuzzNativeStringBuffer(FrameworkContext context, Int32 capacity = 32)
+            : base(context)
         {
             EnsureCapacity(capacity);
         }

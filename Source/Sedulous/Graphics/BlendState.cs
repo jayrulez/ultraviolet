@@ -6,9 +6,9 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="BlendState"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <returns>The instance of <see cref="BlendState"/> that was created.</returns>
-    public delegate BlendState BlendStateFactory(FrameworkContext uv);
+    public delegate BlendState BlendStateFactory(FrameworkContext context);
 
     /// <summary>
     /// Represents a graphics device's blend state.
@@ -26,9 +26,9 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="BlendState"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        protected BlendState(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        protected BlendState(FrameworkContext context)
+            : base(context)
         {
 
         }

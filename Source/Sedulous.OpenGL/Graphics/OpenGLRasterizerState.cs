@@ -13,9 +13,9 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLRasterizerState class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public OpenGLRasterizerState(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public OpenGLRasterizerState(FrameworkContext context)
+            : base(context)
         {
 
         }
@@ -23,11 +23,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the CullClockwise rasterizer state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The rasterizer state that was created.</returns>
-        public static OpenGLRasterizerState CreateCullClockwise(FrameworkContext uv)
+        public static OpenGLRasterizerState CreateCullClockwise(FrameworkContext context)
         {
-            var state = new OpenGLRasterizerState(uv);
+            var state = new OpenGLRasterizerState(context);
             state.CullMode = CullMode.CullClockwiseFace;
             state.MakeImmutable();
             return state;
@@ -36,11 +36,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the CullCounterClockwise rasterizer state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The rasterizer state that was created.</returns>
-        public static OpenGLRasterizerState CreateCullCounterClockwise(FrameworkContext uv)
+        public static OpenGLRasterizerState CreateCullCounterClockwise(FrameworkContext context)
         {
-            var state = new OpenGLRasterizerState(uv);
+            var state = new OpenGLRasterizerState(context);
             state.CullMode = CullMode.CullCounterClockwiseFace;
             state.MakeImmutable();
             return state;
@@ -49,11 +49,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the CullNone rasterizer state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The rasterizer state that was created.</returns>
-        public static OpenGLRasterizerState CreateCullNone(FrameworkContext uv)
+        public static OpenGLRasterizerState CreateCullNone(FrameworkContext context)
         {
-            var state = new OpenGLRasterizerState(uv);
+            var state = new OpenGLRasterizerState(context);
             state.CullMode = CullMode.None;
             state.MakeImmutable();
             return state;

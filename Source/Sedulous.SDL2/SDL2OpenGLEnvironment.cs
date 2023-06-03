@@ -18,9 +18,9 @@ namespace Sedulous.SDL2
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2OpenGLEnvironment"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public SDL2OpenGLEnvironment(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public SDL2OpenGLEnvironment(FrameworkContext context)
+            : base(context)
         { }
 
         /// <inheritdoc/>
@@ -33,7 +33,7 @@ namespace Sedulous.SDL2
         /// <inheritdoc/>
         public override IntPtr CreateOpenGLContext()
         {
-            var masterWindowPtr = ((SDL2FrameworkWindowInfo)Sedulous.GetPlatform().Windows).GetMasterPointer();
+            var masterWindowPtr = ((SDL2FrameworkWindowInfo)FrameworkContext.GetPlatform().Windows).GetMasterPointer();
             return SDL_GL_CreateContext(masterWindowPtr);
         }
 
@@ -46,21 +46,21 @@ namespace Sedulous.SDL2
         /// <inheritdoc/>
         public override void DesignateCurrentWindow(IFrameworkWindow window, IntPtr openGLContext)
         {
-            var windowInfo = ((SDL2FrameworkWindowInfoOpenGL)Sedulous.GetPlatform().Windows);
+            var windowInfo = ((SDL2FrameworkWindowInfoOpenGL)FrameworkContext.GetPlatform().Windows);
             windowInfo.DesignateCurrent(window, openGLContext);
         }
 
         /// <inheritdoc/>
         public override void DrawFramebuffer(FrameworkTime time)
         {
-            var oglwin = (SDL2FrameworkWindow)Sedulous.GetPlatform().Windows.GetCurrent();
+            var oglwin = (SDL2FrameworkWindow)FrameworkContext.GetPlatform().Windows.GetCurrent();
             oglwin.Draw(time);
         }
 
         /// <inheritdoc/>
         public override void SwapFramebuffers()
         {
-            var oglwin = (SDL2FrameworkWindow)Sedulous.GetPlatform().Windows.GetCurrent();
+            var oglwin = (SDL2FrameworkWindow)FrameworkContext.GetPlatform().Windows.GetCurrent();
             SDL_GL_SwapWindow((IntPtr)oglwin);
         }
 

@@ -13,7 +13,7 @@ namespace Sedulous.OpenGL.Graphics
         public override OpenGLFragmentShader Process(ContentManager manager, IContentProcessorMetadata metadata, String input)
         {
             var source = ShaderSource.ProcessRawSource(manager, metadata, input, ShaderStage.Fragment);
-            return new OpenGLFragmentShader(manager.Sedulous, new[] { source });
+            return new OpenGLFragmentShader(manager.FrameworkContext, new[] { source });
         }
     }
 }

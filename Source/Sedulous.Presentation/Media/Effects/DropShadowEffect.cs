@@ -106,7 +106,7 @@ namespace Sedulous.Presentation.Media.Effects
         /// <inheritdoc/>
         protected internal override void DrawRenderTargets(DrawingContext dc, UIElement element, OutOfBandRenderTarget target)
         {
-            var gfx = dc.Sedulous.GetGraphics();
+            var gfx = dc.FrameworkContext.GetGraphics();
             
             // Calculate the shadow's offset from the element
             var cumulativeTransform = target.VisualTransform;

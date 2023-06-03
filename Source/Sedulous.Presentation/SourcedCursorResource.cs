@@ -42,7 +42,7 @@ namespace Sedulous.Presentation
             if (!cursorCollectionID.IsValid || String.IsNullOrEmpty(cursorName))
                 return;
 
-            var watch = content.Sedulous.GetUI().WatchingViewFilesForChanges;
+            var watch = content.FrameworkContext.GetUI().WatchingViewFilesForChanges;
             cursorCollection = watch ? content.Watchers.GetSharedWatchedAsset<CursorCollection>(CursorCollectionID, density) :
                 (WatchableAssetReference<CursorCollection>)content.Load<CursorCollection>(CursorCollectionID, density);
         }

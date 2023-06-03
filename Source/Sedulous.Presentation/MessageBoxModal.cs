@@ -25,7 +25,7 @@ namespace Sedulous.Presentation
         {
             Contract.Require(owner, nameof(owner));
 
-            var uv = owner.Sedulous;
+            var uv = owner.FrameworkContext;
             var screenFactory = uv.TryGetFactoryMethod<MessageBoxScreenFactory>();
             if (screenFactory == null)
                 throw new InvalidOperationException(PresentationStrings.FactoryMethodMissing.Format(typeof(MessageBoxScreenFactory).Name));

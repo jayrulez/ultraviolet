@@ -16,11 +16,11 @@ namespace Sedulous.SDL2.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2Surface2D"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="source">The surface source from which to create the surface.</param>
         /// <param name="options">The surface's configuration options.</param>
-        public SDL2Surface2D(FrameworkContext uv, SurfaceSource source, SurfaceOptions options)
-            : this(uv, new SDL2PlatformNativeSurface(source), options)
+        public SDL2Surface2D(FrameworkContext context, SurfaceSource source, SurfaceOptions options)
+            : this(context, new SDL2PlatformNativeSurface(source), options)
         {
 
         }
@@ -28,11 +28,11 @@ namespace Sedulous.SDL2.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2Surface2D"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="nativesurf">The native SDL surface that this object represents.</param>
         /// <param name="options">The surface's configuration options.</param>
-        public SDL2Surface2D(FrameworkContext uv, PlatformNativeSurface nativesurf, SurfaceOptions options)
-            : base(uv)
+        public SDL2Surface2D(FrameworkContext context, PlatformNativeSurface nativesurf, SurfaceOptions options)
+            : base(context)
         {
             if (nativesurf == null)
                 throw new ArgumentNullException(nameof(nativesurf));
@@ -43,18 +43,18 @@ namespace Sedulous.SDL2.Graphics
                 throw new ArgumentException(FrameworkStrings.SurfaceCannotHaveMultipleEncodings);
 
             this.nativesurf = (SDL2PlatformNativeSurface)nativesurf;
-            this.SrgbEncoded = isLinear ? false : (isSrgb ? true : uv.Properties.SrgbDefaultForSurface2D);
+            this.SrgbEncoded = isLinear ? false : (isSrgb ? true : context.Properties.SrgbDefaultForSurface2D);
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2Surface2D"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="width">The width of the surface in pixels.</param>
         /// <param name="height">The height of the surface in pixels.</param>
         /// <param name="options">The surface's configuration options.</param>
-        public SDL2Surface2D(FrameworkContext uv, Int32 width, Int32 height, SurfaceOptions options)
-            : base(uv)
+        public SDL2Surface2D(FrameworkContext context, Int32 width, Int32 height, SurfaceOptions options)
+            : base(context)
         {
             Contract.EnsureRange(width > 0, nameof(width));
             Contract.EnsureRange(height > 0, nameof(height));
@@ -65,7 +65,7 @@ namespace Sedulous.SDL2.Graphics
                 throw new ArgumentException(FrameworkStrings.SurfaceCannotHaveMultipleEncodings);
 
             this.nativesurf = new SDL2PlatformNativeSurface(width, height);
-            this.SrgbEncoded = isLinear ? false : (isSrgb ? true : uv.Properties.SrgbDefaultForSurface2D);
+            this.SrgbEncoded = isLinear ? false : (isSrgb ? true : context.Properties.SrgbDefaultForSurface2D);
         }
 
         /// <inheritdoc/>
@@ -157,7 +157,7 @@ namespace Sedulous.SDL2.Graphics
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.Require(dst, nameof(dst));
 
-            Sedulous.ValidateResource(dst);
+            FrameworkContext.ValidateResource(dst);
 
             BlitInternal(this, new Rectangle(0, 0, Width, Height), (SDL2Surface2D)dst, new Rectangle(0, 0, dst.Width, dst.Height));
         }
@@ -168,7 +168,7 @@ namespace Sedulous.SDL2.Graphics
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.Require(dst, nameof(dst));
 
-            Sedulous.ValidateResource(dst);
+            FrameworkContext.ValidateResource(dst);
 
             BlitInternal(this, new Rectangle(0, 0, Width, Height), (SDL2Surface2D)dst, dstRect);
         }
@@ -179,7 +179,7 @@ namespace Sedulous.SDL2.Graphics
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.Require(dst, nameof(dst));
 
-            Sedulous.ValidateResource(dst);
+            FrameworkContext.ValidateResource(dst);
 
             BlitInternal(this, srcRect, (SDL2Surface2D)dst, dstRect);
         }
@@ -190,7 +190,7 @@ namespace Sedulous.SDL2.Graphics
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.Require(dst, nameof(dst));
 
-            Sedulous.ValidateResource(dst);
+            FrameworkContext.ValidateResource(dst);
 
             BlitInternal(this, (SDL2Surface2D)dst, position, SurfaceFlipDirection.None);
         }
@@ -201,7 +201,7 @@ namespace Sedulous.SDL2.Graphics
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.Require(dst, nameof(dst));
 
-            Sedulous.ValidateResource(dst);
+            FrameworkContext.ValidateResource(dst);
 
             BlitInternal(this, (SDL2Surface2D)dst, position, direction);
         }
@@ -214,7 +214,7 @@ namespace Sedulous.SDL2.Graphics
             var options = SrgbEncoded ? SurfaceOptions.SrgbColor : SurfaceOptions.LinearColor;
             var copysurf = nativesurf.CreateCopy();
 
-            return new SDL2Surface2D(Sedulous, copysurf, options);
+            return new SDL2Surface2D(FrameworkContext, copysurf, options);
         }
 
         /// <inheritdoc/>
@@ -234,7 +234,7 @@ namespace Sedulous.SDL2.Graphics
                 throw new SDL2Exception();
 
             var options = SrgbEncoded ? SurfaceOptions.SrgbColor : SurfaceOptions.LinearColor;
-            var result = new SDL2Surface2D(Sedulous, copysurf, options);
+            var result = new SDL2Surface2D(FrameworkContext, copysurf, options);
 
             return result;
         }
@@ -256,7 +256,7 @@ namespace Sedulous.SDL2.Graphics
                     if (SDL_BlitSurface(nativesurf.NativePtr, null, copysurf.NativePtr, null) < 0)
                         throw new SDL2Exception();
 
-                    copysurf.Flip(Sedulous.GetGraphics().Capabilities.FlippedTextures ? 
+                    copysurf.Flip(FrameworkContext.GetGraphics().Capabilities.FlippedTextures ? 
                         SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None);
 
                     var options = TextureOptions.ImmutableStorage | (SrgbEncoded ? TextureOptions.SrgbColor : TextureOptions.LinearColor);

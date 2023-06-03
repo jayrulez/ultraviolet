@@ -32,7 +32,7 @@ namespace Sedulous.Presentation.Compiler
         /// <summary>
         /// Gets the Sedulous context.
         /// </summary>
-        ICrossThreadFrameworkContext Sedulous { get; }
+        ICrossThreadFrameworkContext FrameworkContext { get; }
         
         /// <summary>
         /// Gets or sets a value indicating whether the compiler should generate its output assembly in memory

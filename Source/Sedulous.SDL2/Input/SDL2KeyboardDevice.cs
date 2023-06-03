@@ -20,21 +20,21 @@ namespace Sedulous.SDL2.Input
         /// <summary>
         /// Initializes a new instance of the SDL2KeyboardDevice class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public SDL2KeyboardDevice(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public SDL2KeyboardDevice(FrameworkContext context)
+            : base(context)
         {
             Int32 numkeys;
             SDL_GetKeyboardState(out numkeys);
 
             this.states = new InternalButtonState[numkeys];
 
-            uv.Messages.Subscribe(this,
+            context.Messages.Subscribe(this,
                 FrameworkMessages.SoftwareKeyboardShown);
-            uv.Messages.Subscribe(this,
+            context.Messages.Subscribe(this,
                 FrameworkMessages.SoftwareKeyboardHidden);
 
-            uv.Messages.Subscribe(this,
+            context.Messages.Subscribe(this,
                 SDL2FrameworkMessages.SDLEvent);
         }
 
@@ -229,9 +229,9 @@ namespace Sedulous.SDL2.Input
 
             if (disposing)
             {
-                if (!Sedulous.Disposed)
+                if (!FrameworkContext.Disposed)
                 {
-                    Sedulous.Messages.Unsubscribe(this);
+                    FrameworkContext.Messages.Unsubscribe(this);
                 }
             }
 
@@ -243,7 +243,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void OnKeyDown(ref SDL_KeyboardEvent evt)
         {
-            var window = Sedulous.GetPlatform().Windows.GetByID((int)evt.windowID);
+            var window = FrameworkContext.GetPlatform().Windows.GetByID((int)evt.windowID);
             var mods   = evt.keysym.mod;
             var ctrl   = (mods & KMOD_CTRL) != 0;
             var alt    = (mods & KMOD_ALT) != 0;
@@ -264,7 +264,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void OnKeyUp(ref SDL_KeyboardEvent evt)
         {
-            var window = Sedulous.GetPlatform().Windows.GetByID((int)evt.windowID);
+            var window = FrameworkContext.GetPlatform().Windows.GetByID((int)evt.windowID);
 
             states[(int)evt.keysym.scancode].OnUp();
 
@@ -277,7 +277,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private unsafe void OnTextEditing(ref SDL_TextEditingEvent evt)
         {
-            var window = Sedulous.GetPlatform().Windows.GetByID((int)evt.windowID);
+            var window = FrameworkContext.GetPlatform().Windows.GetByID((int)evt.windowID);
             fixed (byte* input = evt.text)
             {
                 if (ConvertTextInputToUtf16(input))
@@ -292,7 +292,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private unsafe void OnTextInput(ref SDL_TextInputEvent evt)
         {
-            var window = Sedulous.GetPlatform().Windows.GetByID((int)evt.windowID);
+            var window = FrameworkContext.GetPlatform().Windows.GetByID((int)evt.windowID);
             fixed (byte* input = evt.text)
             {
                 if (ConvertTextInputToUtf16(input))
@@ -342,7 +342,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void Register()
         {
-            var input = (SDL2FrameworkInput)Sedulous.GetInput();
+            var input = (SDL2FrameworkInput)FrameworkContext.GetInput();
             if (input.RegisterKeyboardDevice(this))
                 isRegistered = true;
         }

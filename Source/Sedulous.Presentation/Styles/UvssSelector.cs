@@ -212,7 +212,7 @@ namespace Sedulous.Presentation.Styles
             if (part.HasType)
             {
                 var partElementType = default(Type);
-                if (!element.Sedulous.GetUI().GetPresentationFoundation().GetKnownType(part.Type, false, out partElementType))
+                if (!element.FrameworkContext.GetUI().GetPresentationFoundation().GetKnownType(part.Type, false, out partElementType))
                     return false;
 
                 if (part.HasExactType)

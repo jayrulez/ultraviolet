@@ -41,9 +41,9 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseDevice"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public MouseDevice(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public MouseDevice(FrameworkContext context)
+            : base(context)
         {
 
         }
@@ -166,7 +166,7 @@ namespace Sedulous.Input
         {
             get
             {
-                var input = Sedulous.GetInput();
+                var input = FrameworkContext.GetInput();
 
                 if (!input.IsKeyboardSupported())
                     return false;
@@ -182,7 +182,7 @@ namespace Sedulous.Input
         {
             get
             {
-                var input = Sedulous.GetInput();
+                var input = FrameworkContext.GetInput();
 
                 if (!input.IsKeyboardSupported())
                     return false;
@@ -198,7 +198,7 @@ namespace Sedulous.Input
         {
             get
             {
-                var input = Sedulous.GetInput();
+                var input = FrameworkContext.GetInput();
 
                 if (!input.IsKeyboardSupported())
                     return false;

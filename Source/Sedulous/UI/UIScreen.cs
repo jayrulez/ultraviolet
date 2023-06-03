@@ -27,12 +27,12 @@ namespace Sedulous.UI
         /// <summary>
         /// Initializes a new instance of the <see cref="UIScreen"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="rootDirectory">The root directory of the panel's local content manager.</param>
         /// <param name="definitionAsset">The asset path of the screen's definition file.</param>
         /// <param name="globalContent">The content manager with which to load globally-available assets.</param>
-        protected UIScreen(FrameworkContext uv, String rootDirectory, String definitionAsset, ContentManager globalContent)
-            : base(uv, rootDirectory, globalContent)
+        protected UIScreen(FrameworkContext context, String rootDirectory, String definitionAsset, ContentManager globalContent)
+            : base(context, rootDirectory, globalContent)
         {
             var definitionWrapper = LoadPanelDefinition(definitionAsset);
             if (definitionWrapper?.HasValue ?? false)
@@ -211,7 +211,7 @@ namespace Sedulous.UI
             {
                 if (Window != null && !Window.Disposed)
                 {
-                    Sedulous.GetUI().GetScreens(Window).Close(this, TimeSpan.Zero);
+                    FrameworkContext.GetUI().GetScreens(Window).Close(this, TimeSpan.Zero);
                 }
             }
             
@@ -230,11 +230,11 @@ namespace Sedulous.UI
             if (String.IsNullOrEmpty(asset))
                 return null;
 
-            var display = Window?.Display ?? Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var display = Window?.Display ?? FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var density = display.DensityBucket;
             Scale = display.DensityScale;
 
-            var watch = Sedulous.GetUI().WatchingViewFilesForChanges;
+            var watch = FrameworkContext.GetUI().WatchingViewFilesForChanges;
             if (watch)
             {
                 var definition = new WatchedAsset<UIPanelDefinition>(LocalContent, asset, density, OnValidatingUIPanelDefinition, OnReloadingUIPanelDefinition);

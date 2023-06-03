@@ -18,9 +18,9 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="InputActionCollection"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        protected InputActionCollection(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        protected InputActionCollection(FrameworkContext context)
+            : base(context)
         {
 
         }
@@ -319,7 +319,7 @@ namespace Sedulous.Input
         /// <returns>The binding that was created.</returns>
         protected InputBinding CreateKeyboardBinding(Key key, Boolean control = false, Boolean alt = false, Boolean shift = false)
         {
-            return Sedulous.GetInput().IsKeyboardSupported() ? new KeyboardInputBinding(Sedulous, key, control, alt, shift) : null;
+            return FrameworkContext.GetInput().IsKeyboardSupported() ? new KeyboardInputBinding(FrameworkContext, key, control, alt, shift) : null;
         }
 
         /// <summary>
@@ -332,7 +332,7 @@ namespace Sedulous.Input
         /// <returns>The binding that was created.</returns>
         protected InputBinding CreateMouseBinding(MouseButton button, Boolean control = false, Boolean alt = false, Boolean shift = false)
         {
-            return Sedulous.GetInput().IsMouseSupported() ? new MouseInputBinding(Sedulous, button, control, alt, shift) : null;
+            return FrameworkContext.GetInput().IsMouseSupported() ? new MouseInputBinding(FrameworkContext, button, control, alt, shift) : null;
         }
 
         /// <summary>
@@ -343,7 +343,7 @@ namespace Sedulous.Input
         /// <returns>The binding that was created.</returns>
         protected InputBinding CreateGamePadBinding(Int32 playerIndex, GamePadButton button)
         {
-            return Sedulous.GetInput().IsGamePadSupported() ? new GamePadInputBinding(Sedulous, playerIndex, button) : null;
+            return FrameworkContext.GetInput().IsGamePadSupported() ? new GamePadInputBinding(FrameworkContext, playerIndex, button) : null;
         }
 
         /// <summary>
@@ -409,7 +409,7 @@ namespace Sedulous.Input
             if (ctor == null)
                 throw new InvalidOperationException(FrameworkStrings.NoValidConstructor.Format(typeName));
 
-            return (InputBinding)ctor.Invoke(new object[] { Sedulous, element });
+            return (InputBinding)ctor.Invoke(new object[] { FrameworkContext, element });
         }
 
         // The list of registered input bindings.

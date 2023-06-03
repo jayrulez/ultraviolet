@@ -6,14 +6,14 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="DynamicTexture2D"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="width">The texture's width in pixels.</param>
     /// <param name="height">The texture's height in pixels.</param>
     /// <param name="options">The texture's configuration options.</param>
     /// <param name="state">An arbitrary state object which will be passed to the flush handler.</param>
     /// <param name="flushed">The handler to invoke when the texture is flushed.</param>
     /// <returns>The instance of <see cref="DynamicTexture2D"/> that was created.</returns>
-    public delegate DynamicTexture2D DynamicTexture2DFactory(FrameworkContext uv, Int32 width, Int32 height, TextureOptions options, Object state, Action<Texture2D, Object> flushed);
+    public delegate DynamicTexture2D DynamicTexture2DFactory(FrameworkContext context, Int32 width, Int32 height, TextureOptions options, Object state, Action<Texture2D, Object> flushed);
 
     /// <summary>
     /// Represents a 2D texture which is designed to be dynamically updated from data which resides on the CPU.
@@ -23,14 +23,14 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicTexture2D"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="width">The texture's width in pixels.</param>
         /// <param name="height">The texture's height in pixels.</param>
         /// <param name="options">The texture's configuration options.</param>
         /// <param name="state">An arbitrary state object which will be passed to the flush handler.</param>
         /// <param name="flushed">The handler to invoke when the texture is flushed.</param>
-        protected DynamicTexture2D(FrameworkContext uv, Int32 width, Int32 height, TextureOptions options, Object state, Action<Texture2D, Object> flushed)
-            : base(uv)
+        protected DynamicTexture2D(FrameworkContext context, Int32 width, Int32 height, TextureOptions options, Object state, Action<Texture2D, Object> flushed)
+            : base(context)
         {
             Contract.Require(flushed, nameof(flushed));
 

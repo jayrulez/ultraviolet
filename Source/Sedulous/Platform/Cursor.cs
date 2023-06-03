@@ -7,12 +7,12 @@ namespace Sedulous
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Cursor"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="surface">The surface that contains the cursor image.</param>
     /// <param name="hx">The x-coordinate of the cursor's hotspot.</param>
     /// <param name="hy">The y-coordinate of the cursor's hotspot.</param>
     /// <returns>The instance of <see cref="Cursor"/> that was created.</returns>
-    public delegate Cursor CursorFactory(FrameworkContext uv, Surface2D surface, Int32 hx, Int32 hy);
+    public delegate Cursor CursorFactory(FrameworkContext context, Surface2D surface, Int32 hx, Int32 hy);
 
     /// <summary>
     /// Represents a mouse cursor.
@@ -22,9 +22,9 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="Cursor"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public Cursor(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public Cursor(FrameworkContext context)
+            : base(context)
         {
 
         }

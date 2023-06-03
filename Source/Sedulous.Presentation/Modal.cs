@@ -92,7 +92,7 @@ namespace Sedulous.Presentation
             var screen = Screen;
             if (screen != null)
             {
-                var uv = screen.Sedulous;
+                var uv = screen.FrameworkContext;
                 uv.GetUI().GetScreens(screen.Window).Close(screen, duration);
             }
         }
@@ -112,7 +112,7 @@ namespace Sedulous.Presentation
             var screen = Screen;
             if (screen != null)
             {
-                var uv = screen.Sedulous;
+                var uv = screen.FrameworkContext;
                 uv.GetUI().GetScreens(screen.Window).Close(screen, duration);
             }
         }
@@ -236,7 +236,7 @@ namespace Sedulous.Presentation
         /// <returns>A <see cref="Task"/> which completes when the modal is closed.</returns>
         private void Open(IFrameworkWindow window, UIScreen screen, TimeSpan? duration = null)
         {
-            var screenStack = screen.Sedulous.GetUI().GetScreens(window);
+            var screenStack = screen.FrameworkContext.GetUI().GetScreens(window);
 
             if (screen.State != UIPanelState.Closed)
                 screenStack.Close(screen, TimeSpan.Zero);

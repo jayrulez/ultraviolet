@@ -13,11 +13,11 @@ namespace Sedulous.Graphics.Graphics3D
         /// <summary>
         /// Initializes a new instance of the <see cref="Model"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="scenes">The model's list of scenes.</param>
         /// <param name="textures">The model's list of textures.</param>
-        public Model(FrameworkContext uv, IList<ModelScene> scenes, IList<Texture2D> textures = null)
-            : base(uv)
+        public Model(FrameworkContext context, IList<ModelScene> scenes, IList<Texture2D> textures = null)
+            : base(context)
         {
             Contract.Require(scenes, nameof(scenes));
 

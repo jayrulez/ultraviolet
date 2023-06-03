@@ -6,9 +6,9 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="EffectImplementation"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <returns>The instance of <see cref="EffectImplementation"/> that was created.</returns>
-    public delegate EffectImplementation EffectImplementationFactory(FrameworkContext uv);
+    public delegate EffectImplementation EffectImplementationFactory(FrameworkContext context);
 
     /// <summary>
     /// Represents a shader effect's underlying implementation.
@@ -18,9 +18,9 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="EffectImplementation"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        protected EffectImplementation(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        protected EffectImplementation(FrameworkContext context)
+            : base(context)
         {
 
         }

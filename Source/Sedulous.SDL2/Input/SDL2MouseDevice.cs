@@ -19,16 +19,16 @@ namespace Sedulous.SDL2.Input
         /// <summary>
         /// Initializes a new instance of the SDL2MouseDevice class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public SDL2MouseDevice(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public SDL2MouseDevice(FrameworkContext context)
+            : base(context)
         {
-            this.window = Sedulous.GetPlatform().Windows.GetPrimary();
+            this.window = FrameworkContext.GetPlatform().Windows.GetPrimary();
 
             var buttonCount = Enum.GetValues(typeof(MouseButton)).Length;            
             this.states = new InternalButtonState[buttonCount];
 
-            uv.Messages.Subscribe(this,
+            context.Messages.Subscribe(this,
                 SDL2FrameworkMessages.SDLEvent);
         }
 
@@ -134,7 +134,7 @@ namespace Sedulous.SDL2.Input
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primary = Sedulous.GetPlatform().Windows.GetPrimary();
+            var primary = FrameworkContext.GetPlatform().Windows.GetPrimary();
             if (primary == null)
                 throw new InvalidOperationException(FrameworkStrings.NoPrimaryWindow);
 
@@ -146,7 +146,7 @@ namespace Sedulous.SDL2.Input
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primary = Sedulous.GetPlatform().Windows.GetPrimary();
+            var primary = FrameworkContext.GetPlatform().Windows.GetPrimary();
             if (primary == null)
                 throw new InvalidOperationException(FrameworkStrings.NoPrimaryWindow);
 
@@ -269,9 +269,9 @@ namespace Sedulous.SDL2.Input
 
             if (disposing)
             {
-                if (!Sedulous.Disposed)
+                if (!FrameworkContext.Disposed)
                 {
-                    Sedulous.Messages.Unsubscribe(this);
+                    FrameworkContext.Messages.Unsubscribe(this);
                 }
             }
 
@@ -344,7 +344,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void OnMouseMotion(ref SDL_MouseMotionEvent evt)
         {
-            if (!Sedulous.GetInput().EmulateMouseWithTouchInput && evt.which == SDL_TOUCH_MOUSEID)
+            if (!FrameworkContext.GetInput().EmulateMouseWithTouchInput && evt.which == SDL_TOUCH_MOUSEID)
                 return;
 
             if (relativeMode)
@@ -364,10 +364,10 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void OnMouseButtonDown(ref SDL_MouseButtonEvent evt)
         {
-            if (!Sedulous.GetInput().EmulateMouseWithTouchInput && evt.which == SDL_TOUCH_MOUSEID)
+            if (!FrameworkContext.GetInput().EmulateMouseWithTouchInput && evt.which == SDL_TOUCH_MOUSEID)
                 return;
 
-            var window = Sedulous.GetPlatform().Windows.GetByID((int)evt.windowID);
+            var window = FrameworkContext.GetPlatform().Windows.GetByID((int)evt.windowID);
             var button = GetSedulousButton(evt.button);
 
             this.states[(int)button].OnDown(false);
@@ -380,10 +380,10 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void OnMouseButtonUp(ref SDL_MouseButtonEvent evt)
         {
-            if (!Sedulous.GetInput().EmulateMouseWithTouchInput && evt.which == SDL_TOUCH_MOUSEID)
+            if (!FrameworkContext.GetInput().EmulateMouseWithTouchInput && evt.which == SDL_TOUCH_MOUSEID)
                 return;
 
-            var window = Sedulous.GetPlatform().Windows.GetByID((int)evt.windowID);
+            var window = FrameworkContext.GetPlatform().Windows.GetByID((int)evt.windowID);
             var button = GetSedulousButton(evt.button);
 
             this.states[(int)button].OnUp();
@@ -408,10 +408,10 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void OnMouseWheel(ref SDL_MouseWheelEvent evt)
         {
-            if (!Sedulous.GetInput().EmulateMouseWithTouchInput && evt.which == SDL_TOUCH_MOUSEID)
+            if (!FrameworkContext.GetInput().EmulateMouseWithTouchInput && evt.which == SDL_TOUCH_MOUSEID)
                 return;
 
-            var window = Sedulous.GetPlatform().Windows.GetByID((int)evt.windowID);
+            var window = FrameworkContext.GetPlatform().Windows.GetByID((int)evt.windowID);
             wheelDeltaX = evt.x;
             wheelDeltaY = evt.y;
             OnWheelScrolled(window, evt.x, evt.y);
@@ -422,7 +422,7 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void Register(UInt32 windowID)
         {
-            var input = (SDL2FrameworkInput)Sedulous.GetInput();
+            var input = (SDL2FrameworkInput)FrameworkContext.GetInput();
             if (input.RegisterMouseDevice(this))
             {
                 isRegistered = true;
@@ -434,9 +434,9 @@ namespace Sedulous.SDL2.Input
         /// </summary>
         private void SetMousePosition(UInt32 windowID, Int32 x, Int32 y)
         {
-            this.window = Sedulous.GetPlatform().Windows.GetByID((int)windowID);
+            this.window = FrameworkContext.GetPlatform().Windows.GetByID((int)windowID);
 
-            if (Sedulous.Properties.SupportsHighDensityDisplayModes)
+            if (FrameworkContext.Properties.SupportsHighDensityDisplayModes)
             {
                 var scale = window?.Display.DeviceScale ?? 1f;
                 this.x = (Int32)(x * scale);

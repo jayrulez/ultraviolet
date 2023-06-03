@@ -20,14 +20,14 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Loads an instance of the <see cref="PresentationFoundationView"/> from an XML node.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="uiPanel">The <see cref="UIPanel"/> that is creating the panel.</param>
         /// <param name="uiPanelDefinition">The <see cref="UIPanelDefinition"/> that defines the view.</param>
         /// <param name="vmfactory">A view model factory which is used to create the view's initial view model, or <see langword="null"/> to skip view model creation.</param>
         /// <returns>The <see cref="PresentationFoundationView"/> that was loaded from the specified XML element.</returns>
-        public static PresentationFoundationView Load(FrameworkContext uv, UIPanel uiPanel, UIPanelDefinition uiPanelDefinition, UIViewModelFactory vmfactory)
+        public static PresentationFoundationView Load(FrameworkContext context, UIPanel uiPanel, UIPanelDefinition uiPanelDefinition, UIViewModelFactory vmfactory)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(uiPanel, nameof(uiPanel));
             Contract.Require(uiPanelDefinition, nameof(uiPanelDefinition));
 
@@ -57,7 +57,7 @@ namespace Sedulous.Presentation
                 }
                 else
                 {
-                    var viewModelWrapperType = uv.GetUI().GetPresentationFoundation().GetDataSourceWrapperType(viewModelType);
+                    var viewModelWrapperType = context.GetUI().GetPresentationFoundation().GetDataSourceWrapperType(viewModelType);
                     if (viewModelWrapperType == null)
                         throw new UvmlException(PresentationStrings.CannotFindViewModelWrapper.Format(viewModelType.Name));
 
@@ -95,7 +95,7 @@ namespace Sedulous.Presentation
             });
 
             // Instantiate the view template.
-            var viewTemplateInstance = (UvmlTemplateInstance)viewTemplate.Instantiate(uv, null);
+            var viewTemplateInstance = (UvmlTemplateInstance)viewTemplate.Instantiate(context, null);
             var viewInstance = (PresentationFoundationView)viewTemplateInstance.FinalizeInstance();
 
             var viewRoot = viewInstance.LayoutRoot;
@@ -120,7 +120,7 @@ namespace Sedulous.Presentation
         {
             Contract.Require(control, nameof(control));
 
-            var template = control.Sedulous.GetUI().GetPresentationFoundation().ComponentTemplates.Get(control);
+            var template = control.FrameworkContext.GetUI().GetPresentationFoundation().ComponentTemplates.Get(control);
             if (template == null)
                 return null;
 
@@ -140,7 +140,7 @@ namespace Sedulous.Presentation
             if (template == null)
                 return null;
 
-            var componentContext = UvmlInstantiationContext.ForControl(control.Sedulous, control);
+            var componentContext = UvmlInstantiationContext.ForControl(control.FrameworkContext, control);
             var componentTemplate = default(UvmlTemplate);
 
             if (!componentTemplateCache.TryGetValue(template, out componentTemplate))
@@ -150,7 +150,7 @@ namespace Sedulous.Presentation
                     return null;
 
                 var componentType = default(Type);
-                if (!control.Sedulous.GetUI().GetPresentationFoundation().GetKnownType(componentElement.Name.LocalName, out componentType))
+                if (!control.FrameworkContext.GetUI().GetPresentationFoundation().GetKnownType(componentElement.Name.LocalName, out componentType))
                     throw new UvmlException(PresentationStrings.UnrecognizedType.Format(componentElement.Name.LocalName));
 
                 var cultureRequested = (String)template.Root.Attribute("Culture");
@@ -158,11 +158,11 @@ namespace Sedulous.Presentation
 
                 AddUvmlAnnotations(componentContext.DataSourceType.Name, componentElement);
 
-                componentTemplate = CreateTemplateFromXml(control.Sedulous, componentElement, control.GetType(), componentType, cultureInfo);
+                componentTemplate = CreateTemplateFromXml(control.FrameworkContext, componentElement, control.GetType(), componentType, cultureInfo);
                 componentTemplateCache[template] = componentTemplate;
             }
 
-            var componentTemplateInstance = (UvmlTemplateInstance)componentTemplate.Instantiate(control.Sedulous, componentContext);
+            var componentTemplateInstance = (UvmlTemplateInstance)componentTemplate.Instantiate(control.FrameworkContext, componentContext);
             var component = (UIElement)componentTemplateInstance.FinalizeInstance();
             componentContext.Namescope.PopulateFieldsFromRegisteredElements(control);
 
@@ -214,17 +214,17 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Creates a new <see cref="UvmlTemplate"/> from the specified XML element.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="xml">The XML element to load as a UVML template.</param>
         /// <param name="templatedParentType">The type of the object's templated parent.</param>
         /// <param name="templatedObjectType">The type of object which is produced by the template.</param>
         /// <param name="cultureInfo">The <see cref="CultureInfo"/> to use when parsing values.</param>
-        public static UvmlTemplate CreateTemplateFromXml(FrameworkContext uv,
+        public static UvmlTemplate CreateTemplateFromXml(FrameworkContext context,
             XElement xml, Type templatedParentType, Type templatedObjectType, CultureInfo cultureInfo)
         {
             var mutators = new List<UvmlMutator>();
 
-            templatedObjectType = ResolveTypeFromName(uv, templatedParentType, templatedObjectType, xml.Name.LocalName);
+            templatedObjectType = ResolveTypeFromName(context, templatedParentType, templatedObjectType, xml.Name.LocalName);
 
             // Create mutators from attributes
             var attrs = xml.Attributes().ToList();
@@ -239,7 +239,7 @@ namespace Sedulous.Presentation
                         continue;
                 }
 
-                var mutator = CreateMutatorForXmlAttribute(uv, xml, attr, templatedParentType, templatedObjectType, cultureInfo);
+                var mutator = CreateMutatorForXmlAttribute(context, xml, attr, templatedParentType, templatedObjectType, cultureInfo);
                 mutators.Add(mutator);
             }
 
@@ -253,7 +253,7 @@ namespace Sedulous.Presentation
             {
                 foreach (var elem in elemsRepresentingProperties)
                 {
-                    var mutator = CreateMutatorForXmlElement(uv, xml, elem, templatedParentType, templatedObjectType, cultureInfo);
+                    var mutator = CreateMutatorForXmlElement(context, xml, elem, templatedParentType, templatedObjectType, cultureInfo);
                     mutators.Add(mutator);
                 }
             }
@@ -261,13 +261,13 @@ namespace Sedulous.Presentation
             // Create mutators from child elements
             if (elemsRepresentingChildren.Any())
             {
-                var mutator = CreateMutatorForXmlChildren(uv, xml, elemsRepresentingChildren, templatedParentType, templatedObjectType, cultureInfo);
+                var mutator = CreateMutatorForXmlChildren(context, xml, elemsRepresentingChildren, templatedParentType, templatedObjectType, cultureInfo);
                 mutators.Add(mutator);
             }
             else
             {
                 // Create mutator for simple default property
-                var mutator = CreateMutatorForLiteralDefaultProperty(uv, xml, templatedParentType, templatedObjectType, cultureInfo);
+                var mutator = CreateMutatorForLiteralDefaultProperty(context, xml, templatedParentType, templatedObjectType, cultureInfo);
                 if (mutator != null)
                 {
                     mutators.Add(mutator);
@@ -284,10 +284,10 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Determines whether the specified target is a dependency property, routed event, or standard property/event.
         /// </summary>
-        private static UvmlMutatorTarget GetMutatorTarget(FrameworkContext uv, 
+        private static UvmlMutatorTarget GetMutatorTarget(FrameworkContext context, 
             String name, String value, Type type, out Object target, out Type targetType)
         {
-            var upf = uv.GetUI().GetPresentationFoundation();
+            var upf = context.GetUI().GetPresentationFoundation();
             
             // If this is an attached property/event, find the owner type.
             var depname = new DependencyName(name);
@@ -374,7 +374,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Creates a new mutator which populates a collection's items.
         /// </summary>
-        private static UvmlMutator CreateMutatorForCollection(FrameworkContext uv,
+        private static UvmlMutator CreateMutatorForCollection(FrameworkContext context,
             UvmlMutatorTarget targetKind, Object target, IEnumerable<UvmlNode> items)
         {
             if (targetKind == UvmlMutatorTarget.StandardProperty)
@@ -390,7 +390,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Creates a new mutator from the specified XML attribute.
         /// </summary>
-        private static UvmlMutator CreateMutatorForXmlAttribute(FrameworkContext uv, 
+        private static UvmlMutator CreateMutatorForXmlAttribute(FrameworkContext context, 
             XElement parent, XAttribute attribute, Type templatedParentType, Type templatedObjectType, CultureInfo cultureInfo)
         {
             var xmlName = attribute.Name.LocalName;
@@ -398,7 +398,7 @@ namespace Sedulous.Presentation
 
             var target = default(Object);
             var targetType = default(Type);
-            var targetKind = GetMutatorTarget(uv, xmlName, xmlValue, templatedObjectType, out target, out targetType);
+            var targetKind = GetMutatorTarget(context, xmlName, xmlValue, templatedObjectType, out target, out targetType);
 
             return CreateMutatorForTarget(targetKind, templatedParentType, templatedObjectType, target, 
                 new UvmlLiteral(xmlValue, targetType, cultureInfo));
@@ -407,7 +407,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Creates a new mutator from the specified XML element.
         /// </summary>
-        private static UvmlMutator CreateMutatorForXmlElement(FrameworkContext uv, 
+        private static UvmlMutator CreateMutatorForXmlElement(FrameworkContext context, 
             XElement parent, XElement element, Type templatedParentType, Type templatedObjectType, CultureInfo cultureInfo)
         {
             var name = element.Name.LocalName;
@@ -420,7 +420,7 @@ namespace Sedulous.Presentation
             var elementChildren = element.Elements().ToList();
             if (elementChildren.Any() || element.IsEmpty)
             {
-                targetKind = GetMutatorTarget(uv,
+                targetKind = GetMutatorTarget(context,
                     element.Name.LocalName, null, templatedObjectType, out target, out targetType);
 
                 if (typeof(FrameworkTemplate).IsAssignableFrom(targetType))
@@ -430,7 +430,7 @@ namespace Sedulous.Presentation
 
                     var frameworkTemplateElement = elementChildren.Single();
                     var frameworkTemplateType = default(Type);
-                    if (!uv.GetUI().GetPresentationFoundation().GetKnownType(frameworkTemplateElement.Name.LocalName, out frameworkTemplateType))
+                    if (!context.GetUI().GetPresentationFoundation().GetKnownType(frameworkTemplateElement.Name.LocalName, out frameworkTemplateType))
                         throw new UvmlException(PresentationStrings.UnrecognizedType.Format(frameworkTemplateElement.Name.LocalName));
 
                     if (!targetType.IsAssignableFrom(frameworkTemplateType))
@@ -441,28 +441,28 @@ namespace Sedulous.Presentation
                         throw new UvmlException(PresentationStrings.InvalidChildElements.Format(frameworkTemplateElement.Name));
 
                     var frameworkTemplateContent = frameworkTemplateChildren.SingleOrDefault();
-                    value = CreateFrameworkTemplateUvmlNode(uv, frameworkTemplateType, frameworkTemplateContent, cultureInfo);
+                    value = CreateFrameworkTemplateUvmlNode(context, frameworkTemplateType, frameworkTemplateContent, cultureInfo);
                 }
                 else
                 {
                     var itemType = default(Type);
                     if (UvmlCollectionItemMutatorBase.IsSupportedCollectionType(targetType, out itemType))
                     {
-                        var items = elementChildren.Select(x => CreateTemplateFromXml(uv, x, templatedParentType, itemType, cultureInfo)).ToList();
-                        return CreateMutatorForCollection(uv, targetKind, target, items);
+                        var items = elementChildren.Select(x => CreateTemplateFromXml(context, x, templatedParentType, itemType, cultureInfo)).ToList();
+                        return CreateMutatorForCollection(context, targetKind, target, items);
                     }
                     else
                     {
                         if (elementChildren.Count() > 1)
                             throw new UvmlException(PresentationStrings.InvalidChildElements.Format(name));
 
-                        value = CreateTemplateFromXml(uv, elementChildren.Single(), templatedParentType, targetType, cultureInfo);
+                        value = CreateTemplateFromXml(context, elementChildren.Single(), templatedParentType, targetType, cultureInfo);
                     }
                 }
             }
             else
             {
-                targetKind = GetMutatorTarget(uv,
+                targetKind = GetMutatorTarget(context,
                     element.Name.LocalName, element.Value, templatedObjectType, out target, out targetType);
 
                 value = new UvmlLiteral(element.Value, targetType, cultureInfo);
@@ -474,7 +474,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Creates a new mutator from the specified collection of XML child elements.
         /// </summary>
-        private static UvmlMutator CreateMutatorForXmlChildren(FrameworkContext uv, 
+        private static UvmlMutator CreateMutatorForXmlChildren(FrameworkContext context, 
             XElement parent, IEnumerable<XElement> children, Type templatedParentType, Type templatedObjectType, CultureInfo cultureInfo)
         {
             var itemType = default(Type);
@@ -485,21 +485,21 @@ namespace Sedulous.Presentation
             {
                 var target = default(Object);
                 var targetType = default(Type);
-                var targetKind = GetMutatorTarget(uv, 
+                var targetKind = GetMutatorTarget(context, 
                     defaultPropertyAttr.Name, null, templatedObjectType, out target, out targetType);
 
                 // Is the default property a supported collection?
                 if (UvmlCollectionItemMutatorBase.IsSupportedCollectionType(targetType, out itemType))
                 {
-                    var items = children.Select(x => CreateTemplateFromXml(uv, x, templatedParentType, itemType, cultureInfo));
-                    return CreateMutatorForCollection(uv, targetKind, target, items);
+                    var items = children.Select(x => CreateTemplateFromXml(context, x, templatedParentType, itemType, cultureInfo));
+                    return CreateMutatorForCollection(context, targetKind, target, items);
                 }
                 else
                 {
                     if (children.Count() > 1)
                         throw new UvmlException(PresentationStrings.InvalidChildElements.Format(parent.Name.LocalName));
 
-                    var value = CreateTemplateFromXml(uv, children.Single(), templatedParentType, targetType, cultureInfo);
+                    var value = CreateTemplateFromXml(context, children.Single(), templatedParentType, targetType, cultureInfo);
                     return CreateMutatorForTarget(targetKind, templatedParentType, templatedObjectType, target, value);
                 }
             }
@@ -507,7 +507,7 @@ namespace Sedulous.Presentation
             // Is the object itself a supported collection?
             if (UvmlCollectionItemMutatorBase.IsSupportedCollectionType(templatedObjectType, out itemType))
             {
-                var items = children.Select(x => CreateTemplateFromXml(uv, x, templatedParentType, itemType, cultureInfo));
+                var items = children.Select(x => CreateTemplateFromXml(context, x, templatedParentType, itemType, cultureInfo));
                 return new UvmlCollectionItemMutator(items);
             }
             
@@ -517,7 +517,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Creates a new mutator for the specified type's default property.
         /// </summary>
-        private static UvmlMutator CreateMutatorForLiteralDefaultProperty(FrameworkContext uv,
+        private static UvmlMutator CreateMutatorForLiteralDefaultProperty(FrameworkContext context,
             XElement parent, Type templatedParentType, Type templatedObjectType, CultureInfo cultureInfo)
         {
             var value = default(String);
@@ -534,7 +534,7 @@ namespace Sedulous.Presentation
             {
                 var target = default(Object);
                 var targetType = default(Type);
-                var targetKind = GetMutatorTarget(uv,
+                var targetKind = GetMutatorTarget(context,
                     defaultPropertyAttr.Name, value, templatedObjectType, out target, out targetType);
 
                 return CreateMutatorForTarget(targetKind, templatedParentType, templatedObjectType,
@@ -547,7 +547,7 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Resolves the type that corresponds to the specified UVML name.
         /// </summary>
-        private static Type ResolveTypeFromName(FrameworkContext uv, 
+        private static Type ResolveTypeFromName(FrameworkContext context, 
             Type templatedParentType, Type templatedObjectType, String name)
         {
             if (String.Equals(name, "View", StringComparison.Ordinal))
@@ -563,7 +563,7 @@ namespace Sedulous.Presentation
             }
             else
             {
-                if (!uv.GetUI().GetPresentationFoundation().GetKnownType(name, out knownType))
+                if (!context.GetUI().GetPresentationFoundation().GetKnownType(name, out knownType))
                     throw new UvmlException(PresentationStrings.UnrecognizedType.Format(name));
             }
 
@@ -586,12 +586,12 @@ namespace Sedulous.Presentation
         /// Creates a <see cref="FrameworkTemplate"/> instance of the appropriate derived type
         /// from the specified UVML element.
         /// </summary>
-        private static UvmlNode CreateFrameworkTemplateUvmlNode(FrameworkContext uv,
+        private static UvmlNode CreateFrameworkTemplateUvmlNode(FrameworkContext context,
             Type templateType, XElement templateContent, CultureInfo cultureInfo)
         {
             if (templateType == typeof(DataTemplate))
             {
-                var template = (templateContent == null) ? null : DataTemplate.FromUvml(uv, templateContent, cultureInfo);
+                var template = (templateContent == null) ? null : DataTemplate.FromUvml(context, templateContent, cultureInfo);
                 var templateNode = new UvmlDataTemplate(template);
 
                 return templateNode;

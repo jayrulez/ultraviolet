@@ -22,11 +22,11 @@ namespace Sedulous.Presentation.Styles
         }
 
         /// <inheritdoc/>
-        public override void Activate(FrameworkContext uv, DependencyObject dobj)
+        public override void Activate(FrameworkContext context, DependencyObject dobj)
         {
             if (selector == null)
             {
-                var dprop = DependencyProperty.FindByStylingName(uv, dobj, propertyName.Owner, propertyName.Name);
+                var dprop = DependencyProperty.FindByStylingName(context, dobj, propertyName.Owner, propertyName.Name);
                 if (dprop != null)
                 {
                     var clear = propertyValue.IsEmpty;
@@ -55,7 +55,7 @@ namespace Sedulous.Presentation.Styles
                         var propName = action.propertyName;
                         var propValue = action.propertyValue;
 
-                        var dprop = DependencyProperty.FindByStylingName(e.Sedulous, e, propName.Owner, propName.Name);
+                        var dprop = DependencyProperty.FindByStylingName(e.FrameworkContext, e, propName.Owner, propName.Name);
                         if (dprop != null)
                         {
                             if (propValue.IsEmpty)
@@ -70,15 +70,15 @@ namespace Sedulous.Presentation.Styles
                     });
                 }
             }
-            base.Activate(uv, dobj);
+            base.Activate(context, dobj);
         }
 
         /// <inheritdoc/>
-        public override void Deactivate(FrameworkContext uv, DependencyObject dobj)
+        public override void Deactivate(FrameworkContext context, DependencyObject dobj)
         {
             if (selector == null)
             {
-                var dprop = DependencyProperty.FindByStylingName(uv, dobj, propertyName.Owner, propertyName.Name);
+                var dprop = DependencyProperty.FindByStylingName(context, dobj, propertyName.Owner, propertyName.Name);
                 if (dprop != null)
                 {
                     dobj.ClearTriggeredValue(dprop, this);
@@ -96,7 +96,7 @@ namespace Sedulous.Presentation.Styles
                     element.View.Select(target, selector, this, (e, s) =>
                     {
                         var action = (SetTriggerAction)s;
-                        var dprop = DependencyProperty.FindByStylingName(e.Sedulous, e, action.propertyName.Owner, action.propertyName.Name);
+                        var dprop = DependencyProperty.FindByStylingName(e.FrameworkContext, e, action.propertyName.Owner, action.propertyName.Name);
                         if (dprop != null)
                         {
                             e.ClearTriggeredValue(dprop, action);
@@ -104,7 +104,7 @@ namespace Sedulous.Presentation.Styles
                     });
                 }
             }
-            base.Deactivate(uv, dobj);
+            base.Deactivate(context, dobj);
         }
 
         /// <summary>

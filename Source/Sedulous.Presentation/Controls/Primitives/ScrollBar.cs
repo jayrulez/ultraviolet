@@ -75,10 +75,10 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Initializes a new instance of the <see cref="ScrollBar"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public ScrollBar(FrameworkContext uv, String name)
-            : base(uv, name)
+        public ScrollBar(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }

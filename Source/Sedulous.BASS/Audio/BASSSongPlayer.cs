@@ -18,13 +18,13 @@ namespace Sedulous.BASS.Audio
         /// <summary>
         /// Initializes a new instance of the <see cref="BASSSongPlayer"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public BASSSongPlayer(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public BASSSongPlayer(FrameworkContext context)
+            : base(context)
         {
             gcHandle = GCHandle.Alloc(this, GCHandleType.Weak);
 
-            uv.Messages.Subscribe(this, BASSMessages.BASSDeviceChanged);
+            context.Messages.Subscribe(this, BASSMessages.BASSDeviceChanged);
         }
 
         /// <inheritdoc/>
@@ -263,10 +263,10 @@ namespace Sedulous.BASS.Audio
         /// <inheritdoc/>
         protected override void Dispose(Boolean disposing)
         {
-            if (Sedulous != null && !Sedulous.Disposed)
+            if (FrameworkContext != null && !FrameworkContext.Disposed)
             {
                 StopInternal();
-                Sedulous.Messages.Unsubscribe(this);
+                FrameworkContext.Messages.Unsubscribe(this);
             }
 
             stream = 0;
@@ -302,7 +302,7 @@ namespace Sedulous.BASS.Audio
         /// </summary>
         private Boolean PlayInternal(Song song, Single volume, Single pitch, Single pan, TimeSpan? loopStart, TimeSpan? loopLength)
         {
-            Sedulous.ValidateResource(song);
+            FrameworkContext.ValidateResource(song);
 
             Stop();
 

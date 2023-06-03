@@ -25,10 +25,10 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="TabControl"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public TabControl(FrameworkContext uv, String name)
-            : base(uv, name)
+        public TabControl(FrameworkContext context, String name)
+            : base(context, name)
         {
             Classes.Add("top");
         }
@@ -91,13 +91,13 @@ namespace Sedulous.Presentation.Controls
         /// <inheritdoc/>
         protected internal override Panel CreateItemsPanel()
         {
-            return new TabPanel(Sedulous, null);
+            return new TabPanel(FrameworkContext, null);
         }
 
         /// <inheritdoc/>
         protected override DependencyObject GetContainerForItemOverride()
         {
-            return new TabItem(Sedulous, null);
+            return new TabItem(FrameworkContext, null);
         }
 
         /// <inheritdoc/>

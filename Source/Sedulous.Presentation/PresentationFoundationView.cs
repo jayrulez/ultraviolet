@@ -28,26 +28,26 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Initializes a new instance of the <see cref="PresentationFoundationView"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="panel">The panel that is creating the view.</param>
         /// <param name="viewModelType">The view's associated model type.</param>
-        public PresentationFoundationView(FrameworkContext uv, UIPanel panel, Type viewModelType)
-            : base(uv, panel, viewModelType)
+        public PresentationFoundationView(FrameworkContext context, UIPanel panel, Type viewModelType)
+            : base(context, panel, viewModelType)
         {
-            if (uv.IsRunningInServiceMode)
+            if (context.IsRunningInServiceMode)
                 throw new NotSupportedException(FrameworkStrings.NotSupportedInServiceMode);
 
-            var textShaperFactory = Sedulous.TryGetFactoryMethod<TextShaperFactory>();
+            var textShaperFactory = FrameworkContext.TryGetFactoryMethod<TextShaperFactory>();
             if (textShaperFactory != null)
-                this.TextShaper = textShaperFactory(Sedulous);
+                this.TextShaper = textShaperFactory(FrameworkContext);
 
-            this.combinedStyleSheet = new UvssDocument(uv);
+            this.combinedStyleSheet = new UvssDocument(context);
 
             this.namescope = new Namescope();
             this.resources = new PresentationFoundationViewResources(this);
             this.drawingContext = new DrawingContext();
 
-            this.layoutRoot = new PresentationFoundationViewRoot(uv, null);
+            this.layoutRoot = new PresentationFoundationViewRoot(context, null);
             this.layoutRoot.HorizontalAlignment = HorizontalAlignment.Stretch;
             this.layoutRoot.VerticalAlignment = VerticalAlignment.Stretch;
             this.layoutRoot.View = this;
@@ -60,7 +60,7 @@ namespace Sedulous.Presentation
             HookMouseEvents();
             HookGamePadEvents();
 
-            var input = uv.GetInput();
+            var input = context.GetInput();
             if (input.IsTouchDeviceRegistered())
             {
                 HookTouchEvents();
@@ -76,21 +76,21 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Loads an instance of <see cref="PresentationFoundationView"/> from an XML document.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="uiPanel">The <see cref="UIPanel"/> that is creating the view.</param>
         /// <param name="uiPanelDefinition">The <see cref="UIPanelDefinition"/> that defines the view's containing panel.</param>
         /// <param name="vmfactory">A view model factory which is used to create the view's initial view model, or <see langword="null"/> to skip view model creation.</param>
         /// <returns>The <see cref="PresentationFoundationView"/> that was loaded from the specified XML document.</returns>
-        public static PresentationFoundationView Load(FrameworkContext uv, UIPanel uiPanel, UIPanelDefinition uiPanelDefinition, UIViewModelFactory vmfactory)
+        public static PresentationFoundationView Load(FrameworkContext context, UIPanel uiPanel, UIPanelDefinition uiPanelDefinition, UIViewModelFactory vmfactory)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(uiPanel, nameof(uiPanel));
             Contract.Require(uiPanelDefinition, nameof(uiPanelDefinition));
 
             if (uiPanelDefinition.ViewElement == null)
                 return null;
 
-            var view = UvmlLoader.Load(uv, uiPanel, uiPanelDefinition, vmfactory);
+            var view = UvmlLoader.Load(context, uiPanel, uiPanelDefinition, vmfactory);
 
             var sources = uiPanelDefinition.StyleSheetSources
                 .Where(x => !(x?.Cultures.Any() ?? false) || x.Cultures.Contains(Localization.CurrentCulture))
@@ -99,7 +99,7 @@ namespace Sedulous.Presentation
             if (sources.Any())
             {
                 var uvss = String.Join(Environment.NewLine, sources);
-                var uvssdoc = UvssDocument.Compile(uv, uvss);
+                var uvssdoc = UvssDocument.Compile(context, uvss);
                 view.SetStyleSheet(uvssdoc);
             }
             else
@@ -131,10 +131,10 @@ namespace Sedulous.Presentation
             Contract.Require(time, nameof(time));
             Contract.Require(spriteBatch, nameof(spriteBatch));
 
-            if (Sedulous.IsRunningInServiceMode)
+            if (FrameworkContext.IsRunningInServiceMode)
                 throw new NotSupportedException(FrameworkStrings.NotSupportedInServiceMode);
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.BeginDraw();
 
             popupQueue.Clear();
@@ -180,7 +180,7 @@ namespace Sedulous.Presentation
             if (Window == null)
                 return;
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.PerformanceStats.BeginUpdate();
 
             HandleUserInput(time);
@@ -192,7 +192,7 @@ namespace Sedulous.Presentation
         /// <inheritdoc/>
         public override void SetViewModel(Object viewModel)
         {
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             var wrapper = upf.CreateDataSourceWrapperForView(viewModel, Namescope);
 
             base.SetViewModel(wrapper);
@@ -275,7 +275,7 @@ namespace Sedulous.Presentation
             if (cursor == null && Resources.Cursor.IsLoaded)
                 cursor = Resources.Cursor.Resource.Cursor;
 
-            Sedulous.GetPlatform().Cursor = cursor;
+            FrameworkContext.GetPlatform().Cursor = cursor;
         }
 
         /// <summary>
@@ -290,7 +290,7 @@ namespace Sedulous.Presentation
             if (elementWithFocus == element || !Keyboard.IsFocusable(element))
                 return false;
 
-            var keyboard = Sedulous.GetInput().GetKeyboard();
+            var keyboard = FrameworkContext.GetInput().GetKeyboard();
             var oldFocus = elementWithFocus;
             var newFocus = element;
 
@@ -370,7 +370,7 @@ namespace Sedulous.Presentation
             var dobj = elementWithFocusOld as DependencyObject;
             if (dobj != null)
             {
-                var keyboard = Sedulous.GetInput().GetKeyboard();
+                var keyboard = FrameworkContext.GetInput().GetKeyboard();
 
                 var lostFocusData = RoutedEventData.Retrieve(dobj);
                 Keyboard.RaiseLostKeyboardFocus(dobj, keyboard, elementWithFocusOld, null, lostFocusData);
@@ -930,7 +930,7 @@ namespace Sedulous.Presentation
                 return;
 
             layoutRoot.EnsureIsLoaded(true);
-            Sedulous.GetUI().GetPresentationFoundation().PerformLayout();
+            FrameworkContext.GetUI().GetPresentationFoundation().PerformLayout();
         }
 
         /// <summary>
@@ -1088,7 +1088,7 @@ namespace Sedulous.Presentation
         {
             if (disposing)
             {
-                if (!Sedulous.Disposed)
+                if (!FrameworkContext.Disposed)
                 {
                     OnClosed();
 
@@ -1260,7 +1260,7 @@ namespace Sedulous.Presentation
             if (this.combinedStyleSheet != null)
                 this.combinedStyleSheet.Clear();
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
 
             var gssDensity = Display?.DensityBucket ?? ScreenDensityBucket.Desktop;
             var gssStyleSheet = upf.ResolveGlobalStyleSheet(gssDensity);
@@ -1310,7 +1310,7 @@ namespace Sedulous.Presentation
 
             hookedGlobalStyleSheetChanged = true;
 
-            Sedulous.GetUI().GetPresentationFoundation().GlobalStyleSheetChanged += PresentationFoundationView_GlobalStyleSheetChanged;
+            FrameworkContext.GetUI().GetPresentationFoundation().GlobalStyleSheetChanged += PresentationFoundationView_GlobalStyleSheetChanged;
         }
 
         /// <summary>
@@ -1318,7 +1318,7 @@ namespace Sedulous.Presentation
         /// </summary>
         private void HookKeyboardEvents()
         {
-            var input = Sedulous.GetInput();
+            var input = FrameworkContext.GetInput();
             if (input.IsKeyboardSupported())
             {
                 var keyboard = input.GetKeyboard();
@@ -1334,7 +1334,7 @@ namespace Sedulous.Presentation
         /// </summary>
         private void HookMouseEvents()
         {
-            var input = Sedulous.GetInput();
+            var input = FrameworkContext.GetInput();
             if (input.IsMouseSupported())
             {
                 var mouse = input.GetMouse();
@@ -1352,7 +1352,7 @@ namespace Sedulous.Presentation
         /// </summary>
         private void HookTouchEvents()
         {
-            var device = Sedulous.GetInput().GetPrimaryTouchDevice();
+            var device = FrameworkContext.GetInput().GetPrimaryTouchDevice();
             if (device != null)
             {
                 touchCursorTrackers = new CursorTrackerTouchCollection(this);
@@ -1371,7 +1371,7 @@ namespace Sedulous.Presentation
         /// </summary>
         private void HookGamePadEvents()
         {
-            var input = Sedulous.GetInput();
+            var input = FrameworkContext.GetInput();
             if (input.IsGamePadSupported())
             {
                 HookFirstPlayerGamePadEvents();
@@ -1386,7 +1386,7 @@ namespace Sedulous.Presentation
         /// </summary>
         private void HookFirstPlayerGamePadEvents()
         {
-            var gamePad = Sedulous.GetInput().GetGamePadForPlayer(0);
+            var gamePad = FrameworkContext.GetInput().GetGamePadForPlayer(0);
             if (gamePad == null)
                 return;
 
@@ -1407,7 +1407,7 @@ namespace Sedulous.Presentation
             if (!hookedGlobalStyleSheetChanged)
                 return;
 
-            Sedulous.GetUI().GetPresentationFoundation().GlobalStyleSheetChanged -= PresentationFoundationView_GlobalStyleSheetChanged;
+            FrameworkContext.GetUI().GetPresentationFoundation().GlobalStyleSheetChanged -= PresentationFoundationView_GlobalStyleSheetChanged;
 
             hookedGlobalStyleSheetChanged = false;
         }
@@ -1417,7 +1417,7 @@ namespace Sedulous.Presentation
         /// </summary>
         private void UnhookKeyboardEvents()
         {
-            var input = Sedulous.GetInput();
+            var input = FrameworkContext.GetInput();
             if (input.IsKeyboardSupported())
             {
                 var keyboard = input.GetKeyboard();
@@ -1433,7 +1433,7 @@ namespace Sedulous.Presentation
         /// </summary>
         private void UnhookMouseEvents()
         {
-            var input = Sedulous.GetInput();
+            var input = FrameworkContext.GetInput();
             if (input.IsMouseSupported())
             {
                 var mouse = input.GetMouse();
@@ -1451,7 +1451,7 @@ namespace Sedulous.Presentation
         /// </summary>
         private void UnhookTouchEvents()
         {
-            var device = Sedulous.GetInput().GetPrimaryTouchDevice();
+            var device = FrameworkContext.GetInput().GetPrimaryTouchDevice();
             if (device != null)
             {
                 touchCursorTrackers.Clear();
@@ -1472,7 +1472,7 @@ namespace Sedulous.Presentation
         /// </summary>
         private void UnhookGamePadEvents()
         {
-            var input = Sedulous.GetInput();
+            var input = FrameworkContext.GetInput();
             if (input.IsGamePadSupported())
             {
                 input.GamePadConnected -= gamePad_GamePadConnected;
@@ -1492,7 +1492,7 @@ namespace Sedulous.Presentation
         {
             hookedFirstPlayerGamePad = false;
 
-            var gamePad = Sedulous.GetInput().GetGamePadForPlayer(0);
+            var gamePad = FrameworkContext.GetInput().GetGamePadForPlayer(0);
             if (gamePad == null)
                 return;
 
@@ -1521,13 +1521,13 @@ namespace Sedulous.Presentation
             if (!IsInputEnabledAndAllowed)
                 return;
 
-            if (Sedulous.GetInput().IsKeyboardSupported())
+            if (FrameworkContext.GetInput().IsKeyboardSupported())
                 HandleKeyboardInput();
 
-            if (Sedulous.GetInput().IsMouseSupported())
+            if (FrameworkContext.GetInput().IsMouseSupported())
                 HandleMouseInput(time);
 
-            if (Sedulous.GetInput().IsTouchSupported())
+            if (FrameworkContext.GetInput().IsTouchSupported())
                 HandleTouchInput();
         }
 
@@ -1829,7 +1829,7 @@ namespace Sedulous.Presentation
         /// <returns><see langword="true"/> if the element's tooltip was displayed; otherwise, <see langword="false"/>.</returns>
         private Boolean ShowToolTipForElement(UIElement uiToolTipElement)
         {
-            if (Sedulous.Platform == FrameworkPlatform.Android || Sedulous.Platform == FrameworkPlatform.iOS)
+            if (FrameworkContext.Platform == FrameworkPlatform.Android || FrameworkContext.Platform == FrameworkPlatform.iOS)
                 return false;
 
             var content = ToolTipService.GetToolTip(uiToolTipElement);
@@ -2673,7 +2673,7 @@ namespace Sedulous.Presentation
         /// </summary>
         private void Input_TouchDeviceRegistered(TouchDevice device)
         {
-            Sedulous.GetInput().TouchDeviceRegistered -= Input_TouchDeviceRegistered;
+            FrameworkContext.GetInput().TouchDeviceRegistered -= Input_TouchDeviceRegistered;
             HookTouchEvents();
         }
 

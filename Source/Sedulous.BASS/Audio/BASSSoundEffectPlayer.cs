@@ -16,11 +16,11 @@ namespace Sedulous.BASS.Audio
         /// <summary>
         /// Initializes a new instance of the <see cref="BASSSoundEffectPlayer"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public BASSSoundEffectPlayer(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public BASSSoundEffectPlayer(FrameworkContext context)
+            : base(context)
         {
-            uv.Messages.Subscribe(this, BASSMessages.BASSDeviceChanged);
+            context.Messages.Subscribe(this, BASSMessages.BASSDeviceChanged);
         }
 
         /// <inheritdoc/>
@@ -266,7 +266,7 @@ namespace Sedulous.BASS.Audio
         /// <inheritdoc/>
         protected override void Dispose(Boolean disposing)
         {
-            if (Sedulous != null && !Sedulous.Disposed)
+            if (FrameworkContext != null && !FrameworkContext.Disposed)
                 StopInternal();
 
             base.Dispose(disposing);
@@ -296,7 +296,7 @@ namespace Sedulous.BASS.Audio
             Stop();
 
             // Retrieve the sample data from the sound effect.
-            Sedulous.ValidateResource(soundEffect);
+            FrameworkContext.ValidateResource(soundEffect);
             var bassfx = (BASSSoundEffect)soundEffect;
             var sample = bassfx.GetSampleInfo(out _, out _);
 

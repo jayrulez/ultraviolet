@@ -23,10 +23,10 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Initializes a new instance of the <see cref="Selector"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The identifying name of this element within a layout.</param>
-        public Selector(FrameworkContext uv, String name)
-            : base(uv, name)
+        public Selector(FrameworkContext context, String name)
+            : base(context, name)
         {
             this.selection = new SelectionCollection(this);
 

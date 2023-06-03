@@ -19,10 +19,10 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteBatchBase{VertexType, SpriteData}"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="batchSize">The maximum number of sprites that can be drawn in a single batch.</param>
-        protected SpriteBatchBase(FrameworkContext uv, Int32 batchSize = 2048)
-            : base(uv)
+        protected SpriteBatchBase(FrameworkContext context, Int32 batchSize = 2048)
+            : base(context)
         {
             Contract.EnsureRange(batchSize > 0, nameof(batchSize));
 
@@ -34,7 +34,7 @@ namespace Sedulous.Graphics.Graphics2D
 
             this.spriteEffect = SpriteBatchEffect.Create();
 
-            uv.QueueWorkItem(state => ((SpriteBatchBase<VertexType, SpriteData>)state).CreateVertexAndIndexBuffers(), this).Wait();
+            context.QueueWorkItem(state => ((SpriteBatchBase<VertexType, SpriteData>)state).CreateVertexAndIndexBuffers(), this).Wait();
         }
 
         /// <summary>
@@ -3086,12 +3086,12 @@ namespace Sedulous.Graphics.Graphics2D
             this.customEffect = effect ?? spriteEffect;
             this.transformMatrix = transformMatrix;
 
-            Sedulous.ValidateResource(this);
-            Sedulous.ValidateResource(this.blendState);
-            Sedulous.ValidateResource(this.samplerState);
-            Sedulous.ValidateResource(this.depthStencilState);
-            Sedulous.ValidateResource(this.rasterizerState);
-            Sedulous.ValidateResource(this.customEffect);
+            FrameworkContext.ValidateResource(this);
+            FrameworkContext.ValidateResource(this.blendState);
+            FrameworkContext.ValidateResource(this.samplerState);
+            FrameworkContext.ValidateResource(this.depthStencilState);
+            FrameworkContext.ValidateResource(this.rasterizerState);
+            FrameworkContext.ValidateResource(this.customEffect);
 
             begun = true;
 
@@ -3137,7 +3137,7 @@ namespace Sedulous.Graphics.Graphics2D
         private void DrawInternal(Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle,
             Color color, Single rotation, Vector2 origin, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
-            Sedulous.ValidateResource(texture);
+            FrameworkContext.ValidateResource(texture);
 
             if (destinationRectangle.Width == 0 || destinationRectangle.Height == 0)
                 return;
@@ -3196,7 +3196,7 @@ namespace Sedulous.Graphics.Graphics2D
         private void DrawInternal(Texture2D texture, Vector2 position, Rectangle? sourceRectangle,
             Color color, Single rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Single layerDepth, SpriteData data)
         {
-            Sedulous.ValidateResource(texture);
+            FrameworkContext.ValidateResource(texture);
 
             var ix = batchInfo.Reserve(texture, ref data);
 
@@ -3428,7 +3428,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// </summary>
         private void ApplyState()
         {
-            var graphics = Sedulous.GetGraphics();
+            var graphics = FrameworkContext.GetGraphics();
 
             var texture = batchInfo.Count > 0 ? batchInfo.GetTexture(0) : null;
             ApplyTexture(texture);
@@ -3442,7 +3442,7 @@ namespace Sedulous.Graphics.Graphics2D
             var spriteBatchEffect = customEffect as ISpriteBatchEffect;
             if (spriteBatchEffect != null)
             {
-                var viewport = Sedulous.GetGraphics().GetViewport();
+                var viewport = FrameworkContext.GetGraphics().GetViewport();
                 var projection = Matrix.CreateOrthographicOffCenter(0, viewport.Width, viewport.Height, 0, 0, 1);
                 spriteBatchEffect.MatrixTransform = transformMatrix * projection;
                 spriteBatchEffect.SrgbColor = graphics.CurrentRenderTargetIsSrgbEncoded;
@@ -3570,7 +3570,7 @@ namespace Sedulous.Graphics.Graphics2D
                 GenerateVertices(texture, spriteMetadata, vertices, spriteCustomData, offset, drawn);
                 vertexBuffer.SetDataAligned(vertices, 0, drawn * 4, vertexBufferOffset, out drawnSizeInBytes, options);
 
-                var graphics = Sedulous.GetGraphics();
+                var graphics = FrameworkContext.GetGraphics();
                 foreach (var pass in customEffect.CurrentTechnique.Passes)
                 {
                     pass.Apply();

@@ -71,13 +71,13 @@ namespace Sedulous
         /// <summary>
         /// Creates a set of audio settings from the current application state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The audio settings which were retrieved.</returns>
-        public static FrameworkApplicationAudioSettings FromCurrentSettings(FrameworkContext uv)
+        public static FrameworkApplicationAudioSettings FromCurrentSettings(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
-            var audio = uv.GetAudio();
+            var audio = context.GetAudio();
             var settings = new FrameworkApplicationAudioSettings();
 
             settings.AudioMasterVolume = audio.AudioMasterVolume;
@@ -93,12 +93,12 @@ namespace Sedulous
         /// <summary>
         /// Applies the specified settings.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public void Apply(FrameworkContext uv)
+        /// <param name="context">The Sedulous context.</param>
+        public void Apply(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
-            var audio = uv.GetAudio();
+            var audio = context.GetAudio();
 
             audio.AudioMasterVolume = AudioMasterVolume;
             audio.AudioMuted = AudioMuted;

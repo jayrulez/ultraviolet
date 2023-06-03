@@ -12,11 +12,11 @@ namespace Sedulous.FMOD.Audio
         /// <summary>
         /// Initializes a new instance of the <see cref="FMODSongPlayer"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public FMODSongPlayer(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public FMODSongPlayer(FrameworkContext context)
+            : base(context)
         {
-            this.channelPlayer = new FMODChannelPlayer(uv);
+            this.channelPlayer = new FMODChannelPlayer(context);
         }
 
         /// <inheritdoc/>
@@ -33,7 +33,7 @@ namespace Sedulous.FMOD.Audio
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.Require(song, nameof(song));
 
-            Sedulous.ValidateResource(song);
+            FrameworkContext.ValidateResource(song);
             var sound = ((FMODSong)song).Sound;
             var channelgroup = ((FMODSong)song).ChannelGroup;
 
@@ -52,7 +52,7 @@ namespace Sedulous.FMOD.Audio
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.Require(song, nameof(song));
 
-            Sedulous.ValidateResource(song);
+            FrameworkContext.ValidateResource(song);
             var sound = ((FMODSong)song).Sound;
             var channelgroup = ((FMODSong)song).ChannelGroup;
 
@@ -71,7 +71,7 @@ namespace Sedulous.FMOD.Audio
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.Require(song, nameof(song));
 
-            Sedulous.ValidateResource(song);
+            FrameworkContext.ValidateResource(song);
             var sound = ((FMODSong)song).Sound;
             var channelgroup = ((FMODSong)song).ChannelGroup;
 
@@ -90,7 +90,7 @@ namespace Sedulous.FMOD.Audio
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.Require(song, nameof(song));
 
-            Sedulous.ValidateResource(song);
+            FrameworkContext.ValidateResource(song);
             var sound = ((FMODSong)song).Sound;
             var channelgroup = ((FMODSong)song).ChannelGroup;
 
@@ -210,7 +210,7 @@ namespace Sedulous.FMOD.Audio
         {
             if (disposing)
             {
-                if (Sedulous != null && !Sedulous.Disposed)
+                if (FrameworkContext != null && !FrameworkContext.Disposed)
                     channelPlayer.Dispose();
             }
             base.Dispose(disposing);

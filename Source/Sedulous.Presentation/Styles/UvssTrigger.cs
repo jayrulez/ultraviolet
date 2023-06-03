@@ -90,7 +90,7 @@ namespace Sedulous.Presentation.Styles
         protected void Activate(DependencyObject dobj)
         {
             ActivateAttachment(dobj);
-            actions.Activate(Sedulous, dobj);
+            actions.Activate(FrameworkContext, dobj);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Sedulous.Presentation.Styles
         protected void Deactivate(DependencyObject dobj)
         {
             DeactivateAttachment(dobj);
-            actions.Deactivate(Sedulous, dobj);
+            actions.Deactivate(FrameworkContext, dobj);
         }
 
         /// <summary>
@@ -128,9 +128,9 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Gets the current Sedulous context.
         /// </summary>
-        protected FrameworkContext Sedulous
+        protected FrameworkContext FrameworkContext
         {
-            get { return upf.Value.Sedulous; }
+            get { return upf.Value.FrameworkContext; }
         }
 
         /// <summary>

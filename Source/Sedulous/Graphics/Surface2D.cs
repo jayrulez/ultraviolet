@@ -7,30 +7,30 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Surface2D"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="width">The surface's width in pixels.</param>
     /// <param name="height">The surface's height in pixels.</param>
     /// <param name="options">The surface's configuration options.</param>
     /// <returns>The instance of <see cref="Surface2D"/> that was created.</returns>
-    public delegate Surface2D Surface2DFactory(FrameworkContext uv, Int32 width, Int32 height, SurfaceOptions options);
+    public delegate Surface2D Surface2DFactory(FrameworkContext context, Int32 width, Int32 height, SurfaceOptions options);
 
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Surface2D"/> class from an instance of <see cref="SurfaceSource"/>.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="source">The surface source from which to create the surface.</param>
     /// <param name="options">The surface's configuration options.</param>
     /// <returns>The instance of <see cref="Surface2D"/> that was created.</returns>
-    public delegate Surface2D Surface2DFromSourceFactory(FrameworkContext uv, SurfaceSource source, SurfaceOptions options);
+    public delegate Surface2D Surface2DFromSourceFactory(FrameworkContext context, SurfaceSource source, SurfaceOptions options);
 
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Surface2D"/> class from an instance of <see cref="PlatformNativeSurface"/>.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="surface">The native surface from which to create the surface.</param>
     /// <param name="options">The surface's configuration options.</param>
     /// <returns>The instance of <see cref="Surface2D"/> that was created.</returns>
-    public delegate Surface2D Surface2DFromNativeSurfaceFactory(FrameworkContext uv, PlatformNativeSurface surface, SurfaceOptions options);
+    public delegate Surface2D Surface2DFromNativeSurfaceFactory(FrameworkContext context, PlatformNativeSurface surface, SurfaceOptions options);
 
     /// <summary>
     /// Represents a two-dimensional image which is held in CPU memory.
@@ -42,9 +42,9 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="Surface2D"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public Surface2D(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public Surface2D(FrameworkContext context)
+            : base(context)
         {
 
         }

@@ -18,7 +18,7 @@ namespace Sedulous.Presentation.Styles
         }
 
         /// <inheritdoc/>
-        public override void Activate(FrameworkContext uv, DependencyObject dobj)
+        public override void Activate(FrameworkContext context, DependencyObject dobj)
         {
             var element = dobj as UIElement;
             if (element == null || element.View == null)
@@ -34,7 +34,7 @@ namespace Sedulous.Presentation.Styles
             var sfx = contentManager.Load<SoundEffect>(sfxAssetID.AssetID, density);
             sfx.Play();
 
-            base.Activate(uv, dobj);
+            base.Activate(context, dobj);
         }
 
         // State values.

@@ -123,7 +123,7 @@ namespace Sedulous.Presentation
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.RequireNotEmpty(root, nameof(root));
 
-            if (!IsSupportedPlatform(Sedulous.Runtime, Sedulous.Platform))
+            if (!IsSupportedPlatform(FrameworkContext.Runtime, FrameworkContext.Platform))
                 throw new NotSupportedException();
 
             LoadBindingExpressionCompiler();
@@ -131,7 +131,7 @@ namespace Sedulous.Presentation
             var options = CreateCompilerOptions(root, flags);
             try
             {
-                var result = await Task.Run(() => bindingExpressionCompiler.Compile(Sedulous, options));
+                var result = await Task.Run(() => bindingExpressionCompiler.Compile(FrameworkContext, options));
                 if (result.Failed)
                     throw new BindingExpressionCompilationFailedException(result.Message, result);
 
@@ -159,7 +159,7 @@ namespace Sedulous.Presentation
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.RequireNotEmpty(root, nameof(root));
 
-            if (!IsSupportedPlatform(Sedulous.Runtime, Sedulous.Platform))
+            if (!IsSupportedPlatform(FrameworkContext.Runtime, FrameworkContext.Platform))
                 return;
 
             await CompileExpressionsAsync(root, flags);
@@ -175,7 +175,7 @@ namespace Sedulous.Presentation
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.RequireNotEmpty(root, nameof(root));
 
-            if (!IsSupportedPlatform(Sedulous.Runtime, Sedulous.Platform))
+            if (!IsSupportedPlatform(FrameworkContext.Runtime, FrameworkContext.Platform))
                 throw new NotSupportedException();
 
             LoadBindingExpressionCompiler();
@@ -183,7 +183,7 @@ namespace Sedulous.Presentation
             var options = CreateCompilerOptions(root, flags);
             try
             {
-                var result = bindingExpressionCompiler.Compile(Sedulous, options);
+                var result = bindingExpressionCompiler.Compile(FrameworkContext, options);
                 if (result.Failed)
                     throw new BindingExpressionCompilationFailedException(result.Message, result);
 
@@ -210,7 +210,7 @@ namespace Sedulous.Presentation
             Contract.EnsureNotDisposed(this, Disposed);
             Contract.RequireNotEmpty(root, nameof(root));
 
-            if (!IsSupportedPlatform(Sedulous.Runtime, Sedulous.Platform))
+            if (!IsSupportedPlatform(FrameworkContext.Runtime, FrameworkContext.Platform))
                 return;
 
             CompileExpressions(root, flags);
@@ -339,7 +339,7 @@ namespace Sedulous.Presentation
         /// </summary>
         private void LoadBindingExpressionCompiler()
         {
-            if (Sedulous.Platform == FrameworkPlatform.Android || Sedulous.Platform == FrameworkPlatform.iOS)
+            if (FrameworkContext.Platform == FrameworkPlatform.Android || FrameworkContext.Platform == FrameworkPlatform.iOS)
                 throw new NotSupportedException();
 
             if (bindingExpressionCompiler != null)

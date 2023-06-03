@@ -13,10 +13,10 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="Compositor"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="window">The window with which this compositor is associated.</param>
-        public Compositor(FrameworkContext uv, IFrameworkWindow window)
-            : base(uv)
+        public Compositor(FrameworkContext context, IFrameworkWindow window)
+            : base(context)
         {
             Contract.Require(window, nameof(window));
 

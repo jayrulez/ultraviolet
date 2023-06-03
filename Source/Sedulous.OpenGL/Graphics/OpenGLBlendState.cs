@@ -13,9 +13,9 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Initializes a new instance of the OpenGLBlendState class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public OpenGLBlendState(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public OpenGLBlendState(FrameworkContext context)
+            : base(context)
         {
 
         }
@@ -23,11 +23,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates an Opaque blend state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The blend state that was created.</returns>
-        public static OpenGLBlendState CreateOpaque(FrameworkContext uv)
+        public static OpenGLBlendState CreateOpaque(FrameworkContext context)
         {
-            var state = new OpenGLBlendState(uv);
+            var state = new OpenGLBlendState(context);
             state.AlphaSourceBlend = Blend.One;
             state.AlphaDestinationBlend = Blend.Zero;
             state.ColorSourceBlend = Blend.One;
@@ -39,11 +39,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates an AlphaBlend blend state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The blend state that was created.</returns>
-        public static OpenGLBlendState CreateAlphaBlend(FrameworkContext uv)
+        public static OpenGLBlendState CreateAlphaBlend(FrameworkContext context)
         {
-            var state = new OpenGLBlendState(uv);
+            var state = new OpenGLBlendState(context);
             state.AlphaSourceBlend = Blend.One;
             state.AlphaDestinationBlend = Blend.InverseSourceAlpha;
             state.ColorSourceBlend = Blend.One;
@@ -55,11 +55,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates an Additive blend state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The blend state that was created.</returns>
-        public static OpenGLBlendState CreateAdditive(FrameworkContext uv)
+        public static OpenGLBlendState CreateAdditive(FrameworkContext context)
         {
-            var state = new OpenGLBlendState(uv);
+            var state = new OpenGLBlendState(context);
             state.AlphaSourceBlend = Blend.SourceAlpha;
             state.AlphaDestinationBlend = Blend.One;
             state.ColorSourceBlend = Blend.SourceAlpha;
@@ -71,11 +71,11 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates a NonPremultiplied blend state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The blend state that was created.</returns>
-        public static OpenGLBlendState CreateNonPremultiplied(FrameworkContext uv)
+        public static OpenGLBlendState CreateNonPremultiplied(FrameworkContext context)
         {
-            var state = new OpenGLBlendState(uv);
+            var state = new OpenGLBlendState(context);
             state.AlphaSourceBlend = Blend.SourceAlpha;
             state.AlphaDestinationBlend = Blend.InverseSourceAlpha;
             state.ColorSourceBlend = Blend.SourceAlpha;

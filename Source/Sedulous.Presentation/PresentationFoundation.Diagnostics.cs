@@ -8,7 +8,7 @@
         public void DrawDiagnosticsPanel()
         {
             if (diagnosticsPanel == null)
-                diagnosticsPanel = new DiagnosticsPanel(Sedulous);
+                diagnosticsPanel = new DiagnosticsPanel(FrameworkContext);
 
             diagnosticsPanel.Draw();
         }

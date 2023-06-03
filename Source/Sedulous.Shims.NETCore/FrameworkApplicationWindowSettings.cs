@@ -97,13 +97,13 @@ namespace Sedulous
         /// <summary>
         /// Creates a set of window settings from the current application state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The window settings which were retrieved.</returns>
-        public static FrameworkApplicationWindowSettings FromCurrentSettings(FrameworkContext uv)
+        public static FrameworkApplicationWindowSettings FromCurrentSettings(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
-            var primary = uv.GetPlatform().Windows.GetPrimary();
+            var primary = context.GetPlatform().Windows.GetPrimary();
             if (primary == null)
                 return null;
 
@@ -125,10 +125,10 @@ namespace Sedulous
         /// <summary>
         /// Applies the specified settings.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public void Apply(FrameworkContext uv)
+        /// <param name="context">The Sedulous context.</param>
+        public void Apply(FrameworkContext context)
         {
-            var primary = uv.GetPlatform().Windows.GetPrimary();
+            var primary = context.GetPlatform().Windows.GetPrimary();
             if (primary == null)
                 return;
 

@@ -22,7 +22,7 @@ namespace Sedulous.Presentation.Tests
         /// <returns>The element which currently has focus.</returns>
         protected T GetElementWithFocus<T>(IFrameworkTestApplication app) where T : UIElement
         {
-            var screen = app.Sedulous.GetUI().GetScreens().Peek();
+            var screen = app.FrameworkContext.GetUI().GetScreens().Peek();
             if (screen == null)
                 return null;
 
@@ -71,15 +71,15 @@ namespace Sedulous.Presentation.Tests
                 })
                 .WithContent(content =>
                 {
-                    content.Sedulous.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "Global.manifest"));
+                    content.FrameworkContext.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "Global.manifest"));
 
                     globalStyleSheet = GlobalStyleSheet.Create();
                     globalStyleSheet.Append(content, "UI/DefaultUIStyles");
 
-                    content.Sedulous.GetUI().GetPresentationFoundation().SetGlobalStyleSheet(globalStyleSheet);
+                    content.FrameworkContext.GetUI().GetPresentationFoundation().SetGlobalStyleSheet(globalStyleSheet);
 
                     screen = ctor(content);
-                    content.Sedulous.GetUI().GetScreens().Open(screen);
+                    content.FrameworkContext.GetUI().GetScreens().Open(screen);
                 })
                 .WithDispose(() =>
                 {

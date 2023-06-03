@@ -14,9 +14,9 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Initializes a new instance of the <see cref="CompositeUvssDocument"/> class.
         /// </summary>
-        /// <param name="uv">The sedulous context.</param>
-        internal CompositeUvssDocument(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The sedulous context.</param>
+        internal CompositeUvssDocument(FrameworkContext context)
+            : base(context)
         {
             this.validating = OnValidating;
             this.validationComplete = OnValidationComplete;
@@ -31,7 +31,7 @@ namespace Sedulous.Presentation.Styles
         {
             Contract.EnsureNotDisposed(this, Disposed);
 
-            var primaryDisplay = Sedulous.GetPlatform().Displays.PrimaryDisplay;
+            var primaryDisplay = FrameworkContext.GetPlatform().Displays.PrimaryDisplay;
             var primaryDisplayDensity = primaryDisplay?.DensityBucket ?? ScreenDensityBucket.Desktop;
 
             return ToUvssDocumentInternal(primaryDisplayDensity);
@@ -114,7 +114,7 @@ namespace Sedulous.Presentation.Styles
         /// </summary>
         private UvssDocument ToUvssDocumentInternal(ScreenDensityBucket density)
         {
-            var document = new UvssDocument(Sedulous);
+            var document = new UvssDocument(FrameworkContext);
 
             foreach (var child in children)
                 document.Append(child.Get(density));

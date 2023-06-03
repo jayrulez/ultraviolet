@@ -10,9 +10,9 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Initializes a new instance of the <see cref="GlobalStyleSheet"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        private GlobalStyleSheet(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        private GlobalStyleSheet(FrameworkContext context)
+            : base(context)
         {
 
         }
@@ -30,7 +30,7 @@ namespace Sedulous.Presentation.Styles
         /// <inheritdoc/>
         protected override bool OnValidating(String path, UvssDocument asset)
         {
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             return upf.TrySetGlobalStyleSheet(this);            
         }
 
@@ -40,7 +40,7 @@ namespace Sedulous.Presentation.Styles
             if (validated)
                 return;
 
-            var upf = Sedulous.GetUI().GetPresentationFoundation();
+            var upf = FrameworkContext.GetUI().GetPresentationFoundation();
             upf.TrySetGlobalStyleSheet(this);
         }
     }

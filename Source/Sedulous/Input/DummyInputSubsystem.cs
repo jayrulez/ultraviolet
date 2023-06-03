@@ -13,9 +13,9 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="DummyInputSubsystem"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public DummyInputSubsystem(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public DummyInputSubsystem(FrameworkContext context)
+            : base(context)
         {
         }
 

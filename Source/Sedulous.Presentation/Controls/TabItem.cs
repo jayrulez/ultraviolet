@@ -27,10 +27,10 @@ namespace Sedulous.Presentation.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="TabItem"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public TabItem(FrameworkContext uv, String name)
-            : base(uv, name)
+        public TabItem(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }
@@ -124,7 +124,7 @@ namespace Sedulous.Presentation.Controls
         /// <inheritdoc/>
         protected override void OnTouchDown(TouchDevice device, Int64 id, Double x, Double y, Single pressure, RoutedEventData data)
         {
-            if (!Sedulous.GetInput().IsMouseCursorAvailable)
+            if (!FrameworkContext.GetInput().IsMouseCursorAvailable)
             {
                 if (!data.Handled && device.IsFirstTouchInGesture(id))
                 {

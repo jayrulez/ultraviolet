@@ -6,11 +6,11 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="VertexBuffer"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="vdecl">The vertex declaration for the buffer.</param>
     /// <param name="vcount">The number of vertices in the buffer.</param>
     /// <returns>The instance of <see cref="VertexBuffer"/> that was created.</returns>
-    public delegate VertexBuffer VertexBufferFactory(FrameworkContext uv, VertexDeclaration vdecl, Int32 vcount);
+    public delegate VertexBuffer VertexBufferFactory(FrameworkContext context, VertexDeclaration vdecl, Int32 vcount);
 
     /// <summary>
     /// Represents a buffer containing vertex data.
@@ -20,11 +20,11 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="VertexBuffer"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="vdecl">The vertex declaration for the buffer.</param>
         /// <param name="vcount">The number of vertices in the buffer.</param>
-        protected VertexBuffer(FrameworkContext uv, VertexDeclaration vdecl, Int32 vcount)
-            : base(uv)
+        protected VertexBuffer(FrameworkContext context, VertexDeclaration vdecl, Int32 vcount)
+            : base(context)
         {
             Contract.Require(vdecl, nameof(vdecl));
             Contract.EnsureRange(vcount > 0, nameof(vcount));

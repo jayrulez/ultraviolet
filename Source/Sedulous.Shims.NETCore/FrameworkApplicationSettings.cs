@@ -56,16 +56,16 @@ namespace Sedulous
         /// <summary>
         /// Creates a set of application settings from the current application state.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The <see cref="FrameworkApplicationSettings"/> which was retrieved.</returns>
-        public static FrameworkApplicationSettings FromCurrentSettings(FrameworkContext uv)
+        public static FrameworkApplicationSettings FromCurrentSettings(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
             var settings = new FrameworkApplicationSettings();
 
-            settings.Window = FrameworkApplicationWindowSettings.FromCurrentSettings(uv);
-            settings.Audio = FrameworkApplicationAudioSettings.FromCurrentSettings(uv);
+            settings.Window = FrameworkApplicationWindowSettings.FromCurrentSettings(context);
+            settings.Audio = FrameworkApplicationAudioSettings.FromCurrentSettings(context);
 
             return settings;
         }
@@ -73,14 +73,14 @@ namespace Sedulous
         /// <summary>
         /// Applies the specified settings.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public void Apply(FrameworkContext uv)
+        /// <param name="context">The Sedulous context.</param>
+        public void Apply(FrameworkContext context)
         {
             if (Window != null)
-                Window.Apply(uv);
+                Window.Apply(context);
 
             if (Audio != null)
-                Audio.Apply(uv);
+                Audio.Apply(context);
         }
 
         /// <summary>

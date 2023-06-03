@@ -56,7 +56,7 @@ namespace Sedulous.Presentation.Styles
         /// <inheritdoc/>
         protected override void Attach(DependencyObject dobj)
         {
-            var routedEvent = EventManager.FindByStylingName(Sedulous, dobj, eventName.Owner, eventName.Name);
+            var routedEvent = EventManager.FindByStylingName(FrameworkContext, dobj, eventName.Owner, eventName.Name);
             if (routedEvent == null)
                 throw new InvalidOperationException(PresentationStrings.EventOrPropertyDoesNotExist.Format(eventName, dobj.GetType()));
 
@@ -68,7 +68,7 @@ namespace Sedulous.Presentation.Styles
         /// <inheritdoc/>
         protected override void Detach(DependencyObject dobj)
         {
-            var routedEvent = EventManager.FindByStylingName(Sedulous, dobj, eventName.Owner, eventName.Name);
+            var routedEvent = EventManager.FindByStylingName(FrameworkContext, dobj, eventName.Owner, eventName.Name);
             if (routedEvent == null)
                 throw new InvalidOperationException(PresentationStrings.EventOrPropertyDoesNotExist.Format(eventName, dobj.GetType()));
 

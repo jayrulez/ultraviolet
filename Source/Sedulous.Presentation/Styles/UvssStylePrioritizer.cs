@@ -21,14 +21,14 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Adds a styling rule to the prioritizer.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="selector">The selector which caused this style to be considered.</param>
         /// <param name="navigationExpression">The navigation expression associated with the style.</param>
         /// <param name="rule">The styling rule to add to the prioritizer.</param>
         /// <param name="index">The index of the rule's rule set within the style sheet.</param>
-        public void Add(FrameworkContext uv, UvssSelector selector, NavigationExpression? navigationExpression, UvssRule rule, Int32 index)
+        public void Add(FrameworkContext context, UvssSelector selector, NavigationExpression? navigationExpression, UvssRule rule, Int32 index)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
             var key = new StyleKey(rule.CanonicalName, navigationExpression);
             var priority = CalculatePriorityFromSelector(selector, rule.IsImportant);
@@ -54,14 +54,14 @@ namespace Sedulous.Presentation.Styles
         /// <summary>
         /// Adds a trigger to the prioritizer.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="selector">The selector which caused this style to be considered.</param>
         /// <param name="navigationExpression">The navigation expression associated with the style.</param>
         /// <param name="trigger">The trigger to add to the prioritizer.</param>
         /// <param name="index">The index of the trigger's rule set within the style sheet.</param>
-        public void Add(FrameworkContext uv, UvssSelector selector, NavigationExpression? navigationExpression, UvssTrigger trigger, Int32 index)
+        public void Add(FrameworkContext context, UvssSelector selector, NavigationExpression? navigationExpression, UvssTrigger trigger, Int32 index)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
             var key = new StyleKey(trigger.CanonicalName, navigationExpression);
             var priority = CalculatePriorityFromSelector(selector, false);
@@ -94,7 +94,7 @@ namespace Sedulous.Presentation.Styles
             {
                 var style    = kvp.Value.Style;
                 var selector = kvp.Value.Selector;
-                var dprop    = DependencyProperty.FindByStylingName(element.Sedulous, element, style.Owner, style.Name);
+                var dprop    = DependencyProperty.FindByStylingName(element.FrameworkContext, element, style.Owner, style.Name);
 
                 element.ApplyStyle(style, selector, kvp.Key.NavigationExpression, dprop);
             }
@@ -107,7 +107,7 @@ namespace Sedulous.Presentation.Styles
                 var target = (DependencyObject)element;
                 if (kvp.Key.NavigationExpression.HasValue)
                 {
-                    target = kvp.Key.NavigationExpression.Value.ApplyExpression(element.Sedulous, element);
+                    target = kvp.Key.NavigationExpression.Value.ApplyExpression(element.FrameworkContext, element);
                 }
 
                 if (target != null)

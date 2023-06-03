@@ -21,15 +21,15 @@ namespace Sedulous.Presentation.Compiler
     public class RoslynExpressionCompiler : IBindingExpressionCompiler
     {
         /// <inheritdoc/>
-        public BindingExpressionCompilationResult Compile(FrameworkContext uv, BindingExpressionCompilerOptions options)
+        public BindingExpressionCompilationResult Compile(FrameworkContext context, BindingExpressionCompilerOptions options)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
             Contract.Require(options, nameof(options));
 
             if (String.IsNullOrEmpty(options.Input) || String.IsNullOrEmpty(options.Output))
                 throw new ArgumentException(PresentationStrings.InvalidCompilerOptions);
 
-            var state = new RoslynExpressionCompilerState(uv)
+            var state = new RoslynExpressionCompilerState(context)
             {
                 GenerateInMemory = options.GenerateInMemory,
                 WorkInTemporaryDirectory = options.WorkInTemporaryDirectory,
@@ -63,7 +63,7 @@ namespace Sedulous.Presentation.Compiler
         }
 
         /// <inheritdoc/>
-        public BindingExpressionCompilationResult CompileSingleView(FrameworkContext uv, BindingExpressionCompilerOptions options)
+        public BindingExpressionCompilationResult CompileSingleView(FrameworkContext context, BindingExpressionCompilerOptions options)
         {
             Contract.Require(options, nameof(options));
 
@@ -74,7 +74,7 @@ namespace Sedulous.Presentation.Compiler
             if (definition == null)
                 return BindingExpressionCompilationResult.CreateSucceeded();
 
-            var state = new RoslynExpressionCompilerState(uv)
+            var state = new RoslynExpressionCompilerState(context)
             {
                 GenerateInMemory = options.GenerateInMemory,
                 WorkInTemporaryDirectory = options.WorkInTemporaryDirectory,

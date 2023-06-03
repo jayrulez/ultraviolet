@@ -21,7 +21,7 @@ namespace Sedulous.FreeType2
             var mdata = metadata.As<FreeTypeFontProcessorMetadata>();
             var prepopGlyphRanges = new List<PrepopulatedGlyphRange>();
 
-            GetBestScreenDensityMatch(manager.Sedulous, metadata.AssetDensity, out var dpiX, out var dpiY);
+            GetBestScreenDensityMatch(manager.FrameworkContext, metadata.AssetDensity, out var dpiX, out var dpiY);
             GetPrepopulatedGlyphList(mdata.PrepopulatedGlyphs, prepopGlyphRanges);
 
             var sizeInPoints = mdata.SizeInPoints;
@@ -44,10 +44,10 @@ namespace Sedulous.FreeType2
             var pxSizeBoldItalic = mdata.SizeInPixels;
             var ftFaceBoldItalic = LoadFontFace(input.FaceDataBoldItalic, input.FaceDataBoldItalicLength, sizeInPoints, ref pxSizeBoldItalic, iDpiX, iDpiY, !mdata.UseClosestPixelSize);
 
-            var uvFaceRegular = (ftFaceRegular == IntPtr.Zero) ? null : new FreeTypeFontFace(manager.Sedulous, ftFaceRegular, mdata);
-            var uvFaceBold = (ftFaceBold == IntPtr.Zero) ? null : new FreeTypeFontFace(manager.Sedulous, ftFaceBold, mdata);
-            var uvFaceItalic = (ftFaceItalic == IntPtr.Zero) ? null : new FreeTypeFontFace(manager.Sedulous, ftFaceItalic, mdata);
-            var uvFaceBoldItalic = (ftFaceBoldItalic == IntPtr.Zero) ? null : new FreeTypeFontFace(manager.Sedulous, ftFaceBoldItalic, mdata);
+            var uvFaceRegular = (ftFaceRegular == IntPtr.Zero) ? null : new FreeTypeFontFace(manager.FrameworkContext, ftFaceRegular, mdata);
+            var uvFaceBold = (ftFaceBold == IntPtr.Zero) ? null : new FreeTypeFontFace(manager.FrameworkContext, ftFaceBold, mdata);
+            var uvFaceItalic = (ftFaceItalic == IntPtr.Zero) ? null : new FreeTypeFontFace(manager.FrameworkContext, ftFaceItalic, mdata);
+            var uvFaceBoldItalic = (ftFaceBoldItalic == IntPtr.Zero) ? null : new FreeTypeFontFace(manager.FrameworkContext, ftFaceBoldItalic, mdata);
 
             if (uvFaceRegular != null)
                 PrepopulateGlyphs(uvFaceRegular, prepopGlyphRanges);
@@ -61,7 +61,7 @@ namespace Sedulous.FreeType2
             if (uvFaceBoldItalic != null)
                 PrepopulateGlyphs(uvFaceBoldItalic, prepopGlyphRanges);
 
-            return new FreeTypeFont(manager.Sedulous, uvFaceRegular, uvFaceBold, uvFaceItalic, uvFaceBoldItalic);
+            return new FreeTypeFont(manager.FrameworkContext, uvFaceRegular, uvFaceBold, uvFaceItalic, uvFaceBoldItalic);
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Sedulous.FreeType2
         /// <summary>
         /// Finds the best set of DPI values to use when loading the font for the specified density bucket.
         /// </summary>
-        private static void GetBestScreenDensityMatch(FrameworkContext uv, ScreenDensityBucket bucket, out Single dpiX, out Single dpiY)
+        private static void GetBestScreenDensityMatch(FrameworkContext context, ScreenDensityBucket bucket, out Single dpiX, out Single dpiY)
         {
             dpiX = 96f;
             dpiY = 96f;
@@ -153,7 +153,7 @@ namespace Sedulous.FreeType2
             var bestMatchFound = false;
             var bestMatchScale = Single.MaxValue;
 
-            foreach (var display in uv.GetPlatform().Displays)
+            foreach (var display in context.GetPlatform().Displays)
             {
                 if (display.DensityBucket == bucket)
                 {

@@ -9,18 +9,18 @@
         /// Traverses the directory tree specified by <paramref name="options"/> and builds an assembly containing the compiled binding
         /// expressions of any UPF views which are found therein.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="options">The compiler options.</param>
         /// <returns>A <see cref="BindingExpressionCompilationResult"/> that represents the result of the compilation.</returns>
-        BindingExpressionCompilationResult Compile(FrameworkContext uv, BindingExpressionCompilerOptions options);
+        BindingExpressionCompilationResult Compile(FrameworkContext context, BindingExpressionCompilerOptions options);
 
         /// <summary>
         /// Compiles the specified view's binding expressions into a view model wrapper and produces a string
         /// containing the resulting C# code.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="options">The compiler options.</param>
         /// <returns>A <see cref="BindingExpressionCompilationResult"/> that represents the result of the compilation.</returns>
-        BindingExpressionCompilationResult CompileSingleView(FrameworkContext uv, BindingExpressionCompilerOptions options);
+        BindingExpressionCompilationResult CompileSingleView(FrameworkContext context, BindingExpressionCompilerOptions options);
     }
 }

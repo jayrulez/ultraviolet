@@ -16,10 +16,10 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Initializes a new instance of the <see cref="TextEditor"/> control.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="name">The element's identifying name within its namescope.</param>
-        public PasswordEditor(FrameworkContext uv, String name)
-            : base(uv, name)
+        public PasswordEditor(FrameworkContext context, String name)
+            : base(context, name)
         {
 
         }

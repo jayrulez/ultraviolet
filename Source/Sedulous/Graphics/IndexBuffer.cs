@@ -6,11 +6,11 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="IndexBuffer"/> class.
     /// </summary>
-    /// <param name="uv">The Sedulous context.</param>
+    /// <param name="context">The Sedulous context.</param>
     /// <param name="itype">The index element type.</param>
     /// <param name="icount">The index element count.</param>
     /// <returns>The instance of <see cref="IndexBuffer"/> that was created.</returns>
-    public delegate IndexBuffer IndexBufferFactory(FrameworkContext uv, IndexBufferElementType itype, Int32 icount);
+    public delegate IndexBuffer IndexBufferFactory(FrameworkContext context, IndexBufferElementType itype, Int32 icount);
 
     /// <summary>
     /// Represents an index buffer.
@@ -20,11 +20,11 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="IndexBuffer"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="itype">The index element type.</param>
         /// <param name="icount">The index element count.</param>
-        protected IndexBuffer(FrameworkContext uv, IndexBufferElementType itype, Int32 icount)
-            : base(uv)
+        protected IndexBuffer(FrameworkContext context, IndexBufferElementType itype, Int32 icount)
+            : base(context)
         {
             Contract.EnsureRange(icount > 0, nameof(icount));
 

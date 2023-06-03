@@ -18,13 +18,13 @@ namespace Sedulous.BASS
         /// <summary>
         /// Initializes a new instance of the BASSSedulousAudio class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        public BASSAudioSubsystem(FrameworkContext uv)
-            : base(uv)
+        /// <param name="context">The Sedulous context.</param>
+        public BASSAudioSubsystem(FrameworkContext context)
+            : base(context)
         {
             this.Capabilities = new BASSAudioCapabilities();
 
-            if (uv.Platform == FrameworkPlatform.Windows || uv.Platform == FrameworkPlatform.macOS)
+            if (context.Platform == FrameworkPlatform.Windows || context.Platform == FrameworkPlatform.macOS)
             {
                 if (!BASS_SetConfig(BASS_CONFIG_DEV_DEFAULT, 1))
                 {
@@ -42,8 +42,8 @@ namespace Sedulous.BASS
             UpdateAudioDevices();
             PlaybackDevice = GetDefaultDevice();
 
-            uv.Messages.Subscribe(this, FrameworkMessages.ApplicationSuspending);
-            uv.Messages.Subscribe(this, FrameworkMessages.ApplicationResumed);
+            context.Messages.Subscribe(this, FrameworkMessages.ApplicationSuspending);
+            context.Messages.Subscribe(this, FrameworkMessages.ApplicationResumed);
         }
 
         /// <inheritdoc/>
@@ -150,7 +150,7 @@ namespace Sedulous.BASS
                     {
                         if (val is BASSAudioDevice device)
                         {
-                            Sedulous.ValidateResource(device);
+                            FrameworkContext.ValidateResource(device);
 
                             var oldDevice = (playbackDevice == null) ? 0u : BASS_GetDevice();
 
@@ -161,11 +161,11 @@ namespace Sedulous.BASS
                                     throw new BASSException(error);
                             }
 
-                            if (Sedulous != null && !Sedulous.Disposed)
+                            if (FrameworkContext != null && !FrameworkContext.Disposed)
                             {
-                                var data = Sedulous.Messages.CreateMessageData<BASSDeviceChangedMessageData>();
+                                var data = FrameworkContext.Messages.CreateMessageData<BASSDeviceChangedMessageData>();
                                 data.DeviceID = device.ID;
-                                Sedulous.Messages.PublishImmediate(BASSMessages.BASSDeviceChanged, data);
+                                FrameworkContext.Messages.PublishImmediate(BASSMessages.BASSDeviceChanged, data);
                             }
 
                             if (oldDevice > 0)
@@ -307,9 +307,9 @@ namespace Sedulous.BASS
             if (!BASS_Free())
                 throw new BASSException();
 
-            if (disposing && !Sedulous.Disposed)
+            if (disposing && !FrameworkContext.Disposed)
             {
-                Sedulous.Messages.Unsubscribe(this);
+                FrameworkContext.Messages.Unsubscribe(this);
             }
 
             base.Dispose(disposing);
@@ -357,7 +357,7 @@ namespace Sedulous.BASS
                 if (ix >= knownAudioDevices.Count)
                 {
                     var marshalledInfo = info.ToMarshalledStruct();
-                    knownAudioDevices.Add(new BASSAudioDevice(Sedulous, (uint)i, marshalledInfo.name));
+                    knownAudioDevices.Add(new BASSAudioDevice(FrameworkContext, (uint)i, marshalledInfo.name));
                 }
 
                 var device = knownAudioDevices[ix];

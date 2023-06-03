@@ -60,14 +60,14 @@ namespace Sedulous
             if (initialized)
                 return true;
 
-            var uv = FrameworkContext.RequestCurrent();
-            if (uv == null || uv.Disposing || uv.Disposed)
+            var context = FrameworkContext.RequestCurrent();
+            if (context == null || context.Disposing || context.Disposed)
                 return false;
 
-            if (resource == null || resource.Sedulous != uv)
+            if (resource == null || resource.FrameworkContext != context)
             {
-                if (ShouldInitializeResource(uv))
-                    resource = initializer(uv);
+                if (ShouldInitializeResource(context))
+                    resource = initializer(context);
             }
 
             initialized = true;
@@ -97,10 +97,10 @@ namespace Sedulous
         /// Gets a value indicating whether the singleton should be initialized for the
         /// specified Sedulous context.
         /// </summary>
-        private Boolean ShouldInitializeResource(FrameworkContext uv)
+        private Boolean ShouldInitializeResource(FrameworkContext context)
         {
             var disabledInServiceMode = (Flags & FrameworkSingletonFlags.DisabledInServiceMode) == FrameworkSingletonFlags.DisabledInServiceMode;
-            if (disabledInServiceMode && uv.IsRunningInServiceMode)
+            if (disabledInServiceMode && context.IsRunningInServiceMode)
                 return false;
 
             return true;

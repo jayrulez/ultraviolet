@@ -47,11 +47,11 @@ namespace Sedulous.UI
         /// <summary>
         /// Initializes a new instance of the <see cref="UIPanel"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="rootDirectory">The root directory of the panel's local content manager.</param>
         /// <param name="globalContent">The content manager with which to load globally-available assets.</param>
-        internal UIPanel(FrameworkContext uv, String rootDirectory, ContentManager globalContent)
-            : base(uv ?? FrameworkContext.DemandCurrent())
+        internal UIPanel(FrameworkContext context, String rootDirectory, ContentManager globalContent)
+            : base(context ?? FrameworkContext.DemandCurrent())
         {
             Contract.RequireNotEmpty(rootDirectory, nameof(rootDirectory));
             Contract.Require(globalContent, nameof(globalContent));
@@ -274,7 +274,7 @@ namespace Sedulous.UI
         /// The screen stack for the panel's current window.
         /// </summary>
         public UIScreenStack Screens => 
-            this.window == null ? null : Sedulous.GetUI().GetScreens(this.window);
+            this.window == null ? null : FrameworkContext.GetUI().GetScreens(this.window);
 
         /// <summary>
         /// Occurs when the panel is being updated.
@@ -577,12 +577,12 @@ namespace Sedulous.UI
         /// <summary>
         /// Gets a value indicating whether the panel is on the primary window.
         /// </summary>
-        protected Boolean IsOnPrimaryWindow => window == Sedulous.GetPlatform().Windows.GetPrimary();
+        protected Boolean IsOnPrimaryWindow => window == FrameworkContext.GetPlatform().Windows.GetPrimary();
 
         /// <summary>
         /// Gets a value indicating whether the panel is on the current window.
         /// </summary>
-        protected Boolean IsOnCurrentWindow => window == Sedulous.GetPlatform().Windows.GetCurrent();
+        protected Boolean IsOnCurrentWindow => window == FrameworkContext.GetPlatform().Windows.GetCurrent();
 
         /// <summary>
         /// Gets a value indicating whether the panel is in the <see cref="UIPanelState.Open"/> state.
@@ -617,7 +617,7 @@ namespace Sedulous.UI
         /// <summary>
         /// Gets the screen stack for the panel's current window.
         /// </summary>
-        protected UIScreenStack WindowScreens => window == null ? null : Sedulous.GetUI().GetScreens(window);
+        protected UIScreenStack WindowScreens => window == null ? null : FrameworkContext.GetUI().GetScreens(window);
 
         /// <summary>
         /// Raises the <see cref="Opening"/> event.

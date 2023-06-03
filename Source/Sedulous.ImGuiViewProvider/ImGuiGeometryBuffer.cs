@@ -13,10 +13,10 @@ namespace Sedulous.ImGuiViewProvider
         /// <summary>
         /// Initializes a new instance of the <see cref="ImGuiGeometryBuffer"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="view">The view which owns the geometry buffer.</param>
-        public ImGuiGeometryBuffer(FrameworkContext uv, ImGuiView view)
-            : base(uv)
+        public ImGuiGeometryBuffer(FrameworkContext context, ImGuiView view)
+            : base(context)
         {
             this.effect = SpriteBatchEffect.Create();
             this.view = view;
@@ -119,7 +119,7 @@ namespace Sedulous.ImGuiViewProvider
         {
             EnsureBuffers(ref drawDataPtr);
 
-            var gfx = Sedulous.GetGraphics();
+            var gfx = FrameworkContext.GetGraphics();
             gfx.SetGeometryStream(geometryStream);
             gfx.SetBlendState(BlendState.NonPremultiplied);
             gfx.SetDepthStencilState(DepthStencilState.None);

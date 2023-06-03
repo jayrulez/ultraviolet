@@ -12,12 +12,12 @@ namespace Sedulous.Shims.NETCore.Platform
         /// <summary>
         /// Initializes a new instance of the <see cref="NETCoreScreenDensityService"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="display">The <see cref="IFrameworkDisplay"/> for which to retrieve density information.</param>
-        public NETCoreScreenDensityService(FrameworkContext uv, IFrameworkDisplay display)
+        public NETCoreScreenDensityService(FrameworkContext context, IFrameworkDisplay display)
             : base(display)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
             Refresh();
         }

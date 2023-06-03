@@ -12,14 +12,14 @@ namespace Sedulous.Presentation.Controls.Primitives
         /// <summary>
         /// Initializes a new instance of the <see cref="PopupRoot"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="resized">The action to perform when the popup content is resized.</param>
-        public PopupRoot(FrameworkContext uv, Action resized)
-            : base(uv, null)
+        public PopupRoot(FrameworkContext context, Action resized)
+            : base(context, null)
         {
             this.resized = resized;
 
-            this.nonLogicalAdornerDecorator = new NonLogicalAdornerDecorator(uv, null);
+            this.nonLogicalAdornerDecorator = new NonLogicalAdornerDecorator(context, null);
             this.nonLogicalAdornerDecorator.ChangeLogicalParent(this);
         }
 

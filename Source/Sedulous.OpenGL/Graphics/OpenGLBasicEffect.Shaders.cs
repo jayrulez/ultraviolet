@@ -9,23 +9,23 @@ namespace Sedulous.OpenGL.Graphics
         /// <summary>
         /// Creates the effect implementation.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <returns>The effect implementation.</returns>
-        private static EffectImplementation CreateEffectImplementation(FrameworkContext uv)
+        private static EffectImplementation CreateEffectImplementation(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
             var programs = new OpenGLShaderProgram[VSIndices.Length];
             for (var i = 0; i < programs.Length; i++)
             {
                 var vShader = VSArray[VSIndices[i]];
                 var fShader = PSArray[PSIndices[i]];
-                programs[i] = new OpenGLShaderProgram(uv, vShader, fShader, false);
+                programs[i] = new OpenGLShaderProgram(context, vShader, fShader, false);
             }
 
-            var passes = new[] { new OpenGLEffectPass(uv, null, programs) };
-            var techniques = new[] { new OpenGLEffectTechnique(uv, null, passes) };
-            return new OpenGLEffectImplementation(uv, techniques);
+            var passes = new[] { new OpenGLEffectPass(context, null, programs) };
+            var techniques = new[] { new OpenGLEffectTechnique(context, null, passes) };
+            return new OpenGLEffectImplementation(context, techniques);
         }
 
         // An array containing all of the vertex shaders used by this effect.

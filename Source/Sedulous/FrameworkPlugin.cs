@@ -16,9 +16,9 @@ namespace Sedulous
         /// <summary>
         /// Initializes the plugin for the specified Sedulous context.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="factory">The Sedulous factory.</param>
-        public virtual void Initialize(FrameworkContext uv, FrameworkFactory factory) { }
+        public virtual void Initialize(FrameworkContext context, FrameworkFactory factory) { }
 
         /// <summary>
         /// Gets a value indicating whether this plugin has been configured.

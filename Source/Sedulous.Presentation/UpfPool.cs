@@ -12,12 +12,12 @@ namespace Sedulous.Presentation
         /// <summary>
         /// Initializes a new instance of the <see cref="UpfPool{TPooledType}"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="capacity">The pool's initial capacity.</param>
         /// <param name="watermark">The pool's high watermark value.</param>
         /// <param name="allocator">The pool's allocator function.</param>
-        public UpfPool(FrameworkContext uv, Int32 capacity, Int32 watermark, Func<TPooledType> allocator)
-            : base(uv)
+        public UpfPool(FrameworkContext context, Int32 capacity, Int32 watermark, Func<TPooledType> allocator)
+            : base(context)
         {
             Contract.Require(allocator, nameof(allocator));
             Contract.EnsureRange(capacity >= 0, nameof(capacity));

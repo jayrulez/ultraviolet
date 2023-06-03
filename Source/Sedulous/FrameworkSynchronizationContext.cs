@@ -15,18 +15,18 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameworkSynchronizationContext"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
-        internal FrameworkSynchronizationContext(FrameworkContext uv)
+        /// <param name="context">The Sedulous context.</param>
+        internal FrameworkSynchronizationContext(FrameworkContext context)
         {
-            Contract.Require(uv, nameof(uv));
+            Contract.Require(context, nameof(context));
 
-            this.Sedulous = uv;
+            this.FrameworkContext = context;
         }
 
         /// <inheritdoc/>
         public override SynchronizationContext CreateCopy()
         {
-            return new FrameworkSynchronizationContext(Sedulous);
+            return new FrameworkSynchronizationContext(FrameworkContext);
         }
 
         /// <inheritdoc/>
@@ -71,7 +71,7 @@ namespace Sedulous
         /// <summary>
         /// Gets the Sedulous context associated with this synchronization context.
         /// </summary>
-        public FrameworkContext Sedulous { get; }
+        public FrameworkContext FrameworkContext { get; }
 
         /// <summary>
         /// Adds the specified task to the queue of work items.

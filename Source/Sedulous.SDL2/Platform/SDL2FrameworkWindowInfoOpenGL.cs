@@ -16,10 +16,10 @@ namespace Sedulous.SDL2.Platform
         /// <summary>
         /// Initializes a new instance of the <see cref="SDL2FrameworkWindowInfoOpenGL"/> class.
         /// </summary>
-        /// <param name="uv">The Sedulous context.</param>
+        /// <param name="context">The Sedulous context.</param>
         /// <param name="configuration">The Sedulous configuration settings for the current context.</param>
-        public SDL2FrameworkWindowInfoOpenGL(FrameworkContext uv, FrameworkConfiguration configuration)
-            : base(uv, configuration)
+        public SDL2FrameworkWindowInfoOpenGL(FrameworkContext context, FrameworkConfiguration configuration)
+            : base(context, configuration)
         {
 
         }
@@ -175,7 +175,7 @@ namespace Sedulous.SDL2.Platform
             if (SDL_GL_MakeCurrent(winptr, context) < 0)
                 throw new SDL2Exception();
 
-            if (SDL_GL_SetSwapInterval(win.SynchronizeWithVerticalRetrace ? 1 : 0) < 0 && Sedulous.Platform != FrameworkPlatform.iOS)
+            if (SDL_GL_SetSwapInterval(win.SynchronizeWithVerticalRetrace ? 1 : 0) < 0 && FrameworkContext.Platform != FrameworkPlatform.iOS)
             {
                 if (!shuttingDown)
                     throw new SDL2Exception();

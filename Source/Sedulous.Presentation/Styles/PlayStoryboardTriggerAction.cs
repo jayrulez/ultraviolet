@@ -19,7 +19,7 @@ namespace Sedulous.Presentation.Styles
         }
 
         /// <inheritdoc/>
-        public override void Activate(FrameworkContext uv, DependencyObject dobj)
+        public override void Activate(FrameworkContext context, DependencyObject dobj)
         {
             var element = dobj as UIElement;
             if (element == null || element.View == null)
@@ -50,11 +50,11 @@ namespace Sedulous.Presentation.Styles
                     }
                 });
             }
-            base.Activate(uv, dobj);
+            base.Activate(context, dobj);
         }
 
         /// <inheritdoc/>
-        public override void Deactivate(FrameworkContext uv, DependencyObject dobj)
+        public override void Deactivate(FrameworkContext context, DependencyObject dobj)
         {
             var element = dobj as UIElement;
             if (element == null || element.View == null)
@@ -85,7 +85,7 @@ namespace Sedulous.Presentation.Styles
                     }
                 });
             }
-            base.Deactivate(uv, dobj);
+            base.Deactivate(context, dobj);
         }
 
         // State values.
