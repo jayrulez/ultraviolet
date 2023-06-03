@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using Sedulous.Content;
 using Sedulous.Core.Xml;
 
-namespace Sedulous.SDL2
+namespace Sedulous
 {
     /// <summary>
     /// Represents a content processor that loads cursor collections.

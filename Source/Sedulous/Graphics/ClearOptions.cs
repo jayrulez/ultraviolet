@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Sedulous
+namespace Sedulous.Graphics
 {
     /// <summary>
-    /// Represents the set of buffers which will be cleared by the <see cref="ISedulousGraphics.Clear(ClearOptions, Color, Double, Int32)"/> method.
+    /// Represents the set of buffers which will be cleared by the <see cref="ISedulousGraphics.Clear(ClearOptions, Color, double, int)"/> method.
     /// </summary>
     [Flags]
     public enum ClearOptions

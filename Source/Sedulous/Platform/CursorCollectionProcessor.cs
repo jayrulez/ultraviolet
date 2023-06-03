@@ -1,7 +1,7 @@
 ﻿using Sedulous.Content;
 using Sedulous.Graphics;
 
-namespace Sedulous.SDL2
+namespace Sedulous
 {
     /// <summary>
     /// Represents a content processor that loads cursor collections.
