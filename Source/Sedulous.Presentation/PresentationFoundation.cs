@@ -39,14 +39,13 @@ namespace Sedulous.Presentation
         /// Modifies the specified <see cref="FrameworkConfiguration"/> instance so that the Sedulous
         /// Presentation Foundation will be registered as the context's view provider.
         /// </summary>
-        /// <param name="sedulousConfig">The <see cref="FrameworkConfiguration"/> instance to modify.</param>
+        /// <param name="frameworkConfig">The <see cref="FrameworkConfiguration"/> instance to modify.</param>
         /// <param name="presentationConfig">Configuration settings for the Sedulous Presentation Foundation.</param>
-        public static void Configure(FrameworkConfiguration sedulousConfig, PresentationFoundationConfiguration presentationConfig = null)
+        public static void Configure(FrameworkConfiguration frameworkConfig, PresentationFoundationConfiguration presentationConfig = null)
         {
-            Contract.Require(sedulousConfig, nameof(sedulousConfig));
+            Contract.Require(frameworkConfig, nameof(frameworkConfig));
 
-            sedulousConfig.ViewProviderAssembly = typeof(PresentationFoundation).Assembly.FullName;
-            sedulousConfig.ViewProviderConfiguration = presentationConfig;
+            frameworkConfig.ViewProviderConfiguration = presentationConfig;
         }
         
         /// <summary>

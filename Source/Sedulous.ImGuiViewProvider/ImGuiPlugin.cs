@@ -9,12 +9,11 @@ namespace Sedulous.ImGuiViewProvider
     public sealed class ImGuiPlugin : FrameworkPlugin
     {
         /// <inheritdoc/>
-        public override void Register(FrameworkConfiguration sedulousConfig)
+        public override void Register(FrameworkConfiguration frameworkConfig)
         {
-            Contract.Require(sedulousConfig, nameof(sedulousConfig));
+            Contract.Require(frameworkConfig, nameof(frameworkConfig));
 
-            sedulousConfig.ViewProviderAssembly = typeof(ImGuiPlugin).Assembly.FullName;
-            sedulousConfig.ViewProviderConfiguration = null;
+            frameworkConfig.ViewProviderConfiguration = null;
         }
 
         /// <inheritdoc/>

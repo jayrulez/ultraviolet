@@ -561,11 +561,6 @@ namespace Sedulous
         public IMessageQueue<FrameworkMessageID> Messages => messages;
 
         /// <summary>
-        /// Gets the assembly which implements views for the user interface subsystem.
-        /// </summary>
-        public Assembly ViewProviderAssembly => viewProviderAssembly;
-
-        /// <summary>
         /// Gets or sets a value indicating whether the context is currently processing messages
         /// from the physical input devices.
         /// </summary>
@@ -996,40 +991,10 @@ namespace Sedulous
 
             InitializeFactoryMethodsInAssembly(asmCore);
             InitializeFactoryMethodsInAssembly(asmImpl);
-            InitializeFactoryMethodsInViewProvider(configuration);
             
             var asmEntry = Assembly.GetEntryAssembly();
             if (asmEntry != null)
                 InitializeFactoryMethodsInAssembly(asmEntry);
-        }
-        
-        /// <summary>
-        /// Initializes any factory methods exposed by the registered view provider.
-        /// </summary>
-        /// <param name="configuration">The Sedulous Framework configuration settings for this context.</param>
-        private void InitializeFactoryMethodsInViewProvider(FrameworkConfiguration configuration)
-        {
-            if (String.IsNullOrEmpty(configuration.ViewProviderAssembly))
-                return;
-
-            Assembly asm;
-            try
-            {
-                asm = Assembly.Load(configuration.ViewProviderAssembly);
-                InitializeFactoryMethodsInAssembly(asm);
-
-                viewProviderAssembly = asm;
-            }
-            catch (Exception e)
-            {
-                if (e is FileNotFoundException ||
-                    e is FileLoadException ||
-                    e is BadImageFormatException)
-                {
-                    throw new InvalidOperationException(FrameworkStrings.InvalidViewProviderAssembly, e);
-                }
-                throw;
-            }
         }
 
         /// <summary>
@@ -1087,7 +1052,6 @@ namespace Sedulous
         private readonly FrameworkSynchronizationContext syncContext;
         private readonly FrameworkFactory factory = new FrameworkFactory();
         private readonly Thread thread;
-        private Assembly viewProviderAssembly;
 
         // The context's list of pending tasks.
         private readonly TaskScheduler taskScheduler;
