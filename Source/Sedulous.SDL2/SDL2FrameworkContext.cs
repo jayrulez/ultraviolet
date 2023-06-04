@@ -6,7 +6,9 @@ using System.Runtime.InteropServices;
 using Sedulous.Content;
 using Sedulous.Core;
 using Sedulous.Graphics;
+using Sedulous.OpenGL;
 using Sedulous.Platform;
+using Sedulous.SDL2.Graphics;
 using Sedulous.SDL2.Messages;
 using Sedulous.SDL2.Native;
 using Sedulous.SDL2.Platform;
@@ -44,6 +46,8 @@ namespace Sedulous.SDL2
         /// <inheritdoc/>
         protected unsafe override void InitializeContext()
         {
+            ConfigurePlugins(configuration);
+            ConfigureFactories();
             this.onWindowDrawing = (context, time, window) =>
                 ((SDL2FrameworkContext)context).OnWindowDrawing(time, window);
             this.onWindowDrawn = (context, time, window) =>
@@ -67,13 +71,41 @@ namespace Sedulous.SDL2
             this.content = InitializeContentSubsystem();
             this.ui = InitializeUISubsystem(configuration);
 
-            PumpEvents();
-
             InitializeViewProvider(configuration);
-            ConfigurePlugins(configuration);
             InitializePlugins(configuration);
 
             base.InitializeContext();
+
+            PumpEvents();
+        }
+
+
+        /// <inheritdoc/>
+        protected override void ConfigureFactories()
+        {
+            base.ConfigureFactories();
+
+
+            // Core classes.
+            Factory.SetFactoryMethod<PlatformNativeSurfaceFactory>((source) => new SDL2PlatformNativeSurface(source));
+            Factory.SetFactoryMethod<Surface2DFactory>((uv, width, height, options) => new SDL2Surface2D(uv, width, height, options));
+            Factory.SetFactoryMethod<Surface2DFromSourceFactory>((uv, source, options) => new SDL2Surface2D(uv, source, options));
+            Factory.SetFactoryMethod<Surface2DFromNativeSurfaceFactory>((uv, surface, options) => new SDL2Surface2D(uv, surface, options));
+            Factory.SetFactoryMethod<Surface3DFactory>((uv, width, height, depth, bytesPerPixel, options) => new SDL2Surface3D(uv, width, height, depth, bytesPerPixel, options));
+            Factory.SetFactoryMethod<CursorFactory>((uv, surface, hx, hv) => new SDL2Cursor(uv, surface, hx, hv));
+
+            // Platform services
+            var msgboxService = new SDL2MessageBoxService();
+            Factory.SetFactoryMethod<MessageBoxServiceFactory>(() => msgboxService);
+
+            var clipboardService = new SDL2ClipboardService();
+            Factory.SetFactoryMethod<ClipboardServiceFactory>(() => clipboardService);
+
+            var powerManagementService = new SDL2PowerManagementService();
+            Factory.SetFactoryMethod<PowerManagementServiceFactory>(() => powerManagementService);
+
+            // Graphics API services
+            Factory.SetFactoryMethod<OpenGLEnvironmentFactory>((uv) => new SDL2OpenGLEnvironment(uv));
         }
 
         /// <inheritdoc/>

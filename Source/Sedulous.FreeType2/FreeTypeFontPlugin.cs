@@ -15,7 +15,7 @@ namespace Sedulous.FreeType2
             Contract.Require(context, nameof(context));
 
             library.InitializeResource();
-
+        
             var content = context.GetContent();
             var existing = content.Importers.FindImporter(".ttf");
             if (existing != null)
@@ -33,6 +33,8 @@ namespace Sedulous.FreeType2
             content.RegisterImportersAndProcessors(typeof(FreeTypeFontPlugin).Assembly);
 
             factory.SetFactoryMethod<TextShaperFactory>((uvctx, capacity) => new HarfBuzzTextShaper(uvctx, capacity));
+
+            base.Configure(context, factory);
         }
 
         /// <summary>

@@ -1,4 +1,6 @@
-﻿namespace Sedulous.Presentation
+﻿using Sedulous.UI;
+
+namespace Sedulous.Presentation
 {
     /// <summary>
     /// Represents a plugin for the Sedulous Framework which provides user interface views using the Sedulous Presentation Foundation.
@@ -17,6 +19,17 @@
         /// <inheritdoc/>
         public override void Register(FrameworkConfiguration configuration) =>
             PresentationFoundation.Configure(configuration, presentationConfig);
+
+
+        /// <inheritdoc/>
+        public override void Configure(FrameworkContext context, FrameworkFactory factory)
+        {
+            factory.SetFactoryMethod<UIViewProviderInitializerFactory>(() => new PresentationFoundationInitializer());
+            factory.SetFactoryMethod<UIViewFactory>((uv, uiPanel, uiPanelDefinition, vmfactory) => PresentationFoundationView.Load(uv, uiPanel, uiPanelDefinition, vmfactory));
+            factory.SetFactoryMethod<MessageBoxScreenFactory>((mb, mbowner) => new MessageBoxScreen(mb, mbowner.GlobalContent));
+
+            base.Configure(context, factory);
+        }
 
         // UPF configuration settings.
         private readonly PresentationFoundationConfiguration presentationConfig;

@@ -1,4 +1,5 @@
 ﻿using Sedulous.Core;
+using Sedulous.UI;
 
 namespace Sedulous.ImGuiViewProvider
 {
@@ -14,6 +15,14 @@ namespace Sedulous.ImGuiViewProvider
 
             sedulousConfig.ViewProviderAssembly = typeof(ImGuiPlugin).Assembly.FullName;
             sedulousConfig.ViewProviderConfiguration = null;
+        }
+
+        /// <inheritdoc/>
+        public override void Configure(FrameworkContext context, FrameworkFactory factory)
+        {
+            factory.SetFactoryMethod<UIViewFactory>((uv, uiPanel, uiPanelDefinition, vmfactory) => ImGuiView.Create(uv, uiPanel, uiPanelDefinition, vmfactory));
+
+            base.Configure(context, factory);
         }
     }
 }

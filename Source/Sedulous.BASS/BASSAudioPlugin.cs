@@ -1,4 +1,6 @@
-﻿using Sedulous.Core;
+﻿using Sedulous.Audio;
+using Sedulous.BASS.Audio;
+using Sedulous.Core;
 
 namespace Sedulous.BASS
 {
@@ -16,6 +18,15 @@ namespace Sedulous.BASS
             configuration.AudioSubsystemAssembly = $"{asm.GetName().Name}, Version={asm.GetName().Version}, Culture=neutral, PublicKeyToken=78da2f4877323311, processorArchitecture=MSIL";
 
             base.Register(configuration);
+        }
+
+        /// <inheritdoc/>
+        public override void Configure(FrameworkContext context, FrameworkFactory factory)
+        {
+            factory.SetFactoryMethod<SongPlayerFactory>((uv) => new BASSSongPlayer(uv));
+            factory.SetFactoryMethod<SoundEffectPlayerFactory>((uv) => new BASSSoundEffectPlayer(uv));
+
+            base.Configure(context, factory);
         }
     }
 }

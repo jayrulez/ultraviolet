@@ -746,6 +746,16 @@ namespace Sedulous
         }
 
         /// <summary>
+        /// Configures the context's factories.
+        /// </summary>
+        protected virtual void ConfigureFactories()
+        {
+            factory.SetFactoryMethod(this.IsRunningInServiceMode ?
+                new SpriteBatchFactory((uv) => null) :
+                new SpriteBatchFactory((uv) => new SpriteBatch(uv)));
+        }
+
+        /// <summary>
         /// Configures the context's plugins.
         /// </summary>
         /// <param name="configuration">The Sedulous Framework configuration settings for this context.</param>
