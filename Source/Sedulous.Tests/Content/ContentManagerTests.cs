@@ -14,7 +14,7 @@ namespace Sedulous.Tests.Content
         {
             var contentStream = typeof(ContentManagerTests).Assembly.GetManifestResourceStream("Sedulous.Tests.Resources.Content.Fonts.FiraSansEmbedded.uvmeta");
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {

@@ -61,7 +61,7 @@ namespace Sedulous.Presentation.Tests
             var globalStyleSheet = default(GlobalStyleSheet);
             var screen = default(UIScreen);
 
-            return GivenAnSedulousApplication()
+            return GivenAFrameworkApplication()
                 .WithPresentationFoundationConfigured()
                 .WithInitialization(uv =>
                 {

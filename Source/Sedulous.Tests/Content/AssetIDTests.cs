@@ -13,7 +13,7 @@ namespace Sedulous.Tests.Content
         [Category("Content")]
         public void AssetID_SerializesToJson()
         {
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithContent(content =>
                 {
                     content.FrameworkContext.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "Test.manifest"));
@@ -32,7 +32,7 @@ namespace Sedulous.Tests.Content
         [Category("Content")]
         public void AssetID_DeserializesFromJson_WithXmlManifest()
         {
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithContent(content =>
                 {
                     content.FrameworkContext.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "Test.manifest"));
@@ -50,7 +50,7 @@ namespace Sedulous.Tests.Content
         [Category("Content")]
         public void AssetID_DeserializesFromJson_WithJsonManifest()
         {
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithContent(content =>
                 {
                     content.FrameworkContext.GetContent().Manifests.Load(Path.Combine("Resources", "Content", "Manifests", "TestJson.jsmanifest"));

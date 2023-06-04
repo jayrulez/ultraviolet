@@ -11,7 +11,7 @@ namespace Sedulous.Tests
         [Category("Content")]
         public void CursorCollection_LoadsCorrectly_FromXml()
         {
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithContent(content =>
                 {
                     var cursors = content.Load<CursorCollection>("Cursors/Cursors.xml");
@@ -54,7 +54,7 @@ namespace Sedulous.Tests
         [Category("Content")]
         public void CursorCollection_LoadsCorrectly_FromJson()
         {
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithContent(content =>
                 {
                     var cursors = content.Load<CursorCollection>("Cursors/CursorsJson.json");

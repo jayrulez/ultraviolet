@@ -18,7 +18,7 @@ namespace Sedulous.Tests.Audio
             var sfxPlayer = default(SoundEffectPlayer);
             var sfx = default(SoundEffect);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithAudioImplementation(audioImplementation)
                 .WithInitialization(uv => uv.GetAudio().AudioMuted = true)
                 .WithContent(content =>
@@ -48,7 +48,7 @@ namespace Sedulous.Tests.Audio
             var sfxPlayer = default(SoundEffectPlayer);
             var sfx = default(SoundEffect);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithAudioImplementation(audioImplementation)
                 .WithInitialization(uv => uv.GetAudio().AudioMuted = true)
                 .WithContent(content =>
@@ -80,7 +80,7 @@ namespace Sedulous.Tests.Audio
             var sfxPlayer = default(SoundEffectPlayer);
             var sfx = default(SoundEffect);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithAudioImplementation(audioImplementation)
                 .WithInitialization(uv => uv.GetAudio().AudioMuted = true)
                 .WithContent(content =>
@@ -114,7 +114,7 @@ namespace Sedulous.Tests.Audio
 
             var supported = true;
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithAudioImplementation(audioImplementation)
                 .WithInitialization(uv => uv.GetAudio().AudioMuted = true)
                 .WithContent(content =>
@@ -148,7 +148,7 @@ namespace Sedulous.Tests.Audio
             var sfxPlayer = default(SoundEffectPlayer);
             var sfx = default(SoundEffect);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithAudioImplementation(audioImplementation)
                 .WithInitialization(uv => uv.GetAudio().AudioMuted = true)
                 .WithContent(content =>
@@ -181,7 +181,7 @@ namespace Sedulous.Tests.Audio
 
             Assert.That(() =>
             {
-                GivenAnSedulousApplicationWithNoWindow()
+                GivenAFrameworkApplicationWithNoWindow()
                     .WithAudioImplementation(audioImplementation)
                     .WithInitialization(uv => uv.GetAudio().AudioMuted = true)
                     .WithContent(content =>
@@ -208,7 +208,7 @@ namespace Sedulous.Tests.Audio
 
             Assert.That(() =>
             {
-                GivenAnSedulousApplicationWithNoWindow()
+                GivenAFrameworkApplicationWithNoWindow()
                     .WithAudioImplementation(audioImplementation)
                     .WithInitialization(uv => uv.GetAudio().AudioMuted = true)
                     .WithContent(content =>
@@ -235,7 +235,7 @@ namespace Sedulous.Tests.Audio
 
             Assert.That(() =>
             {
-                GivenAnSedulousApplicationWithNoWindow()
+                GivenAFrameworkApplicationWithNoWindow()
                     .WithAudioImplementation(audioImplementation)
                     .WithInitialization(uv => uv.GetAudio().AudioMuted = true)
                     .WithContent(content =>

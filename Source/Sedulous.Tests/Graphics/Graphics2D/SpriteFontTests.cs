@@ -16,7 +16,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var spriteFont = default(SpriteFont);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -56,7 +56,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var spriteFont = default(SpriteFont);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -96,7 +96,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var spriteFont = default(SpriteFont);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();

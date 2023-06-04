@@ -17,7 +17,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var sstrb = default(ShapedStringBuilder);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -42,7 +42,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var sstrb = new ShapedStringBuilder();
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -66,7 +66,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var sstrb = new ShapedStringBuilder();
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -92,7 +92,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var sstrb = new ShapedStringBuilder();
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -130,7 +130,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var sstrb = new ShapedStringBuilder();
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -162,7 +162,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var sstrb = new ShapedStringBuilder();
             var sstr = default(ShapedString);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {

@@ -20,7 +20,7 @@ namespace Sedulous.Tests.Graphics
             var texture2 = default(Texture2D);
             var texture3 = default(Texture2D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     sbatch = SpriteBatch.Create();
@@ -74,7 +74,7 @@ namespace Sedulous.Tests.Graphics
             var surfaceInput = default(Surface2D);
             var texture = default(Texture2D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     sbatch = SpriteBatch.Create();

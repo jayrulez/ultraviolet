@@ -17,7 +17,7 @@ namespace Sedulous.Tests.Graphics
             var texture = default(Texture2D);
             var textureNonPremultiplied = default(Texture2D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     sbatch = SpriteBatch.Create();
@@ -55,7 +55,7 @@ namespace Sedulous.Tests.Graphics
             var sbatch = default(SpriteBatch);
             var texture = default(Texture2D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     sbatch = SpriteBatch.Create();

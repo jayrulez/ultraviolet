@@ -16,7 +16,7 @@ namespace Sedulous.Tests.Graphics
             var sbatch = default(SpriteBatch);
             var atlas = default(TextureAtlas);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     sbatch = SpriteBatch.Create();
@@ -57,7 +57,7 @@ namespace Sedulous.Tests.Graphics
             var sbatch = default(SpriteBatch);
             var atlas = default(TextureAtlas);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     sbatch = SpriteBatch.Create();
@@ -98,7 +98,7 @@ namespace Sedulous.Tests.Graphics
             var sbatch = default(SpriteBatch);
             var atlas = default(TextureAtlas);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     sbatch = SpriteBatch.Create();

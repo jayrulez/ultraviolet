@@ -17,7 +17,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var sprite = default(Sprite);
             var texture = default(Texture2D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     texture = content.Load<Texture2D>("Textures/HexagonsTexture");
@@ -55,7 +55,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var sprite = default(Sprite);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -99,7 +99,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var sprite = default(Sprite);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -143,7 +143,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var sprite = default(Sprite);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();

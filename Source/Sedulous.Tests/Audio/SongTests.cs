@@ -17,7 +17,7 @@ namespace Sedulous.Tests.Audio
         {
             var song = default(Song);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithAudioImplementation(audioImplementation)
                 .WithInitialization(uv => uv.GetAudio().AudioMuted = true)
                 .WithContent(content =>

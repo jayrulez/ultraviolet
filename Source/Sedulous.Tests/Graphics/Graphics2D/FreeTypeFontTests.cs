@@ -16,7 +16,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var freetypeFont = default(FreeTypeFont);
             var size = Size2.Zero;
 
-            GivenAnSedulousApplication()
+            GivenAFrameworkApplication()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -45,7 +45,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var freetypeFont = default(FreeTypeFont);
             var size = Size2.Zero;
 
-            GivenAnSedulousApplication()
+            GivenAFrameworkApplication()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {

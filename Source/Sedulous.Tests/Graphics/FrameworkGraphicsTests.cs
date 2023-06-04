@@ -20,7 +20,7 @@ namespace Sedulous.Tests.Graphics
             var vertexBuffer = default(VertexBuffer);
             var geometryStream = default(GeometryStream);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithConfiguration(config =>
                 {
                     if (encoding == ColorEncoding.Srgb)
@@ -91,7 +91,7 @@ namespace Sedulous.Tests.Graphics
             var geometryStream = default(GeometryStream);
             var texture = default(Texture2D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     effect = BasicEffect.Create();
@@ -156,7 +156,7 @@ namespace Sedulous.Tests.Graphics
             const Single TriangleWidth = 10f;
             const Single TriangleHeight = 10f;
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     effect = content.Load<Effect>("Effects\\InstancedRenderingTestEffect");
@@ -230,7 +230,7 @@ namespace Sedulous.Tests.Graphics
             var spriteBatch = default(SpriteBatch);
             var spriteTexture = default(Texture2D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithInitialization(uv =>
                 {
                     var window = uv.GetPlatform().Windows.GetPrimary();
@@ -292,7 +292,7 @@ namespace Sedulous.Tests.Graphics
             var lutShifted = default(Texture3D);
             var lutPosterize = default(Texture3D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -345,7 +345,7 @@ namespace Sedulous.Tests.Graphics
             var lutShifted = default(Texture3D);
             var lutPosterize = default(Texture3D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -409,7 +409,7 @@ namespace Sedulous.Tests.Graphics
             var vertexBuffer = default(VertexBuffer);
             var geometryStream = default(GeometryStream);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     effect = content.Load<Effect>("Effects\\NamedVertexElements.vert");

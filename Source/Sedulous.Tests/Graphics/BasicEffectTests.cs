@@ -64,7 +64,7 @@ namespace Sedulous.Tests.Graphics
             var rasterizerStateSolid = default(RasterizerState);
             var rasterizerStateWireframe = default(RasterizerState);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     rasterizerStateSolid = RasterizerState.Create();

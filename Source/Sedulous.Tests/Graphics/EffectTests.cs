@@ -14,7 +14,7 @@ namespace Sedulous.Tests.Graphics
         [Description("Ensures that #include directives in GLSL shader source are correctly processed.")]
         public void Effect_GLSLIncludeDirectivesAreProcessed()
         {
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithContent(content =>
                 {
                     var shaderSource = content.Load<ShaderSource>("Effects/IncludeDirective");
@@ -34,7 +34,7 @@ namespace Sedulous.Tests.Graphics
         [Description("Ensures that #extern directives in GLSL shader source are correctly processed.")]
         public void Effect_GLSLExternDirectivesAreProcessed()
         {
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithContent(content =>
                 {
                     var externs = new Dictionary<String, String>
@@ -63,7 +63,7 @@ namespace Sedulous.Tests.Graphics
         [Description("Ensures that #extern directives in GLSL shader source cause an exception to be thrown if they have an invalid name.")]
         public void Effect_GLSLExternDirectivesThrowException_WhenExternHasInvalidName()
         {
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithContent(content =>
                 {
                     var externs = new Dictionary<String, String>
@@ -88,7 +88,7 @@ namespace Sedulous.Tests.Graphics
         [Description("Ensures that #extern directives in GLSL shader source are excluded from the output if no value is provided.")]
         public void Effect_GLSLExternDirectivesAreRemovedFromSource_WhenValueIsNotProvided()
         {
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithContent(content =>
                 {
                     var externs = new Dictionary<String, String>
@@ -115,7 +115,7 @@ namespace Sedulous.Tests.Graphics
         [Description("Ensures that #extern directives in GLSL shader source are excluded from the output if no value dictionary is provided.")]
         public void Effect_GLSLExternDirectivesAreRemovedFromSource_WhenDictionaryIsNotProvided()
         {
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithContent(content =>
                 {
                     ShaderSource shaderSource;
@@ -136,7 +136,7 @@ namespace Sedulous.Tests.Graphics
         [Description("Ensures that directives in GLSL shader source are ignored if they fall within comment blocks.")]
         public void Effect_GLSLDirectivesAreIgnoredInsideComments()
         {
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithContent(content =>
                 {
                     var effect = content.Load<ShaderSource>("Effects/CommentedOutDirective");

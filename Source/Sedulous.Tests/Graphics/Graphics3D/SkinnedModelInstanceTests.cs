@@ -49,7 +49,7 @@ namespace Sedulous.Tests.Graphics.Graphics3D
         [Category("Content")]
         public void SkinnedModelInstance_CalculatesCorrectBoneMatrices(String modelAssetFile, String modelBoneDataFile)
         {
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithContent(content =>
                 {
                     const Double TimeDelta = 0.25;

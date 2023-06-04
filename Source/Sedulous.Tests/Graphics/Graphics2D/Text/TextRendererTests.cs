@@ -24,7 +24,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 "Ut quis arcu suscipit, rutrum libero nec, convallis sem. Morbi rhoncus urna nec turpis bibendum eleifend. In vestibulum " +
                 "congue feugiat. In pulvinar enim quis diam malesuada, a vestibulum urna bibendum.");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {
@@ -57,7 +57,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var content = new TextRendererTestContent("Welcome to |b||c:FFFF0000|Corneria|c||b|");
             content.FontPath = "Fonts/SegoeUI";
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {
@@ -114,7 +114,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 "\n" +
                 "Distance to Mars: 140\u00A0million\u00A0miles");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {
@@ -146,7 +146,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var content = new TextRendererTestContent("Every\u00A0single\u00A0space\u00A0on\u00A0this\u00A0line\u00A0is\u00A0non-breaking!");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {
@@ -181,7 +181,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var content = new TextRendererTestContent("Welcome to Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch! Please enjoy your stay.\n\n" +
                 "This message brought to you by the Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch tourist board.");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {
@@ -217,7 +217,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var content = new TextRendererTestContent("Welcome to Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch! Please enjoy your stay.\n\n" +
                 "This message brought to you by the Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch tourist board.");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {
@@ -254,7 +254,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var content = new TextRendererTestContent("Hello! This is a |icon:test|test|b|test|b||i|test|i||b||i|test|i||b| of the line breaking algorithm.");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {
@@ -308,7 +308,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var content = new TextRendererTestContent("Hello! This is a |icon:test|test|b|test|b||i|test|i||b||i|test|i||b| of the line breaking algorithm.");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {
@@ -362,7 +362,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var content = new TextRendererTestContent("Hello! This is a |icon:test|test|b|test|b||i|test|i||b||i|test|i||b| of the line breaking algorithm.");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {
@@ -416,7 +416,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 "The |b||icon:test|quick brown fox|b| jumps\nover the |c:ffff0000|lazy dog.|c|\n" +
                 "The |i|quick|i| brown |i|fox|i|\njumps over the |b||i|lazy dog|i||b|");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {
@@ -468,7 +468,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 "The |b||icon:test|quick brown fox|b| jumps\nover the |c:ffff0000|lazy dog.|c|\n" +
                 "The |i|quick|i| brown |i|fox|i|\njumps over the |b||i|lazy dog|i||b|");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {
@@ -521,7 +521,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 "The |b||icon:test|quick brown fox|b| jumps\nover the |c:ffff0000|lazy dog.|c|\n" +
                 "The |i|quick|i| brown |i|fox|i|\njumps over the |b||i|lazy dog|i||b|");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {
@@ -583,7 +583,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var glyphIndices = new Int32?[glyphPositions.Length];
             var glyphLines = new Int32?[glyphPositions.Length];
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithConfiguration(config =>
                 {
                     if (shaped)
@@ -661,7 +661,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var glyphIndices = new Int32?[glyphPositions.Length];
             var glyphLines = new Int32?[glyphPositions.Length];
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithConfiguration(config =>
                 {
                     if (shaped)
@@ -733,7 +733,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 "The |b||icon:test|quick brown fox|b| jumps\nover the |c:ffff0000|lazy dog.|c|\n" +
                 "The |i|quick|i| brown |i|fox|i|\njumps over the |b||i|lazy dog|i||b|");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithPlugin(fontKind == FontKind.FreeType2 ? new FreeTypeFontPlugin() : null)
                 .WithContent(manager => content.Load(manager, fontKind))
                 .Render(uv =>
@@ -786,7 +786,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 "The |b||icon:test|quick brown fox|b| jumps\nover the |c:ffff0000|lazy dog.|c|\n" +
                 "The |i|quick|i| brown |i|fox|i|\njumps over the |b||i|lazy dog|i||b|", TextParserOptions.IgnoreCommandCodes);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithPlugin(fontKind == FontKind.FreeType2 ? new FreeTypeFontPlugin() : null)
                 .WithContent(manager => content.Load(manager, fontKind))
                 .Render(uv =>
@@ -840,7 +840,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 "The |b||icon:test|quick brown fox|b| jumps\nover the |c:ffff0000|lazy dog.|c|\n" +
                 "The |i|quick|i| brown |i|fox|i|\njumps over the |b||i|lazy dog|i||b|");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithPlugin(fontKind == FontKind.FreeType2 ? new FreeTypeFontPlugin() : null)
                 .WithContent(manager => content.Load(manager, fontKind))
                 .Render(uv =>
@@ -927,7 +927,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 "The |b||icon:test|quick brown fox|b| jumps\nover the |c:ffff0000|lazy dog.|c|\n" +
                 "The |i|quick|i| brown |i|fox|i|\njumps over the |b||i|lazy dog|i||b|", TextParserOptions.IgnoreCommandCodes);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithPlugin(fontKind == FontKind.FreeType2 ? new FreeTypeFontPlugin() : null)
                 .WithContent(manager => content.Load(manager, fontKind))
                 .Render(uv =>
@@ -993,7 +993,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var spriteFont = default(SpriteFont);
             var textRenderer = default(TextRenderer);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -1023,7 +1023,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var spriteFont = default(SpriteFont);
             var textRenderer = default(TextRenderer);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -1057,7 +1057,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var spriteFont = default(SpriteFont);
             var textRenderer = default(TextRenderer);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -1115,7 +1115,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var spriteFont = default(SpriteFont);
             var textRenderer = default(TextRenderer);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -1154,7 +1154,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var textRenderer = default(TextRenderer);
             var blankTexture = default(Texture2D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -1203,7 +1203,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var textRenderer = default(TextRenderer);
             var textStream = default(TextLayoutCommandStream);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -1251,7 +1251,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var textRenderer = default(TextRenderer);
             var textStream = default(TextLayoutCommandStream);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -1322,7 +1322,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             else
                 content.FontPath = "Fonts/NotoSansCJKjp-Regular";
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithPlugin(fontKind == FontKind.FreeType2 ? new FreeTypeFontPlugin() : null)
                 .WithContent(manager => content.Load(manager, fontKind))
                 .Render(uv =>
@@ -1368,7 +1368,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             if (fontKind == FontKind.SpriteFont)
                 content.FontPath = "Fonts/SegoeUI12";
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithPlugin(fontKind == FontKind.FreeType2 ? new FreeTypeFontPlugin() : null)
                 .WithContent(manager => content.Load(manager, fontKind))
                 .Render(uv =>
@@ -1412,7 +1412,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var content = new TextRendererTestContent(
                 "😀Lorem ipsum😀 dolor sit 😀🤣😀 amet 🤣 😀", TextParserOptions.IgnoreCommandCodes);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithConfiguration(config =>
                 {
                     if (encoding == ColorEncoding.Srgb)
@@ -1479,7 +1479,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 "sticexpialidoci",
                 "ous"  };
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithConfiguration(config =>
                 {
                     if (encoding == ColorEncoding.Srgb)
@@ -1567,7 +1567,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
                 "Hello, world! |c:ffff0000|This|c| is a test of source indices!");
             var recombined = String.Empty;
             
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithConfiguration(config =>
                 {
                     config.GraphicsConfiguration.SrgbBuffersEnabled = true;
@@ -1634,7 +1634,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var content = new TextRendererTestContent("Hello, |c:ffff0000|world|c|! This is |b|bold|b|, |i|italic|i|, |font:alt|stylized|font| text!");
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content.Load)
                 .Render(uv =>
                 {

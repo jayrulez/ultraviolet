@@ -14,7 +14,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var textLength = default(Int32);
 
-            GivenAnSedulousApplicationInServiceMode()
+            GivenAFrameworkApplicationInServiceMode()
                 .WithInitialization(uv =>
                 {
                     using (var textShaper = new HarfBuzzTextShaper(uv))

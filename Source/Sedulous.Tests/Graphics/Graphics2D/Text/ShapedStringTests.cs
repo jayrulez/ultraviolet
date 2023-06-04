@@ -16,7 +16,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var sstr = default(ShapedString);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -43,7 +43,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var sstr = default(ShapedString);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -70,7 +70,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var sstr = default(ShapedString);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -117,7 +117,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var sstr = default(ShapedString);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -164,7 +164,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var sstr = default(ShapedString);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -202,7 +202,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
             var sstr1 = default(ShapedString);
             var sstr2 = default(ShapedString);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -243,7 +243,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D.Text
         {
             var sstr = default(ShapedString);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {

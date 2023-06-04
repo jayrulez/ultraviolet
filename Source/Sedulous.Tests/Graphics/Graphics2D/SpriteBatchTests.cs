@@ -21,7 +21,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var spriteFont  = default(FrameworkFont);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithConfiguration(config =>
                 {
                     if (encoding == ColorEncoding.Srgb)
@@ -73,7 +73,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var spriteFont = default(FrameworkFont);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithConfiguration(config =>
                 {
                     config.GraphicsConfiguration.SrgbBuffersEnabled = true;
@@ -106,7 +106,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var spriteFont = default(FrameworkFont);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithConfiguration(config =>
                 {
                     config.GraphicsConfiguration.SrgbBuffersEnabled = true;
@@ -142,7 +142,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var spriteFont = default(FrameworkFont);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithPlugin(fontKind == FontKind.FreeType2 ? new FreeTypeFontPlugin() : null)
                 .WithContent(content =>
                 {
@@ -188,7 +188,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteFont = default(FrameworkFont);
             var sstr = default(ShapedString);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -222,7 +222,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var spriteFont = default(FrameworkFont);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithPlugin(new FreeTypeFontPlugin())
                 .WithContent(content =>
                 {
@@ -260,7 +260,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var spriteFont = default(SpriteFont);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -288,7 +288,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var spriteBatch = default(SpriteBatch);
             var spriteFont = default(SpriteFont);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     spriteBatch = SpriteBatch.Create();
@@ -319,7 +319,7 @@ namespace Sedulous.Tests.Graphics.Graphics2D
             var blendBg = default(Texture2D);
             var blendFg = default(Texture2D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithConfiguration(config =>
                 {
                     if (encoding == ColorEncoding.Srgb)

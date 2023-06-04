@@ -13,7 +13,7 @@ namespace Sedulous.Presentation.Tests.Styles
         [Test]
         public void UvssCompiler_DefaultsToInvariantCulture()
         {
-            GivenAnSedulousApplicationInServiceMode()
+            GivenAFrameworkApplicationInServiceMode()
                 .OnFrameStart(0, app =>
                 {
                     UsingCulture("ru-RU", () =>
@@ -38,7 +38,7 @@ namespace Sedulous.Presentation.Tests.Styles
         [Test]
         public void UvssCompiler_ReadsCultureDirective()
         {
-            GivenAnSedulousApplicationInServiceMode()
+            GivenAFrameworkApplicationInServiceMode()
                .OnFrameStart(0, app =>
                {
                    UsingCulture("en-US", () =>
@@ -65,7 +65,7 @@ namespace Sedulous.Presentation.Tests.Styles
         [Test]
         public void UvssCompiler_ReadsCultureDirective_WhenMultipleDirectivesExist()
         {
-            GivenAnSedulousApplicationInServiceMode()
+            GivenAFrameworkApplicationInServiceMode()
                .OnFrameStart(0, app =>
                {
                     UsingCulture("en-US", () =>

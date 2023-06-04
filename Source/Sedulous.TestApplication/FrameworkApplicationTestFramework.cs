@@ -20,11 +20,11 @@ namespace Sedulous.TestApplication
         /// Cleans up after running an Sedulous Application test.
         /// </summary>
         [TearDown]
-        public void SedulousApplicationTestFrameworkCleanup()
+        public void FrameworkApplicationTestFrameworkCleanup()
         {
             try
             {
-                DestroySedulousApplication(application);
+                DestroyFrameworkApplication(application);
                 application = null;
             }
             catch (Exception ex)
@@ -38,7 +38,7 @@ namespace Sedulous.TestApplication
         /// Destroys the specified test application.
         /// </summary>
         /// <param name="application">The test application to destroy.</param>
-        protected static void DestroySedulousApplication(IFrameworkTestApplication application)
+        protected static void DestroyFrameworkApplication(IFrameworkTestApplication application)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace Sedulous.TestApplication
         /// must be managed manually by the caller of this method.
         /// </summary>
         /// <returns>The test application that was created.</returns>
-        protected static IFrameworkTestApplication GivenAThrowawaySedulousApplication()
+        protected static IFrameworkTestApplication GivenAThrowawayFrameworkApplication()
         {
             return new FrameworkTestApplication();
         }
@@ -96,7 +96,7 @@ namespace Sedulous.TestApplication
         /// must be managed manually by the caller of this method.
         /// </summary>
         /// <returns>The test application that was created.</returns>
-        protected static IFrameworkTestApplication GivenAThrowawaySedulousApplicationWithNoWindow()
+        protected static IFrameworkTestApplication GivenAThrowawayFrameworkApplicationWithNoWindow()
         {
             return new FrameworkTestApplication(true);
         }
@@ -105,7 +105,7 @@ namespace Sedulous.TestApplication
         /// Creates an Sedulous Framework test application.
         /// </summary>
         /// <returns>The test application that was created.</returns>
-        protected IFrameworkTestApplication GivenAnSedulousApplication()
+        protected IFrameworkTestApplication GivenAFrameworkApplication()
         {
             if (application != null)
                 throw new InvalidOperationException("An application has already been created.");
@@ -119,7 +119,7 @@ namespace Sedulous.TestApplication
         /// Creates an Sedulous Framework test application with a headless Sedulous context.
         /// </summary>
         /// <returns>The test application that was created.</returns>
-        protected IFrameworkTestApplication GivenAnSedulousApplicationWithNoWindow()
+        protected IFrameworkTestApplication GivenAFrameworkApplicationWithNoWindow()
         {
             if (application != null)
                 throw new InvalidOperationException("An application has already been created.");
@@ -133,7 +133,7 @@ namespace Sedulous.TestApplication
         /// Creates an Sedulous Framework test application with an Sedulous context in service mode.
         /// </summary>
         /// <returns>The test application that was created.</returns>
-        protected IFrameworkTestApplication GivenAnSedulousApplicationInServiceMode()
+        protected IFrameworkTestApplication GivenAFrameworkApplicationInServiceMode()
         {
             if (application != null)
                 throw new InvalidOperationException("An application has already been created.");

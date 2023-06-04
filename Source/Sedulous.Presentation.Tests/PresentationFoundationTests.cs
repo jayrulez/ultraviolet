@@ -19,7 +19,7 @@ namespace Sedulous.Presentation.Tests
         {
             var dobj = default(InvalidationTestObject);
 
-            GivenAnSedulousApplicationWithNoWindow()
+            GivenAFrameworkApplicationWithNoWindow()
                 .WithPresentationFoundationConfigured()
                 .WithInitialization(initializer =>
                 {

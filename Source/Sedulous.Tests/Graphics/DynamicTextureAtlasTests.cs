@@ -17,7 +17,7 @@ namespace Sedulous.Tests.Graphics
             var atlas = default(DynamicTextureAtlas);
             var surface = default(Surface2D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     sbatch = SpriteBatch.Create();
@@ -63,7 +63,7 @@ namespace Sedulous.Tests.Graphics
             var atlas = default(DynamicTextureAtlas);
             var surface = default(Surface2D);
 
-            var result = GivenAnSedulousApplication()
+            var result = GivenAFrameworkApplication()
                 .WithContent(content =>
                 {
                     sbatch = SpriteBatch.Create();
