@@ -30,7 +30,7 @@ namespace Sedulous.SDL2
         /// </summary>
         /// <param name="host">The object that is hosting the Sedulous context.</param>
         /// <param name="configuration">The Sedulous Framework configuration settings for this context.</param>
-        public unsafe SDL2FrameworkContext(IFrameworkHost host, SDL2FrameworkConfiguration configuration)
+        public SDL2FrameworkContext(IFrameworkHost host, SDL2FrameworkConfiguration configuration)
             : base(host, configuration)
         {
             Contract.Require(configuration, nameof(configuration));
@@ -38,9 +38,15 @@ namespace Sedulous.SDL2
             if (!InitSDL(configuration))
                 throw new SDL2Exception();
 
-            this.onWindowDrawing = (context, time, window) => 
+            this.configuration = configuration;
+        }
+
+        /// <inheritdoc/>
+        protected unsafe override void InitializeContext()
+        {
+            this.onWindowDrawing = (context, time, window) =>
                 ((SDL2FrameworkContext)context).OnWindowDrawing(time, window);
-            this.onWindowDrawn = (context, time, window) => 
+            this.onWindowDrawn = (context, time, window) =>
                 ((SDL2FrameworkContext)context).OnWindowDrawn(time, window);
 
             eventFilter = new SDL_EventFilter(SDLEventFilter);
@@ -49,7 +55,7 @@ namespace Sedulous.SDL2
 
             LoadSubsystemAssemblies(configuration);
             this.swapChainManager = IsRunningInServiceMode ? new DummySwapChainManager(this) : SwapChainManager.Create();
-            
+
             this.platform = InitializePlatformSubsystem(configuration);
             this.graphics = InitializeGraphicsSubsystem(configuration);
 
@@ -63,11 +69,12 @@ namespace Sedulous.SDL2
 
             PumpEvents();
 
-            InitializeContext();
             InitializeViewProvider(configuration);
             InitializePlugins(configuration);
+
+            base.InitializeContext();
         }
-        
+
         /// <inheritdoc/>
         public override void UpdateSuspended()
         {
@@ -448,21 +455,23 @@ namespace Sedulous.SDL2
             return 1;
         }
         
+        private readonly FrameworkConfiguration configuration;
+
         // The SDL event filter.
-        private readonly SDL_EventFilter eventFilter;
-        private readonly IntPtr eventFilterPtr;
+        private SDL_EventFilter eventFilter;
+        private IntPtr eventFilterPtr;
 
         // Sedulous subsystems.
-        private readonly SwapChainManager swapChainManager;
-        private readonly IPlatformSubsystem platform;
-        private readonly IContentSubsystem content;
-        private readonly IGraphicsSubsystem graphics;
-        private readonly IAudioSubsystem audio;
-        private readonly IInputSubsystem input;
-        private readonly IUISubsystem ui;
+        private SwapChainManager swapChainManager;
+        private IPlatformSubsystem platform;
+        private IContentSubsystem content;
+        private IGraphicsSubsystem graphics;
+        private IAudioSubsystem audio;
+        private IInputSubsystem input;
+        private IUISubsystem ui;
 
         // Delegate caches.
-        private readonly Action<FrameworkContext, FrameworkTime, IFrameworkWindow> onWindowDrawing;
-        private readonly Action<FrameworkContext, FrameworkTime, IFrameworkWindow> onWindowDrawn;
+        private Action<FrameworkContext, FrameworkTime, IFrameworkWindow> onWindowDrawing;
+        private Action<FrameworkContext, FrameworkTime, IFrameworkWindow> onWindowDrawn;
     }
 }

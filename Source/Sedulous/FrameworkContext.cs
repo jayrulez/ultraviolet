@@ -688,17 +688,28 @@ namespace Sedulous
         }
 
         /// <summary>
+        /// Initializes the context
+        /// </summary>
+        public void Initialize()
+        {
+            if (IsInitialized)
+                throw new Exception("Context was already initialized.");
+
+            InitializeContext();
+        }
+
+        /// <summary>
         /// Initializes the context and marks it ready for use.
         /// </summary>
-        protected void InitializeContext()
-        {
-            IsInitialized = true;
-            
+        protected virtual void InitializeContext()
+        {            
             GetContent().Processors
                 .SetFallbackType<FrameworkFont>(typeof(SpriteFont));
 
             OnInitialized();
             OnContextInitialized();
+
+            IsInitialized = true;
         }
 
         /// <summary>

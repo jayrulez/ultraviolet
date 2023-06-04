@@ -105,6 +105,8 @@ namespace Sedulous
 
             CreateFrameworkContext();
 
+            InitializeFrameworkContext();
+
             OnInitialized();
 
             WarnIfFileSystemSourceIsMissing();
@@ -742,6 +744,13 @@ namespace Sedulous
             if (context == null)
                 throw new InvalidOperationException(FrameworkStrings.ContextNotCreated);
 
+            this.created = true;
+        }
+
+        private void InitializeFrameworkContext()
+        {
+            context.Initialize();
+
             if (this.settings != null)
             {
                 this.settings.Apply(context);
@@ -767,8 +776,6 @@ namespace Sedulous
             this.context.GetPlatform().Windows.PrimaryWindowChanging += uv_PrimaryWindowChanging;
             this.context.GetPlatform().Windows.PrimaryWindowChanged += uv_PrimaryWindowChanged;
             HookPrimaryWindowEvents();
-
-            this.created = true;
         }
 
         /// <summary>

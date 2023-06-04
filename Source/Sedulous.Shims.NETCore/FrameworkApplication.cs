@@ -74,6 +74,8 @@ namespace Sedulous
 
             CreateFrameworkContext();
 
+            InitializeFrameworkContext();
+
             OnInitialized();
 
             OnLoadingContent();
@@ -590,11 +592,6 @@ namespace Sedulous
         partial void InitializeApplication();
 
         /// <summary>
-        /// Initializes the application's context after it has been acquired.
-        /// </summary>
-        partial void InitializeContext();
-
-        /// <summary>
         /// Disposes any platform-specific resources.
         /// </summary>
         partial void DisposePlatformResources();
@@ -609,6 +606,13 @@ namespace Sedulous
             context = FrameworkContext.EnsureSuccessfulCreation(OnCreatingFrameworkContext);
             if (context == null)
                 throw new InvalidOperationException(FrameworkStrings.ContextNotCreated);
+
+            this.created = true;
+        }
+
+        private void InitializeFrameworkContext()
+        {
+            context.Initialize();
 
             ApplySettings();
 
@@ -632,10 +636,6 @@ namespace Sedulous
             this.context.GetPlatform().Windows.PrimaryWindowChanging += uv_PrimaryWindowChanging;
             this.context.GetPlatform().Windows.PrimaryWindowChanged += uv_PrimaryWindowChanged;
             HookPrimaryWindowEvents();
-
-            this.created = true;
-
-            InitializeContext();
         }
 
         /// <summary>
