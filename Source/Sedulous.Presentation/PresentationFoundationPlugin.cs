@@ -1,4 +1,6 @@
-﻿using Sedulous.UI;
+﻿using Sedulous.Content;
+using Sedulous.Presentation.Styles;
+using Sedulous.UI;
 
 namespace Sedulous.Presentation
 {
@@ -29,6 +31,24 @@ namespace Sedulous.Presentation
             factory.SetFactoryMethod<MessageBoxScreenFactory>((mb, mbowner) => new MessageBoxScreen(mb, mbowner.GlobalContent));
 
             base.Configure(context, factory);
+        }
+
+
+
+        /// <inheritdoc/>
+        public override void RegisterContentImporters(ContentImporterRegistry importers)
+        {
+            importers.RegisterImporter<UvssDocumentImporter>(".uvss");
+
+            base.RegisterContentImporters(importers);
+        }
+
+        /// <inheritdoc/>
+        public override void RegisterContentProcessors(ContentProcessorRegistry processors)
+        {
+            processors.RegisterProcessor<UvssDocumentProcessor>();
+
+            base.RegisterContentProcessors(processors);
         }
 
         // UPF configuration settings.
