@@ -18,6 +18,13 @@ namespace Sedulous
         /// </summary>
         /// <param name="context">The Sedulous context.</param>
         /// <param name="factory">The Sedulous factory.</param>
+        public virtual void Configure(FrameworkContext context, FrameworkFactory factory) { }
+
+        /// <summary>
+        /// Initializes the plugin for the specified Sedulous context.
+        /// </summary>
+        /// <param name="context">The Sedulous context.</param>
+        /// <param name="factory">The Sedulous factory.</param>
         public virtual void Initialize(FrameworkContext context, FrameworkFactory factory) { }
 
         /// <summary>

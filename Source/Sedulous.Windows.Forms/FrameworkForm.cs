@@ -38,7 +38,7 @@ namespace Sedulous.Windows.Forms
         public FrameworkForm()
         {
             InitializeComponent();
-            InitializeSedulous();
+            InitializeFramework();
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace Sedulous.Windows.Forms
         /// Called when the application is creating its Sedulous context.
         /// </summary>
         /// <returns>The application's Sedulous context.</returns>
-        protected virtual FrameworkContext OnCreatingSedulousContext()
+        protected virtual FrameworkContext OnCreatingFrameworkContext()
         {
             return null;
         }
@@ -279,16 +279,18 @@ namespace Sedulous.Windows.Forms
         /// <summary>
         /// Initializes the Sedulous engine.
         /// </summary>
-        private void InitializeSedulous()
+        private void InitializeFramework()
         {
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
                 return;
 
             OnInitializing();
 
-            context = OnCreatingSedulousContext();
+            context = OnCreatingFrameworkContext();
             if (context == null)
                 throw new InvalidOperationException(FrameworkStrings.ContextNotCreated);
+
+            context.Initialize();
 
             this.timingLogic = CreateTimingLogic();
             if (this.timingLogic == null)

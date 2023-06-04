@@ -746,6 +746,19 @@ namespace Sedulous
         }
 
         /// <summary>
+        /// Configures the context's plugins.
+        /// </summary>
+        /// <param name="configuration">The Sedulous Framework configuration settings for this context.</param>
+        protected void ConfigurePlugins(FrameworkConfiguration configuration)
+        {
+            foreach (var plugin in configuration.Plugins)
+            {
+                plugin.Configure(this, Factory);
+                plugin.Configured = true;
+            }
+        }
+
+        /// <summary>
         /// Initializes the context's plugins.
         /// </summary>
         /// <param name="configuration">The Sedulous Framework configuration settings for this context.</param>
