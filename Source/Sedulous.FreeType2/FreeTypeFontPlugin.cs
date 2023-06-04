@@ -1,6 +1,7 @@
 ﻿using System;
 using Sedulous.Graphics.Graphics2D.Text;
 using Sedulous.Core;
+using Sedulous.Content;
 
 namespace Sedulous.FreeType2
 {
@@ -15,9 +16,16 @@ namespace Sedulous.FreeType2
             Contract.Require(context, nameof(context));
 
             library.InitializeResource();
-        
-            var content = context.GetContent();
-            var existing = content.Importers.FindImporter(".ttf");
+
+            factory.SetFactoryMethod<TextShaperFactory>((uvctx, capacity) => new HarfBuzzTextShaper(uvctx, capacity));
+
+            base.Configure(context, factory);
+        }
+
+        /// <inheritdoc/>
+        public override void RegisterContentImporters(ContentImporterRegistry importers)
+        {
+            var existing = importers.FindImporter(".ttf");
             if (existing != null)
             {
                 if (existing.GetType() == typeof(FreeTypeFontImporter))
@@ -30,11 +38,24 @@ namespace Sedulous.FreeType2
                 }
             }
 
-            content.RegisterImportersAndProcessors(typeof(FreeTypeFontPlugin).Assembly);
+            importers.RegisterImporter<FreeTypeFontImporter>(".ttf");
+            importers.RegisterImporter<FreeTypeFontImporter>(".ttc");
+            importers.RegisterImporter<FreeTypeFontImporter>(".otf");
+            importers.RegisterImporter<FreeTypeFontImporter>(".otc");
+            importers.RegisterImporter<FreeTypeFontImporter>(".fnt");
 
-            factory.SetFactoryMethod<TextShaperFactory>((uvctx, capacity) => new HarfBuzzTextShaper(uvctx, capacity));
+            base.RegisterContentImporters(importers);
+        }
 
-            base.Configure(context, factory);
+        /// <inheritdoc/>
+        public override void RegisterContentProcessors(ContentProcessorRegistry processors)
+        {
+            processors.RegisterProcessor<FreeTypeFontProcessor>();
+            processors.RegisterProcessor<FrameworkFontProcessorFromFreeType>();
+            processors.RegisterProcessor<FrameworkFontProcessorFromJObject>();
+            processors.RegisterProcessor<FrameworkFontProcessorFromXDocument>();
+
+            base.RegisterContentProcessors(processors);
         }
 
         /// <summary>

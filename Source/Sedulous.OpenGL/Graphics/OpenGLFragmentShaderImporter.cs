@@ -7,7 +7,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Imports .frag files.
     /// </summary>
-    [ContentImporter(".frag"), ContentImporter(".fragh")]
+    //[ContentImporter(".frag"), ContentImporter(".fragh")]
     public sealed class OpenGLFragmentShaderImporter : ContentImporter<String>
     {
         /// <summary>

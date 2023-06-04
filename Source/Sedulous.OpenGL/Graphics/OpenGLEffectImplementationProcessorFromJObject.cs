@@ -11,7 +11,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Loads shader effect assets from JSON definition files.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed partial class OpenGLEffectImplementationProcessorFromJObject : EffectImplementationProcessor<JObject>
     {
         /// <inheritdoc/>

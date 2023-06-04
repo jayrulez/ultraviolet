@@ -9,7 +9,7 @@ namespace Sedulous.FreeType2
     /// <summary>
     /// Loads font assets.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class FrameworkFontProcessorFromJObject : ContentProcessor<JObject, FrameworkFont>
     {
         /// <inheritdoc/>

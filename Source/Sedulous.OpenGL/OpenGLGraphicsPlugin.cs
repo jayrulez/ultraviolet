@@ -4,6 +4,7 @@ using Sedulous.Graphics;
 using Sedulous.OpenGL.Graphics;
 using Sedulous.OpenGL.Graphics.Graphics2D;
 using Sedulous.OpenGL.Bindings;
+using Sedulous.Content;
 
 namespace Sedulous.OpenGL
 {
@@ -26,8 +27,6 @@ namespace Sedulous.OpenGL
         {
             Contract.Require(configuration, nameof(configuration));
 
-            var asm = typeof(OpenGLGraphicsPlugin).Assembly;
-            configuration.GraphicsSubsystemAssembly = $"{asm.GetName().Name}, Version={asm.GetName().Version}, Culture=neutral, PublicKeyToken=78da2f4877323311, processorArchitecture=MSIL";
             configuration.GraphicsConfiguration = this.configuration;
 
             base.Register(configuration);
@@ -107,7 +106,48 @@ namespace Sedulous.OpenGL
             factory.SetFactoryMethod<SamplerStateFactory>("AnisotropicClamp", (uv) => samplerStateAnisotropicClamp);
             factory.SetFactoryMethod<SamplerStateFactory>("AnisotropicWrap", (uv) => samplerStateAnisotropicWrap);
 
+            factory.SetFactoryMethod<FrameworkGraphicsFactory>((uv, configuration) => new OpenGLGraphicsSubsystem(uv, configuration));
+
             base.Configure(context, factory);
+        }
+
+        /// <inheritdoc/>
+        public override void RegisterContentImporters(ContentImporterRegistry importers)
+        {
+            importers.RegisterImporter<OpenGLFragmentShaderImporter>(".frag");
+            importers.RegisterImporter<OpenGLFragmentShaderImporter>(".fragh");
+
+            importers.RegisterImporter<OpenGLVertexShaderImporter>(".vert");
+            importers.RegisterImporter<OpenGLVertexShaderImporter>(".verth");
+
+            base.RegisterContentImporters(importers);
+        }
+
+        /// <inheritdoc/>
+        public override void RegisterContentProcessors(ContentProcessorRegistry processors)
+        {
+            processors.RegisterProcessor<OpenGLSpriteFontProcessor>();
+            processors.RegisterProcessor<OpenGLSpriteFontProcessorFromJObject>();
+            processors.RegisterProcessor<OpenGLSpriteFontProcessorFromXDocument>();
+            processors.RegisterProcessor<OpenGLSpriteFontTextureProcessor>();
+            processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromJObject>();
+            processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromShaderSource>();
+            processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromXDocument>();
+            //processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromXDocumentV1>();
+            //processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromXDocumentV2>();
+            processors.RegisterProcessor<OpenGLEffectProcessorFromJObject>();
+            processors.RegisterProcessor<OpenGLEffectProcessorFromShaderSource>();
+            processors.RegisterProcessor<OpenGLEffectProcessorFromXDocument>();
+            processors.RegisterProcessor<OpenGLEffectSourceProcessorFromJObject>();
+            processors.RegisterProcessor<OpenGLEffectSourceProcessorFromShaderSource>();
+            processors.RegisterProcessor<OpenGLEffectSourceProcessorFromXDocument>();
+            processors.RegisterProcessor<OpenGLFragmentShaderProcessor>();
+            processors.RegisterProcessor<OpenGLTexture2DProcessor>();
+            processors.RegisterProcessor<OpenGLTexture3DProcessor>();
+            processors.RegisterProcessor<OpenGLVertexShaderProcessor>();
+            processors.RegisterProcessor<ShaderSourceProcessor>();
+
+            base.RegisterContentProcessors(processors);
         }
 
         // Graphics configuration settings.

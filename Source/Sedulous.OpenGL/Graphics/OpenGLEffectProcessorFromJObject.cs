@@ -10,7 +10,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Loads shader effect assets.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class OpenGLEffectProcessorFromJObject : ContentProcessor<JObject, Effect>
     {
         /// <inheritdoc/>

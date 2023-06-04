@@ -7,7 +7,7 @@ namespace Sedulous.Presentation.Styles
     /// <summary>
     /// Represents a content importer for the *.uvss file type.
     /// </summary>
-    [ContentImporter(".uvss")]
+    //[ContentImporter(".uvss")]
     public class UvssDocumentImporter : ContentImporter<String>
     {
         /// <inheritdoc/>

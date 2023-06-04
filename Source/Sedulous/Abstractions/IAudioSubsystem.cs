@@ -5,6 +5,13 @@ using Sedulous.Audio;
 namespace Sedulous
 {
     /// <summary>
+    /// Initializes a new instance of the ISedulousAudio implementation.
+    /// </summary>
+    /// <param name="context">The Sedulous context.</param>
+    /// <param name="configuration">The Sedulous Framework configuration settings for the current context.</param>
+    public delegate IAudioSubsystem FrameworkAudioFactory(FrameworkContext context, FrameworkConfiguration configuration);
+
+    /// <summary>
     /// Represents the Sedulous Framework's audio subsystem.
     /// </summary>
     public interface IAudioSubsystem : IFrameworkSubsystem

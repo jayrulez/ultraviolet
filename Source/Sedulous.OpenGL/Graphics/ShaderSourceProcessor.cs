@@ -6,7 +6,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Loads shader source assets.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class ShaderSourceProcessor : ContentProcessor<String, ShaderSource>
     {
         /// <inheritdoc/>

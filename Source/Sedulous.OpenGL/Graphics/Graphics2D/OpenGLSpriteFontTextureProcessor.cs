@@ -10,7 +10,7 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
     /// <summary>
     /// Loads sprite font assets.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class OpenGLSpriteFontTextureProcessor : ContentProcessor<PlatformNativeSurface, SpriteFont>
     {
         /// <inheritdoc/>

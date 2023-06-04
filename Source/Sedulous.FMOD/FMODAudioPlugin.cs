@@ -5,6 +5,7 @@ using System.Reflection;
 using System;
 using Sedulous.FMOD.Audio;
 using System.Linq;
+using Sedulous.Content;
 
 namespace Sedulous.FMOD
 {
@@ -17,9 +18,6 @@ namespace Sedulous.FMOD
         public override void Register(FrameworkConfiguration configuration)
         {
             Contract.Require(configuration, nameof(configuration));
-
-            var asm = typeof(FMODAudioPlugin).Assembly;
-            configuration.AudioSubsystemAssembly = $"{asm.GetName().Name}, Version={asm.GetName().Version}, Culture=neutral, PublicKeyToken=78da2f4877323311, processorArchitecture=MSIL";
 
             base.Register(configuration);
         }
@@ -45,10 +43,40 @@ namespace Sedulous.FMOD
             }
             catch (FileNotFoundException e)
             {
-                throw new InvalidCompatibilityShimException(FrameworkStrings.MissingCompatibilityShim.Format(e.FileName));
+                throw new Exception(FrameworkStrings.MissingCompatibilityShim.Format(e.FileName));
             }
 
+            factory.SetFactoryMethod<FrameworkAudioFactory>((uv, configuration) => new FMODAudioSubsystem(uv, configuration));
+
             base.Configure(context, factory);
+        }
+
+        /// <inheritdoc/>
+        public override void RegisterContentImporters(ContentImporterRegistry importers)
+        {
+            importers.RegisterImporter<FMODMediaImporter>(".aif");
+            importers.RegisterImporter<FMODMediaImporter>(".aiff");
+            importers.RegisterImporter<FMODMediaImporter>(".flac");
+            importers.RegisterImporter<FMODMediaImporter>(".it");
+            importers.RegisterImporter<FMODMediaImporter>(".m3u");
+            importers.RegisterImporter<FMODMediaImporter>(".mid");
+            importers.RegisterImporter<FMODMediaImporter>(".mod");
+            importers.RegisterImporter<FMODMediaImporter>(".mp2");
+            importers.RegisterImporter<FMODMediaImporter>(".mp3");
+            importers.RegisterImporter<FMODMediaImporter>(".ogg");
+            importers.RegisterImporter<FMODMediaImporter>(".s3m");
+            importers.RegisterImporter<FMODMediaImporter>(".wav");
+
+            base.RegisterContentImporters(importers);
+        }
+
+        /// <inheritdoc/>
+        public override void RegisterContentProcessors(ContentProcessorRegistry processors)
+        {
+            processors.RegisterProcessor<FMODSongProcessor>();
+            processors.RegisterProcessor<FMODSoundEffectProcessor>();
+
+            base.RegisterContentProcessors(processors);
         }
     }
 }

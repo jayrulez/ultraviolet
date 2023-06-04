@@ -6,7 +6,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Loads fragment shader assets.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class OpenGLFragmentShaderProcessor : ContentProcessor<String, OpenGLFragmentShader>
     {
         /// <inheritdoc/>

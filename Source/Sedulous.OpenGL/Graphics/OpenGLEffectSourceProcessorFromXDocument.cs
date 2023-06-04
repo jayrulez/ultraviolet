@@ -9,7 +9,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Loads effect source assets from XML definition files.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public class OpenGLEffectSourceProcessorFromXDocument : ContentProcessor<XDocument, EffectSource>
     {
         /// <inheritdoc/>

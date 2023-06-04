@@ -6,7 +6,7 @@ namespace Sedulous.Content
     /// <summary>
     /// Represents a content importer which loads XML documents.
     /// </summary>
-    [ContentImporter(".xml")]
+    //[ContentImporter(".xml")]
     public sealed class XmlContentImporter : ContentImporter<XDocument>
     {
         /// <inheritdoc/>

@@ -13,7 +13,7 @@ namespace Sedulous.UI
     /// Represents a content processor which processes XML panel
     /// definitions into instances of the <see cref="UIPanelDefinition"/> class.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     internal sealed class UIPanelDefinitionProcessor : ContentProcessor<XDocument, UIPanelDefinition>
     {
         /// <summary>

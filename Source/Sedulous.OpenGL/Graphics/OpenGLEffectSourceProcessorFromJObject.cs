@@ -8,7 +8,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Loads effect source assets from JSON definition files.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public class OpenGLEffectSourceProcessorFromJObject : ContentProcessor<JObject, EffectSource>
     {
         /// <inheritdoc/>

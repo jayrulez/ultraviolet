@@ -10,7 +10,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Loads 3D texture assets.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class OpenGLTexture3DProcessor : ContentProcessor<PlatformNativeSurface, Texture3D>
     {
         /// <inheritdoc/>

@@ -12,7 +12,7 @@ namespace Sedulous.FreeType2
     /// <summary>
     /// Loads FreeType fonts.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public unsafe partial class FreeTypeFontProcessor : ContentProcessor<FreeTypeFontInfo, FreeTypeFont>
     {
         /// <inheritdoc/>

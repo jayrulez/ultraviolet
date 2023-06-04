@@ -7,7 +7,7 @@ namespace Sedulous.Content
     /// <summary>
     /// Represents a content importer which loads text files.
     /// </summary>
-    [ContentImporter(".txt")]
+    //[ContentImporter(".txt")]
     public sealed class TextContentImporter : ContentImporter<String[]>
     {
         /// <summary>

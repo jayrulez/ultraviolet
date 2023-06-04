@@ -35,6 +35,11 @@
       <Variant>Invalid graphics subsystem assembly.</Variant>
     </en-US>
   </String>
+  <String Key="MISSING_GRAPHICS_FACTORY">
+	<en-US>
+	  <Variant>Missing graphics factory.</Variant>
+	</en-US>
+  </String>
   <String Key="MISSING_AUDIO_ASSEMBLY">
     <en-US>
       <Variant>No audio subsystem assembly was specified.</Variant>
@@ -44,6 +49,11 @@
     <en-US>
       <Variant>Invalid audio subsystem assembly.</Variant>
     </en-US>
+  </String>
+  <String Key="MISSING_AUDIO_FACTORY">
+	<en-US>
+	  <Variant>Missing audio factory.</Variant>
+	</en-US>
   </String>
   <String Key="PRIMARY_WINDOW_ALREADY_INITIALIZED">
     <en-US>

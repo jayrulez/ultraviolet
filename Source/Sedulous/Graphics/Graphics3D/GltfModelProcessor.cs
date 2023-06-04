@@ -11,7 +11,8 @@ namespace Sedulous.Graphics.Graphics3D
     /// <summary>
     /// Represents a content processor which converts <see cref="ModelRoot"/> instances to <see cref="Model"/> instances.
     /// </summary>
-    [ContentProcessor, CLSCompliant(false)]
+    //[ContentProcessor, CLSCompliant(false)]
+    [CLSCompliant(false)]
     public class GltfModelProcessor : GltfModelProcessor<Model>
     {
         /// <inheritdoc/>

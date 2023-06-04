@@ -73,10 +73,5 @@ namespace Sedulous
             get;
             set;
         }
-
-        /// <summary>
-        /// Gets the platform compatibility shim
-        /// </summary>
-        IFrameworkPlatformCompatibilityShim CompatibilityShim { get; }
     }
 }

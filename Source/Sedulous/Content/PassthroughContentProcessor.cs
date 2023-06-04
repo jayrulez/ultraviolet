@@ -5,7 +5,7 @@ namespace Sedulous.Content
     /// <summary>
     /// Represents a content processor which passes its input through unchanged.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     internal sealed class PassthroughContentProcessor : ContentProcessor<Object, Object>
     {
         /// <inheritdoc/>

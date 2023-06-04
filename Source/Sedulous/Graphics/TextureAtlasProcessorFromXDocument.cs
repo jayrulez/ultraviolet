@@ -9,7 +9,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a content processor which loads XML definition files as texture atlases.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed partial class TextureAtlasProcessorFromXDocument : ContentProcessor<XDocument, TextureAtlas>
     {
         /// <inheritdoc/>

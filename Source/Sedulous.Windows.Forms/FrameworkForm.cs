@@ -68,9 +68,6 @@ namespace Sedulous.Windows.Forms
         /// <inheritdoc/>
         public String ApplicationName { get; set; }
 
-        /// <inheritdoc/>
-        public IFrameworkPlatformCompatibilityShim CompatibilityShim { get; } = new WindowsFormFrameworkPlatformCompatibilityShim();
-
         /// <summary>
         /// Gets or sets a value indicating whether the application's primary window is synchronized
         /// to the vertical retrace when rendering (i.e., whether vsync is enabled).

@@ -8,7 +8,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Loads effect source assets from shader source files.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public class OpenGLEffectSourceProcessorFromShaderSource : ContentProcessor<String, EffectSource>
     {
         /// <inheritdoc/>

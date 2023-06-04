@@ -9,7 +9,7 @@ namespace Sedulous
     /// <summary>
     /// Represents a content processor that loads cursor collections.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     internal sealed class CursorCollectionProcessorFromXDocument : ContentProcessor<XDocument, CursorCollection>
     {
         /// <inheritdoc/>

@@ -8,10 +8,10 @@ namespace Sedulous.SDL2.Graphics
     /// <summary>
     /// Imports .bmp, .png, and .jpg files.
     /// </summary>
-    [ContentImporter(".bmp")]
-    [ContentImporter(".png")]
-    [ContentImporter(".jpg")]
-    [ContentImporter(".jpeg")]
+    //[ContentImporter(".bmp")]
+    //[ContentImporter(".png")]
+    //[ContentImporter(".jpg")]
+    //[ContentImporter(".jpeg")]
     public unsafe sealed class SDL2PlatformNativeSurfaceImporter : ContentImporter<PlatformNativeSurface>
     {
         /// <summary>

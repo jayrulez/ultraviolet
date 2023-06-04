@@ -4,6 +4,13 @@ using Sedulous.Graphics;
 namespace Sedulous
 {
     /// <summary>
+    /// Initializes a new instance of the ISedulousGraphics implementation.
+    /// </summary>
+    /// <param name="context">The Sedulous context.</param>
+    /// <param name="configuration">The Sedulous Framework configuration settings for the current context.</param>
+    public delegate IGraphicsSubsystem FrameworkGraphicsFactory(FrameworkContext context, FrameworkConfiguration configuration);
+
+    /// <summary>
     /// Represents the Sedulous Framework's graphics subsystem.
     /// </summary>
     public interface IGraphicsSubsystem : IFrameworkSubsystem

@@ -48,7 +48,6 @@ namespace Sedulous
 
             this.DeveloperName = developerName;
             this.ApplicationName = applicationName;
-            this.CompatibilityShim = new NETCoreFrameworkPlatformCompatibilityShim();
 
             InitializeApplication();
         }
@@ -140,9 +139,6 @@ namespace Sedulous
 
         /// <inheritdoc/>
         public String ApplicationName { get; }
-
-        /// <inheritdoc/>
-        public IFrameworkPlatformCompatibilityShim CompatibilityShim { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the application's primary window is synchronized

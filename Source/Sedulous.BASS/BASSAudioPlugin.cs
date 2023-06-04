@@ -1,5 +1,6 @@
 ﻿using Sedulous.Audio;
 using Sedulous.BASS.Audio;
+using Sedulous.Content;
 using Sedulous.Core;
 
 namespace Sedulous.BASS
@@ -14,9 +15,6 @@ namespace Sedulous.BASS
         {
             Contract.Require(configuration, nameof(configuration));
 
-            var asm = typeof(BASSAudioPlugin).Assembly;
-            configuration.AudioSubsystemAssembly = $"{asm.GetName().Name}, Version={asm.GetName().Version}, Culture=neutral, PublicKeyToken=78da2f4877323311, processorArchitecture=MSIL";
-
             base.Register(configuration);
         }
 
@@ -26,7 +24,28 @@ namespace Sedulous.BASS
             factory.SetFactoryMethod<SongPlayerFactory>((uv) => new BASSSongPlayer(uv));
             factory.SetFactoryMethod<SoundEffectPlayerFactory>((uv) => new BASSSoundEffectPlayer(uv));
 
+            factory.SetFactoryMethod<FrameworkAudioFactory>((uv, configuration) => new BASSAudioSubsystem(uv));
+
             base.Configure(context, factory);
+        }
+
+        /// <inheritdoc/>
+        public override void RegisterContentImporters(ContentImporterRegistry importers)
+        {
+            importers.RegisterImporter<BASSMediaImporter>(".mp3");
+            importers.RegisterImporter<BASSMediaImporter>(".ogg");
+            importers.RegisterImporter<BASSMediaImporter>(".wav");
+
+            base.RegisterContentImporters(importers);
+        }
+
+        /// <inheritdoc/>
+        public override void RegisterContentProcessors(ContentProcessorRegistry processors)
+        {
+            processors.RegisterProcessor<BASSSongProcessor>();
+            processors.RegisterProcessor<BASSSoundEffectProcessor>();
+
+            base.RegisterContentProcessors(processors);
         }
     }
 }

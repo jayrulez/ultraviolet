@@ -7,7 +7,7 @@ namespace Sedulous.SDL2
     /// <summary>
     /// Loads a cursor from an image.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class SDL2CursorProcessor : ContentProcessor<PlatformNativeSurface, Cursor>
     {
         /// <summary>

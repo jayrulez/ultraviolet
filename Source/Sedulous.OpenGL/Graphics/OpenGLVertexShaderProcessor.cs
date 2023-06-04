@@ -6,7 +6,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Loads vertex shader assets.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class OpenGLVertexShaderProcessor : ContentProcessor<String, OpenGLVertexShader>
     {
         /// <inheritdoc/>

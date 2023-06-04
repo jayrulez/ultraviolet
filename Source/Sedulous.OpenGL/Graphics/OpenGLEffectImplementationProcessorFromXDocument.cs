@@ -9,7 +9,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Loads shader effect assets from XML definition files.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class OpenGLEffectImplementationProcessorFromXDocument : EffectImplementationProcessor<XDocument>
     {
         /// <summary>

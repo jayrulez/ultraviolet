@@ -12,7 +12,7 @@ namespace Sedulous
     /// Represents a content processor which processes XNA-formatted 
     /// curve definition XML files into instances of the Curve class.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     internal sealed class CurveProcessor : ContentProcessor<XDocument, CubicSplineSingleCurve>
     {
         /// <inheritdoc/>

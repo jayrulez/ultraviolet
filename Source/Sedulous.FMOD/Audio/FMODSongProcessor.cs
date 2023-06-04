@@ -7,7 +7,7 @@ namespace Sedulous.FMOD.Audio
     /// <summary>
     /// Loads song assets.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class FMODSongProcessor : ContentProcessor<FMODMediaDescription, Song>
     {
         /// <inheritdoc/>

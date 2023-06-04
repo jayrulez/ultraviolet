@@ -6,7 +6,7 @@ namespace Sedulous.Content
     /// <summary>
     /// Represents a content importer which loads JSON documents.
     /// </summary>
-    [ContentImporter(".json")]
+    //[ContentImporter(".json")]
     public sealed class JsonContentImporter : ContentImporter<JObject>
     {
         /// <summary>

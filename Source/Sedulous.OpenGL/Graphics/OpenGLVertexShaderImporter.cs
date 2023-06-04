@@ -7,7 +7,7 @@ namespace Sedulous.OpenGL.Graphics
     /// <summary>
     /// Imports .vert files.
     /// </summary>
-    [ContentImporter(".vert"), ContentImporter(".verth")]
+    //[ContentImporter(".vert"), ContentImporter(".verth")]
     public sealed class OpenGLVertexShaderImporter : ContentImporter<String>
     {
         /// <summary>

@@ -9,7 +9,7 @@ namespace Sedulous.Graphics.Graphics3D
     /// <summary>
     /// Imports .stl model files.
     /// </summary>
-    [ContentImporter(".stl")]
+    //[ContentImporter(".stl")]
     public sealed class StlModelImporter : ContentImporter<StlModelDescription>
     {
         /// <inheritdoc/>

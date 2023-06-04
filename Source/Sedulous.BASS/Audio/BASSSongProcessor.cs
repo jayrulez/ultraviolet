@@ -7,7 +7,7 @@ namespace Sedulous.BASS.Audio
     /// <summary>
     /// Loads song assets.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class BASSSongProcessor : ContentProcessor<BASSMediaDescription, Song>
     {
         /// <inheritdoc/>

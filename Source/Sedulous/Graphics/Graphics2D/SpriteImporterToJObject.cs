@@ -8,7 +8,7 @@ namespace Sedulous.Graphics.Graphics2D
     /// <summary>
     /// Represents a content importer which loads sprite definition files.
     /// </summary>
-    [ContentImporter(".jssprite")]
+    //[ContentImporter(".jssprite")]
     internal sealed class SpriteImporterToJObject : ContentImporter<JObject>
     {
         /// <inheritdoc/>

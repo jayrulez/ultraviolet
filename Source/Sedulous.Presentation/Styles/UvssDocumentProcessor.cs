@@ -9,7 +9,7 @@ namespace Sedulous.Presentation.Styles
     /// <summary>
     /// Represents a content processor for the *.uvss file type.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public class UvssDocumentProcessor : ContentProcessor<String, UvssDocument>
     {
         /// <inheritdoc/>

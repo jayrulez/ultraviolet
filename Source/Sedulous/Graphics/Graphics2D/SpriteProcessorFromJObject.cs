@@ -10,7 +10,7 @@ namespace Sedulous.Graphics.Graphics2D
     /// <summary>
     /// Represents a content processor which loads sprites from JSON files.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     internal sealed class SpriteProcessorFromJObject : ContentProcessor<JObject, Sprite>
     {
         /// <inheritdoc/>

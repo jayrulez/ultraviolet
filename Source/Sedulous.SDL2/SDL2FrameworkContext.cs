@@ -57,7 +57,6 @@ namespace Sedulous.SDL2
             eventFilterPtr = Marshal.GetFunctionPointerForDelegate(eventFilter);
             SDL_SetEventFilter(eventFilterPtr, IntPtr.Zero);
 
-            LoadSubsystemAssemblies(configuration);
             this.swapChainManager = IsRunningInServiceMode ? new DummySwapChainManager(this) : SwapChainManager.Create();
 
             this.platform = InitializePlatformSubsystem(configuration);
@@ -75,6 +74,8 @@ namespace Sedulous.SDL2
             InitializePlugins(configuration);
 
             base.InitializeContext();
+
+            RegisterPluginContentImportersAndProcessors(configuration);
 
             PumpEvents();
         }
@@ -181,16 +182,6 @@ namespace Sedulous.SDL2
         /// <inheritdoc/>
         public override IUISubsystem GetUI() => ui;
 
-        /// <summary>
-        /// Gets the assembly that implements the graphics subsystem.
-        /// </summary>
-        public Assembly GraphicsSubsystemAssembly { get; private set; }
-
-        /// <summary>
-        /// Gets the assembly that implements the audio subsystem.
-        /// </summary>
-        public Assembly AudioSubsystemAssembly { get; private set; }
-
         /// <inheritdoc/>
         protected override void OnShutdown()
         {
@@ -198,89 +189,6 @@ namespace Sedulous.SDL2
             SDL_Quit();
 
             base.OnShutdown();
-        }
-
-        /// <summary>
-        /// Loads the context's subsystem assemblies.
-        /// </summary>
-        /// <param name="configuration">The context's configuration settings.</param>
-        private void LoadSubsystemAssemblies(FrameworkConfiguration configuration)
-        {
-            if (IsRunningInServiceMode)
-                return;
-
-            Assembly LoadSubsystemAssembly(String name)
-            {
-                try
-                {
-                    return Assembly.Load(name);
-                }
-                catch (Exception e)
-                {
-                    if (e is FileNotFoundException || e is FileLoadException || e is BadImageFormatException)
-                    {
-                        return null;
-                    }
-                    throw;
-                }
-            }
-
-            if (String.IsNullOrEmpty(configuration.GraphicsSubsystemAssembly))
-                throw new InvalidOperationException(SDL2Strings.MissingGraphicsAssembly);
-
-            if (String.IsNullOrEmpty(configuration.AudioSubsystemAssembly))
-                throw new InvalidOperationException(SDL2Strings.MissingAudioAssembly);
-
-            this.GraphicsSubsystemAssembly = LoadSubsystemAssembly(configuration.GraphicsSubsystemAssembly);
-            if (this.GraphicsSubsystemAssembly == null)
-                throw new InvalidOperationException(SDL2Strings.InvalidGraphicsAssembly);
-
-            this.AudioSubsystemAssembly = LoadSubsystemAssembly(configuration.AudioSubsystemAssembly);
-            if (this.AudioSubsystemAssembly == null)
-                throw new InvalidOperationException(SDL2Strings.InvalidAudioAssembly);
-
-            var distinctAssemblies = new[] { this.GraphicsSubsystemAssembly, this.AudioSubsystemAssembly }.Distinct();
-            foreach (var distinctAssembly in distinctAssemblies)
-                InitializeFactoryMethodsInAssembly(distinctAssembly);
-        }
-
-        /// <summary>
-        /// Attempts to create a new instance of the specified Sedulous subsystem by dynamically loading it from the specified assembly.
-        /// </summary>
-        /// <typeparam name="TSubsystem">The subsystem interface type.</typeparam>
-        /// <param name="assembly">The assembly from which to load the subsystem implementation.</param>
-        /// <param name="configuration">The Sedulous context configuration.</param>
-        /// <param name="instance">The subsystem instance that was created.</param>
-        /// <returns><see langword="true"/> if the subsystem instance was created; otherwise, <see langword="false"/>.</returns>
-        private Boolean TryCreateSubsystemInstance<TSubsystem>(Assembly assembly, FrameworkConfiguration configuration, out TSubsystem instance)
-        {
-            var types = (from t in assembly.GetTypes()
-                         where
-                          t.IsClass && !t.IsAbstract &&
-                          t.GetInterfaces().Contains(typeof(TSubsystem))
-                         select t).ToList();
-
-            if (!types.Any() || types.Count > 1)
-                throw new InvalidOperationException(SDL2Strings.InvalidAudioAssembly);
-
-            var type = types.Single();
-
-            var ctorWithConfig = type.GetConstructor(new[] { typeof(FrameworkContext), typeof(FrameworkConfiguration) });
-            if (ctorWithConfig != null)
-            {
-                instance = (TSubsystem)ctorWithConfig.Invoke(new object[] { this, configuration });
-                return true;
-            }
-
-            var ctorWithoutConfig = type.GetConstructor(new[] { typeof(FrameworkContext) });
-            if (ctorWithoutConfig != null)
-            {
-                instance = (TSubsystem)ctorWithoutConfig.Invoke(new object[] { this });
-                return true;
-            }
-
-            instance = default(TSubsystem);
-            return false;
         }
 
         /// <summary>
@@ -309,8 +217,17 @@ namespace Sedulous.SDL2
         private IContentSubsystem InitializeContentSubsystem()
         {
             var content = new ContentSubsystem(this);
-            content.RegisterImportersAndProcessors(new[] { GraphicsSubsystemAssembly, AudioSubsystemAssembly }.Distinct());
             content.Importers.RegisterImporter<XmlContentImporter>("prog");
+
+            content.Importers.RegisterImporter<SDL2PlatformNativeSurfaceImporter>(".bmp");
+            content.Importers.RegisterImporter<SDL2PlatformNativeSurfaceImporter>(".png");
+            content.Importers.RegisterImporter<SDL2PlatformNativeSurfaceImporter>(".jpg");
+            content.Importers.RegisterImporter<SDL2PlatformNativeSurfaceImporter>(".jpeg");
+
+            content.Processors.RegisterProcessor<SDL2Surface2DProcessor>();
+            content.Processors.RegisterProcessor<SDL2Surface3DProcessor>();
+            content.Processors.RegisterProcessor<SDL2CursorProcessor>();
+
             return content;
         }
 
@@ -324,8 +241,13 @@ namespace Sedulous.SDL2
             if (IsRunningInServiceMode)
                 return new DummyGraphicsSubsystem(this);
 
-            if (!TryCreateSubsystemInstance<IGraphicsSubsystem>(GraphicsSubsystemAssembly, configuration, out var graphics))
-                throw new InvalidOperationException(SDL2Strings.InvalidGraphicsAssembly);
+            var graphicsFactory = Factory.TryGetFactoryMethod<FrameworkGraphicsFactory>();
+            if (graphicsFactory == null)
+            {
+                throw new InvalidOperationException(SDL2Strings.MissingGraphicsFactory);
+            }
+
+            var graphics = graphicsFactory(this, configuration);
 
             return graphics;
         }
@@ -340,8 +262,13 @@ namespace Sedulous.SDL2
             if (IsRunningInServiceMode)
                 return new DummyAudioSubsystem(this);
 
-            if (!TryCreateSubsystemInstance<IAudioSubsystem>(AudioSubsystemAssembly, configuration, out var audio))
-                throw new InvalidOperationException(SDL2Strings.InvalidAudioAssembly);
+            var audioFactory = Factory.TryGetFactoryMethod<FrameworkAudioFactory>();
+            if (audioFactory == null)
+            {
+                throw new InvalidOperationException(SDL2Strings.MissingAudioFactory);
+            }
+
+            var audio = audioFactory(this, configuration);
 
             return audio;
         }

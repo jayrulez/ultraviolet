@@ -7,7 +7,7 @@ namespace Sedulous.BASS.Audio
     /// <summary>
     /// Loads sound effect assets.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class BASSSoundEffectProcessor : ContentProcessor<BASSMediaDescription, SoundEffect>
     {
         /// <inheritdoc/>

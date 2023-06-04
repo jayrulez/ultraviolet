@@ -7,9 +7,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Sedulous.Content;
 using Sedulous.Core;
 using Sedulous.Core.Messages;
+using Sedulous.Graphics;
 using Sedulous.Graphics.Graphics2D;
+using Sedulous.Graphics.Graphics3D;
 using Sedulous.Platform;
 using Sedulous.UI;
 
@@ -558,11 +561,6 @@ namespace Sedulous
         public IMessageQueue<FrameworkMessageID> Messages => messages;
 
         /// <summary>
-        /// Gets the assembly which provides compatibility services for the current platform.
-        /// </summary>
-        public Assembly PlatformCompatibilityShimAssembly => platformCompatibilityShimAssembly;
-
-        /// <summary>
         /// Gets the assembly which implements views for the user interface subsystem.
         /// </summary>
         public Assembly ViewProviderAssembly => viewProviderAssembly;
@@ -720,6 +718,44 @@ namespace Sedulous
             GetContent().Processors
                 .SetFallbackType<FrameworkFont>(typeof(SpriteFont));
 
+            // Content
+            GetContent().Importers.RegisterImporter<JsonContentImporter>(".json");
+            GetContent().Importers.RegisterImporter<TextContentImporter>(".txt");
+            GetContent().Importers.RegisterImporter<XmlContentImporter>(".xml");
+
+            GetContent().Processors.RegisterProcessor<JsonContentProcessor>();
+            GetContent().Processors.RegisterProcessor<PassthroughContentProcessor>();
+            GetContent().Processors.RegisterProcessor<XmlContentProcessor>();
+
+            GetContent().Processors.RegisterProcessor<CursorCollectionProcessorFromJObject>();
+            GetContent().Processors.RegisterProcessor<CursorCollectionProcessorFromXDocument>();
+
+            // Graphics 2D
+            GetContent().Importers.RegisterImporter<SpriteImporterToJObject>(".jssprite");
+            GetContent().Importers.RegisterImporter<SpriteImporterToXDocument>(".sprite");
+
+            GetContent().Processors.RegisterProcessor<SpriteProcessorFromJObject>();
+            GetContent().Processors.RegisterProcessor<SpriteProcessorFromXDocument>();
+
+            // Graphics 3D
+            GetContent().Importers.RegisterImporter<GlbModelImporter>(".glb");
+            GetContent().Importers.RegisterImporter<GltfModelImporter>(".gltf");
+            GetContent().Importers.RegisterImporter<StlModelImporter>(".stl");
+
+            GetContent().Processors.RegisterProcessor<GltfModelProcessor>();
+            GetContent().Processors.RegisterProcessor<GltfSkinnedModelProcessor>();
+            GetContent().Processors.RegisterProcessor<StlModelProcessor>();
+
+            // Graphics
+            GetContent().Processors.RegisterProcessor<TextureAtlasProcessorFromJObject>();
+            GetContent().Processors.RegisterProcessor<TextureAtlasProcessorFromXDocument>();
+
+            // Curve
+            GetContent().Processors.RegisterProcessor<CurveProcessor>();
+
+            // UI
+            GetContent().Processors.RegisterProcessor<UIPanelDefinitionProcessor>();
+
             OnInitialized();
             OnContextInitialized();
 
@@ -792,6 +828,19 @@ namespace Sedulous
             {
                 plugin.Initialize(this, Factory);
                 plugin.Initialized = true;
+            }
+        }
+
+        /// <summary>
+        /// Registers content importers and processors for the context's plugins.
+        /// </summary>
+        /// <param name="configuration">The Sedulous Framework configuration settings for this context.</param>
+        protected void RegisterPluginContentImportersAndProcessors(FrameworkConfiguration configuration)
+        {
+            foreach (var plugin in configuration.Plugins)
+            {
+                plugin.RegisterContentImporters(this.GetContent().Importers);
+                plugin.RegisterContentProcessors(this.GetContent().Processors);
             }
         }
 
@@ -947,30 +996,11 @@ namespace Sedulous
 
             InitializeFactoryMethodsInAssembly(asmCore);
             InitializeFactoryMethodsInAssembly(asmImpl);
-            InitializeFactoryMethodsInCompatibilityShim();
             InitializeFactoryMethodsInViewProvider(configuration);
             
             var asmEntry = Assembly.GetEntryAssembly();
             if (asmEntry != null)
                 InitializeFactoryMethodsInAssembly(asmEntry);
-        }
-
-        /// <summary>
-        /// Initializes any factory methods exposed by the current platform compatibility shim.
-        /// </summary>
-        private void InitializeFactoryMethodsInCompatibilityShim()
-        {
-            if(host.CompatibilityShim == null)
-            {
-                throw new InvalidCompatibilityShimException(FrameworkStrings.MissingCompatibilityShim.Format($"{Platform}"));
-            }
-
-            var shim = host.CompatibilityShim.Assembly;
-
-            if (shim != null)
-                InitializeFactoryMethodsInAssembly(shim);
-
-            platformCompatibilityShimAssembly = shim;
         }
         
         /// <summary>
@@ -1057,7 +1087,6 @@ namespace Sedulous
         private readonly FrameworkSynchronizationContext syncContext;
         private readonly FrameworkFactory factory = new FrameworkFactory();
         private readonly Thread thread;
-        private Assembly platformCompatibilityShimAssembly;
         private Assembly viewProviderAssembly;
 
         // The context's list of pending tasks.

@@ -5,7 +5,7 @@ namespace Sedulous.Content
     /// <summary>
     /// Represents a content processor which loads XML documents.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public sealed class JsonContentProcessor : ContentProcessor<JObject, JObject>
     {
         /// <summary>

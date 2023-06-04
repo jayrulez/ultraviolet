@@ -7,7 +7,7 @@ namespace Sedulous.Graphics.Graphics3D
     /// <summary>
     /// Loads STL model assets.
     /// </summary>
-    [ContentProcessor]
+    //[ContentProcessor]
     public class StlModelProcessor : ContentProcessor<StlModelDescription, Model>
     {
         /// <inheritdoc/>

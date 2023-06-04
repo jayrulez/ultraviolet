@@ -8,7 +8,8 @@ namespace Sedulous.Graphics.Graphics3D
     /// <summary>
     /// Represents a content importer which loads GLB model files.
     /// </summary>
-    [ContentImporter(".glb"), CLSCompliant(false)]
+    //[ContentImporter(".glb"), CLSCompliant(false)]
+    [CLSCompliant(false)]
     public class GlbModelImporter : ContentImporter<ModelRoot>
     {
         /// <inheritdoc/>

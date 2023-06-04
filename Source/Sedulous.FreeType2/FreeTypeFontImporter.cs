@@ -9,11 +9,11 @@ namespace Sedulous.FreeType2
     /// <summary>
     /// Imports font files.
     /// </summary>
-    [ContentImporter(".ttf")]
-    [ContentImporter(".ttc")]
-    [ContentImporter(".otf")]
-    [ContentImporter(".otc")]
-    [ContentImporter(".fnt")]
+    //[ContentImporter(".ttf")]
+    //[ContentImporter(".ttc")]
+    //[ContentImporter(".otf")]
+    //[ContentImporter(".otc")]
+    //[ContentImporter(".fnt")]
     public sealed class FreeTypeFontImporter : ContentImporter<FreeTypeFontInfo>
     {
         /// <inheritdoc/>

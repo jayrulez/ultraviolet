@@ -7,9 +7,9 @@ namespace Sedulous.BASS.Audio
     /// <summary>
     /// Imports .mp3, .ogg, and .wav files.
     /// </summary>
-    [ContentImporter(".mp3")]
-    [ContentImporter(".ogg")]
-    [ContentImporter(".wav")]
+    //[ContentImporter(".mp3")]
+    //[ContentImporter(".ogg")]
+    //[ContentImporter(".wav")]
     public sealed class BASSMediaImporter : ContentImporter<BASSMediaDescription>
     {
         /// <inheritdoc/>
