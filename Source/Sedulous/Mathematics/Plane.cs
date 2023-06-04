@@ -400,7 +400,7 @@ namespace Sedulous
         {
             Plane result;
 
-            result.Normal = Tweening.Lerp(this.Normal, target.Normal, t);
+            result.Normal = this.Normal.Interpolate(target.Normal, t);
             result.D = Tweening.Lerp(this.D, target.D, t);
 
             return result;
