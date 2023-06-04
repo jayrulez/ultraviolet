@@ -688,6 +688,20 @@ namespace Sedulous
         }
 
         /// <summary>
+        /// Configures the context's factory.
+        /// </summary>
+        public void ConfigureFactory(Action<FrameworkFactory> configureAction)
+        {
+            if (IsInitialized)
+                throw new Exception("Cannot configure factory on already initialized context.");
+
+            if (configureAction != null)
+            {
+                configureAction(factory);
+            }
+        }
+
+        /// <summary>
         /// Initializes the context
         /// </summary>
         public void Initialize()
@@ -748,7 +762,7 @@ namespace Sedulous
         /// <summary>
         /// Configures the context's factories.
         /// </summary>
-        protected virtual void ConfigureFactories()
+        protected virtual void ConfigureFactory()
         {
             factory.SetFactoryMethod(this.IsRunningInServiceMode ?
                 new SpriteBatchFactory((uv) => null) :

@@ -47,7 +47,7 @@ namespace Sedulous.SDL2
         protected unsafe override void InitializeContext()
         {
             ConfigurePlugins(configuration);
-            ConfigureFactories();
+            ConfigureFactory();
             this.onWindowDrawing = (context, time, window) =>
                 ((SDL2FrameworkContext)context).OnWindowDrawing(time, window);
             this.onWindowDrawn = (context, time, window) =>
@@ -81,9 +81,9 @@ namespace Sedulous.SDL2
 
 
         /// <inheritdoc/>
-        protected override void ConfigureFactories()
+        protected override void ConfigureFactory()
         {
-            base.ConfigureFactories();
+            base.ConfigureFactory();
 
 
             // Core classes.

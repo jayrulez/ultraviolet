@@ -5,8 +5,13 @@ using System.Threading;
 using Sedulous.Content;
 using Sedulous.Core;
 using Sedulous.Core.Messages;
+using Sedulous.Graphics;
+using Sedulous.Input;
 using Sedulous.Platform;
 using Sedulous.Shims.NETCore;
+using Sedulous.Shims.NETCore.Graphics;
+using Sedulous.Shims.NETCore.Input;
+using Sedulous.Shims.NETCore.Platform;
 
 namespace Sedulous
 {
@@ -612,6 +617,29 @@ namespace Sedulous
 
         private void InitializeFrameworkContext()
         {
+            context.ConfigureFactory((factory) =>
+            {
+                factory.SetFactoryMethod<SurfaceSourceFactory>((stream) => new NETCoreSurfaceSource(stream));
+                factory.SetFactoryMethod<SurfaceSaverFactory>(() => new NETCoreSurfaceSaver());
+                factory.SetFactoryMethod<IconLoaderFactory>(() => new NETCoreIconLoader());
+                factory.SetFactoryMethod<FileSystemServiceFactory>(() => new FileSystemService());
+                factory.SetFactoryMethod<ScreenRotationServiceFactory>((display) => new NETCoreScreenOrientationService(display));
+
+                switch (FrameworkPlatformInfo.CurrentPlatform)
+                {
+                    case FrameworkPlatform.Windows:
+                        factory.SetFactoryMethod<ScreenDensityServiceFactory>((display) => new NETCoreScreenDensityService_Windows(context, display));
+                        break;
+
+                    default:
+                        factory.SetFactoryMethod<ScreenDensityServiceFactory>((display) => new NETCoreScreenDensityService(context, display));
+                        break;
+                }
+
+                var softwareKeyboardService = new NETCoreSoftwareKeyboardService();
+                factory.SetFactoryMethod<SoftwareKeyboardServiceFactory>(() => softwareKeyboardService);
+            });
+
             context.Initialize();
 
             ApplySettings();

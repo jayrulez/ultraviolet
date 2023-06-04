@@ -14,6 +14,10 @@ using Sedulous.Messages;
 using Sedulous.Platform;
 using Sedulous.Shims.Android.Platform;
 using Android.Content;
+using Sedulous.Graphics;
+using Sedulous.Input;
+using Sedulous.Shims.Android.Input;
+using Sedulous.Shims.Android.Graphics;
 
 namespace Sedulous
 {
@@ -749,6 +753,20 @@ namespace Sedulous
 
         private void InitializeFrameworkContext()
         {
+            context.ConfigureFactory((factory) =>
+            {
+                factory.SetFactoryMethod<SurfaceSourceFactory>((stream) => new AndroidSurfaceSource(stream));
+                factory.SetFactoryMethod<SurfaceSaverFactory>(() => new AndroidSurfaceSaver());
+                factory.SetFactoryMethod<IconLoaderFactory>(() => new AndroidIconLoader());
+                factory.SetFactoryMethod<FileSystemServiceFactory>(() => new FileSystemService());
+                factory.SetFactoryMethod<ScreenRotationServiceFactory>((display) => new AndroidScreenRotationService(display));
+                factory.SetFactoryMethod<ScreenDensityServiceFactory>((display) => new AndroidScreenDensityService(display));
+                factory.SetFactoryMethod<AssemblyLoaderServiceFactory>(() => new AndroidAssemblyLoaderService());
+
+                var softwareKeyboardService = new AndroidSoftwareKeyboardService();
+                factory.SetFactoryMethod<SoftwareKeyboardServiceFactory>(() => softwareKeyboardService);
+            });
+
             context.Initialize();
 
             if (this.settings != null)
