@@ -103,7 +103,7 @@ namespace Sedulous
 
             OnInitializing();
 
-            CreateSedulousContext();
+            CreateFrameworkContext();
 
             OnInitialized();
 
@@ -301,7 +301,7 @@ namespace Sedulous
         /// Called when the application is creating its Sedulous context.
         /// </summary>
         /// <returns>The Sedulous context.</returns>
-        protected abstract FrameworkContext OnCreatingSedulousContext();
+        protected abstract FrameworkContext OnCreatingFrameworkContext();
 
         /// <inheritdoc/>
         protected override void OnCreate(Bundle savedInstanceState)
@@ -734,11 +734,11 @@ namespace Sedulous
         /// <summary>
         /// Creates the application's Sedulous context.
         /// </summary>
-        private void CreateSedulousContext()
+        private void CreateFrameworkContext()
         {
             LoadSettings();
 
-            context = FrameworkContext.EnsureSuccessfulCreation(OnCreatingSedulousContext);
+            context = FrameworkContext.EnsureSuccessfulCreation(OnCreatingFrameworkContext);
             if (context == null)
                 throw new InvalidOperationException(FrameworkStrings.ContextNotCreated);
 

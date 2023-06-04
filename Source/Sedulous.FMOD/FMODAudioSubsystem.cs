@@ -351,7 +351,7 @@ namespace Sedulous.FMOD
         }
 
         /// <inheritdoc/>
-        public event SedulousSubsystemUpdateEventHandler Updating;
+        public event FrameworkSubsystemUpdateEventHandler Updating;
 
         /// <summary>
         /// Gets a pointer to the FMOD system object.

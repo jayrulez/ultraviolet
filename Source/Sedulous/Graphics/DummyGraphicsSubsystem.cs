@@ -298,6 +298,6 @@ namespace Sedulous
         public Boolean CurrentRenderTargetIsSrgbEncoded => false;
 
         /// <inheritdoc/>
-        public event SedulousSubsystemUpdateEventHandler Updating;
+        public event FrameworkSubsystemUpdateEventHandler Updating;
     }
 }

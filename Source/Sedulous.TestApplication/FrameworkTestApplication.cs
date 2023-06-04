@@ -268,7 +268,7 @@ namespace Sedulous.TestApplication
         }
 
         /// <inheritdoc/>
-        protected override FrameworkContext OnCreatingSedulousContext()
+        protected override FrameworkContext OnCreatingFrameworkContext()
         {
             var configuration = new SDL2FrameworkConfiguration();
             configuration.Headless = headless;

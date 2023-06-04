@@ -259,7 +259,7 @@ namespace Sedulous
         }
 
         /// <inheritdoc/>
-        public event SedulousSubsystemUpdateEventHandler Updating;
+        public event FrameworkSubsystemUpdateEventHandler Updating;
 
         /// <inheritdoc/>
         public event KeyboardRegistrationEventHandler KeyboardRegistered;

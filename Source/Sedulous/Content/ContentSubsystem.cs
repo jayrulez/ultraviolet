@@ -73,7 +73,7 @@ namespace Sedulous.Content
         public ContentProcessorRegistry Processors => processors;
 
         /// <inheritdoc/>
-        public event SedulousSubsystemUpdateEventHandler Updating;
+        public event FrameworkSubsystemUpdateEventHandler Updating;
 
         /// <summary>
         /// Raises the <see cref="Updating"/> event.

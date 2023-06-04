@@ -118,7 +118,7 @@ namespace Sedulous.SDL2
         public IFrameworkDisplayInfo Displays => displays;
 
         /// <inheritdoc/>
-        public event SedulousSubsystemUpdateEventHandler Updating;
+        public event FrameworkSubsystemUpdateEventHandler Updating;
 
         /// <inheritdoc/>
         protected override void Dispose(Boolean disposing)

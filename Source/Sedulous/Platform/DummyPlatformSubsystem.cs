@@ -69,7 +69,7 @@ namespace Sedulous
         public IFrameworkDisplayInfo Displays => displays;
 
         /// <inheritdoc/>
-        public event SedulousSubsystemUpdateEventHandler Updating;
+        public event FrameworkSubsystemUpdateEventHandler Updating;
 
         // Property values.
         private ClipboardService clipboard;

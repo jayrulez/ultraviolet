@@ -54,7 +54,7 @@ namespace UvDebug
         /// Called when the application is creating its Sedulous context.
         /// </summary>
         /// <returns>The Sedulous context.</returns>
-        protected override FrameworkContext OnCreatingSedulousContext()
+        protected override FrameworkContext OnCreatingFrameworkContext()
         {
             var graphicsConfig = OpenGLGraphicsConfiguration.Default;
             graphicsConfig.MultiSampleBuffers = 1;

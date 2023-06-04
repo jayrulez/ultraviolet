@@ -7,7 +7,7 @@ namespace Sedulous
     /// </summary>
     /// <param name="subsystem">The Sedulous subsystem.</param>
     /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
-    public delegate void SedulousSubsystemUpdateEventHandler(IFrameworkSubsystem subsystem, FrameworkTime time);
+    public delegate void FrameworkSubsystemUpdateEventHandler(IFrameworkSubsystem subsystem, FrameworkTime time);
 
     /// <summary>
     /// Represents one of Sedulous's subsystems.
@@ -28,6 +28,6 @@ namespace Sedulous
         /// <summary>
         /// Occurs when the subsystem is updating its state.
         /// </summary>
-        event SedulousSubsystemUpdateEventHandler Updating;
+        event FrameworkSubsystemUpdateEventHandler Updating;
     }
 }

@@ -70,7 +70,7 @@ namespace Sedulous.UI
         /// <summary>
         /// Occurs when the subsystem is updating its state.
         /// </summary>
-        public event SedulousSubsystemUpdateEventHandler Updating;
+        public event FrameworkSubsystemUpdateEventHandler Updating;
 
         /// <summary>
         /// Releases resources associated with this object.

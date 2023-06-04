@@ -27,14 +27,14 @@ namespace Sedulous
     /// Represents a method that is called in response to an Sedulous context event.
     /// </summary>
     /// <param name="context">The Sedulous context.</param>
-    public delegate void SedulousContextEventHandler(FrameworkContext context);
+    public delegate void FrameworkContextEventHandler(FrameworkContext context);
 
     /// <summary>
     /// Represents the method that is called when an Sedulous context is about to draw the current scene.
     /// </summary>
     /// <param name="context">The Sedulous context.</param>
     /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
-    public delegate void SedulousContextDrawEventHandler(FrameworkContext context, FrameworkTime time);
+    public delegate void FrameworkContextDrawEventHandler(FrameworkContext context, FrameworkTime time);
 
     /// <summary>
     /// Represents the method that is called when an Sedulous context has drawn or is about to draw a particular window.
@@ -42,14 +42,14 @@ namespace Sedulous
     /// <param name="context">The Sedulous context.</param>
     /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
     /// <param name="window">The window that was drawn or is about to be drawn.</param>
-    public delegate void SedulousContextWindowDrawEventHandler(FrameworkContext context, FrameworkTime time, IFrameworkWindow window);
+    public delegate void FrameworkContextWindowDrawEventHandler(FrameworkContext context, FrameworkTime time, IFrameworkWindow window);
 
     /// <summary>
     /// Represents the method that is called when an Sedulous context updates the application state.
     /// </summary>
     /// <param name="context">The Sedulous context.</param>
     /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
-    public delegate void SedulousContextUpdateEventHandler(FrameworkContext context, FrameworkTime time);
+    public delegate void FrameworkContextUpdateEventHandler(FrameworkContext context, FrameworkTime time);
 
     /// <summary>
     /// Represents the Sedulous Framework and all of its subsystems.
@@ -615,48 +615,48 @@ namespace Sedulous
         /// <summary>
         /// Occurs when a new frame is started.
         /// </summary>
-        public event SedulousContextEventHandler FrameStart;
+        public event FrameworkContextEventHandler FrameStart;
 
         /// <summary>
         /// Occurs when a frame is completed.
         /// </summary>
-        public event SedulousContextEventHandler FrameEnd;
+        public event FrameworkContextEventHandler FrameEnd;
 
         /// <summary>
         /// Occurs when the context is preparing to draw the current scene. This event is called
         /// before the context associates itself to any windows.
         /// </summary>
-        public event SedulousContextDrawEventHandler Drawing;
+        public event FrameworkContextDrawEventHandler Drawing;
 
         /// <summary>
         /// Occurs when the context is preparing to draw a particular window.
         /// </summary>
-        public event SedulousContextWindowDrawEventHandler WindowDrawing;
+        public event FrameworkContextWindowDrawEventHandler WindowDrawing;
 
         /// <summary>
         /// Occurs after the context has drawn a particular window.
         /// </summary>
-        public event SedulousContextWindowDrawEventHandler WindowDrawn;
+        public event FrameworkContextWindowDrawEventHandler WindowDrawn;
 
         /// <summary>
         /// Occurs when the context is about to update the state of its subsystems.
         /// </summary>
-        public event SedulousContextUpdateEventHandler UpdatingSubsystems;
+        public event FrameworkContextUpdateEventHandler UpdatingSubsystems;
 
         /// <summary>
         /// Occurs when the context is updating the application's state.
         /// </summary>
-        public event SedulousContextUpdateEventHandler Updating;
+        public event FrameworkContextUpdateEventHandler Updating;
 
         /// <summary>
         /// Occurs when the context is initialized.
         /// </summary>
-        public event SedulousContextEventHandler Initialized;
+        public event FrameworkContextEventHandler Initialized;
 
         /// <summary>
         /// Occurs when the Sedulous context is being shut down.
         /// </summary>
-        public event SedulousContextEventHandler Shutdown;
+        public event FrameworkContextEventHandler Shutdown;
         
         /// <summary>
         /// Acquires an exclusive context claim, preventing other instances from being instantiated.

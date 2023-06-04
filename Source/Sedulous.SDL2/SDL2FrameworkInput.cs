@@ -344,7 +344,7 @@ namespace Sedulous.SDL2
         public Boolean IsMouseCursorAvailable => mouse.IsRegistered || (EmulateMouseWithTouchInput && IsTouchDeviceRegistered());
 
         /// <inheritdoc/>
-        public event SedulousSubsystemUpdateEventHandler Updating;
+        public event FrameworkSubsystemUpdateEventHandler Updating;
 
         /// <inheritdoc/>
         public event KeyboardRegistrationEventHandler KeyboardRegistered;

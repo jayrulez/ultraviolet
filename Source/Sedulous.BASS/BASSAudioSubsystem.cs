@@ -299,7 +299,7 @@ namespace Sedulous.BASS
         }
 
         /// <inheritdoc/>
-        public event SedulousSubsystemUpdateEventHandler Updating;
+        public event FrameworkSubsystemUpdateEventHandler Updating;
 
         /// <inheritdoc/>
         protected override void Dispose(Boolean disposing)
