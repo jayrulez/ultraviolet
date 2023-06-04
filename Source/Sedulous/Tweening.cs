@@ -471,60 +471,60 @@ namespace Sedulous
             return interpolator(tweenStart, tweenEnd, fn, t);
         }
 
-        /// <summary>
-        /// Performs a linear interpolation between the specified values.
-        /// </summary>
-        /// <typeparam name="T">The type of value to tween.</typeparam>
-        /// <param name="lerpStart">The start value.</param>
-        /// <param name="lerpEnd">The end value.</param>
-        /// <param name="t">A value between 0.0 and 1.0 indicating the current position in the interpolation.</param>
-        /// <returns>A value which is interpolated from the specified start and end values.</returns>
-        public static T Lerp<T>(T lerpStart, T lerpEnd, Single t)
-        {
-            Interpolator<T> interpolator;
-            if (!Interpolators.TryGet<T>(out interpolator) || interpolator == null)
-            {
-                return (T)Tween(lerpStart, (Object)lerpEnd, Easings.EaseInLinear, t);
-            }
-            return interpolator(lerpStart, lerpEnd, Easings.EaseInLinear, t);
-        }
+        ///// <summary>
+        ///// Performs a linear interpolation between the specified values.
+        ///// </summary>
+        ///// <typeparam name="T">The type of value to tween.</typeparam>
+        ///// <param name="lerpStart">The start value.</param>
+        ///// <param name="lerpEnd">The end value.</param>
+        ///// <param name="t">A value between 0.0 and 1.0 indicating the current position in the interpolation.</param>
+        ///// <returns>A value which is interpolated from the specified start and end values.</returns>
+        //public static T Lerp<T>(T lerpStart, T lerpEnd, Single t)
+        //{
+        //    Interpolator<T> interpolator;
+        //    if (!Interpolators.TryGet<T>(out interpolator) || interpolator == null)
+        //    {
+        //        return (T)Tween(lerpStart, (Object)lerpEnd, Easings.EaseInLinear, t);
+        //    }
+        //    return interpolator(lerpStart, lerpEnd, Easings.EaseInLinear, t);
+        //}
 
-        /// <summary>
-        /// Tweens the specified values.
-        /// </summary>
-        /// <typeparam name="T">The type of value to tween.</typeparam>
-        /// <param name="tweenStart">The start value.</param>
-        /// <param name="tweenEnd">The end value.</param>
-        /// <param name="fn">The easing function to apply.</param>
-        /// <param name="t">A value between 0.0 and 1.0 indicating the current position in the tween.</param>
-        /// <returns>A value which is interpolated from the specified start and end values.</returns>
-        public static T TweenRef<T>(ref T tweenStart, ref T tweenEnd, EasingFunction fn, Single t) where T : struct
-        {
-            Interpolator<T> interpolator;
-            if (!Interpolators.TryGet<T>(out interpolator) || interpolator == null)
-            {
-                return (T)Tween(tweenStart, (Object)tweenEnd, fn, t);
-            }
-            return interpolator(tweenStart, tweenEnd, fn, t);
-        }
+        ///// <summary>
+        ///// Tweens the specified values.
+        ///// </summary>
+        ///// <typeparam name="T">The type of value to tween.</typeparam>
+        ///// <param name="tweenStart">The start value.</param>
+        ///// <param name="tweenEnd">The end value.</param>
+        ///// <param name="fn">The easing function to apply.</param>
+        ///// <param name="t">A value between 0.0 and 1.0 indicating the current position in the tween.</param>
+        ///// <returns>A value which is interpolated from the specified start and end values.</returns>
+        //public static T TweenRef<T>(ref T tweenStart, ref T tweenEnd, EasingFunction fn, Single t) where T : struct
+        //{
+        //    Interpolator<T> interpolator;
+        //    if (!Interpolators.TryGet<T>(out interpolator) || interpolator == null)
+        //    {
+        //        return (T)Tween(tweenStart, (Object)tweenEnd, fn, t);
+        //    }
+        //    return interpolator(tweenStart, tweenEnd, fn, t);
+        //}
 
-        /// <summary>
-        /// Performs a linear interpolation between the specified values.
-        /// </summary>
-        /// <typeparam name="T">The type of value to tween.</typeparam>
-        /// <param name="lerpStart">The start value.</param>
-        /// <param name="lerpEnd">The end value.</param>
-        /// <param name="t">A value between 0.0 and 1.0 indicating the current position in the interpolation.</param>
-        /// <returns>A value which is interpolated from the specified start and end values.</returns>
-        public static T LerpRef<T>(ref T lerpStart, ref T lerpEnd, Single t) where T : struct
-        {
-            Interpolator<T> interpolator;
-            if (!Interpolators.TryGet<T>(out interpolator) || interpolator == null)
-            {
-                return (T)Tween(lerpStart, (Object)lerpEnd, Easings.EaseInLinear, t);
-            }
-            return interpolator(lerpStart, lerpEnd, Easings.EaseInLinear, t);
-        }
+        ///// <summary>
+        ///// Performs a linear interpolation between the specified values.
+        ///// </summary>
+        ///// <typeparam name="T">The type of value to tween.</typeparam>
+        ///// <param name="lerpStart">The start value.</param>
+        ///// <param name="lerpEnd">The end value.</param>
+        ///// <param name="t">A value between 0.0 and 1.0 indicating the current position in the interpolation.</param>
+        ///// <returns>A value which is interpolated from the specified start and end values.</returns>
+        //public static T LerpRef<T>(ref T lerpStart, ref T lerpEnd, Single t) where T : struct
+        //{
+        //    Interpolator<T> interpolator;
+        //    if (!Interpolators.TryGet<T>(out interpolator) || interpolator == null)
+        //    {
+        //        return (T)Tween(lerpStart, (Object)lerpEnd, Easings.EaseInLinear, t);
+        //    }
+        //    return interpolator(lerpStart, lerpEnd, Easings.EaseInLinear, t);
+        //}
 
         /// <summary>
         /// Gets the tweening system's custom interpolation function registry.
