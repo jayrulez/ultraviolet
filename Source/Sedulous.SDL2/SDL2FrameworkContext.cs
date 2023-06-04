@@ -70,6 +70,7 @@ namespace Sedulous.SDL2
             PumpEvents();
 
             InitializeViewProvider(configuration);
+            ConfigurePlugins(configuration);
             InitializePlugins(configuration);
 
             base.InitializeContext();
