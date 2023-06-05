@@ -1,19 +1,13 @@
-_For questions and discussion, check out our [Gitter](https://gitter.im/ultraviolet-framework/Lobby)._
-
-### Builds
-| Branch       | Integration | Release |
-|--------------|-------------|---------|
-| master       | ![Build Status](http://dev.twistedlogik.net:8085/plugins/servlet/wittified/build-status/UV-NEW)  | ![Build Status](http://dev.twistedlogik.net:8085/plugins/servlet/wittified/build-status/UV-NEWREL) |
-| develop      | ![Build Status](http://dev.twistedlogik.net:8085/plugins/servlet/wittified/build-status/UV-NEW0-12)  | ![Build Status](http://dev.twistedlogik.net:8085/plugins/servlet/wittified/build-status/UV-NEWREL0) |
+_For questions and discussion, check out our [Discord](https://discord.gg/dJ2rsenN4K).
 
 What is Sedulous?
 ====================
 
-[![Join the chat at https://gitter.im/ultraviolet-framework/Lobby](https://badges.gitter.im/ultraviolet-framework/Lobby.svg)](https://gitter.im/ultraviolet-framework/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://discord.gg/dJ2rsenN4K](https://discord.gg/dJ2rsenN4K)
 
 Sedulous is a cross-platform, .NET game development framework written in C# and released under the [MIT License](http://opensource.org/licenses/MIT). It is heavily inspired by Microsoft's XNA Framework, and is intended to be easy for XNA developers to quickly pick up and start using. However, unlike [MonoGame](http://www.monogame.net/) and similar projects, Sedulous is not intended to be a drop-in replacement for XNA. Its current implementation is written on top of [SDL2](https://www.libsdl.org/) and [OpenGL](https://www.opengl.org/), but its modular design makes it (relatively) easy to re-implement using other technologies if it becomes necessary to do so in the future.
 
-At present, Sedulous officially supports Windows, Linux, and macOS using .NET Core 3.1, as well as Android through Xamarin. Support for iOS is no longer provided due to a lack of the requisite development hardware. If anyone wants to take responsibility for providing this support, please contact me at [cole.campbell@twistedlogik.net](mailto:cole.campbell@twistedlogik.net).
+At present, Sedulous officially supports Windows, Linux, and macOS using .NET 6, as well as Android through Xamarin.
 
 Some core features of the Sedulous Framework:
 
@@ -46,18 +40,18 @@ The Sedulous Framework's source code is [available on GitHub](https://github.com
 Getting Started
 ===============
 
-If you don't want to build Sedulous yourself, official packages are available through [NuGet](https://www.nuget.org/packages?q=ultraviolet).
+If you don't want to build Sedulous yourself, official packages are available through [NuGet](https://www.nuget.org/packages?q=sedulous).
 
-The wiki contains a [quick start guide](https://github.com/jayrulez/sedulous/wiki/Getting-Started-with-.NET-Core-3.1) for development using .NET Core 3.1.
+The wiki contains a [quick start guide](https://github.com/jayrulez/sedulous/wiki/Getting-Started-with-.NET-Core-3.1) for development using .NET 6.
 
 A [dedicated repository](https://github.com/jayrulez/sedulous-samples) contains a number of sample projects which demonstrate various features of the Framework.
 
 Requirements
 ============
 
-Sedulous can be used with any version of .NET which supports .NET Standard 2.0 or .NET Standard 2.1.
+Sedulous can be used with any version of .NET which supports .NET Standard 2.1.
 
-Building Sedulous requires .NET Core SDK 3.1.
+Building Sedulous requires .NET SDK 6.
 
 Building the mobile projects requires the appropriate Xamarin tools to be installed.
 
@@ -67,7 +61,7 @@ The following platforms are supported for building the Framework:
 * Android
 * macOS
 
-Please file an issue if you encounter any difficulty building on any of these platforms. Linux distributions other than Ubuntu should work, assuming that they can run .NET Core 3.1 and you can provide appropriate versions of the native dependencies, but only Ubuntu has been thoroughly tested.
+Please file an issue if you encounter any difficulty building on any of these platforms. Linux distributions other than Ubuntu should work, assuming that they can run .NET 6 and you can provide appropriate versions of the native dependencies, but only Ubuntu has been thoroughly tested.
 
 Building
 ========
