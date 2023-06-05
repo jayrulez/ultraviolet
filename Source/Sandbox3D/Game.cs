@@ -96,6 +96,16 @@ namespace Sandbox3D
             LoadInputBindings();
             LoadContentManifests();
             LoadPresentation();
+
+
+            rasterizerStateSolid = RasterizerState.Create();
+            rasterizerStateSolid.CullMode = CullMode.CullCounterClockwiseFace;
+            rasterizerStateSolid.FillMode = FillMode.Solid;
+
+            rasterizerStateWireframe = RasterizerState.Create();
+            rasterizerStateWireframe.CullMode = CullMode.CullCounterClockwiseFace;
+            rasterizerStateWireframe.FillMode = FillMode.Wireframe;
+
             LoadStaticModel();
             LoadSkinnedModel();
 
@@ -189,6 +199,9 @@ namespace Sandbox3D
 
         private void LoadStaticModel()
         {
+            effect = BasicEffect.Create();
+            effect.EnableStandardLighting();
+
             this.model = this.content.Load<Model>("Models/glTF/Frog.gltf");
 
             modelSceneRenderer = new ModelSceneRenderer();
@@ -233,15 +246,7 @@ namespace Sandbox3D
         /// <param name="time">Time elapsed since the last call to Draw.</param>
         protected override void OnDrawing(FrameworkTime time)
         {
-            //var gfx = FrameworkContext.GetGraphics();
-            //var window = FrameworkContext.GetPlatform().Windows.GetCurrent();
-            //var aspectRatio = window.DrawableSize.Width / (Single)window.DrawableSize.Height;
-
-            //effect.World = Matrix.CreateRotationY((float)(2.0 * Math.PI * (time.TotalTime.TotalSeconds / 10.0)));
-            //effect.View = Matrix.CreateLookAt(new Vector3(0, 3, 6), new Vector3(0, 0.75f, 0), Vector3.Up);
-            //effect.Projection = Matrix.CreatePerspectiveFieldOfView((float)Math.PI / 4f, aspectRatio, 1f, 1000f);
-
-            if(perspectiveCamera == null)
+            if (perspectiveCamera == null)
             {
                 perspectiveCamera = PerspectiveCamera.Create();
                 perspectiveCamera.Position = new Vector3(8, 0, -10);
@@ -249,7 +254,32 @@ namespace Sandbox3D
                 perspectiveCamera.Update();
             }
 
+            var gfx = FrameworkContext.GetGraphics();
+            var window = FrameworkContext.GetPlatform().Windows.GetCurrent();
+            var aspectRatio = window.DrawableSize.Width / (Single)window.DrawableSize.Height;
+
+            effect.World = Matrix.CreateRotationY((float)(2.0 * Math.PI * (time.TotalTime.TotalSeconds / 10.0)));
+            effect.View = Matrix.CreateLookAt(new Vector3(0, 3, 6), new Vector3(0, 0.75f, 0), Vector3.Up);
+            effect.Projection = Matrix.CreatePerspectiveFieldOfView((float)Math.PI / 4f, aspectRatio, 1f, 1000f);
+
+            effect.FogColor = Color.Red;
+            effect.PreferPerPixelLighting = true;
+            effect.LightingEnabled = true;
+            effect.SrgbColor = false;
+            effect.VertexColorEnabled = false;
+            effect.DiffuseColor = Color.White;
+            effect.TextureEnabled = false;
+
             var worldMatrix = Matrix.Identity;
+
+            foreach (var pass in this.effect.CurrentTechnique.Passes)
+            {
+                pass.Apply();
+
+                gfx.SetRasterizerState(rasterizerStateSolid);
+                gfx.SetDepthStencilState(DepthStencilState.Default);
+
+            }
 
             RenderStaticModel(ref worldMatrix);
 
@@ -311,6 +341,7 @@ namespace Sandbox3D
 
         private PerspectiveCamera perspectiveCamera;
 
+        private BasicEffect effect;
         private ModelSceneRenderer modelSceneRenderer;
         private Model model;
 
@@ -318,5 +349,8 @@ namespace Sandbox3D
         private SkinnedModel skinnedModel;
         private SkinnedModelInstance modelInstance;
         private SkinnedAnimationTrack track;
+
+        private RasterizerState rasterizerStateSolid;
+        private RasterizerState rasterizerStateWireframe;
     }
 }
