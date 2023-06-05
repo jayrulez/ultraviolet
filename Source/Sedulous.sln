@@ -79,6 +79,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.Shims.Android", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.Shims.Android.FMOD", "Sedulous.Shims.Android.FMOD\Sedulous.Shims.Android.FMOD.csproj", "{BD3AE378-9B9F-4875-9A83-DC126C446AF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox3D", "Sandbox3D\Sandbox3D.csproj", "{A69466C6-8C5A-4A48-A9B9-C32DA09DCC22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -231,6 +233,10 @@ Global
 		{BD3AE378-9B9F-4875-9A83-DC126C446AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD3AE378-9B9F-4875-9A83-DC126C446AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD3AE378-9B9F-4875-9A83-DC126C446AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A69466C6-8C5A-4A48-A9B9-C32DA09DCC22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A69466C6-8C5A-4A48-A9B9-C32DA09DCC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A69466C6-8C5A-4A48-A9B9-C32DA09DCC22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A69466C6-8C5A-4A48-A9B9-C32DA09DCC22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
