@@ -1,19 +1,13 @@
-_For questions and discussion, check out our [Gitter](https://gitter.im/ultraviolet-framework/Lobby)._
-
-### Builds
-| Branch       | Integration | Release |
-|--------------|-------------|---------|
-| master       | ![Build Status](http://dev.twistedlogik.net:8085/plugins/servlet/wittified/build-status/UV-NEW)  | ![Build Status](http://dev.twistedlogik.net:8085/plugins/servlet/wittified/build-status/UV-NEWREL) |
-| develop      | ![Build Status](http://dev.twistedlogik.net:8085/plugins/servlet/wittified/build-status/UV-NEW0-12)  | ![Build Status](http://dev.twistedlogik.net:8085/plugins/servlet/wittified/build-status/UV-NEWREL0) |
+_For questions and discussion, check out our [Discord](https://discord.gg/dJ2rsenN4K)._
 
 What is Sedulous?
 ====================
 
-[![Join the chat at https://gitter.im/ultraviolet-framework/Lobby](https://badges.gitter.im/ultraviolet-framework/Lobby.svg)](https://gitter.im/ultraviolet-framework/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[Join the chat at https://discord.gg/dJ2rsenN4K](https://discord.gg/dJ2rsenN4K)
 
 Sedulous is a cross-platform, .NET game development framework written in C# and released under the [MIT License](http://opensource.org/licenses/MIT). It is heavily inspired by Microsoft's XNA Framework, and is intended to be easy for XNA developers to quickly pick up and start using. However, unlike [MonoGame](http://www.monogame.net/) and similar projects, Sedulous is not intended to be a drop-in replacement for XNA. Its current implementation is written on top of [SDL2](https://www.libsdl.org/) and [OpenGL](https://www.opengl.org/), but its modular design makes it (relatively) easy to re-implement using other technologies if it becomes necessary to do so in the future.
 
-At present, Sedulous officially supports Windows, Linux, and macOS using .NET Core 3.1, as well as Android through Xamarin. Support for iOS is no longer provided due to a lack of the requisite development hardware. If anyone wants to take responsibility for providing this support, please contact me at [cole.campbell@twistedlogik.net](mailto:cole.campbell@twistedlogik.net).
+At present, Sedulous officially supports Windows, Linux, and macOS using .NET 6, as well as Android through Xamarin.
 
 Some core features of the Sedulous Framework:
 
@@ -41,23 +35,64 @@ Some core features of the Sedulous Framework:
    
    Sedulous's object loader allows you to easily create complicated hierarchies of objects from simple XML files. This is more than just an XML serializer&mdash;because it is integrated with Sedulous, it has direct knowledge of your game's content assets and object lists, making it possible to reference them in a simple, flexible, and readable way.
 
-The Sedulous Framework's source code is [available on GitHub](https://github.com/jayrulez/sedulous).
+The Sedulous Framework's source code is [available on GitHub](https://github.com/jayrulez/ultraviolet).
+
+Sedulous is a fork of the [Ultraviolet framework](https://github.com/tlgkccampbell/ultraviolet)
+
+- Below is a list of the major changes since the fork:
+- Removed .NET Core 2 support.
+- Use StmImageSharp and StbImageWriteSharp to replace System.Drawing for cross platform projects.
+- Updated all projects to .NET 6
+- Updated third party packages to latest available versions.
+- Reorganized projects to get rid of Shared projects since there is now only a .NET 6 version of each.
+- Changed how Platform compatibility shim is made available to context - removing the need for hard-coded assembly names.
+- Properly detect Mono runtime for .NET 6
+- Fixed CopyTo of BinaryHeap to make use of arrayIndex parameter
+- Fixed incorrect assignment in Ray.Intersects
+- Fixed pool expansion being leaky in core: Collections/ExpandingPool.cs
+- Added FMOD binaries and re-enabled FMOD audio tests
+- Added FMOD targets
+- Added Ultraviolet.FMOD.Native.nuspe_
+- Updated nuspec metadata (package versions)
+- Fixed issue where android wasn't passing check for runtime code generation: b8f8096cc27baeb4ee914c666dbe77ffca760e5a
+- Fixed shader compilation for GLES2 (in = varying for fragment shaders)
+- Added missed x64 libs to Dependencies
+- Packaging - Added android x64 libs to targets
+- Renamed NETCore3 to NETCore
+- Renamed packages from Ultraviolet to Sedulous to make publishing nuget packages possible
+- Added template projects
+- Package StbImageSharp and StbImageWriteSharp as Sedulous.StbImageSharp and Sedulous.StbImageWriteSharp respectively
+- Removed most shared projects and .projitems files
+- Reorganized files in Framework project to corresponding folders
+- Renamed GL class to be upper-case
+- Separated context creation from initialization. Context must now be initialized by the application. An exception will be thrown if you try to initialize a context twice.
+- Added a Configure method to Plugin interface, similar to Initialization, but it is called before the context is initialized while - Initialize is called after.
+- Explicitly register factories in plugins instead of depending on reflection and the factory initializer interface.
+- Explicitly register shim factories.
+- Arbitrary code can register factories on a context (only before the factory is initialized) by calling context.ConfigureFactory()
+- Manually register factories for creating audio and graphics modules instead of loading them via reflection.
+- Removed ViewProviderAssembly config - It is no longer necessary to register factories in view providers by reflection as they are manually registered.
+- Call Interpolate explicitly to avoid reflection (Plane and Ray math types)
+- Support Byte4 vertex format - Graphics/VertexDeclaration.cs (a9a9fa923cb8d65829b9fb8b28ed6aaff933e171)
+
+
+
 
 Getting Started
 ===============
 
-If you don't want to build Sedulous yourself, official packages are available through [NuGet](https://www.nuget.org/packages?q=ultraviolet).
+If you don't want to build Sedulous yourself, official packages are available through [NuGet](https://www.nuget.org/packages?q=sedulous).
 
-The wiki contains a [quick start guide](https://github.com/jayrulez/sedulous/wiki/Getting-Started-with-.NET-Core-3.1) for development using .NET Core 3.1.
+The wiki contains a [quick start guide](https://github.com/jayrulez/sedulous/wiki/Getting-Started-with-.NET-Core-3.1) for development using .NET 6.
 
 A [dedicated repository](https://github.com/jayrulez/sedulous-samples) contains a number of sample projects which demonstrate various features of the Framework.
 
 Requirements
 ============
 
-Sedulous can be used with any version of .NET which supports .NET Standard 2.0 or .NET Standard 2.1.
+Sedulous can be used with any version of .NET which supports .NET Standard 2.1.
 
-Building Sedulous requires .NET Core SDK 3.1.
+Building Sedulous requires .NET SDK 6.
 
 Building the mobile projects requires the appropriate Xamarin tools to be installed.
 
@@ -67,7 +102,7 @@ The following platforms are supported for building the Framework:
 * Android
 * macOS
 
-Please file an issue if you encounter any difficulty building on any of these platforms. Linux distributions other than Ubuntu should work, assuming that they can run .NET Core 3.1 and you can provide appropriate versions of the native dependencies, but only Ubuntu has been thoroughly tested.
+Please file an issue if you encounter any difficulty building on any of these platforms. Linux distributions other than Ubuntu should work, assuming that they can run .NET 6 and you can provide appropriate versions of the native dependencies, but only Ubuntu has been thoroughly tested.
 
 Building
 ========
