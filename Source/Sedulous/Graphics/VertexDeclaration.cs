@@ -162,6 +162,11 @@ namespace Sedulous.Graphics
                         value += sizeof(Int16) * 4;
                         break;
 
+
+                    case VertexElementFormat.Byte4:
+                        value += sizeof(Byte) * 4;
+                        break;
+
                     default:
                         throw new InvalidOperationException(FrameworkStrings.UnsupportedVertexFormat);
                 }
