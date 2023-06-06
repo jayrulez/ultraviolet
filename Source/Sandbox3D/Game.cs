@@ -95,7 +95,6 @@ namespace Sandbox3D
             LoadLocalizationDatabases();
             LoadInputBindings();
             LoadContentManifests();
-            LoadPresentation();
 
 
             rasterizerStateSolid = RasterizerState.Create();
