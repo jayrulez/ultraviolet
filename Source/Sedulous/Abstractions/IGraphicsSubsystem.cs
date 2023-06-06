@@ -1,4 +1,5 @@
 ﻿using System;
+using Sedulous.Abstractions;
 using Sedulous.Graphics;
 
 namespace Sedulous

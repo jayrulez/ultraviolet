@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sedulous.Graphics
+namespace Sedulous.Abstractions
 {
     /// <summary>
     /// Represents the set of buffers which will be cleared by the <see cref="IGraphicsSubsystem.Clear(ClearOptions, Color, double, int)"/> method.

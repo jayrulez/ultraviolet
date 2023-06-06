@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Sedulous.Abstractions;
 using Sedulous.Core;
 using Sedulous.Core.Text;
 using Sedulous.Graphics;
