@@ -91,7 +91,6 @@ namespace Sandbox3D
             ContentManager.GloballySuppressDependencyTracking = !ShouldDynamicallyReloadContent();
             this.content = ContentManager.Create("Content");
 
-
             LoadLocalizationPlugins();
             LoadLocalizationDatabases();
             LoadInputBindings();
@@ -209,17 +208,6 @@ namespace Sandbox3D
             skinnedModelSceneRenderer = new SkinnedModelSceneRenderer();
         }
 
-        private void UpdateSkinnedModel(FrameworkTime time)
-        {
-            skinnedModelInstance.Update(time);
-            //skinnedModelInstance.UpdateAnimationState();
-            //skinnedModelAnimationTrack.AdvanceTime(time.ElapsedTime.TotalSeconds);
-        }
-
-        private void RenderSkinnedModel(ref Matrix worldMatrix)
-        {
-            skinnedModelSceneRenderer.Draw(skinnedModelInstance.Scenes.DefaultScene, perspectiveCamera, ref worldMatrix);
-        }
 
         /// <summary>
         /// Called when the application state is being updated.
@@ -227,7 +215,7 @@ namespace Sandbox3D
         /// <param name="time">Time elapsed since the last call to Update.</param>
         protected override void OnUpdating(FrameworkTime time)
         {
-            UpdateSkinnedModel(time);
+            skinnedModelInstance.Update(time);
             if (FrameworkContext.GetInput().GetActions().ExitApplication.IsPressed())
             {
                 Exit();
@@ -262,7 +250,7 @@ namespace Sandbox3D
             gfx.SetRasterizerState(renderWireFrame ? rasterizerStateWireframe : rasterizerStateSolid);
             gfx.SetDepthStencilState(DepthStencilState.Default);
 
-            RenderSkinnedModel(ref worldMatrix);
+            skinnedModelSceneRenderer.Draw(skinnedModelInstance.Scenes.DefaultScene, perspectiveCamera, ref worldMatrix);
 
             base.OnDrawing(time);
         }
