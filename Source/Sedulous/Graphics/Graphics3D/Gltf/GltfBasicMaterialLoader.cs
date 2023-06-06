@@ -51,11 +51,20 @@ namespace Sedulous.Graphics.Graphics3D
             if (material.Alpha == AlphaMode.OPAQUE)
                 return 1f;
 
+            //var baseColor = material.FindChannel("BaseColor");
+            //if (baseColor == null)
+            //    return 1f;
+
+            //return baseColor.Value.Parameter.W;
+
             var baseColor = material.FindChannel("BaseColor");
-            if (baseColor == null)
+            var parameter = baseColor?.Parameters.FirstOrDefault(p => p.Name == "RGBA");
+            if (parameter == null)
                 return 1f;
 
-            return baseColor.Value.Parameter.W;
+            var value = (System.Numerics.Vector4)parameter.Value;
+
+            return value.W;
         }
 
         /// <summary>
@@ -66,11 +75,20 @@ namespace Sedulous.Graphics.Graphics3D
             if (material == null)
                 return 16f;
 
+            //var mr = material.FindChannel("MetallicRoughness");
+            //if (mr == null)
+            //    return 16f;
+
+            //var metallic = mr.Value.Parameter.X;
+            //return 4f + 16f * metallic;
+
             var mr = material.FindChannel("MetallicRoughness");
-            if (mr == null)
+            var parameter = mr?.Parameters.FirstOrDefault(p => p.Name == "MetallicFactor");
+            if (parameter == null)
                 return 16f;
 
-            var metallic = mr.Value.Parameter.X;
+            var value = (float)parameter.Value;
+            var metallic = value;
             return 4f + 16f * metallic;
         }
 
@@ -82,11 +100,19 @@ namespace Sedulous.Graphics.Graphics3D
             if (material == null)
                 return Color.White;
 
+            //var diffuse = material.FindChannel("Diffuse") ?? material.FindChannel("BaseColor");
+            //if (diffuse == null)
+            //    return Color.White;
+
+            //return new Color(diffuse.Value.Parameter.X, diffuse.Value.Parameter.Y, diffuse.Value.Parameter.Z);
+
             var diffuse = material.FindChannel("Diffuse") ?? material.FindChannel("BaseColor");
-            if (diffuse == null)
+            var parameter = diffuse?.Parameters.FirstOrDefault(p => p.Name == "RGBA");
+            if (parameter == null)
                 return Color.White;
 
-            return new Color(diffuse.Value.Parameter.X, diffuse.Value.Parameter.Y, diffuse.Value.Parameter.Z);
+            var value = (System.Numerics.Vector4)parameter.Value;
+            return new Color(value.X, value.Y, value.Z);
         }
 
         /// <summary>
@@ -97,11 +123,19 @@ namespace Sedulous.Graphics.Graphics3D
             if (material == null)
                 return Color.Black;
 
+            //var emissive = material.FindChannel("Emissive");
+            //if (emissive == null)
+            //    return Color.Black;
+
+            //return new Color(emissive.Value.Parameter.X, emissive.Value.Parameter.Y, emissive.Value.Parameter.Z);
+
             var emissive = material.FindChannel("Emissive");
-            if (emissive == null)
+            var parameter = emissive?.Parameters.FirstOrDefault(p => p.Name == "RGB");
+            if(parameter == null)
                 return Color.Black;
 
-            return new Color(emissive.Value.Parameter.X, emissive.Value.Parameter.Y, emissive.Value.Parameter.Z);
+            var value = (System.Numerics.Vector3)parameter.Value;
+            return new Color(value.X, value.Y, value.Z);
         }
 
         /// <summary>
@@ -112,13 +146,26 @@ namespace Sedulous.Graphics.Graphics3D
             if (material == null)
                 return Color.White;
 
+            //var mr = material.FindChannel("MetallicRoughness");
+            //if (mr == null)
+            //    return Color.White;
+
+            //var diffuse = GetMaterialDiffuseColor(material).ToVector3();
+            //var metallic = mr.Value.Parameter.X;
+            //var roughness = mr.Value.Parameter.Y;
+
             var mr = material.FindChannel("MetallicRoughness");
-            if (mr == null)
+            var metallicFactorParameter = mr?.Parameters.FirstOrDefault(p => p.Name == "MetallicFactor");
+            var roughnessFactorParameter = mr?.Parameters.FirstOrDefault(p => p.Name == "RoughnessFactor");
+            if (metallicFactorParameter == null)
                 return Color.White;
 
+            var metallicValue = (float)metallicFactorParameter.Value;
+            var roughnessValue = (float)roughnessFactorParameter.Value;
+
             var diffuse = GetMaterialDiffuseColor(material).ToVector3();
-            var metallic = mr.Value.Parameter.X;
-            var roughness = mr.Value.Parameter.Y;
+            var metallic = metallicValue;
+            var roughness = roughnessValue;
 
             var k = Vector3.Zero;
             k += Vector3.Lerp(diffuse, Vector3.Zero, roughness);
