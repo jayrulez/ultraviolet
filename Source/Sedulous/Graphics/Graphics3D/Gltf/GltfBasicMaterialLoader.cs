@@ -19,14 +19,21 @@ namespace Sedulous.Graphics.Graphics3D
             Contract.Require(contentManager, nameof(contentManager));
             Contract.Require(primitive, nameof(primitive));
 
+            var alpha = GetMaterialAlpha(primitive.Material);
+            var diffuseColor = GetMaterialDiffuseColor(primitive.Material);
+            var specularPower = GetMaterialSpecularPower(primitive.Material);
+            var specularColor = GetMaterialSpecularColor(primitive.Material);
+            var emissiveColor = GetMaterialEmissiveColor(primitive.Material);
+            var texture = GetMaterialTexture(contentManager, primitive.Material);
+
             return new BasicMaterial
             {
-                Alpha = GetMaterialAlpha(primitive.Material),
-                DiffuseColor = GetMaterialDiffuseColor(primitive.Material),
-                SpecularPower = GetMaterialSpecularPower(primitive.Material),
-                SpecularColor = GetMaterialSpecularColor(primitive.Material),
-                EmissiveColor = GetMaterialEmissiveColor(primitive.Material),
-                Texture = GetMaterialTexture(contentManager, primitive.Material)
+                Alpha = alpha,
+                DiffuseColor = diffuseColor,
+                SpecularPower = specularPower,
+                SpecularColor = specularColor,
+                EmissiveColor = emissiveColor,
+                Texture = texture
             };
         }
 
