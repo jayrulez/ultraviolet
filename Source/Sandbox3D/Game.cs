@@ -197,6 +197,7 @@ namespace Sandbox3D
 
         private void LoadSkinnedModel()
         {
+            SkinnedMaterial.SharedEffect.EnableStandardLighting();
             this.skinnedModel = this.content.Load<SkinnedModel>("Models/Fox.gltf");
             this.skinnedModelInstance = new SkinnedModelInstance(skinnedModel);
 
@@ -205,6 +206,7 @@ namespace Sandbox3D
             skinnedModelAnimationTrack = skinnedModelInstance.PlayAnimation(SkinnedAnimationMode.Loop, "Walk");
 
             skinnedModelSceneRenderer = new SkinnedModelSceneRenderer();
+
         }
 
 
@@ -231,21 +233,25 @@ namespace Sandbox3D
             if (perspectiveCamera == null)
             {
                 perspectiveCamera = PerspectiveCamera.Create();
-                perspectiveCamera.Position = new Vector3(8, 0, -300);
+                perspectiveCamera.Position = new Vector3(0, 100, 200);
                 perspectiveCamera.Target = new Vector3(0, 0, 0);
                 perspectiveCamera.Update();
             }
 
             var gfx = FrameworkContext.GetGraphics();
-            var window = FrameworkContext.GetPlatform().Windows.GetCurrent();
-            var aspectRatio = window.DrawableSize.Width / (Single)window.DrawableSize.Height;
+            //var window = FrameworkContext.GetPlatform().Windows.GetCurrent();
+            //var aspectRatio = window.DrawableSize.Width / (Single)window.DrawableSize.Height;
 
-            var world = Matrix.CreateRotationY((float)(2.0 * Math.PI * (time.TotalTime.TotalSeconds / 10.0)));
-            var view = Matrix.CreateLookAt(new Vector3(0, 3, 6), new Vector3(0, 0.75f, 0), Vector3.Up);
-            var projection = Matrix.CreatePerspectiveFieldOfView((float)Math.PI / 4f, aspectRatio, 1f, 1000f);
+            //var world = Matrix.CreateRotationY((float)(2.0 * Math.PI * (time.TotalTime.TotalSeconds / 10.0)));
+            //var view = Matrix.CreateLookAt(new Vector3(0, 3, 6), new Vector3(0, 0.75f, 0), Vector3.Up);
+            //var projection = Matrix.CreatePerspectiveFieldOfView((float)Math.PI / 4f, aspectRatio, 1f, 1000f);
 
-            var worldMatrix = world;
-            bool renderWireFrame = false;
+            //SkinnedMaterial.SharedEffect.World = world;
+            //SkinnedMaterial.SharedEffect.View = view;
+            //SkinnedMaterial.SharedEffect.Projection = projection;
+
+            var worldMatrix = Matrix.CreateRotationY(Radians.FromDegrees(90));
+            bool renderWireFrame = true;
             gfx.SetRasterizerState(renderWireFrame ? rasterizerStateWireframe : rasterizerStateSolid);
             gfx.SetDepthStencilState(DepthStencilState.Default);
 
