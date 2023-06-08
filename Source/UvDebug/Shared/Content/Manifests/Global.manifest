@@ -24,4 +24,8 @@
   <ContentGroup Name="Cursors" Directory="Cursors" Type="Sedulous.CursorCollection">
     <Asset Name="Cursors">Cursors</Asset>
   </ContentGroup>
+  <ContentGroup Name="Songs" Directory="Songs" Type="Sedulous.Audio.Song">
+    <Asset Name="DeepHaze">Deep Haze</Asset>
+	  <Asset Name="Sample">Sample</Asset>
+  </ContentGroup>
 </ContentManifest>

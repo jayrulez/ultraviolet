@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Sedulous;
+using Sedulous.Audio;
 using Sedulous.BASS;
 using Sedulous.Content;
 using Sedulous.Core;
@@ -20,6 +21,12 @@ using UvDebug.UI;
 
 namespace UvDebug
 {
+    public static class GlobalSongID
+    {
+        public static AssetID DeepHaze;
+        public static AssetID Sample;
+    }
+
     /// <summary>
     /// Represents the main application object.
     /// </summary>
@@ -118,7 +125,12 @@ namespace UvDebug
                 LoadContentManifests();
                 LoadPresentation();
                 LoadTestGeometry();
-               
+
+
+                this.song = this.content.Load<Song>(GlobalSongID.Sample);
+                this.songPlayer = SongPlayer.Create();
+                this.songPlayer.Play(this.song);
+
                 this.screenService = new UIScreenService(content);
 
                 GC.Collect(2);
@@ -188,6 +200,8 @@ namespace UvDebug
 
             var contentManifestFiles = this.content.GetAssetFilePathsInDirectory("Manifests");
             uvContent.Manifests.Load(contentManifestFiles);
+
+            FrameworkContext.GetContent().Manifests["Global"]["Songs"].PopulateAssetLibrary(typeof(GlobalSongID));
         }
 
         /// <summary>
@@ -308,6 +322,7 @@ namespace UvDebug
         /// <param name="time">Time elapsed since the last call to Update.</param>
         protected override void OnUpdating(FrameworkTime time)
         {
+            songPlayer.Update(time);
             if (FrameworkContext.GetInput().GetActions().ExitApplication.IsPressed())
             {
                 Exit();
@@ -388,6 +403,9 @@ namespace UvDebug
                 SafeDispose.DisposeRef(ref screenService);
                 SafeDispose.DisposeRef(ref globalStyleSheet);
                 SafeDispose.DisposeRef(ref content);
+
+                if (this.songPlayer != null)
+                    this.songPlayer.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -504,5 +522,9 @@ namespace UvDebug
         private RasterizerState rasterizerStateSolid;
         private RasterizerState rasterizerStateWireframe;
         private Texture2D texture;
+
+        // Audio
+        private Song song;
+        private SongPlayer songPlayer;
     }
 }
