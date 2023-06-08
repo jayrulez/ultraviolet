@@ -16,13 +16,24 @@
   
   <ItemGroup>
       <!-- Common -->
+      <PackageVersion Include="Sedulous.Core" Version="$(SedulousVersion)" />
       <PackageVersion Include="Sedulous" Version="$(SedulousVersion)" />
       <PackageVersion Include="Sedulous.BASS" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.BASS.Native" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.FMOD" Version="$(SedulousVersion)" />
+      <!--<PackageVersion Include="Sedulous.FMOD.Native" Version="$(SedulousVersion)" />-->
       <PackageVersion Include="Sedulous.FreeType2" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.FreeType2.Native" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.ImGuiViewProvider" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.ImGuiViewProvider.Bindings" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.ImGuiViewProvider.Native" Version="$(SedulousVersion)" />
       <PackageVersion Include="Sedulous.OpenGL" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.OpenGL.Bindings" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.OpenGL.Environment" Version="$(SedulousVersion)" />
       <PackageVersion Include="Sedulous.Presentation" Version="$(SedulousVersion)" />
       <PackageVersion Include="Sedulous.Presentation.Compiler" Version="$(SedulousVersion)" />
       <PackageVersion Include="Sedulous.SDL2" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.Native" Version="$(SedulousVersion)" />
       
       <!-- NETCore -->
       <PackageVersion Include="Sedulous.Shims.NETCore" Version="$(SedulousVersion)" />
