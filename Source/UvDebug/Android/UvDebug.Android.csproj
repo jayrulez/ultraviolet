@@ -1,54 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 		<TargetFramework>net6.0-android</TargetFramework>
 		<SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
 		<OutputType>Exe</OutputType>
-		<Nullable>disable</Nullable>
-		<ImplicitUsings>enable</ImplicitUsings>
+		<ApplicationId>com.companyname.uvdebug.android</ApplicationId>
+		<ApplicationVersion>1</ApplicationVersion>
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<RootNamespace>UvDebug</RootNamespace>
 		<AssemblyName>UvDebug</AssemblyName>
-		<FileAlignment>512</FileAlignment>
-		<AndroidApplication>True</AndroidApplication>
-		<GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-		<AndroidManifest>AndroidManifest.xml</AndroidManifest>
-		<AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
-		<AndroidUseAapt2>true</AndroidUseAapt2>
 		<IncludeSedulousContentFiles>false</IncludeSedulousContentFiles>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<DebugSymbols>True</DebugSymbols>
-		<Optimize>False</Optimize>
-		<OutputPath>bin\Debug\</OutputPath>
-		<DefineConstants>TRACE;DEBUG;ANDROID</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-		<AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
-		<AndroidLinkMode>None</AndroidLinkMode>
-		<EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
-		<AotAssemblies>false</AotAssemblies>
-		<EnableLLVM>false</EnableLLVM>
-		<AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
-		<BundleAssemblies>false</BundleAssemblies>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<DebugSymbols>True</DebugSymbols>
-		<Optimize>True</Optimize>
-		<OutputPath>bin\Release\</OutputPath>
-		<DefineConstants>TRACE;ANDROID;RELEASE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-		<AndroidManagedSymbols>true</AndroidManagedSymbols>
-		<AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-		<AndroidLinkMode>SdkOnly</AndroidLinkMode>
-		<EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-		<AotAssemblies>false</AotAssemblies>
-		<EnableLLVM>false</EnableLLVM>
-		<AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
-		<BundleAssemblies>false</BundleAssemblies>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="org.libsdl.app">
