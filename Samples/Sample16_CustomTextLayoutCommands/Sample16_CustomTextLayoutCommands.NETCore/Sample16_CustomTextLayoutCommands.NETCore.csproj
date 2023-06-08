@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
+    <RootNamespace>Sample16_CustomTextLayoutCommands</RootNamespace>
+    <AssemblyName>Sample16_CustomTextLayoutCommands</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove=".template.config\**" />
+    <EmbeddedResource Remove=".template.config\**" />
+    <None Remove=".template.config\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sedulous" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.BASS" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.FreeType2" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.OpenGL" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.SDL2" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.Shims.NETCore" Version="2023.6.80136" />
+  </ItemGroup>
+
+  <Import Project="..\Sample16_CustomTextLayoutCommands.Shared\Sample16_CustomTextLayoutCommands.Shared.projitems" Label="Shared" />
+
+</Project>

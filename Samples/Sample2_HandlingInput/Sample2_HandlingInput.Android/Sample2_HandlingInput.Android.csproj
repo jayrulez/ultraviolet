@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+  <PropertyGroup>
+    <SedulousContentDirectory>Content</SedulousContentDirectory>
+    <SedulousContentProject>Sample2_HandlingInput.Shared</SedulousContentProject>
+    <AssemblyName>Sample2_HandlingInput</AssemblyName>
+    <RootNamespace>Sample2_HandlingInput</RootNamespace>
+  </PropertyGroup>
+  -->
+	<PropertyGroup>
+		<TargetFramework>net7.0-android</TargetFramework>
+		<SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
+		<OutputType>Exe</OutputType>
+		<ApplicationId>com.companyname.Sample2_HandlingInput.android</ApplicationId>
+		<ApplicationVersion>1</ApplicationVersion>
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<RootNamespace>Sample2_HandlingInput</RootNamespace>
+		<AssemblyName>Sample2_HandlingInput.Android</AssemblyName>
+		<IncludeSedulousContentFiles>false</IncludeSedulousContentFiles>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sedulous" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.BASS" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.FreeType2" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.OpenGL" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.SDL2" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.Shims.Android" Version="2023.6.80136" />
+  </ItemGroup>
+
+  <Import Project="..\Sample2_HandlingInput.Shared\Sample2_HandlingInput.Shared.projitems" Label="Shared" />
+  <!-- <Import Project="Sedulous.Android.targets" /> -->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+    Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+  -->
+</Project>

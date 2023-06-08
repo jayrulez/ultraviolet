@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+  <PropertyGroup>
+    <SedulousContentDirectory>Content</SedulousContentDirectory>
+    <SedulousContentProject>Sample9_ManagingStateWithUIScreens.Shared</SedulousContentProject>
+    <AssemblyName>Sample9_ManagingStateWithUIScreens</AssemblyName>
+    <RootNamespace>Sample9_ManagingStateWithUIScreens</RootNamespace>
+  </PropertyGroup>
+  -->
+	<PropertyGroup>
+		<TargetFramework>net7.0-android</TargetFramework>
+		<SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
+		<OutputType>Exe</OutputType>
+		<ApplicationId>com.companyname.Sample9_ManagingStateWithUIScreens.android</ApplicationId>
+		<ApplicationVersion>1</ApplicationVersion>
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<RootNamespace>Sample9_ManagingStateWithUIScreens</RootNamespace>
+		<AssemblyName>Sample9_ManagingStateWithUIScreens.Android</AssemblyName>
+		<IncludeSedulousContentFiles>false</IncludeSedulousContentFiles>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sedulous" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.BASS" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.FreeType2" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.OpenGL" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.SDL2" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.Shims.Android" Version="2023.6.80136" />
+  </ItemGroup>
+
+  <Import Project="..\Sample9_ManagingStateWithUIScreens.Shared\Sample9_ManagingStateWithUIScreens.Shared.projitems" Label="Shared" />
+  <!--<Import Project="Sedulous.Android.targets" />-->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+    Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+  -->
+
+	<!--<ItemGroup>
+		<AndroidAsset Include="Sedulous.Presentation.CompiledExpressions.dll" />
+		<EmbeddedResource Include="Content.uvarc" />
+	</ItemGroup>-->
+</Project>

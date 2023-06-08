@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!--<PropertyGroup>
+    <SedulousContentDirectory>Content</SedulousContentDirectory>
+    <SedulousContentProject>Sample7_PlayingMusic.Shared</SedulousContentProject>
+    <AssemblyName>Sample7_PlayingMusic</AssemblyName>
+    <RootNamespace>Sample7_PlayingMusic</RootNamespace>
+  </PropertyGroup>-->
+	<PropertyGroup>
+		<TargetFramework>net7.0-android</TargetFramework>
+		<SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
+		<OutputType>Exe</OutputType>
+		<ApplicationId>com.companyname.Sample7_PlayingMusic.android</ApplicationId>
+		<ApplicationVersion>1</ApplicationVersion>
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<RootNamespace>Sample7_PlayingMusic</RootNamespace>
+		<AssemblyName>Sample7_PlayingMusic.Android</AssemblyName>
+		<IncludeSedulousContentFiles>false</IncludeSedulousContentFiles>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sedulous" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.BASS" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.FreeType2" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.OpenGL" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.SDL2" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous.Shims.Android" Version="2023.6.80136" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+	<AndroidAsset Include="$(OutputPath)Content\*">
+	</AndroidAsset>
+  </ItemGroup>-->
+
+  <Import Project="..\Sample7_PlayingMusic.Shared\Sample7_PlayingMusic.Shared.projitems" Label="Shared" />
+  <!--<Import Project="Sedulous.Android.targets" />-->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+    Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+  -->
+
+	<!--<ItemGroup>
+		<AndroidAsset Include="Sedulous.Presentation.CompiledExpressions.dll" />
+		<EmbeddedResource Include="Content.uvarc" />
+	</ItemGroup>-->
+</Project>

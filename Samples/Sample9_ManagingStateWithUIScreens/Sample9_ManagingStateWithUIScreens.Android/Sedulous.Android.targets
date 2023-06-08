@@ -1,0 +1,24 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="UvFindContentDirectory">
+    <PropertyGroup>
+      <SedulousContentProjectPathNoSlash>$([System.IO.Path]::GetFullPath($([System.IO.Path]::Combine('..', '$(SedulousContentProject)'))))</SedulousContentProjectPathNoSlash>
+      <SedulousContentProjectPath>$([System.String]::Concat('$(SedulousContentProjectPathNoSlash)', $([System.IO.Path]::DirectorySeparatorChar)))</SedulousContentProjectPath>
+      <SedulousContentPath>$([System.IO.Path]::Combine('$(SedulousContentProjectPath)', '$(SedulousContentDirectory)'))</SedulousContentPath>
+    </PropertyGroup>
+    <Error Text="The SedulousContentProject property is not set for this project." Condition="'$(SedulousContentProject)' == ''"/>
+    <Error Text="The SedulousContentDirectory property is not set for this project." Condition="'$(SedulousContentDirectory)' == ''"/>
+    <Error Text="Could not locate the Sedulous content directory (Project: $(SedulousContentProject), Directory: $(SedulousContentDirectory))." Condition="!Exists('$(SedulousContentProjectPath)')"/>
+  </Target>
+  <Target Name="UvCreateAndroidAssets" BeforeTargets="PrepareForBuild" DependsOnTargets="UvFindContentDirectory">
+    <ItemGroup>
+      <SedulousContent Include="@(None)" Condition="$([System.String]::Copy('%(None.RelativeDir)').StartsWith($(SedulousContentPath)))">
+        <ContentPath>$([System.String]::Copy("%(None.FullPath)").Substring($(SedulousContentProjectPath.Length)))</ContentPath>
+      </SedulousContent>
+      <AndroidAsset Include="@(SedulousContent)">
+        <Link>%(SedulousContent.ContentPath)</Link>
+      </AndroidAsset>
+      <None Remove="@(SedulousContent)" />
+    </ItemGroup>
+    <Message Text="Creating Android assets for Sedulous content files."/>
+  </Target>
+</Project>
