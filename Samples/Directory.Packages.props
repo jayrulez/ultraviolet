@@ -1,0 +1,34 @@
+<Project>
+  <!-- https://learn.microsoft.com/nuget/consume-packages/central-package-management -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <GlobalPackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
+  </ItemGroup>
+  
+  <!-- Package versions for package references across all projects -->
+  <PropertyGroup>
+    <SedulousVersion>2023.6.80249</SedulousVersion>
+  </PropertyGroup>
+  
+  <ItemGroup>
+      <!-- Common -->
+      <PackageVersion Include="Sedulous" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.BASS" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.FreeType2" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.OpenGL" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.Presentation" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.Presentation.Compiler" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.SDL2" Version="$(SedulousVersion)" />
+      
+      <!-- NETCore -->
+      <PackageVersion Include="Sedulous.Shims.NETCore" Version="$(SedulousVersion)" />
+      
+      <!-- Android -->
+      <PackageVersion Include="Sedulous.Shims.Android" Version="$(SedulousVersion)" />
+      <PackageVersion Include="Sedulous.Shims.Android.FMOD" Version="$(SedulousVersion)" />
+  </ItemGroup>
+</Project>

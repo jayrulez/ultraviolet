@@ -16,12 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Sedulous" Version="2023.6.80136" />
-    <PackageReference Include="Sedulous.BASS" Version="2023.6.80136" />
-    <PackageReference Include="Sedulous.FreeType2" Version="2023.6.80136" />
-    <PackageReference Include="Sedulous.OpenGL" Version="2023.6.80136" />
-    <PackageReference Include="Sedulous.SDL2" Version="2023.6.80136" />
-    <PackageReference Include="Sedulous.Shims.NETCore" Version="2023.6.80136" />
+    <PackageReference Include="Sedulous" />
+    <PackageReference Include="Sedulous.BASS" />
+    <PackageReference Include="Sedulous.FreeType2" />
+    <PackageReference Include="Sedulous.OpenGL" />
+    <PackageReference Include="Sedulous.SDL2" />
+    <PackageReference Include="Sedulous.Shims.NETCore" />
   </ItemGroup>
 
   <Import Project="..\Sample11_GamePads.Shared\Sample11_GamePads.Shared.projitems" Label="Shared" />
