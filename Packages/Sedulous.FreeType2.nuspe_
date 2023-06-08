@@ -16,7 +16,7 @@ Additional licensing information is available at https://github.com/jayrulez/sed
     <tags>sedulous gamedev</tags>	
     <dependencies>
       <group targetFramework="netstandard2.1">
-        <dependency id="Newtonsoft.Json" version="13.0.1"/>        
+        <dependency id="Newtonsoft.Json" version="13.0.3"/>        
         <dependency id="Sedulous.Core" version="UV_VERSION" />
         <dependency id="Sedulous" version="UV_VERSION" />
         <dependency id="Sedulous.FreeType2.Native" version="UV_VERSION" />

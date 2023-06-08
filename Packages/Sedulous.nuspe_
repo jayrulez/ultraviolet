@@ -20,7 +20,7 @@ Additional licensing information is available at https://github.com/jayrulez/sed
   <dependencies>
     <group targetFramework="netstandard2.1">
       <dependency id="Sedulous.Core" version="UV_VERSION" />
-      <dependency id="SharpGLTF.Core" version="1.0.0-alpha0020" />
+      <dependency id="SharpGLTF.Core" version="1.0.0-alpha0029" />
     </group>
   </dependencies>
   </metadata>
