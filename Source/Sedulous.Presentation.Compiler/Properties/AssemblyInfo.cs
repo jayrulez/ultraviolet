@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle(@"UPF Binding Expressions Compiler")]
+//[assembly: AssemblyTitle(@"UPF Binding Expressions Compiler")]
 [assembly: AssemblyDescription(
     @"Contains the binding expressions compiler used by the Sedulous Presentation Foundation to process " +
     @"expressions in UVML views into executable assemblies.")]

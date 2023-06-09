@@ -1,99 +1,111 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>Sedulous.Presentation</AssemblyName>
-    <RootNamespace>Sedulous.Presentation</RootNamespace>
-    <PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-	<!--<EnableDefaultCompileItems>False</EnableDefaultCompileItems>-->
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<AssemblyName>Sedulous.Presentation</AssemblyName>
+		<AssemblyTitle>Sedulous Presentation Foundation</AssemblyTitle>
+		<RootNamespace>Sedulous.Presentation</RootNamespace>
+		<PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-    <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>..\Sedulous.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
+	<ItemGroup>
+		<AssemblyAttribute Include="System.CLSCompliant">
+			<_Parameter1>true</_Parameter1>
+			<_Parameter1_TypeName>System.Boolean</_Parameter1_TypeName>
+		</AssemblyAttribute>
+	</ItemGroup>
 
-  <PropertyGroup>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;NETSTANDARD;DEBUG</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants>TRACE;NETSTANDARD;RELEASE</DefineConstants>
-  </PropertyGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="Sedulous.Presentation.Tests" Key="00240000048000009400000006020000002400005253413100040000010001005dd0e01041392579d63e81ea2cce6eeb67e8bde9256a39ba0ae06d5c96eef50905c7ee69ac28905ef5f2c9a8efce6cc414dafe1ef66180873448e75c875dafa6d976c9642cc1dbf14ec53c97d81046059d7a17f0ed30184ead039903031f7d8cbd02fa5021796e92dd810141ad3288ace425af60305ed8b090910d1259a204da"/>
+		<InternalsVisibleTo Include="Sedulous.Presentation.Compiler" Key="00240000048000009400000006020000002400005253413100040000010001005dd0e01041392579d63e81ea2cce6eeb67e8bde9256a39ba0ae06d5c96eef50905c7ee69ac28905ef5f2c9a8efce6cc414dafe1ef66180873448e75c875dafa6d976c9642cc1dbf14ec53c97d81046059d7a17f0ed30184ead039903031f7d8cbd02fa5021796e92dd810141ad3288ace425af60305ed8b090910d1259a204da"/>
+		<InternalsVisibleTo Include="Sedulous.Presentation.SourceGenerator" Key="00240000048000009400000006020000002400005253413100040000010001005dd0e01041392579d63e81ea2cce6eeb67e8bde9256a39ba0ae06d5c96eef50905c7ee69ac28905ef5f2c9a8efce6cc414dafe1ef66180873448e75c875dafa6d976c9642cc1dbf14ec53c97d81046059d7a17f0ed30184ead039903031f7d8cbd02fa5021796e92dd810141ad3288ace425af60305ed8b090910d1259a204da"/>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Strings_Commands.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Strings.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Content\Fonts\SegoeUITexture.png" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Content\UI\Screens\MessageBoxScreen\MessageBoxScreen.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)BindingExpressionCompilerTemplate.t4" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\HScrollBar.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\ScrollBar.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\Thumb.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\ToggleButton.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\VScrollBar.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\Button.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\CheckBox.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ComboBox.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ComboBoxItem.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\HSlider.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ListBox.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ListBoxItem.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\NumericUpDown.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\PasswordBox.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ProgressBar.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\RadioButton.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\RepeatButton.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ScrollViewer.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\Slider.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\TabControl.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\TabItem.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\TextBox.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ToolTip.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\VSlider.xml" />
-  </ItemGroup>
+	<PropertyGroup>
+		<SignAssembly>true</SignAssembly>
+		<DelaySign>false</DelaySign>
+		<AssemblyOriginatorKeyFile>..\Sedulous.snk</AssemblyOriginatorKeyFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="..\Version.cs" Link="Properties\Version.cs" />
-    <!--<Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />-->
-  </ItemGroup>
+	<PropertyGroup>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
-    <ProjectReference Include="..\Sedulous.Presentation.Uvss\Sedulous.Presentation.Uvss.csproj" />
-    <ProjectReference Include="..\Sedulous\Sedulous.csproj" />
-  </ItemGroup>
-  
-  <!--<Import Project="Sedulous.Presentation.projitems" Label="Shared" />-->
-  
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DefineConstants>TRACE;NETSTANDARD;DEBUG</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DefineConstants>TRACE;NETSTANDARD;RELEASE</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="Properties\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Strings_Commands.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Strings.xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Content\Fonts\SegoeUITexture.png" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Content\UI\Screens\MessageBoxScreen\MessageBoxScreen.xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)BindingExpressionCompilerTemplate.t4" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\HScrollBar.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\ScrollBar.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\Thumb.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\ToggleButton.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Primitives\Templates\VScrollBar.xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\Button.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\CheckBox.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ComboBox.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ComboBoxItem.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\HSlider.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ListBox.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ListBoxItem.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\NumericUpDown.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\PasswordBox.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ProgressBar.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\RadioButton.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\RepeatButton.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ScrollViewer.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\Slider.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\TabControl.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\TabItem.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\TextBox.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\ToolTip.xml" />
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\Templates\VSlider.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\Version.cs" Link="Properties\Version.cs" />
+		<!--<Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />-->
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
+		<ProjectReference Include="..\Sedulous.Presentation.Uvss\Sedulous.Presentation.Uvss.csproj" />
+		<ProjectReference Include="..\Sedulous\Sedulous.csproj" />
+	</ItemGroup>
+
+	<!--<Import Project="Sedulous.Presentation.projitems" Label="Shared" />-->
+
 </Project>

@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<AssemblyName>Sedulous.Presentation.SourceGenerator</AssemblyName>
+		<RootNamespace>Sedulous.Presentation.SourceGenerator</RootNamespace>
+		<PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="BindingExpressionInfo.cs" />
+	  <Compile Remove="CompilerCache.cs" />
+	  <Compile Remove="CompilerStrings.cs" />
+	  <Compile Remove="CSharpLanguage.cs" />
+	  <Compile Remove="DataSourceDefinition.cs" />
+	  <Compile Remove="DataSourceLoader.cs" />
+	  <Compile Remove="DataSourceWrapperInfo.cs" />
+	  <Compile Remove="DataSourceWrapperWriter.cs" />
+	  <Compile Remove="DependencyFinder.cs" />
+	  <Compile Remove="ExpressionUtil.cs" />
+	  <Compile Remove="FixupBindingSettersRewriter.cs" />
+	  <Compile Remove="FixupExpressionPropertiesRewriter.cs" />
+	  <Compile Remove="IExpressionCompilerState.cs" />
+	  <Compile Remove="RoslynExpressionCompiler.cs" />
+	  <Compile Remove="RoslynExpressionCompilerState.cs" />
+	  <Compile Remove="UvmlTypeAnalysis.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AssemblyAttribute Include="System.CLSCompliant">
+			<_Parameter1>true</_Parameter1>
+			<_Parameter1_TypeName>System.Boolean</_Parameter1_TypeName>
+		</AssemblyAttribute>
+	</ItemGroup>
+	
+	<PropertyGroup>
+		<SignAssembly>true</SignAssembly>
+		<DelaySign>false</DelaySign>
+		<AssemblyOriginatorKeyFile>..\Sedulous.snk</AssemblyOriginatorKeyFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DefineConstants>TRACE;NETSTANDARD;DEBUG</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DefineConstants>TRACE;NETSTANDARD;RELEASE</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Strings.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.6.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
+		<ProjectReference Include="..\Sedulous.Presentation.Uvss\Sedulous.Presentation.Uvss.csproj" />
+		<ProjectReference Include="..\Sedulous.Presentation\Sedulous.Presentation.csproj" />
+		<ProjectReference Include="..\Sedulous\Sedulous.csproj" />
+	</ItemGroup>
+
+</Project>

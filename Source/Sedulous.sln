@@ -91,6 +91,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{F0CC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bindings", "Bindings", "{7762E4ED-A63F-42F2-94F6-14D556EB8E6F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox3D", "Sandbox3D\Sandbox3D.csproj", "{A69466C6-8C5A-4A48-A9B9-C32DA09DCC22}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.Presentation.SourceGenerator", "Sedulous.Presentation.SourceGenerator\Sedulous.Presentation.SourceGenerator.csproj", "{4CF368F9-F99A-44DD-B89A-84D848C30881}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6C0DD74B-374B-4B9D-8503-0AEF870C8824}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props

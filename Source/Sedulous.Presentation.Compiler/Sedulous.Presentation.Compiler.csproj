@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>Sedulous.Presentation.Compiler</AssemblyName>
+	  <AssemblyTitle>UPF Binding Expressions Compiler</AssemblyTitle>
     <RootNamespace>Sedulous.Presentation.Compiler</RootNamespace>
     <PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
