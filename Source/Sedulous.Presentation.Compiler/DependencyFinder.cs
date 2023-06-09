@@ -41,8 +41,10 @@ namespace Sedulous.Presentation.Compiler
             var dir = Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             var exe = Path.Combine(dir, "nuget.exe");
 
+#pragma warning disable SYSLIB0014 // Type or member is obsolete
             using (var client = new WebClient())
                 client.DownloadFile("https://dist.nuget.org/win-x86-commandline/latest/nuget.exe", exe);
+#pragma warning restore SYSLIB0014 // Type or member is obsolete
 
             Debug.WriteLine("done.");
 

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>Sedulous.ImGuiViewProvider.Bindings</AssemblyName>
     <RootNamespace>Sedulous.ImGuiViewProvider.Bindings</RootNamespace>
     <PackageId>$(AssemblyName).$(TargetFramework)</PackageId>

@@ -129,7 +129,7 @@ namespace UvDebug
 
                 this.song = this.content.Load<Song>(GlobalSongID.Sample);
                 this.songPlayer = SongPlayer.Create();
-                this.songPlayer.Play(this.song);
+                //this.songPlayer.Play(this.song);
 
                 this.screenService = new UIScreenService(content);
 

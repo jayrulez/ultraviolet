@@ -11,20 +11,20 @@ namespace Sedulous.SDL2.Native
     [SuppressUnmanagedCodeSecurity]
     internal sealed unsafe class SDLNativeImpl_Default : SDLNativeImpl
     {
-        private static readonly NativeLibrary lib;
+        private static readonly Sedulous.Core.Native.NativeLibrary lib;
         
         static SDLNativeImpl_Default()
         {
             switch (FrameworkPlatformInfo.CurrentPlatform)
             {
                 case FrameworkPlatform.Linux:
-                    lib = new NativeLibrary("libSDL2");
+                    lib = new Sedulous.Core.Native.NativeLibrary("libSDL2");
                     break;
                 case FrameworkPlatform.macOS:
-                    lib = new NativeLibrary("libSDL2");
+                    lib = new Sedulous.Core.Native.NativeLibrary("libSDL2");
                     break;
                 default:
-                    lib = new NativeLibrary("SDL2");
+                    lib = new Sedulous.Core.Native.NativeLibrary("SDL2");
                     break;
             }
         }

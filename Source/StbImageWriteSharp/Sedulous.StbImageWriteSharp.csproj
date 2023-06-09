@@ -3,7 +3,7 @@
 		<Authors>StbImageWriteSharpTeam</Authors>
 		<Product>StbImageWriteSharp</Product>
 		<PackageId>Sedulous.StbImageWriteSharp</PackageId>
-		<TargetFramework>netstandard2.1</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<Description>C# port of the stb_image_write.h</Description>
 		<PackageLicenseUrl>Public Domain</PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/StbSharp/StbImageWriteSharp</PackageProjectUrl>

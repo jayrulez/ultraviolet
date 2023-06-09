@@ -11,20 +11,20 @@ namespace Sedulous.BASS.Native
     [SuppressUnmanagedCodeSecurity]
     internal sealed unsafe class BASSNativeImpl_Default : BASSNativeImpl
     {
-        private static readonly NativeLibrary lib;
+        private static readonly Sedulous.Core.Native.NativeLibrary lib;
         
         static BASSNativeImpl_Default()
         {
             switch (FrameworkPlatformInfo.CurrentPlatform)
             {
                 case FrameworkPlatform.Linux:
-                    lib = new NativeLibrary("libbass");
+                    lib = new Sedulous.Core.Native.NativeLibrary("libbass");
                     break;
                 case FrameworkPlatform.macOS:
-                    lib = new NativeLibrary("libbass");
+                    lib = new Sedulous.Core.Native.NativeLibrary("libbass");
                     break;
                 default:
-                    lib = new NativeLibrary("bass");
+                    lib = new Sedulous.Core.Native.NativeLibrary("bass");
                     break;
             }
         }

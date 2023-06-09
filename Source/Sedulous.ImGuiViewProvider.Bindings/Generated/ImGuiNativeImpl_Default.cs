@@ -11,20 +11,20 @@ namespace Sedulous.ImGuiViewProvider.Bindings
     [SuppressUnmanagedCodeSecurity]
     internal sealed unsafe class ImGuiNativeImpl_Default : ImGuiNativeImpl
     {
-        private static readonly NativeLibrary lib;
+        private static readonly Sedulous.Core.Native.NativeLibrary lib;
         
         static ImGuiNativeImpl_Default()
         {
             switch (FrameworkPlatformInfo.CurrentPlatform)
             {
                 case FrameworkPlatform.Linux:
-                    lib = new NativeLibrary("libcimgui");
+                    lib = new Sedulous.Core.Native.NativeLibrary("libcimgui");
                     break;
                 case FrameworkPlatform.macOS:
-                    lib = new NativeLibrary("libcimgui");
+                    lib = new Sedulous.Core.Native.NativeLibrary("libcimgui");
                     break;
                 default:
-                    lib = new NativeLibrary("cimgui");
+                    lib = new Sedulous.Core.Native.NativeLibrary("cimgui");
                     break;
             }
         }
