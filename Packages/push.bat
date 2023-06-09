@@ -14,3 +14,5 @@ if [%BAMBOO_NuGetPush%] == [] (
         @if %errorlevel% neq 0 @exit /b %errorlevel%
     )     
 )
+
+pause

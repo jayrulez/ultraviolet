@@ -18,7 +18,7 @@ Quick start guides for development using the Sedulous Framework are available on
 Additional licensing information is available at https://github.com/jayrulez/sedulous/wiki/licenses</description>
     <tags>sedulous gamedev</tags>	
   <dependencies>
-    <group targetFramework="netstandard2.1">
+    <group targetFramework="net6.0">
       <dependency id="Sedulous.Core" version="UV_VERSION" />
       <dependency id="Sedulous" version="UV_VERSION" />
     </group>
@@ -28,7 +28,7 @@ Additional licensing information is available at https://github.com/jayrulez/sed
     <file src="..\Images\desktop_uv128.png" target="images\icon.png"/>
 
     <!-- .NET Standard 2.1 -->
-    <file src="..\Binaries\NETCore\Release\Sedulous.OpenGL.Environment.dll" target="lib\netstandard2.1\"/>
-    <file src="..\Binaries\NETCore\Release\Sedulous.OpenGL.Environment.pdb" target="lib\netstandard2.1\"/>
+    <file src="..\Binaries\NETCore\Release\Sedulous.OpenGL.Environment.dll" target="lib\net6.0\"/>
+    <file src="..\Binaries\NETCore\Release\Sedulous.OpenGL.Environment.pdb" target="lib\net6.0\"/>
   </files>  
 </package>

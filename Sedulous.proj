@@ -18,55 +18,55 @@
 
   <!-- STANDARD BINARIES -->
   <Target Name="CopyStandardBinaries">
-    <CreateItem Include="Source/StbImageSharp/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.StbImageSharp.*">
+    <CreateItem Include="Source/StbImageSharp/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.StbImageSharp.*">
       <Output TaskParameter="Include" ItemName="Sedulous_StbImageSharp"/>
     </CreateItem>
-    <CreateItem Include="Source/StbImageWriteSharp/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.StbImageWriteSharp.*">
+    <CreateItem Include="Source/StbImageWriteSharp/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.StbImageWriteSharp.*">
       <Output TaskParameter="Include" ItemName="Sedulous_StbImageWriteSharp"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.Core/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.Core.*">
+    <CreateItem Include="Source/Sedulous.Core/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.Core.*">
       <Output TaskParameter="Include" ItemName="Sedulous_Core"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.OpenGL.Bindings/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.OpenGL.Bindings.*">
+    <CreateItem Include="Source/Sedulous.OpenGL.Bindings/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.OpenGL.Bindings.*">
       <Output TaskParameter="Include" ItemName="Sedulous_OpenGL_Bindings"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.*">
+    <CreateItem Include="Source/Sedulous/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.*">
       <Output TaskParameter="Include" ItemName="Sedulous"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.BASS/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.BASS.*">
+    <CreateItem Include="Source/Sedulous.BASS/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.BASS.*">
       <Output TaskParameter="Include" ItemName="Sedulous_BASS"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.FMOD/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.FMOD.*">
+    <CreateItem Include="Source/Sedulous.FMOD/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.FMOD.*">
       <Output TaskParameter="Include" ItemName="Sedulous_FMOD"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.OpenGL/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.OpenGL.*">
+    <CreateItem Include="Source/Sedulous.OpenGL/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.OpenGL.*">
       <Output TaskParameter="Include" ItemName="Sedulous_OpenGL"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.OpenGL.Environment/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.OpenGL.Environment.*">
+    <CreateItem Include="Source/Sedulous.OpenGL.Environment/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.OpenGL.Environment.*">
       <Output TaskParameter="Include" ItemName="Sedulous_OpenGL_Environment"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.SDL2/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.SDL2.*">
+    <CreateItem Include="Source/Sedulous.SDL2/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.SDL2.*">
       <Output TaskParameter="Include" ItemName="Sedulous_SDL2"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.ImGuiViewProvider/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.ImGuiViewProvider.*">
+    <CreateItem Include="Source/Sedulous.ImGuiViewProvider/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.ImGuiViewProvider.*">
       <Output TaskParameter="Include" ItemName="Sedulous_ImGuiViewProvider"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.ImGuiViewProvider.Bindings/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.ImGuiViewProvider.Bindings.*">
+    <CreateItem Include="Source/Sedulous.ImGuiViewProvider.Bindings/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.ImGuiViewProvider.Bindings.*">
       <Output TaskParameter="Include" ItemName="Sedulous_ImGuiViewProvider_Bindings"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.Presentation/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.Presentation.*">
+    <CreateItem Include="Source/Sedulous.Presentation/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.Presentation.*">
       <Output TaskParameter="Include" ItemName="Sedulous_Presentation"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.Presentation.Uvss/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.Presentation.Uvss.*">
+    <CreateItem Include="Source/Sedulous.Presentation.Uvss/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.Presentation.Uvss.*">
       <Output TaskParameter="Include" ItemName="Sedulous_Presentation_Uvss"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.Presentation.Compiler/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.Presentation.Compiler.*">
+    <CreateItem Include="Source/Sedulous.Presentation.Compiler/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.Presentation.Compiler.*">
       <Output TaskParameter="Include" ItemName="Sedulous_Presentation_Compiler"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.FreeType2/bin/$(Configuration)$(NETStandardSuffix)/Sedulous.FreeType2.*">
+    <CreateItem Include="Source/Sedulous.FreeType2/bin/$(Configuration)$(NETCoreSuffix)/Sedulous.FreeType2.*">
       <Output TaskParameter="Include" ItemName="Sedulous_FreeType2"/>
     </CreateItem>
-    <CreateItem Include="Source/Sedulous.Tooling/bin/$(Configuration)$(NETStandardSuffix)/publish/Sedulous.Tooling.*">
+    <CreateItem Include="Source/Sedulous.Tooling/bin/$(Configuration)$(NETCoreSuffix)/publish/Sedulous.Tooling.*">
       <Output TaskParameter="Include" ItemName="Sedulous_Tooling"/>
     </CreateItem>
     <Copy SourceFiles="@(Sedulous_StbImageSharp)" DestinationFiles="@(Sedulous_StbImageSharp->'Binaries/$(BinaryDir)/$(Configuration)/%(RecursiveDir)%(Filename)%(Extension)')"/>

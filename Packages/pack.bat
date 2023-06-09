@@ -104,3 +104,5 @@ nuget pack Sedulous.Tools.nuspec
 powershell -Command "(gc Sedulous.Windows.Forms.nuspe_) -replace 'UV_VERSION', '%UV_VERSION%' | sc Sedulous.Windows.Forms.nuspec"
 nuget pack Sedulous.Windows.Forms.nuspec -Symbols -SymbolPackageFormat snupkg
 @if %errorlevel% neq 0 @exit /b %errorlevel%
+
+pause
