@@ -127,7 +127,9 @@ namespace Sedulous.Presentation.Compiler
             var fixupPassResult =
                 PerformSyntaxTreeFixup(initialPassResult, models);
 
-            if (fixupPassResult.GetDiagnostics().Where(x => x.Severity == DiagnosticSeverity.Error).Any())
+            var fixupErrorDiagnostics = fixupPassResult.GetDiagnostics().Where(x => x.Severity == DiagnosticSeverity.Error).ToList();
+
+            if (fixupErrorDiagnostics.Any())
             {
                 if (state.WriteErrorsToFile)
                     WriteErrorsToWorkingDirectory(state, models, fixupPassResult);
@@ -312,30 +314,30 @@ namespace Sedulous.Presentation.Compiler
 
             var netStandardRefAdditionalPaths = new List<String>();
             var netStandardRefAsmDir = 
-                DependencyFinder.GetNetStandardLibraryDirFromNuGetCache(netStandardRefAdditionalPaths) ??
-                DependencyFinder.GetNetStandardLibraryDirFromFallback(netStandardRefAdditionalPaths);
+                DependencyFinder.GetNETCoreAppDir(netStandardRefAdditionalPaths);
 
-            if (netStandardRefAsmDir == null && DependencyFinder.IsNuGetAvailable())
-            {
-                Directory.CreateDirectory(state.GetWorkingDirectory());
+            //if (netStandardRefAsmDir == null && DependencyFinder.IsNuGetAvailable())
+            //{
+            //    Directory.CreateDirectory(state.GetWorkingDirectory());
 
-                DependencyFinder.DownloadNuGetExecutable();
-                DependencyFinder.InstallNuGetPackage(state, "NETStandard.Library", "2.0.3");
+            //    DependencyFinder.DownloadNuGetExecutable();
+            //    DependencyFinder.InstallNuGetPackage(state, "NETStandard.Library", "2.0.3");
 
-                netStandardRefAsmDir = DependencyFinder.GetNetStandardLibraryDirFromWorkingDir(state.GetWorkingDirectory());
-            }
+            //    netStandardRefAsmDir = DependencyFinder.GetNetStandardLibraryDirFromWorkingDir(state.GetWorkingDirectory());
+            //}
 
             if (netStandardRefAsmDir == null)
             {
-                if (FrameworkPlatformInfo.CurrentRuntime == FrameworkRuntime.CoreCLR &&
-                    FrameworkPlatformInfo.CurrentRuntimeVersion.Major > 2)
-                {
-                    throw new InvalidOperationException(CompilerStrings.CouldNotLocateReferenceAssembliesCore3);
-                }
-                else
-                {
-                    throw new InvalidOperationException(CompilerStrings.CouldNotLocateReferenceAssemblies);
-                }
+                //if (FrameworkPlatformInfo.CurrentRuntime == FrameworkRuntime.CoreCLR &&
+                //    FrameworkPlatformInfo.CurrentRuntimeVersion.Major > 2)
+                //{
+                //    throw new InvalidOperationException(CompilerStrings.CouldNotLocateReferenceAssembliesCore3);
+                //}
+                //else
+                //{
+                //    throw new InvalidOperationException(CompilerStrings.CouldNotLocateReferenceAssemblies);
+                //}
+                throw new InvalidOperationException(CompilerStrings.CouldNotLocateReferenceAssemblies);
             }
 
             var refDllFiles = Directory.GetFiles(netStandardRefAsmDir, "*.dll");
@@ -368,7 +370,7 @@ namespace Sedulous.Presentation.Compiler
             writer.WriteLine("using System.Reflection;");
             writer.WriteLine("using System.Runtime.Versioning;");
             writer.WriteLine();
-            writer.WriteLine("[assembly: TargetFramework(\".NETStandard,Version=v2.1\", FrameworkDisplayName = \"\")]");
+            writer.WriteLine("[assembly: TargetFramework(\".NETCoreApp,Version=v6.0\", FrameworkDisplayName = \".NET 6.0\")]");
             writer.WriteLine("[assembly: AssemblyCompany(\"Sedulous Framework\")]");
             writer.WriteLine("[assembly: AssemblyConfiguration(\"" + (debug ? "Debug" : "Release") + "\")]");
             writer.WriteLine("[assembly: AssemblyFileVersion(\"{0}\")]", applicationVersion);

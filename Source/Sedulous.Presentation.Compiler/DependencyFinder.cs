@@ -111,87 +111,97 @@ namespace Sedulous.Presentation.Compiler
 
             return Directory.Exists(dir) ? dir : null;
         }
-        
+
+        ///// <summary>
+        ///// Gets the path to the .NET Standard reference assemblies contained within the 
+        ///// NuGet cache, if they exist there.
+        ///// </summary>
+        ///// <returns>The path to the reference assemblies, or <see langword="null"/> if they don't exist.</returns>
+        //public static String GetNetStandardLibraryDirFromNuGetCache(IList<String> additionalPaths)
+        //{
+        //    additionalPaths.Clear();
+
+        //    return GetNetStandardLibraryDirFromNuGetCache_Standard21(additionalPaths);
+        //}
+
+        ///// <summary>
+        ///// Gets the path to the .NET Standard 2.1 assemblies.
+        ///// </summary>
+        //private static String GetNetStandardLibraryDirFromNuGetCache_Standard21(IList<String> additionalPaths)
+        //{
+        //    var cache = GetNuGetCacheDirectory();
+        //    if (cache == null)
+        //        return null;
+
+        //    var dir = new DirectoryInfo(Path.Combine(cache, "netstandard.library.ref"));
+        //    if (dir.Exists)
+        //    {
+        //        var best = dir.EnumerateDirectories().Select(x => new { Directory = x, Target = new DirectoryInfo(Path.Combine(x.FullName, "ref", "netstandard2.1")), Version = TryParseVersion(x.Name) })
+        //            .Where(x => x.Version != null && x.Version >= new Version(2, 1, 0) && x.Target.Exists)
+        //            .OrderByDescending(x => x.Version)
+        //            .FirstOrDefault();
+        //        if (best != null)
+        //        {
+        //            return best.Target.FullName;
+        //        }
+        //    }
+        //    return null;
+        //}
+
         /// <summary>
-        /// Gets the path to the .NET Standard reference assemblies contained within the 
-        /// NuGet cache, if they exist there.
-        /// </summary>
-        /// <returns>The path to the reference assemblies, or <see langword="null"/> if they don't exist.</returns>
-        public static String GetNetStandardLibraryDirFromNuGetCache(IList<String> additionalPaths)
-        {
-            additionalPaths.Clear();
-
-            return GetNetStandardLibraryDirFromNuGetCache_Standard21(additionalPaths);
-        }
-
-        /// <summary>
-        /// Gets the path to the .NET Standard 2.1 assemblies.
-        /// </summary>
-        private static String GetNetStandardLibraryDirFromNuGetCache_Standard21(IList<String> additionalPaths)
-        {
-            var cache = GetNuGetCacheDirectory();
-            if (cache == null)
-                return null;
-
-            var dir = new DirectoryInfo(Path.Combine(cache, "netstandard.library.ref"));
-            if (dir.Exists)
-            {
-                var best = dir.EnumerateDirectories().Select(x => new { Directory = x, Target = new DirectoryInfo(Path.Combine(x.FullName, "ref", "netstandard2.1")), Version = TryParseVersion(x.Name) })
-                    .Where(x => x.Version != null && x.Version >= new Version(2, 1, 0) && x.Target.Exists)
-                    .OrderByDescending(x => x.Version)
-                    .FirstOrDefault();
-                if (best != null)
-                {
-                    return best.Target.FullName;
-                }
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the path to the .NET Standard reference assemblies contained within the SDK
+        /// Gets the path to the NETCore.App reference assemblies contained within the SDK
         /// fallback directory, if they exist there.
         /// </summary>
         /// <returns>The path to the reference assemblies, or <see langword="null"/> if they don't exist.</returns>
-        public static String GetNetStandardLibraryDirFromFallback(IList<String> additionalPaths)
+        public static String GetNETCoreAppDir(IList<String> additionalPaths)
         {
-            additionalPaths.Clear();
-
-            return GetNetStandardLibraryDirFromFallback_Standard21(additionalPaths);
+            return GetNETCoreAppDirFromFallback(additionalPaths);
         }
 
         /// <summary>
-        /// Gets the path to the .NET Standard 2.1 reference assemblies.
+        /// Gets the path to the NETCore.App reference assemblies contained within the SDK
+        /// fallback directory, if they exist there.
         /// </summary>
-        private static String GetNetStandardLibraryDirFromFallback_Standard21(IList<String> additionalPaths)
+        /// <returns>The path to the reference assemblies, or <see langword="null"/> if they don't exist.</returns>
+        public static String GetNETCoreAppDirFromFallback(IList<String> additionalPaths)
         {
-            // If the .NET Core SDK is installed, we can try the NETStandard.Library.Ref metapackage, which is in a 
+            additionalPaths.Clear();
+
+            return GetNETCoreAppDirFromFallback_6(additionalPaths);
+        }
+
+        /// <summary>
+        /// Gets the path to the .NET 6 reference assemblies.
+        /// </summary>
+        private static String GetNETCoreAppDirFromFallback_6(IList<String> additionalPaths)
+        {
+            // If the .NET SDK is installed, we can try the Microsoft.NETCore.App.Ref metapackage, which is in a 
             // couple of different places depending on the current platform...
             var refFolderDir = default(DirectoryInfo);
             switch (FrameworkPlatformInfo.CurrentPlatform)
             {
                 case FrameworkPlatform.Windows:
                     {
-                        refFolderDir = new DirectoryInfo(Path.Combine(Environment.GetEnvironmentVariable("PROGRAMW6432"), "dotnet", "packs", "NETStandard.Library.Ref"));
+                        refFolderDir = new DirectoryInfo(Path.Combine(Environment.GetEnvironmentVariable("PROGRAMW6432"), "dotnet", "packs", "Microsoft.NETCore.App.Ref"));
                     }
                     break;
 
                 case FrameworkPlatform.Linux:
                 case FrameworkPlatform.macOS:
                     {
-                        refFolderDir = new DirectoryInfo(Path.Combine("/", "usr", "local", "share", "dotnet", "packs", "NETStandard.Library.Ref"));
+                        refFolderDir = new DirectoryInfo(Path.Combine("/", "usr", "local", "share", "dotnet", "packs", "Microsoft.NETCore.App.Ref"));
                         if (refFolderDir.Exists)
                             break;
 
-                        refFolderDir = new DirectoryInfo(Path.Combine("/", "usr", "share", "dotnet", "packs", "NETStandard.Library.Ref"));
+                        refFolderDir = new DirectoryInfo(Path.Combine("/", "usr", "share", "dotnet", "packs", "Microsoft.NETCore.App.Ref"));
                     }
                     break;
             }
 
             if (refFolderDir.Exists)
             {
-                var refFolderBest = refFolderDir.EnumerateDirectories().Select(x => new { Directory = x, Target = new DirectoryInfo(Path.Combine(x.FullName, "ref", "netstandard2.1")), Version = TryParseVersion(x.Name) })
-                    .Where(x => x.Version != null && x.Version >= new Version(2, 1, 0) && x.Target.Exists)
+                var refFolderBest = refFolderDir.EnumerateDirectories().Select(x => new { Directory = x, Target = new DirectoryInfo(Path.Combine(x.FullName, "ref", "net6.0")), Version = TryParseVersion(x.Name) })
+                    .Where(x => x.Version != null && x.Version >= new Version(6, 0, 0) && x.Target.Exists)
                     .OrderByDescending(x => x.Version).FirstOrDefault();
                 if (refFolderBest != null)
                 {
@@ -201,6 +211,60 @@ namespace Sedulous.Presentation.Compiler
 
             return null;
         }
+
+        /////// <summary>
+        /////// Gets the path to the .NET Standard reference assemblies contained within the SDK
+        /////// fallback directory, if they exist there.
+        /////// </summary>
+        /////// <returns>The path to the reference assemblies, or <see langword="null"/> if they don't exist.</returns>
+        ////public static String GetNetStandardLibraryDirFromFallback(IList<String> additionalPaths)
+        ////{
+        ////    additionalPaths.Clear();
+
+        ////    return GetNetStandardLibraryDirFromFallback_Standard21(additionalPaths);
+        ////}
+
+        ///// <summary>
+        ///// Gets the path to the .NET Standard 2.1 reference assemblies.
+        ///// </summary>
+        //private static String GetNetStandardLibraryDirFromFallback_Standard21(IList<String> additionalPaths)
+        //{
+        //    // If the .NET Core SDK is installed, we can try the NETStandard.Library.Ref metapackage, which is in a 
+        //    // couple of different places depending on the current platform...
+        //    var refFolderDir = default(DirectoryInfo);
+        //    switch (FrameworkPlatformInfo.CurrentPlatform)
+        //    {
+        //        case FrameworkPlatform.Windows:
+        //            {
+        //                refFolderDir = new DirectoryInfo(Path.Combine(Environment.GetEnvironmentVariable("PROGRAMW6432"), "dotnet", "packs", "NETStandard.Library.Ref"));
+        //            }
+        //            break;
+
+        //        case FrameworkPlatform.Linux:
+        //        case FrameworkPlatform.macOS:
+        //            {
+        //                refFolderDir = new DirectoryInfo(Path.Combine("/", "usr", "local", "share", "dotnet", "packs", "NETStandard.Library.Ref"));
+        //                if (refFolderDir.Exists)
+        //                    break;
+
+        //                refFolderDir = new DirectoryInfo(Path.Combine("/", "usr", "share", "dotnet", "packs", "NETStandard.Library.Ref"));
+        //            }
+        //            break;
+        //    }
+
+        //    if (refFolderDir.Exists)
+        //    {
+        //        var refFolderBest = refFolderDir.EnumerateDirectories().Select(x => new { Directory = x, Target = new DirectoryInfo(Path.Combine(x.FullName, "ref", "netstandard2.1")), Version = TryParseVersion(x.Name) })
+        //            .Where(x => x.Version != null && x.Version >= new Version(2, 1, 0) && x.Target.Exists)
+        //            .OrderByDescending(x => x.Version).FirstOrDefault();
+        //        if (refFolderBest != null)
+        //        {
+        //            return refFolderBest.Target.FullName;
+        //        }
+        //    }
+
+        //    return null;
+        //}
 
         /// <summary>
         /// Gets the path to the .NET Standard 2.0 reference assemblies contained within the
