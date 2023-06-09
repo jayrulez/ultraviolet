@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle(@"Sedulous Implementation Library (FMOD)")]
+//[assembly: AssemblyTitle(@"Sedulous Implementation Library (FMOD)")]
 [assembly: AssemblyDescription(
     @"Implements the Sedulous Framework's audio subsystem using FMOD.")]
 

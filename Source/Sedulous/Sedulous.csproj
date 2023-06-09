@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>Sedulous</AssemblyName>
     <RootNamespace>Sedulous</RootNamespace>

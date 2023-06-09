@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>Sedulous.FMOD</AssemblyName>
     <RootNamespace>Sedulous.FMOD</RootNamespace>
@@ -11,6 +10,11 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
 	<!--<EnableDefaultCompileItems>False</EnableDefaultCompileItems>-->
   </PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
+		<SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
 
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>

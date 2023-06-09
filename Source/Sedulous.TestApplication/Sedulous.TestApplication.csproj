@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	<TargetFramework>net6.0</TargetFramework>
     <AssemblyName>Sedulous.TestApplication</AssemblyName>
     <RootNamespace>Sedulous.TestApplication</RootNamespace>

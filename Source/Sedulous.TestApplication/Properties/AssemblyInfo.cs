@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle(@"Sedulous Test Application Framework")]
+//[assembly: AssemblyTitle(@"Sedulous Test Application Framework")]
 [assembly: AssemblyDescription(
     @"Provides the default implementation of the ISedulousTestApplication interface for use in Sedulous rendering tests.")]
 
