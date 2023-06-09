@@ -11,7 +11,7 @@
   
   <!-- Package versions for package references across all projects -->
   <PropertyGroup>
-    <SedulousVersion>2023.6.80249</SedulousVersion>
+    <SedulousVersion>2023.6.90326</SedulousVersion>
   </PropertyGroup>
   
   <ItemGroup>
