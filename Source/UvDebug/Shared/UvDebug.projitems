@@ -146,8 +146,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Content\Songs\Sample.mp3">
+    <None Include="$(MSBuildThisFileDirectory)Content\Songs\Sample.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
 </Project>
