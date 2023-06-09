@@ -12,20 +12,20 @@ namespace Sedulous.FMOD.Native
     [SuppressUnmanagedCodeSecurity]
     internal sealed unsafe class FMODNativeImpl_Default : FMODNativeImpl
     {
-        private static readonly NativeLibrary lib;
+        private static readonly Sedulous.Core.Native.NativeLibrary lib;
         
         static FMODNativeImpl_Default()
         {
             switch (FrameworkPlatformInfo.CurrentPlatform)
             {
                 case FrameworkPlatform.Linux:
-                    lib = new NativeLibrary(new[] { "libfmodL", "libfmod" });
+                    lib = new Sedulous.Core.Native.NativeLibrary(new[] { "libfmodL", "libfmod" });
                     break;
                 case FrameworkPlatform.macOS:
-                    lib = new NativeLibrary(new[] { "libfmodL", "libfmod" });
+                    lib = new Sedulous.Core.Native.NativeLibrary(new[] { "libfmodL", "libfmod" });
                     break;
                 default:
-                    lib = new NativeLibrary(new[] { "fmodL", "fmod" });
+                    lib = new Sedulous.Core.Native.NativeLibrary(new[] { "fmodL", "fmod" });
                     break;
             }
         }
