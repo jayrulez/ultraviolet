@@ -186,3 +186,4 @@ gen/
 #**/packages/
 /Binaries
 launchSettings.json
+Source/UvDebug/Android/Assets/Content/
