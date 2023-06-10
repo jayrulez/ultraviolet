@@ -11,10 +11,8 @@
 	<ItemGroup>
 	  <Compile Remove="CompilerCache.cs" />
 	  <Compile Remove="DependencyFinder.cs" />
-	  <Compile Remove="ExpressionUtil.cs" />
 	  <Compile Remove="FixupBindingSettersRewriter.cs" />
 	  <Compile Remove="FixupExpressionPropertiesRewriter.cs" />
-	  <Compile Remove="IExpressionCompilerState.cs" />
 	  <Compile Remove="RoslynExpressionCompiler.cs" />
 	  <Compile Remove="RoslynExpressionCompilerState.cs" />
 	  <Compile Remove="UvmlTypeAnalysis.cs" />
