@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <!--
+  
   <PropertyGroup>
     <SedulousContentDirectory>Content</SedulousContentDirectory>
     <SedulousContentProject>Sample9_ManagingStateWithUIScreens.Shared</SedulousContentProject>
     <AssemblyName>Sample9_ManagingStateWithUIScreens</AssemblyName>
     <RootNamespace>Sample9_ManagingStateWithUIScreens</RootNamespace>
   </PropertyGroup>
-  -->
+  
 	<PropertyGroup>
 		<TargetFramework>net7.0-android</TargetFramework>
 		<SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <Import Project="..\Sample9_ManagingStateWithUIScreens.Shared\Sample9_ManagingStateWithUIScreens.Shared.projitems" Label="Shared" />
-  <!--<Import Project="Sedulous.Android.targets" />-->
+  <Import Project="Sedulous.Android.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">
