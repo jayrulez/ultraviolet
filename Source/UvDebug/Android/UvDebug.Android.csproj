@@ -1,5 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<SedulousContentDirectory>Content</SedulousContentDirectory>
+		<SedulousContentProject>Shared</SedulousContentProject>
+		<AssemblyName>UvDebug</AssemblyName>
+		<RootNamespace>UvDebug</RootNamespace>
+	</PropertyGroup>
+	<PropertyGroup>
 		<TargetFramework>net6.0-android</TargetFramework>
 		<SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
 		<OutputType>Exe</OutputType>
@@ -152,4 +158,5 @@
 		<Error Condition="!Exists('Sedulous.Presentation.CompiledExpressions.dll')" Text="Failed to generate compiled expressions assembly for UvDebug.Android." />
 	</Target>
 	<Import Project="..\Shared\UvDebug.projitems" Label="Shared" />
+	<Import Project="Sedulous.Android.targets" />
 </Project>
