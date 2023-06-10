@@ -37,6 +37,16 @@
     <ProjectReference Include="..\..\Sedulous\Sedulous.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\..\Sedulous.Presentation.SourceGenerator\Sedulous.Presentation.SourceGenerator.csproj" 
+						  OutputItemType="Analyzer"
+						  ReferenceOutputAssembly="false"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="..\Shared\**"/>
+	</ItemGroup>
+
   <PropertyGroup>
     <StartupObject>UvDebug.Program</StartupObject>
     <ApplicationManifest>app.manifest</ApplicationManifest>

@@ -41,7 +41,7 @@ namespace Sedulous.Presentation.SourceGenerator
         {
             var dataSourceIdentifier = path;
             var dataSourceWrapperName = name;
-            var dataSourceWrapperNamespace = @namespace ?? PresentationFoundationView.DataSourceWrapperNamespaceForViews;
+            var dataSourceWrapperNamespace = @namespace ?? ExpressionSourceGenerator.DataSourceWrapperNamespaceForViews;
 
             return new DataSourceDefinition(Path.GetFullPath(path), 
                 dataSourceIdentifier, dataSourceWrapperName, dataSourceWrapperNamespace, null, definition);
@@ -57,7 +57,7 @@ namespace Sedulous.Presentation.SourceGenerator
         {
             var dataSourceIdentifier = templatedControl.Name;
             var dataSourceWrapperName = $"__Wrapper_{templatedControl.Name}_{Guid.NewGuid():N}";
-            var dataSourceWrapperNamespace = PresentationFoundationView.DataSourceWrapperNamespaceForComponentTemplates;
+            var dataSourceWrapperNamespace = ExpressionSourceGenerator.DataSourceWrapperNamespaceForComponentTemplates;
 
             return new DataSourceDefinition(templatedControl.FullName,
                 dataSourceIdentifier, dataSourceWrapperName, dataSourceWrapperNamespace, templatedControl, definition);

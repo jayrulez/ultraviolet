@@ -15,23 +15,43 @@ namespace Sedulous.Presentation.SourceGenerator
     public class ExpressionSourceGenerator : ISourceGenerator
     {
         /// <summary>
-        /// 
+        /// Gets the namespace that contains data source wrappers for views.
         /// </summary>
-        /// <param name="context"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        public void Execute(GeneratorExecutionContext context)
+        public static String DataSourceWrapperNamespaceForViews
         {
-            throw new NotImplementedException();
+            get { return "Sedulous.Presentation.CompiledExpressions"; }
+        }
+
+        /// <summary>
+        /// Gets the namespace that contains data source wrappers for component templates.
+        /// </summary>
+        public static String DataSourceWrapperNamespaceForComponentTemplates
+        {
+            get { return "Sedulous.Presentation.CompiledExpressions"; }
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="context"></param>
-        /// <exception cref="NotImplementedException"></exception>
+        public void Execute(GeneratorExecutionContext context)
+        {
+            var source = """
+                public class TestGenClass{
+                    public static void SayHello(){
+                        System.Console.WriteLine("Hello");
+                    }
+                }
+                """;
+            context.AddSource("test.gen.cs", source);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public void Initialize(GeneratorInitializationContext context)
         {
-            throw new NotImplementedException();
         }
     }
 }
