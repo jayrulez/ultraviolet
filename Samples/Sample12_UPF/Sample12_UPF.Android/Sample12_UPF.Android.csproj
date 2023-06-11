@@ -14,8 +14,6 @@
 		<ApplicationId>com.companyname.Sample12_UPF.android</ApplicationId>
 		<ApplicationVersion>1</ApplicationVersion>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<RootNamespace>Sample12_UPF</RootNamespace>
-		<AssemblyName>Sample12_UPF.Android</AssemblyName>
 		<IncludeSedulousContentFiles>false</IncludeSedulousContentFiles>
 	</PropertyGroup>
 

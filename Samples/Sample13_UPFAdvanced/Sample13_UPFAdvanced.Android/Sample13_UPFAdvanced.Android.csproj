@@ -14,8 +14,6 @@
 		<ApplicationId>com.companyname.Sample13_UPFAdvanced.android</ApplicationId>
 		<ApplicationVersion>1</ApplicationVersion>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<RootNamespace>Sample13_UPFAdvanced</RootNamespace>
-		<AssemblyName>Sample13_UPFAdvanced.Android</AssemblyName>
 		<IncludeSedulousContentFiles>false</IncludeSedulousContentFiles>
 	</PropertyGroup>
 

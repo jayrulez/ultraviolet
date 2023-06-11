@@ -1,12 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <!--
   <PropertyGroup>
     <SedulousContentDirectory>Content</SedulousContentDirectory>
     <SedulousContentProject>Sample3_RenderingGeometry.Shared</SedulousContentProject>
     <AssemblyName>Sample3_RenderingGeometry</AssemblyName>
     <RootNamespace>Sample3_RenderingGeometry</RootNamespace>
   </PropertyGroup>
-  -->
 	<PropertyGroup>
 		<TargetFramework>net7.0-android</TargetFramework>
 		<SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
@@ -14,8 +12,6 @@
 		<ApplicationId>com.companyname.Sample3_RenderingGeometry.android</ApplicationId>
 		<ApplicationVersion>1</ApplicationVersion>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<RootNamespace>Sample3_RenderingGeometry</RootNamespace>
-		<AssemblyName>Sample3_RenderingGeometry.Android</AssemblyName>
 		<IncludeSedulousContentFiles>false</IncludeSedulousContentFiles>
 	</PropertyGroup>
 
@@ -29,7 +25,7 @@
   </ItemGroup>
 
   <Import Project="..\Sample3_RenderingGeometry.Shared\Sample3_RenderingGeometry.Shared.projitems" Label="Shared" />
-  <!-- <Import Project="Sedulous.Android.targets" /> -->
+  <Import Project="Sedulous.Android.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">
@@ -37,9 +33,4 @@
     <Target Name="AfterBuild">
     </Target>
   -->
-
-	<!--<ItemGroup>
-		<AndroidAsset Include="Sedulous.Presentation.CompiledExpressions.dll" />
-		<EmbeddedResource Include="Content.uvarc" />
-	</ItemGroup>-->
 </Project>
