@@ -35,7 +35,7 @@ Some core features of the Sedulous Framework:
    
    Sedulous's object loader allows you to easily create complicated hierarchies of objects from simple XML files. This is more than just an XML serializer&mdash;because it is integrated with Sedulous, it has direct knowledge of your game's content assets and object lists, making it possible to reference them in a simple, flexible, and readable way.
 
-The Sedulous Framework's source code is [available on GitHub](https://github.com/jayrulez/ultraviolet).
+The Sedulous Framework's source code is [available on GitHub](https://github.com/jayrulez/Sedulous).
 
 Sedulous is a fork of the [Ultraviolet framework](https://github.com/tlgkccampbell/ultraviolet)
 
@@ -83,14 +83,14 @@ Getting Started
 
 If you don't want to build Sedulous yourself, official packages are available through [NuGet](https://www.nuget.org/packages?q=sedulous).
 
-The wiki contains a [quick start guide](https://github.com/jayrulez/sedulous/wiki/Getting-Started-with-.NET-Core-3.1) for development using .NET 6.
+The wiki contains a [quick start guide](https://github.com/jayrulez/Sedulous/wiki/Getting-Started-with-.NET-Core-3.1) for development using .NET 6.
 
-A [dedicated repository](https://github.com/jayrulez/sedulous-samples) contains a number of sample projects which demonstrate various features of the Framework.
+The [Samples](https://github.com/jayrulez/Sedulous/Samples) directory contains a number of sample projects which demonstrate various features of the Framework.
 
 Requirements
 ============
 
-Sedulous can be used with any version of .NET which supports .NET Standard 2.1.
+Sedulous can be used with any version of .NET which supports .NET 6.
 
 Building Sedulous requires .NET SDK 6.
 
