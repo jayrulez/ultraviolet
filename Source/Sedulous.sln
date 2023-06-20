@@ -83,6 +83,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox3D", "Sandbox\Sandbo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox2D", "Sandbox\Sandbox2D\Sandbox2D.csproj", "{785CCC9D-19BF-4C49-A1F3-AE8DE7CBE8BB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sandbox", "Sandbox", "{D40581D7-2A4A-4E88-8249-BC847F66C200}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -246,6 +248,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7F65D4E5-3E99-446E-AA63-4C900F78CD81} = {D40581D7-2A4A-4E88-8249-BC847F66C200}
+		{785CCC9D-19BF-4C49-A1F3-AE8DE7CBE8BB} = {D40581D7-2A4A-4E88-8249-BC847F66C200}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5692BF08-52C2-4A45-9DA9-F6B390321257}
