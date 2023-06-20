@@ -85,7 +85,7 @@ If you don't want to build Sedulous yourself, official packages are available th
 
 The wiki contains a [quick start guide](https://github.com/jayrulez/Sedulous/wiki/Getting-Started-with-.NET-Core-3.1) for development using .NET 6.
 
-The [Samples](https://github.com/jayrulez/Sedulous/Samples) directory contains a number of sample projects which demonstrate various features of the Framework.
+The [Samples](https://github.com/jayrulez/Sedulous/tree/main/Samples) directory contains a number of sample projects which demonstrate various features of the Framework.
 
 Requirements
 ============
