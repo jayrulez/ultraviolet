@@ -100,7 +100,7 @@ namespace UvNativeCodeGen
                 foreach (var sharedLibraryElement in sharedLibraryElements)
                 {
                     var sharedLibraryFieldName = GetAttributeString(sharedLibraryElement, "Name");
-                    twriter.WriteLine($"public static readonly NativeLibrary {sharedLibraryFieldName};");
+                    twriter.WriteLine($"public static readonly Sedulous.Core.Native.NativeLibrary {sharedLibraryFieldName};");
                 }
 
                 twriter.WriteLine();
@@ -263,17 +263,17 @@ namespace UvNativeCodeGen
             if (String.IsNullOrEmpty(names))
                 return;
 
-            twriter.WriteLine(platform == null ? "default:" : $"case SedulousPlatform.{platform}:");
+            twriter.WriteLine(platform == null ? "default:" : $"case FrameworkPlatform.{platform}:");
             twriter.Indent++;
 
             var namesArray = names.Split(',').Select(x => $"\"{x.Trim()}\"").ToArray();
             if (namesArray.Length == 1)
             {
-                twriter.WriteLine($"{fieldname} = new NativeLibrary({namesArray[0]});");
+                twriter.WriteLine($"{fieldname} = new Sedulous.Core.Native.NativeLibrary({namesArray[0]});");
             }
             else
             {
-                twriter.WriteLine($"{fieldname} = new NativeLibrary(new[] {{ {String.Join(", ", namesArray)} }});");
+                twriter.WriteLine($"{fieldname} = new Sedulous.Core.Native.NativeLibrary(new[] {{ {String.Join(", ", namesArray)} }});");
             }
 
             twriter.WriteLine($"break;");
@@ -282,7 +282,7 @@ namespace UvNativeCodeGen
 
         private static void WritePlatformSpecificLibInit(IndentedTextWriter twriter, XElement namesElement, String fieldname)
         {
-            twriter.WriteLine($"switch (SedulousPlatformInfo.CurrentPlatform)");
+            twriter.WriteLine($"switch (FrameworkPlatformInfo.CurrentPlatform)");
             twriter.WriteLine($"{{");
             twriter.Indent++;
 
@@ -468,7 +468,7 @@ namespace UvNativeCodeGen
                 var libref = "lib";
                 if (String.IsNullOrEmpty(sharedLibraryName))
                 {
-                    twriter.WriteLine($"private static readonly NativeLibrary lib;");
+                    twriter.WriteLine($"private static readonly Sedulous.Core.Native.NativeLibrary lib;");
                     twriter.WriteLine();
 
                     twriter.WriteLine($"static {nativeClassName}Impl_{suffix}()");
@@ -562,11 +562,11 @@ namespace UvNativeCodeGen
                 twriter.WriteLine($"{{");
                 twriter.Indent++;
 
-                twriter.WriteLine($"switch (SedulousPlatformInfo.CurrentPlatform)");
+                twriter.WriteLine($"switch (FrameworkPlatformInfo.CurrentPlatform)");
                 twriter.WriteLine($"{{");
                 twriter.Indent++;
 
-                twriter.WriteLine($"case SedulousPlatform.Android:");
+                twriter.WriteLine($"case FrameworkPlatform.Android:");
                 twriter.Indent++;
                 twriter.WriteLine($"impl = new {nativeClassName}Impl_Android();");
                 twriter.WriteLine($"break;");

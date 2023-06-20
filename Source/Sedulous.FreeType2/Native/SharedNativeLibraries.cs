@@ -6,40 +6,40 @@ namespace Sedulous.FreeType2.Native
 #pragma warning disable 1591
     internal sealed class SharedNativeLibraries
     {
-        public static readonly NativeLibrary libpng;
-        public static readonly NativeLibrary libharfbuzz;
-        public static readonly NativeLibrary libfreetype;
+        public static readonly Sedulous.Core.Native.NativeLibrary libpng;
+        public static readonly Sedulous.Core.Native.NativeLibrary libharfbuzz;
+        public static readonly Sedulous.Core.Native.NativeLibrary libfreetype;
         
         static SharedNativeLibraries()
         {
             switch (FrameworkPlatformInfo.CurrentPlatform)
             {
                 default:
-                    libpng = new NativeLibrary("libpng16");
+                    libpng = new Sedulous.Core.Native.NativeLibrary("libpng16");
                     break;
             }
             switch (FrameworkPlatformInfo.CurrentPlatform)
             {
                 case FrameworkPlatform.Linux:
-                    libharfbuzz = new NativeLibrary("libharfbuzz");
+                    libharfbuzz = new Sedulous.Core.Native.NativeLibrary("libharfbuzz");
                     break;
                 case FrameworkPlatform.macOS:
-                    libharfbuzz = new NativeLibrary("libharfbuzz");
+                    libharfbuzz = new Sedulous.Core.Native.NativeLibrary("libharfbuzz");
                     break;
                 default:
-                    libharfbuzz = new NativeLibrary("harfbuzz");
+                    libharfbuzz = new Sedulous.Core.Native.NativeLibrary("harfbuzz");
                     break;
             }
             switch (FrameworkPlatformInfo.CurrentPlatform)
             {
                 case FrameworkPlatform.Linux:
-                    libfreetype = new NativeLibrary("libfreetype");
+                    libfreetype = new Sedulous.Core.Native.NativeLibrary("libfreetype");
                     break;
                 case FrameworkPlatform.macOS:
-                    libfreetype = new NativeLibrary("libfreetype");
+                    libfreetype = new Sedulous.Core.Native.NativeLibrary("libfreetype");
                     break;
                 default:
-                    libfreetype = new NativeLibrary("freetype");
+                    libfreetype = new Sedulous.Core.Native.NativeLibrary("freetype");
                     break;
             }
         }
