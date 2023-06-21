@@ -23,7 +23,7 @@ namespace Sedulous.Windows.Forms
         private static readonly LocalizationDatabase StringDatabase = new LocalizationDatabase();
 
 #pragma warning disable 1591
-        public static readonly StringResource SedulousFormRequired = new StringResource(StringDatabase, "SEDULOUS_FORM_REQUIRED");
+        public static readonly StringResource FrameworkFormRequired = new StringResource(StringDatabase, "FRAMEWORK_FORM_REQUIRED");
         public static readonly StringResource PanelAlreadyEnlisted    = new StringResource(StringDatabase, "PANEL_ALREADY_ENLISTED");
         public static readonly StringResource PanelNotEnlisted        = new StringResource(StringDatabase, "PANEL_NOT_ENLISTED");
 #pragma warning restore 1591

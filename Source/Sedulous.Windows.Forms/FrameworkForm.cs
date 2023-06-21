@@ -7,7 +7,7 @@ using Sedulous.Core;
 namespace Sedulous.Windows.Forms
 {
     /// <summary>
-    /// Represents the primary Form for a Windows Forms application using the Sedulous engine.
+    /// Represents the primary Form for a Windows Forms application using the Sedulous framework.
     /// </summary>
     public partial class FrameworkForm : Form, IFrameworkHost
     {
@@ -33,7 +33,7 @@ namespace Sedulous.Windows.Forms
         }
 
         /// <summary>
-        /// Initializes a new instance of the SedulousForm class.
+        /// Initializes a new instance of the FrameworkForm class.
         /// </summary>
         public FrameworkForm()
         {
@@ -50,7 +50,7 @@ namespace Sedulous.Windows.Forms
         }
 
         /// <summary>
-        /// Gets the Sedulous context.
+        /// Gets the Framework context.
         /// </summary>
         public FrameworkContext FrameworkContext
         {
@@ -190,9 +190,9 @@ namespace Sedulous.Windows.Forms
         }
 
         /// <summary>
-        /// Called when the application is creating its Sedulous context.
+        /// Called when the application is creating its Framework context.
         /// </summary>
-        /// <returns>The application's Sedulous context.</returns>
+        /// <returns>The application's Framework context.</returns>
         protected virtual FrameworkContext OnCreatingFrameworkContext()
         {
             return null;
@@ -223,7 +223,7 @@ namespace Sedulous.Windows.Forms
         }
 
         /// <summary>
-        /// Occurs when the Sedulous context is updating its state.
+        /// Occurs when the Framework context is updating its state.
         /// </summary>
         /// <param name="time">Time elapsed since the last call to Update.</param>
         protected virtual void OnUpdating(FrameworkTime time)
@@ -274,7 +274,7 @@ namespace Sedulous.Windows.Forms
         }
 
         /// <summary>
-        /// Initializes the Sedulous engine.
+        /// Initializes the framework.
         /// </summary>
         private void InitializeFramework()
         {
@@ -304,7 +304,7 @@ namespace Sedulous.Windows.Forms
         }
 
         /// <summary>
-        /// Creates the Sedulous host core for this host process.
+        /// Creates the Framework host timing logic for this host process.
         /// </summary>
         protected virtual IFrameworkHostTimingLogic CreateTimingLogic()
         {
@@ -341,9 +341,9 @@ namespace Sedulous.Windows.Forms
         }
 
         /// <summary>
-        /// Handles the Sedulous context's Updating event.
+        /// Handles the Framework context's Updating event.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="time">Time elapsed since the last call to Update.</param>
         private void uv_Updating(FrameworkContext context, FrameworkTime time)
         {
@@ -358,7 +358,7 @@ namespace Sedulous.Windows.Forms
             OnShutdown();
         }
 
-        // The Sedulous context.
+        // The Framework context.
         private FrameworkContext context;
         private IFrameworkHostTimingLogic timingLogic;
 

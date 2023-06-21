@@ -10,13 +10,13 @@ using Sedulous.Platform;
 namespace Sedulous.Windows.Forms
 {
     /// <summary>
-    /// Represents a panel designed to be enlisted into an Sedulous context.
+    /// Represents a panel designed to be enlisted into an Framework context.
     /// </summary>
     [SupportedOSPlatform("windows")]
     public partial class FrameworkPanel : UserControl
     {
         /// <summary>
-        /// Initializes a new instance of the SedulousPanel class.
+        /// Initializes a new instance of the FrameworkPanel class.
         /// </summary>
         public FrameworkPanel()
         {
@@ -29,27 +29,27 @@ namespace Sedulous.Windows.Forms
         public event EventHandler Drawing;
 
         /// <summary>
-        /// Occurs when the panel's Sedulous window is about to be created.
+        /// Occurs when the panel's Framework window is about to be created.
         /// </summary>
-        public event EventHandler CreatingSedulousWindow;
+        public event EventHandler CreatingFrameworkWindow;
 
         /// <summary>
-        /// Occurs after the panel's Sedulous window has been crated.
+        /// Occurs after the panel's Framework window has been crated.
         /// </summary>
-        public event EventHandler CreatedSedulousWindow;
+        public event EventHandler CreatedFrameworkWindow;
 
         /// <summary>
-        /// Occurs when the panel's Sedulous window is about to be destroyed.
+        /// Occurs when the panel's Framework window is about to be destroyed.
         /// </summary>
-        public event EventHandler DestroyingSedulousWindow;
+        public event EventHandler DestroyingFrameworkWindow;
 
         /// <summary>
-        /// Occurs after the panel's Sedulous window has been destroyed.
+        /// Occurs after the panel's Framework window has been destroyed.
         /// </summary>
-        public event EventHandler DestroyedSedulousWindow;
+        public event EventHandler DestroyedFrameworkWindow;
 
         /// <summary>
-        /// Gets the panel's Sedulous context.
+        /// Gets the panel's Framework context.
         /// </summary>
         public FrameworkContext FrameworkContext
         {
@@ -62,9 +62,9 @@ namespace Sedulous.Windows.Forms
         }
 
         /// <summary>
-        /// Gets the panel's Sedulous window.
+        /// Gets the panel's Framework window.
         /// </summary>
-        public IFrameworkWindow SedulousWindow
+        public IFrameworkWindow FrameworkWindow
         {
             get 
             {
@@ -103,32 +103,32 @@ namespace Sedulous.Windows.Forms
             Drawing?.Invoke(this, e);
 
         /// <summary>
-        /// Raises the CreatingSedulousWindow event.
+        /// Raises the CreatingFrameworkWindow event.
         /// </summary>
         /// <param name="e">An EventArgs that contains the event data.</param>
-        protected virtual void OnCreatingSedulousWindow(EventArgs e) =>
-            CreatingSedulousWindow?.Invoke(this, e);
+        protected virtual void OnCreatingFrameworkWindow(EventArgs e) =>
+            CreatingFrameworkWindow?.Invoke(this, e);
 
         /// <summary>
-        /// Raises the CreatedSedulousWindow event.
+        /// Raises the CreatedFrameworkWindow event.
         /// </summary>
         /// <param name="e">An EventArgs that contains the event data.</param>
-        protected virtual void OnCreatedSedulousWindow(EventArgs e) =>
-            CreatedSedulousWindow?.Invoke(this, e);
+        protected virtual void OnCreatedFrameworkWindow(EventArgs e) =>
+            CreatedFrameworkWindow?.Invoke(this, e);
 
         /// <summary>
-        /// Raises the DestroyingSedulousWindow event.
+        /// Raises the DestroyingFrameworkWindow event.
         /// </summary>
         /// <param name="e">An EventArgs that contains the event data.</param>
-        protected virtual void OnDestroyingSedulousWindow(EventArgs e) =>
-            DestroyingSedulousWindow?.Invoke(this, e);
+        protected virtual void OnDestroyingFrameworkWindow(EventArgs e) =>
+            DestroyingFrameworkWindow?.Invoke(this, e);
 
         /// <summary>
-        /// Raises the DestroyedSedulousWindow event.
+        /// Raises the DestroyedFrameworkWindow event.
         /// </summary>
         /// <param name="e">An EventArgs that contains the event data.</param>
-        protected virtual void OnDestroyedSedulousWindow(EventArgs e) =>
-            DestroyedSedulousWindow?.Invoke(this, e);
+        protected virtual void OnDestroyedFrameworkWindow(EventArgs e) =>
+            DestroyedFrameworkWindow?.Invoke(this, e);
 
         /// <summary>
         /// Raises the Paint event.
@@ -179,9 +179,9 @@ namespace Sedulous.Windows.Forms
             {
                 var form = TopLevelControl as FrameworkForm;
                 if (form == null)
-                    throw new InvalidOperationException(WindowsFormsStrings.SedulousFormRequired);
-                
-                CreateSedulousWindow(form.FrameworkContext);
+                    throw new InvalidOperationException(WindowsFormsStrings.FrameworkFormRequired);
+
+                CreateFrameworkWindow(form.FrameworkContext);
             }
             base.OnLoad(e);
         }
@@ -196,7 +196,7 @@ namespace Sedulous.Windows.Forms
             {
                 if (context != null && !context.Disposed)
                 {
-                    DestroySedulousWindow();
+                    DestroyFrameworkWindow();
                 }
                 SafeDispose.Dispose(components);
             }
@@ -204,7 +204,7 @@ namespace Sedulous.Windows.Forms
         }
 
         /// <summary>
-        /// Handles the Sedulous window's Drawing event.
+        /// Handles the Framework window's Drawing event.
         /// </summary>
         /// <param name="window">The window being rendered.</param>
         /// <param name="time">Time elapsed since the last call to Draw.</param>
@@ -214,35 +214,35 @@ namespace Sedulous.Windows.Forms
         }
 
         /// <summary>
-        /// Enlists the panel in the specified Sedulous context.
+        /// Enlists the panel in the specified Framework context.
         /// </summary>
-        /// <param name="context">The Sedulous context in which to enlist the panel.</param>
-        private void CreateSedulousWindow(FrameworkContext context)
+        /// <param name="context">The Framework context in which to enlist the panel.</param>
+        private void CreateFrameworkWindow(FrameworkContext context)
         {
             Contract.Require(context, nameof(context));
 
             if (this.context != null)
                 throw new InvalidOperationException(WindowsFormsStrings.PanelAlreadyEnlisted);
-            
-            OnCreatingSedulousWindow(EventArgs.Empty);
+
+            OnCreatingFrameworkWindow(EventArgs.Empty);
 
             this.context = context;
 
             this.uvWindow = context.GetPlatform().Windows.CreateFromNativePointer(this.Handle);
             this.uvWindow.Drawing += uvWindow_Drawing;
-            
-            OnCreatedSedulousWindow(EventArgs.Empty);
+
+            OnCreatedFrameworkWindow(EventArgs.Empty);
         }
 
         /// <summary>
-        /// Releases the panel from its Sedulous context.
+        /// Releases the panel from its Framework context.
         /// </summary>
-        private void DestroySedulousWindow()
+        private void DestroyFrameworkWindow()
         {
             if (this.context == null)
                 throw new InvalidOperationException(WindowsFormsStrings.PanelNotEnlisted);
-            
-            OnDestroyingSedulousWindow(EventArgs.Empty);
+
+            OnDestroyingFrameworkWindow(EventArgs.Empty);
 
             this.uvWindow.Drawing -= uvWindow_Drawing;
             this.context.GetPlatform().Windows.Destroy(uvWindow);
@@ -250,10 +250,10 @@ namespace Sedulous.Windows.Forms
 
             this.context = null;
 
-            OnDestroyedSedulousWindow(EventArgs.Empty);
+            OnDestroyedFrameworkWindow(EventArgs.Empty);
         }
 
-        // The panel's ID within the Sedulous context.
+        // The panel's ID within the Framework context.
         private FrameworkContext context;
         private IFrameworkWindow uvWindow;
 

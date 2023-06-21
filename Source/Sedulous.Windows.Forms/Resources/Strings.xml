@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LocalizedStrings>
-  <String Key="SEDULOUS_FORM_REQUIRED">
+  <String Key="FRAMEWORK_FORM_REQUIRED">
     <en-US>
-      <Variant>An SedulousPanel must have an SedulousForm as its top-level control.</Variant>
+      <Variant>An FrameworkPanel must have an FrameworkForm as its top-level control.</Variant>
     </en-US>
   </String>
   <String Key="PANEL_ALREADY_ENLISTED">
