@@ -42,22 +42,6 @@ namespace UvDebug
         }
 
         /// <summary>
-        /// The application's entry point.
-        /// </summary>
-        /// <param name="args">An array containing the application's command line arguments.</param>
-        public static void Main(String[] args)
-        {
-            using (var game = new Game())
-            {
-                game.resolveContent = args.Contains("-resolve:content");
-                game.compileContent = args.Contains("-compile:content");
-                game.compileExpressions = args.Contains("-compile:expressions");
-
-                game.Run();
-            }
-        }
-
-        /// <summary>
         /// Called when the application is creating its Sedulous context.
         /// </summary>
         /// <returns>The Sedulous context.</returns>
@@ -511,9 +495,10 @@ namespace UvDebug
         // State values.
         private GlobalStyleSheet globalStyleSheet;
         private UIScreenService screenService;
-        private Boolean resolveContent;
-        private Boolean compileContent;
-        private Boolean compileExpressions;
+
+        internal Boolean resolveContent;
+        internal Boolean compileContent;
+        internal Boolean compileExpressions;
 
         // 3D geometry testing.
         private GeometryStream geometryStream;
