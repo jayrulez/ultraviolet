@@ -702,6 +702,7 @@ namespace Sedulous
             if (IsInitialized)
                 throw new Exception("Context was already initialized.");
 
+            ConfigureFactory();
             OnInitialize();
             {
                 GetContent().Processors.SetFallbackType<FrameworkFont>(typeof(SpriteFont));

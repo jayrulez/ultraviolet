@@ -47,7 +47,6 @@ namespace Sedulous.SDL2
         protected unsafe override void OnInitialize()
         {
             ConfigurePlugins(configuration);
-            ConfigureFactory();
             this.onWindowDrawing = (context, time, window) =>
                 ((SDL2FrameworkContext)context).OnWindowDrawing(time, window);
             this.onWindowDrawn = (context, time, window) =>
