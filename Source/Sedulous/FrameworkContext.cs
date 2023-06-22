@@ -104,8 +104,6 @@ namespace Sedulous
 
             this.taskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             this.taskFactory = new TaskFactory(taskScheduler);
-
-            InitializeFactory(configuration);
         }
 
         /// <summary>
@@ -761,25 +759,6 @@ namespace Sedulous
         }
 
         /// <summary>
-        /// Initializes any factory methods that are exposed by the specified assembly.
-        /// </summary>
-        /// <param name="asm">The assembly for which to initialize factory methods.</param>
-        protected void InitializeFactoryMethodsInAssembly(Assembly asm)
-        {
-            Contract.Require(asm, nameof(asm));
-
-            var initializerTypes = from t in asm.GetTypes()
-                                   where t.IsClass && !t.IsAbstract && typeof(IFrameworkFactoryInitializer).IsAssignableFrom(t)
-                                   select t;
-
-            foreach (var initializerType in initializerTypes)
-            {
-                var initializerInstance = (IFrameworkFactoryInitializer)Activator.CreateInstance(initializerType);
-                initializerInstance.Initialize(this, Factory);
-            }
-        }
-
-        /// <summary>
         /// Initializes the context's view provider.
         /// </summary>
         /// <param name="configuration">The Sedulous Framework configuration settings for this context.</param>
@@ -969,23 +948,6 @@ namespace Sedulous
         /// </summary>
         private static void OnContextInvalidated() =>
             ContextInvalidated?.Invoke(null, EventArgs.Empty);
-
-        /// <summary>
-        /// Initializes the context's object factory.
-        /// </summary>
-        /// <param name="configuration">The Sedulous Framework configuration settings for this context.</param>
-        private void InitializeFactory(FrameworkConfiguration configuration)
-        {
-            var asmCore = typeof(FrameworkContext).Assembly;
-            var asmImpl = GetType().Assembly;
-
-            InitializeFactoryMethodsInAssembly(asmCore);
-            InitializeFactoryMethodsInAssembly(asmImpl);
-            
-            var asmEntry = Assembly.GetEntryAssembly();
-            if (asmEntry != null)
-                InitializeFactoryMethodsInAssembly(asmEntry);
-        }
 
         /// <summary>
         /// Updates the context's list of tasks.
