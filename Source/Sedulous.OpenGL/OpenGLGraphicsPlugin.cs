@@ -35,7 +35,6 @@ namespace Sedulous.OpenGL
         /// <inheritdoc/>
         public override void Configure(FrameworkContext context, FrameworkFactory factory)
         {
-
             // Core classes
             factory.SetFactoryMethod<GeometryStreamFactory>((uv) => new OpenGLGeometryStream(uv));
             factory.SetFactoryMethod<VertexBufferFactory>((uv, vdecl, vcount) => new OpenGLVertexBuffer(uv, vdecl, vcount, GL.GL_STATIC_DRAW));
@@ -112,42 +111,42 @@ namespace Sedulous.OpenGL
         }
 
         /// <inheritdoc/>
-        public override void RegisterContentImporters(ContentImporterRegistry importers)
+        public override void Initialize(FrameworkContext context, FrameworkFactory factory)
         {
-            importers.RegisterImporter<OpenGLFragmentShaderImporter>(".frag");
-            importers.RegisterImporter<OpenGLFragmentShaderImporter>(".fragh");
+            var importers = context.GetContent().Importers;
+            {
+                importers.RegisterImporter<OpenGLFragmentShaderImporter>(".frag");
+                importers.RegisterImporter<OpenGLFragmentShaderImporter>(".fragh");
 
-            importers.RegisterImporter<OpenGLVertexShaderImporter>(".vert");
-            importers.RegisterImporter<OpenGLVertexShaderImporter>(".verth");
+                importers.RegisterImporter<OpenGLVertexShaderImporter>(".vert");
+                importers.RegisterImporter<OpenGLVertexShaderImporter>(".verth");
+            }
 
-            base.RegisterContentImporters(importers);
-        }
+            var processors = context.GetContent().Processors;
+            {
+                processors.RegisterProcessor<OpenGLSpriteFontProcessor>();
+                processors.RegisterProcessor<OpenGLSpriteFontProcessorFromJObject>();
+                processors.RegisterProcessor<OpenGLSpriteFontProcessorFromXDocument>();
+                processors.RegisterProcessor<OpenGLSpriteFontTextureProcessor>();
+                processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromJObject>();
+                processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromShaderSource>();
+                processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromXDocument>();
+                //processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromXDocumentV1>();
+                //processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromXDocumentV2>();
+                processors.RegisterProcessor<OpenGLEffectProcessorFromJObject>();
+                processors.RegisterProcessor<OpenGLEffectProcessorFromShaderSource>();
+                processors.RegisterProcessor<OpenGLEffectProcessorFromXDocument>();
+                processors.RegisterProcessor<OpenGLEffectSourceProcessorFromJObject>();
+                processors.RegisterProcessor<OpenGLEffectSourceProcessorFromShaderSource>();
+                processors.RegisterProcessor<OpenGLEffectSourceProcessorFromXDocument>();
+                processors.RegisterProcessor<OpenGLFragmentShaderProcessor>();
+                processors.RegisterProcessor<OpenGLTexture2DProcessor>();
+                processors.RegisterProcessor<OpenGLTexture3DProcessor>();
+                processors.RegisterProcessor<OpenGLVertexShaderProcessor>();
+                processors.RegisterProcessor<ShaderSourceProcessor>();
+            }
 
-        /// <inheritdoc/>
-        public override void RegisterContentProcessors(ContentProcessorRegistry processors)
-        {
-            processors.RegisterProcessor<OpenGLSpriteFontProcessor>();
-            processors.RegisterProcessor<OpenGLSpriteFontProcessorFromJObject>();
-            processors.RegisterProcessor<OpenGLSpriteFontProcessorFromXDocument>();
-            processors.RegisterProcessor<OpenGLSpriteFontTextureProcessor>();
-            processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromJObject>();
-            processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromShaderSource>();
-            processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromXDocument>();
-            //processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromXDocumentV1>();
-            //processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromXDocumentV2>();
-            processors.RegisterProcessor<OpenGLEffectProcessorFromJObject>();
-            processors.RegisterProcessor<OpenGLEffectProcessorFromShaderSource>();
-            processors.RegisterProcessor<OpenGLEffectProcessorFromXDocument>();
-            processors.RegisterProcessor<OpenGLEffectSourceProcessorFromJObject>();
-            processors.RegisterProcessor<OpenGLEffectSourceProcessorFromShaderSource>();
-            processors.RegisterProcessor<OpenGLEffectSourceProcessorFromXDocument>();
-            processors.RegisterProcessor<OpenGLFragmentShaderProcessor>();
-            processors.RegisterProcessor<OpenGLTexture2DProcessor>();
-            processors.RegisterProcessor<OpenGLTexture3DProcessor>();
-            processors.RegisterProcessor<OpenGLVertexShaderProcessor>();
-            processors.RegisterProcessor<ShaderSourceProcessor>();
-
-            base.RegisterContentProcessors(processors);
+            base.Initialize(context, factory);
         }
 
         // Graphics configuration settings.

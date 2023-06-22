@@ -33,22 +33,20 @@ namespace Sedulous.Presentation
             base.Configure(context, factory);
         }
 
-
-
         /// <inheritdoc/>
-        public override void RegisterContentImporters(ContentImporterRegistry importers)
+        public override void Initialize(FrameworkContext context, FrameworkFactory factory)
         {
-            importers.RegisterImporter<UvssDocumentImporter>(".uvss");
+            var importers = context.GetContent().Importers;
+            {
+                importers.RegisterImporter<UvssDocumentImporter>(".uvss");
+            }
 
-            base.RegisterContentImporters(importers);
-        }
+            var processors = context.GetContent().Processors;
+            {
+                processors.RegisterProcessor<UvssDocumentProcessor>();
+            }
 
-        /// <inheritdoc/>
-        public override void RegisterContentProcessors(ContentProcessorRegistry processors)
-        {
-            processors.RegisterProcessor<UvssDocumentProcessor>();
-
-            base.RegisterContentProcessors(processors);
+            base.Initialize(context, factory);
         }
 
         // UPF configuration settings.

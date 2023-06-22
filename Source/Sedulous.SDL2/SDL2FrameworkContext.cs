@@ -44,7 +44,7 @@ namespace Sedulous.SDL2
         }
 
         /// <inheritdoc/>
-        protected unsafe override void InitializeContext()
+        protected unsafe override void OnInitialize()
         {
             ConfigurePlugins(configuration);
             ConfigureFactory();
@@ -73,9 +73,7 @@ namespace Sedulous.SDL2
             InitializeViewProvider(configuration);
             InitializePlugins(configuration);
 
-            base.InitializeContext();
-
-            RegisterPluginContentImportersAndProcessors(configuration);
+            base.OnInitialize();
 
             PumpEvents();
         }

@@ -19,43 +19,37 @@ namespace Sedulous.FreeType2
 
             factory.SetFactoryMethod<TextShaperFactory>((uvctx, capacity) => new HarfBuzzTextShaper(uvctx, capacity));
 
-            base.Configure(context, factory);
-        }
-
-        /// <inheritdoc/>
-        public override void RegisterContentImporters(ContentImporterRegistry importers)
-        {
-            var existing = importers.FindImporter(".ttf");
-            if (existing != null)
+            var importers = context.GetContent().Importers;
             {
-                if (existing.GetType() == typeof(FreeTypeFontImporter))
+                var existing = importers.FindImporter(".ttf");
+                if (existing != null)
                 {
-                    throw new InvalidOperationException(FreeTypeStrings.PluginAlreadyInitialized);
+                    if (existing.GetType() == typeof(FreeTypeFontImporter))
+                    {
+                        throw new InvalidOperationException(FreeTypeStrings.PluginAlreadyInitialized);
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException(FreeTypeStrings.AlternativePluginAlreadyInitialized);
+                    }
                 }
-                else
-                {
-                    throw new InvalidOperationException(FreeTypeStrings.AlternativePluginAlreadyInitialized);
-                }
+
+                importers.RegisterImporter<FreeTypeFontImporter>(".ttf");
+                importers.RegisterImporter<FreeTypeFontImporter>(".ttc");
+                importers.RegisterImporter<FreeTypeFontImporter>(".otf");
+                importers.RegisterImporter<FreeTypeFontImporter>(".otc");
+                importers.RegisterImporter<FreeTypeFontImporter>(".fnt");
             }
 
-            importers.RegisterImporter<FreeTypeFontImporter>(".ttf");
-            importers.RegisterImporter<FreeTypeFontImporter>(".ttc");
-            importers.RegisterImporter<FreeTypeFontImporter>(".otf");
-            importers.RegisterImporter<FreeTypeFontImporter>(".otc");
-            importers.RegisterImporter<FreeTypeFontImporter>(".fnt");
+            var processors = context.GetContent().Processors;
+            {
+                processors.RegisterProcessor<FreeTypeFontProcessor>();
+                processors.RegisterProcessor<FrameworkFontProcessorFromFreeType>();
+                processors.RegisterProcessor<FrameworkFontProcessorFromJObject>();
+                processors.RegisterProcessor<FrameworkFontProcessorFromXDocument>();
+            }
 
-            base.RegisterContentImporters(importers);
-        }
-
-        /// <inheritdoc/>
-        public override void RegisterContentProcessors(ContentProcessorRegistry processors)
-        {
-            processors.RegisterProcessor<FreeTypeFontProcessor>();
-            processors.RegisterProcessor<FrameworkFontProcessorFromFreeType>();
-            processors.RegisterProcessor<FrameworkFontProcessorFromJObject>();
-            processors.RegisterProcessor<FrameworkFontProcessorFromXDocument>();
-
-            base.RegisterContentProcessors(processors);
+            base.Configure(context, factory);
         }
 
         /// <summary>

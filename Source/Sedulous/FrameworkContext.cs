@@ -702,16 +702,19 @@ namespace Sedulous
             if (IsInitialized)
                 throw new Exception("Context was already initialized.");
 
-            InitializeContext();
+            OnInitialize();
+            IsInitialized = true;
+
+            OnInitialized();
+            OnContextInitialized();
         }
 
         /// <summary>
         /// Initializes the context and marks it ready for use.
         /// </summary>
-        protected virtual void InitializeContext()
-        {            
-            GetContent().Processors
-                .SetFallbackType<FrameworkFont>(typeof(SpriteFont));
+        protected virtual void OnInitialize()
+        {
+            GetContent().Processors.SetFallbackType<FrameworkFont>(typeof(SpriteFont));
 
             // Content
             GetContent().Importers.RegisterImporter<JsonContentImporter>(".json");
@@ -750,11 +753,6 @@ namespace Sedulous
 
             // UI
             GetContent().Processors.RegisterProcessor<UIPanelDefinitionProcessor>();
-
-            OnInitialized();
-            OnContextInitialized();
-
-            IsInitialized = true;
         }
 
         /// <summary>
@@ -823,19 +821,6 @@ namespace Sedulous
             {
                 plugin.Initialize(this, Factory);
                 plugin.Initialized = true;
-            }
-        }
-
-        /// <summary>
-        /// Registers content importers and processors for the context's plugins.
-        /// </summary>
-        /// <param name="configuration">The Sedulous Framework configuration settings for this context.</param>
-        protected void RegisterPluginContentImportersAndProcessors(FrameworkConfiguration configuration)
-        {
-            foreach (var plugin in configuration.Plugins)
-            {
-                plugin.RegisterContentImporters(this.GetContent().Importers);
-                plugin.RegisterContentProcessors(this.GetContent().Processors);
             }
         }
 

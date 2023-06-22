@@ -1,5 +1,4 @@
-﻿using Sedulous.Content;
-using System;
+﻿using System;
 
 namespace Sedulous
 {
@@ -27,23 +26,6 @@ namespace Sedulous
         /// <param name="context">The Sedulous context.</param>
         /// <param name="factory">The Sedulous factory.</param>
         public virtual void Initialize(FrameworkContext context, FrameworkFactory factory) { }
-
-        /// <summary>
-        /// Register the plugin's content importers.
-        /// </summary>
-        /// <param name="importers">The content importer registry.</param>
-        public virtual void RegisterContentImporters(ContentImporterRegistry importers)
-        {
-        }
-
-
-        /// <summary>
-        /// Registers the plugin's content processors.
-        /// </summary>
-        /// <param name="processors">The content processor registry.</param>
-        public virtual void RegisterContentProcessors(ContentProcessorRegistry processors)
-        {
-        }
 
         /// <summary>
         /// Gets a value indicating whether this plugin has been configured.

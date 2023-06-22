@@ -1,6 +1,5 @@
 ﻿using Sedulous.Audio;
 using Sedulous.BASS.Audio;
-using Sedulous.Content;
 using Sedulous.Core;
 
 namespace Sedulous.BASS
@@ -30,22 +29,22 @@ namespace Sedulous.BASS
         }
 
         /// <inheritdoc/>
-        public override void RegisterContentImporters(ContentImporterRegistry importers)
+        public override void Initialize(FrameworkContext context, FrameworkFactory factory)
         {
-            importers.RegisterImporter<BASSMediaImporter>(".mp3");
-            importers.RegisterImporter<BASSMediaImporter>(".ogg");
-            importers.RegisterImporter<BASSMediaImporter>(".wav");
+            var importers = context.GetContent().Importers;
+            {
+                importers.RegisterImporter<BASSMediaImporter>(".mp3");
+                importers.RegisterImporter<BASSMediaImporter>(".ogg");
+                importers.RegisterImporter<BASSMediaImporter>(".wav");
+            }
 
-            base.RegisterContentImporters(importers);
-        }
+            var processors = context.GetContent().Processors;
+            {
+                processors.RegisterProcessor<BASSSongProcessor>();
+                processors.RegisterProcessor<BASSSoundEffectProcessor>();
+            }
 
-        /// <inheritdoc/>
-        public override void RegisterContentProcessors(ContentProcessorRegistry processors)
-        {
-            processors.RegisterProcessor<BASSSongProcessor>();
-            processors.RegisterProcessor<BASSSoundEffectProcessor>();
-
-            base.RegisterContentProcessors(processors);
+            base.Initialize(context, factory);
         }
     }
 }

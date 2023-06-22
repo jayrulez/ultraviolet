@@ -52,31 +52,31 @@ namespace Sedulous.FMOD
         }
 
         /// <inheritdoc/>
-        public override void RegisterContentImporters(ContentImporterRegistry importers)
+        public override void Initialize(FrameworkContext context, FrameworkFactory factory)
         {
-            importers.RegisterImporter<FMODMediaImporter>(".aif");
-            importers.RegisterImporter<FMODMediaImporter>(".aiff");
-            importers.RegisterImporter<FMODMediaImporter>(".flac");
-            importers.RegisterImporter<FMODMediaImporter>(".it");
-            importers.RegisterImporter<FMODMediaImporter>(".m3u");
-            importers.RegisterImporter<FMODMediaImporter>(".mid");
-            importers.RegisterImporter<FMODMediaImporter>(".mod");
-            importers.RegisterImporter<FMODMediaImporter>(".mp2");
-            importers.RegisterImporter<FMODMediaImporter>(".mp3");
-            importers.RegisterImporter<FMODMediaImporter>(".ogg");
-            importers.RegisterImporter<FMODMediaImporter>(".s3m");
-            importers.RegisterImporter<FMODMediaImporter>(".wav");
+            var importers = context.GetContent().Importers;
+            {
+                importers.RegisterImporter<FMODMediaImporter>(".aif");
+                importers.RegisterImporter<FMODMediaImporter>(".aiff");
+                importers.RegisterImporter<FMODMediaImporter>(".flac");
+                importers.RegisterImporter<FMODMediaImporter>(".it");
+                importers.RegisterImporter<FMODMediaImporter>(".m3u");
+                importers.RegisterImporter<FMODMediaImporter>(".mid");
+                importers.RegisterImporter<FMODMediaImporter>(".mod");
+                importers.RegisterImporter<FMODMediaImporter>(".mp2");
+                importers.RegisterImporter<FMODMediaImporter>(".mp3");
+                importers.RegisterImporter<FMODMediaImporter>(".ogg");
+                importers.RegisterImporter<FMODMediaImporter>(".s3m");
+                importers.RegisterImporter<FMODMediaImporter>(".wav");
+            }
 
-            base.RegisterContentImporters(importers);
-        }
+            var processors = context.GetContent().Processors;
+            {
+                processors.RegisterProcessor<FMODSongProcessor>();
+                processors.RegisterProcessor<FMODSoundEffectProcessor>();
+            }
 
-        /// <inheritdoc/>
-        public override void RegisterContentProcessors(ContentProcessorRegistry processors)
-        {
-            processors.RegisterProcessor<FMODSongProcessor>();
-            processors.RegisterProcessor<FMODSoundEffectProcessor>();
-
-            base.RegisterContentProcessors(processors);
+            base.Initialize(context, factory);
         }
     }
 }
