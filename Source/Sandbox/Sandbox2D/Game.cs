@@ -203,7 +203,7 @@ namespace Sandbox2D
             {
                 for (int y = 0; y < sizeY; y++)
                 {
-                    //spriteBatch.Draw(tiles[x, y].texture, new Vector2(x * 16, y * 16), Color.White);
+                    spriteBatch.Draw(tiles[x, y].texture, new Vector2(x * 16, y * 16), Color.White);
                 }
             }
 

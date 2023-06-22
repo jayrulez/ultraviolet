@@ -142,6 +142,7 @@
 		<ProjectReference Include="..\..\Sedulous.Presentation.Uvss\Sedulous.Presentation.Uvss.csproj" />
 		<ProjectReference Include="..\..\Sedulous.Presentation\Sedulous.Presentation.csproj" />
 		<ProjectReference Include="..\..\Sedulous.SDL2\Sedulous.SDL2.csproj" />
+		<ProjectReference Include="..\..\Sedulous.Shims.Android.FMOD\Sedulous.Shims.Android.FMOD.csproj" />
 		<ProjectReference Include="..\..\Sedulous.Shims.Android\Sedulous.Shims.Android.csproj" />
 		<ProjectReference Include="..\..\Sedulous\Sedulous.csproj" />
 	</ItemGroup>

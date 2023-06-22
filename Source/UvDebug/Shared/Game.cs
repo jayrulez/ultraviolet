@@ -8,6 +8,7 @@ using Sedulous.BASS;
 using Sedulous.Content;
 using Sedulous.Core;
 using Sedulous.Core.Text;
+using Sedulous.FMOD;
 using Sedulous.FreeType2;
 using Sedulous.Graphics;
 using Sedulous.OpenGL;
@@ -58,7 +59,8 @@ namespace UvDebug
             contextConfig.EnableServiceMode = ShouldRunInServiceMode();
             contextConfig.WatchViewFilesForChanges = ShouldDynamicallyReloadContent();
             contextConfig.Plugins.Add(new OpenGLGraphicsPlugin(graphicsConfig));
-            contextConfig.Plugins.Add(new BASSAudioPlugin());
+            //contextConfig.Plugins.Add(new BASSAudioPlugin());
+            contextConfig.Plugins.Add(new FMODAudioPlugin());
             contextConfig.Plugins.Add(new FreeTypeFontPlugin());
             contextConfig.Plugins.Add(new PresentationFoundationPlugin());
             PopulateConfiguration(contextConfig);
@@ -113,7 +115,7 @@ namespace UvDebug
 
                 this.song = this.content.Load<Song>(GlobalSongID.Sample);
                 this.songPlayer = SongPlayer.Create();
-                //this.songPlayer.Play(this.song);
+                this.songPlayer.Play(this.song);
 
                 this.screenService = new UIScreenService(content);
 
