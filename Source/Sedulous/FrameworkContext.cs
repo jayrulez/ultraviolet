@@ -703,6 +703,48 @@ namespace Sedulous
                 throw new Exception("Context was already initialized.");
 
             OnInitialize();
+            {
+                GetContent().Processors.SetFallbackType<FrameworkFont>(typeof(SpriteFont));
+
+                // Content
+                GetContent().Importers.RegisterImporter<JsonContentImporter>(".json");
+                GetContent().Importers.RegisterImporter<TextContentImporter>(".txt");
+                GetContent().Importers.RegisterImporter<XmlContentImporter>(".xml");
+
+                GetContent().Processors.RegisterProcessor<JsonContentProcessor>();
+                GetContent().Processors.RegisterProcessor<PassthroughContentProcessor>();
+                GetContent().Processors.RegisterProcessor<XmlContentProcessor>();
+
+                GetContent().Processors.RegisterProcessor<CursorCollectionProcessorFromJObject>();
+                GetContent().Processors.RegisterProcessor<CursorCollectionProcessorFromXDocument>();
+
+                // Graphics 2D
+                GetContent().Importers.RegisterImporter<SpriteImporterToJObject>(".jssprite");
+                GetContent().Importers.RegisterImporter<SpriteImporterToXDocument>(".sprite");
+
+                GetContent().Processors.RegisterProcessor<SpriteProcessorFromJObject>();
+                GetContent().Processors.RegisterProcessor<SpriteProcessorFromXDocument>();
+
+                // Graphics 3D
+                GetContent().Importers.RegisterImporter<GlbModelImporter>(".glb");
+                GetContent().Importers.RegisterImporter<GltfModelImporter>(".gltf");
+                GetContent().Importers.RegisterImporter<StlModelImporter>(".stl");
+
+                GetContent().Processors.RegisterProcessor<GltfModelProcessor>();
+                GetContent().Processors.RegisterProcessor<GltfSkinnedModelProcessor>();
+                GetContent().Processors.RegisterProcessor<StlModelProcessor>();
+
+                // Graphics
+                GetContent().Processors.RegisterProcessor<TextureAtlasProcessorFromJObject>();
+                GetContent().Processors.RegisterProcessor<TextureAtlasProcessorFromXDocument>();
+
+                // Curve
+                GetContent().Processors.RegisterProcessor<CurveProcessor>();
+
+                // UI
+                GetContent().Processors.RegisterProcessor<UIPanelDefinitionProcessor>();
+            }
+
             IsInitialized = true;
 
             OnInitialized();
@@ -711,48 +753,10 @@ namespace Sedulous
 
         /// <summary>
         /// Initializes the context and marks it ready for use.
+        /// Responsible for configuring plugins, initializing plugins, and creating subsystems
         /// </summary>
         protected virtual void OnInitialize()
         {
-            GetContent().Processors.SetFallbackType<FrameworkFont>(typeof(SpriteFont));
-
-            // Content
-            GetContent().Importers.RegisterImporter<JsonContentImporter>(".json");
-            GetContent().Importers.RegisterImporter<TextContentImporter>(".txt");
-            GetContent().Importers.RegisterImporter<XmlContentImporter>(".xml");
-
-            GetContent().Processors.RegisterProcessor<JsonContentProcessor>();
-            GetContent().Processors.RegisterProcessor<PassthroughContentProcessor>();
-            GetContent().Processors.RegisterProcessor<XmlContentProcessor>();
-
-            GetContent().Processors.RegisterProcessor<CursorCollectionProcessorFromJObject>();
-            GetContent().Processors.RegisterProcessor<CursorCollectionProcessorFromXDocument>();
-
-            // Graphics 2D
-            GetContent().Importers.RegisterImporter<SpriteImporterToJObject>(".jssprite");
-            GetContent().Importers.RegisterImporter<SpriteImporterToXDocument>(".sprite");
-
-            GetContent().Processors.RegisterProcessor<SpriteProcessorFromJObject>();
-            GetContent().Processors.RegisterProcessor<SpriteProcessorFromXDocument>();
-
-            // Graphics 3D
-            GetContent().Importers.RegisterImporter<GlbModelImporter>(".glb");
-            GetContent().Importers.RegisterImporter<GltfModelImporter>(".gltf");
-            GetContent().Importers.RegisterImporter<StlModelImporter>(".stl");
-
-            GetContent().Processors.RegisterProcessor<GltfModelProcessor>();
-            GetContent().Processors.RegisterProcessor<GltfSkinnedModelProcessor>();
-            GetContent().Processors.RegisterProcessor<StlModelProcessor>();
-
-            // Graphics
-            GetContent().Processors.RegisterProcessor<TextureAtlasProcessorFromJObject>();
-            GetContent().Processors.RegisterProcessor<TextureAtlasProcessorFromXDocument>();
-
-            // Curve
-            GetContent().Processors.RegisterProcessor<CurveProcessor>();
-
-            // UI
-            GetContent().Processors.RegisterProcessor<UIPanelDefinitionProcessor>();
         }
 
         /// <summary>
