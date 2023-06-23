@@ -10,7 +10,7 @@ namespace Sedulous.SDL2.UIKit
 {
     // @interface SDLUIKitDelegate : NSObject <UIApplicationDelegate>
     [BaseType(typeof(UIApplicationDelegate))]
-    public interface SDLUIKitDelegate
+    interface SDLUIKitDelegate
     {
         // +(id)sharedAppDelegate;
         [Static]
@@ -29,7 +29,7 @@ namespace Sedulous.SDL2.UIKit
 
     // @interface SDL_uikitviewcontroller : UIViewController <UITextFieldDelegate>
     [BaseType(typeof(UIViewController))]
-    public interface SDL_uikitviewcontroller : IUITextFieldDelegate
+    interface SDL_uikitviewcontroller : IUITextFieldDelegate
     {
         // -(void)showKeyboard;
         [Export("showKeyboard")]
