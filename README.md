@@ -74,6 +74,14 @@ Sedulous is a fork of the [Ultraviolet framework](https://github.com/tlgkccampbe
 - Removed ViewProviderAssembly config - It is no longer necessary to register factories in view providers by reflection as they are manually registered.
 - Call Interpolate explicitly to avoid reflection (Plane and Ray math types)
 - Support Byte4 vertex format - Graphics/VertexDeclaration.cs (a9a9fa923cb8d65829b9fb8b28ed6aaff933e171)
+- Fix STL model importer: 283c0d901a42549f1f6d7a73d873c8cb954a8005
+- Updated SharpGLTF.Core package to version 1.0.0-alpha0029
+- Added sample projects to repository
+- Updated android projects to remove warnings
+- Updated netstandard2.1 projects to net6.0
+- Fixed BASS crash on Android: 6f2adec05df1a8400e75cb22b23e14c623f2a9bc
+- Don't use git lfs for dependencies
+- Simplified context initialization
 
 
 
