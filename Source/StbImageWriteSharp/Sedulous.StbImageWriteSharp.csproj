@@ -5,7 +5,7 @@
 		<PackageId>Sedulous.StbImageWriteSharp</PackageId>
 		<TargetFramework>net6.0</TargetFramework>
 		<Description>C# port of the stb_image_write.h</Description>
-		<PackageLicenseUrl>Public Domain</PackageLicenseUrl>
+		<!--<PackageLicenseUrl>Public Domain</PackageLicenseUrl>-->
 		<PackageProjectUrl>https://github.com/StbSharp/StbImageWriteSharp</PackageProjectUrl>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<SignAssembly>True</SignAssembly>

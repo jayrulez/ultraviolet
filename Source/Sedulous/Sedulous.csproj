@@ -92,7 +92,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SharpGLTF.Core" Version="1.0.0-alpha0029" />
+    <PackageReference Include="SharpGLTF.Core" Version="1.0.0-alpha0029" NoWarn="NU5104" />
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
     <ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
   </ItemGroup>
