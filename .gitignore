@@ -185,6 +185,4 @@ gen/
 #**/packages/
 /Binaries
 launchSettings.json
-Source/UvDebug/Android/Assets/Content/
-/Samples/Sample12_UPF/Sample12_UPF.Android/Sedulous.Presentation.CompiledExpressions.dll
-/Samples/Sample13_UPFAdvanced/Sample13_UPFAdvanced.Android/Sedulous.Presentation.CompiledExpressions.dll
+Sedulous.Presentation.CompiledExpressions.dll
