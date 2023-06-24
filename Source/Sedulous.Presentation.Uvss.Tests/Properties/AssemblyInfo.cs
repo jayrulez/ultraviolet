@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle(@"UVSS Parser Test Suite")]
+//[assembly: AssemblyTitle(@"UVSS Parser Test Suite")]
 [assembly: AssemblyDescription(
     @"Contains unit tests for the Sedulous Framework's UVSS lexer and parser and their associated types.")]
 

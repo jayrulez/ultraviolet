@@ -1,50 +1,52 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	<TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>Sedulous.Presentation.Uvss.Tests</AssemblyName>
-    <RootNamespace>Sedulous.Presentation.Uvss.Tests</RootNamespace>
-    <PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <!--<EnableDefaultCompileItems>False</EnableDefaultCompileItems>-->
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<AssemblyName>Sedulous.Presentation.Uvss.Tests</AssemblyName>
+		<RootNamespace>Sedulous.Presentation.Uvss.Tests</RootNamespace>
+		<PackageId>$(AssemblyName).$(TargetFramework)</PackageId>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<!--<EnableDefaultCompileItems>False</EnableDefaultCompileItems>-->
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		<GenerateRuntimeConfigDevFile>true</GenerateRuntimeConfigDevFile>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-    <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>..\Sedulous.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  
-  <ItemGroup>
-    <Compile Include="..\Version.cs" Link="Properties\Version.cs" />
-    <!--<Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />-->
-  </ItemGroup>
-  
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DefineConstants>TRACE;NETSTANDARD;DEBUG</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DefineConstants>TRACE;NETSTANDARD;RELEASE</DefineConstants>
-  </PropertyGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="nunit" Version="3.13.3" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="NunitXml.TestLogger" Version="3.0.131" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
-    <ProjectReference Include="..\Sedulous.Presentation.Uvss.TestFramework\Sedulous.Presentation.Uvss.TestFramework.csproj" />
-    <ProjectReference Include="..\Sedulous.Presentation.Uvss\Sedulous.Presentation.Uvss.csproj" />
-    <ProjectReference Include="..\Sedulous.TestFramework\Sedulous.TestFramework.csproj" />
-  </ItemGroup>
-  
-  <!--<Import Project="Sedulous.Presentation.Uvss.Tests.projitems" Label="Shared" />-->
+	<PropertyGroup>
+		<SignAssembly>true</SignAssembly>
+		<DelaySign>false</DelaySign>
+		<AssemblyOriginatorKeyFile>..\Sedulous.snk</AssemblyOriginatorKeyFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\Version.cs" Link="Properties\Version.cs" />
+		<!--<Compile Include="Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />-->
+	</ItemGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DefineConstants>TRACE;NETSTANDARD;DEBUG</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DefineConstants>TRACE;NETSTANDARD;RELEASE</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.2" />
+		<PackageReference Include="nunit" Version="3.13.3" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="NunitXml.TestLogger" Version="3.0.131" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
+		<ProjectReference Include="..\Sedulous.Presentation.Uvss.TestFramework\Sedulous.Presentation.Uvss.TestFramework.csproj" />
+		<ProjectReference Include="..\Sedulous.Presentation.Uvss\Sedulous.Presentation.Uvss.csproj" />
+		<ProjectReference Include="..\Sedulous.TestFramework\Sedulous.TestFramework.csproj" />
+	</ItemGroup>
+
+	<!--<Import Project="Sedulous.Presentation.Uvss.Tests.projitems" Label="Shared" />-->
 
 </Project>

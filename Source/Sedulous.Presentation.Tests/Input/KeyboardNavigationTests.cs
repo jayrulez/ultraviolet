@@ -381,7 +381,8 @@ namespace Sedulous.Presentation.Tests.Input
                 .OnFrameStart(6, app => app.SpoofKeyPress(Scancode.Left, Key.Left, false, false, false))
                 .OnFrameStart(7, app => TheElementWithFocus<Button>(app).ShouldSatisfyTheCondition(x => x.Name == "btn5"))
                 .OnFrameStart(8, app => app.SpoofKeyPress(Scancode.Left, Key.Left, false, false, false))
-                .OnFrameStart(9, app => TheElementWithFocus<Button>(app).ShouldSatisfyTheCondition(x => x.Name == "btnL"));
+                .OnFrameStart(9, app => TheElementWithFocus<Button>(app).ShouldSatisfyTheCondition(x => x.Name == "btnL"))
+                .RunAllFrameActions();
         }
 
         [Test]
@@ -393,7 +394,8 @@ namespace Sedulous.Presentation.Tests.Input
                 .OnFrameStart(2, app => app.SpoofKeyPress(Scancode.Right, Key.Right, false, false, false))
                 .OnFrameStart(3, app => TheElementWithFocus<Button>(app).ShouldSatisfyTheCondition(x => x.Name == "btnR"))
                 .OnFrameStart(4, app => app.SpoofKeyPress(Scancode.Left, Key.Left, false, false, false))
-                .OnFrameStart(5, app => TheElementWithFocus<Button>(app).ShouldSatisfyTheCondition(x => x.Name == "btnL"));
+                .OnFrameStart(5, app => TheElementWithFocus<Button>(app).ShouldSatisfyTheCondition(x => x.Name == "btnL"))
+                .RunAllFrameActions();
         }
     }
 }
