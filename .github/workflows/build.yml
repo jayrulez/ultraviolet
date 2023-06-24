@@ -1,0 +1,42 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths-ignore:
+      - 'Documentation/**'
+      - 'Images/**'
+      - '*.md'
+  pull_request:
+    paths-ignore:
+      - 'Documentation/**'
+      - 'Images/**'
+      - '*.md'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.3
+
+    - name: Install .NET 7.0
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Install .NET 6.0
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Install Workloads
+      run: dotnet workload install android       
+
+    - name: Pack
+      run: dotnet pack Source/Sedulous.sln --configuration Release
