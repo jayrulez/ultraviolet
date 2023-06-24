@@ -49,8 +49,6 @@ namespace Sedulous
 
             this.DeveloperName = developerName;
             this.ApplicationName = applicationName;
-
-            InitializeApplication();
         }
 
         /// <inheritdoc/>
@@ -82,6 +80,8 @@ namespace Sedulous
             InitializeFrameworkContext();
 
             OnInitialized();
+
+            LoadSettings();
 
             OnLoadingContent();
 
@@ -587,11 +587,6 @@ namespace Sedulous
             get;
             set;
         }
-
-        /// <summary>
-        /// Initializes the application's state.
-        /// </summary>
-        partial void InitializeApplication();
 
         /// <summary>
         /// Disposes any platform-specific resources.

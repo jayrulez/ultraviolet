@@ -66,11 +66,7 @@ namespace Sedulous
             this.ApplicationName = applicationName;
         }
 
-        /// <summary>
-        /// Receives a message that has been published to a queue.
-        /// </summary>
-        /// <param name="type">The type of message that was received.</param>
-        /// <param name="data">The data for the message that was received.</param>
+        /// <inheritdoc/>
         void IMessageSubscriber<FrameworkMessageID>.ReceiveMessage(FrameworkMessageID type, MessageData data)
         {
             OnReceivedMessage(type, data);
@@ -697,6 +693,7 @@ namespace Sedulous
         protected void PopulateConfiguration(FrameworkConfiguration configuration)
         {
             Contract.Require(configuration, nameof(configuration));
+            PopulateConfigurationFromSettings(configuration);
         }
 
         /// <summary>
@@ -765,10 +762,7 @@ namespace Sedulous
 
             context.Initialize();
 
-            if (this.settings != null)
-            {
-                this.settings.Apply(context);
-            }
+            ApplySettings();
 
             this.timingLogic = CreateTimingLogic();
             if (this.timingLogic == null)
@@ -847,11 +841,33 @@ namespace Sedulous
                 if (!PreserveApplicationSettings)
                     return;
 
-                var path = Path.Combine(GetLocalApplicationSettingsDirectory(), "SedulousSettings.xml");
+                var directory = GetLocalApplicationSettingsDirectory();
+                var path = Path.Combine(directory, "SedulousSettings.xml");
 
                 this.settings = FrameworkApplicationSettings.FromCurrentSettings(FrameworkContext);
                 FrameworkApplicationSettings.Save(path, settings);
             }
+        }
+
+        /// <summary>
+        /// Applies the application's settings.
+        /// </summary>
+        private void ApplySettings()
+        {
+            lock (stateSyncObject)
+            {
+                if (this.settings == null)
+                    return;
+
+                this.settings.Apply(context);
+            }
+        }
+
+        /// <summary>
+        /// Populates the Sedulous configuration from the application settings.
+        /// </summary>
+        private void PopulateConfigurationFromSettings(FrameworkConfiguration configuration)
+        {
         }
 
         /// <summary>
