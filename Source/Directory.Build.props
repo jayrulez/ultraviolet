@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<RepoRootPath>$(MSBuildThisFileDirectory)</RepoRootPath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<RepositoryUrl>https://github.com/jayrulez/Sedulous</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<LangVersion>latest</LangVersion>
+		<!-- Local builds should embed PDBs so we never lose them when a subsequent build occurs. -->
+		<DebugType Condition=" '$(CI)' != 'true' and '$(TF_BUILD)' != 'true' ">embedded</DebugType>
+		<Features>strict</Features>
+		<AnalysisLevel>preview</AnalysisLevel>
+		<RestoreConfigFile>$(MSBuildThisFileDirectory)NuGet.config</RestoreConfigFile>
+		<SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+	</PropertyGroup>
+
+	<!-- TODO: Enable as it safes from overflow issues-->
+	<!--
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+	</PropertyGroup>
+	-->
+
+	<PropertyGroup>
+		<Product>Sedulous</Product>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
+		<PackageOutputPath>$(MSBuildThisFileDirectory)artifacts/</PackageOutputPath>
+		<ContinuousIntegrationBuild Condition="'$(GITHUB_RUN_ID)' != ''">true</ContinuousIntegrationBuild>
+	</PropertyGroup>
+
+</Project>
