@@ -306,9 +306,9 @@ namespace Sedulous.Windows.Forms
         /// <summary>
         /// Creates the Framework host timing logic for this host process.
         /// </summary>
-        protected virtual IFrameworkHostTimingLogic CreateTimingLogic()
+        protected virtual IFrameworkTimingLogic CreateTimingLogic()
         {
-            var timingLogic = new FrameworkHostTimingLogic(this);
+            var timingLogic = new FrameworkTimingLogic(this);
             timingLogic.IsFixedTimeStep = this.IsFixedTimeStep;
             timingLogic.TargetElapsedTime = this.TargetElapsedTime;
             timingLogic.InactiveSleepTime = this.InactiveSleepTime;
@@ -360,11 +360,11 @@ namespace Sedulous.Windows.Forms
 
         // The Framework context.
         private FrameworkContext context;
-        private IFrameworkHostTimingLogic timingLogic;
+        private IFrameworkTimingLogic timingLogic;
 
         // The application's tick state.
-        private Boolean isFixedTimeStep = FrameworkHostTimingLogic.DefaultIsFixedTimeStep;
-        private TimeSpan targetElapsedTime = FrameworkHostTimingLogic.DefaultTargetElapsedTime;
-        private TimeSpan inactiveSleepTime = FrameworkHostTimingLogic.DefaultInactiveSleepTime;
+        private Boolean isFixedTimeStep = FrameworkTimingLogic.DefaultIsFixedTimeStep;
+        private TimeSpan targetElapsedTime = FrameworkTimingLogic.DefaultTargetElapsedTime;
+        private TimeSpan inactiveSleepTime = FrameworkTimingLogic.DefaultInactiveSleepTime;
     }
 }

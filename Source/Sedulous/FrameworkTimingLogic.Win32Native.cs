@@ -2,7 +2,7 @@
 
 namespace Sedulous
 {
-    partial class FrameworkHostTimingLogic
+    partial class FrameworkTimingLogic
     {
         private static class Win32Native
         {

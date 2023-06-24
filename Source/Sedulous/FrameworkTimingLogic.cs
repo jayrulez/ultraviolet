@@ -8,13 +8,13 @@ namespace Sedulous
     /// <summary>
     /// Contains core functionality for Sedulous host processes.
     /// </summary>
-    public sealed partial class FrameworkHostTimingLogic : IFrameworkHostTimingLogic
+    public sealed partial class FrameworkTimingLogic : IFrameworkTimingLogic
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FrameworkHostTimingLogic"/> class.
+        /// Initializes a new instance of the <see cref="FrameworkTimingLogic"/> class.
         /// </summary>
         /// <param name="host">The Sedulous host.</param>
-        public FrameworkHostTimingLogic(IFrameworkHost host)
+        public FrameworkTimingLogic(IFrameworkHost host)
         {
             Contract.Require(host, nameof(host));
 
@@ -66,16 +66,16 @@ namespace Sedulous
             if (accumulatedElapsedTime > MaxElapsedTime.Ticks)
                 accumulatedElapsedTime = MaxElapsedTime.Ticks;
 
-            var gameTicksToRun = 0;
+            var ticksToRun = 0;
             var timeDeltaDraw = default(TimeSpan);
             var timeDeltaUpdate = default(TimeSpan);
 
             if (IsFixedTimeStep)
             {
-                gameTicksToRun = (Int32)(accumulatedElapsedTime / TargetElapsedTime.Ticks);
-                if (gameTicksToRun > 0)
+                ticksToRun = (Int32)(accumulatedElapsedTime / TargetElapsedTime.Ticks);
+                if (ticksToRun > 0)
                 {
-                    lagFrames += (gameTicksToRun == 1) ? -1 : Math.Max(0, gameTicksToRun - 1);
+                    lagFrames += (ticksToRun == 1) ? -1 : Math.Max(0, ticksToRun - 1);
 
                     if (lagFrames == 0)
                         runningSlowly = false;
@@ -83,8 +83,8 @@ namespace Sedulous
                         runningSlowly = true;
 
                     timeDeltaUpdate = TargetElapsedTime;
-                    timeDeltaDraw = TimeSpan.FromTicks(gameTicksToRun * TargetElapsedTime.Ticks);
-                    accumulatedElapsedTime -= gameTicksToRun * TargetElapsedTime.Ticks;
+                    timeDeltaDraw = TimeSpan.FromTicks(ticksToRun * TargetElapsedTime.Ticks);
+                    accumulatedElapsedTime -= ticksToRun * TargetElapsedTime.Ticks;
                 }
                 else
                 {
@@ -98,7 +98,7 @@ namespace Sedulous
             }
             else
             {
-                gameTicksToRun = 1;
+                ticksToRun = 1;
                 if (forceElapsedTimeToZero)
                 {
                     timeDeltaUpdate = TimeSpan.Zero;
@@ -113,12 +113,12 @@ namespace Sedulous
                 runningSlowly = false;
             }
 
-            if (gameTicksToRun == 0)
+            if (ticksToRun == 0)
                 return;
 
             context.HandleFrameStart();
 
-            for (var i = 0; i < gameTicksToRun; i++)
+            for (var i = 0; i < ticksToRun; i++)
             {
                 var updateTime = timeTrackerUpdate.Increment(timeDeltaUpdate, runningSlowly);
                 if (!UpdateContext(context, updateTime))

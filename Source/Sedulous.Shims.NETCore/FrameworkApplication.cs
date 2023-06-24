@@ -474,9 +474,9 @@ namespace Sedulous
         /// <summary>
         /// Creates the timing logic for this host process.
         /// </summary>
-        protected virtual IFrameworkHostTimingLogic CreateTimingLogic()
+        protected virtual IFrameworkTimingLogic CreateTimingLogic()
         {
-            var timingLogic = new FrameworkHostTimingLogic(this);
+            var timingLogic = new FrameworkTimingLogic(this);
             timingLogic.IsFixedTimeStep = this.IsFixedTimeStep;
             timingLogic.TargetElapsedTime = this.TargetElapsedTime;
             timingLogic.InactiveSleepTime = this.InactiveSleepTime;
@@ -815,7 +815,7 @@ namespace Sedulous
 
         // State values.
         private readonly Object stateSyncObject = new Object();
-        private IFrameworkHostTimingLogic timingLogic;
+        private IFrameworkTimingLogic timingLogic;
         private Boolean created;
         private Boolean running;
         private Boolean suspended;
@@ -823,9 +823,9 @@ namespace Sedulous
         private IFrameworkWindow primary;
 
         // The application's tick state.
-        private Boolean isFixedTimeStep = FrameworkHostTimingLogic.DefaultIsFixedTimeStep;
-        private TimeSpan targetElapsedTime = FrameworkHostTimingLogic.DefaultTargetElapsedTime;
-        private TimeSpan inactiveSleepTime = FrameworkHostTimingLogic.DefaultInactiveSleepTime;
+        private Boolean isFixedTimeStep = FrameworkTimingLogic.DefaultIsFixedTimeStep;
+        private TimeSpan targetElapsedTime = FrameworkTimingLogic.DefaultTargetElapsedTime;
+        private TimeSpan inactiveSleepTime = FrameworkTimingLogic.DefaultInactiveSleepTime;
 
         // The application's settings.
         private FrameworkApplicationSettings settings;

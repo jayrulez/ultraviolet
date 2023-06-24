@@ -5,7 +5,7 @@ namespace Sedulous
     /// <summary>
     /// Represents an interface which provides the logic for an Sedulous host's core timing loop.
     /// </summary>
-    public interface IFrameworkHostTimingLogic : IFrameworkComponent
+    public interface IFrameworkTimingLogic : IFrameworkComponent
     {
         /// <summary>
         /// Resets the timers used to determine how much time has passed since the last calls
