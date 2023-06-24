@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Xml;
 using Sedulous.Content;
 using Sedulous.Core;
 using Sedulous.Core.Messages;
@@ -680,25 +681,76 @@ namespace Sedulous
             }
         }
 
+
         /// <summary>
         /// Loads the application's settings.
         /// </summary>
-        partial void LoadSettings();
+        private void LoadSettings()
+        {
+            lock (stateSyncObject)
+            {
+                if (!PreserveApplicationSettings)
+                    return;
+
+                var directory = GetLocalApplicationSettingsDirectory();
+                var path = Path.Combine(directory, "SedulousSettings.xml");
+
+                try
+                {
+                    var settings = FrameworkApplicationSettings.Load(path);
+                    if (settings == null)
+                        return;
+
+                    this.settings = settings;
+                }
+                catch (FileNotFoundException) { }
+                catch (DirectoryNotFoundException) { }
+                catch (XmlException) { }
+            }
+        }
 
         /// <summary>
         /// Saves the application's settings.
         /// </summary>
-        partial void SaveSettings();
+        private void SaveSettings()
+        {
+            lock (stateSyncObject)
+            {
+                if (!PreserveApplicationSettings)
+                    return;
+
+                var directory = GetLocalApplicationSettingsDirectory();
+                var path = Path.Combine(directory, "SedulousSettings.xml");
+
+                this.settings = FrameworkApplicationSettings.FromCurrentSettings(FrameworkContext);
+                FrameworkApplicationSettings.Save(path, settings);
+            }
+        }
 
         /// <summary>
         /// Applies the application's settings.
         /// </summary>
-        partial void ApplySettings();
+        private void ApplySettings()
+        {
+            lock (stateSyncObject)
+            {
+                if (this.settings == null)
+                    return;
+
+                this.settings.Apply(context);
+            }
+        }
 
         /// <summary>
         /// Populates the Sedulous configuration from the application settings.
         /// </summary>
-        partial void PopulateConfigurationFromSettings(FrameworkConfiguration configuration);
+        private void PopulateConfigurationFromSettings(FrameworkConfiguration configuration)
+        {
+            if (this.settings?.Window != null)
+            {
+                configuration.InitialWindowPosition = this.settings.Window.WindowedPosition;
+            }
+        }
 
         /// <summary>
         /// Handles the Sedulous window manager's PrimaryWindowChanging event.
@@ -779,5 +831,8 @@ namespace Sedulous
         private Boolean isFixedTimeStep = FrameworkHostTimingLogic.DefaultIsFixedTimeStep;
         private TimeSpan targetElapsedTime = FrameworkHostTimingLogic.DefaultTargetElapsedTime;
         private TimeSpan inactiveSleepTime = FrameworkHostTimingLogic.DefaultInactiveSleepTime;
+
+        // The application's settings.
+        private FrameworkApplicationSettings settings;
     }
 }
