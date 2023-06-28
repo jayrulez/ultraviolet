@@ -184,5 +184,6 @@ gen/
 /Samples/Version.cs
 #**/packages/
 /Binaries
+/Source/artifacts
 launchSettings.json
 Sedulous.Presentation.CompiledExpressions.dll
