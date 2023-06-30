@@ -9,7 +9,7 @@ using Sedulous.Platform;
 namespace Sedulous.Content
 {
     /// <summary>
-    /// Represents a file or directory in an Sedulous content archive.
+    /// Represents a file or directory in a content archive.
     /// </summary>
     public sealed class ContentArchiveNode : FileSourceNode
     {

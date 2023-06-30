@@ -75,42 +75,42 @@ namespace Sedulous.Platform
         }
 
         /// <inheritdoc/>
-        public event SedulousWindowInfoEventHandler WindowCreated
+        public event FrameworkWindowInfoEventHandler WindowCreated
         {
             add { }
             remove { }
         }
 
         /// <inheritdoc/>
-        public event SedulousWindowInfoEventHandler WindowDestroyed
+        public event FrameworkWindowInfoEventHandler WindowDestroyed
         {
             add { }
             remove { }
         }
 
         /// <inheritdoc/>
-        public event SedulousWindowInfoEventHandler PrimaryWindowChanging
+        public event FrameworkWindowInfoEventHandler PrimaryWindowChanging
         {
             add { }
             remove { }
         }
 
         /// <inheritdoc/>
-        public event SedulousWindowInfoEventHandler PrimaryWindowChanged
+        public event FrameworkWindowInfoEventHandler PrimaryWindowChanged
         {
             add { }
             remove { }
         }
 
         /// <inheritdoc/>
-        public event SedulousWindowInfoEventHandler CurrentWindowChanging
+        public event FrameworkWindowInfoEventHandler CurrentWindowChanging
         {
             add { }
             remove { }
         }
 
         /// <inheritdoc/>
-        public event SedulousWindowInfoEventHandler CurrentWindowChanged
+        public event FrameworkWindowInfoEventHandler CurrentWindowChanged
         {
             add { }
             remove { }

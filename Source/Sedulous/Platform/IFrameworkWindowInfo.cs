@@ -7,7 +7,7 @@ namespace Sedulous.Platform
     /// Represents an event that occurs when Sedulous updates its window information.
     /// </summary>
     /// <param name="window">The window that was updated.</param>
-    public delegate void SedulousWindowInfoEventHandler(IFrameworkWindow window);
+    public delegate void FrameworkWindowInfoEventHandler(IFrameworkWindow window);
 
     /// <summary>
     /// Provides access to information concerning the context's attached windows.
@@ -83,31 +83,31 @@ namespace Sedulous.Platform
         /// <summary>
         /// Occurs after a window has been created.
         /// </summary>
-        event SedulousWindowInfoEventHandler WindowCreated;
+        event FrameworkWindowInfoEventHandler WindowCreated;
 
         /// <summary>
         /// Occurs when a window is about to be destroyed.
         /// </summary>
-        event SedulousWindowInfoEventHandler WindowDestroyed;
+        event FrameworkWindowInfoEventHandler WindowDestroyed;
 
         /// <summary>
         /// Occurs when the primary window is about to change.
         /// </summary>
-        event SedulousWindowInfoEventHandler PrimaryWindowChanging;
+        event FrameworkWindowInfoEventHandler PrimaryWindowChanging;
 
         /// <summary>
         /// Occurs when the primary window changes.
         /// </summary>
-        event SedulousWindowInfoEventHandler PrimaryWindowChanged;
+        event FrameworkWindowInfoEventHandler PrimaryWindowChanged;
 
         /// <summary>
         /// Occurs when the current window is about to change.
         /// </summary>
-        event SedulousWindowInfoEventHandler CurrentWindowChanging;
+        event FrameworkWindowInfoEventHandler CurrentWindowChanging;
 
         /// <summary>
         /// Occurs when the current window changes.
         /// </summary>
-        event SedulousWindowInfoEventHandler CurrentWindowChanged;
+        event FrameworkWindowInfoEventHandler CurrentWindowChanged;
     }
 }

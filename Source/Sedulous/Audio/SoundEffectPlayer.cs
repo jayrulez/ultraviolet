@@ -5,7 +5,7 @@ namespace Sedulous.Audio
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="SoundEffectPlayer"/> class.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <returns>The instance of <see cref="SoundEffectPlayer"/> that was created.</returns>
     public delegate SoundEffectPlayer SoundEffectPlayerFactory(FrameworkContext context);
 
@@ -17,7 +17,7 @@ namespace Sedulous.Audio
         /// <summary>
         /// Initializes a new instance of the <see cref="SoundEffectPlayer"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         protected SoundEffectPlayer(FrameworkContext context)
             : base(context)
         {

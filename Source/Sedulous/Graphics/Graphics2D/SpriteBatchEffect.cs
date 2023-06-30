@@ -5,7 +5,7 @@ namespace Sedulous.Graphics.Graphics2D
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="SpriteBatchEffect"/> class.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <returns>The instance of <see cref="SpriteBatchEffect"/> that was created.</returns>
     public delegate SpriteBatchEffect SpriteBatchEffectFactory(FrameworkContext context);
 

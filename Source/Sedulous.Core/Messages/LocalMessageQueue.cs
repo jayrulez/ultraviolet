@@ -102,7 +102,7 @@ namespace Sedulous.Core.Messages
                 {
                     foreach (var enqueuedMessage in queue)
                     {
-                        if (enqueuedMessage.Type.Equals(type))
+                        if (enqueuedMessage.Type.Equals(type)) // todo: sedulous should this condition be negated, need to test
                             continue;
 
                         var merged = data.EvaluateMerge(enqueuedMessage.Data);

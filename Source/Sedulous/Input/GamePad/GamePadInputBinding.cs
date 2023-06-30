@@ -14,7 +14,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="GamePadInputBinding"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="element">The XML element that contains the binding data.</param>
         internal GamePadInputBinding(FrameworkContext context, XElement element)
         {
@@ -31,7 +31,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="GamePadInputBinding"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="playerIndex">The index of the player for which to create the binding.</param>
         /// <param name="button">A <see cref="GamePadButton"/> value representing the binding's primary button.</param>
         public GamePadInputBinding(FrameworkContext context, Int32 playerIndex, GamePadButton button)

@@ -16,7 +16,7 @@ namespace Sedulous.UI
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="UIView"/> class.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="uiPanel">The <see cref="UIPanel"/> that is creating the view.</param>
     /// <param name="uiPanelDefinition">The <see cref="UIPanelDefinition"/> that defines the view's containing panel.</param>
     /// <param name="vmfactory">A view model factory which is used to create the view's initial view model, or <see langword="null"/> to skip view model creation.</param>
@@ -31,7 +31,7 @@ namespace Sedulous.UI
         /// <summary>
         /// Initializes a new instance of the <see cref="UIView"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="panel">The panel that owns the view.</param>
         /// <param name="viewModelType">The view's associated view model type.</param>
         public UIView(FrameworkContext context, UIPanel panel, Type viewModelType)

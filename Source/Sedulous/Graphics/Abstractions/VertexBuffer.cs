@@ -6,7 +6,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="VertexBuffer"/> class.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="vdecl">The vertex declaration for the buffer.</param>
     /// <param name="vcount">The number of vertices in the buffer.</param>
     /// <returns>The instance of <see cref="VertexBuffer"/> that was created.</returns>
@@ -20,7 +20,7 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="VertexBuffer"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="vdecl">The vertex declaration for the buffer.</param>
         /// <param name="vcount">The number of vertices in the buffer.</param>
         protected VertexBuffer(FrameworkContext context, VertexDeclaration vdecl, Int32 vcount)

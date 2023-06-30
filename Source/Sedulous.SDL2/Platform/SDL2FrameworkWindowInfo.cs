@@ -292,32 +292,32 @@ namespace Sedulous.SDL2.Platform
         /// <summary>
         /// Occurs after a window has been created.
         /// </summary>
-        public event SedulousWindowInfoEventHandler WindowCreated;
+        public event FrameworkWindowInfoEventHandler WindowCreated;
 
         /// <summary>
         /// Occurs when a window is about to be destroyed.
         /// </summary>
-        public event SedulousWindowInfoEventHandler WindowDestroyed;
+        public event FrameworkWindowInfoEventHandler WindowDestroyed;
 
         /// <summary>
         /// Occurs when the primary window is about to change.
         /// </summary>
-        public event SedulousWindowInfoEventHandler PrimaryWindowChanging;
+        public event FrameworkWindowInfoEventHandler PrimaryWindowChanging;
 
         /// <summary>
         /// Occurs when the primary window changes.
         /// </summary>
-        public event SedulousWindowInfoEventHandler PrimaryWindowChanged;
+        public event FrameworkWindowInfoEventHandler PrimaryWindowChanged;
 
         /// <summary>
         /// Occurs when the current window is about to change.
         /// </summary>
-        public event SedulousWindowInfoEventHandler CurrentWindowChanged;
+        public event FrameworkWindowInfoEventHandler CurrentWindowChanged;
 
         /// <summary>
         /// Occurs when the current window changes.
         /// </summary>
-        public event SedulousWindowInfoEventHandler CurrentWindowChanging;
+        public event FrameworkWindowInfoEventHandler CurrentWindowChanging;
 
         /// <summary>
         /// Initializes the context's primary window.

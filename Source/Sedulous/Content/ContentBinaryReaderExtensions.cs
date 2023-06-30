@@ -10,7 +10,7 @@ namespace Sedulous.Content
     {
         /// <summary>
         /// Reads an asset identifier from the stream using the content manifest registry
-        /// belonging to the current Sedulous context.
+        /// belonging to the current Framework context.
         /// </summary>
         /// <param name="reader">The binary reader from which to read the asset identifier.</param>
         /// <returns>An instance of the <see cref="AssetID"/> structure representing the 
@@ -24,7 +24,7 @@ namespace Sedulous.Content
 
         /// <summary>
         /// Reads a nullable asset identifier from the stream using the content manifest registry
-        /// belonging to the current Sedulous context.
+        /// belonging to the current Framework context.
         /// </summary>
         /// <param name="reader">The binary reader from which to read the asset identifier.</param>
         /// <returns>An instance of the <see cref="System.Nullable{AssetID}"/> structure representing the 

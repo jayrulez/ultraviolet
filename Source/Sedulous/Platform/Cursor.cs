@@ -7,7 +7,7 @@ namespace Sedulous
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Cursor"/> class.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="surface">The surface that contains the cursor image.</param>
     /// <param name="hx">The x-coordinate of the cursor's hotspot.</param>
     /// <param name="hy">The y-coordinate of the cursor's hotspot.</param>
@@ -22,7 +22,7 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="Cursor"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         public Cursor(FrameworkContext context)
             : base(context)
         {

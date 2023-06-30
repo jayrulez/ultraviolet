@@ -6,7 +6,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="DynamicIndexBuffer"/> class.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="itype">The index element type.</param>
     /// <param name="icount">The index element count.</param>
     /// <returns>The instance of <see cref="DynamicIndexBuffer"/> that was created.</returns>
@@ -20,7 +20,7 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicIndexBuffer"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="itype">The index element type.</param>
         /// <param name="icount">The index element count.</param>
         public DynamicIndexBuffer(FrameworkContext context, IndexBufferElementType itype, Int32 icount)

@@ -12,7 +12,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="InputDevice{T}"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         internal InputDevice(FrameworkContext context)
             : base(context)
         {

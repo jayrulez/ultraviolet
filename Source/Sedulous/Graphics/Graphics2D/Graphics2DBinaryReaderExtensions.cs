@@ -12,7 +12,7 @@ namespace Sedulous.Graphics.Graphics2D
     {
         /// <summary>
         /// Reads a sprite animation identifier from the stream using the content manifest registry
-        /// belonging to the current Sedulous context.
+        /// belonging to the current Framework context.
         /// </summary>
         /// <param name="reader">The <see cref="BinaryReader"/> which to read the sprite animation identifier.</param>
         /// <returns>The <see cref="SpriteAnimationID"/> that was read from the stream.</returns>
@@ -25,7 +25,7 @@ namespace Sedulous.Graphics.Graphics2D
 
         /// <summary>
         /// Reads a nullable asset identifier from the stream using the content manifest registry
-        /// belonging to the current Sedulous context.
+        /// belonging to the current Framework context.
         /// </summary>
         /// <param name="reader">The <see cref="BinaryReader"/> from which to read the sprite animation identifier.</param>
         /// <returns>The <see cref="Nullable{SpriteAnimationID}"/> identifier that was read from the stream.</returns>

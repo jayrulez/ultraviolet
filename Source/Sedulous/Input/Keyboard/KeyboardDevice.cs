@@ -47,7 +47,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyboardDevice"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         public KeyboardDevice(FrameworkContext context)
             : base(context)
         {

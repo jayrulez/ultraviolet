@@ -6,7 +6,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="DynamicTextureAtlas"/> class.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="width">The width of the texture atlas in pixels.</param>
     /// <param name="height">The height of the texture atlas in pixels.</param>
     /// <param name="spacing">The number of pixels between cells on the texture atlas.</param>
@@ -22,7 +22,7 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicTextureAtlas"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="width">The width of the texture atlas in pixels.</param>
         /// <param name="height">The height of the texture atlas in pixels.</param>
         /// <param name="spacing">The number of pixels between cells on the texture atlas.</param>

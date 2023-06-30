@@ -13,7 +13,7 @@ namespace Sedulous
         /// This method should be called by the Graphics subsystem after it has performed any preliminary configuration for the 
         /// underlying rendering API which must be done prior to window creation.
         /// </summary>
-        /// <param name="configuration">The configuration settings for the Sedulous context.</param>
+        /// <param name="configuration">The configuration settings for the Framework context.</param>
         void InitializePrimaryWindow(FrameworkConfiguration configuration);
 
         /// <summary>

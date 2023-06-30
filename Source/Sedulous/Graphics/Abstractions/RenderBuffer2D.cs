@@ -5,7 +5,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="RenderBuffer2D"/> class.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="format">The render buffer's format.</param>
     /// <param name="width">The render buffer's width in pixels.</param>
     /// <param name="height">The render buffer's height in pixels.</param>
@@ -21,7 +21,7 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderBuffer2D"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         public RenderBuffer2D(FrameworkContext context)
             : base(context)
         {

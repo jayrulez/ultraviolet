@@ -30,7 +30,7 @@ namespace Sedulous.Content
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentManager"/> class with the specified root directory.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="rootDirectory">The content manager's root directory.</param>
         private ContentManager(FrameworkContext context, String rootDirectory)
             : base(context)

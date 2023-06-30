@@ -11,7 +11,7 @@ namespace Sedulous.Audio
         /// <summary>
         /// Initializes a new instance of the <see cref="SoundEffect"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         protected SoundEffect(FrameworkContext context)
             : base(context)
         {

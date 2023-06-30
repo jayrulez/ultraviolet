@@ -5,9 +5,9 @@ using Sedulous.Graphics;
 namespace Sedulous
 {
     /// <summary>
-    /// Initializes a new instance of the ISedulousGraphics implementation.
+    /// Initializes a new instance of the IGraphicsSubsystem implementation.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="configuration">The Sedulous Framework configuration settings for the current context.</param>
     public delegate IGraphicsSubsystem FrameworkGraphicsFactory(FrameworkContext context, FrameworkConfiguration configuration);
 

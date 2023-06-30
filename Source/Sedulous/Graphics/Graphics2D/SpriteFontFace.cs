@@ -15,7 +15,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteFontFace"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="texture">The texture that contains the glyph images.</param>
         /// <param name="regions">A collection containing the font face's character regions.</param>
         /// <param name="glyphs">A collection containing the positions of the font's glyphs.</param>
@@ -31,7 +31,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteFontFace"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="texture">The texture that contains the font face's glyphs.</param>
         /// <param name="regions">A collection containing the font face's character regions.</param>
         /// <param name="glyphs">A collection containing the positions of the font face's glyphs on its texture.</param>
@@ -48,7 +48,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteFontFace"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="texture">The texture that contains the font face's glyphs.</param>
         /// <param name="regions">A collection containing the font face's character regions.</param>
         /// <param name="glyphs">A collection containing the positions of the font face's glyphs on its texture.</param>

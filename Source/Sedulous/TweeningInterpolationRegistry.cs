@@ -18,7 +18,7 @@ namespace Sedulous
     public delegate T Interpolator<T>(T valueStart, T valueEnd, EasingFunction fn, Single t);
 
     /// <summary>
-    /// Represents the registry of interpolation methods used by the Sedulous tweening system.
+    /// Represents the registry of interpolation methods used by the tweening system.
     /// </summary>
     public sealed class TweeningInterpolationRegistry
     {

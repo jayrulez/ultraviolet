@@ -15,7 +15,7 @@ namespace Sedulous.Content
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentDependencyManager"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="contentManager">The content manager that owns this dependency manager.</param>
         internal ContentDependencyManager(FrameworkContext context, ContentManager contentManager)
             : base(context)

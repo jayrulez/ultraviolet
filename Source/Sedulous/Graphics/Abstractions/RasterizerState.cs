@@ -6,7 +6,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="RasterizerState"/> class.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <returns>The instance of <see cref="RasterizerState"/> that was created.</returns>
     public delegate RasterizerState RasterizerStateFactory(FrameworkContext context);
 
@@ -26,7 +26,7 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="RasterizerState"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         protected RasterizerState(FrameworkContext context)
             : base(context)
         {

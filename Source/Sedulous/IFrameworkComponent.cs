@@ -2,12 +2,12 @@
 namespace Sedulous
 {
     /// <summary>
-    /// Represents an application component which participates in an Sedulous context.
+    /// Represents an application component which participates in an Framework context.
     /// </summary>
     public interface IFrameworkComponent
     {
         /// <summary>
-        /// Gets the Sedulous context.
+        /// Gets the Framework context.
         /// </summary>
         FrameworkContext FrameworkContext { get; }
     }

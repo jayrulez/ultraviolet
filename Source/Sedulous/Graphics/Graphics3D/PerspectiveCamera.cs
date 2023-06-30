@@ -11,7 +11,7 @@ namespace Sedulous.Graphics.Graphics3D
         /// <summary>
         /// Initializes a new instance of the <see cref="PerspectiveCamera"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         private PerspectiveCamera(FrameworkContext context)
             : base(context)
         {

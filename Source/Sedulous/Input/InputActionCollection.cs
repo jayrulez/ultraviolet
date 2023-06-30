@@ -18,7 +18,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="InputActionCollection"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         protected InputActionCollection(FrameworkContext context)
             : base(context)
         {

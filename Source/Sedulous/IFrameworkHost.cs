@@ -13,7 +13,7 @@ namespace Sedulous
         void Exit();
 
         /// <summary>
-        /// Gets the Sedulous context.
+        /// Gets the Framework context.
         /// </summary>
         FrameworkContext FrameworkContext
         {

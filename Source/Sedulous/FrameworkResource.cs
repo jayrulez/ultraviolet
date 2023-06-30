@@ -11,7 +11,7 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameworkResource"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         protected FrameworkResource(FrameworkContext context)
         {
             Contract.Require(context, nameof(context));
@@ -29,7 +29,7 @@ namespace Sedulous
         }
 
         /// <summary>
-        /// Gets the Sedulous context.
+        /// Gets the Framework context.
         /// </summary>
         public FrameworkContext FrameworkContext
         {

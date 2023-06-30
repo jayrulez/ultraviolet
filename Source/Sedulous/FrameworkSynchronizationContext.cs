@@ -8,14 +8,14 @@ namespace Sedulous
 {
     /// <summary>
     /// Represents a custom synchronization context which marshalls asynchronous
-    /// calls onto the main Sedulous context thread.
+    /// calls onto the main Framework context thread.
     /// </summary>
     public sealed class FrameworkSynchronizationContext : SynchronizationContext
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameworkSynchronizationContext"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         internal FrameworkSynchronizationContext(FrameworkContext context)
         {
             Contract.Require(context, nameof(context));
@@ -69,7 +69,7 @@ namespace Sedulous
         }
 
         /// <summary>
-        /// Gets the Sedulous context associated with this synchronization context.
+        /// Gets the Framework context associated with this synchronization context.
         /// </summary>
         public FrameworkContext FrameworkContext { get; }
 

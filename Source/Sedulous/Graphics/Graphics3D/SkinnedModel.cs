@@ -10,7 +10,7 @@ namespace Sedulous.Graphics.Graphics3D
         /// <summary>
         /// Initializes a new instance of the <see cref="SkinnedModel"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="scenes">The model's list of scenes.</param>
         /// <param name="textures">The model's list of textures.</param>
         /// <param name="skins">The model's list of skins.</param>

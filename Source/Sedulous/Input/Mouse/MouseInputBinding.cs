@@ -15,7 +15,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseInputBinding"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="element">The XML element that contains the binding data.</param>
         internal MouseInputBinding(FrameworkContext context, XElement element)
         {
@@ -34,7 +34,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseInputBinding"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="button">The <see cref="MouseButton"/> value that represents the binding's primary button.</param>
         public MouseInputBinding(FrameworkContext context, MouseButton button)
         {
@@ -54,7 +54,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseInputBinding"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="button">The <see cref="MouseButton"/> value that represents the binding's primary button.</param>
         /// <param name="control">A value indicating whether the binding requires the Control modifier.</param>
         /// <param name="alt">A value indicating whether the binding requires the Alt modifier.</param>

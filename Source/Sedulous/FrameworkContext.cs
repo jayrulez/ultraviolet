@@ -21,36 +21,36 @@ namespace Sedulous
     /// <summary>
     /// Represents a callback that is invoked when the Sedulous Framework logs a debug message.
     /// </summary>
-    /// <param name="context">The Sedulous Context that logged the message.</param>
+    /// <param name="context">The Framework context that logged the message.</param>
     /// <param name="level">A <see cref="DebugLevels"/> value representing the debug level of the message.</param>
     /// <param name="message">The debug message text.</param>
     public delegate void DebugCallback(FrameworkContext context, DebugLevels level, String message);
 
     /// <summary>
-    /// Represents a method that is called in response to an Sedulous context event.
+    /// Represents a method that is called in response to an Framework context event.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     public delegate void FrameworkContextEventHandler(FrameworkContext context);
 
     /// <summary>
-    /// Represents the method that is called when an Sedulous context is about to draw the current scene.
+    /// Represents the method that is called when an Framework context is about to draw the current scene.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
     public delegate void FrameworkContextDrawEventHandler(FrameworkContext context, FrameworkTime time);
 
     /// <summary>
-    /// Represents the method that is called when an Sedulous context has drawn or is about to draw a particular window.
+    /// Represents the method that is called when an Framework context has drawn or is about to draw a particular window.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
     /// <param name="window">The window that was drawn or is about to be drawn.</param>
     public delegate void FrameworkContextWindowDrawEventHandler(FrameworkContext context, FrameworkTime time, IFrameworkWindow window);
 
     /// <summary>
-    /// Represents the method that is called when an Sedulous context updates the application state.
+    /// Represents the method that is called when an Framework context updates the application state.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Update(FrameworkTime)"/>.</param>
     public delegate void FrameworkContextUpdateEventHandler(FrameworkContext context, FrameworkTime time);
 
@@ -66,7 +66,7 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="FrameworkContext"/> class.
         /// </summary>
-        /// <param name="host">The object that is hosting the Sedulous context.</param>
+        /// <param name="host">The object that is hosting the Framework context.</param>
         /// <param name="configuration">The Sedulous Framework configuration settings for this context.</param>
         public FrameworkContext(IFrameworkHost host, FrameworkConfiguration configuration)
         {
@@ -110,8 +110,8 @@ namespace Sedulous
         /// Ensures that the specified function produces a valid instance of <see cref="FrameworkContext"/>. If it does not,
         /// then the current context is immediately disposed. This method should only be called by Sedulous host implementations.
         /// </summary>
-        /// <param name="fn">The function which will create the Sedulous context.</param>
-        /// <returns>The Sedulous context that was created.</returns>
+        /// <param name="fn">The function which will create the Framework context.</param>
+        /// <returns>The Framework context that was created.</returns>
         public static FrameworkContext EnsureSuccessfulCreation(Func<FrameworkContext> fn)
         {
             Contract.Require(fn, nameof(fn));
@@ -140,7 +140,7 @@ namespace Sedulous
                     var error = new StringBuilder();
                     error.AppendLine(Assembly.GetEntryAssembly().FullName);
                     error.AppendLine();
-                    error.AppendLine($"An exception occurred while creating the Sedulous context, and Sedulous failed to cleanly shut down.");
+                    error.AppendLine($"An exception occurred while creating the Framework context, and Sedulous failed to cleanly shut down.");
                     error.AppendLine();
                     error.AppendLine($"Exception which occurred during context creation:");
                     error.AppendLine();
@@ -163,18 +163,18 @@ namespace Sedulous
         }
 
         /// <summary>
-        /// Retrieves the current Sedulous context, throwing an exception if it does not exist.
+        /// Retrieves the current Framework context, throwing an exception if it does not exist.
         /// </summary>
-        /// <returns>The current Sedulous context, or <see langword="null"/> if no contex exists.</returns>
+        /// <returns>The current Framework context, or <see langword="null"/> if no contex exists.</returns>
         public static FrameworkContext RequestCurrent()
         {
             return current;
         }
 
         /// <summary>
-        /// Retrieves the current Sedulous context, throwing an exception if it does not exist.
+        /// Retrieves the current Framework context, throwing an exception if it does not exist.
         /// </summary>
-        /// <returns>The current Sedulous context.</returns>
+        /// <returns>The current Framework context.</returns>
         public static FrameworkContext DemandCurrent()
         {
             if (current == null)
@@ -407,7 +407,7 @@ namespace Sedulous
         /// Spawns a new task.
         /// </summary>
         /// <remarks>Tasks spawned using this method will not be started until the next call to <see cref="Update(FrameworkTime)"/>, and will prevent
-        /// the Sedulous context from shutting down until they complete or are canceled.  Do not attempt to <see cref="Task.Wait()"/> on these
+        /// the Framework context from shutting down until they complete or are canceled.  Do not attempt to <see cref="Task.Wait()"/> on these
         /// tasks from the main Sedulous thread; doing so will introduce a deadlock.</remarks>
         /// <param name="action">The action to perform within the task.</param>
         /// <returns>The <see cref="Task"/> that was spawned.</returns>
@@ -549,7 +549,7 @@ namespace Sedulous
         public FrameworkPlatform Platform => FrameworkPlatformInfo.CurrentPlatform;
 
         /// <summary>
-        /// Gets the object that is hosting the Sedulous context.
+        /// Gets the object that is hosting the Framework context.
         /// </summary>
         public IFrameworkHost Host => host;
 
@@ -571,7 +571,7 @@ namespace Sedulous
 
         /// <summary>
         /// Gets a value indicating whether the current thread is the thread which
-        /// created the Sedulous context.
+        /// created the Framework context.
         /// </summary>
         /// <remarks>Many tasks, such as content loading, must take place on the Sedulous
         /// context's main thread.  Such tasks can be queued using the <see cref="QueueWorkItem(Action{Object}, Object, WorkItemOptions)"/> method
@@ -645,7 +645,7 @@ namespace Sedulous
         public event FrameworkContextEventHandler Initialized;
 
         /// <summary>
-        /// Occurs when the Sedulous context is being shut down.
+        /// Occurs when the Framework context is being shut down.
         /// </summary>
         public event FrameworkContextEventHandler Shutdown;
         
@@ -995,7 +995,7 @@ namespace Sedulous
             SynchronizationContext.SetSynchronizationContext(syncContext);
         }
 
-        // The singleton instance of the Sedulous context.
+        // The singleton instance of the Framework context.
         private static readonly Object syncObject = new Object();
         private static FrameworkContext current;
 

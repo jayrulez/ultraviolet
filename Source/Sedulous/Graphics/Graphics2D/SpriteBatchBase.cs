@@ -19,7 +19,7 @@ namespace Sedulous.Graphics.Graphics2D
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteBatchBase{VertexType, SpriteData}"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="batchSize">The maximum number of sprites that can be drawn in a single batch.</param>
         protected SpriteBatchBase(FrameworkContext context, Int32 batchSize = 2048)
             : base(context)

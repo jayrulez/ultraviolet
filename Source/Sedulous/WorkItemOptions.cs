@@ -15,7 +15,7 @@ namespace Sedulous
 
         /// <summary>
         /// Indicates that the task should be forced to run asynchronously, even if it
-        /// was spawned on the Sedulous context thread.
+        /// was spawned on the Framework context thread.
         /// </summary>
         ForceAsynchronousExecution = 1,
 

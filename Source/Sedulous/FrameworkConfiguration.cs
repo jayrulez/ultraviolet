@@ -22,12 +22,12 @@ namespace Sedulous
         }
 
         /// <summary>
-        /// Gets the list of plugins which will be loaded by the Sedulous context.
+        /// Gets the list of plugins which will be loaded by the Framework context.
         /// </summary>
         public FrameworkPluginCollection Plugins { get; }
 
         /// <summary>
-        /// Gets or sets the Sedulous context's graphics configuration settings.
+        /// Gets or sets the Framework context's graphics configuration settings.
         /// </summary>
         public FrameworkGraphicsConfiguration GraphicsConfiguration { get; set; }
 
@@ -70,7 +70,7 @@ namespace Sedulous
         public Boolean SupportsHighDensityDisplayModes { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the Sedulous context is headless.
+        /// Gets or sets a value indicating whether the Framework context is headless.
         /// A headless context will not create a default window upon initialization.
         /// </summary>
         public Boolean Headless { get; set; }
@@ -89,25 +89,25 @@ namespace Sedulous
         public Boolean EnableServiceMode { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the Sedulous context's default window is visible at startup.
+        /// Gets or sets a value indicating whether the Framework context's default window is visible at startup.
         /// If the context is headless, this setting has no effect.
         /// </summary>
         public Boolean WindowIsVisible { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the Sedulous context's default window can be resized.
+        /// Gets or sets a value indicating whether the Framework context's default window can be resized.
         /// If the context is headless, this setting has no effect.
         /// </summary>
         public Boolean WindowIsResizable { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the Sedulous context's default window is borderless.
+        /// Gets or sets a value indicating whether the Framework context's default window is borderless.
         /// If the context is headless, this setting has no effect.
         /// </summary>
         public Boolean WindowIsBorderless { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the Sedulous context's default window is shown immediately.
+        /// Gets or sets a value indicating whether the Framework context's default window is shown immediately.
         /// The default behavior is to hide the window until immediately before it is about to be rendered for the first time.
         /// If the context is headless, this setting has no effect.
         /// </summary>

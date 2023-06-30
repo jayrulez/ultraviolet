@@ -7,7 +7,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Surface2D"/> class.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="width">The surface's width in pixels.</param>
     /// <param name="height">The surface's height in pixels.</param>
     /// <param name="options">The surface's configuration options.</param>
@@ -17,7 +17,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Surface2D"/> class from an instance of <see cref="SurfaceSource"/>.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="source">The surface source from which to create the surface.</param>
     /// <param name="options">The surface's configuration options.</param>
     /// <returns>The instance of <see cref="Surface2D"/> that was created.</returns>
@@ -26,7 +26,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Surface2D"/> class from an instance of <see cref="PlatformNativeSurface"/>.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <param name="surface">The native surface from which to create the surface.</param>
     /// <param name="options">The surface's configuration options.</param>
     /// <returns>The instance of <see cref="Surface2D"/> that was created.</returns>
@@ -42,7 +42,7 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="Surface2D"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         public Surface2D(FrameworkContext context)
             : base(context)
         {

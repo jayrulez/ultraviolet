@@ -6,7 +6,7 @@ namespace Sedulous
     /// <summary>
     /// Represents a factory method which creates new instances of the <see cref="SwapChainManager"/> class.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <returns>The <see cref="SwapChainManager"/> instance which was created.</returns>
     public delegate SwapChainManager SwapChainManagerFactory(FrameworkContext context);
 
@@ -18,7 +18,7 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="SwapChainManager"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         public SwapChainManager(FrameworkContext context)
             : base(context)
         { }

@@ -8,7 +8,7 @@ using Sedulous.Core;
 namespace Sedulous.Content
 {
     /// <summary>
-    /// Represents an Sedulous context's registry of content importers.
+    /// Represents an Framework context's registry of content importers.
     /// </summary>
     public sealed partial class ContentImporterRegistry
     {

@@ -13,7 +13,7 @@ namespace Sedulous.UI
         /// <summary>
         /// Initializes a new instance of the <see cref="UISubsystem"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="configuration">The Sedulous Framework configuration settings for the current context.</param>
         public UISubsystem(FrameworkContext context, FrameworkConfiguration configuration)
             : base(context)

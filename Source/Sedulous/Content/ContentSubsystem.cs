@@ -14,7 +14,7 @@ namespace Sedulous.Content
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentSubsystem"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         public ContentSubsystem(FrameworkContext context)
             : base(context)
         {

@@ -3,7 +3,7 @@
 namespace Sedulous
 {
     /// <summary>
-    /// Contains methods for tracking the amount of time that has passed since an Sedulous context was created.
+    /// Contains methods for tracking the amount of time that has passed since an Framework context was created.
     /// </summary>
     public sealed class FrameworkTimeTracker
     {

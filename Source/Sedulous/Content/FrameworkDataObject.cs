@@ -22,7 +22,7 @@ namespace Sedulous.Content
         }
 
         /// <summary>
-        /// Gets the Sedulous context.
+        /// Gets the Framework context.
         /// </summary>
         public FrameworkContext FrameworkContext =>
             FrameworkContext.DemandCurrent();

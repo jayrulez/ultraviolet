@@ -704,37 +704,37 @@ namespace Sedulous.SDL2.Platform
         /// <summary>
         /// Occurs when the window is shown.
         /// </summary>
-        public event SedulousWindowEventHandler Shown;
+        public event FrameworkWindowEventHandler Shown;
 
         /// <summary>
         /// Occurs when the window is hidden.
         /// </summary>
-        public event SedulousWindowEventHandler Hidden;
+        public event FrameworkWindowEventHandler Hidden;
 
         /// <summary>
         /// Occurs when the window is minimized.
         /// </summary>
-        public event SedulousWindowEventHandler Minimized;
+        public event FrameworkWindowEventHandler Minimized;
 
         /// <summary>
         /// Occurs when the window is maximized.
         /// </summary>
-        public event SedulousWindowEventHandler Maximized;
+        public event FrameworkWindowEventHandler Maximized;
 
         /// <summary>
         /// Occurs when the window is restored.
         /// </summary>
-        public event SedulousWindowEventHandler Restored;
+        public event FrameworkWindowEventHandler Restored;
 
         /// <summary>
         /// Occurs when the window is rendered.
         /// </summary>
-        public event SedulousWindowDrawingEventHandler Drawing;
+        public event FrameworkWindowDrawingEventHandler Drawing;
 
         /// <summary>
         /// Occurs when the window is drawing its UI layer.
         /// </summary>
-        public event SedulousWindowDrawingEventHandler DrawingUI;
+        public event FrameworkWindowDrawingEventHandler DrawingUI;
 
         /// <summary>
         /// Gets or sets a value indicating whether this is the current window.

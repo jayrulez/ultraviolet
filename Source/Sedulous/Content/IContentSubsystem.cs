@@ -5,7 +5,7 @@ using Sedulous.Content;
 namespace Sedulous
 {
     /// <summary>
-    /// Represents the Sedulous Framework's content management subsystem.
+    /// Represents the Framework's content management subsystem.
     /// </summary>
     public interface IContentSubsystem : IFrameworkSubsystem
     {

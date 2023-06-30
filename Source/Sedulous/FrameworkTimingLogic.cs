@@ -184,7 +184,7 @@ namespace Sedulous
         /// <summary>
         /// Updates the specified context.
         /// </summary>
-        /// <param name="context">The Sedulous context to update.</param>
+        /// <param name="context">The Framework context to update.</param>
         /// <param name="time">Time elapsed since the last update.</param>
         /// <returns><see langword="true"/> if the host should continue processing; otherwise, <see langword="false"/>.</returns>
         private Boolean UpdateContext(FrameworkContext context, FrameworkTime time)

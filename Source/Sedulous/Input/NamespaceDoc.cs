@@ -3,7 +3,7 @@
 namespace Sedulous.Input
 {
     /// <summary>
-    /// The <see cref="Sedulous.Input"/> namespace contains types relating to Sedulous's input subsystem.
+    /// The <see cref="Sedulous.Input"/> namespace contains types relating to the framework's input subsystem.
     /// </summary>
     [CompilerGenerated]
     class NamespaceDoc

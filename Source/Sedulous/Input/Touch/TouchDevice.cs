@@ -103,7 +103,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="TouchDevice"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         public TouchDevice(FrameworkContext context) :
             base(context)
         { }

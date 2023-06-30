@@ -5,7 +5,7 @@ namespace Sedulous.Graphics
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="GeometryStream"/> class.
     /// </summary>
-    /// <param name="context">The Sedulous context.</param>
+    /// <param name="context">The Framework context.</param>
     /// <returns>The instance of <see cref="GeometryStream"/> that was created.</returns>
     public delegate GeometryStream GeometryStreamFactory(FrameworkContext context);
 
@@ -18,7 +18,7 @@ namespace Sedulous.Graphics
         /// <summary>
         /// Initializes a new instance of the <see cref="GeometryStream"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         public GeometryStream(FrameworkContext context)
             : base(context)
         {

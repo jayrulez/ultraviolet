@@ -14,7 +14,7 @@ namespace Sedulous
         /// <summary>
         /// Initializes a new instance of the <see cref="DummyAudioSubsystem"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         public DummyAudioSubsystem(FrameworkContext context)
             : base(context)
         {

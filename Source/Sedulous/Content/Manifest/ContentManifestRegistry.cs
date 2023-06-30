@@ -6,7 +6,7 @@ using Sedulous.Core;
 namespace Sedulous.Content
 {
     /// <summary>
-    /// Represents an Sedulous context's registry of loaded content manifests.
+    /// Represents an Framework context's registry of loaded content manifests.
     /// </summary>
     public sealed class ContentManifestRegistry : FrameworkNamedCollection<ContentManifest>
     {

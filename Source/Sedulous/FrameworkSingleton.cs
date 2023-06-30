@@ -5,7 +5,7 @@ namespace Sedulous
 {
     /// <summary>
     /// Represents a singleton resource.  Only one instance of the resource will be created
-    /// during the lifespan of a particular Sedulous context, but the resource will be destroyed
+    /// during the lifespan of a particular Framework context, but the resource will be destroyed
     /// and recreated if a new context is introduced.
     /// </summary>
     /// <typeparam name="T">The type of object which is owned by the singleton.</typeparam>
@@ -37,8 +37,8 @@ namespace Sedulous
             if (uv != null && uv.IsInitialized && (flags & FrameworkSingletonFlags.Lazy) != FrameworkSingletonFlags.Lazy)
                 InitializeResource();
 
-            FrameworkContext.ContextInitialized += SedulousContext_ContextInitialized;
-            FrameworkContext.ContextInvalidated += SedulousContext_ContextInvalidated;
+            FrameworkContext.ContextInitialized += FrameworkContext_ContextInitialized;
+            FrameworkContext.ContextInvalidated += FrameworkContext_ContextInvalidated;
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Sedulous
         }
 
         /// <summary>
-        /// Initializes the singleton resource, assuming the Sedulous context is currently in a valid state.
+        /// Initializes the singleton resource, assuming the Framework context is currently in a valid state.
         /// </summary>
         /// <returns><see langword="true"/> if the instance was successfully initialized; otherwise, <see langword="false"/>.</returns>
         public Boolean InitializeResource()
@@ -95,7 +95,7 @@ namespace Sedulous
 
         /// <summary>
         /// Gets a value indicating whether the singleton should be initialized for the
-        /// specified Sedulous context.
+        /// specified Framework context.
         /// </summary>
         private Boolean ShouldInitializeResource(FrameworkContext context)
         {
@@ -109,7 +109,7 @@ namespace Sedulous
         /// <summary>
         /// Handles the <see cref="FrameworkContext.ContextInitialized"/> event.
         /// </summary>
-        private void SedulousContext_ContextInitialized(object sender, EventArgs e)
+        private void FrameworkContext_ContextInitialized(object sender, EventArgs e)
         {
             if ((Flags & FrameworkSingletonFlags.Lazy) != FrameworkSingletonFlags.Lazy)
                 InitializeResource();
@@ -118,7 +118,7 @@ namespace Sedulous
         /// <summary>
         /// Handles the <see cref="FrameworkContext.ContextInvalidated"/> event.
         /// </summary>
-        private void SedulousContext_ContextInvalidated(object sender, EventArgs e)
+        private void FrameworkContext_ContextInvalidated(object sender, EventArgs e)
         {
             SafeDispose.DisposeRef(ref resource);
             initialized = false;

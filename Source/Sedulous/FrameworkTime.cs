@@ -20,7 +20,7 @@ namespace Sedulous
         /// Initializes a new instance of the <see cref="FrameworkTime"/> class with the specified elapsed and total times.
         /// </summary>
         /// <param name="elapsedTime">The time that has elapsed since the last update.</param>
-        /// <param name="totalTime">The total time that has elapsed since the Sedulous context was created.</param>
+        /// <param name="totalTime">The total time that has elapsed since the Framework context was created.</param>
         public FrameworkTime(TimeSpan elapsedTime, TimeSpan totalTime)
         {
             this.ElapsedTime = elapsedTime;
@@ -37,7 +37,7 @@ namespace Sedulous
         }
 
         /// <summary>
-        /// The total time that has elapsed since the Sedulous context was created.
+        /// The total time that has elapsed since the Framework context was created.
         /// </summary>
         public TimeSpan TotalTime
         {

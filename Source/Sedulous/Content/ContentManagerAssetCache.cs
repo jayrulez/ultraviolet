@@ -14,7 +14,7 @@ namespace Sedulous.Content
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentManagerAssetCache"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="contentManager">The <see cref="ContentManager"/> instance that owns this asset cache.</param>
         internal ContentManagerAssetCache(FrameworkContext context, ContentManager contentManager)
             : base(context)

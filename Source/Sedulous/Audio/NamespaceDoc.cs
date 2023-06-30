@@ -3,7 +3,7 @@
 namespace Sedulous.Audio
 {
     /// <summary>
-    /// The <see cref="Sedulous.Audio"/> namespace contains types relating to Sedulous's audio subsystem.
+    /// The <see cref="Sedulous.Audio"/> namespace contains types relating to the framework's audio subsystem.
     /// </summary>
     [CompilerGenerated]
     class NamespaceDoc

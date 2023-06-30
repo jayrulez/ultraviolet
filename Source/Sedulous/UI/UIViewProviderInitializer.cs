@@ -16,7 +16,7 @@ namespace Sedulous.UI
         /// <summary>
         /// Initializes the view provider.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="configuration">The view provider configuration object.</param>
         public abstract void Initialize(FrameworkContext context, Object configuration);
     }

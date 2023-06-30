@@ -7,7 +7,7 @@ using Sedulous.Core;
 namespace Sedulous.Content
 {
     /// <summary>
-    /// Represents an Sedulous context's registry of content processors.
+    /// Represents an Framework context's registry of content processors.
     /// </summary>
     public sealed partial class ContentProcessorRegistry
     {        

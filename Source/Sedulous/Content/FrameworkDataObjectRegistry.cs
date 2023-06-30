@@ -13,7 +13,7 @@ namespace Sedulous.Content
     public abstract class FrameworkDataObjectRegistry<T> : DataObjectRegistry<T> where T : FrameworkDataObject
     {
         /// <summary>
-        /// Gets the Sedulous context.
+        /// Gets the Framework context.
         /// </summary>
         public FrameworkContext FrameworkContext =>
             FrameworkContext.DemandCurrent();
@@ -21,7 +21,7 @@ namespace Sedulous.Content
         /// <inheritdoc/>
         protected override void OnRegistered()
         {
-            FrameworkContext.ContextInvalidated += SedulousContext_ContextInvalidated;
+            FrameworkContext.ContextInvalidated += FrameworkContext_ContextInvalidated;
 
             base.OnRegistered();
         }
@@ -29,7 +29,7 @@ namespace Sedulous.Content
         /// <inheritdoc/>
         protected override void OnUnregistered()
         {
-            FrameworkContext.ContextInvalidated -= SedulousContext_ContextInvalidated;
+            FrameworkContext.ContextInvalidated -= FrameworkContext_ContextInvalidated;
 
             base.OnUnregistered();
         }
@@ -42,9 +42,9 @@ namespace Sedulous.Content
         }
 
         /// <summary>
-        /// Handles Sedulous context invalidation.
+        /// Handles Framework context invalidation.
         /// </summary>
-        private void SedulousContext_ContextInvalidated(Object sender, EventArgs e)
+        private void FrameworkContext_ContextInvalidated(Object sender, EventArgs e)
         {
             Clear();
         }

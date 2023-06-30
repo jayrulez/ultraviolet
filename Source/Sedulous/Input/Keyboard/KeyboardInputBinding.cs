@@ -15,7 +15,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyboardInputBinding"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="element">The XML element that contains the binding data.</param>
         internal KeyboardInputBinding(FrameworkContext context, XElement element)
         {
@@ -34,7 +34,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyboardInputBinding"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="key">A <see cref="Key"/> value representing the binding's primary key.</param>
         public KeyboardInputBinding(FrameworkContext context, Key key)
         {
@@ -54,7 +54,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyboardInputBinding"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="key">A <see cref="Key"/> value representing the binding's primary key.</param>
         /// <param name="control">A value indicating whether the binding requires the Control modifier.</param>
         /// <param name="alt">A value indicating whether the binding requires the Alt modifier.</param>

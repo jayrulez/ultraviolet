@@ -5,14 +5,14 @@ namespace Sedulous
 {
     /// <summary>
     /// Represents the method that is called when a <see cref="KeyboardDevice"/> is registered
-    /// with the Sedulous context as a result of receiving input for the first time.
+    /// with the Framework context as a result of receiving input for the first time.
     /// </summary>
     /// <param name="device">The device that was registered.</param>
     public delegate void KeyboardRegistrationEventHandler(KeyboardDevice device);
 
     /// <summary>
     /// Represents the method that is called when a <see cref="MouseDevice"/> is registered
-    /// with the Sedulous context as a result of receiving input for the first time.
+    /// with the Framework context as a result of receiving input for the first time.
     /// </summary>
     /// <param name="device">The device that was registered.</param>
     public delegate void MouseRegistrationEventHandler(MouseDevice device);
@@ -27,7 +27,7 @@ namespace Sedulous
 
     /// <summary>
     /// Represents the method that is called when a <see cref="GamePadDevice"/> is registered
-    /// with the Sedulous context as a result of receiving input for the first time.
+    /// with the Framework context as a result of receiving input for the first time.
     /// </summary>
     /// <param name="device">The device that was registered.</param>
     /// <param name="playerIndex">The player index associated with the game pad.</param>
@@ -35,7 +35,7 @@ namespace Sedulous
 
     /// <summary>
     /// Represents the method that is called when a <see cref="TouchDevice"/> is registered
-    /// with the Sedulous context as a result of receiving input for the first time.
+    /// with the Framework context as a result of receiving input for the first time.
     /// </summary>
     /// <param name="device">The device that was registered.</param>
     public delegate void TouchDeviceRegistrationEventHandler(TouchDevice device);

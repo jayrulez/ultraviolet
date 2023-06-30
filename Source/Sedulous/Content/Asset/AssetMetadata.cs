@@ -10,7 +10,7 @@ using Sedulous.Platform;
 namespace Sedulous.Content
 {
     /// <summary>
-    /// Represents the metadata for an asset which is being loaded by the Sedulous content pipeline.
+    /// Represents the metadata for an asset which is being loaded by the content pipeline.
     /// </summary>
     internal sealed class AssetMetadata : IContentImporterMetadata, IContentProcessorMetadata
     {

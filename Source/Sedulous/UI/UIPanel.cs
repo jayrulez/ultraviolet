@@ -47,7 +47,7 @@ namespace Sedulous.UI
         /// <summary>
         /// Initializes a new instance of the <see cref="UIPanel"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="rootDirectory">The root directory of the panel's local content manager.</param>
         /// <param name="globalContent">The content manager with which to load globally-available assets.</param>
         internal UIPanel(FrameworkContext context, String rootDirectory, ContentManager globalContent)

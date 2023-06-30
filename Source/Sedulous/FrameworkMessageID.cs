@@ -5,7 +5,7 @@ using Sedulous.Core;
 namespace Sedulous
 {
     /// <summary>
-    /// Represents an identifier for a message send through the Sedulous context's message queue. 
+    /// Represents an identifier for a message send through the Framework context's message queue. 
     /// </summary>
     public partial struct FrameworkMessageID : IEquatable<FrameworkMessageID>
     {

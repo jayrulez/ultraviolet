@@ -42,7 +42,7 @@ namespace Sedulous.Input
         public abstract Rectangle? TextInputRegion { get; set; }
 
         /// <summary>
-        /// Informs the Sedulous context that the software keyboard is being shown by publishing
+        /// Informs the Framework context that the software keyboard is being shown by publishing
         /// a <see cref="FrameworkMessages.SoftwareKeyboardShown"/> message.
         /// </summary>
         protected void OnShowingSoftwareKeyboard()
@@ -52,7 +52,7 @@ namespace Sedulous.Input
         }
 
         /// <summary>
-        /// Informs the Sedulous context that the software keyboard is being hidden by publishing
+        /// Informs the Framework context that the software keyboard is being hidden by publishing
         /// a <see cref="FrameworkMessages.SoftwareKeyboardHidden"/> message.
         /// </summary>
         protected void OnHidingSoftwareKeyboard()

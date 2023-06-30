@@ -7,17 +7,17 @@ namespace Sedulous.Platform
     /// Represents the method that is called when an Sedulous window raises an event.
     /// </summary>
     /// <param name="window">The window that raised the event.</param>
-    public delegate void SedulousWindowEventHandler(IFrameworkWindow window);
+    public delegate void FrameworkWindowEventHandler(IFrameworkWindow window);
 
     /// <summary>
     /// Represents the method that is called when an Sedulous window is drawn.
     /// </summary>
     /// <param name="window">The window that raised the event.</param>
     /// <param name="time">Time elapsed since the last call to <see cref="FrameworkContext.Draw(FrameworkTime)"/>.</param>
-    public delegate void SedulousWindowDrawingEventHandler(IFrameworkWindow window, FrameworkTime time);
+    public delegate void FrameworkWindowDrawingEventHandler(IFrameworkWindow window, FrameworkTime time);
 
     /// <summary>
-    /// Represents a window that is attached to an Sedulous context.
+    /// Represents a window that is attached to an Framework context.
     /// </summary>
     public interface IFrameworkWindow
     {
@@ -319,36 +319,36 @@ namespace Sedulous.Platform
         /// <summary>
         /// Occurs when the window is shown.
         /// </summary>
-        event SedulousWindowEventHandler Shown;
+        event FrameworkWindowEventHandler Shown;
 
         /// <summary>
         /// Occurs when the window is hidden.
         /// </summary>
-        event SedulousWindowEventHandler Hidden;
+        event FrameworkWindowEventHandler Hidden;
 
         /// <summary>
         /// Occurs when the window is minimized.
         /// </summary>
-        event SedulousWindowEventHandler Minimized;
+        event FrameworkWindowEventHandler Minimized;
 
         /// <summary>
         /// Occurs when the window is maximized.
         /// </summary>
-        event SedulousWindowEventHandler Maximized;
+        event FrameworkWindowEventHandler Maximized;
 
         /// <summary>
         /// Occurs when the window is restored.
         /// </summary>
-        event SedulousWindowEventHandler Restored;
+        event FrameworkWindowEventHandler Restored;
 
         /// <summary>
         /// Occurs when the window is drawn.
         /// </summary>
-        event SedulousWindowDrawingEventHandler Drawing;
+        event FrameworkWindowDrawingEventHandler Drawing;
 
         /// <summary>
         /// Occurs when the window is drawing its UI layer.
         /// </summary>
-        event SedulousWindowDrawingEventHandler DrawingUI;
+        event FrameworkWindowDrawingEventHandler DrawingUI;
     }
 }

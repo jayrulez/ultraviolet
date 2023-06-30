@@ -41,7 +41,7 @@ namespace Sedulous.Input
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseDevice"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         public MouseDevice(FrameworkContext context)
             : base(context)
         {

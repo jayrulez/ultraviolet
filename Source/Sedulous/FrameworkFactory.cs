@@ -5,7 +5,7 @@ using Sedulous.Core;
 namespace Sedulous
 {
     /// <summary>
-    /// Represents an Sedulous context's object factory.
+    /// Represents an Framework context's object factory.
     /// </summary>
     public sealed class FrameworkFactory
     {

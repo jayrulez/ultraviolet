@@ -33,7 +33,7 @@ namespace Sedulous.UI
         /// <summary>
         /// Initializes a new instance of the <see cref="UIScreenStack"/> class.
         /// </summary>
-        /// <param name="context">The Sedulous context.</param>
+        /// <param name="context">The Framework context.</param>
         /// <param name="window">The window that owns the screen stack.</param>
         internal UIScreenStack(FrameworkContext context, IFrameworkWindow window)
             : base(context)
