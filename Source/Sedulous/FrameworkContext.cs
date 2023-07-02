@@ -140,7 +140,7 @@ namespace Sedulous
                     var error = new StringBuilder();
                     error.AppendLine(Assembly.GetEntryAssembly().FullName);
                     error.AppendLine();
-                    error.AppendLine($"An exception occurred while creating the Framework context, and Sedulous failed to cleanly shut down.");
+                    error.AppendLine($"An exception occurred while creating the Framework context, and the framework failed to cleanly shut down.");
                     error.AppendLine();
                     error.AppendLine($"Exception which occurred during context creation:");
                     error.AppendLine();
@@ -427,9 +427,9 @@ namespace Sedulous
         }
 
         /// <summary>
-        /// Queues a work item for execution on Sedulous's main thread.
+        /// Queues a work item for execution on the framework's main thread.
         /// </summary>
-        /// <param name="workItem">The work item to execute on Sedulous's main thread.</param>
+        /// <param name="workItem">The work item to execute on the framework's main thread.</param>
         /// <param name="state">An object containing state to pass to the work item.</param>
         /// <param name="options">A set of <see cref="WorkItemOptions"/> flags which indicate how the task should be executed.</param>
         /// <returns>A <see cref="Task"/> that encapsulates the work item.</returns>
@@ -449,9 +449,9 @@ namespace Sedulous
         }
 
         /// <summary>
-        /// Queues a work item for execution on Sedulous's main thread.
+        /// Queues a work item for execution on the framework's main thread.
         /// </summary>
-        /// <param name="workItem">The work item to execute on Sedulous's main thread.</param>
+        /// <param name="workItem">The work item to execute on the framework's main thread.</param>
         /// <param name="state">An object containing state to pass to the work item.</param>
         /// <param name="options">A set of <see cref="WorkItemOptions"/> flags which indicate how the task should be executed.</param>
         /// <returns>A <see cref="Task"/> that encapsulates the work item.</returns>
@@ -471,10 +471,10 @@ namespace Sedulous
         }
 
         /// <summary>
-        /// Queues a work item for execution on Sedulous's main thread.
+        /// Queues a work item for execution on the framework's main thread.
         /// </summary>
         /// <typeparam name="T">The type of value returned by the work item.</typeparam>
-        /// <param name="workItem">The work item to execute on Sedulous's main thread.</param>
+        /// <param name="workItem">The work item to execute on the framework's main thread.</param>
         /// <param name="state">An object containing state to pass to the work item.</param>
         /// <param name="options">A set of <see cref="WorkItemOptions"/> flags which indicate how the task should be executed.</param>
         /// <returns>A <see cref="Task"/> that encapsulates the work item.</returns>
@@ -494,10 +494,10 @@ namespace Sedulous
         }
 
         /// <summary>
-        /// Queues a work item for execution on Sedulous's main thread.
+        /// Queues a work item for execution on the framework's main thread.
         /// </summary>
         /// <typeparam name="T">The type of value returned by the work item.</typeparam>
-        /// <param name="workItem">The work item to execute on Sedulous's main thread.</param>
+        /// <param name="workItem">The work item to execute on the framework's main thread.</param>
         /// <param name="state">An object containing state to pass to the work item.</param>
         /// <param name="options">A set of <see cref="WorkItemOptions"/> flags which indicate how the task should be executed.</param>
         /// <returns>A <see cref="Task"/> that encapsulates the work item.</returns>
