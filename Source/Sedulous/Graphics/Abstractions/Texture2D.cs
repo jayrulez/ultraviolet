@@ -137,6 +137,41 @@ namespace Sedulous.Graphics
             return uv.GetFactoryMethod<RenderBuffer2DFactory>()(uv, format, width, height, options);
         }
 
+
+        /// <summary>
+        /// Creates a texture from the surface.
+        /// </summary>
+        /// <param name="surface">The surface to create the texture from</param>
+        /// <param name="unprocessed">A value indicating whether the surface data should be passed
+        /// through to the texture without any further processing, regardless of the platform's
+        /// requirements. For example, an unprocessed texture will not be flipped vertically on
+        /// the OpenGL implementation.</param>
+        /// <returns>The <see cref="Texture2D"/> that was created from the surface.</returns>
+        public static Texture2D CreateFromSurface2D(Surface2D surface, Boolean unprocessed = false)
+        {
+            var uv = FrameworkContext.DemandCurrent();
+
+            if (unprocessed)
+            {
+                var options = TextureOptions.ImmutableStorage | (surface.SrgbEncoded ? TextureOptions.SrgbColor : TextureOptions.LinearColor);
+                return Texture2D.CreateTexture((IntPtr)surface.Pixels, surface.Width, surface.Height, surface.BytesPerPixel, options);
+            }
+            else
+            {
+                var data = new Color[surface.Width * surface.Height];
+                surface.GetData(data);
+
+                var newSurface = Surface2D.Create(surface.Width, surface.Height);
+                newSurface.SetData(data);
+
+                newSurface.Flip(uv.GetGraphics().Capabilities.FlippedTextures ?
+                        SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None);
+
+                var options = TextureOptions.ImmutableStorage | (surface.SrgbEncoded ? TextureOptions.SrgbColor : TextureOptions.LinearColor);
+                return Texture2D.CreateTexture((IntPtr)newSurface.Pixels, newSurface.Width, newSurface.Height, newSurface.BytesPerPixel, options);
+            }
+        }
+
         /// <summary>
         /// Resizes the texture.
         /// </summary>

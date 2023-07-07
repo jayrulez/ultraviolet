@@ -422,7 +422,8 @@ namespace Sedulous.Graphics
             {
                 var flipdir = content.FrameworkContext.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None;
                 output.FlipAndProcessAlpha(flipdir, true, Color.Magenta);
-                return output.CreateTexture(unprocessed: true);
+                //return output.CreateTexture(unprocessed: true);
+                return Texture2D.CreateFromSurface2D(output, unprocessed: true);
             }
         }
 

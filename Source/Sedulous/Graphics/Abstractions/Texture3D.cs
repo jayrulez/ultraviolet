@@ -117,6 +117,52 @@ namespace Sedulous.Graphics
         }
 
         /// <summary>
+        /// Creates a texture from the surface.
+        /// </summary>
+        /// <param name="surface">The surface to create the texture from</param>
+        /// <param name="unprocessed">A value indicating whether the surface data should be passed
+        /// through to the texture without any further processing, regardless of the platform's
+        /// requirements. For example, an unprocessed texture will not be flipped vertically on
+        /// the OpenGL implementation.</param>
+        /// <returns>The <see cref="Texture3D"/> that was created from the surface.</returns>
+        public static Texture3D CreateFromSurface3D(Surface3D surface, Boolean unprocessed)
+        {
+            //Contract.EnsureNotDisposed(this, Disposed);
+            //Contract.Ensure(surface.IsComplete, SDL2Strings.SurfaceIsNotComplete);
+
+            var uv = FrameworkContext.DemandCurrent();
+
+            for (int i = 0; i < surface.Depth; i++)
+            {
+                if (surface.GetLayer(i).SrgbEncoded != surface.SrgbEncoded)
+                    throw new InvalidOperationException(FrameworkStrings.SurfaceLayerEncodingMismatch);
+            }
+
+            var copysurfs = new Surface2D[surface.Depth];
+            var surfsdata = new IntPtr[surface.Depth];
+            try
+            {
+                var flipdir = unprocessed ? SurfaceFlipDirection.None :
+                    (uv.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None);
+
+                for (int i = 0; i < copysurfs.Length; i++)
+                {
+                    copysurfs[i] = surface.GetLayer(i).CreateSurface();
+                    copysurfs[i].FlipAndProcessAlpha(flipdir, false, Color.Magenta);
+                    surfsdata[i] = (IntPtr)(copysurfs[i]).Pixels;
+                }
+
+                var options = TextureOptions.ImmutableStorage | (surface.SrgbEncoded ? TextureOptions.SrgbColor : TextureOptions.LinearColor);
+                return Texture3D.CreateTexture(surfsdata, surface.Width, surface.Height, surface.BytesPerPixel, options);
+            }
+            finally
+            {
+                foreach (var copysurf in copysurfs)
+                    copysurf?.Dispose();
+            }
+        }
+
+        /// <summary>
         /// Resizes the texture.
         /// </summary>
         /// <param name="width">The texture's new width in pixels.</param>

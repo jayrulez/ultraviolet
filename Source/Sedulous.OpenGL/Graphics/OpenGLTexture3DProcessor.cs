@@ -114,7 +114,8 @@ namespace Sedulous.OpenGL.Graphics
                     layer.SrgbEncoded = srgbEncoded;
                     layer.FlipAndProcessAlpha(flipdir, mdat.PremultiplyAlpha, mdat.Opaque ? null : (Color?)Color.Magenta);
                 }
-                return surface.CreateTexture(unprocessed: true);
+                //return surface.CreateTexture(unprocessed: true);
+                return Texture3D.CreateFromSurface3D(surface, unprocessed: true);
             }
         }
 

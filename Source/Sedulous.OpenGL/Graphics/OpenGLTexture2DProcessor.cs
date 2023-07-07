@@ -82,7 +82,8 @@ namespace Sedulous.OpenGL.Graphics
                 var flipdir = manager.FrameworkContext.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None;
                 surface.FlipAndProcessAlpha(flipdir, mdat.PremultiplyAlpha, mdat.Opaque ? null : (Color?)Color.Magenta);
 
-                return surface.CreateTexture(unprocessed: true);
+                //return surface.CreateTexture(unprocessed: true);
+                return Texture2D.CreateFromSurface2D(surface, unprocessed: true);
             }
         }
 

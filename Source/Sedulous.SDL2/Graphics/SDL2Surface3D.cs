@@ -112,37 +112,37 @@ namespace Sedulous.SDL2.Graphics
             return result;
         }
 
-        /// <inheritdoc/>
-        public override Texture3D CreateTexture(Boolean unprocessed)
-        {
-            Contract.EnsureNotDisposed(this, Disposed);
-            Contract.Ensure(IsComplete, SDL2Strings.SurfaceIsNotComplete);
+        ///// <inheritdoc/>
+        //public override Texture3D CreateTexture(Boolean unprocessed)
+        //{
+        //    Contract.EnsureNotDisposed(this, Disposed);
+        //    Contract.Ensure(IsComplete, SDL2Strings.SurfaceIsNotComplete);
 
-            EnsureAllLayersMatchSrgbEncoding();
+        //    EnsureAllLayersMatchSrgbEncoding();
 
-            var copysurfs = new Surface2D[Depth];
-            var surfsdata = new IntPtr[Depth];
-            try
-            {
-                var flipdir = unprocessed ? SurfaceFlipDirection.None :
-                    (FrameworkContext.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None);
+        //    var copysurfs = new Surface2D[Depth];
+        //    var surfsdata = new IntPtr[Depth];
+        //    try
+        //    {
+        //        var flipdir = unprocessed ? SurfaceFlipDirection.None :
+        //            (FrameworkContext.GetGraphics().Capabilities.FlippedTextures ? SurfaceFlipDirection.Vertical : SurfaceFlipDirection.None);
 
-                for (int i = 0; i < copysurfs.Length; i++)
-                {
-                    copysurfs[i] = layers[i].CreateSurface();
-                    copysurfs[i].FlipAndProcessAlpha(flipdir, false, Color.Magenta);
-                    surfsdata[i] = (IntPtr)((SDL2Surface2D)copysurfs[i]).NativePtr->pixels;
-                }
+        //        for (int i = 0; i < copysurfs.Length; i++)
+        //        {
+        //            copysurfs[i] = layers[i].CreateSurface();
+        //            copysurfs[i].FlipAndProcessAlpha(flipdir, false, Color.Magenta);
+        //            surfsdata[i] = (IntPtr)((SDL2Surface2D)copysurfs[i]).NativePtr->pixels;
+        //        }
 
-                var options = TextureOptions.ImmutableStorage | (SrgbEncoded ? TextureOptions.SrgbColor : TextureOptions.LinearColor);
-                return Texture3D.CreateTexture(surfsdata, Width, Height, BytesPerPixel, options);
-            }
-            finally
-            {
-                foreach (var copysurf in copysurfs)
-                    copysurf?.Dispose();
-            }
-        }
+        //        var options = TextureOptions.ImmutableStorage | (SrgbEncoded ? TextureOptions.SrgbColor : TextureOptions.LinearColor);
+        //        return Texture3D.CreateTexture(surfsdata, Width, Height, BytesPerPixel, options);
+        //    }
+        //    finally
+        //    {
+        //        foreach (var copysurf in copysurfs)
+        //            copysurf?.Dispose();
+        //    }
+        //}
 
         /// <inheritdoc/>
         public override void SaveAsJpeg(Stream stream)

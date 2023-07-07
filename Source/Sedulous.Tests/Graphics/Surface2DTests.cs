@@ -29,22 +29,26 @@ namespace Sedulous.Tests.Graphics
                     surface.ProcessAlpha(true, null);
                     TheResultingValue(surface.IsFlippedHorizontally).ShouldBe(false);
                     TheResultingValue(surface.IsFlippedVertically).ShouldBe(false);
-                    texture0 = surface.CreateTexture();
+                    //texture0 = surface.CreateTexture();
+                    texture0 = Texture2D.CreateFromSurface2D(surface);
 
                     surface.Flip(SurfaceFlipDirection.Horizontal);
                     TheResultingValue(surface.IsFlippedHorizontally).ShouldBe(true);
                     TheResultingValue(surface.IsFlippedVertically).ShouldBe(false);
-                    texture1 = surface.CreateTexture();
+                    //texture1 = surface.CreateTexture();
+                    texture1 = Texture2D.CreateFromSurface2D(surface);
 
                     surface.Flip(SurfaceFlipDirection.Vertical);
                     TheResultingValue(surface.IsFlippedHorizontally).ShouldBe(true);
                     TheResultingValue(surface.IsFlippedVertically).ShouldBe(true);
-                    texture2 = surface.CreateTexture();
+                    //texture2 = surface.CreateTexture();
+                    texture2 = Texture2D.CreateFromSurface2D(surface);
 
                     surface.Flip(SurfaceFlipDirection.Horizontal);
                     TheResultingValue(surface.IsFlippedHorizontally).ShouldBe(false);
                     TheResultingValue(surface.IsFlippedVertically).ShouldBe(true);
-                    texture3 = surface.CreateTexture();
+                    //texture3 = surface.CreateTexture();
+                    texture3 = Texture2D.CreateFromSurface2D(surface);
                 })
                 .Render(uv =>
                 {
@@ -88,7 +92,8 @@ namespace Sedulous.Tests.Graphics
                     surfaceInput.Blit(surfaceOutput, new Point2(64, 0), SurfaceFlipDirection.Horizontal);
                     surfaceInput.Blit(surfaceOutput, new Point2(0, 64), SurfaceFlipDirection.Vertical);
 
-                    texture = surfaceOutput.CreateTexture();
+                    //texture = surfaceOutput.CreateTexture();
+                    texture = Texture2D.CreateFromSurface2D(surfaceOutput);
                 })
                 .Render(uv =>
                 {
