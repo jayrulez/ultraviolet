@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Sedulous.Content;
-using Sedulous.Graphics;
+using Sedulous.Platform;
 
-namespace Sedulous.SDL2.Graphics
+namespace Sedulous.SDL2.Platform.Surface
 {
     /// <summary>
     /// Loads 3D surface assets.

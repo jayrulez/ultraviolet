@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sedulous.Graphics;
+using Sedulous.Platform;
 
 namespace Sedulous.OpenGL.Graphics.Graphics2D
 {

@@ -4,6 +4,7 @@ using System.IO;
 using Sedulous.Content;
 using Sedulous.Graphics;
 using Sedulous.OpenGL.Bindings;
+using Sedulous.Platform;
 
 namespace Sedulous.OpenGL.Graphics
 {

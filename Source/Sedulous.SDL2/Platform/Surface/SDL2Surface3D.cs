@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Sedulous.Core;
-using Sedulous.Graphics;
+using Sedulous.Platform;
 
-namespace Sedulous.SDL2.Graphics
+namespace Sedulous.SDL2.Platform.Surface
 {
     /// <summary>
     /// Represents the SDL2 implementation of the <see cref="Surface3D"/> class.

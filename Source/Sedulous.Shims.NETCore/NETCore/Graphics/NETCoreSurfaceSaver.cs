@@ -2,6 +2,7 @@
 using System.IO;
 using Sedulous.Core;
 using Sedulous.Graphics;
+using Sedulous.Platform;
 
 namespace Sedulous.Shims.NETCore.Graphics
 {
@@ -44,23 +45,23 @@ namespace Sedulous.Shims.NETCore.Graphics
             Save(surface, stream, SurfaceImageFormat.JPEG);
         }
 
-        /// <inheritdoc/>
-        public override void SaveAsPng(RenderTarget2D renderTarget, Stream stream)
-        {
-            Contract.Require(renderTarget, nameof(renderTarget));
-            Contract.Require(stream, nameof(stream));
+        ///// <inheritdoc/>
+        //public override void SaveAsPng(RenderTarget2D renderTarget, Stream stream)
+        //{
+        //    Contract.Require(renderTarget, nameof(renderTarget));
+        //    Contract.Require(stream, nameof(stream));
 
-            Save(renderTarget, stream, SurfaceImageFormat.PNG);
-        }
+        //    Save(renderTarget, stream, SurfaceImageFormat.PNG);
+        //}
 
-        /// <inheritdoc/>
-        public override void SaveAsJpeg(RenderTarget2D renderTarget, Stream stream)
-        {
-            Contract.Require(renderTarget, nameof(renderTarget));
-            Contract.Require(stream, nameof(stream));
+        ///// <inheritdoc/>
+        //public override void SaveAsJpeg(RenderTarget2D renderTarget, Stream stream)
+        //{
+        //    Contract.Require(renderTarget, nameof(renderTarget));
+        //    Contract.Require(stream, nameof(stream));
 
-            Save(renderTarget, stream, SurfaceImageFormat.JPEG);
-        }
+        //    Save(renderTarget, stream, SurfaceImageFormat.JPEG);
+        //}
 
         /// <summary>
         /// Saves the specified surface as an image with the specified format.

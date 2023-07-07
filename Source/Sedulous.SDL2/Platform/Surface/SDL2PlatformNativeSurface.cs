@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using Sedulous.Core;
-using Sedulous.Graphics;
+using Sedulous.Platform;
 using Sedulous.SDL2.Native;
 using static Sedulous.SDL2.Native.SDL_BlendMode;
 using static Sedulous.SDL2.Native.SDLNative;
 
-namespace Sedulous.SDL2.Graphics
+namespace Sedulous.SDL2.Platform.Surface
 {
     /// <summary>
     /// Represents an SDL native surface.

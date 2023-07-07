@@ -1,7 +1,7 @@
 ﻿using Sedulous.Content;
-using Sedulous.Graphics;
+using Sedulous.Platform;
 
-namespace Sedulous.SDL2.Graphics
+namespace Sedulous.SDL2.Platform.Surface
 {
     /// <summary>
     /// Loads 2D surface assets.

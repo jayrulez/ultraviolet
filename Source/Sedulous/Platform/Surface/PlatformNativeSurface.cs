@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Sedulous.Graphics
+namespace Sedulous.Platform
 {
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="PlatformNativeSurface"/> class.

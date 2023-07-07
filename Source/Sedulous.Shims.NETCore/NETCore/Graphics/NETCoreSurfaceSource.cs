@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using Sedulous.Core;
 using Sedulous.Graphics;
+using Sedulous.Platform;
 
 /// <summary>
 /// A 3 component pixel.

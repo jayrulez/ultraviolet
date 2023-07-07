@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Sedulous.Graphics;
 using Sedulous.Graphics.Graphics2D;
+using Sedulous.Platform;
 using Sedulous.TestApplication;
 
 namespace Sedulous.Tests.Graphics

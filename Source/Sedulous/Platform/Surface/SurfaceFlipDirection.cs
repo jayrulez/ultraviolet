@@ -1,4 +1,4 @@
-﻿namespace Sedulous.Graphics
+﻿namespace Sedulous.Platform
 {
     /// <summary>
     /// Represents the directions in which a surface can be flipped.

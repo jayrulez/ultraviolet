@@ -1,6 +1,6 @@
 ﻿using Sedulous.Content;
-using Sedulous.Graphics;
-using Sedulous.SDL2.Graphics;
+using Sedulous.Platform;
+using Sedulous.SDL2.Platform.Surface;
 
 namespace Sedulous.SDL2
 {

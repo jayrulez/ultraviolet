@@ -1,6 +1,7 @@
 ﻿using System;
 using Sedulous.Core;
 using Sedulous.Graphics;
+using Sedulous.Platform;
 
 namespace Sedulous.OpenGL.Graphics
 {

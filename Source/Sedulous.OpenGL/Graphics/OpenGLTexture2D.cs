@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using Sedulous.Core;
 using Sedulous.Graphics;
 using Sedulous.OpenGL.Bindings;
+using Sedulous.Platform;
 
 namespace Sedulous.OpenGL.Graphics
 {

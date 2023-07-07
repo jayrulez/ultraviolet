@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Sedulous.Core;
 
-namespace Sedulous.Graphics
+namespace Sedulous.Platform
 {
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Surface3D"/> class.

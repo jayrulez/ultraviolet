@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using Sedulous.Content;
-using Sedulous.Graphics;
+using Sedulous.Platform;
 
-namespace Sedulous.SDL2.Graphics
+namespace Sedulous.SDL2.Platform.Surface
 {
     /// <summary>
     /// Imports .bmp, .png, and .jpg files.

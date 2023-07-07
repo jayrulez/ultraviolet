@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using Android.Graphics;
 using Sedulous.Core;
 using Sedulous.Graphics;
+using Sedulous.Platform;
 
 namespace Sedulous.Shims.Android.Graphics
 {

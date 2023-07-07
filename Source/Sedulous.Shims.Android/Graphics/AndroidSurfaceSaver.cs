@@ -3,6 +3,7 @@ using System.IO;
 using Android.Graphics;
 using Sedulous.Core;
 using Sedulous.Graphics;
+using Sedulous.Platform;
 
 namespace Sedulous.Shims.Android.Graphics
 {
@@ -29,23 +30,23 @@ namespace Sedulous.Shims.Android.Graphics
             Save(surface, stream, Bitmap.CompressFormat.Jpeg);
         }
 
-        /// <inheritdoc/>
-        public override void SaveAsPng(RenderTarget2D renderTarget, Stream stream)
-        {
-            Contract.Require(renderTarget, nameof(renderTarget));
-            Contract.Require(stream, nameof(stream));
+        ///// <inheritdoc/>
+        //public override void SaveAsPng(RenderTarget2D renderTarget, Stream stream)
+        //{
+        //    Contract.Require(renderTarget, nameof(renderTarget));
+        //    Contract.Require(stream, nameof(stream));
 
-            Save(renderTarget, stream, Bitmap.CompressFormat.Png);
-        }
+        //    Save(renderTarget, stream, Bitmap.CompressFormat.Png);
+        //}
 
-        /// <inheritdoc/>
-        public override void SaveAsJpeg(RenderTarget2D renderTarget, Stream stream)
-        {
-            Contract.Require(renderTarget, nameof(renderTarget));
-            Contract.Require(stream, nameof(stream));
+        ///// <inheritdoc/>
+        //public override void SaveAsJpeg(RenderTarget2D renderTarget, Stream stream)
+        //{
+        //    Contract.Require(renderTarget, nameof(renderTarget));
+        //    Contract.Require(stream, nameof(stream));
 
-            Save(renderTarget, stream, Bitmap.CompressFormat.Jpeg);
-        }
+        //    Save(renderTarget, stream, Bitmap.CompressFormat.Jpeg);
+        //}
 
         /// <summary>
         /// Saves the specified surface as an image with the specified format.

@@ -1,8 +1,8 @@
 ﻿using System;
 using Sedulous.Core;
-using Sedulous.Graphics;
-using Sedulous.SDL2.Graphics;
+using Sedulous.Platform;
 using Sedulous.SDL2.Native;
+using Sedulous.SDL2.Platform.Surface;
 using static Sedulous.SDL2.Native.SDLNative;
 
 namespace Sedulous.SDL2

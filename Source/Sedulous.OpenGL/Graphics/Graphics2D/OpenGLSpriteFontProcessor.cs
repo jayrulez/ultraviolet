@@ -5,6 +5,7 @@ using System.Linq;
 using Sedulous.Content;
 using Sedulous.Graphics;
 using Sedulous.Graphics.Graphics2D;
+using Sedulous.Platform;
 
 namespace Sedulous.OpenGL.Graphics.Graphics2D
 {

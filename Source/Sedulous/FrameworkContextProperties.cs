@@ -1,5 +1,6 @@
 ﻿using System;
 using Sedulous.Graphics;
+using Sedulous.Platform;
 
 namespace Sedulous
 {

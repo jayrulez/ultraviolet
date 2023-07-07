@@ -1,4 +1,4 @@
-﻿namespace Sedulous.Graphics
+﻿namespace Sedulous.Platform
 {
     /// <summary>
     /// Represents the formats in which a <see cref="SurfaceSource"/> can store its data.

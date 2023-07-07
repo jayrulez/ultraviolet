@@ -8,6 +8,7 @@ using Sedulous.FreeType2.Native;
 using Sedulous.Graphics;
 using Sedulous.Graphics.Graphics2D;
 using Sedulous.Graphics.Graphics2D.Text;
+using Sedulous.Platform;
 using static Sedulous.FreeType2.Native.FreeTypeNative;
 using static Sedulous.FreeType2.Native.FT_Error;
 using static Sedulous.FreeType2.Native.FT_Kerning_Mode;

@@ -5,6 +5,7 @@ using Sedulous.Graphics;
 using Sedulous.Graphics.Graphics2D;
 using Sedulous.ImGuiViewProvider.Bindings;
 using Sedulous.Input;
+using Sedulous.Platform;
 using Sedulous.UI;
 
 namespace Sedulous.ImGuiViewProvider

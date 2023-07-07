@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sedulous.Core;
+using Sedulous.Platform;
 
 namespace Sedulous.Graphics
 {

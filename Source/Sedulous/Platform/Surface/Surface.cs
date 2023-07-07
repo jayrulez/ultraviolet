@@ -1,4 +1,4 @@
-﻿namespace Sedulous.Graphics
+﻿namespace Sedulous.Platform
 {
     /// <summary>
     /// Represents the base class for all surfaces.

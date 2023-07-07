@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
 using Sedulous.Core;
+using Sedulous.Graphics;
 
-namespace Sedulous.Graphics
+namespace Sedulous.Platform
 {
     /// <summary>
     /// Represents a factory method which constructs instances of the <see cref="Surface2D"/> class.

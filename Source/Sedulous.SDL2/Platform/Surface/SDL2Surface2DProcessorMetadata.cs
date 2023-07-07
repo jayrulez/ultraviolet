@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sedulous.SDL2.Graphics
+namespace Sedulous.SDL2.Platform.Surface
 {
     /// <summary>
     /// Contains metadata for <see cref="SDL2Surface2DProcessor"/>.

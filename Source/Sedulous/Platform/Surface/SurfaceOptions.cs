@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sedulous.Graphics
+namespace Sedulous.Platform
 {
     /// <summary>
     /// Represents the set of options which can be used to modify the behavior of a <see cref="Surface2D"/> or <see cref="Surface3D"/>.

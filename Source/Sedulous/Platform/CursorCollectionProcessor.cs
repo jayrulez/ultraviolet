@@ -1,5 +1,6 @@
 ﻿using Sedulous.Content;
 using Sedulous.Graphics;
+using Sedulous.Platform;
 
 namespace Sedulous
 {
