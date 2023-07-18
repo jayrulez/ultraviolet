@@ -12,8 +12,6 @@
 		<ApplicationId>com.companyname.uvdebug.android</ApplicationId>
 		<ApplicationVersion>1</ApplicationVersion>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<RootNamespace>UvDebug</RootNamespace>
-		<AssemblyName>UvDebug</AssemblyName>
 		<IncludeSedulousContentFiles>false</IncludeSedulousContentFiles>
 	</PropertyGroup>
 	<ItemGroup>
@@ -148,11 +146,11 @@
 	</ItemGroup>
 	<Target Name="CustomBeforeBuild" BeforeTargets="BeforeBuild">
 		<Message Text="Precompiling content." />
-		<Exec Command="dotnet run -compile:content -compile:expressions" WorkingDirectory="$(SolutionDir)UvDebug\NETCore" />
+		<Exec Command="dotnet run --configuration $(Configuration) -compile:content -compile:expressions" WorkingDirectory="$(SolutionDir)UvDebug\NETCore" />
 	</Target>
 	<Target Name="BeforeBuildCopyResults" AfterTargets="CustomBeforeBuild">
-		<Copy SourceFiles="$(SolutionDir)UvDebug\NETCore\bin\Debug\net6.0\Content.uvarc" DestinationFolder="$(SolutionDir)UvDebug\Android" />
-		<Copy SourceFiles="$(SolutionDir)UvDebug\NETCore\bin\Debug\net6.0\Sedulous.Presentation.CompiledExpressions.dll" DestinationFolder="$(SolutionDir)UvDebug\Android" />
+		<Copy SourceFiles="$(SolutionDir)UvDebug\NETCore\bin\$(Configuration)\net6.0\Content.uvarc" DestinationFolder="$(SolutionDir)UvDebug\Android" />
+		<Copy SourceFiles="$(SolutionDir)UvDebug\NETCore\bin\$(Configuration)\net6.0\Sedulous.Presentation.CompiledExpressions.dll" DestinationFolder="$(SolutionDir)UvDebug\Android" />
 	</Target>
 	<Target Name="BeforeBuildValidation" AfterTargets="BeforeBuildCopyResults">
 		<Error Condition="!Exists('Content.uvarc')" Text="Failed to generate content archive for UvDebug.Android." />

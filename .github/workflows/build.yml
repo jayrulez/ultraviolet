@@ -39,4 +39,6 @@ jobs:
       run: dotnet workload install android       
 
     - name: Pack
-      run: dotnet pack Source/Sedulous.sln --configuration Release
+      working-directory: ./Source
+      run: dotnet pack Sedulous.NETCore.sln --configuration Release
+     
