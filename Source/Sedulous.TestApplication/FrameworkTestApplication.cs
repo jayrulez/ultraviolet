@@ -168,7 +168,7 @@ namespace Sedulous.TestApplication
         }
 
         /// <inheritdoc/>
-        public StbImageSharp.ImageResult Render(Action<FrameworkContext> renderer)
+        public Image.Image Render(Action<FrameworkContext> renderer)
         {
             if (headless)
                 throw new InvalidOperationException("Cannot render a headless window.");
@@ -468,7 +468,7 @@ namespace Sedulous.TestApplication
         /// </summary>
         /// <param name="rt">The render target to convert.</param>
         /// <returns>The converted image.</returns>
-        private StbImageSharp.ImageResult ConvertRenderTargetToBitmap(RenderTarget2D rt)
+        private Image.Image ConvertRenderTargetToBitmap(RenderTarget2D rt)
         {
             // HACK: Our buffer has been rounded up to the nearest
             // power of two, so at this point we clip it back down
@@ -481,13 +481,7 @@ namespace Sedulous.TestApplication
             var data = new Color[rt.Width * rt.Height];
             rt.GetData(data);
 
-            var img = new StbImageSharp.ImageResult()
-            {
-                Width = windowWidth,
-                Height = windowHeight,
-                Comp = StbImageSharp.ColorComponents.RedGreenBlueAlpha,
-                Data = new byte[windowWidth * windowHeight * 4]
-            };
+            var img = new Image.Image(windowWidth, windowHeight, Image.Image.ColorComponents.RedGreenBlueAlpha);
             var pixel = 0;
             for (int y = 0; y < rt.Height; y++)
             {
@@ -516,7 +510,7 @@ namespace Sedulous.TestApplication
         private Action<ContentManager> loader;
         private Action<FrameworkContext> renderer;
         private Action disposer;
-        private StbImageSharp.ImageResult image;
+        private Image.Image image;
         private Int32 updateCount;
         private Int32 renderCount;
         private Int32 frameCount;

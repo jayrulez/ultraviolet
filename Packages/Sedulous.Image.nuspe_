@@ -1,17 +1,18 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Sedulous.StbImageWriteSharp</id>
+    <id>Sedulous.Image</id>
     <version>UV_VERSION</version>
-    <authors>StbImageSharpTeam</authors>
+    <authors>Robert Campbell</authors>
     <owners>Robert Campbell</owners>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/jayrulez/sedulous</projectUrl>
     <repository type="git" url="https://github.com/jayrulez/sedulous" />
     <icon>images\icon.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <summary>StbImageWriteSharp for the Sedulous Framework.</summary>
-    <description>StbImageWriteSharp for the Sedulous Framework.</description>
+    <summary>Image library for the Sedulous Framework.</summary>
+    <description>Image library for the Sedulous Framework.
+    </description>
     <tags>sedulous gamedev</tags>	
   <dependencies>
     <group targetFramework="net6.0">
@@ -21,9 +22,9 @@
   <files>
     <file src="..\Images\desktop_uv128.png" target="images\icon.png"/>
 
-    <!-- .NET Standard 2.1 -->
-    <file src="..\Binaries\NETCore\Release\Sedulous.StbImageWriteSharp.dll" target="lib\net6.0\"/>
-    <!--<file src="..\Binaries\NETCore\Release\Sedulous.StbImageWriteSharp.XML" target="lib\net6.0\"/>-->
-    <file src="..\Binaries\NETCore\Release\Sedulous.StbImageWriteSharp.pdb" target="lib\net6.0\"/>
+    <!-- .NET 6.0 -->
+    <file src="..\Binaries\NETCore\Release\Sedulous.Image.dll" target="lib\net6.0\"/>
+    <!--<file src="..\Binaries\NETCore\Release\Sedulous.Image.XML" target="lib\net6.0\"/>-->
+    <file src="..\Binaries\NETCore\Release\Sedulous.Image.pdb" target="lib\net6.0\"/>
   </files>  
 </package>

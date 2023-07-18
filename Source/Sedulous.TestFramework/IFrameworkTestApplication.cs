@@ -2,6 +2,7 @@
 using System.Drawing;
 using Sedulous.Content;
 using Sedulous.Input;
+using Sedulous;
 
 namespace Sedulous.TestFramework
 {
@@ -103,7 +104,7 @@ namespace Sedulous.TestFramework
         /// </summary>
         /// <param name="renderer">An action which will render the desired scene.</param>
         /// <returns>A bitmap containing the result of rendering the specified scene.</returns>
-        StbImageSharp.ImageResult Render(Action<FrameworkContext> renderer);
+        Image.Image Render(Action<FrameworkContext> renderer);
 
         /// <summary>
         /// Runs the application until the specified predicate is true.

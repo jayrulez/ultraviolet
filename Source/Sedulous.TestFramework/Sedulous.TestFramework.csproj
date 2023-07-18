@@ -32,12 +32,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<!--<PackageReference Include="StbImageSharp" Version="2.27.12" />-->
-		<!--<PackageReference Include="System.Drawing.Common" Version="5.0.2" />-->
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\StbImageSharp\Sedulous.StbImageSharp.csproj" />
+		<ProjectReference Include="..\Sedulous.Image\Sedulous.Image.csproj" />
 		<ProjectReference Include="..\Sedulous.Core.TestFramework\Sedulous.Core.TestFramework.csproj" />
 		<ProjectReference Include="..\Sedulous.Core\Sedulous.Core.csproj" />
 		<ProjectReference Include="..\Sedulous.SDL2\Sedulous.SDL2.csproj" />

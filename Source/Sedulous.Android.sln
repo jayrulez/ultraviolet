@@ -65,15 +65,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.Core", "Sedulous.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous", "Sedulous\Sedulous.csproj", "{AD13E812-1F4E-4772-81B7-4839375C9569}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.StbImageSharp", "StbImageSharp\Sedulous.StbImageSharp.csproj", "{C4C44055-F77D-4AD5-BD31-4DB72342715E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.StbImageWriteSharp", "StbImageWriteSharp\Sedulous.StbImageWriteSharp.csproj", "{6BC1D74C-B598-4A1D-BA0C-1F9886F5F025}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.Shims.Android", "Sedulous.Shims.Android\Sedulous.Shims.Android.csproj", "{15DB1E82-93B8-40E6-B782-6261CA25E024}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.Shims.Android.FMOD", "Sedulous.Shims.Android.FMOD\Sedulous.Shims.Android.FMOD.csproj", "{4AC93F92-F415-45E5-A402-80BB076101E2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UvDebug.Android", "UvDebug\Android\UvDebug.Android.csproj", "{5F92D7E7-2586-4CA1-AE55-23D7BB5E249E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sedulous.Image", "Sedulous.Image\Sedulous.Image.csproj", "{ADADA5C3-9ECA-45F8-87E7-A791C482812E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -201,14 +199,6 @@ Global
 		{AD13E812-1F4E-4772-81B7-4839375C9569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD13E812-1F4E-4772-81B7-4839375C9569}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD13E812-1F4E-4772-81B7-4839375C9569}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4C44055-F77D-4AD5-BD31-4DB72342715E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4C44055-F77D-4AD5-BD31-4DB72342715E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4C44055-F77D-4AD5-BD31-4DB72342715E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4C44055-F77D-4AD5-BD31-4DB72342715E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6BC1D74C-B598-4A1D-BA0C-1F9886F5F025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BC1D74C-B598-4A1D-BA0C-1F9886F5F025}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BC1D74C-B598-4A1D-BA0C-1F9886F5F025}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BC1D74C-B598-4A1D-BA0C-1F9886F5F025}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15DB1E82-93B8-40E6-B782-6261CA25E024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15DB1E82-93B8-40E6-B782-6261CA25E024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15DB1E82-93B8-40E6-B782-6261CA25E024}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -222,6 +212,10 @@ Global
 		{5F92D7E7-2586-4CA1-AE55-23D7BB5E249E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{5F92D7E7-2586-4CA1-AE55-23D7BB5E249E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F92D7E7-2586-4CA1-AE55-23D7BB5E249E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADADA5C3-9ECA-45F8-87E7-A791C482812E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADADA5C3-9ECA-45F8-87E7-A791C482812E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADADA5C3-9ECA-45F8-87E7-A791C482812E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADADA5C3-9ECA-45F8-87E7-A791C482812E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -148,7 +148,7 @@ namespace Sedulous.TestApplication
         /// </summary>
         /// <param name="bitmap">The bitmap to wrap.</param>
         /// <returns>The wrapped value.</returns>
-        protected BitmapResult TheResultingImage(StbImageSharp.ImageResult bitmap)
+        protected BitmapResult TheResultingImage(Image.Image bitmap)
         {
             return new BitmapResult(bitmap);
         }

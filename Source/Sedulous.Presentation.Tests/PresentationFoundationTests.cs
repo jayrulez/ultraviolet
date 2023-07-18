@@ -398,7 +398,7 @@ namespace Sedulous.Presentation.Tests
         /// <summary>
         /// Runs a standard test by spinning up an Sedulous application and displaying the specified UPF screen.
         /// </summary>
-        private StbImageSharp.ImageResult RunPresentationTestFor<T>(Func<ContentManager, T> ctor) where T : UIScreen
+        private Image.Image RunPresentationTestFor<T>(Func<ContentManager, T> ctor) where T : UIScreen
         {
             return GivenAPresentationFoundationTestFor<T>(ctor)
                 .Render(uv =>

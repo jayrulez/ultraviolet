@@ -21,7 +21,7 @@ namespace Sedulous.TestApplication
         /// Initializes a new instance of the BitmapResult class.
         /// </summary>
         /// <param name="image">The image being examined.</param>
-        internal BitmapResult(StbImageSharp.ImageResult image)
+        internal BitmapResult(Image.Image image)
         {
             this.Image = image;
         }
@@ -65,7 +65,7 @@ namespace Sedulous.TestApplication
 
             var fileStream = File.Open(filename, FileMode.Open);
 
-            var expected = StbImageSharp.ImageResult.FromStream(fileStream, StbImageSharp.ColorComponents.RedGreenBlueAlpha);
+            var expected = Sedulous.Image.Image.FromStream(fileStream, Sedulous.Image.Image.ColorComponents.RedGreenBlueAlpha);
 
             var filenameNoExtension = Path.GetFileNameWithoutExtension(filename);
 
@@ -84,13 +84,7 @@ namespace Sedulous.TestApplication
             var mismatchesRequired = (thresholdType == BitmapResultThresholdType.Percentage) ?
                 (Int32)((Image.Width * Image.Height) * threshold) : (Int32)threshold;
 
-            var diff = new StbImageSharp.ImageResult()
-            {
-                Width = expected.Width,
-                Height = expected.Height,
-                Comp = StbImageSharp.ColorComponents.RedGreenBlueAlpha,
-                Data = new byte[expected.Width * expected.Height * 4]
-            };
+            var diff = new Image.Image(expected.Width, expected.Height, Sedulous.Image.Image.ColorComponents.RedGreenBlueAlpha);
             {
                 // Ignore pixels that are within about 1% of the expected value.
                 const Int32 PixelDiffThreshold = 2;
@@ -99,8 +93,8 @@ namespace Sedulous.TestApplication
                 {
                     for (int x = 0; x < expected.Width; x++)
                     {
-                        expected.GetPixel(x, y, out Pixel4 pixelExpected);
-                        Image.GetPixel(x, y, out Pixel4 pixelActual);
+                        expected.GetPixel(x, y, out Image.Image.Pixel4 pixelExpected);
+                        Image.GetPixel(x, y, out Image.Image.Pixel4 pixelActual);
 
                         var diffR = Math.Abs(pixelExpected.R + pixelActual.R - 2 * Math.Min(pixelExpected.R, pixelActual.R));
                         var diffG = Math.Abs(pixelExpected.G + pixelActual.G - 2 * Math.Min(pixelExpected.G, pixelActual.G));
@@ -128,19 +122,18 @@ namespace Sedulous.TestApplication
         /// <summary>
         /// Gets the underlying value.
         /// </summary>
-        public StbImageSharp.ImageResult Image { get; }
+        public Image.Image Image { get; }
 
         /// <summary>
         /// Saves a bitmap to thhe specified file.
         /// </summary>
-        private void SaveBitmap(StbImageSharp.ImageResult bitmap, String filename)
+        private void SaveBitmap(Image.Image bitmap, String filename)
         {
             // NOTE: We first open a FileStream because it gives us potentially more
             // useful exception information than "A generic error occurred in GDI+".
             using (var fs = new FileStream(filename, FileMode.Create))
             {
-                StbImageWriteSharp.ImageWriter writer = new StbImageWriteSharp.ImageWriter();
-                writer.WritePng(bitmap.Data, bitmap.Width, bitmap.Height, StbImageWriteSharp.ColorComponents.RedGreenBlueAlpha, fs);
+                bitmap.SaveAsPng(fs);
             }
         }
 

@@ -3,6 +3,7 @@ using System.IO;
 using Sedulous.Core;
 using Sedulous.Graphics;
 using Sedulous.Platform;
+using Sedulous.Image;
 
 namespace Sedulous.Shims.NETCore.Graphics
 {
@@ -101,15 +102,8 @@ namespace Sedulous.Shims.NETCore.Graphics
         /// <param name="format">The format with which to save the image.</param>
         private unsafe void Save(Color[] data, Int32 width, Int32 height, Stream stream, SurfaceImageFormat format)
         {
-            var image = new StbImageSharp.ImageResult()
+            var image = new Image.Image(width, height, Image.Image.ColorComponents.RedGreenBlueAlpha);
             {
-                Width = width,
-                Height = height,
-                Comp = StbImageSharp.ColorComponents.RedGreenBlueAlpha,
-                Data = new byte[width * height * 4]
-            };
-            {
-
                 fixed (Color* pData = data)
                 {
                     for (int y = 0; y < height; y++)
@@ -124,11 +118,11 @@ namespace Sedulous.Shims.NETCore.Graphics
                     }
                 }
 
-                var imageWriter = new StbImageWriteSharp.ImageWriter();
+
                 if (format == SurfaceImageFormat.PNG)
-                    imageWriter.WritePng(image.Data, image.Width, image.Height, StbImageWriteSharp.ColorComponents.RedGreenBlueAlpha, stream);
+                    image.SaveAsPng(stream);
                 else
-                    imageWriter.WriteJpg(image.Data, image.Width, image.Height, StbImageWriteSharp.ColorComponents.RedGreenBlueAlpha, stream, 100);
+                    image.SaveAsJpeg(stream, 100);
             }
         }
     }
