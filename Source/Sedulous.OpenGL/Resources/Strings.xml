@@ -65,16 +65,6 @@
       <Variant>No effect has been set.</Variant>
     </en-US>
   </String>
-  <String Key="INVALID_SPRITEFONT_TEXTURE">
-    <en-US>
-      <Variant>Invalid texture.</Variant>
-    </en-US>
-  </String>
-  <String Key="INVALID_SPRITEFONT_KERNING_PAIR">
-    <en-US>
-      <Variant>Invalid kerning pair.</Variant>
-    </en-US>
-  </String>
   <String Key="RENDER_TARGET_NEEDS_BUFFERS">
     <en-US>
       <Variant>The specified render target is not ready for rendering because no render buffers are attached.</Variant>

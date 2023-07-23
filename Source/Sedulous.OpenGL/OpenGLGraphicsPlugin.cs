@@ -124,10 +124,6 @@ namespace Sedulous.OpenGL
 
             var processors = context.GetContent().Processors;
             {
-                processors.RegisterProcessor<OpenGLSpriteFontProcessor>();
-                processors.RegisterProcessor<OpenGLSpriteFontProcessorFromJObject>();
-                processors.RegisterProcessor<OpenGLSpriteFontProcessorFromXDocument>();
-                processors.RegisterProcessor<OpenGLSpriteFontTextureProcessor>();
                 processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromJObject>();
                 processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromShaderSource>();
                 processors.RegisterProcessor<OpenGLEffectImplementationProcessorFromXDocument>();

@@ -3,15 +3,14 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Sedulous.Content;
-using Sedulous.Graphics.Graphics2D;
 
-namespace Sedulous.OpenGL.Graphics.Graphics2D
+namespace Sedulous.Graphics.Graphics2D
 {
     /// <summary>
     /// Loads sprite font assets.
     /// </summary>
     //[ContentProcessor]
-    internal sealed class OpenGLSpriteFontProcessorFromJObject : ContentProcessor<JObject, SpriteFont>
+    internal sealed class SpriteFontProcessorFromJObject : ContentProcessor<JObject, SpriteFont>
     {
         /// <inheritdoc/>
         public override void ExportPreprocessed(ContentManager manager, IContentProcessorMetadata metadata, BinaryWriter writer, JObject input, Boolean delete) =>
@@ -37,7 +36,7 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         }
         
         // The internal processor which converts SpriteFontDescription -> SpriteFont.
-        private readonly OpenGLSpriteFontProcessor implProcessor = new OpenGLSpriteFontProcessor();
+        private readonly SpriteFontProcessor implProcessor = new SpriteFontProcessor();
     }
 }
         

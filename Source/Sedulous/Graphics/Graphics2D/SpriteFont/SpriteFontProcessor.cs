@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Sedulous.Content;
-using Sedulous.Graphics;
-using Sedulous.Graphics.Graphics2D;
 using Sedulous.Platform;
 
-namespace Sedulous.OpenGL.Graphics.Graphics2D
+namespace Sedulous.Graphics.Graphics2D
 {
     /// <summary>
     /// Loads sprite font assets.
     /// </summary>
-    internal sealed class OpenGLSpriteFontProcessor : ContentProcessor<SpriteFontDescription, SpriteFont>
+    internal sealed class SpriteFontProcessor : ContentProcessor<SpriteFontDescription, SpriteFont>
     {
         /// <inheritdoc/>
         public override void ExportPreprocessed(ContentManager manager, IContentProcessorMetadata metadata, BinaryWriter writer, SpriteFontDescription input, Boolean delete)
@@ -124,11 +122,11 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
             }
 
             if (String.IsNullOrEmpty(textureName))
-                throw new ContentLoadException(OpenGLStrings.InvalidSpriteFontTexture);
+                throw new ContentLoadException(FrameworkStrings.InvalidSpriteFontTexture);
 
             var glyphs = default(IEnumerable<Rectangle>);
             using (var surface = manager.Import<PlatformNativeSurface>(textureName, metadata.AssetDensity))
-                glyphs = OpenGLSpriteFontHelper.IdentifyGlyphs(surface, textureRegion);
+                glyphs = SpriteFontHelper.IdentifyGlyphs(surface, textureRegion);
 
             var substitution = description.Glyphs?.Substitution ?? '?';            
             writer.Write(substitution);
@@ -232,10 +230,10 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
             var textureRegion = description.TextureRegion;
 
             if (String.IsNullOrEmpty(textureName))
-                throw new ContentLoadException(OpenGLStrings.InvalidSpriteFontTexture);
+                throw new ContentLoadException(FrameworkStrings.InvalidSpriteFontTexture);
 
             var faceSurface = textures[textureName];
-            var faceGlyphs = OpenGLSpriteFontHelper.IdentifyGlyphs(faceSurface, textureRegion);
+            var faceGlyphs = SpriteFontHelper.IdentifyGlyphs(faceSurface, textureRegion);
 
             var kerningDefaultAdjustment = description.Kernings?["default"] ?? 0;
             var kerningPairs = description.Kernings?.Where(x => !String.Equals(x.Key, "default", StringComparison.InvariantCulture))
@@ -261,7 +259,7 @@ namespace Sedulous.OpenGL.Graphics.Graphics2D
         private static SpriteFontKerningPair CreateKerningPair(String pair)
         {
             if (String.IsNullOrEmpty(pair) || pair.Length != 2)
-                throw new ContentLoadException(OpenGLStrings.InvalidSpriteFontKerningPair);
+                throw new ContentLoadException(FrameworkStrings.InvalidSpriteFontKerningPair);
 
             return new SpriteFontKerningPair(pair[0], pair[1]);
         }

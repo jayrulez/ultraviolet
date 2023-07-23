@@ -1,7 +1,6 @@
 ﻿using System;
-using Sedulous.Graphics.Graphics2D;
 
-namespace Sedulous.OpenGL.Graphics.Graphics2D
+namespace Sedulous.Graphics.Graphics2D
 {
     /// <summary>
     /// An internal representation of a <see cref="CharacterRegion"/> used during content processing.

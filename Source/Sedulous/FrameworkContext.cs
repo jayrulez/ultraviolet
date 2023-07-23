@@ -724,6 +724,11 @@ namespace Sedulous
                 GetContent().Processors.RegisterProcessor<SpriteProcessorFromJObject>();
                 GetContent().Processors.RegisterProcessor<SpriteProcessorFromXDocument>();
 
+                GetContent().Processors.RegisterProcessor<SpriteFontProcessor>();
+                GetContent().Processors.RegisterProcessor<SpriteFontProcessorFromJObject>();
+                GetContent().Processors.RegisterProcessor<SpriteFontProcessorFromXDocument>();
+                GetContent().Processors.RegisterProcessor<SpriteFontTextureProcessor>();
+
                 // Graphics 3D
                 GetContent().Importers.RegisterImporter<GlbModelImporter>(".glb");
                 GetContent().Importers.RegisterImporter<GltfModelImporter>(".gltf");

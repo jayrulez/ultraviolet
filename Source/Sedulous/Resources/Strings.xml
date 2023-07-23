@@ -715,4 +715,14 @@
       <Variant>The specified matrix does not represent an affine transformation.</Variant>
     </en-US>
   </String>
+  <String Key="INVALID_SPRITEFONT_TEXTURE">
+    <en-US>
+      <Variant>Invalid texture.</Variant>
+    </en-US>
+  </String>
+  <String Key="INVALID_SPRITEFONT_KERNING_PAIR">
+    <en-US>
+      <Variant>Invalid kerning pair.</Variant>
+    </en-US>
+  </String>
 </LocalizedStrings>
