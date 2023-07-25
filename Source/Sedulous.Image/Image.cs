@@ -108,7 +108,7 @@ namespace Sedulous.Image
 
         private Image() { }
 
-        public Image(int width, int height, ColorComponents components)
+        public Image(int width, int height, ColorComponents components, byte[] data = null)
         {
             _image = new StbImageSharp.ImageResult
             {
@@ -118,6 +118,10 @@ namespace Sedulous.Image
             };
             int componentCount = GetComponentCount(components);
             _image.Data = new byte[width * height * componentCount];
+            if (data != null)
+            {
+                data.CopyTo(_image.Data, 0);
+            }
         }
 
         /// <summary>
@@ -154,6 +158,26 @@ namespace Sedulous.Image
         /// <summary>
         /// Set a pixel at the specified coordinates.
         /// </summary>
+        public void SetPixel(int x, int y, Pixel4 pixel)
+        {
+            int bpp = 4;
+
+            int pixelOffset = (x + _image.Width * y) * bpp;
+
+            if (_image.Comp != StbImageSharp.ColorComponents.RedGreenBlueAlpha)
+            {
+                throw new Exception("Image comp is not expected.");
+            }
+
+            _image.Data[pixelOffset + 0] = pixel.R;
+            _image.Data[pixelOffset + 1] = pixel.G;
+            _image.Data[pixelOffset + 2] = pixel.B;
+            _image.Data[pixelOffset + 3] = pixel.A;
+        }
+
+        /// <summary>
+        /// Set a pixel at the specified coordinates.
+        /// </summary>
         public void SetPixel(int x, int y, byte r, byte g, byte b, byte a)
         {
             int bpp = 4;
@@ -169,6 +193,25 @@ namespace Sedulous.Image
             _image.Data[pixelOffset + 1] = g;
             _image.Data[pixelOffset + 2] = b;
             _image.Data[pixelOffset + 3] = a;
+        }
+
+        /// <summary>
+        /// Set a pixel at the specified coordinates.
+        /// </summary>
+        public void SetPixel(int x, int y, Pixel3 pixel)
+        {
+            int bpp = 3;
+
+            int pixelOffset = (x + _image.Width * y) * bpp;
+
+            if (_image.Comp != StbImageSharp.ColorComponents.RedGreenBlue)
+            {
+                throw new Exception("Image comp is not expected.");
+            }
+
+            _image.Data[pixelOffset + 0] = pixel.R;
+            _image.Data[pixelOffset + 1] = pixel.G;
+            _image.Data[pixelOffset + 2] = pixel.B;
         }
 
         /// <summary>
@@ -195,6 +238,19 @@ namespace Sedulous.Image
         public int GetStride()
         {
             return GetStride(Width, Comp);
+        }
+
+        public void FlipVertical()
+        {
+            var flipped = new Byte[_image.Data.Length];
+            var bytesPerPixel = GetComponentCount(Comp);
+            for (var y = 0; y < Height; y++)
+            {
+                int rowSize = Width * bytesPerPixel;
+                Array.Copy(_image.Data, y * rowSize, flipped, (Height - 1 - y) * rowSize, rowSize);
+            }
+
+            flipped.CopyTo(_image.Data, 0);
         }
 
         private static int GetStride(int width, ColorComponents components)
