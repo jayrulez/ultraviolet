@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace Sedulous.Image
@@ -240,17 +241,243 @@ namespace Sedulous.Image
             return GetStride(Width, Comp);
         }
 
-        public void FlipVertical()
+        public Pixel4[] GetPixelsRGBA()
         {
-            var flipped = new Byte[_image.Data.Length];
-            var bytesPerPixel = GetComponentCount(Comp);
-            for (var y = 0; y < Height; y++)
+            Debug.Assert(GetComponentCount(Comp) == 4);
+            Pixel4[] pixels = new Pixel4[Width * Height];
+
+            for (int x = 0; x < Width; x++)
             {
-                int rowSize = Width * bytesPerPixel;
-                Array.Copy(_image.Data, y * rowSize, flipped, (Height - 1 - y) * rowSize, rowSize);
+                for (int y = 0; y < Height; y++)
+                {
+                    GetPixel(x, y,  out pixels[x + Width * y]);
+                }
             }
 
-            flipped.CopyTo(_image.Data, 0);
+            return pixels;
+        }
+
+        public Pixel3[] GetPixelsRGB()
+        {
+            Debug.Assert(GetComponentCount(Comp) == 3);
+            Pixel3[] pixels = new Pixel3[Width * Height];
+
+            int bpp = GetComponentCount(Comp);
+
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    GetPixel(x, y, out pixels[x + Width * y]);
+                }
+            }
+
+            return pixels;
+        }
+
+        public void FlipVertical()
+        {
+            int row, col;
+            for (row = 0; row < Height / 2; row++)
+            {
+                for (col = 0; col < Width; col++)
+                {
+                    int topIndex = row * Width + col;
+                    int bottomIndex = (Height - row - 1) * Width + col;
+
+                    // Swap the pixels
+                    byte temp = _image.Data[topIndex];
+                    _image.Data[topIndex] = _image.Data[bottomIndex];
+                    _image.Data[bottomIndex] = temp;
+                }
+            }
+        }
+
+        public void FlipHorizontal()
+        {
+            int row, col;
+            for (row = 0; row < Height; row++)
+            {
+                for (col = 0; col < Width / 2; col++)
+                {
+                    int leftIndex = row * Width + col;
+                    int rightIndex = row * Width + (Width - col - 1);
+
+                    // Swap the pixels
+                    byte temp = _image.Data[leftIndex];
+                    _image.Data[leftIndex] = _image.Data[rightIndex];
+                    _image.Data[rightIndex] = temp;
+                }
+            }
+        }
+
+        private void Transpose()
+        {
+            int row, col;
+            for (row = 0; row < Height; row++)
+            {
+                for (col = row + 1; col < Width; col++)
+                {
+                    int index1 = row * Width + col;
+                    int index2 = col * Width + row;
+
+                    // Swap the pixels
+                    byte temp = _image.Data[index1];
+                    _image.Data[index1] = _image.Data[index2];
+                    _image.Data[index2] = temp;
+                }
+            }
+        }
+
+        public void RotateRight90()
+        {
+            Transpose();
+            FlipHorizontal();
+        }
+
+        public void RotateLeft90()
+        {
+            Transpose();
+            FlipVertical();
+        }
+
+        public void RotateRight180()
+        {
+            int row, col;
+            for (row = 0; row < Height / 2; row++)
+            {
+                for (col = 0; col < Width; col++)
+                {
+                    // Compute indices for the two pixels to swap
+                    int topIndex = row * Width + col;
+                    int bottomIndex = (Height - row - 1) * Width + (Width - col - 1);
+
+                    // Swap the pixels
+                    byte temp = _image.Data[topIndex];
+                    _image.Data[topIndex] = _image.Data[bottomIndex];
+                    _image.Data[bottomIndex] = temp;
+                }
+            }
+        }
+
+        public void RotateLeft180()
+        {
+            int row, col;
+            for (row = 0; row < Height / 2; row++)
+            {
+                for (col = 0; col < Width; col++)
+                {
+                    int index1 = row * Width + col;
+                    int index2 = (Height - row - 1) * Width + (Width - col - 1);
+
+                    // Swap the pixels from opposite corners
+                    byte temp = _image.Data[index1];
+                    _image.Data[index1] = _image.Data[index2];
+                    _image.Data[index2] = temp;
+                }
+            }
+        }
+
+        public void RotateRight270()
+        {
+            int row, col;
+            for (row = 0; row < Height / 2; row++)
+            {
+                for (col = row; col < Width - row - 1; col++)
+                {
+                    // Compute indices for the four pixels to swap
+                    int topLeftIndex = row * Width + col;
+                    int topRightIndex = col * Width + (Width - row - 1);
+                    int bottomRightIndex = (Width - row - 1) * Width + (Width - col - 1);
+                    int bottomLeftIndex = (Width - col - 1) * Width + row;
+
+                    // Swap the pixels clockwise
+                    byte temp = _image.Data[topLeftIndex];
+                    _image.Data[topLeftIndex] = _image.Data[bottomLeftIndex];
+                    _image.Data[bottomLeftIndex] = _image.Data[bottomRightIndex];
+                    _image.Data[bottomRightIndex] = _image.Data[topRightIndex];
+                    _image.Data[topRightIndex] = temp;
+                }
+            }
+        }
+
+        public void RotateLeft270()
+        {
+            int row, col;
+            for (row = 0; row < Height / 2; row++)
+            {
+                for (col = 0; col < (Width + 1) / 2; col++)
+                {
+                    int topLeftIndex = row * Width + col;
+                    int topRightIndex = col * Width + (Width - row - 1);
+                    int bottomLeftIndex = (Height - row - 1) * Width + col;
+                    int bottomRightIndex = (Height - col - 1) * Width + (Width - row - 1);
+
+                    // Swap the four pixels from opposite corners
+                    byte temp = _image.Data[topLeftIndex];
+                    _image.Data[topLeftIndex] = _image.Data[topRightIndex];
+                    _image.Data[topRightIndex] = _image.Data[bottomRightIndex];
+                    _image.Data[bottomRightIndex] = _image.Data[bottomLeftIndex];
+                    _image.Data[bottomLeftIndex] = temp;
+                }
+            }
+        }
+
+        // Function to perform bilinear interpolation
+        private byte bilinearInterpolation(byte[] image, int width, int height, double x, double y)
+        {
+            int x1 = (int)x;
+            int x2 = x1 + 1;
+            int y1 = (int)y;
+            int y2 = y1 + 1;
+
+            double dx = x - x1;
+            double dy = y - y1;
+
+            byte pixel11 = image[y1 * width + x1];
+            byte pixel12 = image[y1 * width + x2];
+            byte pixel21 = image[y2 * width + x1];
+            byte pixel22 = image[y2 * width + x2];
+
+            double result = (1 - dx) * (1 - dy) * pixel11 +
+                            dx * (1 - dy) * pixel12 +
+                            (1 - dx) * dy * pixel21 +
+                            dx * dy * pixel22;
+
+            return (byte)result;
+        }
+
+        // Function to rotate the image byte array at an arbitrary angle (bilinear interpolation)
+        public void Rotate(double angle)
+        {
+            double radianAngle = angle * Math.PI / 180.0;
+            double cosAngle = Math.Cos(radianAngle);
+            double sinAngle = Math.Sin(radianAngle);
+            double centerX = Width / 2.0;
+            double centerY = Height / 2.0;
+
+            // Create a copy of the original image buffer
+            byte[] originalImage = new byte[_image.Data.Length];
+            for (int i = 0; i < Height; i++)
+            {
+                for (int j = 0; j < Width; j++)
+                {
+                    originalImage[i * Width + j] = _image.Data[i * Width + j];
+                }
+            }
+
+            int row, col;
+            for (row = 0; row < Height; row++)
+            {
+                for (col = 0; col < Width; col++)
+                {
+                    double srcX = cosAngle * (col - centerX) + sinAngle * (row - centerY) + centerX;
+                    double srcY = -sinAngle * (col - centerX) + cosAngle * (row - centerY) + centerY;
+
+                    // Perform bilinear interpolation to get the new pixel value after rotation
+                    _image.Data[row * Width + col] = bilinearInterpolation(originalImage, Width, Height, srcX, srcY);
+                }
+            }
         }
 
         private static int GetStride(int width, ColorComponents components)
